@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprensión Lectora · Personal Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Lora:ital,wght@0,400;0,500;1,400&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF6;--card:#FFFFFF;--text:#2A2A2A;--text-soft:#777777;
+  --border:#E8E5DC;--shadow:0 3px 16px rgba(0,0,0,0.06);--radius:14px;
+  --hl-bg:#FFF8E1;--hl-border:#FFD54F;
+  --rv-bg:#F3E5F5;--rv-text:#7B1FA2;
+  --level-primary:#F9A825;--level-dark:#E65100;--level-light:#FFF9C4;--level-mid:#FFECB3;
+  --level-gradient:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);
+  --level-glow:rgba(249,168,37,0.15);--level-badge-text:#4E3800;
+  --correct:#2E7D32;--correct-bg:#E8F5E9;--correct-border:#A5D6A7;
+  --wrong:#C62828;--wrong-bg:#FFEBEE;--wrong-border:#EF9A9A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased;}
+.container{max-width:780px;margin:0 auto;}
+.level-header{text-align:center;padding:2.2rem 2rem;border-radius:20px;color:white;position:relative;overflow:hidden;margin-bottom:1.5rem;background:var(--level-gradient);}
+.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,0.1);border-radius:50%;}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.9rem;font-weight:600;position:relative;z-index:1;}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:500;opacity:0.95;position:relative;z-index:1;margin-top:0.3rem;}
+.level-header .subtitle{opacity:0.85;font-size:0.88rem;font-weight:500;position:relative;z-index:1;margin-top:0.2rem;}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.73rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:var(--level-light);color:var(--level-badge-text);padding:5px 14px;border-radius:20px;border:1.5px solid var(--level-mid);margin-bottom:1rem;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border-top:3.5px solid var(--level-primary);}
+.section-label{display:flex;align-items:center;gap:0.6rem;font-size:0.73rem;font-weight:800;text-transform:uppercase;letter-spacing:0.13em;color:var(--level-dark);margin-bottom:0.4rem;}
+.section-label::before{content:'';width:20px;height:3px;background:var(--level-primary);border-radius:2px;}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:0.15rem;}
+.section-desc{font-size:0.87rem;color:var(--text-soft);margin-bottom:1.2rem;}
+/* vocab spans keep original styling from source */
+.vocab{background:var(--hl-bg);border-bottom:2.5px solid var(--hl-border);padding:1px 4px;border-radius:4px;font-weight:700;}
+.item-tabs{display:flex;gap:0.4rem;margin-bottom:0;flex-wrap:wrap;}
+.item-tab{padding:0.45rem 1.1rem;border-radius:8px 8px 0 0;font-size:0.83rem;font-weight:700;cursor:pointer;border:2px solid var(--border);border-bottom:none;background:#F7F5EE;transition:all 0.2s;font-family:'Nunito',sans-serif;color:var(--text-soft);}
+.item-tab:hover{background:var(--level-light);}
+.item-tab.active{background:var(--card);border-color:var(--level-primary);color:var(--level-dark);border-bottom:2px solid var(--card);margin-bottom:-2px;position:relative;z-index:1;}
+/* Story scroll container */
+.story-scroll-box{border:2px solid var(--level-primary);border-radius:0 12px 12px 12px;background:var(--card);height:420px;overflow-y:auto;padding:1.4rem 1.4rem 1rem;margin-bottom:1rem;}
+.story-scroll-box::-webkit-scrollbar{width:7px;}
+.story-scroll-box::-webkit-scrollbar-track{background:#f1f1f1;border-radius:4px;}
+.story-scroll-box::-webkit-scrollbar-thumb{background:var(--level-primary);border-radius:4px;}
+.story-panel{display:none;}
+.story-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.story-block{margin-bottom:1.2rem;}
+.story-paragraph{font-family:'Lora',serif;font-size:1rem;line-height:1.9;padding:0.5rem 0.7rem;border-radius:8px;transition:background 0.2s;}
+.story-paragraph:hover{background:var(--level-glow);}
+.reveal-line{margin-top:4px;}
+.reveal-btn{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:0.76rem;font-weight:600;color:var(--rv-text);background:var(--rv-bg);border:none;padding:3px 10px;border-radius:6px;cursor:pointer;transition:all 0.2s;user-select:none;}
+.reveal-btn:hover{background:#E1BEE7;}
+.reveal-btn .arrow{transition:transform 0.25s;font-size:0.7rem;}
+.reveal-btn.open .arrow{transform:rotate(90deg);}
+.reveal-text{display:none;font-family:'Lora',serif;font-style:italic;font-size:0.87rem;color:var(--text-soft);margin-top:5px;padding-left:13px;border-left:2.5px solid #CE93D8;line-height:1.7;}
+.reveal-text.show{display:block;}
+.story-scroll-hint{text-align:center;font-size:0.75rem;color:var(--text-soft);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:6px;}
+.krashen-box{background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.5rem;border-left:4px solid #1565C0;display:flex;gap:0.8rem;align-items:flex-start;}
+.krashen-box .k-icon{font-size:1.4rem;line-height:1;padding-top:2px;}
+.krashen-box h4{color:#1565C0;font-size:0.9rem;margin-bottom:3px;}
+.krashen-box p{color:#555;font-size:0.82rem;line-height:1.6;}
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:0.9rem;}
+.ach-item{text-align:center;padding:10px 6px;border-radius:12px;background:#F5F5F0;border:1.5px solid var(--border);opacity:0.45;transition:all 0.3s;}
+.ach-item.unlocked{background:var(--level-light);border-color:var(--level-primary);opacity:1;box-shadow:0 2px 10px var(--level-glow);}
+.ach-item .ach-icon{font-size:1.5rem;margin-bottom:4px;}
+.ach-item .ach-name{font-size:0.63rem;color:var(--text-soft);line-height:1.3;font-weight:600;}
+.ach-item.unlocked .ach-name{color:var(--level-dark);}
+.mode-row{display:flex;gap:0.6rem;margin-bottom:1.2rem;}
+.mode-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0.9rem 0.5rem;border-radius:10px;border:2px solid var(--border);background:var(--card);cursor:pointer;transition:all 0.25s;font-family:'Nunito',sans-serif;}
+.mode-btn:hover{background:var(--level-light);}
+.mode-btn.active{background:var(--level-light);border-color:var(--level-primary);box-shadow:0 2px 10px var(--level-glow);}
+.mode-btn .mode-flags{font-size:1.3rem;}
+.mode-btn .mode-label{font-size:0.82rem;font-weight:700;color:var(--level-dark);}
+.mode-btn .mode-sub{font-size:0.72rem;color:var(--text-soft);}
+.mode-display{font-size:0.8rem;color:var(--text-soft);text-align:center;margin-bottom:1rem;font-weight:600;}
+.progress-wrap{margin-bottom:1.4rem;}
+.progress-bar{height:8px;background:#EEE;border-radius:4px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--level-gradient);border-radius:4px;transition:width 0.5s ease;width:0%;}
+.progress-label{text-align:center;font-size:0.78rem;color:var(--text-soft);margin-top:5px;font-weight:600;}
+.q-card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;transition:all 0.3s;}
+.q-card.correct{border-color:var(--correct-border);background:var(--correct-bg);}
+.q-card.wrong{border-color:var(--wrong-border);background:var(--wrong-bg);}
+.q-badge{display:inline-block;font-size:0.72rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;background:var(--level-light);color:var(--level-dark);padding:3px 10px;border-radius:8px;border:1px solid var(--level-mid);margin-bottom:0.8rem;}
+.q-text{font-size:0.97rem;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.55;}
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt-btn{text-align:left;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:0.88rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif;font-weight:500;}
+.opt-btn:hover:not(:disabled){border-color:var(--level-primary);background:var(--level-light);transform:translateX(3px);}
+.opt-btn:disabled{cursor:not-allowed;}
+.opt-btn.sel-correct{background:linear-gradient(135deg,#388E3C,#4CAF50);color:white;border-color:#388E3C;}
+.opt-btn.sel-wrong{background:linear-gradient(135deg,#C62828,#EF5350);color:white;border-color:#C62828;}
+.opt-btn.show-correct{background:linear-gradient(135deg,#388E3C,#4CAF50);color:white;border-color:#388E3C;}
+.feedback{margin-top:1rem;padding:1rem 1.1rem;border-radius:10px;display:none;font-size:0.85rem;line-height:1.6;}
+.feedback.show{display:block;}
+.feedback.fb-ok{background:var(--correct-bg);border:1.5px solid var(--correct-border);}
+.feedback.fb-no{background:var(--wrong-bg);border:1.5px solid var(--wrong-border);}
+.feedback .fb-title{font-weight:800;font-size:0.92rem;margin-bottom:5px;}
+.feedback.fb-ok .fb-title{color:var(--correct);}
+.feedback.fb-no .fb-title{color:var(--wrong);}
+.feedback .fb-body{color:#555;}
+.feedback .fb-body strong{color:var(--level-dark);}
+.feedback .fb-tip{margin-top:8px;padding:7px 10px;background:rgba(0,0,0,0.04);border-radius:7px;font-size:0.79rem;color:var(--text-soft);}
+.submit-wrap{display:none;text-align:center;margin:1.5rem 0 0.5rem;}
+.submit-btn{background:var(--level-gradient);color:white;border:none;padding:0.9rem 3rem;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 4px 14px var(--level-glow);}
+.submit-btn:hover{transform:translateY(-2px);}
+.completion-card{display:none;text-align:center;padding:2rem 1.8rem;border-radius:18px;background:var(--level-gradient);color:white;margin-top:1.5rem;}
+.completion-card.show{display:block;}
+.cc-icon{font-size:3rem;margin-bottom:0.5rem;}
+.cc-title{font-family:'Fredoka',sans-serif;font-size:1.6rem;margin-bottom:0.3rem;}
+.cc-score{font-size:3.2rem;font-weight:800;text-shadow:2px 2px 6px rgba(0,0,0,0.2);}
+.cc-msg{font-size:0.97rem;opacity:0.95;margin:0.8rem 0;}
+.cc-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.2rem 0;}
+.cc-stat{background:rgba(255,255,255,0.2);border-radius:12px;padding:0.8rem;}
+.cc-stat .cc-sn{font-size:1.5rem;font-weight:800;}
+.cc-stat .cc-sl{font-size:0.75rem;opacity:0.9;}
+.cc-krashen{background:rgba(255,255,255,0.15);border-radius:12px;padding:1rem;margin:1rem 0;text-align:left;}
+.cc-krashen h4{font-size:0.88rem;margin-bottom:5px;}
+.cc-krashen p{font-size:0.8rem;opacity:0.92;line-height:1.5;}
+.reset-btn{background:white;color:var(--level-dark);border:none;padding:0.75rem 2.5rem;border-radius:30px;font-size:0.97rem;font-weight:700;cursor:pointer;margin-top:0.5rem;font-family:'Nunito',sans-serif;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;justify-content:center;align-items:center;}
+.modal-overlay.show{display:flex;}
+@keyframes popIn{0%{transform:scale(0.5);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.modal-box{background:var(--card);border-radius:18px;padding:2rem 1.8rem;text-align:center;max-width:320px;width:90%;border-top:4px solid var(--level-primary);animation:popIn 0.35s ease;}
+.modal-icon{font-size:3.5rem;margin-bottom:0.6rem;}
+.modal-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;color:var(--level-dark);margin-bottom:0.4rem;}
+.modal-text{font-size:0.88rem;color:var(--text-soft);margin-bottom:1.2rem;line-height:1.5;}
+.modal-btn{background:var(--level-gradient);color:white;border:none;padding:0.6rem 2rem;border-radius:24px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.footer{text-align:center;padding:1.5rem 1rem 0.5rem;color:#BCAAA4;font-size:0.76rem;line-height:1.8;}
+@media(max-width:600px){.level-header h1{font-size:1.5rem;}.card{padding:1.3rem;}.story-scroll-box{height:360px;}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="level-header">
+    <div class="level-badge">🟡 Pre-A1</div>
+    <h1>📚 Comprensión Lectora</h1>
+    <div class="module-name">🪪 Personal Identity &amp; Family</div>
+    <p class="subtitle">Comprensión · Vocabulario · Pensamiento Crítico</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Historias del módulo</div>
+    <div class="section-title">Selecciona una historia</div>
+    <div class="section-desc">Lee la historia con su traducción y responde las preguntas de comprensión</div>
+
+    <div class="item-tabs">
+      <button class="item-tab active" id="tab-1" onclick="selectStory(1)">📖 My Name Is Leo</button>
+      <button class="item-tab" id="tab-2" onclick="selectStory(2)">🖼️ Mia's Photo</button>
+      <button class="item-tab" id="tab-3" onclick="selectStory(3)">🌳 Saturday</button>
+      <button class="item-tab" id="tab-4" onclick="selectStory(4)">🤝 Kind People</button>
+    </div>
+
+    <div class="story-scroll-box" id="story-scroll-box">
+      <div id="story-1" class="story-panel active"></div>
+      <div id="story-2" class="story-panel"></div>
+      <div id="story-3" class="story-panel"></div>
+      <div id="story-4" class="story-panel"></div>
+    </div>
+    <div class="story-scroll-hint">↕ Desplázate para leer toda la historia · Haz clic en 🇪🇸 para ver la traducción</div>
+  </div>
+
+  <div class="krashen-box">
+    <div class="k-icon">🧠</div>
+    <div>
+      <h4>Input Comprensible (Krashen)</h4>
+      <p>Según el lingüista Stephen Krashen, adquirimos un idioma cuando entendemos mensajes. Lee la historia sin presión — tu cerebro absorbe patrones del inglés mientras disfrutas la narrativa. ¡Este es el <strong>"input comprensible"</strong> en acción!</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Logros</div>
+    <div class="section-title">🏆 Logros por Desbloquear</div>
+    <div class="section-desc">Responde correctamente para ganar insignias</div>
+    <div class="ach-grid">
+      <div class="ach-item" id="ach-first"><div class="ach-icon">🌱</div><div class="ach-name">Primera Respuesta</div></div>
+      <div class="ach-item" id="ach-streak"><div class="ach-icon">🔥</div><div class="ach-name">3 Seguidas</div></div>
+      <div class="ach-item" id="ach-literal"><div class="ach-icon">📖</div><div class="ach-name">Comp. Literal</div></div>
+      <div class="ach-item" id="ach-inferential"><div class="ach-icon">🔍</div><div class="ach-name">Comp. Inferencial</div></div>
+      <div class="ach-item" id="ach-critical"><div class="ach-icon">🎓</div><div class="ach-name">Pensamiento Crítico</div></div>
+      <div class="ach-item" id="ach-perfect"><div class="ach-icon">⭐</div><div class="ach-name">Perfección</div></div>
+      <div class="ach-item" id="ach-identity"><div class="ach-icon">🪪</div><div class="ach-name">Identidad Personal</div></div>
+      <div class="ach-item" id="ach-family"><div class="ach-icon">👨‍👩‍👧‍👦</div><div class="ach-name">Familia</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Quiz de comprensión</div>
+    <div class="section-title" id="quiz-story-title">My Name Is Leo</div>
+    <div class="mode-row">
+      <button class="mode-btn active" id="mode-eses" onclick="setMode('es-es')">
+        <div class="mode-flags">🇪🇸➡️🇪🇸</div>
+        <div class="mode-label">Español → Español</div>
+        <div class="mode-sub">Comprensión total</div>
+      </button>
+      <button class="mode-btn" id="mode-esen" onclick="setMode('es-en')">
+        <div class="mode-flags">🇪🇸➡️🇬🇧</div>
+        <div class="mode-label">Español → English</div>
+        <div class="mode-sub">Desafío bilingüe</div>
+      </button>
+    </div>
+    <div class="mode-display" id="mode-display">Modo activo: Español → Español</div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-label" id="progress-label">0 de 7 preguntas respondidas</div>
+    </div>
+    <div id="quiz-container"></div>
+    <div class="submit-wrap" id="submit-wrap">
+      <button class="submit-btn" onclick="showCompletion()">📊 Ver mis Resultados</button>
+    </div>
+    <div class="completion-card" id="completion-card">
+      <div class="cc-icon">🏆</div>
+      <div class="cc-title">¡Completado!</div>
+      <div class="cc-score" id="cc-score">0/7</div>
+      <div class="cc-msg" id="cc-msg"></div>
+      <div class="cc-stats">
+        <div class="cc-stat"><div class="cc-sn" id="cc-literal">-</div><div class="cc-sl">📖 Literal</div></div>
+        <div class="cc-stat"><div class="cc-sn" id="cc-infer">-</div><div class="cc-sl">🔍 Inferencial</div></div>
+      </div>
+      <div class="cc-krashen">
+        <h4>🧠 ¿Sabías que...?</h4>
+        <p>Al completar este ejercicio, expusiste tu cerebro a patrones naturales del inglés. Según Krashen, <strong>la adquisición ocurre inconscientemente</strong> cuando entendemos mensajes. ¡Cada historia que lees construye tu competencia lingüística!</p>
+      </div>
+      <button class="reset-btn" onclick="resetQuiz()">🔄 Intentar de Nuevo</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Personal Identity &amp; Family · Pre-A1 · JUCUM English Center</p>
+    <p>Comprensión Lectora — Basado en la teoría de Input Comprensible de Stephen Krashen</p>
+  </footer>
+</div>
+
+<div class="modal-overlay" id="ach-modal">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon">🏆</div>
+    <div class="modal-title" id="modal-title">¡Logro Desbloqueado!</div>
+    <div class="modal-text" id="modal-text"></div>
+    <button class="modal-btn" onclick="closeModal()">¡Genial! 🎉</button>
+  </div>
+</div>
+
+<script>
+
+const BLOCKS = {
+1:[[`My name <strong>is</strong> Leo. <span class="vocab">I</span> am seven years old. <span class="vocab">I</span> live in <span class="vocab">a</span> small town with my <span class="vocab">family</span> — my mom, my <span class="vocab">dad</span>, and my sister Lara. <span class="vocab">We</span> have <span class="vocab">a</span> small house near the market.`,`Mi nombre es Leo. Yo tengo siete años. Vivo en un pueblo pequeño con mi familia — mi mamá, mi papá y mi hermana Lara. Tenemos una casa pequeña cerca del mercado.`],[`My <span class="vocab">dad</span> is tall and quiet. <span class="vocab">His</span> name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or <span class="vocab">a</span> small sweet.`,`Mi papá es alto y tranquilo. Su nombre es Marco. Trabaja en el mercado cada mañana y llega a casa al mediodía. Siempre nos trae algo — fruta, pan o un dulce pequeño.`],[`My mom is short and full of energy. <strong><span class="vocab">Her</span></strong> name is Irma. She sings while she cooks and laughs at <span class="vocab">her</span> own jokes. My sister Lara looks just like <span class="vocab">her</span> — <span class="vocab">same</span> nose, <span class="vocab">same</span> laugh.`,`Mi mamá es bajita y llena de energía. Su nombre es Irma. Canta mientras cocina y se ríe de sus propios chistes. Mi hermana Lara es igualita a ella — misma nariz, misma risa.`],[`Lara is five. She and <span class="vocab">I</span> are not the <span class="vocab">same</span> <span class="vocab">age</span>, but <span class="vocab">we</span> share a room. Sometimes that is hard. But at night, when <span class="vocab">it</span> is dark, she reaches across and holds my hand.`,`Lara tiene cinco. Ella y yo no tenemos la misma edad, pero compartimos un cuarto. A veces eso es difícil. Pero de noche, cuando está oscuro, ella me toma de la mano.`],[`<strong>There is</strong> also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. <span class="vocab">Everyone</span> on our street knows <span class="vocab">him</span>.`,`También está mi abuelo, Don Beto. Es mayor pero muy fuerte. Cada tarde se sienta afuera y saluda a los vecinos. Todos en nuestra calle lo conocen.`],[`On Sundays <span class="vocab">we</span> eat together — all of us at the same table. <span class="vocab">Dad</span> makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.`,`Los domingos comemos juntos — todos en la misma mesa. Papá hace arroz, mamá hace sopa, y el abuelo cuenta un cuento de cuando era joven. Siempre le pido el mismo del río grande.`],[`I am happy to be Leo, from this town, from this <span class="vocab">family</span>. Not every family is the same. But every family has something good in <span class="vocab">it</span>. That is what Don Beto says, and I believe <span class="vocab">him</span>.`,`Estoy feliz de ser Leo, de este pueblo, de esta familia . No toda familia es igual. Pero toda familia tiene algo bueno en ella . Eso es lo que dice Don Beto, y yo le creo.`]],
+2:[[`<span class="vocab">I</span> have <span class="vocab">a</span> big photo on my bedroom wall. <strong>There are</strong> eight people in <span class="vocab">it</span>, and <strong><span class="vocab">everyone</span></strong> is smiling. <span class="vocab">I</span> look at that photo every morning before school.`,`Yo tengo una foto grande en la pared de mi cuarto. Hay ocho personas en ella , y todos están sonriendo. La miro cada mañana antes de ir a la escuela.`],[`The tallest person is my <span class="vocab">dad</span>. <span class="vocab">His</span> name is Carlos. He has <span class="vocab">a</span> big smile and long arms. When he hugs <span class="vocab">you</span>, <span class="vocab">you</span> disappear a little. <span class="vocab">I</span> love that.`,`La persona más alta es mi papá . Su nombre es Carlos. Tiene una gran sonrisa y brazos largos. Cuando te abraza, desapareces un poco. Eso me encanta.`],[`Next to <span class="vocab">him</span> is my mom, Rosa. <strong><span class="vocab">Her</span></strong> eyes are always laughing even when <span class="vocab">her</span> mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.`,`Junto a él está mi mamá, Rosa. Sus ojos siempre ríen aunque su boca esté seria. Es enfermera y llega a casa cansada, pero siempre tiene tiempo para escucharme.`],[`My brother Nico is nine. He is a funny <span class="vocab">boy</span> — in the photo he is making a silly face. He always makes me laugh, even on bad days. <strong>The <span class="vocab">same</span></strong> face every time.`,`Mi hermano Nico tiene nueve años. Es un niño gracioso — en la foto está haciendo una mueca. Siempre me hace reír, hasta en los días malos. La misma cara siempre.`],[`<strong>There is</strong> also my grandma Norma. <strong>Her</strong> hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.`,`También está mi abuela Norma. Su cabello es blanco y sus manos son cálidas. Sabe cómo mejorar todo con una taza de té y una palabra tranquila.`],[`My grandpa Beto is next to her. <strong>They</strong> are the <span class="vocab">same</span> <span class="vocab">age</span> — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.`,`Mi abuelo Beto está junto a ella. Tienen la misma edad — los dos tienen setenta. Él es callado donde ella es ruidosa. Él escucha donde ella habla. Juntos son perfectos.`],[`The last two people in the photo are my aunt and uncle. <span class="vocab">Everyone</span> in my <span class="vocab">family</span> is different. But in that photo, <span class="vocab">we</span> all look like <span class="vocab">we</span> belong together. Because <span class="vocab">we</span> do.`,`Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes. Pero en esa foto, todos parecemos pertenecer juntos. Porque así es.`]],
+3:[[`Saturday is <span class="vocab">a</span> special day. <span class="vocab">We</span> do not go to school or work. <strong>There is</strong> no rush in the morning. My <span class="vocab">dad</span> makes eggs and <span class="vocab">everyone</span> sits at the table together.`,`El sábado es un día especial. Nosotros no vamos a la escuela ni al trabajo. No hay prisa por la mañana. Mi papá hace huevos y todos se sientan juntos a la mesa.`],[`After breakfast <span class="vocab">we</span> walk to the park. My grandpa Don Beto comes with us. <strong><span class="vocab">His</span></strong> walking stick makes a click-click sound on the sidewalk. <span class="vocab">I</span> like to walk next to <span class="vocab">him</span>.`,`Después del desayuno vamos al parque. Mi abuelo Don Beto viene con nosotros. Su bastón hace un click-click en la acera. A mí me gusta caminar a su lado.`],[`At the park <span class="vocab">I</span> play with my friend Ravi. <strong><span class="vocab">His</span></strong> little brother Arjun plays with my sister Lara. They are the <span class="vocab">same</span> <span class="vocab">age</span> — both five — so they understand each other perfectly.`,`En el parque juego con mi amigo Ravi. Su hermano pequeño Arjun juega con mi hermana Lara. Tienen la misma edad — los dos tienen cinco — así que se entienden perfectamente.`],[`Ravi is a funny <span class="vocab">boy</span>. He does voices for all the animals and <span class="vocab">I</span> cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.`,`Ravi es un niño gracioso. Hace voces de todos los animales y yo no puedo dejar de reírme. Su hermano mayor Dev nos mira y mueve la cabeza. Pero él está sonriendo.`],[`<strong><span class="vocab">Everyone</span></strong> at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch <span class="vocab">it</span> all — like they are watching a film.`,`Todos en el parque se conocen. Las mamás hablan cerca de la fuente. Los papás juegan fútbol. Los abuelos se sientan en un banco y miran todo — como si estuvieran viendo una película.`],[`When the sun goes down <span class="vocab">we</span> start walking home. My sister is sleepy and my <span class="vocab">dad</span> carries <span class="vocab">her</span> on his back. She is small and <span class="vocab">her</span> eyes are already closed.`,`Cuando el sol se pone empezamos a caminar a casa. Mi hermana tiene sueño y mi papá la lleva en la espalda. Ella es pequeña y sus ojos ya están cerrados.`],[`At home we drink tea and grandpa tells a story. I sit close to <span class="vocab">him</span> and listen. <span class="vocab">It</span> is the best part of Saturday — the quiet end, with my <span class="vocab">family</span>, all together.`,`En casa tomamos té y el abuelo cuenta un cuento. Yo me siento cerca de él y escucho. Es la mejor parte del sábado — el final tranquilo, con mi familia , todos juntos.`]],
+4:[[`<strong>My name is</strong> Nico and <span class="vocab">I</span> am eight years old. <span class="vocab">I</span> go to school on Avenida del Sol. <span class="vocab">I</span> have <span class="vocab">a</span> lot of friends, but I have learned something important: the best people are <strong><span class="vocab">kind</span></strong>.`,`Mi nombre es Nico y yo tengo ocho años. Voy a la escuela en la Avenida del Sol. Tengo muchos amigos, pero he aprendido algo importante: las mejores personas son amables .`],[`My <span class="vocab">dad</span> is the kindest person I know. <span class="vocab">His</span> name is Carlos. When I come home sad, he does not ask <span class="vocab">a</span> lot of questions. He just makes tea and sits with me until I feel better.`,`Mi papá es la persona más amable que conozco. Su nombre es Carlos. Cuando yo llego a casa triste, no hace muchas preguntas. Simplemente hace té y se sienta conmigo hasta que me siento mejor.`],[`<strong>There is</strong> also my neighbor Mrs. Ana. She lives alone. <strong><span class="vocab">Her</span></strong> <span class="vocab">family</span> is far away. Every morning she waves at me from <span class="vocab">her</span> window. I wave back. <span class="vocab">It</span> is a small thing, but <span class="vocab">it</span> makes <span class="vocab">her</span> smile big.`,`También está mi vecina, la señora Ana. Vive sola. Su familia está lejos. Cada mañana me saluda desde su ventana. Yo le devuelvo el saludo. Es una cosa pequeña, pero le hace sonreír mucho.`],[`At school my teacher Miss Pilar is <span class="vocab">kind</span> to <span class="vocab">everyone</span>. She never shouts. She explains things slowly and says, "Try again — <span class="vocab">you</span> can do <span class="vocab">it</span>." When I made a mistake on the board last week, she said, "Good try, Nico."`,`En la escuela mi maestra Miss Pilar es amable con todos . Nunca grita. Explica las cosas despacio y dice: "Intenta de nuevo — tú puedes." Cuando cometí un error en la pizarra la semana pasada, dijo: "Buen intento, Nico."`],[`My grandpa Beto is also kind. He is old but <strong>the <span class="vocab">same</span></strong> inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.`,`Mi abuelo Beto también es amable . Es mayor pero igual por dentro que siempre — paciente, tranquilo y cálido. Cuando lo visito, siempre tiene un cuento. Y en cada cuento, la persona amable gana.`],[`<strong>I</strong> think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my <span class="vocab">dad</span>, my grandpa. And I choose to be kind.`,`Creo que ser amable es como ser fuerte. Es una decisión cada día. Cuando alguien es malo conmigo, yo recuerdo a Miss Pilar, a mi papá, a mi abuelo. Y elijo ser amable .`],[`I do not know everything. I am only eight. But I know that my <span class="vocab">family</span> is kind, my friends are <strong>kind</strong>, and that is <span class="vocab">everyone</span> I need.`,`Yo no sé todo. Solo tengo ocho años. Pero sé que mi familia es amable , mis amigos son amables , y eso es todo lo que necesito.`]]
+};
+
+const STORY_META = {
+1:{t:"My Name Is Leo",desc:"Leo introduces himself and his small, happy family."},
+2:{t:"Mia\'s Family Photo",desc:"Mia describes the eight people in her family photo."},
+3:{t:"Saturday at the Park",desc:"Leo describes a typical happy Saturday with his family."},
+4:{t:"Kind People",desc:"Nico reflects on the kindest people in his life."}
+};
+
+const S={
+1:{t:"My Name Is Leo",
+ee:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFCu\u00E1ntos a\u00F1os tiene Leo al inicio de la historia?",o:["Cinco a\u00F1os","Ocho a\u00F1os","Siete a\u00F1os","Seis a\u00F1os"],c:2,ok:"<strong>\"I am seven years old\"</strong> = Tengo siete a\u00F1os. <strong>Seven = 7.</strong> Leo lo dice en su primera oraci\u00F3n.",no:"Vuelve a la primera oraci\u00F3n: <strong>\"I am seven years old.\"</strong> <em>Seven</em> = siete. No es cinco (five=5), ni ocho (eight=8), ni seis (six=6).",tip:"\uD83D\uDCA1 N\u00FAmeros: one=1, two=2, three=3, four=4, five=5, six=6, <strong>seven=7</strong>, eight=8, nine=9, ten=10."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFD\u00F3nde trabaja el pap\u00E1 de Leo?",o:["En una escuela","En el mercado","En un hospital","En una oficina"],c:1,ok:"<strong>\"He works at the market every morning\"</strong> = Trabaja en el mercado cada ma\u00F1ana. <strong>Market = mercado.</strong>",no:"La historia dice: <strong>\"He works at the market every morning.\"</strong> <em>Market</em> = mercado, no school (escuela) ni hospital.",tip:"\uD83D\uDCA1 Para encontrar el lugar de trabajo, busca el verbo <em>works</em> y la preposici\u00F3n <em>at</em>. \"Works <u>at</u> the market\" = trabaja <u>en</u> el mercado."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00F3mo es la mam\u00E1 de Leo seg\u00FAn la historia?",o:["Alta y tranquila","Seria y callada","Bajita y llena de energ\u00EDa","Alta y cansada"],c:2,ok:"<strong>\"My mom is short and full of energy\"</strong> = Mi mam\u00E1 es bajita y llena de energ\u00EDa. <strong>Short = bajita, full of energy = llena de energ\u00EDa.</strong>",no:"La historia dice: <strong>\"My mom is short and full of energy.\"</strong> <em>Short</em> = bajita (no tall = alta). <em>Full of energy</em> = llena de energ\u00EDa.",tip:"\uD83D\uDCA1 Los adjetivos van despu\u00E9s del verbo <em>is</em>: \"My mom <u>is</u> <strong>short and full of energy</strong>.\""},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Compartir cuarto es dif\u00EDcil, pero Lara le toma la mano a Leo en la oscuridad. \u00BFQu\u00E9 revela ese gesto?",o:["Que Lara siempre tiene miedo en la oscuridad","Que a pesar de las dificultades, los hermanos se quieren mucho","Que Leo no puede dormir solo","Que quieren cuartos separados"],c:1,ok:"Exacto. La clave es <strong>\"but\"</strong> (pero): compartir es dif\u00EDcil, <em>pero</em> Lara toma su mano. Ese contraste revela <strong>cari\u00F1o genuino entre los hermanos</strong>.",no:"La clave est\u00E1 en <strong>\"but\"</strong> (pero): \"Sometimes that is hard. <strong>But</strong> at night, she holds my hand.\" El <em>but</em> muestra contraste — hay dificultad, pero tambi\u00E9n amor.",tip:"\uD83D\uDCA1 Inferencia: La palabra <em>but</em> siempre introduce un contraste importante. Lo que viene despu\u00E9s del <em>but</em> revela la emoci\u00F3n real."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Don Beto se sienta afuera y todos en la calle lo conocen. \u00BFQu\u00E9 tipo de persona es?",o:["Una persona solitaria y triste","Una persona querida y parte importante de su comunidad","Alguien que no tiene qu\u00E9 hacer en casa","Alguien que espera el autob\u00FAs todos los d\u00EDas"],c:1,ok:"<strong>\"Everyone on our street knows him\"</strong> \u2014 cuando <em>todos</em> conocen a alguien, es porque es una presencia <strong>querida y activa en su comunidad</strong>. \u00A1Inferencia perfecta!",no:"<strong>\"Everyone on our street knows him\"</strong> = Todos en la calle lo conocen. Si todos lo conocen, est\u00E1 <strong>conectado con su comunidad</strong>, no solo ni aburrido.",tip:"\uD83D\uDCA1 Inferencia: Preg\u00FAntate por qu\u00E9 el autor escribe que 'todos lo conocen'. No es un detalle al azar \u2014 nos dice qui\u00E9n es Don Beto."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Los domingos toda la familia come junta y el abuelo cuenta historias. \u00BFQu\u00E9 revela esa escena?",o:["Que solo se re\u00FAnen los domingos por obligaci\u00F3n","Que los domingos son aburridos en su familia","Que la familia valora las tradiciones y el tiempo compartido","Que el abuelo no tiene otros amigos"],c:2,ok:"\u00A1Exacto! Una familia que se re\u00FAne <em>cada domingo</em> con roles claros tiene <strong>tradiciones s\u00F3lidas y valora el tiempo juntos</strong>.",no:"La escena del domingo muestra una <strong>rutina de uni\u00F3n familiar</strong>. Eso no es obligaci\u00F3n \u2014 son <strong>tradiciones que unen</strong>. Las rutinas repetidas revelan los valores de una familia.",tip:"\uD83D\uDCA1 Cuando una historia dice \"every Sunday\", se\u00F1ala una tradici\u00F3n. Las tradiciones revelan lo que una familia <em>valora</em>."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"Leo termina diciendo: \"Not every family is the same. But every family has something good in it.\" \u00BFCu\u00E1l es el mensaje central?",o:["Que los mercados son importantes para las familias","Que cada familia, aunque diferente, tiene algo valioso","Que Leo quiere una familia m\u00E1s grande","Que los abuelos tienen la mayor sabidur\u00EDa"],c:1,ok:"\u00A1Perfecto! El mensaje es: <strong>la identidad personal viene de tu familia</strong>, y aunque no todas son iguales, todas tienen valor. Leo lo aprende de Don Beto. \uD83D\uDC9B",no:"Las palabras finales son el mensaje del autor: <strong>\"Not every family is the same. But every family has something good in it.\"</strong> No habla del mercado ni del tama\u00F1o \u2014 habla del <strong>valor universal de la familia</strong>.",tip:"\uD83D\uDCA1 Pensamiento cr\u00EDtico: El \u00FAltimo p\u00E1rrafo de una historia casi siempre contiene el mensaje m\u00E1s importante. L\u00E9elo con atenci\u00F3n especial."}
+],
+en:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00F3mo es el pap\u00E1 de Leo seg\u00FAn la historia?",o:["Short and funny","Old and tired","Tall and quiet","Young and loud"],c:2,ok:"<strong>\"My dad is tall and quiet.\"</strong> Tall = alto, quiet = tranquilo. These adjectives come right after the verb <em>is</em>.",no:"The story says: <strong>\"My dad is tall and quiet.\"</strong> Tall = alto (not short), quiet = tranquilo (not loud or funny). Look for adjectives after <em>is</em>.",tip:"\uD83D\uDCA1 Adjectives in English follow the verb 'is': \"He <u>is</u> <strong>tall and quiet</strong>.\" Tall=alto \u00b7 Quiet=tranquilo."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 trae el pap\u00E1 cuando regresa del mercado?",o:["Toys and clothes","Fruit, bread, or a small sweet","Books and pencils","Money for everyone"],c:1,ok:"<strong>\"He always brings us something \u2014 fruit, bread, or a small sweet.\"</strong> Brings = trae. Always = siempre.",no:"The story says: <strong>\"He always brings us something \u2014 fruit, bread, or a small sweet.\"</strong> Not toys or books \u2014 simple food items.",tip:"\uD83D\uDCA1 <em>Always</em> = siempre. \"He <u>always</u> brings...\" = Lo hace todos los d\u00EDas sin excepci\u00F3n."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace la mam\u00E1 de Leo que muestra que es alegre?",o:["She reads books alone every evening","She works all day at the market","She sings while she cooks and laughs at her own jokes","She goes to the park every morning"],c:2,ok:"<strong>\"She sings while she cooks and laughs at her own jokes.\"</strong> Sings = canta, laughs = se r\u00EDe. Two actions that show her joyful personality!",no:"The story says: <strong>\"She sings while she cooks and laughs at her own jokes.\"</strong> These actions show she is joyful. She does not work at the market (that is dad).",tip:"\uD83D\uDCA1 Actions (verbs) reveal personality: she <u>sings</u> and <u>laughs</u> \u2192 she is a happy, energetic person."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"\"Everyone on our street knows him.\" What can we infer about Don Beto?",o:["He is bored with nothing to do","He dislikes being inside his house","He is a warm, sociable person loved by his community","He is waiting for a bus that never comes"],c:2,ok:"\"Everyone on our street knows him.\" When everyone knows you, it means you are <strong>connected and beloved in your community</strong>. We infer character from actions!",no:"The clue is: <strong>\"Everyone on our street knows him.\"</strong> If everyone knows you, you are <em>connected</em> \u2014 not bored or suspicious. Waving every day shows <strong>warmth and community belonging</strong>.",tip:"\uD83D\uDCA1 Inference: Ask WHY the author says everyone knows him. It reveals something important about who Don Beto IS \u2014 not just what he does."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Leo says \"Not every family is the same.\" He still loves his family. What does this suggest?",o:["Leo wishes he had a different family","Leo thinks his family is absolutely perfect","Leo accepts and values his family despite its imperfections","Leo is comparing his family to his friend\'s"],c:2,ok:"Leo acknowledges difficulties but says every family has \"something good in it.\" This shows <strong>acceptance and appreciation of his family as it is</strong> \u2014 the core of personal identity!",no:"Leo does not say his family is perfect \u2014 he says every family has something good. This is <strong>acceptance and appreciation</strong>, not wishing for something else.",tip:"\uD83D\uDCA1 The word <em>but</em> shows contrast: imperfections exist, yet there is still value. That is emotional maturity and acceptance."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Dad cooks, mom cooks, grandpa tells stories \u2014 every Sunday. What does this routine reveal?",o:["They only enjoy each other on Sundays","The family has clear loving roles and cherishes togetherness","Grandpa is the only one who does anything fun","Dad and mom prefer not to talk to each other"],c:1,ok:"Each person contributes something. A shared weekly routine shows <strong>a family with strong traditions that value togetherness</strong>.",no:"The Sunday scene shows each family member <strong>contributing something</strong>. A weekly tradition signals what a family <em>values</em>: togetherness, shared roles, and belonging.",tip:"\uD83D\uDCA1 When a story says \"every Sunday\" or \"always,\" it signals a tradition \u2014 and traditions reveal what a family values most."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"\"Every family has something good in it.\" What is the author\'s main message?",o:["Markets are important for small communities","The best families are always the biggest ones","Every family, however different, has its own value and beauty","Grandpas always have the best wisdom"],c:2,ok:"The author\'s message is about <strong>identity and belonging</strong>: your family \u2014 whatever shape it takes \u2014 is the source of who you are, and it has value. The heart of Module 1.",no:"The final words contain the message: <strong>\"Not every family is the same. But every family has something good in it.\"</strong> Not about markets or size \u2014 the <strong>universal value of family as identity</strong>.",tip:"\uD83D\uDCA1 Critical thinking: The LAST paragraph always contains the author\'s most important message. Read it twice and ask: what is the author teaching me?"}
+]},
+2:{t:"Mia\'s Family Photo",
+ee:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFCu\u00E1ntas personas hay en la foto de Mia?",o:["Seis personas","Diez personas","Nueve personas","Ocho personas"],c:3,ok:"<strong>\"There are eight people in it\"</strong> = Hay ocho personas en ella. <strong>Eight = ocho.</strong>",no:"La historia dice: <strong>\"There are eight people in it.\"</strong> <em>Eight</em> = ocho. Recuerda: five=5, six=6, seven=7, <strong>eight=8</strong>, nine=9, ten=10.",tip:"\uD83D\uDCA1 <em>There are</em> + n\u00FAmero = Hay (plural). \"There are <strong>eight</strong> people\" = Hay ocho personas."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00FAal es la profesi\u00F3n de la mam\u00E1 de Mia?",o:["Maestra","Cocinera","Enfermera","Doctora"],c:2,ok:"<strong>\"She is a nurse\"</strong> = Es enfermera. <strong>Nurse = enfermera.</strong>",no:"La historia dice: <strong>\"She is a nurse\"</strong> = Es enfermera. <em>Nurse</em> = enfermera, no maestra (teacher), cocinera (cook) ni doctora (doctor).",tip:"\uD83D\uDCA1 Para encontrar la profesi\u00F3n, busca la frase <em>\"She/He is a ___\"</em>. \"She is a <strong>nurse</strong>\" = Es enfermera."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 tienen en com\u00FAn los abuelos Norma y Beto?",o:["Los dos tienen cabello blanco","Trabajan juntos en el mercado","Los dos tienen setenta a\u00F1os","Los dos son enfermeros jubilados"],c:2,ok:"<strong>\"They are the same age \u2014 both seventy\"</strong> = Tienen la misma edad \u2014 los dos tienen setenta. <strong>Same age = misma edad.</strong>",no:"La historia dice: <strong>\"They are the same age \u2014 both seventy.\"</strong> <em>Same age</em> = misma edad. Solo la abuela tiene cabello blanco \u2014 la historia no dice que Beto tambi\u00E9n.",tip:"\uD83D\uDCA1 <em>The same</em> = lo mismo / el mismo. \"They are the <strong>same</strong> age\" = Tienen la misma edad."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"La mam\u00E1 \"llega a casa cansada, pero siempre tiene tiempo para escuchar a Mia.\" \u00BFQu\u00E9 revela eso de ella?",o:["Que no le gusta su trabajo","Que prefiere descansar antes que hablar con Mia","Que es una mam\u00E1 dedicada que prioriza a su hija aunque est\u00E9 agotada","Que Mia siempre tiene problemas en la escuela"],c:2,ok:"\u00A1Correcto! <strong>\"but\"</strong> (pero) es la clave: cansada, <em>pero</em> siempre escucha. Eso muestra que <strong>prioriza a su hija sobre su descanso</strong> \u2014 se\u00F1al poderosa de amor.",no:"La clave es el contraste: \"comes home tired, <strong>but</strong> she always has time to listen.\" El <em>but</em> muestra que a pesar del cansancio, <strong>elige escuchar a Mia</strong>. Eso es dedicaci\u00F3n.",tip:"\uD83D\uDCA1 La palabra <em>but</em> introduce siempre algo contrastante. \"Cansada, <strong>pero</strong> escucha\" \u2192 el <em>but</em> revela el verdadero car\u00E1cter."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Los abuelos son opuestos: Norma habla, Beto escucha. \u00BFPor qu\u00E9 Mia dice que juntos son \"perfectos\"?",o:["Porque tienen la misma ropa en la foto","Porque sus diferencias se complementan perfectamente","Porque los dos son enfermeros jubilados","Porque viven solos y se cuidan entre s\u00ED"],c:1,ok:"\u00A1Exacto! Sus diferencias no los separan \u2014 se <strong>complementan</strong>: lo que uno tiene, le falta al otro. Eso los hace perfectos juntos.",no:"Norma habla, Beto escucha. Norma es ruidosa, Beto es callado. Cada uno tiene lo que al otro le falta \u2014 eso es <strong>complementarse</strong>. No es sobre ropa ni profesi\u00F3n.",tip:"\uD83D\uDCA1 Cuando la historia usa pares de opuestos, muestra complementariedad \u2014 dos personas diferentes que se equilibran perfectamente."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Mia mira la foto cada ma\u00F1ana antes de ir a la escuela. \u00BFQu\u00E9 nos dice esa rutina?",o:["Que la foto es muy cara y quiere cuidarla","Que no le gusta ir a la escuela","Que su familia le da seguridad y fuerza para empezar el d\u00EDa","Que quiere ser fot\u00F3grafa de adulta"],c:2,ok:"\u00A1Correcto! Mirar a tu familia cada ma\u00F1ana es una rutina emocional: <strong>la familia de Mia es su fuente de seguridad y amor</strong>.",no:"No es para cuidar la foto. Hacerlo <em>cada ma\u00F1ana</em> revela que esa foto le da algo emocional: <strong>fuerza, seguridad, amor</strong> para enfrentar el d\u00EDa.",tip:"\uD83D\uDCA1 Preg\u00FAntate: \u00BFpor qu\u00E9 lo hace <em>cada ma\u00F1ana</em>? La repetici\u00F3n diaria siempre revela algo emocionalmente importante."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"Mia dice: \"Everyone is different. But we all look like we belong together. Because we do.\" \u00BFCu\u00E1l es el mensaje?",o:["Que las fotos familiares son muy importantes en el hogar","Que una familia debe ser id\u00E9ntica para ser una familia real","Que la unidad familiar no necesita similitud \u2014 necesita pertenencia","Que ocho es el n\u00FAmero perfecto de integrantes familiares"],c:2,ok:"\u00A1Perfecto! La diversidad dentro de una familia no la debilita \u2014 la enriquece. Lo que los une no es ser iguales, sino <strong>pertenecer juntos</strong>.",no:"El mensaje es: <strong>\"Everyone is different. But we belong together.\"</strong> No es sobre fotos ni n\u00FAmeros \u2014 es sobre <strong>pertenencia sobre similitud</strong>.",tip:"\uD83D\uDCA1 Las palabras finales de Mia son el mensaje del autor. Lee siempre la \u00FAltima oraci\u00F3n con atenci\u00F3n especial \u2014 contiene la idea central."}
+],
+en:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace Mia con la foto cada ma\u00F1ana?",o:["She cleans it carefully","She shows it to her friends","She looks at it before school","She takes a new photo every day"],c:2,ok:"<strong>\"I look at that photo every morning before school.\"</strong> Look at = mirar. Every morning = cada ma\u00F1ana.",no:"The story says: <strong>\"I look at that photo every morning before school.\"</strong> She <em>looks at</em> it \u2014 not cleans, not shows.",tip:"\uD83D\uDCA1 <em>Look at</em> = mirar algo espec\u00EDfico. \"I look <u>at</u> the photo\" = Dirijo mis ojos hacia la foto."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00F3mo son los ojos de la mam\u00E1 de Mia?",o:["They are blue and cold","They are small and dark","They are always laughing","They are sad and tired"],c:2,ok:"<strong>\"Her eyes are always laughing even when her mouth is serious.\"</strong> Always laughing = siempre riendo. Eyes laugh, mouth is serious \u2014 a beautiful contrast!",no:"The story says: <strong>\"Her eyes are always laughing even when her mouth is serious.\"</strong> Her eyes are <em>always laughing</em> \u2014 not sad or cold.",tip:"\uD83D\uDCA1 \"Always laughing\" means her eyes have a warm, joyful expression all the time."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace el hermano Nico en la foto?",o:["He is hugging grandma Norma","He is looking at the camera seriously","He is crying a little","He is making a silly face"],c:3,ok:"<strong>\"In the photo he is making a silly face.\"</strong> Silly face = mueca graciosa.",no:"The story says: <strong>\"in the photo he is making a silly face.\"</strong> Silly = gracioso. He is not crying or hugging.",tip:"\uD83D\uDCA1 <em>Silly</em> = gracioso / payaso. A \"silly face\" = una mueca graciosa para hacer re\u00EDr."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"\"When he hugs you, you disappear a little.\" What does this phrase tell us?",o:["His hugs are dangerous and overwhelming","His arms are so warm and big that his hugs feel completely enveloping and safe","He is too big to hug people comfortably","He does not really like hugging people"],c:1,ok:"\"You disappear a little\" is a poetic way to say his hugs are <strong>big, warm, and make you feel completely held and safe</strong>. Mia adds \"I love that\" \u2014 clearly positive!",no:"\"You disappear a little\" is a <em>metaphor</em>. Mia says \"I love that\" \u2014 clearly positive and loving, not dangerous.",tip:"\uD83D\uDCA1 When a story uses surprising language, look for the emotion behind it. Big hug \u2192 feeling safe and loved."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Grandma Norma \"makes everything better with a cup of tea and a quiet word.\" What kind of person is she?",o:["A person who talks too much and gives constant advice","A calm, wise person who brings comfort through simplicity","A person who only cooks and does not listen","A shy person who avoids problems"],c:1,ok:"Tea + a <em>quiet</em> word = gentleness and calm wisdom. Grandma Norma is <strong>a soothing, wise presence</strong> who helps with warmth and simplicity.",no:"The key word is <em>quiet</em> \u2014 not loud. She uses <strong>calm simplicity</strong> (tea + quiet word) to help. That is wisdom.",tip:"\uD83D\uDCA1 <em>Quiet word</em> = una palabra tranquila y discreta. The adjective <em>quiet</em> describes HOW she speaks \u2014 gently and wisely."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Mia looks at the photo every morning before school. What does this daily habit suggest?",o:["She is afraid of losing the photo","She wants to become a photographer","Her family gives her strength and security to face each day","She does not like going to school"],c:2,ok:"A daily ritual of looking at your family before the day starts shows <strong>her family is her emotional anchor</strong> \u2014 they give her confidence and belonging every morning.",no:"The habit is <em>every morning before school</em>. Before facing the day, she looks at her family. This shows <strong>her family gives her emotional strength</strong>.",tip:"\uD83D\uDCA1 Ask WHY every morning, specifically BEFORE school. The timing reveals the emotional function of the habit."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"\"Everyone is different. But we all look like we belong together.\" What is the main message?",o:["Family photos are the most important thing in a home","A family must be similar to truly belong together","Belonging matters more than similarity \u2014 differences enrich a family","Eight is the perfect number for a family"],c:2,ok:"The author\'s message: <strong>diversity within a family is not a weakness \u2014 it is a richness</strong>. What makes them a family is <em>belonging together</em>, not being identical.",no:"<strong>\"Everyone is different. But we belong together.\"</strong> The word <em>but</em> is key. The message is <strong>belonging over similarity</strong>.",tip:"\uD83D\uDCA1 \"Because we do\" \u2014 these three final words are emphatic. Belonging is a fact, not just a feeling."}
+]},
+3:{t:"Saturday at the Park",
+ee:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace el pap\u00E1 de Leo el s\u00E1bado por la ma\u00F1ana?",o:["Va al mercado a trabajar como siempre","Lleva a los ni\u00F1os al parque sin desayunar","Hace huevos y todos desayunan juntos en la mesa","Lee el peri\u00F3dico en silencio"],c:2,ok:"<strong>\"My dad makes eggs and everyone sits at the table together.\"</strong> Makes eggs = hace huevos. Everyone sits together = todos se sientan juntos. \u00A1Un desayuno familiar sin prisas!",no:"La historia dice: <strong>\"My dad makes eggs and everyone sits at the table together.\"</strong> <em>Makes eggs</em> = hace huevos. El s\u00E1bado no hay trabajo ni mercado.",tip:"\uD83D\uDCA1 El s\u00E1bado contrasta con los otros d\u00EDas: \"We do NOT go to school or work.\" Las acciones son diferentes \u2014 hay tiempo para estar juntos."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hacen los pap\u00E1s mientras est\u00E1n en el parque?",o:["Se sientan en un banco con los abuelos","Juegan f\u00FAtbol","Hablan cerca de la fuente","Cu\u00EDdan a los beb\u00E9s peque\u00F1os"],c:1,ok:"<strong>\"The dads play football.\"</strong> Play football = juegan f\u00FAtbol. Cada grupo en el parque hace su propia actividad.",no:"La historia asigna una actividad diferente a cada grupo: abuelos \u2192 banco, mam\u00E1s \u2192 fuente, <strong>pap\u00E1s \u2192 f\u00FAtbol</strong>.",tip:"\uD83D\uDCA1 Haz una lista mental: \u00BFqui\u00E9n hace qu\u00E9? Abuelos: banco \u00b7 Mam\u00E1s: fuente \u00b7 Pap\u00E1s: f\u00FAtbol."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00F3mo regresa la hermana de Leo a casa cuando el sol se pone?",o:["Caminando sola con su amiga","Su mam\u00E1 la lleva de la mano","Corriendo porque tiene fr\u00EDo","Su pap\u00E1 la lleva en la espalda porque tiene sue\u00F1o"],c:3,ok:"<strong>\"My sister is sleepy and my dad carries her on his back.\"</strong> Carries = carga/lleva, back = espalda. \u00A1Una imagen tierna de amor paternal!",no:"La historia dice: <strong>\"My sister is sleepy and my dad carries her on his back.\"</strong> <em>Carries</em> = carga, <em>back</em> = espalda. Es el <strong>pap\u00E1</strong> quien la carga.",tip:"\uD83D\uDCA1 <em>Carry on the back</em> = cargar en la espalda (como caballito). <em>Sleepy</em> = con sue\u00F1o / so\u00F1oliento."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Dev \"mueve la cabeza al ver a Ravi y Leo, pero est\u00E1 sonriendo\". \u00BFQu\u00E9 revela ese contraste?",o:["Dev est\u00E1 muy enojado con los ni\u00F1os","Dev quiere irse del parque inmediatamente","Dev los encuentra graciosos aunque act\u00FAe como el hermano mayor serio","Dev no entiende por qu\u00E9 est\u00E1n jugando as\u00ED"],c:2,ok:"\u00A1Exacto! Mover la cabeza se\u00F1ala desaprobaci\u00F3n, pero la <strong>sonrisa</strong> revela lo contrario. Dev act\u00FAa serio hacia afuera, pero internamente disfruta el humor.",no:"La clave es el contraste: mueve la cabeza (desaprobaci\u00F3n), <strong>pero est\u00E1 sonriendo</strong>. La sonrisa contradice el gesto.",tip:"\uD83D\uDCA1 Cuando dos se\u00F1ales contradictorias aparecen juntas (gesto negativo + sonrisa), el <em>but</em> indica cu\u00E1l es la emoci\u00F3n real. La sonrisa siempre gana."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Leo nota el click-click del bast\u00F3n y le gusta caminar al lado del abuelo. \u00BFQu\u00E9 revela ese detalle?",o:["Que Leo quiere un bast\u00F3n tambi\u00E9n","Que Don Beto camina muy lento y Leo se aburre","Que Leo tiene una relaci\u00F3n cercana y cari\u00F1osa con su abuelo","Que el bast\u00F3n hace demasiado ruido en la calle"],c:2,ok:"\u00A1Perfecto! Notar con afecto el sonido del bast\u00F3n es un detalle de <strong>atenci\u00F3n amorosa</strong>. Leo no camina a su lado por obligaci\u00F3n \u2014 lo hace porque valora y disfruta su presencia.",no:"Leo <em>elige</em> caminar al lado de su abuelo y nota el sonido con cari\u00F1o. Ese detalle sensorial revela <strong>una conexi\u00F3n emocional cercana</strong>.",tip:"\uD83D\uDCA1 Cuando el narrador nota peque\u00F1os detalles sensoriales (un sonido), casi siempre hay un v\u00EDnculo emocional detr\u00E1s."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Leo dice que \"el mejor momento del s\u00E1bado es el final tranquilo en casa con el abuelo\". \u00BFQu\u00E9 nos dice eso sobre sus valores?",o:["Que en realidad no le gusta jugar en el parque","Que prefiere los momentos \u00EDntimos de conexi\u00F3n familiar sobre la actividad f\u00EDsica","Que el t\u00E9 es su bebida favorita en el mundo","Que el abuelo es m\u00E1s importante que sus amigos"],c:1,ok:"\u00A1Correcto! Leo disfruta el parque, pero llama <strong>\"lo mejor\"</strong> al momento final tranquilo en familia. Eso revela que lo que m\u00E1s valora es la <strong>conexi\u00F3n familiar \u00EDntima</strong>.",no:"No es que no le guste el parque \u2014 lo disfruta. Pero <em>\"the best part\"</em> es el final tranquilo. <strong>El mejor momento revela el valor m\u00E1s profundo</strong>.",tip:"\uD83D\uDCA1 Cuando alguien dice \"lo mejor fue...\" o \"the best part was...\", nos dice directamente qu\u00E9 es lo que m\u00E1s valora en la vida."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"\u00BFCu\u00E1l es el mensaje central de \"Saturday at the Park\"?",o:["Que el f\u00FAtbol es el deporte que m\u00E1s une a las familias","Que los parques son espacios muy importantes en las ciudades","Que las rutinas y tradiciones familiares construyen identidad y sentido de pertenencia","Que los s\u00E1bados siempre son mejores que los domingos"],c:2,ok:"\u00A1Exacto! El s\u00E1bado de Leo es una <strong>rutina cargada de significado</strong>: desayuno, caminata, amigos, abuelo, t\u00E9. Esas tradiciones construyen qui\u00E9n eres y a qui\u00E9n perteneces.",no:"No es sobre f\u00FAtbol ni sobre la ciudad \u2014 es sobre <strong>un s\u00E1bado como ritual familiar</strong>. La secuencia repetida cada semana <strong>construye identidad</strong> y sentido de pertenencia.",tip:"\uD83D\uDCA1 Pensamiento cr\u00EDtico: \u00BFPor qu\u00E9 el autor describe UN s\u00E1bado tan detalladamente? Porque ese s\u00E1bado es s\u00EDmbolo de algo m\u00E1s grande: la identidad y el hogar de Leo."}
+],
+en:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFPor qu\u00E9 el s\u00E1bado es especial para la familia de Leo?",o:["Because they go to a different park every week","Because dad makes a special breakfast only on Saturdays","Because there is no school or work and no rush in the morning","Because grandpa visits only on Saturdays"],c:2,ok:"<strong>\"We do not go to school or work. There is no rush in the morning.\"</strong> No rush = no hay prisa. That freedom from routine makes Saturday special.",no:"The story says: <strong>\"We do not go to school or work. There is no rush.\"</strong> No school + no work = freedom and family time.",tip:"\uD83D\uDCA1 <em>There is no rush</em> = No hay prisa. The absence of something (no rush) can be as meaningful as something present."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 sonido hace el bast\u00F3n del abuelo Don Beto?",o:["A loud bang on the floor","A musical melody every step","No sound at all on the sidewalk","A click-click sound on the sidewalk"],c:3,ok:"<strong>\"His walking stick makes a click-click sound on the sidewalk.\"</strong> Walking stick = bast\u00F3n, sidewalk = acera.",no:"The story says: <strong>\"His walking stick makes a click-click sound on the sidewalk.\"</strong> Not a bang or music.",tip:"\uD83D\uDCA1 <em>Walking stick</em> = bast\u00F3n. <em>Sidewalk</em> = acera. <em>Sound</em> = sonido."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hacen las mam\u00E1s en el parque?",o:["They play football with the dads","They sit on the bench with the grandpas","They talk near the fountain","They carry the children on their backs"],c:2,ok:"<strong>\"The moms talk near the fountain.\"</strong> Talk = hablan, fountain = fuente.",no:"Each group has a different activity: grandpas \u2192 bench, dads \u2192 football, <strong>moms \u2192 talk near the fountain</strong>.",tip:"\uD83D\uDCA1 A <em>fountain</em> = una fuente decorativa en un parque. <em>Near</em> = cerca de."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Leo notices the click-click sound and says \"I like to walk next to him.\" What does this reveal?",o:["Leo finds the sound annoying","Leo walks slowly only to help grandpa with balance","Leo has a warm, affectionate bond with his grandfather","Leo wants a walking stick for himself someday"],c:2,ok:"Leo <em>likes</em> walking beside Don Beto and notices the sound with affection. These details reveal <strong>a close, loving bond</strong>.",no:"Leo notices the click-click with care and <em>likes</em> to walk next to him. He feels <strong>close and connected</strong>. Noticing small details about someone means you pay loving attention.",tip:"\uD83D\uDCA1 Why would Leo mention the cane sound if it was just noise? He mentions it because it is <em>meaningful</em> to him."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"\"Everyone at the park knows each other.\" What does this tell us?",o:["The park is very small and hard to miss","People only visit the park once or twice a year","It is a close-knit community where people have built strong bonds over time","The park is not a very safe place to visit"],c:2,ok:"When everyone knows each other, it signals a <strong>tight, connected community</strong>. Leo\'s identity comes partly from belonging to <em>this place</em> and <em>these people</em>.",no:"\"Everyone knows each other\" = a sign of <strong>community and belonging</strong> \u2014 not coincidence. This neighborhood has people who built relationships over time.",tip:"\uD83D\uDCA1 Think about what it means when everyone in a place knows each other. It signals <em>repeated positive contact</em> over time."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Dad carries his sleeping sister on his back all the way home. What does this action reveal?",o:["He is in a hurry to get home quickly","He is showing deep patience and love for his child","Lara is sick and cannot walk at all","He does not trust Leo to help carry her"],c:1,ok:"Carrying a sleeping child on your back \u2014 willingly, without complaint \u2014 is a beautiful act of <strong>love, patience, and dedication</strong>. Actions speak louder than words.",no:"Lara is sleepy, not sick. Dad carries her gently and willingly. This is <strong>love and care in action</strong>.",tip:"\uD83D\uDCA1 <em>\"Carries her on his back\"</em> = la lleva en la espalda. This image of a father carrying his sleeping child is a classic symbol of parental love."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"Leo calls the \"quiet ending with family\" the best part of Saturday. What does this reveal?",o:["He does not really enjoy being outdoors with friends","Tea is the most important thing in Leo\'s daily life","He values quiet family connection more than exciting activities outside","He finds his friend Ravi boring after a long day"],c:2,ok:"Leo enjoys everything \u2014 but calling the quiet ending <em>the best</em> reveals his deepest value: <strong>belonging, intimacy, and family connection</strong>.",no:"Leo enjoys the park and friends. But he calls the quiet ending <em>the best part</em>. That word \"best\" tells us <strong>deep family connection matters most</strong>.",tip:"\uD83D\uDCA1 When a character says \"the best part was...\", they reveal their <em>hierarchy of values</em> \u2014 what matters most to them above everything else."}
+]},
+4:{t:"Kind People",
+ee:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace el pap\u00E1 de Nico cuando \u00E9l llega a casa triste?",o:["Le hace muchas preguntas para entender qu\u00E9 pas\u00F3","Lo manda a su cuarto a calmarse","Hace t\u00E9 y se sienta con \u00E9l hasta que se siente mejor","Lo lleva al m\u00E9dico inmediatamente"],c:2,ok:"<strong>\"He just makes tea and sits with me until I feel better.\"</strong> Makes tea = hace t\u00E9, sits with me = se sienta conmigo. A veces el amor m\u00E1s profundo es simplemente estar presente.",no:"La historia dice que el pap\u00E1 <strong>no</strong> hace muchas preguntas. En cambio: <strong>\"He just makes tea and sits with me until I feel better.\"</strong>",tip:"\uD83D\uDCA1 <em>Just</em> aqu\u00ED significa \"simplemente\". \"He <em>just</em> makes tea\" = Simplemente hace t\u00E9. Una acci\u00F3n simple con gran significado emocional."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace la se\u00F1ora Ana cada ma\u00F1ana?",o:["Le trae desayuno a Nico en su casa","Sale a caminar con Nico hasta la escuela","Lo saluda con la mano desde su ventana","Le cuenta un cuento corto desde afuera"],c:2,ok:"<strong>\"Every morning she waves at me from her window.\"</strong> Waves = saluda con la mano, window = ventana. \u00A1Un gesto peque\u00F1o con gran impacto!",no:"La historia dice: <strong>\"Every morning she waves at me from her window.\"</strong> <em>Waves</em> = saluda con la mano, <em>window</em> = ventana.",tip:"\uD83D\uDCA1 <em>Wave</em> = saludar agitando la mano. \"She waves <u>at</u> me\" = Ella me saluda a m\u00ED espec\u00EDficamente."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 dice Miss Pilar cuando un estudiante comete un error?",o:["Lo ignora y contin\u00FAa con la clase","Le pone una nota baja autom\u00E1ticamente","Grita para que no lo repita","Explica despacio y dice \"Intenta de nuevo, t\u00FA puedes\""],c:3,ok:"<strong>\"She never shouts. She explains things slowly and says: \'Try again \u2014 you can do it.\'\"</strong> Never shouts = nunca grita.",no:"La historia dice: <strong>\"She never shouts. She explains things slowly and says: \'Try again.\'\"\"</strong>. Nunca grita, siempre explica con paciencia.",tip:"\uD83D\uDCA1 <em>Never</em> = nunca (jam\u00E1s). \"She <em>never</em> shouts\" = Nunca grita. La negaci\u00F3n <em>never</em> es muy fuerte."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"El saludo de Nico a la se\u00F1ora Ana es \"una cosa peque\u00F1a, pero le hace sonre\u00EDr mucho.\" \u00BFQu\u00E9 nos ense\u00F1a esto?",o:["Que los gestos peque\u00F1os realmente no merecen mucho esfuerzo","Que la se\u00F1ora Ana es muy exagerada con sus emociones","Que los peque\u00F1os actos de amabilidad pueden tener un gran impacto","Que Nico quiere ser amigo de todos sus vecinos"],c:2,ok:"\u00A1Correcto! El contraste <strong>\"small thing, but big smile\"</strong> muestra que la amabilidad no necesita ser grande para importar. <strong>Los gestos peque\u00F1os tienen poder enorme</strong>.",no:"El patr\u00F3n: \"It is a small thing, <strong>but</strong> it makes her smile big.\" El <em>but</em> crea contraste: peque\u00F1o gesto \u2192 gran efecto.",tip:"\uD83D\uDCA1 Patr\u00F3n de inferencia: \"peque\u00F1o PERO grande\" siempre se\u00F1ala que las apariencias eng\u00E1\u00F1an \u2014 lo m\u00E1s simple puede ser lo m\u00E1s poderoso."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Nico recuerda a su pap\u00E1, Miss Pilar y su abuelo cuando alguien es cruel con \u00E9l. \u00BFPor qu\u00E9 los recuerda?",o:["Para llamarles por tel\u00E9fono y pedir ayuda","Para contarles lo que pas\u00F3 cuando llegue a casa","Como modelos de amabilidad que lo inspiran a elegir bien","Para que vayan a hablar con la persona que fue cruel"],c:2,ok:"\u00A1Exacto! Nico los recuerda como <strong>modelos de comportamiento</strong> \u2014 no para pedir ayuda, sino para inspirarse en ellos y <strong>elegir ser amable tambi\u00E9n</strong>.",no:"Nico no los llama por tel\u00E9fono \u2014 los recuerda <em>en el momento</em> como fuente de <strong>inspiraci\u00F3n</strong>. Son modelos de lo que quiere ser.",tip:"\uD83D\uDCA1 Cuando recordamos a personas que admiramos en momentos dif\u00EDciles, las usamos como <em>br\u00FAjula moral</em> \u2014 nos gu\u00EDan hacia la decisi\u00F3n correcta."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Nico dice: \"Ser amable es como ser fuerte \u2014 es una decisi\u00F3n que tomas cada d\u00EDa.\" \u00BFQu\u00E9 revela esa comparaci\u00F3n?",o:["Que la amabilidad es autom\u00E1tica y no requiere ning\u00FAn esfuerzo","Que solo las personas f\u00EDsicamente fuertes pueden ser amables de verdad","Que la amabilidad es una elecci\u00F3n activa y consciente que requiere fortaleza interior","Que los ni\u00F1os de ocho a\u00F1os son naturalmente m\u00E1s amables que los adultos"],c:2,ok:"\u00A1Perfecto! La fuerza requiere pr\u00E1ctica y esfuerzo. <strong>Lo mismo la amabilidad \u2014 no es autom\u00E1tica, es una decisi\u00F3n diaria</strong>.",no:"Nico compara la amabilidad con la fortaleza: ambas requieren <strong>esfuerzo y decisi\u00F3n consciente</strong>. \"Es una decisi\u00F3n que tomas cada d\u00EDa\" = no es autom\u00E1tico.",tip:"\uD83D\uDCA1 Una comparaci\u00F3n (A es como B) siempre nos dice algo profundo sobre A. \"La amabilidad es <em>como</em> ser fuerte\" \u2192 ambas requieren esfuerzo diario."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"\u00BFCu\u00E1l es el mensaje central de \"Kind People\"?",o:["Que los maestros son los adultos m\u00E1s importantes en la vida de un ni\u00F1o","Que la amabilidad es el valor m\u00E1s importante y define qui\u00E9nes somos","Que Nico tiene m\u00E1s sabidur\u00EDa que sus propios padres y maestros","Que solo los adultos pueden ense\u00F1ar con el ejemplo verdaderamente"],c:1,ok:"\u00A1Exacto! Nico conecta amabilidad con identidad: las personas que lo definen son amables, y \u00E9l elige serlo tambi\u00E9n. <strong>La amabilidad no es solo lo que haces \u2014 es parte de qui\u00E9n eres</strong>.",no:"La historia no establece jerarqu\u00EDas. El mensaje es claro: <strong>la amabilidad es el valor central que define a las mejores personas</strong>, y Nico quiere ser una de ellas.",tip:"\uD83D\uDCA1 El mensaje de una historia se construye a lo largo de toda la narrativa. Cada personaje ilustra la amabilidad de forma diferente \u2192 el tema es universal."}
+],
+en:[
+{b:"Pregunta 1/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace el pap\u00E1 de Nico cuando Nico llega triste a casa?",o:["He asks many questions to understand what happened","He sends Nico to his room to think alone","He makes tea and sits with him until he feels better","He immediately calls Miss Pilar at school"],c:2,ok:"<strong>\"He just makes tea and sits with me until I feel better.\"</strong> Makes tea = hace t\u00E9. Simple, quiet, powerful kindness.",no:"He does NOT ask questions \u2014 instead: <strong>\"He just makes tea and sits with me until I feel better.\"</strong>",tip:"\uD83D\uDCA1 <em>Until</em> = hasta que. \"He sits with me <u>until</u> I feel better\" \u2192 He stays for as long as Nico needs. That shows real dedication."},
+{b:"Pregunta 2/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFQu\u00E9 hace la se\u00F1ora Ana cada ma\u00F1ana?",o:["She brings Nico breakfast every day","She walks with Nico to school daily","She waves at Nico from her window","She tells Nico a short story from her door"],c:2,ok:"<strong>\"Every morning she waves at me from her window.\"</strong> Waves = saluda con la mano, window = ventana.",no:"The story says: <strong>\"Every morning she waves at me from her window.\"</strong> She waves <em>from the window</em> \u2014 she does not go outside.",tip:"\uD83D\uDCA1 <em>Wave</em> = saludar agitando la mano. \"She waves <u>at</u> me\" = Ella me saluda a m\u00ED espec\u00EDficamente."},
+{b:"Pregunta 3/7 \u00b7 Literal \uD83D\uDCD6",t:"literal",q:"\u00BFC\u00F3mo describe Nico a su abuelo Beto?",o:["Loud, funny, and full of energy","Shy, young, and quiet inside","Patient, slow, and warm","Old, tired, and sometimes sad"],c:2,ok:"<strong>\"Patient, slow, and warm.\"</strong> Patient = paciente, slow = tranquilo, warm = c\u00E1lido. Three perfect adjectives for a kind, gentle grandfather!",no:"The story describes Grandpa Beto as <strong>\"patient, slow, and warm.\"</strong> Not loud or sad.",tip:"\uD83D\uDCA1 <em>Warm</em> as a personality trait = c\u00E1lido / afectuoso. A \"warm person\" = una persona c\u00E1lida que hace sentir bien."},
+{b:"Pregunta 4/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"The wave to Mrs. Ana is \"a small thing, but it makes her smile big.\" What lesson does this teach?",o:["Small actions are never worth the effort","Mrs. Ana is easily pleased by absolutely anything","Small acts of kindness can have a large impact, especially for lonely people","Nico wants to become good friends with all his neighbors"],c:2,ok:"The contrast is the key: <strong>small action \u2192 big smile</strong>. <strong>The power of kindness does not depend on how big the gesture is</strong>.",no:"The word <strong>\"but\"</strong> creates the contrast: small thing \u2192 big effect. For lonely people, even the smallest gesture means the world.",tip:"\uD83D\uDCA1 The contrast structure \"small THING, but BIG EFFECT\" is a common literary pattern. It always signals an important lesson."},
+{b:"Pregunta 5/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"Nico says \"being kind is like being strong \u2014 it is a choice you make every day.\" What does this reveal?",o:["That kind people are always physically strong too","That kindness comes naturally without any effort","That kindness is a conscious daily choice that requires inner strength","That children are always naturally kinder than adults"],c:2,ok:"Comparing kindness to strength is powerful: <strong>strength takes effort, practice, and choice \u2014 so does kindness</strong>. Especially when someone has been mean to you.",no:"The comparison tells us kindness is <strong>not automatic or passive</strong> \u2014 it requires <em>effort and conscious choice</em>.",tip:"\uD83D\uDCA1 Comparisons using <em>like</em> (A is like B) reveal something important about A. Both kindness and strength require effort, will, and daily practice."},
+{b:"Pregunta 6/7 \u00b7 Inferencial \uD83D\uDD0D",t:"inferential",q:"In grandpa\'s stories, \"the kind person always wins.\" What does this recurring pattern reveal?",o:["Grandpa only knows one type of story","The stories are random with no deeper purpose","Grandpa uses stories with moral lessons to intentionally shape Nico\'s values","Nico only enjoys stories that have a clear winner"],c:2,ok:"A recurring pattern \u2014 the kind person <em>always</em> wins \u2014 is not random. <strong>Grandpa is using storytelling as a tool to teach values</strong>.",no:"If the kind person <em>always</em> wins, that is intentional. <strong>Stories with repeated moral lessons teach values</strong>.",tip:"\uD83D\uDCA1 When a story says something happens <em>always</em>, it signals a pattern with deeper meaning \u2014 not coincidence."},
+{b:"Pregunta 7/7 \u00b7 Pensamiento Cr\u00EDtico \uD83C\uDF93",t:"critical",q:"Nico ends: \"My family is kind, my friends are kind \u2014 that is everyone I need.\" What is the core message?",o:["You should only have a very small number of people in life","School friends are always more important than family","Kindness is the most important quality in relationships and defines our identity","Being kind is only important for young children"],c:2,ok:"Nico defines the people he needs by ONE quality: <strong>kindness</strong>. He defines himself by kindness and chooses people who share that value. <strong>Kindness = identity = belonging.</strong>",no:"Nico does not say \"only a few people\" \u2014 he says the people he has are enough <em>because</em> they are kind. The message is about <strong>quality, not quantity</strong>.",tip:"\uD83D\uDCA1 Nico\'s final words define his identity through his relationships. Who we surround ourselves with \u2014 and WHY \u2014 says everything about who we are."}
+]}
+};
+
+
+let cur=1,mode='es-es',score=0,ans=new Set(),streak=0,litOk=0,infOk=0,critOk=false,mQ=[],mBusy=false;
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function buildOpts(opts,cor){const idx=opts.map(function(t,i){return{t:t,i:i};});const s=shuf(idx);return{s:s,c:s.findIndex(function(o){return o.i===cor;})};}
+function toggleReveal(btn){btn.nextElementSibling.classList.toggle('show');btn.classList.toggle('open');}
+
+function renderAllStories(){
+  [1,2,3,4].forEach(function(k){
+    var meta=STORY_META[k];
+    var html='<div class="section-label">Historia '+k+' de 4</div><div class="section-title">'+meta.t+'</div><div class="section-desc">'+meta.desc+'</div>';
+    BLOCKS[k].forEach(function(b,i){
+      html+='<div class="story-block">'+
+        '<div class="story-paragraph">'+b[0]+'</div>'+
+        '<div class="reveal-line">'+
+        '<button class="reveal-btn" onclick="toggleReveal(this)">\uD83C\uDDEA\uD83C\uDDF8 <span class="arrow">\u203A</span></button>'+
+        '<div class="reveal-text">'+b[1]+'</div>'+
+        '</div></div>';
+    });
+    document.getElementById('story-'+k).innerHTML=html;
+  });
+}
+
+function selectStory(n){
+  cur=n;
+  [1,2,3,4].forEach(function(k){
+    document.getElementById('tab-'+k).classList.toggle('active',k===n);
+    document.getElementById('story-'+k).classList.toggle('active',k===n);
+  });
+  // Scroll story box to top
+  document.getElementById('story-scroll-box').scrollTop=0;
+  document.getElementById('quiz-story-title').textContent=STORY_META[n].t;
+  resetQuiz(false);
+}
+
+function setMode(m){
+  mode=m;
+  document.getElementById('mode-eses').classList.toggle('active',m==='es-es');
+  document.getElementById('mode-esen').classList.toggle('active',m==='es-en');
+  document.getElementById('mode-display').textContent=m==='es-es'?'Modo activo: Espa\u00F1ol \u2192 Espa\u00F1ol':'Modo activo: Espa\u00F1ol \u2192 English';
+  resetQuiz(false);
+}
+
+function renderQuiz(){
+  var qs=mode==='es-es'?S[cur].ee:S[cur].en;
+  document.getElementById('quiz-container').innerHTML=qs.map(function(q,qi){
+    var id='q'+(qi+1);
+    var r=buildOpts(q.o,q.c);
+    return '<div class="q-card" id="'+id+'">'+
+      '<span class="q-badge">'+q.b+'</span>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div class="opts">'+r.s.map(function(o,oi){
+        return '<button class="opt-btn" onclick="checkAnswer(\''+id+'\','+oi+','+r.c+',\''+q.t+'\')">'+o.t+'</button>';
+      }).join('')+'</div>'+
+      '<div class="feedback fb-ok" id="fb-'+id+'-ok"><div class="fb-title">\u2705 \u00A1Correcto!</div><div class="fb-body">'+q.ok+'<div class="fb-tip">'+q.tip+'</div></div></div>'+
+      '<div class="feedback fb-no" id="fb-'+id+'-no"><div class="fb-title">\u274C Incorrecto</div><div class="fb-body">'+q.no+'<div class="fb-tip">'+q.tip+'</div></div></div>'+
+      '</div>';
+  }).join('');
+}
+
+function checkAnswer(id,sel,cor,type){
+  if(ans.has(id))return;
+  ans.add(id);
+  var card=document.getElementById(id);
+  var btns=card.querySelectorAll('.opt-btn');
+  btns.forEach(function(b){b.disabled=true;});
+  var ok=sel===cor;
+  btns[sel].classList.add(ok?'sel-correct':'sel-wrong');
+  if(!ok)btns[cor].classList.add('show-correct');
+  document.getElementById('fb-'+id+'-'+(ok?'ok':'no')).classList.add('show');
+  card.classList.add(ok?'correct':'wrong');
+  if(ok){score++;streak++;if(type==='literal')litOk++;if(type==='inferential')infOk++;if(type==='critical')critOk=true;checkAch();}else{streak=0;}
+  updProg();
+  if(ans.size===7){var sw=document.getElementById('submit-wrap');sw.style.display='block';setTimeout(function(){sw.scrollIntoView({behavior:'smooth',block:'center'});},350);}
+}
+
+function updProg(){
+  document.getElementById('progress-fill').style.width=(ans.size/7*100)+'%';
+  document.getElementById('progress-label').textContent=ans.size+' de 7 preguntas respondidas';
+}
+
+function checkAch(){
+  if(ans.size===1&&score===1)queue('ach-first','\uD83C\uDF31','\u00A1Primera Respuesta Correcta!','Respondiste bien tu primera pregunta. \u00A1El camino empieza aqu\u00ED!');
+  if(streak===3)queue('ach-streak','\uD83D\uDD25','\u00A1Racha de Fuego!','3 respuestas correctas seguidas. \u00A1Imparable!');
+  if(litOk>=3)queue('ach-literal','\uD83D\uDCD6','\u00A1Comprensi\u00F3n Literal Dominada!','Encontraste la informaci\u00F3n directa en el texto. \u00A1Excelente lectura!');
+  if(infOk>=2)queue('ach-inferential','\uD83D\uDD0D','\u00A1Detective del Texto!','Le\u00EDste entre l\u00EDneas y dedujiste ideas. \u00A1Comprensi\u00F3n profunda!');
+  if(critOk){queue('ach-critical','\uD83C\uDF93','\u00A1Pensamiento Cr\u00EDtico Activado!','Identificaste el mensaje central. \u00A1Eres un lector anal\u00EDtico!');queue('ach-identity','\uD83E\uDEAA','\u00A1Identidad Personal!','Comprendiste el tema central del m\u00F3dulo. \u00A1Brillante!');queue('ach-family','\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC66','\u00A1Experto en Familia!','Entendiste c\u00F3mo estas historias hablan del valor de la familia.');}
+}
+
+function queue(id,icon,title,text){var el=document.getElementById(id);if(el&&!el.classList.contains('unlocked')){el.classList.add('unlocked');mQ.push({icon:icon,title:title,text:text});if(!mBusy)nextModal();}}
+function nextModal(){if(!mQ.length){mBusy=false;return;}mBusy=true;var m=mQ.shift();document.getElementById('modal-icon').textContent=m.icon;document.getElementById('modal-title').textContent=m.title;document.getElementById('modal-text').textContent=m.text;document.getElementById('ach-modal').classList.add('show');}
+function closeModal(){document.getElementById('ach-modal').classList.remove('show');setTimeout(nextModal,280);}
+
+function showCompletion(){
+  document.getElementById('submit-wrap').style.display='none';
+  if(score===7)queue('ach-perfect','\u2B50','\u00A1Perfecci\u00F3n Total!','7/7 correctas. \u00A1Eres incre\u00EDble! \uD83C\uDF1F');
+  if(!mBusy)nextModal();
+  document.getElementById('cc-score').textContent=score+'/7';
+  document.getElementById('cc-literal').textContent=litOk+'/3';
+  document.getElementById('cc-infer').textContent=infOk+'/3';
+  var msgs=['\u00A1Sigue practicando! Lee la historia despacio. \uD83D\uDCAA','\u00A1Sigue practicando! Lee la historia despacio. \uD83D\uDCAA','\u00A1Buen intento! Vuelve al texto con calma. \uD83D\uDCD6','\u00A1Buen intento! Vuelve al texto con calma. \uD83D\uDCD6','\u00A1Muy bien! Casi lo logras. \u00A1Un poco m\u00E1s! \uD83D\uDC4F','\u00A1Excelente comprensi\u00F3n! Casi perfecto. \uD83C\uDF1F','\u00A1Perfecci\u00F3n absoluta! Dominas esta historia. \uD83C\uDFC6','\u00A1Perfecci\u00F3n absoluta! Dominas esta historia. \uD83C\uDFC6'];
+  document.getElementById('cc-msg').textContent=msgs[score];
+  var cc=document.getElementById('completion-card');cc.classList.add('show');
+  setTimeout(function(){cc.scrollIntoView({behavior:'smooth',block:'center'});},150);
+}
+
+function resetQuiz(scrollTop){
+  if(scrollTop===undefined)scrollTop=true;
+  score=0;ans.clear();streak=0;litOk=0;infOk=0;critOk=false;
+  renderQuiz();updProg();
+  document.getElementById('submit-wrap').style.display='none';
+  document.getElementById('completion-card').classList.remove('show');
+  if(scrollTop)window.scrollTo({top:0,behavior:'smooth'});
+}
+
+renderAllStories();
+selectStory(1);
+renderQuiz();
+updProg();
+
+</script>
+</body>
+</html>

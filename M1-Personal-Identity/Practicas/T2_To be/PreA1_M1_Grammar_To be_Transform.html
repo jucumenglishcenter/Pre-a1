@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform - Pre-A1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#F59E0B;--primary-light:#FCD34D;--primary-dark:#D97706;
+            --bg-gradient-start:#FFFBEB;--bg-gradient-end:#FEF3C7;
+            --text-dark:#78350F;--text-medium:#92400E;--text-light:#B45309;
+            --success:#10B981;--success-light:#D1FAE5;--success-dark:#059669;
+            --error:#EF4444;--error-light:#FEE2E2;--error-dark:#DC2626;
+            --info:#3B82F6;--info-light:#DBEAFE;--info-dark:#1D4ED8;
+            --orange:#F97316;--orange-light:#FFF7ED;--orange-dark:#C2410C;
+            --purple:#8B5CF6;--purple-light:#EDE9FE;--purple-dark:#6D28D9;
+            --shadow-soft:0 4px 20px rgba(245,158,11,0.15);
+            --border-radius:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));min-height:100vh;color:var(--text-dark);}
+        .header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-soft);}
+        .back-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;text-decoration:none;color:var(--text-dark);transition:all .2s;flex-shrink:0;}
+        .back-btn:hover{background:rgba(255,255,255,0.5);transform:scale(1.1);}
+        .header-info{flex:1;}
+        .header-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:white;}
+        .header-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:2px;}
+        .progress-indicator{background:rgba(255,255,255,0.3);padding:0.4rem 0.9rem;border-radius:20px;font-weight:700;color:white;font-size:0.9rem;}
+        .progress-container{height:6px;background:rgba(255,255,255,0.3);}
+        .progress-fill{height:100%;background:white;transition:width .5s ease;width:0%;}
+        main{padding:1.5rem;max-width:650px;margin:0 auto;}
+        .instructions{background:white;border-radius:16px;padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow-soft);border-left:5px solid var(--primary);display:flex;gap:0.75rem;align-items:flex-start;}
+        .instructions-icon{font-size:1.6rem;flex-shrink:0;}
+        .instructions-title{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:0.2rem;}
+        .instructions-text{font-size:0.85rem;color:var(--text-medium);line-height:1.5;}
+        .question-card{background:white;border-radius:var(--border-radius);box-shadow:var(--shadow-soft);padding:1.5rem;margin-bottom:1rem;animation:slideIn .4s ease;}
+        .question-card.hidden{display:none;}
+        @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+        .q-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;}
+        .question-number{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;flex-shrink:0;}
+        .form-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.7rem;font-weight:700;margin-left:auto;white-space:nowrap;}
+        .b-an{background:#FEE2E2;color:#991B1B;}
+        .b-aq{background:#DBEAFE;color:#1D4ED8;}
+        .b-na{background:#D1FAE5;color:#065F46;}
+        .b-nq{background:#EDE9FE;color:#5B21B6;}
+        .b-qa{background:#FEF3C7;color:#92400E;}
+        .b-qn{background:#FCE7F3;color:#9D174D;}
+        .transform-visual{background:var(--bg-gradient-start);border:1px solid var(--primary-light);border-radius:14px;padding:1rem;margin-bottom:1rem;}
+        .transform-box{padding:0.7rem 0.9rem;border-radius:10px;}
+        .transform-box.base{background:var(--orange-light);border:1px solid #FED7AA;margin-bottom:0.5rem;}
+        .transform-box.goal{background:#F0F9FF;border:1px solid #BAE6FD;}
+        .transform-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:0.3rem;}
+        .transform-box.base .transform-label{color:var(--orange-dark);}
+        .transform-box.goal .transform-label{color:var(--info-dark);}
+        .transform-sentence{font-size:0.98rem;font-weight:600;color:var(--text-dark);line-height:1.5;}
+        .verb-hl{color:var(--orange-dark);font-weight:800;background:#FED7AA;padding:0 3px;border-radius:3px;}
+        .transform-arrow{text-align:center;font-size:1rem;color:var(--text-light);margin:0.3rem 0;}
+        .options-container{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:0.5rem;}
+        .option-btn{border:2.5px solid #E5E7EB;border-radius:13px;padding:0.85rem 1rem;cursor:pointer;transition:all .2s;background:white;text-align:left;font-family:'Nunito',sans-serif;display:flex;gap:0.75rem;align-items:center;width:100%;}
+        .option-btn:hover:not(.disabled){border-color:var(--primary);background:var(--bg-gradient-start);transform:translateX(4px);}
+        .option-btn.disabled{cursor:default;}
+        .option-btn.correct{border-color:var(--success);background:var(--success-light);}
+        .option-btn.incorrect{border-color:var(--error);background:var(--error-light);}
+        .option-letter{width:26px;height:26px;border-radius:50%;background:var(--primary-light);color:var(--primary-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;font-family:'Fredoka',sans-serif;}
+        .option-btn.correct .option-letter{background:var(--success);color:white;}
+        .option-btn.incorrect .option-letter{background:var(--error);color:white;}
+        .option-text{font-size:0.97rem;color:var(--text-dark);line-height:1.5;font-weight:600;flex:1;}
+        .option-btn.correct .option-text{color:var(--success-dark);}
+        .option-btn.incorrect .option-text{color:var(--error-dark);}
+        .verb-changed{font-weight:800;}
+        .option-btn.correct .verb-changed{color:var(--success-dark);}
+        .option-btn.incorrect .verb-changed{color:var(--error-dark);text-decoration:underline wavy;}
+        .feedback{margin-top:1.25rem;border-radius:16px;overflow:hidden;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+        .feedback.show{display:block;animation:fadeUp .35s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .fb-header{padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;}
+        .feedback.correct .fb-header{background:linear-gradient(135deg,var(--success),var(--success-dark));}
+        .feedback.incorrect .fb-header{background:linear-gradient(135deg,var(--error),var(--error-dark));}
+        .fb-icon{font-size:1.6rem;}
+        .fb-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:white;font-weight:600;}
+        .fb-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:1px;}
+        .fb-body{background:white;border:2px solid;border-top:none;border-radius:0 0 16px 16px;padding:1.25rem;display:flex;flex-direction:column;gap:0.9rem;}
+        .feedback.correct .fb-body{border-color:var(--success);}
+        .feedback.incorrect .fb-body{border-color:var(--error);}
+        .fb-block{border-radius:12px;padding:0.9rem 1rem;}
+        .fb-block-title{font-weight:800;font-size:0.78rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+        .error-badge{display:inline-block;background:var(--error);color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.72rem;font-weight:700;margin-left:4px;}
+        .fb-tf{background:#F8FAFC;border:1px solid #E2E8F0;}
+        .fb-tf .fb-block-title{color:#475569;}
+        .tf-flow{display:flex;flex-direction:column;gap:0.4rem;}
+        .tf-step{border-radius:8px;padding:0.5rem 0.8rem;font-size:0.9rem;font-weight:600;line-height:1.5;}
+        .tf-step .tf-lbl{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:2px;}
+        .tf-orig{background:var(--orange-light);border:1px solid #FED7AA;}
+        .tf-orig .tf-lbl{color:var(--orange-dark);}
+        .tf-ok{background:var(--success-light);border:1px solid #A7F3D0;}
+        .tf-ok .tf-lbl{color:var(--success-dark);}
+        .tf-bad{background:var(--error-light);border:1px solid #FECACA;}
+        .tf-bad .tf-lbl{color:var(--error-dark);}
+        .tf-arr{text-align:center;font-size:0.9rem;color:#94A3B8;}
+        .vb-h{font-weight:800;padding:0 2px;border-radius:3px;}
+        .tf-orig .vb-h{color:var(--orange-dark);background:#FED7AA;}
+        .tf-ok .vb-h{color:var(--success-dark);background:#A7F3D0;}
+        .tf-bad .vb-h{color:var(--error-dark);background:#FECACA;}
+        .fb-signal{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-signal.wrong{background:#FFF1F2;border-color:#FECDD3;}
+        .fb-signal .fb-block-title{color:var(--success-dark);}
+        .fb-signal.wrong .fb-block-title{color:var(--error-dark);}
+        .stag{display:inline-block;background:var(--success);color:white;border-radius:6px;padding:0.1rem 0.5rem;font-size:0.82rem;font-weight:700;margin:0 2px;}
+        .stag.red{background:var(--error);}
+        .fb-error{background:var(--error-light);border:1px solid #FECACA;}
+        .fb-error .fb-block-title{color:var(--error-dark);}
+        .word-swap{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin:0.6rem 0;flex-wrap:wrap;}
+        .ws-box{padding:0.4rem 1rem;border-radius:8px;font-weight:700;font-size:0.92rem;text-align:center;}
+        .ws-wrong{background:white;color:var(--error);border:2px solid var(--error);text-decoration:line-through;}
+        .ws-arr{font-size:1.3rem;color:#94A3B8;}
+        .ws-right{background:var(--success);color:white;}
+        .error-text{font-size:0.9rem;color:var(--text-dark);line-height:1.55;}
+        .fb-rule{background:var(--info-light);border:1px solid #BFDBFE;}
+        .fb-rule .fb-block-title{color:var(--info-dark);}
+        .rule-formula{background:white;border-radius:8px;padding:0.5rem 0.9rem;font-family:'Fredoka',sans-serif;font-size:0.92rem;color:var(--info-dark);font-weight:600;margin-bottom:0.6rem;text-align:center;border:1px solid #BFDBFE;}
+        .rule-examples{display:flex;flex-wrap:wrap;gap:0.4rem;}
+        .rule-ex{font-size:0.82rem;background:white;border:1px solid #BFDBFE;border-radius:6px;padding:0.2rem 0.5rem;color:var(--success-dark);font-weight:600;}
+        .fb-why{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-why .fb-block-title{color:var(--success-dark);}
+        .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
+        .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
+        .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
+        .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
+        .nav-btn:disabled{opacity:.4;cursor:default;}
+        .nav-btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .results-screen{display:none;text-align:center;padding:2rem 1.5rem;}
+        .results-screen.show{display:block;animation:fadeUp .5s ease;}
+        .results-emoji{font-size:4rem;margin-bottom:1rem;}
+        .results-title{font-family:'Fredoka',sans-serif;font-size:2rem;margin-bottom:0.5rem;}
+        .results-score{font-size:3rem;font-weight:800;color:var(--purple);margin:1rem 0;}
+        .results-message{font-size:1.05rem;color:var(--text-medium);margin-bottom:1.5rem;}
+        .stars-container{display:flex;justify-content:center;gap:0.5rem;margin:1.5rem 0;}
+        .star{font-size:2.5rem;opacity:.3;transition:all .5s ease;}
+        .star.earned{opacity:1;animation:starPop .5s ease;}
+        @keyframes starPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+        .results-buttons{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+        .result-btn{padding:1rem 2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all .2s;}
+        .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
+        .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
+        .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="prea1-m1t2-index.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔄 Transform</div>
+            <div class="header-subtitle">💛 Pre-A1 · Personal Identity · To Be + − ?</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔄</div>
+            <div>
+                <div class="instructions-title">Transforma la oración</div>
+                <div class="instructions-text">Lee la oración original y transfórmala según el objetivo. Puede ser afirmativa, negativa o pregunta.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="prea1-m1t2-index.html" class="result-btn secondary">← Volver al módulo</a>
+            </div>
+        </div>
+    </main>
+    <script>
+    const quizData = [
+        {   // Q1 — Afirmativo → Negativo  (I am)
+            id:1, bc:"b-an", bt:"➕ Afirmativo → ➖ Negativo",
+            base:"I am seven years old.", bv:"am", goal:"Afirmativo → Negativo",
+            clue:"am (I) → negativa",
+            clueEx:"La negativa de 'am' es 'am not'. A diferencia de 'is'/'are', 'am not' no tiene contracción estándar.",
+            options:[
+                {text:"I am not seven years old.", correct:true,  cv:"am not"},
+                {text:"I isn't seven years old.",  correct:false, cv:"isn't",   et:"Forma incorrecta con I",   ex:"'Isn't' = is not, solo para he/she/it. Con 'I' la negativa es siempre 'am not'. 'I isn't' no existe."},
+                {text:"I not am seven years old.", correct:false, cv:"not am",  et:"Orden incorrecto",         ex:"En inglés 'not' va DESPUÉS del verbo to be: 'am not'. La estructura 'not am' no existe."}
+            ],
+            rule:"I am → negativa: I am not",
+            exs:["I am → I am not","She is → She isn't","We are → We aren't"],
+            why:"'I am seven' → negativa: 'I am not seven'. Se añade 'not' después de 'am'. Con 'I' no existe la contracción estándar."
+        },
+        {   // Q2 — Afirmativo → Pregunta  (she is)
+            id:2, bc:"b-aq", bt:"➕ Afirmativo → ❓ Pregunta",
+            base:"She is funny.", bv:"is", goal:"Afirmativo → Pregunta",
+            clue:"she is → pregunta",
+            clueEx:"En preguntas con to be el verbo va PRIMERO: Is + she + ...?",
+            options:[
+                {text:"Is she funny?",   correct:true,  cv:"Is"},
+                {text:"Are she funny?",  correct:false, cv:"Are",     et:"Forma incorrecta en pregunta", ex:"'Are' en pregunta va con you/we/they. 'She' es singular — la pregunta usa 'Is she...?'"},
+                {text:"She is funny?",   correct:false, cv:"She is",  et:"Orden incorrecto",             ex:"Dejar el sujeto primero no es una pregunta gramatical. El verbo 'is' debe ir antes: 'Is she funny?'"}
+            ],
+            rule:"Pregunta he/she/it: Is + sujeto + ...?",
+            exs:["Is she funny?","Is he here?","Is it OK?"],
+            why:"'She is funny' → pregunta: 'Is she funny?' El verbo 'is' se mueve al inicio. Con he/she/it la pregunta siempre empieza con 'Is'."
+        },
+        {   // Q3 — Negativo → Afirmativo  (isn't → is)
+            id:3, bc:"b-na", bt:"➖ Negativo → ➕ Afirmativo",
+            base:"Ravi isn't the oldest brother.", bv:"isn't", goal:"Negativo → Afirmativo",
+            clue:"isn't (Ravi = he) → afirmativa",
+            clueEx:"'Isn't' = is not. Al eliminar la negación queda 'is'. El sujeto singular no cambia.",
+            options:[
+                {text:"Ravi is the oldest brother.",   correct:true,  cv:"is"},
+                {text:"Ravi are the oldest brother.",  correct:false, cv:"are", et:"Plural por singular",               ex:"'Are' es para sujetos plurales. Ravi = he — singular. La afirmativa de 'isn't' es 'is'."},
+                {text:"Ravi am the oldest brother.",   correct:false, cv:"am",  et:"Primera persona con sujeto de tercera", ex:"'Am' es exclusivo de 'I'. Ravi = tercera persona singular. Su afirmativa es 'is'."}
+            ],
+            rule:"isn't → afirmativa: is (eliminar 'not')",
+            exs:["He isn't → He is","She isn't → She is","It isn't → It is"],
+            why:"'Ravi isn't' → afirmativa: 'Ravi is'. Se elimina 'not'. La forma del verbo no cambia — solo se quita la negación."
+        },
+        {   // Q4 — Negativo → Pregunta  (aren't → Are...?)
+            id:4, bc:"b-nq", bt:"➖ Negativo → ❓ Pregunta",
+            base:"We aren't in the same class.", bv:"aren't", goal:"Negativo → Pregunta",
+            clue:"aren't (we) → pregunta",
+            clueEx:"Para convertir una negativa en pregunta: se elimina 'not' y el verbo va al inicio. 'We aren't' → 'Are we...?'",
+            options:[
+                {text:"Are we in the same class?",  correct:true,  cv:"Are"},
+                {text:"Is we in the same class?",   correct:false, cv:"Is",      et:"Forma incorrecta en pregunta",    ex:"'Is' en pregunta va con he/she/it. 'We' es plural — la pregunta usa 'Are we...?'"},
+                {text:"We are in the same class?",  correct:false, cv:"We are",  et:"Orden incorrecto y sin transformar", ex:"Dos errores: el sujeto debe ir después del verbo, y hay que eliminar 'not'. Correcto: 'Are we...?'"}
+            ],
+            rule:"Negativa → pregunta: eliminar 'not' + verbo al inicio",
+            exs:["We aren't → Are we...?","She isn't → Is she...?","I am not → Am I...?"],
+            why:"'We aren't in the same class' → pregunta: 'Are we in the same class?' Se elimina 'not' y 'are' va al inicio."
+        },
+        {   // Q5 — Pregunta → Afirmativo  (Are you? → You are)
+            id:5, bc:"b-qa", bt:"❓ Pregunta → ➕ Afirmativo",
+            base:"Are you new here?", bv:"Are", goal:"Pregunta → Afirmativo",
+            clue:"Are you? → afirmativa",
+            clueEx:"Para la afirmativa: el sujeto va primero y el verbo después. 'Are you...?' → 'You are...'",
+            options:[
+                {text:"You are new here.",   correct:true,  cv:"are"},
+                {text:"You is new here.",    correct:false, cv:"is",  et:"Forma incorrecta con you", ex:"'Is' es para he/she/it. El sujeto 'you' necesita 'are'. La forma no cambia al pasar de pregunta a afirmativa."},
+                {text:"You am new here.",    correct:false, cv:"am",  et:"Primera persona con you",  ex:"'Am' es solo para 'I'. Con 'you' la forma de to be es siempre 'are'."}
+            ],
+            rule:"Pregunta → afirmativa: sujeto primero + verbo",
+            exs:["Are you? → You are.","Is she? → She is.","Am I? → I am."],
+            why:"'Are you new here?' → afirmativa: 'You are new here.' El sujeto 'you' va al inicio y 'are' queda después."
+        },
+        {   // Q6 — Pregunta → Negativo  (Is he? → He isn't)
+            id:6, bc:"b-qn", bt:"❓ Pregunta → ➖ Negativo",
+            base:"Is he in our class?", bv:"Is", goal:"Pregunta → Negativo",
+            clue:"Is he? → negativa",
+            clueEx:"Para la negativa: el sujeto va primero, el verbo después, y se añade 'not'. 'Is he?' → 'He isn't.'",
+            options:[
+                {text:"He isn't in our class.",   correct:true,  cv:"isn't"},
+                {text:"He aren't in our class.",  correct:false, cv:"aren't", et:"Plural por singular",      ex:"'Aren't' es para sujetos plurales. 'He' es singular — la negativa de 'is' con sujeto singular es 'isn't'."},
+                {text:"He not is in our class.",  correct:false, cv:"not is", et:"Orden incorrecto",         ex:"'Not' va siempre después del verbo: 'is not' / 'isn't'. La estructura 'not is' no existe en inglés."}
+            ],
+            rule:"Pregunta → negativa: sujeto + isn't/aren't/am not",
+            exs:["Is he? → He isn't.","Are they? → They aren't.","Am I? → I am not."],
+            why:"'Is he in our class?' → negativa: 'He isn't in our class.' El sujeto 'he' va primero y 'is' + 'not' forman 'isn't'."
+        },
+        {   // Q7 — Afirmativo → Negativo  (there are)
+            id:7, bc:"b-an", bt:"➕ Afirmativo → ➖ Negativo",
+            base:"There are five people in the photo.", bv:"are", goal:"Afirmativo → Negativo",
+            clue:"there are (plural) → negativa",
+            clueEx:"'There are' para plural. Su negativa es 'there aren't'. El número de personas no cambia.",
+            options:[
+                {text:"There aren't five people in the photo.",  correct:true,  cv:"aren't"},
+                {text:"There isn't five people in the photo.",   correct:false, cv:"isn't",   et:"Singular por plural",  ex:"'There isn't' es para un solo elemento. 'Five people' es plural — la negativa correcta es 'there aren't'."},
+                {text:"There not are five people in the photo.", correct:false, cv:"not are", et:"Orden incorrecto",      ex:"'Not' va después del verbo: 'are not' / 'aren't'. Nunca 'not are'."}
+            ],
+            rule:"there are → negativa: there aren't",
+            exs:["There are five → There aren't five","There is a boy → There isn't a boy"],
+            why:"'There are five people' → negativa: 'There aren't five people.' El sujeto plural mantiene 'are', que con 'not' forma 'aren't'."
+        },
+        {   // Q8 — Afirmativo → Pregunta  (we are)
+            id:8, bc:"b-aq", bt:"➕ Afirmativo → ❓ Pregunta",
+            base:"We are going to be good friends.", bv:"are", goal:"Afirmativo → Pregunta",
+            clue:"we are → pregunta",
+            clueEx:"Para preguntar, el verbo 'are' va al inicio: 'Are we...?' Con 'we' la forma siempre es 'are'.",
+            options:[
+                {text:"Are we going to be good friends?",  correct:true,  cv:"Are"},
+                {text:"Is we going to be good friends?",   correct:false, cv:"Is",      et:"Singular por plural en pregunta",  ex:"'Is' en pregunta es para he/she/it. 'We' es plural — la pregunta usa 'Are we...?'"},
+                {text:"We are going to be good friends?",  correct:false, cv:"We are",  et:"Orden incorrecto",                 ex:"El verbo to be debe ir antes del sujeto en preguntas. 'We are...?' es afirmación con entonación, no pregunta gramatical."}
+            ],
+            rule:"Pregunta con we/you/they: Are + sujeto + ...?",
+            exs:["Are we friends?","Are you happy?","Are they here?"],
+            why:"'We are going to be good friends' → pregunta: 'Are we going to be good friends?' El verbo 'are' va al inicio."
+        },
+        {   // Q9 — Negativo → Afirmativo  (I am not → I am)
+            id:9, bc:"b-na", bt:"➖ Negativo → ➕ Afirmativo",
+            base:"I am not new here.", bv:"am not", goal:"Negativo → Afirmativo",
+            clue:"am not (I) → afirmativa",
+            clueEx:"Para la afirmativa se elimina 'not'. Con 'I', la forma afirmativa sigue siendo 'am' — no cambia.",
+            options:[
+                {text:"I am new here.",   correct:true,  cv:"am"},
+                {text:"I is new here.",   correct:false, cv:"is",  et:"Forma incorrecta con I",  ex:"'Is' se usa con he/she/it. Con 'I', to be es siempre 'am'. La afirmativa de 'am not' es simplemente 'am'."},
+                {text:"I are new here.",  correct:false, cv:"are", et:"Plural con I",             ex:"'Are' se usa con you/we/they. 'I' solo acepta 'am'. La afirmativa de 'I am not' es 'I am'."}
+            ],
+            rule:"I am not → afirmativa: I am (eliminar 'not')",
+            exs:["I am not → I am","She isn't → She is","They aren't → They are"],
+            why:"'I am not new here' → afirmativa: 'I am new here.' Se elimina 'not' y la forma 'am' se mantiene. Con 'I' siempre es 'am'."
+        },
+        {   // Q10 — Pregunta → Negativo  (Are there? → There aren't)
+            id:10, bc:"b-qn", bt:"❓ Pregunta → ➖ Negativo",
+            base:"Are there empty seats?", bv:"Are", goal:"Pregunta → Negativo",
+            clue:"Are there? → negativa",
+            clueEx:"Para la negativa: 'there' va primero, el verbo después, y se añade 'not'. 'Are there?' → 'There aren't.'",
+            options:[
+                {text:"There aren't empty seats.",  correct:true,  cv:"aren't"},
+                {text:"There isn't empty seats.",   correct:false, cv:"isn't",   et:"Singular por plural",  ex:"'Empty seats' es plural. 'There isn't' se usa para singular. La negativa correcta es 'there aren't'."},
+                {text:"There not are empty seats.", correct:false, cv:"not are", et:"Orden incorrecto",      ex:"'Not' siempre va después del verbo: 'are not' / 'aren't'. La estructura 'not are' no existe en inglés."}
+            ],
+            rule:"Pregunta → negativa: there + aren't/isn't",
+            exs:["Are there? → There aren't.","Is there? → There isn't.","Are they? → They aren't."],
+            why:"'Are there empty seats?' → negativa: 'There aren't empty seats.' Se invierte el orden (there primero) y 'are' + 'not' = 'aren't'. Seats = plural → 'aren't'."
+        }
+    ];
+
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer');
+        c.innerHTML='';
+        quizData.forEach((q,i)=>{
+            q.shuffled=[...q.options].sort(()=>Math.random()-.5);
+            c.appendChild(createCard(q,i));
+        });
+        showQuestion(0); updateProgress();
+    }
+
+    function createCard(q,index){
+        const card=document.createElement('div');
+        card.className=`question-card ${index!==0?'hidden':''}`;
+        card.id=`question-${index}`;
+        const L=['A','B','C'];
+        const baseHL=q.base.replace(q.bv,`<span class="verb-hl">${q.bv}</span>`);
+        const opts=q.shuffled.map((opt,i)=>{
+            const t=opt.text.replace(opt.cv,`<span class="verb-changed">${opt.cv}</span>`);
+            return `<button class="option-btn" onclick="selectOption(${index},${i})">
+                <div class="option-letter">${L[i]}</div>
+                <div class="option-text">${t}</div>
+            </button>`;
+        }).join('');
+        card.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
+                <span class="form-badge ${q.bc}">${q.bt}</span>
+            </div>
+            <div class="transform-visual">
+                <div class="transform-box base">
+                    <span class="transform-label">🔶 Oración original</span>
+                    <div class="transform-sentence">${baseHL}</div>
+                </div>
+                <div class="transform-arrow">⬇ Transforma a...</div>
+                <div class="transform-box goal">
+                    <span class="transform-label">🎯 Objetivo</span>
+                    <div class="transform-sentence">${q.goal}</div>
+                </div>
+            </div>
+            <div class="options-container" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}
+                </button>
+            </div>`;
+        return card;
+    }
+
+    function selectOption(qi,optIdx){
+        if(answered[qi])return;
+        answered[qi]=true;
+        const q=quizData[qi];
+        const sel=q.shuffled[optIdx];
+        const isCorrect=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct);
+        if(isCorrect)score++;
+        document.querySelectorAll(`#options-${qi} .option-btn`).forEach((btn,i)=>{
+            btn.classList.add('disabled');
+            if(q.shuffled[i].correct)btn.classList.add('correct');
+            else if(i===optIdx)btn.classList.add('incorrect');
+        });
+        buildFeedback(qi,sel,isCorrect,correctOpt,q);
+        document.getElementById(`next-${qi}`).disabled=false;
+        updateProgress();
+    }
+
+    function hl(text,verb){
+        if(!verb||!text.includes(verb))return text;
+        return text.replace(verb,`<span class="vb-h">${verb}</span>`);
+    }
+
+    function buildFeedback(qi,sel,isCorrect,correctOpt,q){
+        const el=document.getElementById(`feedback-${qi}`);
+        el.className=`feedback show ${isCorrect?'correct':'incorrect'}`;
+        const exs=q.exs.map(e=>`<span class="rule-ex">${e}</span>`).join('');
+        const pBase=hl(q.base,q.bv);
+        const pOk=hl(correctOpt.text,correctOpt.cv);
+        const pBad=!isCorrect?hl(sel.text,sel.cv):null;
+        const flow=`<div class="tf-flow">
+            <div class="tf-step tf-orig"><span class="tf-lbl">Original:</span>${pBase}</div>
+            <div class="tf-arr">⬇</div>
+            ${pBad?`<div class="tf-step tf-bad"><span class="tf-lbl">Tu respuesta:</span>${pBad}</div><div class="tf-arr">↕</div>`:''}
+            <div class="tf-step tf-ok"><span class="tf-lbl">Correcto:</span>${pOk}</div>
+        </div>`;
+        if(isCorrect){
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">✅</span><div>
+                <div class="fb-title">¡Transformación correcta!</div>
+                <div class="fb-subtitle">Aplicaste bien la forma de to be</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-tf"><div class="fb-block-title">🔄 Transformación realizada</div>${flow}</div>
+                <div class="fb-block fb-signal"><div class="fb-block-title">🔍 Señal clave</div>
+                    <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="stag">${q.clue}</span> — ${q.clueEx}
+                    </div>
+                </div>
+                <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div>
+                    <div class="rule-formula">${q.rule}</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div>
+                    <div class="fb-why-text">${q.why}</div>
+                </div>
+            </div>`;
+        } else {
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">❌</span><div>
+                <div class="fb-title">Transformación incorrecta</div>
+                <div class="fb-subtitle">Revisemos qué falló y cómo corregirlo</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-tf"><div class="fb-block-title">🔄 Tu transformación vs. la correcta</div>${flow}</div>
+                <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 Señal clave que debías identificar</div>
+                    <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="stag red">${q.clue}</span> — ${q.clueEx}
+                    </div>
+                </div>
+                <div class="fb-block fb-error">
+                    <div class="fb-block-title">⚠️ El error: <span class="error-badge">${sel.et}</span></div>
+                    <div class="word-swap">
+                        <span class="ws-box ws-wrong">${sel.cv}</span>
+                        <span class="ws-arr">→</span>
+                        <span class="ws-box ws-right">${correctOpt.cv}</span>
+                    </div>
+                    <div class="error-text">${sel.ex}</div>
+                </div>
+                <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div>
+                    <div class="rule-formula">${q.rule}</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Cómo debía hacerse la transformación?</div>
+                    <div class="fb-why-text">${q.why}</div>
+                </div>
+            </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){i<quizData.length-1?showQuestion(i+1):showResults();}
+    function prevQuestion(){if(currentQuestion>0)showQuestion(currentQuestion-1);}
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente! Transformas el verbo to be perfectamente. 🏆'
+            :pct>=70?'¡Muy bien! Sigue practicando las tres formas. 💪'
+            :'Buen esfuerzo. Recuerda: am/is/are, su negativa y el orden en preguntas. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{
+            if(i<stars)setTimeout(()=>s.classList.add('earned'),i*300);
+        });
+    }
+    document.addEventListener('DOMContentLoaded',initQuiz);
+    </script>
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identification - Pre-A1 M1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end)); min-height:100vh; color:var(--text-dark); }
+
+        .header { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; }
+        .progress-container { height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; transition:width .5s ease; width:0%; }
+
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+
+        /* ── QUESTION CARD ── */
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .q-label { font-size:0.88rem; color:var(--text-medium); font-weight:600; }
+        .pronoun-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; margin-left:auto; }
+        .pronoun-badge.subject { background:#D1FAE5; color:#059669; }
+        .pronoun-badge.object { background:#EDE9FE; color:#7C3AED; }
+        .pronoun-badge.possessive { background:#DBEAFE; color:#1D4ED8; }
+
+        /* ── SENTENCE OPTIONS ── */
+        .sentence-options { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:0.5rem; }
+        .sent-option { border:2.5px solid #E5E7EB; border-radius:14px; padding:1rem 1.1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:flex-start; width:100%; }
+        .sent-option:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .sent-option.disabled { cursor:default; }
+        .sent-option.correct { border-color:var(--success); background:var(--success-light); }
+        .sent-option.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; margin-top:1px; font-family:'Fredoka',sans-serif; }
+        .sent-option.correct .option-letter { background:var(--success); color:white; }
+        .sent-option.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.98rem; color:var(--text-dark); line-height:1.55; font-weight:600; flex:1; }
+        .sent-option.correct .option-text { color:var(--success-dark); }
+        .sent-option.incorrect .option-text { color:var(--error-dark); }
+        .option-status { font-size:1.1rem; margin-left:auto; flex-shrink:0; opacity:0; transition:opacity .2s; }
+        .sent-option.correct .option-status, .sent-option.incorrect .option-status { opacity:1; }
+
+        .error-highlight { color:var(--error); font-weight:800; text-decoration:underline wavy var(--error); }
+        .correct-highlight { color:var(--success-dark); font-weight:800; }
+
+        /* ── FEEDBACK ── */
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.15rem 0.55rem; border-radius:6px; font-size:0.72rem; font-weight:700; margin-left:4px; }
+
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border-color:#FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.82rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare .fb-block-title { color:#475569; }
+        .compare-row { display:flex; align-items:flex-start; gap:0.6rem; padding:0.4rem 0; border-bottom:1px dashed #E2E8F0; }
+        .compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; margin-top:2px; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.55; }
+
+        .fb-error { background:var(--error-light); border:1px solid #FECACA; }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:#94A3B8; }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.9rem; color:var(--text-dark); line-height:1.55; }
+
+        .fb-rule { background:var(--info-light); border:1px solid #BFDBFE; }
+        .fb-rule .fb-block-title { color:var(--info-dark); }
+        .rule-formula { background:white; border-radius:8px; padding:0.5rem 0.9rem; font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--info-dark); font-weight:600; margin-bottom:0.6rem; text-align:center; border:1px solid #BFDBFE; }
+        .rule-examples { display:flex; flex-wrap:wrap; gap:0.4rem; }
+        .rule-ex { display:flex; align-items:center; gap:0.3rem; font-size:0.82rem; background:white; border:1px solid #BFDBFE; border-radius:6px; padding:0.2rem 0.5rem; }
+        .rule-ex .base { color:var(--info-dark); font-weight:600; }
+        .rule-ex .arrow { color:#94A3B8; }
+        .rule-ex .past { color:var(--success-dark); font-weight:700; }
+
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+
+        /* ── NAV ── */
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        /* ── RESULTS ── */
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="prea1-m1-index.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔍 Identification</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 1 · Personal Pronouns</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">Identifica la oración correcta</div>
+                <div class="instructions-text">Lee las tres oraciones y elige la que use el pronombre personal correcto (I, you, we, him, her, his, it).</div>
+            </div>
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="prea1-m1-index.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    // ============================================================
+    // PRE-A1 · M1 · PERSONAL PRONOUNS — IDENTIFY
+    // Tema: I, you, we, him, her, his, it
+    // Basado en: Dialogues D1–D4 y Stories S1–S4
+    // ============================================================
+    const quizData = [
+        {
+            id: 1,
+            pronounType: "subject",
+            options: [
+                { text: "My name is Ana. I am seven years old.", correct: true },
+                { text: "My name is Ana. Me am seven years old.", correct: false,
+                  errorWord: "Me", correctWord: "I",
+                  errorType: "Pronombre objeto como sujeto",
+                  explanation: "'Me' es pronombre objeto — aparece después de verbos o preposiciones ('I see me' ✗). Como sujeto de 'am' solo funciona 'I'. Nunca se dice 'Me am'." },
+                { text: "My name is Ana. She am seven years old.", correct: false,
+                  errorWord: "She am", correctWord: "I am",
+                  errorType: "Pronombre incorrecto + conjugación",
+                  explanation: "'She am' tiene dos errores: 'she' habla de otra persona (no de la hablante), y además 'am' solo va con 'I'. Lo correcto es 'I am'." }
+            ],
+            clue: "My name is Ana (Ana habla de sí misma)",
+            clueExplain: "Ana se presenta a sí misma. Cuando el hablante es el sujeto, siempre usa 'I'. Además, 'am' exige 'I' — nunca 'she am' ni 'me am'.",
+            rule: "Sujeto de primera persona: I am / I have / I know",
+            examples: ["I am Leo.", "I am seven.", "I have a sister."],
+            correctReason: "Ana habla de SÍ MISMA — es la hablante. El pronombre de primera persona singular es 'I'. Además, el verbo 'am' solo funciona con 'I' en inglés."
+        },
+        {
+            id: 2,
+            pronounType: "subject",
+            options: [
+                { text: "Me too, Ana. We are going to be good friends.", correct: true },
+                { text: "Me too, Ana. Us are going to be good friends.", correct: false,
+                  errorWord: "Us", correctWord: "We",
+                  errorType: "Pronombre objeto como sujeto",
+                  explanation: "'Us' es pronombre objeto plural ('he sees us'). No puede ser sujeto de 'are'. Como sujeto plural que incluye al hablante, se usa 'we'." },
+                { text: "Me too, Ana. They are going to be good friends.", correct: false,
+                  errorWord: "They", correctWord: "We",
+                  errorType: "Tercera persona por primera persona plural",
+                  explanation: "'They' habla de otras personas que no incluyen al hablante. Leo habla de ÉL Y ANA juntos — ese grupo que incluye al hablante es 'we', no 'they'." }
+            ],
+            clue: "Leo y Ana hablan juntos como grupo",
+            clueExplain: "Leo incluye a Ana y a sí mismo en el grupo futuro de amigos. Cuando el grupo incluye al hablante ('nosotros'), se usa 'we'.",
+            rule: "Grupo que incluye al hablante: We are / We have / We go",
+            examples: ["We are friends.", "We are in the same class.", "We are the same age."],
+            correctReason: "Leo y Ana forman un grupo — y Leo ES parte de ese grupo. El pronombre para 'nosotros' (incluye al hablante) es 'we'. Además, 'We are' es la conjugación correcta."
+        },
+        {
+            id: 3,
+            pronounType: "possessive",
+            options: [
+                { text: "Sam, look! This is a photo of my family.", correct: true },
+                { text: "Sam, look! This is a photo of her family.", correct: false,
+                  errorWord: "her", correctWord: "my",
+                  errorType: "Posesivo de tercera persona por primera persona",
+                  explanation: "'Her family' significa 'la familia de ella' — habla de otra persona. Pero es MIA quien muestra la foto de SU PROPIA familia. El posesivo de primera persona es 'my'." },
+                { text: "Sam, look! This is a photo of his family.", correct: false,
+                  errorWord: "his", correctWord: "my",
+                  errorType: "Posesivo masculino de tercera persona por primera persona",
+                  explanation: "'His family' = la familia de él (otro hombre). Mia habla de SU PROPIA familia — ella es la hablante, entonces usa el posesivo de primera persona: 'my'." }
+            ],
+            clue: "Mia muestra la foto de su propia familia",
+            clueExplain: "Mia es la hablante y habla de SU familia — la que le pertenece a ella misma. El posesivo de primera persona singular es 'my'.",
+            rule: "Posesivo de primera persona: my (mi / mis)",
+            examples: ["my family", "my name", "my dad"],
+            correctReason: "Mia habla de la familia que le pertenece A ELLA. El posesivo de primera persona es 'my'. Compara: 'my' (yo/mía), 'his' (de él), 'her' (de ella)."
+        },
+        {
+            id: 4,
+            pronounType: "object",
+            options: [
+                { text: "Oh, nice! Who is that boy next to you?", correct: true },
+                { text: "Oh, nice! Who is that boy next to your?", correct: false,
+                  errorWord: "your", correctWord: "you",
+                  errorType: "Posesivo por pronombre objeto",
+                  explanation: "'Your' es posesivo ('your name', 'your family'). Después de preposiciones como 'next to', se necesita pronombre objeto: 'you', no 'your'. 'Next to your' ✗." },
+                { text: "Oh, nice! Who is that boy next to we?", correct: false,
+                  errorWord: "we", correctWord: "you",
+                  errorType: "Pronombre sujeto por objeto + persona incorrecta",
+                  explanation: "'We' es pronombre sujeto ('we are'). Después de 'next to' necesitas objeto. Además, Sam le habla directamente a Mia, no a un grupo." }
+            ],
+            clue: "Sam habla directamente con Mia — 'next to' exige objeto",
+            clueExplain: "Después de preposiciones (next to, with, for, about), siempre va el pronombre OBJETO. Para segunda persona singular: 'you' (tanto sujeto como objeto). 'Your' es solo posesivo.",
+            rule: "Preposición + pronombre objeto: next to you / with him / for her",
+            examples: ["next to you", "with him", "for her"],
+            correctReason: "'You' funciona como objeto de la preposición 'next to'. En inglés, la segunda persona singular tiene la misma forma para sujeto y objeto: 'you'. 'Your' solo es posesivo."
+        },
+        {
+            id: 5,
+            pronounType: "possessive",
+            options: [
+                { text: "Her name is Luli. She is only two days old.", correct: true },
+                { text: "His name is Luli. She is only two days old.", correct: false,
+                  errorWord: "His", correctWord: "Her",
+                  errorType: "Posesivo masculino por femenino",
+                  explanation: "'His' es el posesivo de un hombre. Pero Luli es una niña (bebé femenina). El nombre PERTENECE a Luli (femenina), entonces el posesivo es 'her name', no 'his name'." },
+                { text: "Its name is Luli. She is only two days old.", correct: false,
+                  errorWord: "Its", correctWord: "Her",
+                  errorType: "Posesivo de cosa por persona femenina",
+                  explanation: "'Its' se usa para objetos y animales sin género conocido. Luli es una PERSONA — una bebé niña. Para personas femeninas el posesivo es 'her'." }
+            ],
+            clue: "Luli es la bebé nueva — femenina",
+            clueExplain: "El nombre le pertenece a Luli — una niña. El posesivo cambia según el GÉNERO de quien posee la cosa: femenino → 'her'. Compara: 'his' (hombre) / 'her' (mujer) / 'its' (cosa).",
+            rule: "Posesivo femenino: her name / her family / her age",
+            examples: ["her name", "her dad", "her family"],
+            correctReason: "Luli es una niña — femenina. El posesivo para una mujer/niña es 'her'. Además, 'She is only two days old' confirma que se habla de una persona femenina."
+        },
+        {
+            id: 6,
+            pronounType: "object",
+            options: [
+                { text: "Yes. His face was so happy when I called him.", correct: true },
+                { text: "Yes. His face was so happy when I called he.", correct: false,
+                  errorWord: "he", correctWord: "him",
+                  errorType: "Pronombre sujeto como objeto de verbo",
+                  explanation: "'He' es pronombre sujeto — va ANTES del verbo ('He is happy'). Después de 'called' (verbo transitivo), necesitas el pronombre OBJETO: 'him'. Nunca 'called he'." },
+                { text: "Yes. His face was so happy when I called his.", correct: false,
+                  errorWord: "his", correctWord: "him",
+                  errorType: "Posesivo como pronombre objeto",
+                  explanation: "'His' es posesivo ('his face', 'his name'). Después de 'called', necesitas el pronombre OBJETO de masculino: 'him'. 'Called his' no tiene sentido." }
+            ],
+            clue: "I called _____ — el papá recibe la acción del verbo",
+            clueExplain: "Después de un verbo transitivo como 'call', la persona que recibe la acción es el OBJETO. Para un hombre como objeto: 'him'. 'He' es sujeto y 'his' es posesivo — ninguno funciona aquí.",
+            rule: "Verbo transitivo + pronombre objeto: called him / saw her / heard us",
+            examples: ["I called him.", "She saw him.", "We heard him."],
+            correctReason: "El papá RECIBE la llamada — es el objeto del verbo 'call'. El pronombre objeto masculino es 'him'. Compara: 'He called' (sujeto) vs. 'I called him' (objeto)."
+        },
+        {
+            id: 7,
+            pronounType: "subject",
+            options: [
+                { text: "I do not know everything. I am only eight.", correct: true },
+                { text: "I do not know everything. Me am only eight.", correct: false,
+                  errorWord: "Me am", correctWord: "I am",
+                  errorType: "Pronombre objeto como sujeto",
+                  explanation: "'Me' es pronombre objeto ('she sees me'). 'Am' solo puede ir con 'I'. 'Me am' es un error muy común pero incorrecto — el sujeto de 'am' siempre es 'I'." },
+                { text: "I do not know everything. He am only eight.", correct: false,
+                  errorWord: "He am", correctWord: "I am",
+                  errorType: "Tercera persona + conjugación incorrecta",
+                  explanation: "'He am' tiene dos errores: el hablante habla de sí mismo (no de otra persona), y además 'he' necesita 'is', no 'am'. Solo 'I am' es correcto." }
+            ],
+            clue: "El narrador habla de su propia edad",
+            clueExplain: "Nico habla de SÍ MISMO — él tiene ocho años. El pronombre de primera persona es 'I', y 'I am' es la única combinación correcta con 'am'.",
+            rule: "Solo 'I' + 'am': I am / I'm (nunca 'me am' ni 'he am')",
+            examples: ["I am eight.", "I am happy.", "I am kind."],
+            correctReason: "Nico habla de su propia edad — usa 'I' (primera persona). 'Am' es EXCLUSIVO de 'I' en inglés. 'Me am' y 'He am' no existen en ningún contexto."
+        },
+        {
+            id: 8,
+            pronounType: "object",
+            options: [
+                { text: "I think being kind is like being strong. Everyone loves her.", correct: true },
+                { text: "I think being kind is like being strong. Everyone loves she.", correct: false,
+                  errorWord: "she", correctWord: "her",
+                  errorType: "Pronombre sujeto como objeto",
+                  explanation: "'She' es pronombre sujeto — va antes del verbo ('She is kind'). Después de 'loves' necesitas el objeto. Para una mujer como objeto: 'her'. 'Loves she' ✗." },
+                { text: "I think being kind is like being strong. Everyone loves his.", correct: false,
+                  errorWord: "his", correctWord: "her",
+                  errorType: "Posesivo masculino por pronombre objeto femenino",
+                  explanation: "'His' es posesivo de hombre ('his name'). Aquí se habla de una mujer que RECIBE el amor. El objeto femenino es 'her'. 'Loves his' no tiene sentido." }
+            ],
+            clue: "Everyone loves _____ — una mujer recibe el amor",
+            clueExplain: "El verbo 'loves' necesita un objeto — quien recibe el amor. La persona es femenina, entonces el objeto femenino es 'her'. 'She' es sujeto y 'his' es posesivo masculino.",
+            rule: "Objeto femenino: loves her / sees her / calls her",
+            examples: ["Everyone loves her.", "I see her.", "He calls her."],
+            correctReason: "La mujer RECIBE el amor de todos — es el objeto del verbo 'loves'. El pronombre objeto femenino es 'her'. Compara: 'She loves' (sujeto) vs. 'loves her' (objeto)."
+        },
+        {
+            id: 9,
+            pronounType: "subject",
+            options: [
+                { text: "Miss Pilar is kind with everyone. She never shouts.", correct: true },
+                { text: "Miss Pilar is kind with everyone. Her never shouts.", correct: false,
+                  errorWord: "Her", correctWord: "She",
+                  errorType: "Pronombre objeto/posesivo como sujeto",
+                  explanation: "'Her' es objeto o posesivo femenino — nunca el sujeto que realiza la acción. Para que una mujer sea sujeto, se usa 'she'. 'Her never shouts' ✗ — 'her' no puede ser el que 'shouta'." },
+                { text: "Miss Pilar is kind with everyone. Him never shouts.", correct: false,
+                  errorWord: "Him", correctWord: "She",
+                  errorType: "Pronombre objeto masculino por sujeto femenino",
+                  explanation: "'Him' es objeto masculino ('I see him'). Miss Pilar es una MUJER y necesita un SUJETO, no un objeto. La forma correcta es 'she' — femenina y sujeto." }
+            ],
+            clue: "Miss Pilar es mujer y realiza la acción de 'shout'",
+            clueExplain: "Miss Pilar es el sujeto — ella realiza (o no realiza) la acción. Para una mujer como sujeto, el pronombre es 'she'. 'Her' y 'him' son objetos, nunca sujetos.",
+            rule: "Sujeto femenino: She is / She has / She never / She always",
+            examples: ["She is kind.", "She never shouts.", "She explains slowly."],
+            correctReason: "Miss Pilar es una mujer y es el SUJETO — ella realiza la acción. El pronombre sujeto femenino es 'she'. 'Her' y 'him' son siempre objetos, nunca sujetos."
+        },
+        {
+            id: 10,
+            pronounType: "subject",
+            options: [
+                { text: "There is a photo on the wall. It is very old.", correct: true },
+                { text: "There is a photo on the wall. He is very old.", correct: false,
+                  errorWord: "He", correctWord: "It",
+                  errorType: "Pronombre masculino para un objeto",
+                  explanation: "'He' se usa para personas masculinas. Una foto es un OBJETO — no una persona. En inglés, todos los objetos e inanimados usan 'it', sin importar el género gramatical." },
+                { text: "There is a photo on the wall. She is very old.", correct: false,
+                  errorWord: "She", correctWord: "It",
+                  errorType: "Pronombre femenino para un objeto",
+                  explanation: "'She' se usa para personas femeninas. En español 'la foto' es femenino, pero en inglés los objetos NO tienen género gramatical — todos usan 'it'. 'She is old' solo aplica a personas." }
+            ],
+            clue: "a photo — objeto inanimado",
+            clueExplain: "Una foto es un objeto. En inglés, todos los objetos, cosas y animales (sin género conocido) usan el pronombre neutro 'it'. A diferencia del español, los objetos en inglés no tienen género.",
+            rule: "Objetos e inanimados: It is / It was / It has (sin género)",
+            examples: ["It is a photo.", "It is old.", "It is my family."],
+            correctReason: "Una foto es un OBJETO. En inglés, los objetos usan 'it' — sin género. Esto es diferente al español donde 'la foto' es femenino. En inglés: persona masculina → 'he', persona femenina → 'she', objeto → 'it'."
+        }
+    ];
+
+    // ── STATE ──
+    let currentQuestion = 0, score = 0;
+    let answered = new Array(quizData.length).fill(false);
+
+    function initQuiz() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+        quizData.forEach((q, i) => {
+            q.shuffled = [...q.options].sort(() => Math.random() - 0.5);
+            container.appendChild(createCard(q, i));
+        });
+        showQuestion(0);
+        updateProgress();
+    }
+
+    function createCard(q, index) {
+        const card = document.createElement('div');
+        card.className = `question-card ${index !== 0 ? 'hidden' : ''}`;
+        card.id = `question-${index}`;
+        const letters = ['A','B','C'];
+
+        const badgeClass = q.pronounType === 'subject' ? 'subject' : q.pronounType === 'object' ? 'object' : 'possessive';
+        const badgeText = q.pronounType === 'subject' ? '👤 Sujeto' : q.pronounType === 'object' ? '🎯 Objeto' : '📌 Posesivo';
+        const badge = `<span class="pronoun-badge ${badgeClass}">${badgeText}</span>`;
+
+        card.innerHTML = `
+            <div class="q-header">
+                <div class="question-number">${index + 1}</div>
+                <span class="q-label">Elige la oración con el pronombre correcto:</span>
+                ${badge}
+            </div>
+            <div class="sentence-options" id="options-${index}">
+                ${q.shuffled.map((opt, i) => `
+                    <button class="sent-option" onclick="selectOption(${index}, ${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt.text}</div>
+                        <div class="option-status">${opt.correct ? '✅' : '❌'}</div>
+                    </button>
+                `).join('')}
+            </div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index === 0 ? 'disabled' : ''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index === quizData.length - 1 ? 'Ver Resultados 🎉' : 'Siguiente →'}
+                </button>
+            </div>
+        `;
+        return card;
+    }
+
+    function selectOption(qi, optIdx) {
+        if (answered[qi]) return;
+        answered[qi] = true;
+        const q = quizData[qi];
+        const selected = q.shuffled[optIdx];
+        const isCorrect = selected.correct;
+        const correctOpt = q.shuffled.find(o => o.correct);
+        if (isCorrect) score++;
+
+        document.querySelectorAll(`#options-${qi} .sent-option`).forEach((btn, i) => {
+            btn.classList.add('disabled');
+            const opt = q.shuffled[i];
+            if (opt.correct) btn.classList.add('correct');
+            else if (i === optIdx) btn.classList.add('incorrect');
+        });
+
+        buildFeedback(qi, selected, isCorrect, correctOpt, q);
+        document.getElementById(`next-${qi}`).disabled = false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi, selected, isCorrect, correctOpt, q) {
+        const el = document.getElementById(`feedback-${qi}`);
+        el.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        function markError(text, word) {
+            if (!word) return text;
+            return text.replace(word, `<span class="error-highlight">${word}</span>`);
+        }
+        function markCorrect(text, word) {
+            if (!word) return text;
+            return text.replace(word, `<span class="correct-highlight">${word}</span>`);
+        }
+
+        const ruleExamples = q.examples.map(e =>
+            `<span class="rule-ex"><span class="past">${e}</span></span>`
+        ).join('');
+
+        if (isCorrect) {
+            const errorsHTML = q.shuffled.filter(o => !o.correct).map(err => `
+                <div class="fb-block fb-error">
+                    <div class="fb-block-title">⚠️ Error en otra opción: <span class="error-badge">${err.errorType}</span></div>
+                    <div class="word-swap">
+                        <span class="ws-box ws-wrong">${err.errorWord}</span>
+                        <span class="ws-arrow">→</span>
+                        <span class="ws-box ws-right">${err.correctWord}</span>
+                    </div>
+                    <div class="error-text">${err.explanation}</div>
+                </div>`).join('');
+
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">✅</span>
+                    <div>
+                        <div class="fb-title">¡Correcto! Identificaste bien el pronombre</div>
+                        <div class="fb-subtitle">Veamos por qué las otras estaban mal</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal">
+                        <div class="fb-block-title">🔍 Señal clave</div>
+                        <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                            <span class="signal-tag">${q.clue}</span> — ${q.clueExplain}
+                        </div>
+                    </div>
+                    ${errorsHTML}
+                    <div class="fb-block fb-rule">
+                        <div class="fb-block-title">📐 Regla gramatical</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-block fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>`;
+        } else {
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">❌</span>
+                    <div>
+                        <div class="fb-title">Incorrecto — revisemos juntos</div>
+                        <div class="fb-subtitle">Identifica la diferencia entre las oraciones</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong">
+                        <div class="fb-block-title">🔍 Señal clave que debías identificar</div>
+                        <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                            <span class="signal-tag red">${q.clue}</span> — ${q.clueExplain}
+                        </div>
+                    </div>
+                    <div class="fb-block fb-compare">
+                        <div class="fb-block-title">🔄 Tu elección vs. la correcta</div>
+                        <div class="compare-row">
+                            <span class="compare-label wrong">Elegiste</span>
+                            <span class="compare-text">${markError(selected.text, selected.errorWord)}</span>
+                        </div>
+                        <div class="compare-row">
+                            <span class="compare-label right">Correcta</span>
+                            <span class="compare-text">${markCorrect(correctOpt.text, q.correctForm || selected.correctWord)}</span>
+                        </div>
+                    </div>
+                    <div class="fb-block fb-error">
+                        <div class="fb-block-title">⚠️ El error: <span class="error-badge">${selected.errorType}</span></div>
+                        <div class="word-swap">
+                            <span class="ws-box ws-wrong">${selected.errorWord}</span>
+                            <span class="ws-arrow">→</span>
+                            <span class="ws-box ws-right">${selected.correctWord}</span>
+                        </div>
+                        <div class="error-text">${selected.explanation}</div>
+                    </div>
+                    <div class="fb-block fb-rule">
+                        <div class="fb-block-title">📐 La regla correcta</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-block fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i) {
+        document.querySelectorAll('.question-card').forEach((c, idx) => c.classList.toggle('hidden', idx !== i));
+        document.getElementById('currentQ').textContent = i + 1;
+        currentQuestion = i;
+    }
+    function nextQuestion(i) { i < quizData.length - 1 ? showQuestion(i + 1) : showResults(); }
+    function prevQuestion() { if (currentQuestion > 0) showQuestion(currentQuestion - 1); }
+    function updateProgress() {
+        const done = answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width = (done / quizData.length * 100) + '%';
+    }
+    function showResults() {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct = score / quizData.length * 100;
+        document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
+        let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
+        document.getElementById('resultsMessage').textContent = pct >= 90
+            ? '¡Excelente! Identificas los pronombres perfectamente. 🏆'
+            : pct >= 70 ? '¡Muy bien! Sigue practicando. 💪'
+            : 'Buen esfuerzo. Repasa sujeto vs. objeto vs. posesivo. 📚';
+        document.querySelectorAll('.star').forEach((s, i) => {
+            if (i < stars) setTimeout(() => s.classList.add('earned'), i * 300);
+        });
+    }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

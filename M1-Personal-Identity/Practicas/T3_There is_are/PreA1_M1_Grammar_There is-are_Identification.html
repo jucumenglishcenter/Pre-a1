@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identify - Pre-A1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#F59E0B;--primary-light:#FCD34D;--primary-dark:#D97706;
+            --bg-gradient-start:#FFFBEB;--bg-gradient-end:#FEF3C7;
+            --text-dark:#78350F;--text-medium:#92400E;--text-light:#B45309;
+            --success:#10B981;--success-light:#D1FAE5;--success-dark:#059669;
+            --error:#EF4444;--error-light:#FEE2E2;--error-dark:#DC2626;
+            --info:#3B82F6;--info-light:#DBEAFE;--info-dark:#1D4ED8;
+            --purple:#8B5CF6;--purple-light:#EDE9FE;--purple-dark:#6D28D9;
+            --shadow-soft:0 4px 20px rgba(245,158,11,0.15);
+            --border-radius:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));min-height:100vh;color:var(--text-dark);}
+        .header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-soft);}
+        .back-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;text-decoration:none;color:var(--text-dark);transition:all .2s;flex-shrink:0;}
+        .back-btn:hover{background:rgba(255,255,255,0.5);transform:scale(1.1);}
+        .header-info{flex:1;}
+        .header-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:white;}
+        .header-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:2px;}
+        .progress-indicator{background:rgba(255,255,255,0.3);padding:0.4rem 0.9rem;border-radius:20px;font-weight:700;color:white;font-size:0.9rem;}
+        .progress-container{height:6px;background:rgba(255,255,255,0.3);}
+        .progress-fill{height:100%;background:white;transition:width .5s ease;width:0%;}
+        main{padding:1.5rem;max-width:650px;margin:0 auto;}
+        .instructions{background:white;border-radius:16px;padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow-soft);border-left:5px solid var(--primary);display:flex;gap:0.75rem;align-items:flex-start;}
+        .instructions-icon{font-size:1.6rem;flex-shrink:0;}
+        .instructions-title{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:0.2rem;}
+        .instructions-text{font-size:0.85rem;color:var(--text-medium);line-height:1.5;}
+        .question-card{background:white;border-radius:var(--border-radius);box-shadow:var(--shadow-soft);padding:1.5rem;margin-bottom:1rem;animation:slideIn .4s ease;}
+        .question-card.hidden{display:none;}
+        @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+        .q-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;}
+        .question-number{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;flex-shrink:0;}
+        .q-label{font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;}
+        .form-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.7rem;border-radius:20px;font-size:0.72rem;font-weight:700;}
+        .form-badge.singular{background:#DBEAFE;color:#1D4ED8;}
+        .form-badge.plural{background:#D1FAE5;color:#059669;}
+        .sentence-options{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:0.5rem;}
+        .sent-option{border:2.5px solid #E5E7EB;border-radius:13px;padding:0.9rem 1rem;cursor:pointer;transition:all .2s;background:white;text-align:left;font-family:'Nunito',sans-serif;display:flex;gap:0.75rem;align-items:center;width:100%;}
+        .sent-option:hover:not(.disabled){border-color:var(--primary);background:var(--bg-gradient-start);transform:translateX(4px);}
+        .sent-option.disabled{cursor:default;}
+        .sent-option.correct{border-color:var(--success);background:var(--success-light);}
+        .sent-option.incorrect{border-color:var(--error);background:var(--error-light);}
+        .option-letter{width:26px;height:26px;border-radius:50%;background:var(--primary-light);color:var(--primary-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;font-family:'Fredoka',sans-serif;}
+        .sent-option.correct .option-letter{background:var(--success);color:white;}
+        .sent-option.incorrect .option-letter{background:var(--error);color:white;}
+        .option-text{font-size:0.97rem;color:var(--text-dark);line-height:1.5;font-weight:600;flex:1;}
+        .sent-option.correct .option-text{color:var(--success-dark);}
+        .sent-option.incorrect .option-text{color:var(--error-dark);}
+        .option-status{font-size:1.1rem;flex-shrink:0;opacity:0;}
+        .sent-option.disabled .option-status{opacity:1;}
+        .error-highlight{background:#FEE2E2;color:var(--error-dark);font-weight:800;padding:0 3px;border-radius:3px;text-decoration:underline wavy var(--error);}
+        .correct-highlight{background:var(--success-light);color:var(--success-dark);font-weight:800;padding:0 3px;border-radius:3px;}
+        .feedback{margin-top:1.25rem;border-radius:16px;overflow:hidden;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+        .feedback.show{display:block;animation:fadeUp .35s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .fb-header{padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;}
+        .feedback.correct .fb-header{background:linear-gradient(135deg,var(--success),var(--success-dark));}
+        .feedback.incorrect .fb-header{background:linear-gradient(135deg,var(--error),var(--error-dark));}
+        .fb-icon{font-size:1.6rem;}
+        .fb-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:white;font-weight:600;}
+        .fb-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:1px;}
+        .fb-body{background:white;border:2px solid;border-top:none;border-radius:0 0 16px 16px;padding:1.25rem;display:flex;flex-direction:column;gap:0.9rem;}
+        .feedback.correct .fb-body{border-color:var(--success);}
+        .feedback.incorrect .fb-body{border-color:var(--error);}
+        .fb-block{border-radius:12px;padding:0.9rem 1rem;}
+        .fb-block-title{font-weight:800;font-size:0.78rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+        .error-badge{display:inline-block;background:var(--error);color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.72rem;font-weight:700;margin-left:4px;}
+        .fb-signal{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-signal.wrong{background:#FFF1F2;border-color:#FECDD3;}
+        .fb-signal .fb-block-title{color:var(--success-dark);}
+        .fb-signal.wrong .fb-block-title{color:var(--error-dark);}
+        .signal-tag{display:inline-block;background:var(--success);color:white;border-radius:6px;padding:0.1rem 0.5rem;font-size:0.82rem;font-weight:700;margin:0 2px;}
+        .signal-tag.red{background:var(--error);}
+        .fb-compare{background:#F8FAFC;border:1px solid #E2E8F0;}
+        .fb-compare .fb-block-title{color:#475569;}
+        .compare-row{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.5rem;padding:0.6rem 0.8rem;border-radius:8px;}
+        .compare-row:last-child{margin-bottom:0;}
+        .compare-row:first-of-type{background:var(--error-light);}
+        .compare-row:last-of-type{background:var(--success-light);}
+        .compare-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;padding-top:2px;flex-shrink:0;}
+        .compare-label.wrong{color:var(--error-dark);}
+        .compare-label.right{color:var(--success-dark);}
+        .compare-text{font-size:0.92rem;font-weight:600;color:var(--text-dark);line-height:1.5;}
+        .fb-error{background:var(--error-light);border:1px solid #FECACA;}
+        .fb-error .fb-block-title{color:var(--error-dark);}
+        .word-swap{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin:0.6rem 0;flex-wrap:wrap;}
+        .ws-box{padding:0.4rem 1rem;border-radius:8px;font-weight:700;font-size:0.92rem;text-align:center;}
+        .ws-wrong{background:white;color:var(--error);border:2px solid var(--error);text-decoration:line-through;}
+        .ws-arrow{font-size:1.3rem;color:#94A3B8;}
+        .ws-right{background:var(--success);color:white;}
+        .error-text{font-size:0.9rem;color:var(--text-dark);line-height:1.55;}
+        .fb-rule{background:var(--info-light);border:1px solid #BFDBFE;}
+        .fb-rule .fb-block-title{color:var(--info-dark);}
+        .rule-formula{background:white;border-radius:8px;padding:0.5rem 0.9rem;font-family:'Fredoka',sans-serif;font-size:0.92rem;color:var(--info-dark);font-weight:600;margin-bottom:0.6rem;text-align:center;border:1px solid #BFDBFE;}
+        .rule-examples{display:flex;flex-wrap:wrap;gap:0.4rem;}
+        .rule-ex{font-size:0.82rem;background:white;border:1px solid #BFDBFE;border-radius:6px;padding:0.2rem 0.5rem;color:var(--success-dark);font-weight:600;}
+        .fb-why{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-why .fb-block-title{color:var(--success-dark);}
+        .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
+        .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
+        .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
+        .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
+        .nav-btn:disabled{opacity:.4;cursor:default;}
+        .nav-btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .results-screen{display:none;text-align:center;padding:2rem 1.5rem;}
+        .results-screen.show{display:block;animation:fadeUp .5s ease;}
+        .results-emoji{font-size:4rem;margin-bottom:1rem;}
+        .results-title{font-family:'Fredoka',sans-serif;font-size:2rem;margin-bottom:0.5rem;}
+        .results-score{font-size:3rem;font-weight:800;color:var(--purple);margin:1rem 0;}
+        .results-message{font-size:1.05rem;color:var(--text-medium);margin-bottom:1.5rem;}
+        .stars-container{display:flex;justify-content:center;gap:0.5rem;margin:1.5rem 0;}
+        .star{font-size:2.5rem;opacity:.3;transition:all .5s ease;}
+        .star.earned{opacity:1;animation:starPop .5s ease;}
+        @keyframes starPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+        .results-buttons{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+        .result-btn{padding:1rem 2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all .2s;}
+        .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
+        .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
+        .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="prea1-m1t3-index.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔍 Identify</div>
+            <div class="header-subtitle">💛 Pre-A1 · Personal Identity · There is / There are</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">Identifica la oración correcta</div>
+                <div class="instructions-text">Una de las tres oraciones usa <strong>There is</strong> o <strong>There are</strong> correctamente. Identifícala. Las otras dos tienen errores gramaticales.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="prea1-m1t3-index.html" class="result-btn secondary">← Volver al módulo</a>
+            </div>
+        </div>
+    </main>
+    <script>
+    // ============================================================
+    // PRE-A1 · Personal Identity · There is / There are
+    // Identify — 10 preguntas
+    // Distribución de errores por pregunta:
+    //   Tipo A: There are/is por singular/plural invertido
+    //   Tipo B: There have / There be (formas inexistentes)
+    //   Tipo C: There was/were (pasado en vez de presente)
+    //   Tipo D: orden incorrecto / sujeto primero
+    // ============================================================
+    const quizData = [
+        {   // Q1 — There is · distractor: There are / There be
+            id:1, formType:"singular",
+            clue:"a boy (artículo 'a' = singular)",
+            clueExplain:"El artículo 'a' siempre indica un sustantivo singular. Singular → There IS.",
+            rule:"There is + a/an + singular noun",
+            examples:["There is a boy.","There is a photo.","There is a baby."],
+            correctReason:"'A boy' es singular. Con 'a/an + sustantivo singular' siempre se usa 'There is'.",
+            correctForm:"There is",
+            options:[
+                {text:"There is a boy called Ravi in our class.", correct:true},
+                {text:"There are a boy called Ravi in our class.", correct:false,
+                 errorWord:"There are", correctWord:"There is",
+                 errorType:"Plural por singular",
+                 explanation:"'There are' se usa con plural. 'A boy' es singular — el artículo 'a' lo indica. Con un solo sujeto singular siempre va 'There is'."},
+                {text:"There be a boy called Ravi in our class.", correct:false,
+                 errorWord:"There be", correctWord:"There is",
+                 errorType:"Forma inexistente",
+                 explanation:"'There be' no existe en inglés. Las únicas formas correctas en presente son 'There is' (singular) y 'There are' (plural)."}
+            ]
+        },
+        {   // Q2 — There are · distractor: There is / There have
+            id:2, formType:"plural",
+            clue:"five people (número plural)",
+            clueExplain:"'Five people' son cinco personas — plural. Con dos o más elementos siempre va 'There ARE'.",
+            rule:"There are + número/plural noun",
+            examples:["There are five people.","There are two chairs.","There are many photos."],
+            correctReason:"'Five people' son cinco (plural). La regla es directa: número mayor que uno → 'There are'.",
+            correctForm:"There are",
+            options:[
+                {text:"There are five people in the photo.", correct:true},
+                {text:"There is five people in the photo.", correct:false,
+                 errorWord:"There is", correctWord:"There are",
+                 errorType:"Singular por plural",
+                 explanation:"'There is' solo va con un elemento singular. Aquí hay cinco personas — es plural. Con cualquier número mayor a uno se usa 'There are'."},
+                {text:"There have five people in the photo.", correct:false,
+                 errorWord:"There have", correctWord:"There are",
+                 errorType:"Forma inexistente",
+                 explanation:"'There have' no existe como estructura existencial. 'Have' no funciona con 'there' para indicar existencia. Solo 'There is' y 'There are' son correctos."}
+            ]
+        },
+        {   // Q3 — There is · distractor: There are / There was
+            id:3, formType:"singular",
+            clue:"a new baby (artículo 'a' + singular)",
+            clueExplain:"'A new baby' = un bebé recién nacido. El artículo 'a' confirma que es singular → 'There IS'.",
+            rule:"There is + a + singular noun (presente)",
+            examples:["There is a new baby.","There is a brother.","There is a neighbor."],
+            correctReason:"'A new baby' es singular en presente. 'There is' introduce una persona o cosa singular que existe ahora.",
+            correctForm:"There is",
+            options:[
+                {text:"There is a new baby in your house!", correct:true},
+                {text:"There are a new baby in your house!", correct:false,
+                 errorWord:"There are", correctWord:"There is",
+                 errorType:"Plural por singular",
+                 explanation:"'A new baby' es singular — el artículo 'a' lo confirma. 'There are' exige sustantivos en plural. Con un solo bebé, la forma correcta es 'There is'."},
+                {text:"There was a new baby in your house!", correct:false,
+                 errorWord:"There was", correctWord:"There is",
+                 errorType:"Tiempo incorrecto — pasado",
+                 explanation:"'There was' es pasado de 'There is'. La noticia del bebé es presente — acaba de nacer. El tiempo correcto es 'There is'."}
+            ]
+        },
+        {   // Q4 — There are · distractor: There is / There were
+            id:4, formType:"plural",
+            clue:"some empty seats (plural)",
+            clueExplain:"'Seats' termina en -s — plural. Con sustantivos plurales siempre va 'There ARE'.",
+            rule:"There are + plural noun",
+            examples:["There are empty seats.","There are two brothers.","There are six people."],
+            correctReason:"'Empty seats' es plural (asientos). La terminación -s en 'seats' indica plural → 'There are'.",
+            correctForm:"There are",
+            options:[
+                {text:"There are still some empty seats.", correct:true},
+                {text:"There is still some empty seats.", correct:false,
+                 errorWord:"There is", correctWord:"There are",
+                 errorType:"Singular por plural",
+                 explanation:"'Seats' es plural — la -s final lo indica. 'There is' solo funciona con un elemento singular. Con más de uno, la forma correcta es 'There are'."},
+                {text:"There were still some empty seats.", correct:false,
+                 errorWord:"There were", correctWord:"There are",
+                 errorType:"Tiempo incorrecto — pasado",
+                 explanation:"'There were' es el pasado plural de 'There are'. La clase está ocurriendo ahora — la situación de los asientos es presente. El tiempo correcto es 'There are'."}
+            ]
+        },
+        {   // Q5 — There are · distractor: There is / There have
+            id:5, formType:"plural",
+            clue:"six (número > 1 = plural)",
+            clueExplain:"'Six' indica seis elementos — plural. Cualquier número mayor a uno exige 'There ARE'.",
+            rule:"There are + número plural",
+            examples:["There are six people.","There are four members.","There are two brothers."],
+            correctReason:"El número 'six' indica seis personas — plural. La señal numérica siempre determina la forma: más de uno → 'There are'.",
+            correctForm:"There are",
+            options:[
+                {text:"There are six in Ravi's family.", correct:true},
+                {text:"There is six in Ravi's family.", correct:false,
+                 errorWord:"There is", correctWord:"There are",
+                 errorType:"Singular por plural",
+                 explanation:"'Six' significa seis — son más de uno. 'There is' solo funciona con un único elemento. Con seis personas, la forma correcta es 'There are'."},
+                {text:"There have six in Ravi's family.", correct:false,
+                 errorWord:"There have", correctWord:"There are",
+                 errorType:"Forma inexistente",
+                 explanation:"'There have' no existe en inglés como estructura existencial. Para expresar que 'hay' algo, solo se usa 'There is' o 'There are'."}
+            ]
+        },
+        {   // Q6 — There is · distractor: There are / orden incorrecto
+            id:6, formType:"singular",
+            clue:"also my grandpa (una persona)",
+            clueExplain:"'My grandpa' es una sola persona — singular. Singular → 'There IS'.",
+            rule:"There is + persona singular",
+            examples:["There is also my grandpa.","There is a neighbor.","There is a kind person."],
+            correctReason:"'My grandpa' es una persona (singular). 'There is' introduce correctamente una persona singular.",
+            correctForm:"There is",
+            options:[
+                {text:"There is also my grandpa, Don Beto.", correct:true},
+                {text:"There are also my grandpa, Don Beto.", correct:false,
+                 errorWord:"There are", correctWord:"There is",
+                 errorType:"Plural por singular",
+                 explanation:"'My grandpa' es una sola persona. 'There are' se usa con dos o más personas u objetos. Con un sujeto singular la forma correcta es 'There is'."},
+                {text:"My grandpa, Don Beto, there is.", correct:false,
+                 errorWord:"My grandpa, Don Beto, there is", correctWord:"There is also my grandpa, Don Beto",
+                 errorType:"Orden incorrecto",
+                 explanation:"En inglés la estructura existencial siempre empieza con 'There is/are' — el verbo va antes del sujeto. No se puede poner el sujeto primero con esta estructura."}
+            ]
+        },
+        {   // Q7 — There are · distractor: There is / There be
+            id:7, formType:"plural",
+            clue:"eight people (número plural)",
+            clueExplain:"'Eight people' son ocho personas — plural. Más de uno → 'There ARE'.",
+            rule:"There are + number + plural noun",
+            examples:["There are eight people.","There are five members.","There are many photos."],
+            correctReason:"Ocho personas es claramente plural. El número 'eight' confirma que necesitamos 'There are'.",
+            correctForm:"There are",
+            options:[
+                {text:"There are eight people in the photo on Mia's wall.", correct:true},
+                {text:"There is eight people in the photo on Mia's wall.", correct:false,
+                 errorWord:"There is", correctWord:"There are",
+                 errorType:"Singular por plural",
+                 explanation:"'Eight people' son ocho personas — plural. 'There is' solo funciona con un elemento. Con ocho personas la forma correcta es 'There are'."},
+                {text:"There be eight people in the photo on Mia's wall.", correct:false,
+                 errorWord:"There be", correctWord:"There are",
+                 errorType:"Forma inexistente",
+                 explanation:"'There be' no existe como forma presente en inglés. Para plural, la forma correcta es siempre 'There are'."}
+            ]
+        },
+        {   // Q8 — There is · distractor: There are / There have
+            id:8, formType:"singular",
+            clue:"no rush (sustantivo incontable)",
+            clueExplain:"'Rush' es incontable — no tiene plural. Los sustantivos incontables siguen la regla del singular → 'There IS'.",
+            rule:"There is + incontable / singular",
+            examples:["There is no rush.","There is silence.","There is no time."],
+            correctReason:"'Rush' (apuro) es incontable — no se pluraliza en este contexto. Los incontables van con 'There is', igual que los singulares.",
+            correctForm:"There is",
+            options:[
+                {text:"On Saturdays, there is no rush in the morning.", correct:true},
+                {text:"On Saturdays, there are no rush in the morning.", correct:false,
+                 errorWord:"there are", correctWord:"there is",
+                 errorType:"Plural con sustantivo incontable",
+                 explanation:"'Rush' es incontable — no tiene forma plural. Los sustantivos incontables siempre usan 'There is', no 'There are'. No se puede decir 'rushes' en este contexto."},
+                {text:"On Saturdays, there have no rush in the morning.", correct:false,
+                 errorWord:"there have", correctWord:"there is",
+                 errorType:"Forma inexistente",
+                 explanation:"'There have' no existe como estructura existencial. Para indicar que algo existe o no existe, solo se usa 'There is' (singular/incontable) o 'There are' (plural)."}
+            ]
+        },
+        {   // Q9 — There is · distractor: There are / There was
+            id:9, formType:"singular",
+            clue:"also my neighbor Mrs. Ana (una persona)",
+            clueExplain:"'My neighbor Mrs. Ana' es una persona — singular. Singular → 'There IS' (presente).",
+            rule:"There is + singular + presente",
+            examples:["There is also a neighbor.","There is a kind woman.","There is Mrs. Ana."],
+            correctReason:"Una vecina = singular + presente. 'There is' introduce correctamente una persona singular que existe en el presente.",
+            correctForm:"There is",
+            options:[
+                {text:"There is also my neighbor Mrs. Ana.", correct:true},
+                {text:"There are also my neighbor Mrs. Ana.", correct:false,
+                 errorWord:"There are", correctWord:"There is",
+                 errorType:"Plural por singular",
+                 explanation:"'My neighbor Mrs. Ana' es una sola persona. 'There are' exige dos o más sujetos. Con una persona singular la forma correcta es 'There is'."},
+                {text:"There was also my neighbor Mrs. Ana.", correct:false,
+                 errorWord:"There was", correctWord:"There is",
+                 errorType:"Tiempo incorrecto — pasado",
+                 explanation:"'There was' es pasado de 'There is'. La vecina sigue viviendo allí — es una situación presente. El tiempo correcto es 'There is'."}
+            ]
+        },
+        {   // Q10 — There is · distractor: There are / orden incorrecto
+            id:10, formType:"singular",
+            clue:"a kind person (artículo 'a' = singular)",
+            clueExplain:"'A kind person' = una persona amable. El artículo 'a' indica singular → 'There IS'.",
+            rule:"There is + a + singular noun",
+            examples:["There is a kind person.","There is always hope.","There is a winner."],
+            correctReason:"'A kind person' es singular. 'There is' introduce correctamente un sustantivo singular. El artículo 'a' es la señal definitiva.",
+            correctForm:"There is",
+            options:[
+                {text:"In every story, there is always a kind person who wins.", correct:true},
+                {text:"In every story, there are always a kind person who wins.", correct:false,
+                 errorWord:"there are", correctWord:"there is",
+                 errorType:"Plural por singular",
+                 explanation:"'A kind person' es singular — el artículo 'a' lo confirma. 'There are' va con plural. Con 'a/an + sustantivo singular' siempre se usa 'There is'."},
+                {text:"In every story, a kind person there is who wins.", correct:false,
+                 errorWord:"a kind person there is", correctWord:"there is a kind person",
+                 errorType:"Orden incorrecto",
+                 explanation:"La estructura 'There is/are' siempre va al inicio: 'There is + sujeto'. No se puede poner el sujeto antes del 'there is'. El orden correcto es 'there is always a kind person'."}
+            ]
+        }
+    ];
+
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer');
+        c.innerHTML='';
+        quizData.forEach((q,i)=>{
+            q.shuffled=[...q.options].sort(()=>Math.random()-.5);
+            c.appendChild(createCard(q,i));
+        });
+        showQuestion(0); updateProgress();
+    }
+
+    function createCard(q,index){
+        const card=document.createElement('div');
+        card.className=`question-card ${index!==0?'hidden':''}`;
+        card.id=`question-${index}`;
+        const L=['A','B','C'];
+        const badge=q.formType==='singular'
+            ?'<span class="form-badge singular">📌 Singular</span>'
+            :'<span class="form-badge plural">📌 Plural</span>';
+        const opts=q.shuffled.map((opt,i)=>`
+            <button class="sent-option" onclick="selectOption(${index},${i})">
+                <div class="option-letter">${L[i]}</div>
+                <div class="option-text">${opt.text}</div>
+                <div class="option-status">${opt.correct?'✅':'❌'}</div>
+            </button>`).join('');
+        card.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span class="q-label">Elige la oración correcta:</span>
+                ${badge}
+            </div>
+            <div class="sentence-options" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}
+                </button>
+            </div>`;
+        return card;
+    }
+
+    function selectOption(qi,optIdx){
+        if(answered[qi])return;
+        answered[qi]=true;
+        const q=quizData[qi];
+        const sel=q.shuffled[optIdx];
+        const isCorrect=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct);
+        if(isCorrect)score++;
+        document.querySelectorAll(`#options-${qi} .sent-option`).forEach((btn,i)=>{
+            btn.classList.add('disabled');
+            if(q.shuffled[i].correct)btn.classList.add('correct');
+            else if(i===optIdx)btn.classList.add('incorrect');
+        });
+        buildFeedback(qi,sel,isCorrect,correctOpt,q);
+        document.getElementById(`next-${qi}`).disabled=false;
+        updateProgress();
+    }
+
+    function markErr(text,word){return text.replace(word,`<span class="error-highlight">${word}</span>`);}
+    function markOk(text,word){return word?text.replace(word,`<span class="correct-highlight">${word}</span>`):text;}
+
+    function buildFeedback(qi,sel,isCorrect,correctOpt,q){
+        const el=document.getElementById(`feedback-${qi}`);
+        el.className=`feedback show ${isCorrect?'correct':'incorrect'}`;
+        const exs=q.examples.map(e=>`<span class="rule-ex">${e}</span>`).join('');
+        const errors=q.shuffled.filter(o=>!o.correct);
+
+        if(isCorrect){
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">✅</span><div>
+                <div class="fb-title">¡Correcto! Identificaste bien la oración</div>
+                <div class="fb-subtitle">Veamos por qué las otras estaban mal</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-signal">
+                    <div class="fb-block-title">🔍 Señal clave en las oraciones</div>
+                    <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="signal-tag">${q.clue}</span> — ${q.clueExplain}
+                    </div>
+                </div>
+                ${errors.map(err=>`
+                <div class="fb-block fb-error">
+                    <div class="fb-block-title">⚠️ Error en una opción: <span class="error-badge">${err.errorType}</span></div>
+                    <div class="word-swap">
+                        <span class="ws-box ws-wrong">${err.errorWord}</span>
+                        <span class="ws-arrow">→</span>
+                        <span class="ws-box ws-right">${err.correctWord}</span>
+                    </div>
+                    <div class="error-text">${err.explanation}</div>
+                </div>`).join('')}
+                <div class="fb-block fb-rule">
+                    <div class="fb-block-title">📐 Regla aplicada</div>
+                    <div class="rule-formula">${q.rule}</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why">
+                    <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
+                    <div class="fb-why-text">${q.correctReason}</div>
+                </div>
+            </div>`;
+        } else {
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">❌</span><div>
+                <div class="fb-title">Incorrecto — revisemos juntos</div>
+                <div class="fb-subtitle">Identifica la diferencia entre las oraciones</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-signal wrong">
+                    <div class="fb-block-title">🔍 Señal clave que debías identificar</div>
+                    <div style="font-size:0.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="signal-tag red">${q.clue}</span> — ${q.clueExplain}
+                    </div>
+                </div>
+                <div class="fb-block fb-compare">
+                    <div class="fb-block-title">🔄 Tu elección vs. la correcta</div>
+                    <div class="compare-row">
+                        <span class="compare-label wrong">Elegiste</span>
+                        <span class="compare-text">${markErr(sel.text, sel.errorWord)}</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-label right">Correcta</span>
+                        <span class="compare-text">${markOk(correctOpt.text, q.correctForm)}</span>
+                    </div>
+                </div>
+                <div class="fb-block fb-error">
+                    <div class="fb-block-title">⚠️ El error: <span class="error-badge">${sel.errorType}</span></div>
+                    <div class="word-swap">
+                        <span class="ws-box ws-wrong">${sel.errorWord}</span>
+                        <span class="ws-arrow">→</span>
+                        <span class="ws-box ws-right">${sel.correctWord}</span>
+                    </div>
+                    <div class="error-text">${sel.explanation}</div>
+                </div>
+                <div class="fb-block fb-rule">
+                    <div class="fb-block-title">📐 La regla correcta</div>
+                    <div class="rule-formula">${q.rule}</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why">
+                    <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
+                    <div class="fb-why-text">${q.correctReason}</div>
+                </div>
+            </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){i<quizData.length-1?showQuestion(i+1):showResults();}
+    function prevQuestion(){if(currentQuestion>0)showQuestion(currentQuestion-1);}
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente! Identificas "There is" y "There are" perfectamente. 🏆'
+            :pct>=70?'¡Muy bien! Sigue practicando la distinción singular/plural. 💪'
+            :'Buen esfuerzo. Recuerda: singular → There is, plural → There are. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{
+            if(i<stars)setTimeout(()=>s.classList.add('earned'),i*300);
+        });
+    }
+    document.addEventListener('DOMContentLoaded',initQuiz);
+    </script>
+</body>
+</html>

@@ -41,15 +41,10 @@ header{
   background:var(--ll);color:var(--lbt);
   border:1.5px solid var(--lm);padding:4px 12px;border-radius:20px;
 }
-.switcher{display:flex;gap:6px;}
-.sw{
-  font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;
-  padding:5px 14px;border-radius:8px;
-  border:1.5px solid var(--border);color:var(--ts);
-  background:transparent;text-decoration:none;transition:all 0.2s;cursor:pointer;
-}
-.sw:hover{border-color:var(--lp);color:var(--ld);background:var(--ll);}
-.sw.on{background:var(--lg);color:#fff;border-color:var(--lp);}
+
+
+
+
 
 /* ── HERO ── */
 .hero{
@@ -114,16 +109,9 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 
 .mcard-body{flex:1;padding:16px 18px;display:flex;align-items:center;gap:14px;}
 
-.mnum{
-  font-family:'Fredoka',sans-serif;font-size:15px;font-weight:600;
-  background:var(--lg);color:#fff;
-  padding:8px 11px;border-radius:10px;
-  text-align:center;flex-shrink:0;min-width:54px;
-  box-shadow:0 3px 10px var(--lglow);
-  line-height:1.1;
-}
-.mnum small{display:block;font-family:'Nunito',sans-serif;font-size:9px;font-weight:800;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;}
-.mcard.locked .mnum{background:#E8E5DC;color:#AAA;box-shadow:none;}
+
+
+.mcard.locked 
 
 .minfo{flex:1;}
 .mname{font-family:'Fredoka',sans-serif;font-size:17px;font-weight:600;color:var(--text);line-height:1.2;}
@@ -184,12 +172,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   display:flex;align-items:center;gap:12px;
   flex-shrink:0;
 }
-.dhead-num{
-  font-family:'Fredoka',sans-serif;font-size:15px;font-weight:600;
-  background:rgba(255,255,255,0.25);color:#fff;
-  padding:6px 12px;border-radius:8px;flex-shrink:0;
-  border:1.5px solid rgba(255,255,255,0.35);
-}
+
 .dhead-name{font-family:'Fredoka',sans-serif;font-size:17px;font-weight:600;color:#fff;flex:1;line-height:1.2;}
 .dclose{
   width:34px;height:34px;border-radius:50%;
@@ -356,11 +339,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
     <div class="htitle">Panel de Materiales</div>
     <div class="hlevel">Pre-A1</div>
   </div>
-  <div class="switcher">
-    <a class="sw on" href="panel-pre-a1.html">Pre-A1</a>
-    <a class="sw" href="panel-a1.html">A1</a>
-    <a class="sw" href="panel-a2.html">A2</a>
-  </div>
 </header>
 
 <div class="hero">
@@ -388,7 +366,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 
 <div class="drawer" id="drawer">
   <div class="dhead">
-    <div class="dhead-num" id="d-num">M1</div>
+    
     <div class="dhead-name" id="d-name"></div>
     <button class="dclose" onclick="closeDrawer()">✕</button>
   </div>
@@ -399,53 +377,86 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 </div>
 
 <script>
+// ── BASE URL ──────────────────────────────────────────────────────────────────
+const BASE = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/jucumenglishcenter/Pre-a1/main';
+
+// ── QUIZLET (M1 — mismo set para todos los módulos hasta que haya sets por módulo)
+const QZ = {
+  esp_ing:     'https://quizlet.com/pe/1155523542/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=3e1a1ca6-c109-4f8d-b627-df6ce0495d6b',
+  traducir:    'https://quizlet.com/pe/1155523540/prea1-escritura-traducir-flash-cards/?funnelUUID=2f0841af-38cc-4cc1-85cb-29ad194db1fc',
+  definiciones:'https://quizlet.com/pe/1155523364/prea1-vocabulario-definiciones-flash-cards/?funnelUUID=5558d159-57b1-489f-a06b-136ee2902306',
+  ordenar:     'https://quizlet.com/pe/1155523639/prea1-escritura-ordenar-flash-cards/?funnelUUID=34e615db-9474-49fa-889e-2987a7c9d779',
+};
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
 const DATA = [
   {
     id:1, name:'Personal Identity', ok:true,
     img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80',
     tags:['Pronombres','To be','There is/are'],
+    folder:'M1-Personal-Identity',
     topics:[
-      'Pronouns: simple personal (I, you, we, him, her, his, it)',
-      'To be: affirmative & negative',
-      'To be: questions',
-      'There is / There are',
-    ]
+      {
+        label:'Pronouns: simple personal (I, you, we, him, her, his, it)',
+        folder:'Practicas/T1_PRONOUNS',
+        filePfx:'PreA1_M1_Grammar_Pronouns',
+      },
+      {
+        label:'To be: affirmative & negative',
+        folder:'Practicas/T2_To be',
+        filePfx:'PreA1_M1_Grammar_To be',
+      },
+      {
+        label:'To be: questions',
+        folder:'Practicas/T2_To be',
+        filePfx:'PreA1_M1_Grammar_To be',
+      },
+      {
+        label:'There is / There are',
+        folder:'Practicas/T3_There is_are',
+        filePfx:'PreA1_M1_Grammar_There is-are',
+      },
+    ],
+    reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading Comprehension_Personal Identity.html`,
+    listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal Identity.html`,
+    story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal Identity.html`,
+    quizlet: QZ,
   },
   {
-    id:2, name:'Essential Actions', ok:true,
+    id:2, name:'Essential Actions', ok:false,
     img:'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&q=80',
     tags:['Present Simple','Negación','Wh- questions'],
-    topics:[
-      'Present Simple: affirmative',
-      'Present Simple: negative',
-      'Present Simple: yes/no questions',
-      'Present Simple: Wh- questions',
-    ]
+    folder:'M2-Essential-Actions',
+    topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ,
   },
-  { id:3, name:'Community & Places',      ok:false, img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', tags:[], topics:[] },
-  { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[] },
-  { id:5, name:'Food & Health',           ok:false, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80', tags:[], topics:[] },
-  { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[] },
-  { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[] },
+  { id:3, name:'Community & Places',      ok:false, img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  { id:5, name:'Food & Health',           ok:false, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
 ];
 
-const SECS = [
-  { id:'gr', ico:'📝', label:'Práctica de Gramática', type:'grammar' },
-  { id:'rd', ico:'📖', label:'Comprensión Lectora',   type:'direct', items:['📖 Abrir actividad'] },
-  { id:'ls', ico:'🎧', label:'Comprensión Auditiva',  type:'direct', items:['🎧 Abrir actividad'] },
-  { id:'qu', ico:'🃏', label:'Quizlet',               type:'direct', items:['🔤 Esp → Ing','✍️ Traducir','📚 Definiciones','🔀 Ordenar'] },
-  { id:'mt', ico:'📚', label:'Materiales',            type:'materials' },
-];
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function ghUrl(mFolder, tFolder, filename) {
+  return `${BASE}/${mFolder}/${tFolder}/${filename}.html`;
+}
 
-function tRow(txt, i, mid, pfx) {
-  const isG = pfx === 'g';
-  const chips = isG
-    ? ['✏️ Fill In','🔍 Identification','🔄 Transform'].map(a => `<a class="chip chip-fill" href="#">${a}</a>`).join('')
-    : `<a class="chip chip-out" href="#">📄 Ver resumen</a>`;
-  return `<div class="titem" id="${pfx}${mid}_${i}">
-    <div class="ttrig" onclick="ti('${pfx}${mid}_${i}')">
+function tRow(topic, i, mid) {
+  const f = topic.folder;
+  const p = topic.filePfx;
+  const mFolder = DATA.find(x => x.id === mid).folder;
+  const fillIn = ghUrl(mFolder, f, `${p}_Fill in`);
+  const ident  = ghUrl(mFolder, f, `${p}_Identification`);
+  const trans  = ghUrl(mFolder, f, `${p}_Transform`);
+  const chips = [
+    `<a class="chip chip-fill" href="${fillIn}" target="_blank">✏️ Fill In</a>`,
+    `<a class="chip chip-fill" href="${ident}"  target="_blank">🔍 Identification</a>`,
+    `<a class="chip chip-fill" href="${trans}"  target="_blank">🔄 Transform</a>`,
+  ].join('');
+  return `<div class="titem" id="g${mid}_${i}">
+    <div class="ttrig" onclick="ti('g${mid}_${i}')">
       <span class="tn">${i+1}</span>
-      <span class="ttext">${txt}</span>
+      <span class="ttext">${topic.label}</span>
       <span class="tchev">▾</span>
     </div>
     <div class="tacts">${chips}</div>
@@ -454,21 +465,39 @@ function tRow(txt, i, mid, pfx) {
 
 function buildSec(s, m) {
   const id = `ds_${m.id}_${s.id}`;
-  const meta = s.type === 'grammar' ? `${m.topics.length} temas` : '';
   let body = '';
+  const meta = s.type === 'grammar' ? `${m.topics.length} temas` : '';
+
   if (s.type === 'grammar') {
     body = `<div class="sec-label">Temas del módulo</div>
-            <div class="tacc">${m.topics.map((t,i) => tRow(t,i,m.id,'g')).join('')}</div>`;
-  } else if (s.type === 'direct') {
-    body = `<div class="drow">${s.items.map(a => `<a class="dchip" href="#">${a}</a>`).join('')}</div>`;
-  } else {
+            <div class="tacc">${m.topics.map((t,i) => tRow(t, i, m.id)).join('')}</div>`;
+
+  } else if (s.type === 'reading') {
+    body = `<div class="drow">
+      <a class="dchip" href="${m.reading}" target="_blank">📖 Abrir actividad</a>
+    </div>`;
+
+  } else if (s.type === 'listening') {
+    body = `<div class="drow">
+      <a class="dchip" href="${m.listening}" target="_blank">🎧 Abrir actividad</a>
+    </div>`;
+
+  } else if (s.type === 'quizlet') {
+    body = `<div class="drow">
+      <a class="dchip" href="${m.quizlet.esp_ing}"      target="_blank">🔤 Esp → Ing</a>
+      <a class="dchip" href="${m.quizlet.traducir}"     target="_blank">✍️ Traducir</a>
+      <a class="dchip" href="${m.quizlet.definiciones}" target="_blank">📚 Definiciones</a>
+      <a class="dchip" href="${m.quizlet.ordenar}"      target="_blank">🔀 Ordenar</a>
+    </div>`;
+
+  } else if (s.type === 'materials') {
     body = `<div class="matlist">
-      <a class="matitem" href="#"><div class="matitem-ico">📗</div><span>Stories</span><span class="matitem-arr">→</span></a>
-      <a class="matitem" href="#"><div class="matitem-ico">💬</div><span>Diálogos</span><span class="matitem-arr">→</span></a>
-    </div>
-    <div class="sec-label">Resumen de Gramática</div>
-    <div class="tacc">${m.topics.map((t,i) => tRow(t,i,m.id,'r')).join('')}</div>`;
+      <a class="matitem" href="${m.story}" target="_blank">
+        <div class="matitem-ico">📗</div><span>Stories & Diálogos</span><span class="matitem-arr">→</span>
+      </a>
+    </div>`;
   }
+
   return `<div class="dsec" id="${id}">
     <div class="dsec-trig" onclick="ti('${id}')">
       <div class="dsec-ico">${s.ico}</div>
@@ -480,6 +509,14 @@ function buildSec(s, m) {
   </div>`;
 }
 
+const SECS = [
+  { id:'gr', ico:'📝', label:'Práctica de Gramática', type:'grammar'   },
+  { id:'rd', ico:'📖', label:'Comprensión Lectora',   type:'reading'   },
+  { id:'ls', ico:'🎧', label:'Comprensión Auditiva',  type:'listening' },
+  { id:'qu', ico:'🃏', label:'Quizlet',               type:'quizlet'   },
+  { id:'mt', ico:'📚', label:'Materiales',            type:'materials' },
+];
+
 function buildCard(m) {
   const tags = m.tags.map(t => `<span class="mtag">${t}</span>`).join('');
   const cta = m.ok
@@ -488,7 +525,6 @@ function buildCard(m) {
   return `<div class="mcard${m.ok ? '' : ' locked'}" onclick="${m.ok ? `openDrawer(${m.id})` : ''}">
     <div class="mcard-img" style="background-image:url('${m.img}')"></div>
     <div class="mcard-body">
-      <div class="mnum"><small>Módulo</small>M${m.id}</div>
       <div class="minfo">
         <div class="mname">${m.name}</div>
         <div class="mtags">${m.ok ? tags : '<span class="mtag">🔒 Próximamente</span>'}</div>
@@ -502,10 +538,9 @@ function ti(id) { document.getElementById(id).classList.toggle('open'); }
 
 function openDrawer(id) {
   const m = DATA.find(x => x.id === id);
-  document.getElementById('d-num').textContent = `M${m.id}`;
   document.getElementById('d-name').textContent = m.name;
   document.getElementById('d-img').style.backgroundImage = `url('${m.img}')`;
-  document.getElementById('d-label').textContent = `Módulo ${m.id} · ${m.name}`;
+  document.getElementById('d-label').textContent = m.name;
   document.getElementById('d-scroll').innerHTML = SECS.map(s => buildSec(s, m)).join('');
   document.getElementById('drawer').classList.add('on');
   document.getElementById('overlay').classList.add('on');

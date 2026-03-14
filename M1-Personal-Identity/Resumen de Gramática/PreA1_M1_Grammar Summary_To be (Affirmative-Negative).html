@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Summary — To Be Aff/Neg | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--neg:#AD1457;--neg-bg:#FCE4EC;
+--quest:#7B1FA2;--quest-bg:#F3E5F5;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:780px;margin:0 auto}
+.level-header{text-align:center;padding:2rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,.1);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.2rem}
+.level-header .subtitle{opacity:.8;font-size:.85rem;position:relative;z-index:1;margin-top:.15rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:20px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:.1rem}
+.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem}
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj)}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb)}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp)}
+.g-neg{background:var(--neg-bg);color:var(--neg);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--neg)}
+.g-quest{background:var(--quest-bg);color:var(--quest);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--quest)}
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.65rem .6rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:var(--ll);border:2px solid var(--lm)}
+.compare-card.eng{background:var(--subj-bg);border:2px solid #90CAF9}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.85rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:var(--ld)}
+.compare-card.eng h4{color:var(--subj)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:2px 0}
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:1.9}
+.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp)}
+.tip-card strong{color:var(--ld)}
+.alert-card{background:var(--err-bg);border:2px solid #EF5350;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem}
+.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.5}
+.ex-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
+.ex-row:hover{background:var(--lglow)}
+.ex-row .icon{font-size:1.2rem;flex-shrink:0}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:1px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+.conj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin:.8rem 0}
+.conj-item{padding:.6rem;border-radius:10px;text-align:center;background:var(--card);border:1.5px solid var(--border)}
+.conj-item .pron{font-size:.75rem;color:var(--subj);font-weight:800}
+.conj-item .vrb{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--verb)}
+.conj-item .meaning{font-size:.65rem;color:var(--text-soft)}
+.ex-section{margin-top:1.2rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.9rem;margin-bottom:.8rem}
+.exercise{background:#fafafa;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #eee;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.88rem;margin-bottom:.7rem;line-height:1.4}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.fb{margin-top:.7rem;padding:0;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-header .fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.fb-row .fb-text{flex:1}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.5rem .7rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.2rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 20px;position:relative;font-size:.83rem;color:var(--text-soft)}
+.summary-final li:before{content:"\2714";position:absolute;left:0;color:var(--lp);font-weight:700}
+@media(max-width:600px){.level-header h1{font-size:1.4rem}.step-tabs{flex-wrap:wrap}.card{padding:1.2rem}.compare-grid{grid-template-columns:1fr}.conj-grid{grid-template-columns:1fr 1fr}}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="level-header">
+<div class="level-badge">💛 Pre-A1</div>
+<h1>📝 Grammar Summary</h1>
+<div class="module-name">🪪 Personal Identity — To Be Affirmative &amp; Negative</div>
+<p class="subtitle">am / is / are · am not / isn’t / aren’t · 5 pasos · 25 ejercicios</p>
+</div>
+<div class="step-tabs" id="stepTabs">
+<button class="step-tab active" id="tab-s0">1. 🇪🇸 Repaso en Español</button>
+<button class="step-tab" id="tab-s1">2. 🤝 Similitudes</button>
+<button class="step-tab" id="tab-s2">3. ⚡ Diferencias</button>
+<button class="step-tab" id="tab-s3">4. 💡 Consejos</button>
+<button class="step-tab" id="tab-s4">5. ✨ Práctica Final</button>
+</div>
+<div id="cardArea">
+<div class="card active" id="card-s0">
+<div class="section-label">Paso 1 de 5</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">En español usamos "ser" y "estar" para describir personas y cosas. En inglés existe un solo verbo para ambos: "to be".</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>✅ Afirmativo</h4>
+    <ul>
+      <li>Yo <b>soy</b> feliz</li>
+      <li>Tú <b>eres</b> amable</li>
+      <li>Él <b>es</b> un niño</li>
+      <li>Nosotros <b>somos</b> una familia</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>❌ Negativo</h4>
+    <ul>
+      <li>Yo <b>no soy</b> feliz</li>
+      <li>Tú <b>no eres</b> amable</li>
+      <li>Él <b>no es</b> un niño</li>
+      <li>Nosotros <b>no somos</b> una familia</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ex-row"><div class="icon">😊</div><div><div class="en">Yo <b>soy</b> feliz → verbo "ser" para estado emocional</div><div class="es">En español "ser" describe identidad y cualidades</div></div></div>
+<div class="ex-row"><div class="icon">👦</div><div><div class="en">Él <b>es</b> un niño → verbo "ser" para identidad</div><div class="es">En español "ser" tiene 3 formas: soy / eres / es</div></div></div>
+
+<div class="tip-card"><strong>💡 Clave:</strong> En español "no" va ANTES del verbo: "no soy", "no eres". En inglés cambia: "not" va DESPUÉS del verbo be.</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Repaso en Español</h3>
+<div class="exercise" id="s0e0"><div class="exercise-q">1. ’Yo soy feliz’ en negativo es:</div><div class="opts"><button class="opt-btn" id="s0e0ba">a) Yo no soy feliz</button><button class="opt-btn" id="s0e0bb">b) Yo soy no feliz</button></div><div class="fb fb-ok" id="fbok-s0e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Yo no soy feliz</span> — ’No’ va ANTES del verbo en español: ’no soy’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Soy no feliz’ no es natural. El ’no’ va antes del verbo, no después.</div></div><div class="fb-example">📝 Yo no soy feliz → I am not happy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: no + verbo · Inglés: verbo + not</div></div></div><div class="fb fb-bad" id="fbbad-s0e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Soy no feliz’ no es natural. El ’no’ va antes del verbo, no después.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Yo no soy feliz</span> — ’No’ va ANTES del verbo en español: ’no soy’.</div></div><div class="fb-example">📝 Yo no soy feliz → I am not happy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: no + verbo · Inglés: verbo + not</div></div></div></div>
+<div class="exercise" id="s0e1"><div class="exercise-q">2. En ’Ella es amable’, ¿cuál es el verbo?</div><div class="opts"><button class="opt-btn" id="s0e1ba">a) es (ser)</button><button class="opt-btn" id="s0e1bb">b) está (estar)</button></div><div class="fb fb-ok" id="fbok-s0e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">es (ser)</span> — ’Es’ viene de ’ser’. Se usa para cualidades permanentes como ’amable’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Está’ viene de ’estar’ y se usa para estados temporales. ’Amable’ es una cualidad, no un estado temporal.</div></div><div class="fb-example">📝 Ella es amable → She is kind</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Ser = cualidades / identidad · Estar = estados temporales</div></div></div><div class="fb fb-bad" id="fbbad-s0e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Está’ viene de ’estar’ y se usa para estados temporales. ’Amable’ es una cualidad, no un estado temporal.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">es (ser)</span> — ’Es’ viene de ’ser’. Se usa para cualidades permanentes como ’amable’.</div></div><div class="fb-example">📝 Ella es amable → She is kind</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Ser = cualidades / identidad · Estar = estados temporales</div></div></div></div>
+<div class="exercise" id="s0e2"><div class="exercise-q">3. ’Nosotros somos una familia’ — el verbo ’somos’ viene de:</div><div class="opts"><button class="opt-btn" id="s0e2ba">a) estar</button><button class="opt-btn" id="s0e2bb">b) ser</button></div><div class="fb fb-ok" id="fbok-s0e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">ser</span> — ’Somos’ es la forma de ’ser’ para nosotros. Identidad = ser.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Estar’ sería ’estamos’. La identidad (’una familia’) siempre usa ’ser’.</div></div><div class="fb-example">📝 Nosotros somos una familia → We are a family</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Ser: soy / eres / es / somos — igual que am / are / is / are en inglés</div></div></div><div class="fb fb-bad" id="fbbad-s0e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Estar’ sería ’estamos’. La identidad (’una familia’) siempre usa ’ser’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">ser</span> — ’Somos’ es la forma de ’ser’ para nosotros. Identidad = ser.</div></div><div class="fb-example">📝 Nosotros somos una familia → We are a family</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Ser: soy / eres / es / somos — igual que am / are / is / are en inglés</div></div></div></div>
+<div class="exercise" id="s0e3"><div class="exercise-q">4. ¿Cuántas formas tiene ’ser’ para yo/tú/él?</div><div class="opts"><button class="opt-btn" id="s0e3ba">a) 3 formas (soy, eres, es)</button><button class="opt-btn" id="s0e3bb">b) 1 forma (es)</button></div><div class="fb fb-ok" id="fbok-s0e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">3 formas (soy, eres, es)</span> — 3 formas: soy (yo), eres (tú), es (él/ella). Igual que inglés: am, are, is.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Es’ es solo para él/ella/eso. Cada persona tiene su propia forma.</div></div><div class="fb-example">📝 Yo soy / Tú eres / Él es → I am / You are / He is</div><div class="fb-tip"><strong>💡 Recuerda:</strong> 3 formas en español = 3 formas en inglés</div></div></div><div class="fb fb-bad" id="fbbad-s0e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Es’ es solo para él/ella/eso. Cada persona tiene su propia forma.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">3 formas (soy, eres, es)</span> — 3 formas: soy (yo), eres (tú), es (él/ella). Igual que inglés: am, are, is.</div></div><div class="fb-example">📝 Yo soy / Tú eres / Él es → I am / You are / He is</div><div class="fb-tip"><strong>💡 Recuerda:</strong> 3 formas en español = 3 formas en inglés</div></div></div></div>
+<div class="exercise" id="s0e4"><div class="exercise-q">5. En español, ¿dónde va el ’no’ para hacer negativo?</div><div class="opts"><button class="opt-btn" id="s0e4ba">a) Después del verbo</button><button class="opt-btn" id="s0e4bb">b) Antes del verbo</button></div><div class="fb fb-ok" id="fbok-s0e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Antes del verbo</span> — En español ’no’ va ANTES del verbo: ’no soy’, ’no eres’, ’no es’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Después del verbo sería ’soy no’ — no es correcto en español.</div></div><div class="fb-example">📝 Yo no soy feliz → I am not happy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: no + verbo · Inglés: verbo + not — ¡posición opuesta!</div></div></div><div class="fb fb-bad" id="fbbad-s0e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Después del verbo sería ’soy no’ — no es correcto en español.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Antes del verbo</span> — En español ’no’ va ANTES del verbo: ’no soy’, ’no eres’, ’no es’.</div></div><div class="fb-example">📝 Yo no soy feliz → I am not happy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: no + verbo · Inglés: verbo + not — ¡posición opuesta!</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s0">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s1">
+<div class="section-label">Paso 2 de 5</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">El verbo "to be" funciona de forma muy similar al "ser/estar" español.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Cambia según la persona</td><td>soy / eres / es</td><td><span class="g-verb">am</span> / <span class="g-verb">are</span> / <span class="g-verb">is</span></td></tr>
+  <tr><td>Describe identidad</td><td>Soy estudiante</td><td>I <span class="g-verb">am</span> a student</td></tr>
+  <tr><td>Describe cualidades</td><td>Eres amable</td><td>You <span class="g-verb">are</span> kind</td></tr>
+  <tr><td>Negativo = agregar algo</td><td>no + verbo</td><td>verbo + <span class="g-neg">not</span></td></tr>
+  <tr><td>Plural usa misma forma</td><td>Nosotros somos</td><td>We <span class="g-verb">are</span></td></tr>
+</table>
+
+<div class="section-label">Conjugación visual</div>
+<div class="conj-grid">
+  <div class="conj-item"><div class="pron">I</div><div class="vrb">am</div><div class="meaning">soy / estoy</div></div>
+  <div class="conj-item"><div class="pron">You</div><div class="vrb">are</div><div class="meaning">eres / estás</div></div>
+  <div class="conj-item"><div class="pron">He / She</div><div class="vrb">is</div><div class="meaning">es / está</div></div>
+  <div class="conj-item"><div class="pron">It</div><div class="vrb">is</div><div class="meaning">es / está</div></div>
+  <div class="conj-item" style="grid-column:span 2"><div class="pron">We</div><div class="vrb">are</div><div class="meaning">somos / estamos</div></div>
+</div>
+
+<div class="tip-card"><strong>💡 Regla fácil:</strong> I → am · He/She/It → is · You/We → are. ¡Solo 3 formas para memorizar!</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Similitudes</h3>
+<div class="exercise" id="s1e0"><div class="exercise-q">1. ’I ___’ (Yo soy/estoy). ¿Cuál es la forma correcta de ’to be’?</div><div class="opts"><button class="opt-btn" id="s1e0ba">a) am</button><button class="opt-btn" id="s1e0bb">b) is</button></div><div class="fb fb-ok" id="fbok-s1e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">am</span> — I + am siempre van juntos. Es la única combinación posible.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es para He/She/It, nunca para I.</div></div><div class="fb-example">📝 I am happy → Yo estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am — la pareja inseparable</div></div></div><div class="fb fb-bad" id="fbbad-s1e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es para He/She/It, nunca para I.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">am</span> — I + am siempre van juntos. Es la única combinación posible.</div></div><div class="fb-example">📝 I am happy → Yo estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am — la pareja inseparable</div></div></div></div>
+<div class="exercise" id="s1e1"><div class="exercise-q">2. ’You ___’ (Tú eres). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s1e1ba">a) is</button><button class="opt-btn" id="s1e1bb">b) are</button></div><div class="fb fb-ok" id="fbok-s1e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — You + are siempre van juntos para singular y plural.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es solo para He/She/It, nunca para You.</div></div><div class="fb-example">📝 You are kind → Tú eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You/We + are — ambos usan la misma forma</div></div></div><div class="fb fb-bad" id="fbbad-s1e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es solo para He/She/It, nunca para You.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — You + are siempre van juntos para singular y plural.</div></div><div class="fb-example">📝 You are kind → Tú eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You/We + are — ambos usan la misma forma</div></div></div></div>
+<div class="exercise" id="s1e2"><div class="exercise-q">3. ’He ___’ (Él es). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s1e2ba">a) is</button><button class="opt-btn" id="s1e2bb">b) am</button></div><div class="fb fb-ok" id="fbok-s1e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — He/She/It + is. La tercera persona singular siempre usa ’is’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Am’ es exclusivo de I. He necesita ’is’.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He/She/It + is — la tercera persona singular</div></div></div><div class="fb fb-bad" id="fbbad-s1e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Am’ es exclusivo de I. He necesita ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — He/She/It + is. La tercera persona singular siempre usa ’is’.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He/She/It + is — la tercera persona singular</div></div></div></div>
+<div class="exercise" id="s1e3"><div class="exercise-q">4. ’We ___’ (Nosotros somos). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s1e3ba">a) are</button><button class="opt-btn" id="s1e3bb">b) is</button></div><div class="fb fb-ok" id="fbok-s1e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — We + are. Los plurales y You siempre usan ’are’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es singular. ’We’ es plural → ’are’.</div></div><div class="fb-example">📝 We are a family → Nosotros somos una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Plural = are · Singular 3ra persona = is</div></div></div><div class="fb fb-bad" id="fbbad-s1e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es singular. ’We’ es plural → ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — We + are. Los plurales y You siempre usan ’are’.</div></div><div class="fb-example">📝 We are a family → Nosotros somos una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Plural = are · Singular 3ra persona = is</div></div></div></div>
+<div class="exercise" id="s1e4"><div class="exercise-q">5. ¿Cuántas formas tiene ’to be’ en total?</div><div class="opts"><button class="opt-btn" id="s1e4ba">a) 3 (am, is, are)</button><button class="opt-btn" id="s1e4bb">b) 2 (am, is)</button></div><div class="fb fb-ok" id="fbok-s1e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">3 (am, is, are)</span> — am (I), is (He/She/It), are (You/We). Exactamente 3 formas.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Falta ’are’. Sin ’are’ no puedes hablar con ’You’ ni ’We’.</div></div><div class="fb-example">📝 I am / He is / We are — las 3 formas</div><div class="fb-tip"><strong>💡 Recuerda:</strong> am-is-are: las 3 formas del verbo to be</div></div></div><div class="fb fb-bad" id="fbbad-s1e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Falta ’are’. Sin ’are’ no puedes hablar con ’You’ ni ’We’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">3 (am, is, are)</span> — am (I), is (He/She/It), are (You/We). Exactamente 3 formas.</div></div><div class="fb-example">📝 I am / He is / We are — las 3 formas</div><div class="fb-tip"><strong>💡 Recuerda:</strong> am-is-are: las 3 formas del verbo to be</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s1">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s2">
+<div class="section-label">Paso 3 de 5</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Importantes</div>
+<div class="section-desc">Estas diferencias son las que más confunden. ¡Estúdialas bien!</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Explicación</th></tr>
+  <tr><td><b>NO</b> soy feliz</td><td>I am <span class="g-neg">not</span> happy</td><td>"not" va DESPUÉS del verbo be</td></tr>
+  <tr><td>ser y estar (2 verbos)</td><td>to be (1 verbo)</td><td>Un solo verbo cubre ambos</td></tr>
+  <tr><td>"(Yo) soy feliz"</td><td><span class="g-subj">I</span> am happy</td><td>Sujeto OBLIGATORIO en inglés</td></tr>
+  <tr><td>No soy / No eres</td><td><span class="g-neg">I'm not</span> / <span class="g-neg">aren't</span></td><td>Inglés usa contracciones frecuentes</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ "Ser" y "estar" = un solo "to be"</div>
+  <p>"Soy feliz" (estar) y "Soy un niño" (ser) usan el MISMO verbo en inglés:<br>
+  "I am happy" = Estoy feliz · "I am a boy" = Soy un niño<br>
+  ¡No necesitas elegir entre dos verbos!</p>
+</div>
+
+<div class="section-label">Contracciones — forma corta y natural</div>
+<div class="conj-grid">
+  <div class="conj-item"><div class="pron">I am</div><div class="vrb">I’m</div><div class="meaning">Yo soy/estoy</div></div>
+  <div class="conj-item"><div class="pron">is not</div><div class="vrb">isn’t</div><div class="meaning">no es/está</div></div>
+  <div class="conj-item"><div class="pron">are not</div><div class="vrb">aren’t</div><div class="meaning">no eres/somos</div></div>
+</div>
+
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">I <span class="g-neg">no</span> am happy.</div><div class="es">Incorrecto — 'no' es español, en inglés usamos 'not' DESPUÉS del verbo</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en">I am <span class="g-neg">not</span> happy. / I’m <span class="g-neg">not</span> happy.</div><div class="es">Yo no estoy feliz — 'not' después de 'am'</div></div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">She <span class="g-neg">no</span> is kind.</div><div class="es">Incorrecto — 'no' no funciona en inglés</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en">She is <span class="g-neg">not</span> kind. / She <span class="g-neg">isn’t</span> kind.</div><div class="es">Ella no es amable — 'not' después de 'is'</div></div></div>
+<div class="ex-section"><h3>✏️ Ejercicios — Diferencias</h3>
+<div class="exercise" id="s2e0"><div class="exercise-q">1. ’I ___ not happy.’ ¿Qué forma de ’to be’ va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e0ba">a) am</button><button class="opt-btn" id="s2e0bb">b) is</button></div><div class="fb fb-ok" id="fbok-s2e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">am</span> — I am not happy. — I + am, luego ’not’ después.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’I is’ nunca es correcto. Con I siempre usamos ’am’.</div></div><div class="fb-example">📝 I am not happy → Yo no estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am not = I’m not — la única forma</div></div></div><div class="fb fb-bad" id="fbbad-s2e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’I is’ nunca es correcto. Con I siempre usamos ’am’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">am</span> — I am not happy. — I + am, luego ’not’ después.</div></div><div class="fb-example">📝 I am not happy → Yo no estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am not = I’m not — la única forma</div></div></div></div>
+<div class="exercise" id="s2e1"><div class="exercise-q">2. ’She ___ a boy.’ (no es). ¿Cuál es la forma negativa correcta?</div><div class="opts"><button class="opt-btn" id="s2e1ba">a) are not</button><button class="opt-btn" id="s2e1bb">b) is not</button></div><div class="fb fb-ok" id="fbok-s2e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is not</span> — She + is not. She es tercera persona singular → is.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are not’ es para You/We. She es singular → needs ’is not’.</div></div><div class="fb-example">📝 She is not a boy → Ella no es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She/He/It + is not (isn’t) — tercera persona singular</div></div></div><div class="fb fb-bad" id="fbbad-s2e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are not’ es para You/We. She es singular → needs ’is not’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is not</span> — She + is not. She es tercera persona singular → is.</div></div><div class="fb-example">📝 She is not a boy → Ella no es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She/He/It + is not (isn’t) — tercera persona singular</div></div></div></div>
+<div class="exercise" id="s2e2"><div class="exercise-q">3. Contracción de ’is not’:</div><div class="opts"><button class="opt-btn" id="s2e2ba">a) isn’t</button><button class="opt-btn" id="s2e2bb">b) ain’t</button></div><div class="fb fb-ok" id="fbok-s2e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — is + not = isn’t. Esta es la contracción estándar y correcta.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Ain’t’ no es estándar ni aceptado en inglés formal o escolar.</div></div><div class="fb-example">📝 She isn’t kind → Ella no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> isn’t = is not · aren’t = are not</div></div></div><div class="fb fb-bad" id="fbbad-s2e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Ain’t’ no es estándar ni aceptado en inglés formal o escolar.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — is + not = isn’t. Esta es la contracción estándar y correcta.</div></div><div class="fb-example">📝 She isn’t kind → Ella no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> isn’t = is not · aren’t = are not</div></div></div></div>
+<div class="exercise" id="s2e3"><div class="exercise-q">4. Contracción de ’are not’:</div><div class="opts"><button class="opt-btn" id="s2e3ba">a) arnt</button><button class="opt-btn" id="s2e3bb">b) aren’t</button></div><div class="fb fb-ok" id="fbok-s2e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">aren’t</span> — are + not = aren’t (con apóstrofo entre ’n’ y ’t’).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Arnt’ sin apóstrofo no existe en inglés.</div></div><div class="fb-example">📝 You aren’t kind → Tú no eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> El apóstrofo reemplaza la letra ’o’ de ’not’</div></div></div><div class="fb fb-bad" id="fbbad-s2e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Arnt’ sin apóstrofo no existe en inglés.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">aren’t</span> — are + not = aren’t (con apóstrofo entre ’n’ y ’t’).</div></div><div class="fb-example">📝 You aren’t kind → Tú no eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> El apóstrofo reemplaza la letra ’o’ de ’not’</div></div></div></div>
+<div class="exercise" id="s2e4"><div class="exercise-q">5. ’Soy feliz’ y ’Estoy feliz’ en inglés:</div><div class="opts"><button class="opt-btn" id="s2e4ba">a) Ambos: ’I am happy’</button><button class="opt-btn" id="s2e4bb">b) Son diferentes en inglés</button></div><div class="fb fb-ok" id="fbok-s2e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Ambos: ’I am happy’</span> — ’To be’ cubre tanto ’ser’ como ’estar’. Un solo verbo para ambos.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En inglés no hay dos verbos separados. ’I am’ = soy Y estoy.</div></div><div class="fb-example">📝 I am happy = Estoy feliz / Soy feliz — mismo verbo</div><div class="fb-tip"><strong>💡 Recuerda:</strong> to be = ser + estar — la gran simplificación del inglés</div></div></div><div class="fb fb-bad" id="fbbad-s2e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En inglés no hay dos verbos separados. ’I am’ = soy Y estoy.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Ambos: ’I am happy’</span> — ’To be’ cubre tanto ’ser’ como ’estar’. Un solo verbo para ambos.</div></div><div class="fb-example">📝 I am happy = Estoy feliz / Soy feliz — mismo verbo</div><div class="fb-tip"><strong>💡 Recuerda:</strong> to be = ser + estar — la gran simplificación del inglés</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s2">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s3">
+<div class="section-label">Paso 4 de 5</div>
+<div class="section-title">Paso 4: 💡 Consejos Prácticos</div>
+<div class="section-desc">Trucos para usar "to be" sin errores.</div>
+
+<div class="tip-card"><strong>Tip 1 — Las 3 parejas mágicas:</strong> Memoriza: I+am · He/She/It+is · You/We+are. Si recuerdas estas 3 parejas, nunca te equivocas.</div>
+<div class="tip-card"><strong>Tip 2 — Negativo = am/is/are + not:</strong> Nunca uses 'no' en inglés para negar el verbo be. Siempre 'not' después: I am not · She is not · We are not.</div>
+<div class="tip-card"><strong>Tip 3 — Contracciones para hablar natural:</strong> I’m · isn’t · aren’t. En conversación se usan casi siempre. Más corto = más natural.</div>
+<div class="tip-card"><strong>Tip 4 — "I’m not" — forma única:</strong> La única contracción negativa con I es "I’m not". NO existe "amn’t" en inglés.</div>
+
+<div class="formula-box">
+  ✅ <span class="g-subj">I</span> <span class="g-verb">am</span> / I’m &nbsp;→&nbsp; I am <span class="g-neg">not</span> / I’m <span class="g-neg">not</span><br>
+  ✅ <span class="g-subj">He/She/It</span> <span class="g-verb">is</span> / He’s &nbsp;→&nbsp; <span class="g-neg">isn’t</span> / is <span class="g-neg">not</span><br>
+  ✅ <span class="g-subj">You/We</span> <span class="g-verb">are</span> / You’re &nbsp;→&nbsp; <span class="g-neg">aren’t</span> / are <span class="g-neg">not</span>
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Consejos</h3>
+<div class="exercise" id="s3e0"><div class="exercise-q">1. Contracción de ’I am’:</div><div class="opts"><button class="opt-btn" id="s3e0ba">a) I’m</button><button class="opt-btn" id="s3e0bb">b) Im</button></div><div class="fb fb-ok" id="fbok-s3e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I’m</span> — I’m — con apóstrofo entre I y m. El apóstrofo reemplaza la ’a’ de ’am’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Im’ sin apóstrofo no existe. Siempre necesita el apóstrofo: I’m.</div></div><div class="fb-example">📝 I’m a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> El apóstrofo en contracciones reemplaza letras omitidas</div></div></div><div class="fb fb-bad" id="fbbad-s3e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Im’ sin apóstrofo no existe. Siempre necesita el apóstrofo: I’m.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I’m</span> — I’m — con apóstrofo entre I y m. El apóstrofo reemplaza la ’a’ de ’am’.</div></div><div class="fb-example">📝 I’m a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> El apóstrofo en contracciones reemplaza letras omitidas</div></div></div></div>
+<div class="exercise" id="s3e1"><div class="exercise-q">2. ’He ___ a boy.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e1ba">a) is</button><button class="opt-btn" id="s3e1bb">b) are</button></div><div class="fb fb-ok" id="fbok-s3e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — He + is. Tercera persona singular siempre usa ’is’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para You/We. He es singular → ’is’.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He/She/It → is · You/We → are</div></div></div><div class="fb fb-bad" id="fbbad-s3e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para You/We. He es singular → ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — He + is. Tercera persona singular siempre usa ’is’.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He/She/It → is · You/We → are</div></div></div></div>
+<div class="exercise" id="s3e2"><div class="exercise-q">3. ’You ___ kind.’ (no eres). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e2ba">a) aren’t</button><button class="opt-btn" id="s3e2bb">b) isn’t</button></div><div class="fb fb-ok" id="fbok-s3e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">aren’t</span> — You + aren’t. ’You are not’ → contracción ’aren’t’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Isn’t’ = is not, pero You necesita ’are not’ → aren’t.</div></div><div class="fb-example">📝 You aren’t kind → Tú no eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You/We + aren’t · He/She/It + isn’t</div></div></div><div class="fb fb-bad" id="fbbad-s3e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Isn’t’ = is not, pero You necesita ’are not’ → aren’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">aren’t</span> — You + aren’t. ’You are not’ → contracción ’aren’t’.</div></div><div class="fb-example">📝 You aren’t kind → Tú no eres amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You/We + aren’t · He/She/It + isn’t</div></div></div></div>
+<div class="exercise" id="s3e3"><div class="exercise-q">4. ’It ___ a family.’ (no es). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e3ba">a) aren’t</button><button class="opt-btn" id="s3e3bb">b) isn’t</button></div><div class="fb fb-ok" id="fbok-s3e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — It + isn’t. It es singular (como He/She) → uses ’is not’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ = are not, pero It es singular → needs ’isn’t’.</div></div><div class="fb-example">📝 It isn’t a family → No es una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It → is/isn’t — trato igual que He y She</div></div></div><div class="fb fb-bad" id="fbbad-s3e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ = are not, pero It es singular → needs ’isn’t’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — It + isn’t. It es singular (como He/She) → uses ’is not’.</div></div><div class="fb-example">📝 It isn’t a family → No es una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It → is/isn’t — trato igual que He y She</div></div></div></div>
+<div class="exercise" id="s3e4"><div class="exercise-q">5. ’We ___ happy.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e4ba">a) is</button><button class="opt-btn" id="s3e4bb">b) are</button></div><div class="fb fb-ok" id="fbok-s3e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — We + are. Los grupos (We) siempre usan ’are’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es singular. ’We’ es plural → ’are’.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We/You → are — siempre, sin excepción</div></div></div><div class="fb fb-bad" id="fbbad-s3e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es singular. ’We’ es plural → ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — We + are. Los grupos (We) siempre usan ’are’.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We/You → are — siempre, sin excepción</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s3">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s4">
+<div class="section-label">Paso 5 de 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final</div>
+<div class="section-desc">Aplica todo — afirmativo y negativo con to be.</div>
+
+<div class="formula-box">
+  ✅ <span class="g-subj">Subject</span> + <span class="g-verb">am/is/are</span> + <span class="g-comp">complement</span><br>
+  ❌ <span class="g-subj">Subject</span> + <span class="g-verb">am/is/are</span> + <span class="g-neg">not</span> + <span class="g-comp">complement</span>
+</div>
+
+<div class="section-label">Ejemplos afirmativos</div>
+<div class="ex-row ex-right"><div class="icon">😊</div><div><div class="en"><span class="g-subj">I</span> <span class="g-verb">am</span> <span class="g-comp">happy</span>.</div><div class="es">Yo estoy feliz.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👦</div><div><div class="en"><span class="g-subj">He</span> <span class="g-verb">is</span> <span class="g-comp">a boy</span>.</div><div class="es">Él es un niño.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div><div class="en"><span class="g-subj">We</span> <span class="g-verb">are</span> <span class="g-comp">a family</span>.</div><div class="es">Nosotros somos una familia.</div></div></div>
+
+<div class="section-label">Ejemplos negativos</div>
+<div class="ex-row ex-right"><div class="icon">😔</div><div><div class="en"><span class="g-subj">I</span> <span class="g-verb">am</span> <span class="g-neg">not</span> <span class="g-comp">kind</span>. / I’m <span class="g-neg">not</span> <span class="g-comp">kind</span>.</div><div class="es">Yo no soy amable.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👧</div><div><div class="en"><span class="g-subj">She</span> <span class="g-verb">is</span> <span class="g-neg">not</span> <span class="g-comp">a boy</span>. / She <span class="g-neg">isn’t</span> <span class="g-comp">a boy</span>.</div><div class="es">Ella no es un niño.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div><div class="en"><span class="g-subj">We</span> <span class="g-verb">are</span> <span class="g-neg">not</span> <span class="g-comp">the same age</span>. / We <span class="g-neg">aren’t</span> <span class="g-comp">the same age</span>.</div><div class="es">Nosotros no tenemos la misma edad.</div></div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 3 errores más comunes</div>
+  <p>❌ "I is happy" → ✅ "I <b>am</b> happy" — I siempre con am<br>
+  ❌ "She are kind" → ✅ "She <b>is</b> kind" — She siempre con is<br>
+  ❌ "I no am happy" → ✅ "I am <b>not</b> happy" — not, no 'no'</p>
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Práctica Final</h3>
+<div class="exercise" id="s4e0"><div class="exercise-q">1. ’I ___ a boy.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e0ba">a) am</button><button class="opt-btn" id="s4e0bb">b) is</button></div><div class="fb fb-ok" id="fbok-s4e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">am</span> — I + am. La pareja inseparable: I am a boy.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’I is’ nunca es correcto. Con I siempre ’am’.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am — siempre juntos, sin excepción</div></div></div><div class="fb fb-bad" id="fbbad-s4e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’I is’ nunca es correcto. Con I siempre ’am’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">am</span> — I + am. La pareja inseparable: I am a boy.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am — siempre juntos, sin excepción</div></div></div></div>
+<div class="exercise" id="s4e1"><div class="exercise-q">2. ’She ___ kind.’ (no es). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e1ba">a) isn’t</button><button class="opt-btn" id="s4e1bb">b) aren’t</button></div><div class="fb fb-ok" id="fbok-s4e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — She + isn’t. She es tercera persona singular → is not → isn’t.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ es para You/We, no para She.</div></div><div class="fb-example">📝 She isn’t kind → Ella no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She/He/It + isn’t · You/We + aren’t</div></div></div><div class="fb fb-bad" id="fbbad-s4e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ es para You/We, no para She.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — She + isn’t. She es tercera persona singular → is not → isn’t.</div></div><div class="fb-example">📝 She isn’t kind → Ella no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She/He/It + isn’t · You/We + aren’t</div></div></div></div>
+<div class="exercise" id="s4e2"><div class="exercise-q">3. ’We ___ the same age.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e2ba">a) are</button><button class="opt-btn" id="s4e2bb">b) is</button></div><div class="fb fb-ok" id="fbok-s4e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — We + are. Los grupos siempre usan ’are’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es singular. We es plural → ’are’.</div></div><div class="fb-example">📝 We are the same age → Tenemos la misma edad</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We → are — siempre, igual que You</div></div></div><div class="fb fb-bad" id="fbbad-s4e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es singular. We es plural → ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — We + are. Los grupos siempre usan ’are’.</div></div><div class="fb-example">📝 We are the same age → Tenemos la misma edad</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We → are — siempre, igual que You</div></div></div></div>
+<div class="exercise" id="s4e3"><div class="exercise-q">4. ’His dad ___ kind.’ (no es). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e3ba">a) aren’t</button><button class="opt-btn" id="s4e3bb">b) isn’t</button></div><div class="fb fb-ok" id="fbok-s4e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — ’His dad’ = él (singular) → isn’t. Singular = is not.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ = are not, pero ’his dad’ es singular → needs isn’t.</div></div><div class="fb-example">📝 His dad isn’t kind → Su papá no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Cuando el sujeto puede reemplazarse por He/She/It → usa isn’t</div></div></div><div class="fb fb-bad" id="fbbad-s4e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ = are not, pero ’his dad’ es singular → needs isn’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — ’His dad’ = él (singular) → isn’t. Singular = is not.</div></div><div class="fb-example">📝 His dad isn’t kind → Su papá no es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Cuando el sujeto puede reemplazarse por He/She/It → usa isn’t</div></div></div></div>
+<div class="exercise" id="s4e4"><div class="exercise-q">5. ’I ___ happy.’ (no estoy). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e4ba">a) isn’t</button><button class="opt-btn" id="s4e4bb">b) ’m not</button></div><div class="fb fb-ok" id="fbok-s4e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">’m not</span> — I’m not happy. La única contracción negativa con I. NO existe ’amn’t’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Isn’t’ = is not, pero I necesita ’am not’ → I’m not.</div></div><div class="fb-example">📝 I’m not happy → Yo no estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I’m not — la única forma. ’Amn’t’ no existe en inglés</div></div></div><div class="fb fb-bad" id="fbbad-s4e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Isn’t’ = is not, pero I necesita ’am not’ → I’m not.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">’m not</span> — I’m not happy. La única contracción negativa con I. NO existe ’amn’t’.</div></div><div class="fb-example">📝 I’m not happy → Yo no estoy feliz</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I’m not — la única forma. ’Amn’t’ no existe en inglés</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s4">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+</div>
+<div class="summary-final" id="summaryFinal">
+<h3>🎓 Lo que aprendiste — To Be Aff/Neg</h3>
+<ul>
+<li><b>I + am</b> · <b>He/She/It + is</b> · <b>You/We + are</b> — las 3 parejas</li>
+<li><b>Negativo:</b> am/is/are + not — 'not' va DESPUÉS del verbo</li>
+<li><b>Contracciones:</b> I’m · isn’t · aren’t — más naturales</li>
+<li><b>'I’m not'</b> es la ÚNICA forma negativa con I — no existe 'amn’t'</li>
+<li><b>'To be'</b> = ser + estar — un solo verbo para ambos en inglés</li>
+<li>Sujeto OBLIGATORIO: 'I am happy' ✅ — 'Am happy' ❌</li>
+<li>Nunca uses 'no' para negar en inglés — siempre usa 'not'</li>
+</ul>
+</div>
+</div>
+<script>
+
+var curStep = 0;
+var scores = {};
+var answered = {};
+var stepKeys = ["s0","s1","s2","s3","s4"];
+
+function switchStep(idx) {
+  var oldKey = stepKeys[curStep];
+  var newKey = stepKeys[idx];
+  document.getElementById("card-" + oldKey).classList.remove("active");
+  document.getElementById("tab-" + oldKey).classList.remove("active");
+  document.getElementById("card-" + newKey).classList.add("active");
+  document.getElementById("tab-" + newKey).classList.add("active");
+  curStep = idx;
+  document.getElementById("summaryFinal").classList.remove("show");
+}
+
+function chk(eid, sel, correct) {
+  if (answered[eid]) return;
+  answered[eid] = true;
+  var ex = document.getElementById(eid);
+  var btnA = document.getElementById(eid + "ba");
+  var btnB = document.getElementById(eid + "bb");
+  btnA.disabled = true;
+  btnB.disabled = true;
+  var sk = eid.substring(0, 2);
+  if (!scores[sk]) scores[sk] = 0;
+  if (sel === correct) {
+    ex.classList.add("correct");
+    if (sel === "a") { btnA.classList.add("sel-ok"); } else { btnB.classList.add("sel-ok"); }
+    document.getElementById("fbok-" + eid).classList.add("show");
+    scores[sk]++;
+  } else {
+    ex.classList.add("incorrect");
+    if (sel === "a") { btnA.classList.add("sel-bad"); btnB.classList.add("show-ok"); }
+    else { btnB.classList.add("sel-bad"); btnA.classList.add("show-ok"); }
+    document.getElementById("fbbad-" + eid).classList.add("show");
+  }
+  document.getElementById("sc-" + sk).textContent = scores[sk] + "/5";
+  var allDone = true;
+  for (var j = 0; j < 5; j++) {
+    if (!answered[sk + "e" + j]) { allDone = false; break; }
+  }
+  if (allDone && curStep === 4) {
+    setTimeout(function() {
+      var sf = document.getElementById("summaryFinal");
+      sf.classList.add("show");
+      sf.scrollIntoView({ behavior: "smooth" });
+    }, 600);
+  }
+  if (allDone && curStep < 4) {
+    document.getElementById("tab-" + sk).classList.add("done");
+  }
+}
+
+document.getElementById("s0e0ba").addEventListener("click",function(){chk("s0e0","a","a");});
+document.getElementById("s0e0bb").addEventListener("click",function(){chk("s0e0","b","a");});
+document.getElementById("s0e1ba").addEventListener("click",function(){chk("s0e1","a","a");});
+document.getElementById("s0e1bb").addEventListener("click",function(){chk("s0e1","b","a");});
+document.getElementById("s0e2ba").addEventListener("click",function(){chk("s0e2","a","b");});
+document.getElementById("s0e2bb").addEventListener("click",function(){chk("s0e2","b","b");});
+document.getElementById("s0e3ba").addEventListener("click",function(){chk("s0e3","a","a");});
+document.getElementById("s0e3bb").addEventListener("click",function(){chk("s0e3","b","a");});
+document.getElementById("s0e4ba").addEventListener("click",function(){chk("s0e4","a","b");});
+document.getElementById("s0e4bb").addEventListener("click",function(){chk("s0e4","b","b");});
+document.getElementById("s1e0ba").addEventListener("click",function(){chk("s1e0","a","a");});
+document.getElementById("s1e0bb").addEventListener("click",function(){chk("s1e0","b","a");});
+document.getElementById("s1e1ba").addEventListener("click",function(){chk("s1e1","a","b");});
+document.getElementById("s1e1bb").addEventListener("click",function(){chk("s1e1","b","b");});
+document.getElementById("s1e2ba").addEventListener("click",function(){chk("s1e2","a","a");});
+document.getElementById("s1e2bb").addEventListener("click",function(){chk("s1e2","b","a");});
+document.getElementById("s1e3ba").addEventListener("click",function(){chk("s1e3","a","a");});
+document.getElementById("s1e3bb").addEventListener("click",function(){chk("s1e3","b","a");});
+document.getElementById("s1e4ba").addEventListener("click",function(){chk("s1e4","a","a");});
+document.getElementById("s1e4bb").addEventListener("click",function(){chk("s1e4","b","a");});
+document.getElementById("s2e0ba").addEventListener("click",function(){chk("s2e0","a","a");});
+document.getElementById("s2e0bb").addEventListener("click",function(){chk("s2e0","b","a");});
+document.getElementById("s2e1ba").addEventListener("click",function(){chk("s2e1","a","b");});
+document.getElementById("s2e1bb").addEventListener("click",function(){chk("s2e1","b","b");});
+document.getElementById("s2e2ba").addEventListener("click",function(){chk("s2e2","a","a");});
+document.getElementById("s2e2bb").addEventListener("click",function(){chk("s2e2","b","a");});
+document.getElementById("s2e3ba").addEventListener("click",function(){chk("s2e3","a","b");});
+document.getElementById("s2e3bb").addEventListener("click",function(){chk("s2e3","b","b");});
+document.getElementById("s2e4ba").addEventListener("click",function(){chk("s2e4","a","a");});
+document.getElementById("s2e4bb").addEventListener("click",function(){chk("s2e4","b","a");});
+document.getElementById("s3e0ba").addEventListener("click",function(){chk("s3e0","a","a");});
+document.getElementById("s3e0bb").addEventListener("click",function(){chk("s3e0","b","a");});
+document.getElementById("s3e1ba").addEventListener("click",function(){chk("s3e1","a","a");});
+document.getElementById("s3e1bb").addEventListener("click",function(){chk("s3e1","b","a");});
+document.getElementById("s3e2ba").addEventListener("click",function(){chk("s3e2","a","a");});
+document.getElementById("s3e2bb").addEventListener("click",function(){chk("s3e2","b","a");});
+document.getElementById("s3e3ba").addEventListener("click",function(){chk("s3e3","a","b");});
+document.getElementById("s3e3bb").addEventListener("click",function(){chk("s3e3","b","b");});
+document.getElementById("s3e4ba").addEventListener("click",function(){chk("s3e4","a","b");});
+document.getElementById("s3e4bb").addEventListener("click",function(){chk("s3e4","b","b");});
+document.getElementById("s4e0ba").addEventListener("click",function(){chk("s4e0","a","a");});
+document.getElementById("s4e0bb").addEventListener("click",function(){chk("s4e0","b","a");});
+document.getElementById("s4e1ba").addEventListener("click",function(){chk("s4e1","a","a");});
+document.getElementById("s4e1bb").addEventListener("click",function(){chk("s4e1","b","a");});
+document.getElementById("s4e2ba").addEventListener("click",function(){chk("s4e2","a","a");});
+document.getElementById("s4e2bb").addEventListener("click",function(){chk("s4e2","b","a");});
+document.getElementById("s4e3ba").addEventListener("click",function(){chk("s4e3","a","b");});
+document.getElementById("s4e3bb").addEventListener("click",function(){chk("s4e3","b","b");});
+document.getElementById("s4e4ba").addEventListener("click",function(){chk("s4e4","a","b");});
+document.getElementById("s4e4bb").addEventListener("click",function(){chk("s4e4","b","b");});
+document.getElementById("tab-s0").addEventListener("click",function(){switchStep(0);});
+document.getElementById("tab-s1").addEventListener("click",function(){switchStep(1);});
+document.getElementById("tab-s2").addEventListener("click",function(){switchStep(2);});
+document.getElementById("tab-s3").addEventListener("click",function(){switchStep(3);});
+document.getElementById("tab-s4").addEventListener("click",function(){switchStep(4);});
+
+</script>
+</body>
+</html>

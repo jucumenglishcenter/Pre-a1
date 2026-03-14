@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Grammar Summary — There is / There are | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--neg:#AD1457;--neg-bg:#FCE4EC;
+--quest:#7B1FA2;--quest-bg:#F3E5F5;
+--there:#5C6BC0;--there-bg:#E8EAF6;
+--there-art:#F57F17;--there-art-bg:#FFF8E1;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:780px;margin:0 auto}
+.level-header{text-align:center;padding:2rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,.1);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.2rem}
+.level-header .subtitle{opacity:.8;font-size:.85rem;position:relative;z-index:1;margin-top:.15rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:20px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:.1rem}
+.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem}
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj)}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb)}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp)}
+.g-neg{background:var(--neg-bg);color:var(--neg);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--neg)}
+.g-quest{background:var(--quest-bg);color:var(--quest);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--quest)}
+.g-there{background:var(--there-bg);color:var(--there);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--there)}
+.g-there-art{background:var(--there-art-bg);color:var(--there-art);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--there-art)}
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.65rem .6rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:var(--ll);border:2px solid var(--lm)}
+.compare-card.eng{background:var(--subj-bg);border:2px solid #90CAF9}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.85rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:var(--ld)}
+.compare-card.eng h4{color:var(--subj)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:2px 0}
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:1.9}
+.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp)}
+.tip-card strong{color:var(--ld)}
+.alert-card{background:var(--err-bg);border:2px solid #EF5350;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem}
+.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.5}
+.ex-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
+.ex-row:hover{background:var(--lglow)}
+.ex-row .icon{font-size:1.2rem;flex-shrink:0}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:1px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+.ex-section{margin-top:1.2rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.9rem;margin-bottom:.8rem}
+.exercise{background:#fafafa;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #eee;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.88rem;margin-bottom:.7rem;line-height:1.4}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.fb{margin-top:.7rem;padding:0;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-header .fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.fb-row .fb-text{flex:1}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.5rem .7rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.2rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 20px;position:relative;font-size:.83rem;color:var(--text-soft)}
+.summary-final li::before{content:"\2714";position:absolute;left:0;color:var(--lp);font-weight:700}
+@media(max-width:600px){.level-header h1{font-size:1.4rem}.step-tabs{flex-wrap:wrap}.card{padding:1.2rem}.compare-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="level-header">
+<div class="level-badge">💛 Pre-A1</div>
+<h1>📝 Grammar Summary</h1>
+<div class="module-name">🪪 Personal Identity — There is / There are</div>
+<p class="subtitle">There is a boy · There are families · Is there...? · 5 pasos · 25 ejercicios</p>
+</div>
+<div class="step-tabs">
+<button class="step-tab active" id="tab-s0">1. 🇪🇸 Repaso en Español</button>
+<button class="step-tab" id="tab-s1">2. 🤝 Similitudes</button>
+<button class="step-tab" id="tab-s2">3. ⚡ Diferencias</button>
+<button class="step-tab" id="tab-s3">4. 💡 Consejos</button>
+<button class="step-tab" id="tab-s4">5. ✨ Práctica Final</button>
+</div>
+<div id="cardArea">
+<div class="card active" id="card-s0">
+<div class="section-label">Paso 1 de 5</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">En español usamos "Hay" para decir que algo existe. Es una sola palabra para singular y plural. En inglés cambia según la cantidad.</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>1️⃣ Singular</h4>
+    <ul>
+      <li>Hay <b>un</b> niño</li>
+      <li>Hay <b>una</b> familia</li>
+      <li>Hay <b>un</b> papá amable</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>👥 Plural</h4>
+    <ul>
+      <li>Hay <b>dos</b> niños</li>
+      <li>Hay <b>muchas</b> familias</li>
+      <li>Hay papás aquí</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ex-row"><div class="icon">👦</div><div><div class="en">Hay <b>un</b> niño feliz en la clase</div><div class="es">"Hay" + un/una = singular → una sola cosa</div></div></div>
+<div class="ex-row"><div class="icon">👨‍👩‍👧</div><div><div class="en">Hay <b>dos</b> familias en el parque</div><div class="es">"Hay" + número/plural = varios → misma palabra "Hay"</div></div></div>
+<div class="ex-row"><div class="icon">❌</div><div><div class="en">No hay nadie amable aquí</div><div class="es">"No hay" = forma negativa en español</div></div></div>
+
+<div class="tip-card"><strong>💡 Clave:</strong> En español "Hay" es siempre la misma palabra. En inglés hay DOS formas: <b>There is</b> para uno · <b>There are</b> para varios.</div>
+<div class="ex-section"><h3>✏️ Ejercicios — 🇪🇸 Repaso en Español</h3>
+<div class="exercise" id="s0e0"><div class="exercise-q">1. ’Hay un niño’ y ’Hay niños’ en español usan:</div><div class="opts"><button class="opt-btn" id="s0e0ba">a) La misma palabra: Hay</button><button class="opt-btn" id="s0e0bb">b) Palabras diferentes</button></div><div class="fb fb-ok" id="fbok-s0e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">La misma palabra: Hay</span> — ’Hay’ es siempre igual en español, sin importar si es uno o varios.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En español no cambia. ’Hay un niño’ y ’Hay niños’ usan la misma palabra.</div></div><div class="fb-example">📝 Hay un niño → There is a boy · Hay niños → There are boys</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: Hay (siempre igual) · Inglés: There is / There are (cambia)</div></div></div><div class="fb fb-bad" id="fbbad-s0e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En español no cambia. ’Hay un niño’ y ’Hay niños’ usan la misma palabra.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">La misma palabra: Hay</span> — ’Hay’ es siempre igual en español, sin importar si es uno o varios.</div></div><div class="fb-example">📝 Hay un niño → There is a boy · Hay niños → There are boys</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Español: Hay (siempre igual) · Inglés: There is / There are (cambia)</div></div></div></div>
+<div class="exercise" id="s0e1"><div class="exercise-q">2. ’Hay una familia’ es:</div><div class="opts"><button class="opt-btn" id="s0e1ba">a) Singular (una sola)</button><button class="opt-btn" id="s0e1bb">b) Plural</button></div><div class="fb fb-ok" id="fbok-s0e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Singular (una sola)</span> — ’Una familia’ = singular. En inglés usaremos ’There is’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Una’ indica una sola cosa. Singular → There is en inglés.</div></div><div class="fb-example">📝 Hay una familia → There is a family</div><div class="fb-tip"><strong>💡 Recuerda:</strong> un/una = singular = There is</div></div></div><div class="fb fb-bad" id="fbbad-s0e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Una’ indica una sola cosa. Singular → There is en inglés.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Singular (una sola)</span> — ’Una familia’ = singular. En inglés usaremos ’There is’.</div></div><div class="fb-example">📝 Hay una familia → There is a family</div><div class="fb-tip"><strong>💡 Recuerda:</strong> un/una = singular = There is</div></div></div></div>
+<div class="exercise" id="s0e2"><div class="exercise-q">3. ’Hay tres niños’ es:</div><div class="opts"><button class="opt-btn" id="s0e2ba">a) Singular</button><button class="opt-btn" id="s0e2bb">b) Plural (tres = varios)</button></div><div class="fb fb-ok" id="fbok-s0e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Plural (tres = varios)</span> — ’Tres niños’ = plural. En inglés usaremos ’There are’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Tres es más de uno → plural → There are en inglés.</div></div><div class="fb-example">📝 Hay tres niños → There are three boys</div><div class="fb-tip"><strong>💡 Recuerda:</strong> número + plural = There are</div></div></div><div class="fb fb-bad" id="fbbad-s0e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Tres es más de uno → plural → There are en inglés.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Plural (tres = varios)</span> — ’Tres niños’ = plural. En inglés usaremos ’There are’.</div></div><div class="fb-example">📝 Hay tres niños → There are three boys</div><div class="fb-tip"><strong>💡 Recuerda:</strong> número + plural = There are</div></div></div></div>
+<div class="exercise" id="s0e3"><div class="exercise-q">4. ’No hay’ en español es la forma:</div><div class="opts"><button class="opt-btn" id="s0e3ba">a) Afirmativa</button><button class="opt-btn" id="s0e3bb">b) Negativa</button></div><div class="fb fb-ok" id="fbok-s0e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Negativa</span> — ’No hay’ = forma negativa. En inglés: There is not / There are not.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Afirmativa sería solo ’Hay’. ’No hay’ niega la existencia.</div></div><div class="fb-example">📝 No hay un niño → There is not a boy / There isn’t a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> No hay → There isn’t / There aren’t</div></div></div><div class="fb fb-bad" id="fbbad-s0e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Afirmativa sería solo ’Hay’. ’No hay’ niega la existencia.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Negativa</span> — ’No hay’ = forma negativa. En inglés: There is not / There are not.</div></div><div class="fb-example">📝 No hay un niño → There is not a boy / There isn’t a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> No hay → There isn’t / There aren’t</div></div></div></div>
+<div class="exercise" id="s0e4"><div class="exercise-q">5. ¿En inglés ’hay’ es una sola palabra como en español?</div><div class="opts"><button class="opt-btn" id="s0e4ba">a) Sí, una sola palabra</button><button class="opt-btn" id="s0e4bb">b) No, cambia según singular o plural</button></div><div class="fb fb-ok" id="fbok-s0e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">No, cambia según singular o plural</span> — En inglés hay DOS formas: There is (singular) y There are (plural). Cambia según la cantidad.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En español ’Hay’ no cambia. En inglés sí: There is = uno / There are = varios.</div></div><div class="fb-example">📝 There is a boy (uno) · There are boys (varios)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> La gran diferencia: español no cambia, inglés sí cambia</div></div></div><div class="fb fb-bad" id="fbbad-s0e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En español ’Hay’ no cambia. En inglés sí: There is = uno / There are = varios.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">No, cambia según singular o plural</span> — En inglés hay DOS formas: There is (singular) y There are (plural). Cambia según la cantidad.</div></div><div class="fb-example">📝 There is a boy (uno) · There are boys (varios)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> La gran diferencia: español no cambia, inglés sí cambia</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s0">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s1">
+<div class="section-label">Paso 2 de 5</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Aunque "Hay" y "There is/are" son diferentes, la lógica es la misma: indicar que algo existe.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Indica existencia</td><td>Hay</td><td><span class="g-there">There is/are</span></td></tr>
+  <tr><td>Usa verbo ser/be</td><td>Hay (de haber)</td><td>There <span class="g-verb">is/are</span></td></tr>
+  <tr><td>Negativo = agregar "no"</td><td><b>No</b> hay</td><td>There is/are <span class="g-neg">not</span></td></tr>
+  <tr><td>Pregunta = invertir</td><td>¿Hay...?</td><td><span class="g-quest">Is/Are</span> there...?</td></tr>
+  <tr><td>Misma posición</td><td>Hay + cosa</td><td>There is/are + thing</td></tr>
+</table>
+
+<div class="formula-box">
+  1️⃣ There <span class="g-verb">is</span> = Hay (uno solo)<br>
+  👥 There <span class="g-verb">are</span> = Hay (varios)
+</div>
+
+<div class="tip-card"><strong>💡 Clave:</strong> "There is" y "There are" siempre van al inicio, igual que "Hay" en español. La lógica es la misma, solo cambia la forma.</div>
+<div class="ex-section"><h3>✏️ Ejercicios — 🤝 Similitudes</h3>
+<div class="exercise" id="s1e0"><div class="exercise-q">1. ’There is a boy’ significa:</div><div class="opts"><button class="opt-btn" id="s1e0ba">a) Hay un niño</button><button class="opt-btn" id="s1e0bb">b) Hay niños</button></div><div class="fb fb-ok" id="fbok-s1e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Hay un niño</span> — ’There is’ + singular = Hay uno. ’A boy’ = un niño.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’There is’ es singular. Para varios sería ’There are boys’.</div></div><div class="fb-example">📝 There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is + a/an + singular</div></div></div><div class="fb fb-bad" id="fbbad-s1e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’There is’ es singular. Para varios sería ’There are boys’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Hay un niño</span> — ’There is’ + singular = Hay uno. ’A boy’ = un niño.</div></div><div class="fb-example">📝 There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is + a/an + singular</div></div></div></div>
+<div class="exercise" id="s1e1"><div class="exercise-q">2. ’There are boys’ significa:</div><div class="opts"><button class="opt-btn" id="s1e1ba">a) Hay un niño</button><button class="opt-btn" id="s1e1bb">b) Hay niños (varios)</button></div><div class="fb fb-ok" id="fbok-s1e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Hay niños (varios)</span> — ’There are’ + plural = Hay varios. ’Boys’ = niños (plural).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’There are’ es plural. Para uno solo sería ’There is a boy’.</div></div><div class="fb-example">📝 There are boys → Hay niños</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There are + número/plural</div></div></div><div class="fb fb-bad" id="fbbad-s1e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’There are’ es plural. Para uno solo sería ’There is a boy’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Hay niños (varios)</span> — ’There are’ + plural = Hay varios. ’Boys’ = niños (plural).</div></div><div class="fb-example">📝 There are boys → Hay niños</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There are + número/plural</div></div></div></div>
+<div class="exercise" id="s1e2"><div class="exercise-q">3. ’No hay’ en inglés (singular) es:</div><div class="opts"><button class="opt-btn" id="s1e2ba">a) There is not / There isn’t</button><button class="opt-btn" id="s1e2bb">b) There are not / There aren’t</button></div><div class="fb fb-ok" id="fbok-s1e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">There is not / There isn’t</span> — Singular negativo: ’There is not’ o su contracción ’There isn’t’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’There are not’ es para plural. Si es uno solo, usamos ’There isn’t’.</div></div><div class="fb-example">📝 No hay un niño → There isn’t a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There isn’t = singular negativo · There aren’t = plural negativo</div></div></div><div class="fb fb-bad" id="fbbad-s1e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’There are not’ es para plural. Si es uno solo, usamos ’There isn’t’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">There is not / There isn’t</span> — Singular negativo: ’There is not’ o su contracción ’There isn’t’.</div></div><div class="fb-example">📝 No hay un niño → There isn’t a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There isn’t = singular negativo · There aren’t = plural negativo</div></div></div></div>
+<div class="exercise" id="s1e3"><div class="exercise-q">4. ’¿Hay...?’ en inglés (plural) es:</div><div class="opts"><button class="opt-btn" id="s1e3ba">a) Is there...?</button><button class="opt-btn" id="s1e3bb">b) Are there...?</button></div><div class="fb fb-ok" id="fbok-s1e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Are there...?</span> — Pregunta plural: ’Are there...?’ Igual que la pregunta con are.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is there?’ es para singular. Para plural usamos ’Are there?’</div></div><div class="fb-example">📝 ¿Hay niños? → Are there boys?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div><div class="fb fb-bad" id="fbbad-s1e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is there?’ es para singular. Para plural usamos ’Are there?’</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Are there...?</span> — Pregunta plural: ’Are there...?’ Igual que la pregunta con are.</div></div><div class="fb-example">📝 ¿Hay niños? → Are there boys?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div></div>
+<div class="exercise" id="s1e4"><div class="exercise-q">5. ’Hay’ / ’There is/are’ indican:</div><div class="opts"><button class="opt-btn" id="s1e4ba">a) Que algo existe en un lugar</button><button class="opt-btn" id="s1e4bb">b) Cómo es algo (descripción)</button></div><div class="fb fb-ok" id="fbok-s1e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Que algo existe en un lugar</span> — Ambos indican existencia: que algo está en un lugar o situación.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Para describir cómo es algo usamos: ’He is kind’, ’She is happy’. There is/are es solo para existencia.</div></div><div class="fb-example">📝 There is a boy = existe un niño (aquí/allí)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is/are = existencia · He/She is = descripción</div></div></div><div class="fb fb-bad" id="fbbad-s1e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Para describir cómo es algo usamos: ’He is kind’, ’She is happy’. There is/are es solo para existencia.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Que algo existe en un lugar</span> — Ambos indican existencia: que algo está en un lugar o situación.</div></div><div class="fb-example">📝 There is a boy = existe un niño (aquí/allí)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is/are = existencia · He/She is = descripción</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s1">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s2">
+<div class="section-label">Paso 3 de 5</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Importantes</div>
+<div class="section-desc">Estas diferencias son clave para usar There is/are correctamente.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Explicación</th></tr>
+  <tr><td>Hay (invariable)</td><td>There <span class="g-verb">is</span> / There <span class="g-verb">are</span></td><td>Cambia según singular o plural</td></tr>
+  <tr><td>No hay (singular)</td><td>There <span class="g-neg">isn’t</span></td><td>También distingue en negativo</td></tr>
+  <tr><td>No hay (plural)</td><td>There <span class="g-neg">aren’t</span></td><td>Y también en negativo plural</td></tr>
+  <tr><td>¿Hay un niño?</td><td><span class="g-quest">Is there</span> a boy?</td><td>Inversión: is/are + there</td></tr>
+  <tr><td>Hay un niño</td><td>There is <b>a</b> boy</td><td>Necesita artículo a/an</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ ¡Nunca traduzcas "Hay" como "Have"!</div>
+  <p>Un error muy común: "Hay un niño" NO es "Have a boy" ❌<br>
+  "Have" = tener (I have a book = Yo tengo un libro)<br>
+  "Hay" = There is/are (There is a boy = Hay un niño) ✅</p>
+</div>
+
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">There <span class="g-verb">are</span> a boy.</div><div class="es">Incorrecto — "a boy" es singular → There IS</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en">There <span class="g-verb">is</span> <span class="g-there-art">a</span> boy.</div><div class="es">Hay un niño — singular + artículo a</div></div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">Have a boy here.</div><div class="es">Incorrecto — "have" = tener, no "hay"</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en">There <span class="g-verb">is</span> a boy here.</div><div class="es">Hay un niño aquí — siempre There is/are</div></div></div>
+<div class="ex-section"><h3>✏️ Ejercicios — ⚡ Diferencias</h3>
+<div class="exercise" id="s2e0"><div class="exercise-q">1. ’There ___ a boy.’ ¿Qué forma de be va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e0ba">a) is</button><button class="opt-btn" id="s2e0bb">b) are</button></div><div class="fb fb-ok" id="fbok-s2e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — ’A boy’ = singular → There is. Singular siempre usa ’is’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para plural. ’A boy’ es singular → ’is’.</div></div><div class="fb-example">📝 There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> a/an + singular = There is</div></div></div><div class="fb fb-bad" id="fbbad-s2e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para plural. ’A boy’ es singular → ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — ’A boy’ = singular → There is. Singular siempre usa ’is’.</div></div><div class="fb-example">📝 There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> a/an + singular = There is</div></div></div></div>
+<div class="exercise" id="s2e1"><div class="exercise-q">2. ’There ___ two families.’ ¿Qué forma va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e1ba">a) is</button><button class="opt-btn" id="s2e1bb">b) are</button></div><div class="fb fb-ok" id="fbok-s2e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — ’Two families’ = plural → There are. Los números con plural siempre usan ’are’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es para singular. ’Two families’ es plural → ’are’.</div></div><div class="fb-example">📝 There are two families → Hay dos familias</div><div class="fb-tip"><strong>💡 Recuerda:</strong> número + plural = There are</div></div></div><div class="fb fb-bad" id="fbbad-s2e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es para singular. ’Two families’ es plural → ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — ’Two families’ = plural → There are. Los números con plural siempre usan ’are’.</div></div><div class="fb-example">📝 There are two families → Hay dos familias</div><div class="fb-tip"><strong>💡 Recuerda:</strong> número + plural = There are</div></div></div></div>
+<div class="exercise" id="s2e2"><div class="exercise-q">3. ’There ___ a dad.’ (No hay). ¿Cuál es la forma negativa correcta?</div><div class="opts"><button class="opt-btn" id="s2e2ba">a) isn’t</button><button class="opt-btn" id="s2e2bb">b) aren’t</button></div><div class="fb fb-ok" id="fbok-s2e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — ’A dad’ = singular → There isn’t. Singular negativo = isn’t.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ es para plural negativo. Singular → isn’t.</div></div><div class="fb-example">📝 There isn’t a dad → No hay un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There isn’t = singular negativo</div></div></div><div class="fb fb-bad" id="fbbad-s2e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ es para plural negativo. Singular → isn’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — ’A dad’ = singular → There isn’t. Singular negativo = isn’t.</div></div><div class="fb-example">📝 There isn’t a dad → No hay un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There isn’t = singular negativo</div></div></div></div>
+<div class="exercise" id="s2e3"><div class="exercise-q">4. ’___ there a family?’ ¿Cuál es la forma correcta para preguntar?</div><div class="opts"><button class="opt-btn" id="s2e3ba">a) Is</button><button class="opt-btn" id="s2e3bb">b) Are</button></div><div class="fb fb-ok" id="fbok-s2e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Is</span> — ’A family’ = singular → Is there? Pregunta singular con is.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are there?’ es para plural. ’A family’ es singular → Is there?</div></div><div class="fb-example">📝 Is there a family? → ¿Hay una familia?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div><div class="fb fb-bad" id="fbbad-s2e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are there?’ es para plural. ’A family’ es singular → Is there?</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Is</span> — ’A family’ = singular → Is there? Pregunta singular con is.</div></div><div class="fb-example">📝 Is there a family? → ¿Hay una familia?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div></div>
+<div class="exercise" id="s2e4"><div class="exercise-q">5. ’Hay un niño’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s2e4ba">a) There is a boy</button><button class="opt-btn" id="s2e4bb">b) Have a boy</button></div><div class="fb fb-ok" id="fbok-s2e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">There is a boy</span> — ’There is a boy.’ Nunca uses ’have’ para traducir ’hay’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Have’ = tener (I have a dog). Para existencia siempre usamos ’There is/are’.</div></div><div class="fb-example">📝 There is a boy → Hay un niño (nunca Have a boy)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Hay = There is/are · Tener = Have/Has</div></div></div><div class="fb fb-bad" id="fbbad-s2e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Have’ = tener (I have a dog). Para existencia siempre usamos ’There is/are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">There is a boy</span> — ’There is a boy.’ Nunca uses ’have’ para traducir ’hay’.</div></div><div class="fb-example">📝 There is a boy → Hay un niño (nunca Have a boy)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Hay = There is/are · Tener = Have/Has</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s2">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s3">
+<div class="section-label">Paso 4 de 5</div>
+<div class="section-title">Paso 4: 💡 Consejos Prácticos</div>
+<div class="section-desc">Trucos para usar There is/are sin errores.</div>
+
+<div class="tip-card"><strong>Tip 1 — Cuenta primero:</strong> Antes de hablar, cuenta: ¿uno o varios? Si es uno → There is. Si son varios → There are. ¡Primero cuenta, luego habla!</div>
+<div class="tip-card"><strong>Tip 2 — Contracción There’s:</strong> There’s = There is. Muy común en conversación. "There’s a boy" = "There is a boy". Más rápido y natural.</div>
+<div class="tip-card"><strong>Tip 3 — Negativo fácil:</strong> There isn’t (uno) / There aren’t (varios). Pregunta fácil: Is there? (uno) / Are there? (varios).</div>
+<div class="tip-card"><strong>Tip 4 — Nunca "Have" para "Hay":</strong> "Hay un niño" = "There is a boy". Nunca "Have a boy". Have = tener, no hay.</div>
+
+<div class="formula-box">
+  1️⃣ There <span class="g-verb">is</span> + <span class="g-there-art">a/an</span> + singular<br>
+  👥 There <span class="g-verb">are</span> + número/plural<br>
+  ❌ There <span class="g-neg">isn’t</span> + a/an + singular<br>
+  ❌ There <span class="g-neg">aren’t</span> + número/plural<br>
+  ❓ <span class="g-quest">Is</span> there + a/an + singular?<br>
+  ❓ <span class="g-quest">Are</span> there + número/plural?
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — 💡 Consejos</h3>
+<div class="exercise" id="s3e0"><div class="exercise-q">1. ’There ___ a kind boy.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e0ba">a) is</button><button class="opt-btn" id="s3e0bb">b) are</button></div><div class="fb fb-ok" id="fbok-s3e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — ’A kind boy’ = singular → There is. Primero cuenta: uno → is.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para plural. ’A kind boy’ es singular → ’is’.</div></div><div class="fb-example">📝 There is a kind boy → Hay un niño amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Cuenta primero: uno = is, varios = are</div></div></div><div class="fb fb-bad" id="fbbad-s3e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para plural. ’A kind boy’ es singular → ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — ’A kind boy’ = singular → There is. Primero cuenta: uno → is.</div></div><div class="fb-example">📝 There is a kind boy → Hay un niño amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Cuenta primero: uno = is, varios = are</div></div></div></div>
+<div class="exercise" id="s3e1"><div class="exercise-q">2. ’There ___ two boys.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e1ba">a) is</button><button class="opt-btn" id="s3e1bb">b) are</button></div><div class="fb fb-ok" id="fbok-s3e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">are</span> — ’Two boys’ = plural → There are. Dos = varios → are.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es para singular. ’Two boys’ es plural → ’are’.</div></div><div class="fb-example">📝 There are two boys → Hay dos niños</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Número + plural = There are</div></div></div><div class="fb fb-bad" id="fbbad-s3e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es para singular. ’Two boys’ es plural → ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">are</span> — ’Two boys’ = plural → There are. Dos = varios → are.</div></div><div class="fb-example">📝 There are two boys → Hay dos niños</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Número + plural = There are</div></div></div></div>
+<div class="exercise" id="s3e2"><div class="exercise-q">3. Contracción de ’There is’:</div><div class="opts"><button class="opt-btn" id="s3e2ba">a) There’s</button><button class="opt-btn" id="s3e2bb">b) There’re</button></div><div class="fb fb-ok" id="fbok-s3e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">There’s</span> — There’s = There is. La contracción más común y natural.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’There’re’ existe pero casi no se usa. ’There’s’ es la contracción estándar de There is.</div></div><div class="fb-example">📝 There’s a boy → There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There’s = There is — contracción muy común</div></div></div><div class="fb fb-bad" id="fbbad-s3e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’There’re’ existe pero casi no se usa. ’There’s’ es la contracción estándar de There is.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">There’s</span> — There’s = There is. La contracción más común y natural.</div></div><div class="fb-example">📝 There’s a boy → There is a boy → Hay un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There’s = There is — contracción muy común</div></div></div></div>
+<div class="exercise" id="s3e3"><div class="exercise-q">4. ’___ there boys?’ ¿Cuál es la forma correcta para preguntar?</div><div class="opts"><button class="opt-btn" id="s3e3ba">a) Is</button><button class="opt-btn" id="s3e3bb">b) Are</button></div><div class="fb fb-ok" id="fbok-s3e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Are</span> — ’Boys’ = plural → Are there? Pregunta plural con are.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is there?’ es para singular. ’Boys’ es plural → Are there?</div></div><div class="fb-example">📝 Are there boys? → ¿Hay niños?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are there? = plural · Is there? = singular</div></div></div><div class="fb fb-bad" id="fbbad-s3e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is there?’ es para singular. ’Boys’ es plural → Are there?</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Are</span> — ’Boys’ = plural → Are there? Pregunta plural con are.</div></div><div class="fb-example">📝 Are there boys? → ¿Hay niños?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are there? = plural · Is there? = singular</div></div></div></div>
+<div class="exercise" id="s3e4"><div class="exercise-q">5. ’There ___ a family.’ (No hay). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s3e4ba">a) isn’t</button><button class="opt-btn" id="s3e4bb">b) aren’t</button></div><div class="fb fb-ok" id="fbok-s3e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">isn’t</span> — ’A family’ = singular → There isn’t. Singular negativo = isn’t.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ es para plural. ’A family’ es singular → isn’t.</div></div><div class="fb-example">📝 There isn’t a family → No hay una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> isn’t = singular negativo · aren’t = plural negativo</div></div></div><div class="fb fb-bad" id="fbbad-s3e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ es para plural. ’A family’ es singular → isn’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">isn’t</span> — ’A family’ = singular → There isn’t. Singular negativo = isn’t.</div></div><div class="fb-example">📝 There isn’t a family → No hay una familia</div><div class="fb-tip"><strong>💡 Recuerda:</strong> isn’t = singular negativo · aren’t = plural negativo</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s3">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s4">
+<div class="section-label">Paso 5 de 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final</div>
+<div class="section-desc">Aplica todo — afirmativo, negativo y preguntas con There is/are.</div>
+
+<div class="formula-box">
+  ✅ There <span class="g-verb">is</span> a boy. &nbsp;/&nbsp; There <span class="g-verb">are</span> boys.<br>
+  ❌ There <span class="g-neg">isn’t</span> a boy. &nbsp;/&nbsp; There <span class="g-neg">aren’t</span> boys.<br>
+  ❓ <span class="g-quest">Is</span> there a boy? &nbsp;/&nbsp; <span class="g-quest">Are</span> there boys?
+</div>
+
+<div class="section-label">Afirmativo</div>
+<div class="ex-row ex-right"><div class="icon">👦</div><div><div class="en">There <span class="g-verb">is</span> <span class="g-there-art">a</span> <span class="g-comp">boy</span>.</div><div class="es">Hay un niño.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div><div class="en">There <span class="g-verb">are</span> <span class="g-comp">two families</span>.</div><div class="es">Hay dos familias.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👨</div><div><div class="en">There <span class="g-verb">is</span> <span class="g-there-art">a</span> <span class="g-comp">kind dad</span>.</div><div class="es">Hay un papá amable.</div></div></div>
+
+<div class="section-label">Negativo y Preguntas</div>
+<div class="ex-row ex-right"><div class="icon">🚫</div><div><div class="en">There <span class="g-neg">isn’t</span> <span class="g-there-art">a</span> <span class="g-comp">boy</span>.</div><div class="es">No hay un niño.</div></div></div>
+<div class="ex-row ex-right"><div class="icon">❓</div><div><div class="en"><span class="g-quest">Is there</span> <span class="g-there-art">a</span> <span class="g-comp">dad</span>?</div><div class="es">¿Hay un papá?</div></div></div>
+<div class="ex-row ex-right"><div class="icon">❓</div><div><div class="en"><span class="g-quest">Are there</span> <span class="g-comp">boys</span>?</div><div class="es">¿Hay niños?</div></div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 3 errores más comunes</div>
+  <p>❌ "There are a boy" → ✅ "There <b>is</b> a boy" — singular = is<br>
+  ❌ "There is boys" → ✅ "There <b>are</b> boys" — plural = are<br>
+  ❌ "Have a boy" → ✅ "There <b>is</b> a boy" — nunca usar have para hay</p>
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — ✨ Práctica Final</h3>
+<div class="exercise" id="s4e0"><div class="exercise-q">1. ’There ___ a kind dad.’ ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e0ba">a) is</button><button class="opt-btn" id="s4e0bb">b) are</button></div><div class="fb fb-ok" id="fbok-s4e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — ’A kind dad’ = singular → There is. Cuenta: uno → is.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para plural. Un solo dad es singular → ’is’.</div></div><div class="fb-example">📝 There is a kind dad → Hay un papá amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> a/an + sustantivo singular = There is</div></div></div><div class="fb fb-bad" id="fbbad-s4e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para plural. Un solo dad es singular → ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — ’A kind dad’ = singular → There is. Cuenta: uno → is.</div></div><div class="fb-example">📝 There is a kind dad → Hay un papá amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> a/an + sustantivo singular = There is</div></div></div></div>
+<div class="exercise" id="s4e1"><div class="exercise-q">2. ’There ___ families.’ (No hay). ¿Cuál es la forma correcta?</div><div class="opts"><button class="opt-btn" id="s4e1ba">a) isn’t</button><button class="opt-btn" id="s4e1bb">b) aren’t</button></div><div class="fb fb-ok" id="fbok-s4e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">aren’t</span> — ’Families’ = plural → There aren’t. Plural negativo = aren’t.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Isn’t’ es para singular negativo. ’Families’ es plural → aren’t.</div></div><div class="fb-example">📝 There aren’t families → No hay familias</div><div class="fb-tip"><strong>💡 Recuerda:</strong> aren’t = plural negativo · isn’t = singular negativo</div></div></div><div class="fb fb-bad" id="fbbad-s4e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Isn’t’ es para singular negativo. ’Families’ es plural → aren’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">aren’t</span> — ’Families’ = plural → There aren’t. Plural negativo = aren’t.</div></div><div class="fb-example">📝 There aren’t families → No hay familias</div><div class="fb-tip"><strong>💡 Recuerda:</strong> aren’t = plural negativo · isn’t = singular negativo</div></div></div></div>
+<div class="exercise" id="s4e2"><div class="exercise-q">3. ’___ there a boy?’ ¿Cuál es la forma correcta para preguntar?</div><div class="opts"><button class="opt-btn" id="s4e2ba">a) Is</button><button class="opt-btn" id="s4e2bb">b) Are</button></div><div class="fb fb-ok" id="fbok-s4e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Is</span> — ’A boy’ = singular → Is there? Pregunta singular.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are there?’ es para plural. ’A boy’ es singular → Is there?</div></div><div class="fb-example">📝 Is there a boy? → ¿Hay un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div><div class="fb fb-bad" id="fbbad-s4e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are there?’ es para plural. ’A boy’ es singular → Is there?</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Is</span> — ’A boy’ = singular → Is there? Pregunta singular.</div></div><div class="fb-example">📝 Is there a boy? → ¿Hay un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is there? = singular · Are there? = plural</div></div></div></div>
+<div class="exercise" id="s4e3"><div class="exercise-q">4. ’Hay un niño y un papá.’ en inglés:</div><div class="opts"><button class="opt-btn" id="s4e3ba">a) There is a boy and a dad.</button><button class="opt-btn" id="s4e3bb">b) Have a boy and a dad.</button></div><div class="fb fb-ok" id="fbok-s4e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">There is a boy and a dad.</span> — ’There is a boy and a dad.’ El primer sustantivo es singular → is. Nunca ’have’ para ’hay’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Have’ significa ’tener’, nunca ’hay’. Para existencia siempre ’There is/are’.</div></div><div class="fb-example">📝 There is a boy and a dad → Hay un niño y un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Hay = There is/are · nunca Have</div></div></div><div class="fb fb-bad" id="fbbad-s4e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Have’ significa ’tener’, nunca ’hay’. Para existencia siempre ’There is/are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">There is a boy and a dad.</span> — ’There is a boy and a dad.’ El primer sustantivo es singular → is. Nunca ’have’ para ’hay’.</div></div><div class="fb-example">📝 There is a boy and a dad → Hay un niño y un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Hay = There is/are · nunca Have</div></div></div></div>
+<div class="exercise" id="s4e4"><div class="exercise-q">5. ’There ___ a boy and a dad.’ — el verbo sigue al:</div><div class="opts"><button class="opt-btn" id="s4e4ba">a) Último sustantivo (dad)</button><button class="opt-btn" id="s4e4bb">b) Primer sustantivo (boy)</button></div><div class="fb fb-ok" id="fbok-s4e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Primer sustantivo (boy)</span> — El verbo sigue al PRIMER sustantivo. ’A boy’ = singular → ’is’. ’There is a boy and a dad.’</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En inglés el verbo be de There is/are sigue al primer sustantivo mencionado.</div></div><div class="fb-example">📝 There is a boy and a dad → Hay un niño y un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is/are: el verbo sigue al PRIMER sustantivo</div></div></div><div class="fb fb-bad" id="fbbad-s4e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En inglés el verbo be de There is/are sigue al primer sustantivo mencionado.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Primer sustantivo (boy)</span> — El verbo sigue al PRIMER sustantivo. ’A boy’ = singular → ’is’. ’There is a boy and a dad.’</div></div><div class="fb-example">📝 There is a boy and a dad → Hay un niño y un papá</div><div class="fb-tip"><strong>💡 Recuerda:</strong> There is/are: el verbo sigue al PRIMER sustantivo</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s4">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+</div>
+<div class="summary-final" id="summaryFinal">
+<h3>🎓 Lo que aprendiste — There is / There are</h3>
+<ul>
+<li><b>There is</b> + a/an + singular → Hay uno solo</li>
+<li><b>There are</b> + número/plural → Hay varios</li>
+<li><b>There’s</b> = There is — contracción muy común</li>
+<li><b>Negativo:</b> There isn’t (uno) · There aren’t (varios)</li>
+<li><b>Pregunta:</b> Is there...? (uno) · Are there...? (varios)</li>
+<li><b>Nunca</b> usar ‘Have’ para traducir ‘Hay’ — Have = tener</li>
+<li>El verbo sigue al <b>primer sustantivo</b> mencionado</li>
+</ul>
+</div>
+</div>
+<script>
+var curStep=0,scores={},answered={},skeys=["s0","s1","s2","s3","s4"];
+function switchStep(n){
+  document.getElementById("card-"+skeys[curStep]).classList.remove("active");
+  document.getElementById("tab-"+skeys[curStep]).classList.remove("active");
+  document.getElementById("card-"+skeys[n]).classList.add("active");
+  document.getElementById("tab-"+skeys[n]).classList.add("active");
+  curStep=n;
+  document.getElementById("summaryFinal").classList.remove("show");
+}
+function chk(eid,sel,correct){
+  if(answered[eid])return;
+  answered[eid]=true;
+  var ex=document.getElementById(eid);
+  var ba=document.getElementById(eid+"ba"),bb=document.getElementById(eid+"bb");
+  ba.disabled=true;bb.disabled=true;
+  var sk=eid.substring(0,2);
+  if(!scores[sk])scores[sk]=0;
+  if(sel===correct){
+    ex.classList.add("correct");
+    (sel==="a"?ba:bb).classList.add("sel-ok");
+    document.getElementById("fbok-"+eid).classList.add("show");
+    scores[sk]++;
+  } else {
+    ex.classList.add("incorrect");
+    (sel==="a"?ba:bb).classList.add("sel-bad");
+    (sel==="a"?bb:ba).classList.add("show-ok");
+    document.getElementById("fbbad-"+eid).classList.add("show");
+  }
+  document.getElementById("sc-"+sk).textContent=scores[sk]+"/5";
+  var done=true;
+  for(var j=0;j<5;j++){if(!answered[sk+"e"+j]){done=false;break;}}
+  if(done&&curStep===4){setTimeout(function(){var sf=document.getElementById("summaryFinal");sf.classList.add("show");sf.scrollIntoView({behavior:"smooth"});},600);}
+  if(done&&curStep<4){document.getElementById("tab-"+sk).classList.add("done");}
+}
+document.getElementById("s0e0ba").addEventListener("click",function(){chk("s0e0","a","a");});
+document.getElementById("s0e0bb").addEventListener("click",function(){chk("s0e0","b","a");});
+document.getElementById("s0e1ba").addEventListener("click",function(){chk("s0e1","a","a");});
+document.getElementById("s0e1bb").addEventListener("click",function(){chk("s0e1","b","a");});
+document.getElementById("s0e2ba").addEventListener("click",function(){chk("s0e2","a","b");});
+document.getElementById("s0e2bb").addEventListener("click",function(){chk("s0e2","b","b");});
+document.getElementById("s0e3ba").addEventListener("click",function(){chk("s0e3","a","b");});
+document.getElementById("s0e3bb").addEventListener("click",function(){chk("s0e3","b","b");});
+document.getElementById("s0e4ba").addEventListener("click",function(){chk("s0e4","a","b");});
+document.getElementById("s0e4bb").addEventListener("click",function(){chk("s0e4","b","b");});
+document.getElementById("s1e0ba").addEventListener("click",function(){chk("s1e0","a","a");});
+document.getElementById("s1e0bb").addEventListener("click",function(){chk("s1e0","b","a");});
+document.getElementById("s1e1ba").addEventListener("click",function(){chk("s1e1","a","b");});
+document.getElementById("s1e1bb").addEventListener("click",function(){chk("s1e1","b","b");});
+document.getElementById("s1e2ba").addEventListener("click",function(){chk("s1e2","a","a");});
+document.getElementById("s1e2bb").addEventListener("click",function(){chk("s1e2","b","a");});
+document.getElementById("s1e3ba").addEventListener("click",function(){chk("s1e3","a","b");});
+document.getElementById("s1e3bb").addEventListener("click",function(){chk("s1e3","b","b");});
+document.getElementById("s1e4ba").addEventListener("click",function(){chk("s1e4","a","a");});
+document.getElementById("s1e4bb").addEventListener("click",function(){chk("s1e4","b","a");});
+document.getElementById("s2e0ba").addEventListener("click",function(){chk("s2e0","a","a");});
+document.getElementById("s2e0bb").addEventListener("click",function(){chk("s2e0","b","a");});
+document.getElementById("s2e1ba").addEventListener("click",function(){chk("s2e1","a","b");});
+document.getElementById("s2e1bb").addEventListener("click",function(){chk("s2e1","b","b");});
+document.getElementById("s2e2ba").addEventListener("click",function(){chk("s2e2","a","a");});
+document.getElementById("s2e2bb").addEventListener("click",function(){chk("s2e2","b","a");});
+document.getElementById("s2e3ba").addEventListener("click",function(){chk("s2e3","a","a");});
+document.getElementById("s2e3bb").addEventListener("click",function(){chk("s2e3","b","a");});
+document.getElementById("s2e4ba").addEventListener("click",function(){chk("s2e4","a","a");});
+document.getElementById("s2e4bb").addEventListener("click",function(){chk("s2e4","b","a");});
+document.getElementById("s3e0ba").addEventListener("click",function(){chk("s3e0","a","a");});
+document.getElementById("s3e0bb").addEventListener("click",function(){chk("s3e0","b","a");});
+document.getElementById("s3e1ba").addEventListener("click",function(){chk("s3e1","a","b");});
+document.getElementById("s3e1bb").addEventListener("click",function(){chk("s3e1","b","b");});
+document.getElementById("s3e2ba").addEventListener("click",function(){chk("s3e2","a","a");});
+document.getElementById("s3e2bb").addEventListener("click",function(){chk("s3e2","b","a");});
+document.getElementById("s3e3ba").addEventListener("click",function(){chk("s3e3","a","b");});
+document.getElementById("s3e3bb").addEventListener("click",function(){chk("s3e3","b","b");});
+document.getElementById("s3e4ba").addEventListener("click",function(){chk("s3e4","a","a");});
+document.getElementById("s3e4bb").addEventListener("click",function(){chk("s3e4","b","a");});
+document.getElementById("s4e0ba").addEventListener("click",function(){chk("s4e0","a","a");});
+document.getElementById("s4e0bb").addEventListener("click",function(){chk("s4e0","b","a");});
+document.getElementById("s4e1ba").addEventListener("click",function(){chk("s4e1","a","b");});
+document.getElementById("s4e1bb").addEventListener("click",function(){chk("s4e1","b","b");});
+document.getElementById("s4e2ba").addEventListener("click",function(){chk("s4e2","a","a");});
+document.getElementById("s4e2bb").addEventListener("click",function(){chk("s4e2","b","a");});
+document.getElementById("s4e3ba").addEventListener("click",function(){chk("s4e3","a","a");});
+document.getElementById("s4e3bb").addEventListener("click",function(){chk("s4e3","b","a");});
+document.getElementById("s4e4ba").addEventListener("click",function(){chk("s4e4","a","b");});
+document.getElementById("s4e4bb").addEventListener("click",function(){chk("s4e4","b","b");});
+document.getElementById("tab-s0").addEventListener("click",function(){switchStep(0);});
+document.getElementById("tab-s1").addEventListener("click",function(){switchStep(1);});
+document.getElementById("tab-s2").addEventListener("click",function(){switchStep(2);});
+document.getElementById("tab-s3").addEventListener("click",function(){switchStep(3);});
+document.getElementById("tab-s4").addEventListener("click",function(){switchStep(4);});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Grammar Summary — To Be Questions | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--neg:#AD1457;--neg-bg:#FCE4EC;
+--quest:#7B1FA2;--quest-bg:#F3E5F5;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:780px;margin:0 auto}
+.level-header{text-align:center;padding:2rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,.1);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.2rem}
+.level-header .subtitle{opacity:.8;font-size:.85rem;position:relative;z-index:1;margin-top:.15rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:20px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:.1rem}
+.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem}
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj)}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb)}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp)}
+.g-neg{background:var(--neg-bg);color:var(--neg);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--neg)}
+.g-quest{background:var(--quest-bg);color:var(--quest);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--quest)}
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.65rem .6rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:var(--ll);border:2px solid var(--lm)}
+.compare-card.eng{background:var(--subj-bg);border:2px solid #90CAF9}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.85rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:var(--ld)}
+.compare-card.eng h4{color:var(--subj)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:2px 0}
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:1.9}
+.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp)}
+.tip-card strong{color:var(--ld)}
+.alert-card{background:var(--err-bg);border:2px solid #EF5350;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem}
+.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.5}
+.ex-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
+.ex-row:hover{background:var(--lglow)}
+.ex-row .icon{font-size:1.2rem;flex-shrink:0}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:1px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+.conj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin:.8rem 0}
+.conj-item{padding:.6rem;border-radius:10px;text-align:center;background:var(--card);border:1.5px solid var(--border)}
+.conj-item .pron{font-size:.72rem;color:var(--subj);font-weight:800}
+.conj-item .vrb{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--verb);margin:.2rem 0}
+.conj-item .meaning{font-size:.65rem;color:var(--text-soft)}
+.ex-section{margin-top:1.2rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.9rem;margin-bottom:.8rem}
+.exercise{background:#fafafa;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #eee;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.88rem;margin-bottom:.7rem;line-height:1.4}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.fb{margin-top:.7rem;padding:0;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-header .fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.fb-row .fb-text{flex:1}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.5rem .7rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.2rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 20px;position:relative;font-size:.83rem;color:var(--text-soft)}
+.summary-final li::before{content:"\2714";position:absolute;left:0;color:var(--lp);font-weight:700}
+@media(max-width:600px){.level-header h1{font-size:1.4rem}.step-tabs{flex-wrap:wrap}.card{padding:1.2rem}.compare-grid{grid-template-columns:1fr}.conj-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="level-header">
+<div class="level-badge">💛 Pre-A1</div>
+<h1>📝 Grammar Summary</h1>
+<div class="module-name">🪪 Personal Identity — To Be: Questions</div>
+<p class="subtitle">Are you...? · Is he...? · Who is...? · What is...? · 5 pasos · 25 ejercicios</p>
+</div>
+<div class="step-tabs">
+<button class="step-tab active" id="tab-s0">1. 🇪🇸 Repaso en Español</button>
+<button class="step-tab" id="tab-s1">2. 🤝 Similitudes</button>
+<button class="step-tab" id="tab-s2">3. ⚡ Diferencias</button>
+<button class="step-tab" id="tab-s3">4. 💡 Consejos</button>
+<button class="step-tab" id="tab-s4">5. ✨ Práctica Final</button>
+</div>
+<div id="cardArea">
+<div class="card active" id="card-s0">
+<div class="section-label">Paso 1 de 5</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">En español hacemos preguntas de dos maneras: cambiando el tono de voz, o invirtiendo el orden de las palabras. En inglés SIEMPRE invertimos el orden.</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>🔊 Pregunta por tono</h4>
+    <ul>
+      <li>¿Eres feliz? (solo subiendo el tono)</li>
+      <li>¿Es él un niño?</li>
+      <li>¿Somos una familia?</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>🔄 Pregunta Wh-</h4>
+    <ul>
+      <li>¿Quién es él?</li>
+      <li>¿Qué es eso?</li>
+      <li>¿Quién es amable?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ex-row"><div class="icon">❓</div><div><div class="en">¿<b>Eres</b> feliz? → invertimos verbo y sujeto</div><div class="es">En español el verbo a veces va primero en las preguntas</div></div></div>
+<div class="ex-row"><div class="icon">🙋</div><div><div class="en">¿<b>Quién</b> es él? → usamos palabra interrogativa</div><div class="es">"¿Quién?" = pregunta por una persona · "¿Qué?" = pregunta por una cosa</div></div></div>
+
+<div class="tip-card"><strong>💡 Recuerda:</strong> En español usamos ¿...? con dos signos. En inglés solo hay un signo al final: ...?</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Repaso en Español</h3>
+<div class="exercise" id="s0e0"><div class="exercise-q">1. ’Tú eres feliz’ → para preguntar decimos:</div><div class="opts"><button class="opt-btn" id="s0e0ba">a) ¿Eres feliz?</button><button class="opt-btn" id="s0e0bb">b) ¿Feliz eres?</button></div><div class="fb fb-ok" id="fbok-s0e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">¿Eres feliz?</span> — ’¿Eres feliz?’ es la forma natural. El verbo va al inicio de la pregunta.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’¿Feliz eres?’ no suena natural en español moderno.</div></div><div class="fb-example">📝 ¿Eres feliz? → Are you happy?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Pregunta Sí/No: verbo + sujeto + ...?</div></div></div><div class="fb fb-bad" id="fbbad-s0e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’¿Feliz eres?’ no suena natural en español moderno.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">¿Eres feliz?</span> — ’¿Eres feliz?’ es la forma natural. El verbo va al inicio de la pregunta.</div></div><div class="fb-example">📝 ¿Eres feliz? → Are you happy?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Pregunta Sí/No: verbo + sujeto + ...?</div></div></div></div>
+<div class="exercise" id="s0e1"><div class="exercise-q">2. Para preguntar por UNA PERSONA usamos:</div><div class="opts"><button class="opt-btn" id="s0e1ba">a) ¿Dónde?</button><button class="opt-btn" id="s0e1bb">b) ¿Quién?</button></div><div class="fb fb-ok" id="fbok-s0e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">¿Quién?</span> — ’¿Quién?’ pregunta por personas. Who en inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’¿Dónde?’ pregunta por lugares, no por personas.</div></div><div class="fb-example">📝 ¿Quién es él? → Who is he?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ¿Quién? = Who · ¿Qué? = What · ¿Dónde? = Where</div></div></div><div class="fb fb-bad" id="fbbad-s0e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’¿Dónde?’ pregunta por lugares, no por personas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">¿Quién?</span> — ’¿Quién?’ pregunta por personas. Who en inglés.</div></div><div class="fb-example">📝 ¿Quién es él? → Who is he?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ¿Quién? = Who · ¿Qué? = What · ¿Dónde? = Where</div></div></div></div>
+<div class="exercise" id="s0e2"><div class="exercise-q">3. ’¿Es él un niño?’ es una pregunta de tipo:</div><div class="opts"><button class="opt-btn" id="s0e2ba">a) Sí/No</button><button class="opt-btn" id="s0e2bb">b) Abierta (Wh-)</button></div><div class="fb fb-ok" id="fbok-s0e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Sí/No</span> — Se responde con Sí o No. ’Yes, he is.’ / ’No, he isn’t.’</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Las preguntas abiertas (Wh-) empiezan con ¿Quién? ¿Qué? y requieren más información.</div></div><div class="fb-example">📝 ¿Es él un niño? → Is he a boy? → Yes, he is.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Sí/No: respuesta corta · Wh-: respuesta con información</div></div></div><div class="fb fb-bad" id="fbbad-s0e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Las preguntas abiertas (Wh-) empiezan con ¿Quién? ¿Qué? y requieren más información.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Sí/No</span> — Se responde con Sí o No. ’Yes, he is.’ / ’No, he isn’t.’</div></div><div class="fb-example">📝 ¿Es él un niño? → Is he a boy? → Yes, he is.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Sí/No: respuesta corta · Wh-: respuesta con información</div></div></div></div>
+<div class="exercise" id="s0e3"><div class="exercise-q">4. ’¿Quién es ella?’ es una pregunta de tipo:</div><div class="opts"><button class="opt-btn" id="s0e3ba">a) Sí/No</button><button class="opt-btn" id="s0e3bb">b) Abierta (Wh-)</button></div><div class="fb fb-ok" id="fbok-s0e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Abierta (Wh-)</span> — Requiere información, no solo Sí o No. ’She is Ana.’</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: No se puede responder solo con Sí o No. Necesita un nombre o descripción.</div></div><div class="fb-example">📝 ¿Quién es ella? → Who is she? → She is Ana.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who/What/Where = preguntas abiertas, necesitan información</div></div></div><div class="fb fb-bad" id="fbbad-s0e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">No se puede responder solo con Sí o No. Necesita un nombre o descripción.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Abierta (Wh-)</span> — Requiere información, no solo Sí o No. ’She is Ana.’</div></div><div class="fb-example">📝 ¿Quién es ella? → Who is she? → She is Ana.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who/What/Where = preguntas abiertas, necesitan información</div></div></div></div>
+<div class="exercise" id="s0e4"><div class="exercise-q">5. En español, ¿cuántos signos de interrogación usamos?</div><div class="opts"><button class="opt-btn" id="s0e4ba">a) Uno al final: ?</button><button class="opt-btn" id="s0e4bb">b) Dos: ¿ al inicio y ? al final</button></div><div class="fb fb-ok" id="fbok-s0e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Dos: ¿ al inicio y ? al final</span> — En español: ¿...? con dos signos. En inglés solo uno al final: ...?</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En inglés solo hay un signo al final. El signo ’¿’ no existe en inglés.</div></div><div class="fb-example">📝 ¿Eres feliz? (español) → Are you happy? (inglés)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? al final · Español: ¿ al inicio y ? al final</div></div></div><div class="fb fb-bad" id="fbbad-s0e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En inglés solo hay un signo al final. El signo ’¿’ no existe en inglés.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Dos: ¿ al inicio y ? al final</span> — En español: ¿...? con dos signos. En inglés solo uno al final: ...?</div></div><div class="fb-example">📝 ¿Eres feliz? (español) → Are you happy? (inglés)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? al final · Español: ¿ al inicio y ? al final</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s0">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s1">
+<div class="section-label">Paso 2 de 5</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Español e inglés comparten la misma lógica para hacer preguntas con el verbo be.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Invertimos sujeto y verbo</td><td>¿<b>Es</b> él...?</td><td><span class="g-quest">Is</span> he...?</td></tr>
+  <tr><td>Palabras interrogativas</td><td>¿<b>Quién</b>...? ¿<b>Qué</b>...?</td><td><span class="g-quest">Who</span>...? <span class="g-quest">What</span>...?</td></tr>
+  <tr><td>Preguntas Sí/No</td><td>¿Eres feliz?</td><td>Are you happy?</td></tr>
+  <tr><td>Respuesta corta repite verbo</td><td>Sí, soy / No, no soy</td><td>Yes, I am / No, I’m not</td></tr>
+  <tr><td>Signo ? al final</td><td>¿...?</td><td>...?</td></tr>
+</table>
+
+<div class="formula-box">
+  <span class="g-quest">Who</span> = ¿Quién? &nbsp;&nbsp;·&nbsp;&nbsp; <span class="g-quest">What</span> = ¿Qué?
+</div>
+
+<div class="tip-card"><strong>💡 Clave:</strong> La inversión existe en ambos idiomas. En inglés es obligatoria siempre; en español a veces basta el tono.</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Similitudes</h3>
+<div class="exercise" id="s1e0"><div class="exercise-q">1. ’¿Quién?’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e0ba">a) What</button><button class="opt-btn" id="s1e0bb">b) Who</button></div><div class="fb fb-ok" id="fbok-s1e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Who</span> — Who = ¿Quién? (para personas). What = ¿Qué? (para cosas).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’What’ = ¿Qué? Se usa para preguntar por cosas, no personas.</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who = persona · What = cosa</div></div></div><div class="fb fb-bad" id="fbbad-s1e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’What’ = ¿Qué? Se usa para preguntar por cosas, no personas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Who</span> — Who = ¿Quién? (para personas). What = ¿Qué? (para cosas).</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who = persona · What = cosa</div></div></div></div>
+<div class="exercise" id="s1e1"><div class="exercise-q">2. ’Are you happy?’ es pregunta de tipo:</div><div class="opts"><button class="opt-btn" id="s1e1ba">a) Sí/No</button><button class="opt-btn" id="s1e1bb">b) Abierta (Wh-)</button></div><div class="fb fb-ok" id="fbok-s1e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Sí/No</span> — Se responde: Yes, I am. / No, I’m not. Es Sí/No.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Las preguntas Wh- empiezan con Who/What/Where. ’Are’ no es Wh-.</div></div><div class="fb-example">📝 Are you happy? → Yes, I am. / No, I’m not.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are/Is/Am al inicio = pregunta Sí/No</div></div></div><div class="fb fb-bad" id="fbbad-s1e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Las preguntas Wh- empiezan con Who/What/Where. ’Are’ no es Wh-.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Sí/No</span> — Se responde: Yes, I am. / No, I’m not. Es Sí/No.</div></div><div class="fb-example">📝 Are you happy? → Yes, I am. / No, I’m not.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are/Is/Am al inicio = pregunta Sí/No</div></div></div></div>
+<div class="exercise" id="s1e2"><div class="exercise-q">3. ’Who is he?’ es pregunta de tipo:</div><div class="opts"><button class="opt-btn" id="s1e2ba">a) Sí/No</button><button class="opt-btn" id="s1e2bb">b) Abierta (Wh-)</button></div><div class="fb fb-ok" id="fbok-s1e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Abierta (Wh-)</span> — Empieza con ’Who’ = ¿Quién? Necesita información, no solo Sí/No.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Who’ es una palabra Wh-, no se responde con Yes/No.</div></div><div class="fb-example">📝 Who is he? → He is Leo. (nombre, no Yes/No)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who/What = preguntas Wh- = respuesta con información</div></div></div><div class="fb fb-bad" id="fbbad-s1e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Who’ es una palabra Wh-, no se responde con Yes/No.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Abierta (Wh-)</span> — Empieza con ’Who’ = ¿Quién? Necesita información, no solo Sí/No.</div></div><div class="fb-example">📝 Who is he? → He is Leo. (nombre, no Yes/No)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who/What = preguntas Wh- = respuesta con información</div></div></div></div>
+<div class="exercise" id="s1e3"><div class="exercise-q">4. En inglés, ¿dónde va el signo ’?’</div><div class="opts"><button class="opt-btn" id="s1e3ba">a) Al inicio: ?Are you happy</button><button class="opt-btn" id="s1e3bb">b) Solo al final: Are you happy?</button></div><div class="fb fb-ok" id="fbok-s1e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Solo al final: Are you happy?</span> — Solo al final: ’Are you happy?’ El signo ’¿’ no existe en inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: El ’¿’ al inicio es solo en español. En inglés solo ’?’ al final.</div></div><div class="fb-example">📝 Are you happy? (solo ? al final)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? al final de la pregunta</div></div></div><div class="fb fb-bad" id="fbbad-s1e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">El ’¿’ al inicio es solo en español. En inglés solo ’?’ al final.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Solo al final: Are you happy?</span> — Solo al final: ’Are you happy?’ El signo ’¿’ no existe en inglés.</div></div><div class="fb-example">📝 Are you happy? (solo ? al final)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? al final de la pregunta</div></div></div></div>
+<div class="exercise" id="s1e4"><div class="exercise-q">5. ’¿Qué?’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e4ba">a) What</button><button class="opt-btn" id="s1e4bb">b) Who</button></div><div class="fb fb-ok" id="fbok-s1e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">What</span> — What = ¿Qué? (para cosas). Who = ¿Quién? (para personas).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Who’ = ¿Quién? Se usa para preguntar por personas.</div></div><div class="fb-example">📝 What is it? → ¿Qué es eso?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> What = cosa · Who = persona</div></div></div><div class="fb fb-bad" id="fbbad-s1e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Who’ = ¿Quién? Se usa para preguntar por personas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">What</span> — What = ¿Qué? (para cosas). Who = ¿Quién? (para personas).</div></div><div class="fb-example">📝 What is it? → ¿Qué es eso?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> What = cosa · Who = persona</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s1">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s2">
+<div class="section-label">Paso 3 de 5</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Importantes</div>
+<div class="section-desc">Estas son las diferencias que más confunden al hacer preguntas en inglés.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Explicación</th></tr>
+  <tr><td>¿Eres feliz? (solo tono)</td><td><span class="g-quest">Are you</span> happy?</td><td>En inglés SIEMPRE se invierte</td></tr>
+  <tr><td>¿...? (dos signos)</td><td>...? (un signo)</td><td>Solo ? al final en inglés</td></tr>
+  <tr><td>¿Quién es? (sin pronombre)</td><td>Who is <span class="g-subj">he/she</span>?</td><td>Pronombre obligatorio en inglés</td></tr>
+  <tr><td>Sí</td><td>Yes, I <span class="g-verb">am</span></td><td>La respuesta repite el verbo be</td></tr>
+  <tr><td>No</td><td>No, she <span class="g-neg">isn’t</span></td><td>La respuesta también usa contracción</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ La inversión es OBLIGATORIA en inglés</div>
+  <p>En español puedes decir "¿Tú eres feliz?" solo con el tono. En inglés debes invertir siempre:</p>
+</div>
+
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">You are happy?</div><div class="es">Incorrecto como pregunta — suena a afirmación con tono curioso</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en"><span class="g-quest">Are you</span> happy?</div><div class="es">¿Estás feliz? — verbo be va PRIMERO</div></div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">Who he is?</div><div class="es">Incorrecto — el verbo be debe ir entre Who y el pronombre</div></div></div>
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en"><span class="g-quest">Who</span> <span class="g-verb">is</span> <span class="g-subj">he</span>?</div><div class="es">¿Quién es él? — Who + is + pronombre</div></div></div>
+
+<div class="section-label">Respuestas cortas</div>
+<div class="conj-grid">
+  <div class="conj-item"><div class="pron">Are you...?</div><div class="vrb">Yes, I am.</div><div class="meaning">Sí, soy/estoy.</div></div>
+  <div class="conj-item"><div class="pron">Is he...?</div><div class="vrb">No, he isn’t.</div><div class="meaning">No, él no es/está.</div></div>
+  <div class="conj-item"><div class="pron">Are we...?</div><div class="vrb">Yes, we are.</div><div class="meaning">Sí, somos/estamos.</div></div>
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Diferencias</h3>
+<div class="exercise" id="s2e0"><div class="exercise-q">1. ’He is a boy.’ → pregunta correcta:</div><div class="opts"><button class="opt-btn" id="s2e0ba">a) He is a boy?</button><button class="opt-btn" id="s2e0bb">b) Is he a boy?</button></div><div class="fb fb-ok" id="fbok-s2e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Is he a boy?</span> — Invertimos: ’Is he a boy?’ — el verbo be va PRIMERO.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He is a boy?’ con solo el tono no es correcto en inglés. Hay que invertir.</div></div><div class="fb-example">📝 Is he a boy? → ¿Es él un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Para preguntar: verbo be + sujeto + ...?</div></div></div><div class="fb fb-bad" id="fbbad-s2e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He is a boy?’ con solo el tono no es correcto en inglés. Hay que invertir.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Is he a boy?</span> — Invertimos: ’Is he a boy?’ — el verbo be va PRIMERO.</div></div><div class="fb-example">📝 Is he a boy? → ¿Es él un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Para preguntar: verbo be + sujeto + ...?</div></div></div></div>
+<div class="exercise" id="s2e1"><div class="exercise-q">2. ’Are you happy?’ → respuesta afirmativa:</div><div class="opts"><button class="opt-btn" id="s2e1ba">a) Yes, I am.</button><button class="opt-btn" id="s2e1bb">b) Yes, I is.</button></div><div class="fb fb-ok" id="fbok-s2e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Yes, I am.</span> — ’Yes, I am.’ La respuesta corta repite el verbo be correcto.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’I is’ nunca es correcto. Con I siempre usamos ’am’.</div></div><div class="fb-example">📝 Are you happy? → Yes, I am.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: Yes/No + pronombre + verbo be</div></div></div><div class="fb fb-bad" id="fbbad-s2e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’I is’ nunca es correcto. Con I siempre usamos ’am’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Yes, I am.</span> — ’Yes, I am.’ La respuesta corta repite el verbo be correcto.</div></div><div class="fb-example">📝 Are you happy? → Yes, I am.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: Yes/No + pronombre + verbo be</div></div></div></div>
+<div class="exercise" id="s2e2"><div class="exercise-q">3. ’Is she kind?’ → respuesta negativa:</div><div class="opts"><button class="opt-btn" id="s2e2ba">a) No, she aren’t.</button><button class="opt-btn" id="s2e2bb">b) No, she isn’t.</button></div><div class="fb fb-ok" id="fbok-s2e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">No, she isn’t.</span> — ’No, she isn’t.’ She es singular → isn’t (not aren’t).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ es para You/We. She es singular → isn’t.</div></div><div class="fb-example">📝 Is she kind? → No, she isn’t.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She → is/isn’t · You/We → are/aren’t</div></div></div><div class="fb fb-bad" id="fbbad-s2e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ es para You/We. She es singular → isn’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">No, she isn’t.</span> — ’No, she isn’t.’ She es singular → isn’t (not aren’t).</div></div><div class="fb-example">📝 Is she kind? → No, she isn’t.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She → is/isn’t · You/We → are/aren’t</div></div></div></div>
+<div class="exercise" id="s2e3"><div class="exercise-q">4. ¿Cuántos signos ’?’ usa el inglés en una pregunta?</div><div class="opts"><button class="opt-btn" id="s2e3ba">a) Dos (¿ y ?)</button><button class="opt-btn" id="s2e3bb">b) Uno solo (? al final)</button></div><div class="fb fb-ok" id="fbok-s2e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Uno solo (? al final)</span> — Solo uno al final: ’Are you happy?’ El signo ’¿’ no existe en inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: El ’¿’ al inicio es solo en español. En inglés solo ’?’ al final.</div></div><div class="fb-example">📝 Are you happy? (inglés) · ¿Eres feliz? (español)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? · Español: ¿ y ?</div></div></div><div class="fb fb-bad" id="fbbad-s2e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">El ’¿’ al inicio es solo en español. En inglés solo ’?’ al final.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Uno solo (? al final)</span> — Solo uno al final: ’Are you happy?’ El signo ’¿’ no existe en inglés.</div></div><div class="fb-example">📝 Are you happy? (inglés) · ¿Eres feliz? (español)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Inglés: solo ? · Español: ¿ y ?</div></div></div></div>
+<div class="exercise" id="s2e4"><div class="exercise-q">5. ’Who ___ he?’ ¿Qué forma de be va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e4ba">a) is</button><button class="opt-btn" id="s2e4bb">b) are</button></div><div class="fb fb-ok" id="fbok-s2e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">is</span> — ’Who is he?’ He es singular → is. La estructura es: Who + is/are + pronombre.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para You/We. ’He’ es singular → is.</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who is + He/She/It · Who are + You/We</div></div></div><div class="fb fb-bad" id="fbbad-s2e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para You/We. ’He’ es singular → is.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">is</span> — ’Who is he?’ He es singular → is. La estructura es: Who + is/are + pronombre.</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who is + He/She/It · Who are + You/We</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s2">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s3">
+<div class="section-label">Paso 4 de 5</div>
+<div class="section-title">Paso 4: 💡 Consejos Prácticos</div>
+<div class="section-desc">Trucos para hacer preguntas sin errores.</div>
+
+<div class="tip-card"><strong>Tip 1 — Preguntas Sí/No — invierte:</strong> Toma la afirmación y mueve el verbo al inicio. "He is kind." → "Is he kind?" Es como poner el verbo al frente.</div>
+<div class="tip-card"><strong>Tip 2 — Preguntas Wh- — agrega la palabra al inicio:</strong> "He is kind." → "Who is he?" La palabra interrogativa va primero, luego el verbo, luego el sujeto.</div>
+<div class="tip-card"><strong>Tip 3 — Respuestas cortas — repite el verbo be:</strong> "Are you happy?" → "Yes, I am." / "No, I’m not." Nunca digas solo "Yes." — suena descortés o incompleto.</div>
+<div class="tip-card"><strong>Tip 4 — Who vs What:</strong> Who = ¿Quién? → personas. What = ¿Qué? → cosas. Si puedes responder con un nombre de persona, usa Who.</div>
+
+<div class="formula-box">
+  ❓ Sí/No: <span class="g-quest">Am/Is/Are</span> + <span class="g-subj">subject</span> + <span class="g-comp">complement</span>?<br>
+  ❓ Wh-: <span class="g-quest">Who/What</span> + <span class="g-verb">is/are</span> + <span class="g-subj">subject</span>?
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Consejos</h3>
+<div class="exercise" id="s3e0"><div class="exercise-q">1. ’___ you happy?’ Para preguntar Sí/No:</div><div class="opts"><button class="opt-btn" id="s3e0ba">a) Are</button><button class="opt-btn" id="s3e0bb">b) Is</button></div><div class="fb fb-ok" id="fbok-s3e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Are</span> — ’Are you happy?’ — You + are, por eso el verbo es ’Are’ al inicio.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es para He/She/It. You necesita ’Are’.</div></div><div class="fb-example">📝 Are you happy? → ¿Estás feliz?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are you / Is he / Am I — el verbo be al inicio de la pregunta</div></div></div><div class="fb fb-bad" id="fbbad-s3e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es para He/She/It. You necesita ’Are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Are</span> — ’Are you happy?’ — You + are, por eso el verbo es ’Are’ al inicio.</div></div><div class="fb-example">📝 Are you happy? → ¿Estás feliz?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Are you / Is he / Am I — el verbo be al inicio de la pregunta</div></div></div></div>
+<div class="exercise" id="s3e1"><div class="exercise-q">2. ’___ is he?’ (¿Quién?). ¿Qué palabra interrogativa usas?</div><div class="opts"><button class="opt-btn" id="s3e1ba">a) What</button><button class="opt-btn" id="s3e1bb">b) Who</button></div><div class="fb fb-ok" id="fbok-s3e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Who</span> — ’Who is he?’ — Who = ¿Quién? (personas).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’What’ = ¿Qué? Se usa para preguntar por cosas, no personas.</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who = persona · What = cosa</div></div></div><div class="fb fb-bad" id="fbbad-s3e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’What’ = ¿Qué? Se usa para preguntar por cosas, no personas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Who</span> — ’Who is he?’ — Who = ¿Quién? (personas).</div></div><div class="fb-example">📝 Who is he? → ¿Quién es él?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Who = persona · What = cosa</div></div></div></div>
+<div class="exercise" id="s3e2"><div class="exercise-q">3. ’Is he a boy?’ → ’Yes, ___’</div><div class="opts"><button class="opt-btn" id="s3e2ba">a) he is.</button><button class="opt-btn" id="s3e2bb">b) he are.</button></div><div class="fb fb-ok" id="fbok-s3e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">he is.</span> — ’Yes, he is.’ He es singular → is. La respuesta repite el verbo be.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He are’ nunca es correcto. He siempre usa ’is’.</div></div><div class="fb-example">📝 Is he a boy? → Yes, he is.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: Yes/No + pronombre + verbo be correspondiente</div></div></div><div class="fb fb-bad" id="fbbad-s3e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He are’ nunca es correcto. He siempre usa ’is’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">he is.</span> — ’Yes, he is.’ He es singular → is. La respuesta repite el verbo be.</div></div><div class="fb-example">📝 Is he a boy? → Yes, he is.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: Yes/No + pronombre + verbo be correspondiente</div></div></div></div>
+<div class="exercise" id="s3e3"><div class="exercise-q">4. ’Are you kind?’ → ’No, ___’</div><div class="opts"><button class="opt-btn" id="s3e3ba">a) I amn’t.</button><button class="opt-btn" id="s3e3bb">b) I’m not.</button></div><div class="fb fb-ok" id="fbok-s3e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I’m not.</span> — ’No, I’m not.’ La única forma negativa con I. ’Amn’t’ no existe.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Amn’t’ no existe en inglés. La única contracción con I am es ’I’m not’.</div></div><div class="fb-example">📝 Are you kind? → No, I’m not.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I’m not — la única forma. Nunca amn’t.</div></div></div><div class="fb fb-bad" id="fbbad-s3e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Amn’t’ no existe en inglés. La única contracción con I am es ’I’m not’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I’m not.</span> — ’No, I’m not.’ La única forma negativa con I. ’Amn’t’ no existe.</div></div><div class="fb-example">📝 Are you kind? → No, I’m not.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I’m not — la única forma. Nunca amn’t.</div></div></div></div>
+<div class="exercise" id="s3e4"><div class="exercise-q">5. ’___ is it?’ (¿Qué es?). ¿Qué palabra interrogativa usas?</div><div class="opts"><button class="opt-btn" id="s3e4ba">a) What</button><button class="opt-btn" id="s3e4bb">b) Who</button></div><div class="fb fb-ok" id="fbok-s3e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">What</span> — ’What is it?’ — What = ¿Qué? (cosas).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Who’ = ¿Quién? Solo para personas. ’It’ es una cosa → What.</div></div><div class="fb-example">📝 What is it? → ¿Qué es eso?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> What = cosa · Who = persona</div></div></div><div class="fb fb-bad" id="fbbad-s3e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Who’ = ¿Quién? Solo para personas. ’It’ es una cosa → What.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">What</span> — ’What is it?’ — What = ¿Qué? (cosas).</div></div><div class="fb-example">📝 What is it? → ¿Qué es eso?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> What = cosa · Who = persona</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s3">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+<div class="card" id="card-s4">
+<div class="section-label">Paso 5 de 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final</div>
+<div class="section-desc">Aplica todo — preguntas Sí/No y preguntas Wh-.</div>
+
+<div class="formula-box">
+  ❓ <span class="g-quest">Am I</span>...? / <span class="g-quest">Is he/she/it</span>...? / <span class="g-quest">Are you/we</span>...?<br>
+  📝 <span class="g-quest">Who</span> <span class="g-verb">is/are</span>...? &nbsp;&nbsp;·&nbsp;&nbsp; <span class="g-quest">What</span> <span class="g-verb">is/are</span>...?
+</div>
+
+<div class="section-label">Preguntas Sí/No</div>
+<div class="ex-row ex-right"><div class="icon">❓</div><div><div class="en"><span class="g-quest">Are you</span> <span class="g-comp">happy</span>?</div><div class="es">¿Estás feliz?</div></div></div>
+<div class="ex-row ex-right"><div class="icon">❓</div><div><div class="en"><span class="g-quest">Is he</span> <span class="g-comp">a boy</span>?</div><div class="es">¿Es él un niño?</div></div></div>
+<div class="ex-row ex-right"><div class="icon">❓</div><div><div class="en"><span class="g-quest">Is she</span> <span class="g-comp">kind</span>?</div><div class="es">¿Es ella amable?</div></div></div>
+
+<div class="section-label">Preguntas Wh-</div>
+<div class="ex-row ex-right"><div class="icon">🙋</div><div><div class="en"><span class="g-quest">Who</span> <span class="g-verb">is</span> <span class="g-subj">he</span>?</div><div class="es">¿Quién es él?</div></div></div>
+<div class="ex-row ex-right"><div class="icon">🔍</div><div><div class="en"><span class="g-quest">What</span> <span class="g-verb">is</span> <span class="g-subj">it</span>?</div><div class="es">¿Qué es eso?</div></div></div>
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div><div class="en"><span class="g-quest">Who</span> <span class="g-verb">is</span> <span class="g-subj">your dad</span>?</div><div class="es">¿Quién es tu papá?</div></div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 3 errores más comunes</div>
+  <p>❌ "You are happy?" → ✅ "<b>Are you</b> happy?" — invertir siempre<br>
+  ❌ "Who he is?" → ✅ "Who <b>is he</b>?" — Who + verbo + sujeto<br>
+  ❌ "Yes, I are." → ✅ "Yes, I <b>am</b>." — I siempre con am</p>
+</div>
+<div class="ex-section"><h3>✏️ Ejercicios — Práctica Final</h3>
+<div class="exercise" id="s4e0"><div class="exercise-q">1. ’___ she a boy?’ Pregunta Sí/No:</div><div class="opts"><button class="opt-btn" id="s4e0ba">a) Is</button><button class="opt-btn" id="s4e0bb">b) Are</button></div><div class="fb fb-ok" id="fbok-s4e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Is</span> — ’Is she a boy?’ She es singular → Is al inicio.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Are’ es para You/We. She es singular → Is.</div></div><div class="fb-example">📝 Is she a boy? → ¿Es ella un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is + He/She/It · Are + You/We · Am + I</div></div></div><div class="fb fb-bad" id="fbbad-s4e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Are’ es para You/We. She es singular → Is.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Is</span> — ’Is she a boy?’ She es singular → Is al inicio.</div></div><div class="fb-example">📝 Is she a boy? → ¿Es ella un niño?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Is + He/She/It · Are + You/We · Am + I</div></div></div></div>
+<div class="exercise" id="s4e1"><div class="exercise-q">2. ’___ is your dad?’ (¿Quién?)</div><div class="opts"><button class="opt-btn" id="s4e1ba">a) What</button><button class="opt-btn" id="s4e1bb">b) Who</button></div><div class="fb fb-ok" id="fbok-s4e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Who</span> — ’Who is your dad?’ — Dad es una persona → Who.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’What’ = ¿Qué? Solo para cosas. Dad es persona → Who.</div></div><div class="fb-example">📝 Who is your dad? → ¿Quién es tu papá?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Si la respuesta es un nombre de persona → Who</div></div></div><div class="fb fb-bad" id="fbbad-s4e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’What’ = ¿Qué? Solo para cosas. Dad es persona → Who.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Who</span> — ’Who is your dad?’ — Dad es una persona → Who.</div></div><div class="fb-example">📝 Who is your dad? → ¿Quién es tu papá?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Si la respuesta es un nombre de persona → Who</div></div></div></div>
+<div class="exercise" id="s4e2"><div class="exercise-q">3. ’Is it a family?’ → ’No, ___’</div><div class="opts"><button class="opt-btn" id="s4e2ba">a) it isn’t.</button><button class="opt-btn" id="s4e2bb">b) it aren’t.</button></div><div class="fb fb-ok" id="fbok-s4e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">it isn’t.</span> — ’No, it isn’t.’ It es singular → isn’t.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Aren’t’ es para You/We. It es singular → isn’t.</div></div><div class="fb-example">📝 Is it a family? → No, it isn’t.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It → is/isn’t — igual que He y She</div></div></div><div class="fb fb-bad" id="fbbad-s4e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Aren’t’ es para You/We. It es singular → isn’t.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">it isn’t.</span> — ’No, it isn’t.’ It es singular → isn’t.</div></div><div class="fb-example">📝 Is it a family? → No, it isn’t.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It → is/isn’t — igual que He y She</div></div></div></div>
+<div class="exercise" id="s4e3"><div class="exercise-q">4. ’Are we the same age?’ → ’Yes, ___’</div><div class="opts"><button class="opt-btn" id="s4e3ba">a) we is.</button><button class="opt-btn" id="s4e3bb">b) we are.</button></div><div class="fb fb-ok" id="fbok-s4e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">we are.</span> — ’Yes, we are.’ We es plural → are.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’We is’ nunca es correcto. We siempre usa ’are’.</div></div><div class="fb-example">📝 Are we the same age? → Yes, we are.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: repite el mismo verbo be de la pregunta</div></div></div><div class="fb fb-bad" id="fbbad-s4e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’We is’ nunca es correcto. We siempre usa ’are’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">we are.</span> — ’Yes, we are.’ We es plural → are.</div></div><div class="fb-example">📝 Are we the same age? → Yes, we are.</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Respuesta corta: repite el mismo verbo be de la pregunta</div></div></div></div>
+<div class="exercise" id="s4e4"><div class="exercise-q">5. ’___ I kind?’ (¿Soy yo amable?)</div><div class="opts"><button class="opt-btn" id="s4e4ba">a) Am</button><button class="opt-btn" id="s4e4bb">b) Is</button></div><div class="fb fb-ok" id="fbok-s4e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Am</span> — ’Am I kind?’ I + am → el verbo al inicio es Am.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Is’ es para He/She/It. I necesita ’Am’.</div></div><div class="fb-example">📝 Am I kind? → ¿Soy yo amable?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Am I...? — la pregunta con I siempre usa Am</div></div></div><div class="fb fb-bad" id="fbbad-s4e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Is’ es para He/She/It. I necesita ’Am’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Am</span> — ’Am I kind?’ I + am → el verbo al inicio es Am.</div></div><div class="fb-example">📝 Am I kind? → ¿Soy yo amable?</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Am I...? — la pregunta con I siempre usa Am</div></div></div></div>
+<div class="score-bar"><div class="num" id="sc-s4">0/5</div><div class="lbl">Puntuación del paso</div></div></div></div>
+</div>
+<div class="summary-final" id="summaryFinal">
+<h3>🎓 Lo que aprendiste — To Be: Questions</h3>
+<ul>
+<li><b>Sí/No:</b> Am/Is/Are + sujeto + ...? → verbo be va PRIMERO</li>
+<li><b>Wh-:</b> Who/What + is/are + sujeto? → palabra interrogativa primero</li>
+<li><b>Inversión OBLIGATORIA</b> en inglés — no basta con el tono de voz</li>
+<li><b>Who</b> = ¿Quién? (personas) &nbsp;·&nbsp; <b>What</b> = ¿Qué? (cosas)</li>
+<li><b>Respuestas cortas:</b> Yes, I am. / No, she isn’t. — repite el verbo be</li>
+<li><b>Solo un signo</b> al final: ...? — el signo ¿ no existe en inglés</li>
+<li><b>I’m not</b> en respuesta negativa — nunca ‘amn’t’</li>
+</ul>
+</div>
+</div>
+<script>
+var curStep=0,scores={},answered={},skeys=["s0","s1","s2","s3","s4"];
+function switchStep(n){
+  document.getElementById("card-"+skeys[curStep]).classList.remove("active");
+  document.getElementById("tab-"+skeys[curStep]).classList.remove("active");
+  document.getElementById("card-"+skeys[n]).classList.add("active");
+  document.getElementById("tab-"+skeys[n]).classList.add("active");
+  curStep=n;
+  document.getElementById("summaryFinal").classList.remove("show");
+}
+function chk(eid,sel,correct){
+  if(answered[eid])return;
+  answered[eid]=true;
+  var ex=document.getElementById(eid);
+  var ba=document.getElementById(eid+"ba"),bb=document.getElementById(eid+"bb");
+  ba.disabled=true;bb.disabled=true;
+  var sk=eid.substring(0,2);
+  if(!scores[sk])scores[sk]=0;
+  if(sel===correct){
+    ex.classList.add("correct");
+    (sel==="a"?ba:bb).classList.add("sel-ok");
+    document.getElementById("fbok-"+eid).classList.add("show");
+    scores[sk]++;
+  } else {
+    ex.classList.add("incorrect");
+    (sel==="a"?ba:bb).classList.add("sel-bad");
+    (sel==="a"?bb:ba).classList.add("show-ok");
+    document.getElementById("fbbad-"+eid).classList.add("show");
+  }
+  document.getElementById("sc-"+sk).textContent=scores[sk]+"/5";
+  var done=true;
+  for(var j=0;j<5;j++){if(!answered[sk+"e"+j]){done=false;break;}}
+  if(done&&curStep===4){setTimeout(function(){var sf=document.getElementById("summaryFinal");sf.classList.add("show");sf.scrollIntoView({behavior:"smooth"});},600);}
+  if(done&&curStep<4){document.getElementById("tab-"+sk).classList.add("done");}
+}
+document.getElementById("s0e0ba").addEventListener("click",function(){chk("s0e0","a","a");});
+document.getElementById("s0e0bb").addEventListener("click",function(){chk("s0e0","b","a");});
+document.getElementById("s0e1ba").addEventListener("click",function(){chk("s0e1","a","b");});
+document.getElementById("s0e1bb").addEventListener("click",function(){chk("s0e1","b","b");});
+document.getElementById("s0e2ba").addEventListener("click",function(){chk("s0e2","a","a");});
+document.getElementById("s0e2bb").addEventListener("click",function(){chk("s0e2","b","a");});
+document.getElementById("s0e3ba").addEventListener("click",function(){chk("s0e3","a","b");});
+document.getElementById("s0e3bb").addEventListener("click",function(){chk("s0e3","b","b");});
+document.getElementById("s0e4ba").addEventListener("click",function(){chk("s0e4","a","b");});
+document.getElementById("s0e4bb").addEventListener("click",function(){chk("s0e4","b","b");});
+document.getElementById("s1e0ba").addEventListener("click",function(){chk("s1e0","a","b");});
+document.getElementById("s1e0bb").addEventListener("click",function(){chk("s1e0","b","b");});
+document.getElementById("s1e1ba").addEventListener("click",function(){chk("s1e1","a","a");});
+document.getElementById("s1e1bb").addEventListener("click",function(){chk("s1e1","b","a");});
+document.getElementById("s1e2ba").addEventListener("click",function(){chk("s1e2","a","b");});
+document.getElementById("s1e2bb").addEventListener("click",function(){chk("s1e2","b","b");});
+document.getElementById("s1e3ba").addEventListener("click",function(){chk("s1e3","a","b");});
+document.getElementById("s1e3bb").addEventListener("click",function(){chk("s1e3","b","b");});
+document.getElementById("s1e4ba").addEventListener("click",function(){chk("s1e4","a","a");});
+document.getElementById("s1e4bb").addEventListener("click",function(){chk("s1e4","b","a");});
+document.getElementById("s2e0ba").addEventListener("click",function(){chk("s2e0","a","b");});
+document.getElementById("s2e0bb").addEventListener("click",function(){chk("s2e0","b","b");});
+document.getElementById("s2e1ba").addEventListener("click",function(){chk("s2e1","a","a");});
+document.getElementById("s2e1bb").addEventListener("click",function(){chk("s2e1","b","a");});
+document.getElementById("s2e2ba").addEventListener("click",function(){chk("s2e2","a","b");});
+document.getElementById("s2e2bb").addEventListener("click",function(){chk("s2e2","b","b");});
+document.getElementById("s2e3ba").addEventListener("click",function(){chk("s2e3","a","b");});
+document.getElementById("s2e3bb").addEventListener("click",function(){chk("s2e3","b","b");});
+document.getElementById("s2e4ba").addEventListener("click",function(){chk("s2e4","a","a");});
+document.getElementById("s2e4bb").addEventListener("click",function(){chk("s2e4","b","a");});
+document.getElementById("s3e0ba").addEventListener("click",function(){chk("s3e0","a","a");});
+document.getElementById("s3e0bb").addEventListener("click",function(){chk("s3e0","b","a");});
+document.getElementById("s3e1ba").addEventListener("click",function(){chk("s3e1","a","b");});
+document.getElementById("s3e1bb").addEventListener("click",function(){chk("s3e1","b","b");});
+document.getElementById("s3e2ba").addEventListener("click",function(){chk("s3e2","a","a");});
+document.getElementById("s3e2bb").addEventListener("click",function(){chk("s3e2","b","a");});
+document.getElementById("s3e3ba").addEventListener("click",function(){chk("s3e3","a","b");});
+document.getElementById("s3e3bb").addEventListener("click",function(){chk("s3e3","b","b");});
+document.getElementById("s3e4ba").addEventListener("click",function(){chk("s3e4","a","a");});
+document.getElementById("s3e4bb").addEventListener("click",function(){chk("s3e4","b","a");});
+document.getElementById("s4e0ba").addEventListener("click",function(){chk("s4e0","a","a");});
+document.getElementById("s4e0bb").addEventListener("click",function(){chk("s4e0","b","a");});
+document.getElementById("s4e1ba").addEventListener("click",function(){chk("s4e1","a","b");});
+document.getElementById("s4e1bb").addEventListener("click",function(){chk("s4e1","b","b");});
+document.getElementById("s4e2ba").addEventListener("click",function(){chk("s4e2","a","a");});
+document.getElementById("s4e2bb").addEventListener("click",function(){chk("s4e2","b","a");});
+document.getElementById("s4e3ba").addEventListener("click",function(){chk("s4e3","a","b");});
+document.getElementById("s4e3bb").addEventListener("click",function(){chk("s4e3","b","b");});
+document.getElementById("s4e4ba").addEventListener("click",function(){chk("s4e4","a","a");});
+document.getElementById("s4e4bb").addEventListener("click",function(){chk("s4e4","b","a");});
+document.getElementById("tab-s0").addEventListener("click",function(){switchStep(0);});
+document.getElementById("tab-s1").addEventListener("click",function(){switchStep(1);});
+document.getElementById("tab-s2").addEventListener("click",function(){switchStep(2);});
+document.getElementById("tab-s3").addEventListener("click",function(){switchStep(3);});
+document.getElementById("tab-s4").addEventListener("click",function(){switchStep(4);});
+
+</script>
+</body>
+</html>

@@ -381,7 +381,7 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 const BASE = 'https://jucumenglishcenter.github.io/Pre-a1';
 const PANEL = 'https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html';
 
-// ── QUIZLET (M1 — mismo set para todos los módulos hasta que haya sets por módulo)
+// ── QUIZLET
 const QZ = {
   esp_ing:     'https://quizlet.com/pe/1155523542/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=3e1a1ca6-c109-4f8d-b627-df6ce0495d6b',
   traducir:    'https://quizlet.com/pe/1155523540/prea1-escritura-traducir-flash-cards/?funnelUUID=2f0841af-38cc-4cc1-85cb-29ad194db1fc',
@@ -395,45 +395,47 @@ const DATA = [
     id:1, name:'Personal Identity', ok:true,
     img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80',
     tags:['Pronouns','To be','There is/are'],
-    folder:'M1-Personal-Identity',
     topics:[
       {
         label:'Pronouns: simple personal',
-        folder:'Practicas/T1_PRONOUNS',
-        filePfx:'PreA1_M1_Grammar_Pronouns',
+        fillin:       `${BASE}/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Fill%20in.html`,
+        identification:`${BASE}/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Identification.html`,
+        transform:    `${BASE}/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Transform.html`,
         summaries:[
-          { label:'📄 Pronouns', url:`${BASE}/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Summary_Pronouns.html` },
+          { label:'📄 Pronouns', url:`${BASE}/M1-Personal-Identity/Practicas/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_Pronouns.html` },
         ],
       },
       {
         label:'To be: Affirmative, Negative & Interrogative',
-        folder:'Practicas/T2_To_be',
-        filePfx:'PreA1_M1_Grammar_To_be',
+        fillin:       `${BASE}/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Fill%20in.html`,
+        identification:`${BASE}/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Identification.html`,
+        transform:    `${BASE}/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Transform.html`,
         summaries:[
-          { label:'📄 To be: Aff & Neg', url:`${BASE}/M1-Personal-Identity/Practicas/T2_To_be/PreA1_M1_Grammar_Summary_To_be__Affirmative-Negative_.html` },
+          { label:'📄 To be: Aff & Neg', url:`${BASE}/M1-Personal-Identity/Practicas/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Affirmative-Negative).html` },
         ],
       },
       {
         label:'To be: Affirmative, Negative & Interrogative — Round 2',
-        folder:'Practicas/T2_To_be',
-        filePfx:'PreA1_M1_Grammar_To_be',
-        round2: true,
+        fillin:       `${BASE}/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Fill_in_P2.html`,
+        identification:`${BASE}/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Identification_P2.html`,
+        transform:    `${BASE}/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Transform_P2.html`,
         summaries:[
-          { label:'📄 To be: Questions', url:`${BASE}/M1-Personal-Identity/Practicas/T2_To_be/PreA1_M1_Grammar_Summary_To_be__Questions_.html` },
+          { label:'📄 To be: Questions', url:`${BASE}/M1-Personal-Identity/Practicas/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Questions).html` },
         ],
       },
       {
         label:'There is / There are',
-        folder:'Practicas/T3_There_is_are',
-        filePfx:'PreA1_M1_Grammar_There_is-are',
+        fillin:       `${BASE}/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Fill%20in.html`,
+        identification:`${BASE}/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Identification.html`,
+        transform:    `${BASE}/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Transform.html`,
         summaries:[
-          { label:'📄 There is / are', url:`${BASE}/M1-Personal-Identity/Practicas/T3_There_is_are/PreA1_M1_Grammar_Summary_There_is-are.html` },
+          { label:'📄 There is / are', url:`${BASE}/M1-Personal-Identity/Practicas/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_There%20is-are.html` },
         ],
       },
     ],
-    reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading_Comprehension_Personal_Identity.html`,
-    listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal_Identity.html`,
-    story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal_Identity.html`,
+    reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading%20Comprehension_Personal%20Identity.html`,
+    listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal%20Identity.html`,
+    story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal%20Identity.html`,
     quizlet: QZ,
   },
   {
@@ -451,29 +453,13 @@ const DATA = [
 ];
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
-function ghUrl(mFolder, tFolder, filename) {
-  return `${BASE}/${mFolder}/${tFolder}/${filename}.html`;
-}
 
 function tRow(topic, i, mid) {
-  const f = topic.folder;
-  const p = topic.filePfx;
-  const mFolder = DATA.find(x => x.id === mid).folder;
-
-  const suffix = topic.round2 ? '_P2' : '';
-  const fillIn = ghUrl(mFolder, f, `${p}_Fill_in${suffix}`);
-  const ident  = ghUrl(mFolder, f, `${p}_Identification${suffix}`);
-  const trans  = ghUrl(mFolder, f, `${p}_Transform${suffix}`);
-
   const grammarChips = [
-    `<a class="chip chip-fill" href="${fillIn}" target="_blank">✏️ Fill In</a>`,
-    `<a class="chip chip-fill" href="${ident}"  target="_blank">🔍 Identification</a>`,
-    `<a class="chip chip-fill" href="${trans}"  target="_blank">🔄 Transform</a>`,
+    `<a class="chip chip-fill" href="${topic.fillin}"        target="_blank">✏️ Fill In</a>`,
+    `<a class="chip chip-fill" href="${topic.identification}" target="_blank">🔍 Identification</a>`,
+    `<a class="chip chip-fill" href="${topic.transform}"     target="_blank">🔄 Transform</a>`,
   ].join('');
-
-  const summaryChips = (topic.summaries || []).map(s =>
-    `<a class="chip chip-out" href="${s.url}" target="_blank">${s.label}</a>`
-  ).join('');
 
   return `<div class="titem" id="g${mid}_${i}">
     <div class="ttrig" onclick="ti('g${mid}_${i}')">
@@ -481,7 +467,7 @@ function tRow(topic, i, mid) {
       <span class="ttext">${topic.label}</span>
       <span class="tchev">▾</span>
     </div>
-    <div class="tacts">${grammarChips}${summaryChips}</div>
+    <div class="tacts">${grammarChips}</div>
   </div>`;
 }
 

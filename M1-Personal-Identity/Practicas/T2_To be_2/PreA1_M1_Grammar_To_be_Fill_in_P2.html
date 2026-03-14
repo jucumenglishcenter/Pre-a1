@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fill in the Blanks P2 - Pre-A1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#F59E0B;--primary-light:#FCD34D;--primary-dark:#D97706;
+            --bg-gradient-start:#FFFBEB;--bg-gradient-end:#FEF3C7;
+            --text-dark:#78350F;--text-medium:#92400E;--text-light:#B45309;
+            --success:#10B981;--success-light:#D1FAE5;--success-dark:#059669;
+            --error:#EF4444;--error-light:#FEE2E2;--error-dark:#DC2626;
+            --info:#3B82F6;--info-light:#DBEAFE;--info-dark:#1D4ED8;
+            --purple:#8B5CF6;--purple-light:#EDE9FE;--purple-dark:#6D28D9;
+            --shadow-soft:0 4px 20px rgba(245,158,11,0.15);
+            --border-radius:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));min-height:100vh;color:var(--text-dark);}
+        .header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-soft);}
+        .back-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;text-decoration:none;color:var(--text-dark);transition:all .2s;flex-shrink:0;}
+        .back-btn:hover{background:rgba(255,255,255,0.5);transform:scale(1.1);}
+        .header-info{flex:1;}
+        .header-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:white;}
+        .header-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:2px;}
+        .progress-indicator{background:rgba(255,255,255,0.3);padding:0.4rem 0.9rem;border-radius:20px;font-weight:700;color:white;font-size:0.9rem;white-space:nowrap;}
+        .progress-container{height:6px;background:rgba(255,255,255,0.3);}
+        .progress-fill{height:100%;background:white;border-radius:0 3px 3px 0;transition:width .5s ease;width:0%;}
+        main{padding:1.5rem;max-width:650px;margin:0 auto;}
+        .instructions{background:white;border-radius:16px;padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow-soft);border-left:5px solid var(--primary);display:flex;gap:0.75rem;align-items:flex-start;}
+        .instructions-icon{font-size:1.6rem;flex-shrink:0;}
+        .instructions-title{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:0.2rem;}
+        .instructions-text{font-size:0.85rem;color:var(--text-medium);line-height:1.5;}
+        .question-card{background:white;border-radius:var(--border-radius);box-shadow:var(--shadow-soft);padding:1.5rem;margin-bottom:1rem;animation:slideIn .4s ease;}
+        .question-card.hidden{display:none;}
+        @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+        .q-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;}
+        .question-number{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;flex-shrink:0;}
+        .form-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.7rem;border-radius:20px;font-size:0.72rem;font-weight:700;margin-left:auto;}
+        .form-badge.affirmative{background:#D1FAE5;color:#059669;}
+        .form-badge.negative{background:#FEE2E2;color:#DC2626;}
+        .form-badge.question{background:#DBEAFE;color:#1D4ED8;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:0.7rem 1rem;border-radius:0 10px 10px 0;margin-bottom:1rem;font-size:0.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:700;color:var(--primary-dark);display:flex;align-items:center;gap:0.4rem;margin-bottom:0.2rem;font-size:0.82rem;text-transform:uppercase;letter-spacing:.5px;}
+        .question-text{font-size:1.1rem;line-height:1.7;margin-bottom:0.4rem;font-weight:600;}
+        .blank{display:inline-block;min-width:90px;padding:0.2rem 0.6rem;background:var(--primary-light);border:2px dashed var(--primary-dark);border-radius:8px;text-align:center;font-weight:700;color:var(--primary-dark);transition:all .3s;}
+        .blank.correct{background:var(--success-light);border:2px solid var(--success);color:var(--success-dark);}
+        .blank.incorrect{background:var(--error-light);border:2px solid var(--error);color:var(--error-dark);}
+        .translation{color:var(--text-light);font-style:italic;font-size:0.85rem;margin-bottom:1rem;}
+        .options-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem;margin-top:0.5rem;}
+        .option-btn{padding:0.9rem 0.5rem;border:2.5px solid #E5E7EB;border-radius:12px;background:white;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;color:var(--text-dark);}
+        .option-btn:hover:not(:disabled){border-color:var(--primary);background:var(--primary-light);transform:translateY(-2px);}
+        .option-btn:disabled{cursor:default;}
+        .option-btn.correct{border-color:var(--success);background:var(--success-light);color:var(--success-dark);}
+        .option-btn.incorrect{border-color:var(--error);background:var(--error-light);color:var(--error-dark);}
+        .feedback{margin-top:1.25rem;border-radius:16px;overflow:hidden;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+        .feedback.show{display:block;animation:fadeUp .35s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .fb-header{padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;}
+        .feedback.correct .fb-header{background:linear-gradient(135deg,var(--success),var(--success-dark));}
+        .feedback.incorrect .fb-header{background:linear-gradient(135deg,var(--error),var(--error-dark));}
+        .fb-icon{font-size:1.6rem;}
+        .fb-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:white;font-weight:600;}
+        .fb-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:1px;}
+        .fb-body{background:white;border:2px solid;border-top:none;border-radius:0 0 16px 16px;padding:1.25rem;display:flex;flex-direction:column;gap:0.9rem;}
+        .feedback.correct .fb-body{border-color:var(--success);}
+        .feedback.incorrect .fb-body{border-color:var(--error);}
+        .fb-block{border-radius:12px;padding:0.9rem 1rem;}
+        .fb-block-title{font-weight:800;font-size:0.78rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+        .error-badge{display:inline-block;background:var(--error);color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.72rem;font-weight:700;margin-left:4px;}
+        .fb-signal{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-signal.wrong{background:#FFF1F2;border-color:#FECDD3;}
+        .fb-signal .fb-block-title{color:var(--success-dark);}
+        .fb-signal.wrong .fb-block-title{color:var(--error-dark);}
+        .signal-tag{display:inline-block;background:var(--success);color:white;border-radius:6px;padding:0.1rem 0.5rem;font-size:0.82rem;font-weight:700;margin:0 2px;}
+        .signal-tag.red{background:var(--error);}
+        .fb-error{background:var(--error-light);border:1px solid #FECACA;}
+        .fb-error .fb-block-title{color:var(--error-dark);}
+        .word-swap{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin:0.6rem 0;}
+        .ws-box{padding:0.4rem 1rem;border-radius:8px;font-weight:700;font-size:1rem;}
+        .ws-wrong{background:white;color:var(--error);border:2px solid var(--error);text-decoration:line-through;}
+        .ws-arrow{font-size:1.3rem;color:#94A3B8;}
+        .ws-right{background:var(--success);color:white;}
+        .error-text{font-size:0.9rem;color:var(--text-dark);line-height:1.55;}
+        .fb-rule{background:var(--info-light);border:1px solid #BFDBFE;}
+        .fb-rule .fb-block-title{color:var(--info-dark);}
+        .rule-formula{background:white;border-radius:8px;padding:0.5rem 0.9rem;font-family:'Fredoka',sans-serif;font-size:0.95rem;color:var(--info-dark);font-weight:600;margin-bottom:0.6rem;text-align:center;border:1px solid #BFDBFE;}
+        .rule-examples{display:flex;flex-wrap:wrap;gap:0.4rem;}
+        .rule-ex{font-size:0.82rem;background:white;border:1px solid #BFDBFE;border-radius:6px;padding:0.2rem 0.5rem;color:var(--success-dark);font-weight:600;}
+        .fb-why{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-why .fb-block-title{color:var(--success-dark);}
+        .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
+        .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
+        .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
+        .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
+        .nav-btn:disabled{opacity:.4;cursor:default;}
+        .nav-btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .results-screen{display:none;text-align:center;padding:2rem 1.5rem;}
+        .results-screen.show{display:block;animation:fadeUp .5s ease;}
+        .results-emoji{font-size:4rem;margin-bottom:1rem;}
+        .results-title{font-family:'Fredoka',sans-serif;font-size:2rem;margin-bottom:0.5rem;}
+        .results-score{font-size:3rem;font-weight:800;color:var(--purple);margin:1rem 0;}
+        .results-message{font-size:1.05rem;color:var(--text-medium);margin-bottom:1.5rem;}
+        .stars-container{display:flex;justify-content:center;gap:0.5rem;margin:1.5rem 0;}
+        .star{font-size:2.5rem;opacity:.3;transition:all .5s ease;}
+        .star.earned{opacity:1;animation:starPop .5s ease;}
+        @keyframes starPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+        .results-buttons{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+        .result-btn{padding:1rem 2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all .2s;}
+        .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
+        .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
+        .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="prea1-m1t2-index.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">✏️ Fill in the Blanks — Parte 2</div>
+            <div class="header-subtitle">💛 Pre-A1 · Personal Identity · To Be + − ?</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">✏️</div>
+            <div>
+                <div class="instructions-title">Completa el espacio en blanco</div>
+                <div class="instructions-text">Elige la forma correcta del verbo <strong>to be</strong> según el sujeto, la forma (+ − ?) y el contexto de la historia.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="prea1-m1t2-index.html" class="result-btn secondary">← Volver al módulo</a>
+            </div>
+        </div>
+    </main>
+    <script>
+    // To Be + − ? · Fill in the Blanks · Parte 2
+    // Distribución: 4 afirmativas · 3 negativas · 3 preguntas
+    // NINGUNA pregunta repite sujeto+forma de la Parte 1
+    const quizData = [
+        {
+            id:1, form:"affirmative",
+            sentence:"Don Beto _____ old, but he is very strong.",
+            translation:"Don Beto es viejo, pero es muy fuerte.",
+            hint:"El sujeto es un nombre de persona — ¿es él, ella o ellos?",
+            clue:"Don Beto (= he)",
+            clueExplain:"'Don Beto' es una persona masculina singular — equivale a 'he'. Con he/she/it el verbo to be siempre es 'is'.",
+            options:["is","are","am"],
+            correct:"is",
+            feedback:{
+                "are":{errorType:"Plural por singular",explanation:"'Are' va con you, we, they. Don Beto es una sola persona — equivale a 'he'. Con he/she/it siempre va 'is'.",rule:"he/she/it → is"},
+                "am":{errorType:"Primera persona por tercera",explanation:"'Am' solo va con 'I'. El sujeto aquí es 'Don Beto' — una tercera persona. Con he/she/it el verbo es 'is'.",rule:"I → am · he/she/it → is"}
+            },
+            correctReason:"'Don Beto' = he (tercera persona singular masculino). Con he/she/it el verbo to be es siempre 'is'. Sin excepción.",
+            examples:["He is kind.","She is funny.","Don Beto is strong."]
+        },
+        {
+            id:2, form:"affirmative",
+            sentence:"My mom and my grandma _____ in the kitchen every Sunday.",
+            translation:"Mi mamá y mi abuela están en la cocina cada domingo.",
+            hint:"Cuenta los sujetos. ¿Cuántas personas hay?",
+            clue:"my mom and my grandma (dos personas)",
+            clueExplain:"Dos personas unidas por 'and' forman un sujeto plural. Plural → 'are'.",
+            options:["are","is","am"],
+            correct:"are",
+            feedback:{
+                "is":{errorType:"Singular por plural",explanation:"'Is' es para una sola persona (he/she/it). Aquí hay dos personas — mom y grandma — unidas por 'and'. Plural → 'are'.",rule:"dos sujetos con 'and' → plural → are"},
+                "am":{errorType:"Primera persona por plural",explanation:"'Am' solo va con 'I'. El sujeto son dos personas (mom + grandma) — tercera persona plural. Plural → 'are'.",rule:"I → am · dos personas → are"}
+            },
+            correctReason:"'My mom and my grandma' son dos personas — sujeto plural. Cuando hay dos o más sujetos unidos por 'and', el verbo to be es siempre 'are'.",
+            examples:["Mom and grandma are kind.","Leo and Ravi are friends.","We are happy."]
+        },
+        {
+            id:3, form:"affirmative",
+            sentence:"I _____ in the right class — this is Room 5!",
+            translation:"¡Estoy en la clase correcta — esta es el Salón 5!",
+            hint:"¿Quién habla? El sujeto te dice todo.",
+            clue:"I (primera persona singular)",
+            clueExplain:"'I' es primera persona singular. Con 'I' el verbo to be es SIEMPRE 'am'. Es una regla fija sin excepciones.",
+            options:["am","is","are"],
+            correct:"am",
+            feedback:{
+                "is":{errorType:"Tercera persona con I",explanation:"'Is' va con he, she, it — nunca con 'I'. Con 'I' la única forma posible es 'am'.",rule:"I → am (siempre, sin excepción)"},
+                "are":{errorType:"Plural con I",explanation:"'Are' va con you, we, they. El sujeto 'I' es primera persona singular — solo acepta 'am'.",rule:"I → am · you/we/they → are"}
+            },
+            correctReason:"La regla es inmutable: I + am. No existe 'I is' ni 'I are' en inglés. Siempre 'I am'.",
+            examples:["I am in Room 5.","I am happy.","I am Ana."]
+        },
+        {
+            id:4, form:"affirmative",
+            sentence:"Nico's baby sister _____ only two days old.",
+            translation:"La hermanita bebé de Nico tiene solo dos días de nacida.",
+            hint:"El sujeto es una bebé — ¿qué pronombre la representa?",
+            clue:"baby sister (= she)",
+            clueExplain:"'Baby sister' es femenino singular — equivale a 'she'. Con she/he/it el verbo to be siempre es 'is'.",
+            options:["is","are","am"],
+            correct:"is",
+            feedback:{
+                "are":{errorType:"Plural por singular",explanation:"'Are' es para sujetos plurales. 'Baby sister' es una sola persona femenina — equivale a 'she'. Con she siempre va 'is'.",rule:"she/he/it → is"},
+                "am":{errorType:"Primera persona por tercera",explanation:"'Am' solo va con 'I'. La bebé es otra persona — tercera persona singular. Con she el verbo es 'is'.",rule:"I → am · she/he/it → is"}
+            },
+            correctReason:"'Baby sister' = she (tercera persona singular femenina). Con she/he/it el verbo to be es siempre 'is'.",
+            examples:["She is two days old.","He is nine.","The baby is tiny."]
+        },
+        {
+            id:5, form:"negative",
+            sentence:"Dev _____ Ravi's older brother — he is the younger one.",
+            translation:"Dev no es el hermano mayor de Ravi — él es el menor.",
+            hint:"El sujeto es una persona masculina singular. Necesitas la negativa.",
+            clue:"Dev (= he) + negativa",
+            clueExplain:"'Dev' = he (singular). La negativa de 'he is' es 'he isn't' o 'he is not'.",
+            options:["isn't","aren't","am not"],
+            correct:"isn't",
+            feedback:{
+                "aren't":{errorType:"Negativa plural por singular",explanation:"'Aren't' es la negativa de 'are' — para sujetos plurales (we, they). Dev es singular (= he). La negativa correcta de 'he is' es 'isn't'.",rule:"he/she/it → isn't · we/you/they → aren't"},
+                "am not":{errorType:"Primera persona por tercera",explanation:"'Am not' es la negativa de 'I am'. El sujeto es 'Dev' — tercera persona, no primera. Con he/she/it la negativa es 'isn't'.",rule:"I am not · he/she/it → isn't"}
+            },
+            correctReason:"'Dev' = he (tercera persona singular). La negativa de 'is' es 'isn't' (o 'is not'). Regla: he/she/it + isn't.",
+            examples:["He isn't the oldest.","She isn't here.","Dev isn't my brother."]
+        },
+        {
+            id:6, form:"negative",
+            sentence:"We _____ in the same class, but we are good friends.",
+            translation:"No estamos en la misma clase, pero somos buenos amigos.",
+            hint:"'We' indica primera persona plural. ¿Cuál es su forma negativa?",
+            clue:"We (primera persona plural) + negativa",
+            clueExplain:"'We' es plural. La negativa de 'we are' es 'we aren't' o 'we are not'.",
+            options:["aren't","isn't","am not"],
+            correct:"aren't",
+            feedback:{
+                "isn't":{errorType:"Singular por plural",explanation:"'Isn't' es la negativa de 'is' — para he/she/it. El sujeto 'we' es plural. Con we/you/they la negativa es 'aren't'.",rule:"we/you/they → aren't · he/she/it → isn't"},
+                "am not":{errorType:"Primera persona singular por plural",explanation:"'Am not' es la negativa de 'I am'. 'We' es primera persona PLURAL — necesita 'aren't', no 'am not'.",rule:"I → am not · we/you/they → aren't"}
+            },
+            correctReason:"'We' es plural. La negativa de 'are' es 'aren't' (are not). Regla: we/you/they + aren't.",
+            examples:["We aren't in the same class.","They aren't here.","You aren't wrong."]
+        },
+        {
+            id:7, form:"negative",
+            sentence:"It _____ easy to share a room, but I love my sister.",
+            translation:"No es fácil compartir un cuarto, pero amo a mi hermana.",
+            hint:"El sujeto 'it' indica una situación o cosa. ¿Qué negativa necesitas?",
+            clue:"It (singular impersonal) + negativa",
+            clueExplain:"'It' es tercera persona singular. La negativa de 'it is' es 'it isn't' o 'it is not'.",
+            options:["isn't","aren't","am not"],
+            correct:"isn't",
+            feedback:{
+                "aren't":{errorType:"Plural por singular",explanation:"'Aren't' es la negativa de 'are' — para sujetos plurales. 'It' es singular. Con it/he/she la negativa correcta es 'isn't'.",rule:"it/he/she → isn't · we/they → aren't"},
+                "am not":{errorType:"Primera persona por tercera",explanation:"'Am not' es solo para 'I'. El sujeto 'it' es tercera persona singular. Con it la negativa es 'isn't'.",rule:"I → am not · it/he/she → isn't"}
+            },
+            correctReason:"'It' = tercera persona singular (situación, cosa). La negativa de 'is' es 'isn't'. Regla: it + isn't.",
+            examples:["It isn't easy.","It isn't far.","It isn't cold today."]
+        },
+        {
+            id:8, form:"question",
+            sentence:"_____ Mia's brother in the same class as Dev?",
+            translation:"¿El hermano de Mia está en la misma clase que Dev?",
+            hint:"El sujeto es 'Mia's brother' — ¿qué pronombre le corresponde?",
+            clue:"Mia's brother (= he)",
+            clueExplain:"'Mia's brother' = he (singular). En preguntas con he/she/it el verbo va primero: Is + sujeto.",
+            options:["Is","Are","Am"],
+            correct:"Is",
+            feedback:{
+                "Are":{errorType:"Plural en pregunta singular",explanation:"'Are' en preguntas va con you/we/they. El sujeto 'Mia's brother' es he — singular. La pregunta empieza con 'Is'.",rule:"pregunta he/she/it → Is + sujeto"},
+                "Am":{errorType:"Primera persona en pregunta de tercera",explanation:"'Am' en pregunta solo aparece en 'Am I...?'. El sujeto aquí es 'Mia's brother' — he. La pregunta usa 'Is'.",rule:"Am I? · Is he/she/it? · Are we/you/they?"}
+            },
+            correctReason:"'Mia's brother' = he. En preguntas con he/she/it el verbo va PRIMERO: Is + he/she/it + ...?",
+            examples:["Is he in class?","Is she your friend?","Is it far?"]
+        },
+        {
+            id:9, form:"question",
+            sentence:"_____ you and Nico in the same grade at school?",
+            translation:"¿Tú y Nico están en el mismo grado en la escuela?",
+            hint:"El sujeto es 'you and Nico' — ¿cuántas personas son?",
+            clue:"you and Nico (plural)",
+            clueExplain:"'You and Nico' son dos personas — sujeto plural. En preguntas con sujetos plurales el verbo es 'Are'.",
+            options:["Are","Is","Am"],
+            correct:"Are",
+            feedback:{
+                "Is":{errorType:"Singular en pregunta plural",explanation:"'Is' en preguntas va con he/she/it — singular. 'You and Nico' son dos personas — plural. La pregunta empieza con 'Are'.",rule:"pregunta plural → Are + sujeto"},
+                "Am":{errorType:"Primera persona en pregunta plural",explanation:"'Am I?' es la única pregunta con 'am'. El sujeto 'you and Nico' es plural — necesita 'Are'.",rule:"Am I? · Are you/we/they?"}
+            },
+            correctReason:"'You and Nico' = dos personas = plural. En preguntas con sujetos plurales el verbo to be es 'Are'. Orden: Are + sujeto + ...?",
+            examples:["Are you in the same grade?","Are they friends?","Are we late?"]
+        },
+        {
+            id:10, form:"question",
+            sentence:"_____ I in the right seat, Miss Rosa?",
+            translation:"¿Estoy en el asiento correcto, señorita Rosa?",
+            hint:"El sujeto es 'I'. Las preguntas con 'I' usan una forma especial.",
+            clue:"I (primera persona singular)",
+            clueExplain:"Las preguntas con 'I' como sujeto usan 'Am'. Es la única forma de preguntar con primera persona singular.",
+            options:["Am","Is","Are"],
+            correct:"Am",
+            feedback:{
+                "Is":{errorType:"Tercera persona con I",explanation:"'Is' va con he/she/it. La pregunta tiene 'I' como sujeto — la forma correcta es 'Am I...?'",rule:"Am I? · Is he/she/it? · Are we/you/they?"},
+                "Are":{errorType:"Plural con I",explanation:"'Are' va con you/we/they. Con 'I' como sujeto la pregunta siempre empieza con 'Am'. Es la única opción.",rule:"Am I? (única forma con I en pregunta)"}
+            },
+            correctReason:"La pregunta con 'I' como sujeto siempre usa 'Am'. Es una regla fija: Am I + ...? No existe 'Is I?' ni 'Are I?' en inglés.",
+            examples:["Am I right?","Am I in Room 5?","Am I late?"]
+        }
+    ];
+
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function shuffle(arr){
+        // Fisher-Yates
+        for(let i=arr.length-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1));
+            [arr[i],arr[j]]=[arr[j],arr[i]];
+        }
+        return arr;
+    }
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer');
+        c.innerHTML='';
+        quizData.forEach((q,i)=>{
+            q.shuffled=shuffle([...q.options]);
+            c.appendChild(createCard(q,i));
+        });
+        showQuestion(0); updateProgress();
+    }
+
+    function createCard(q,index){
+        const card=document.createElement('div');
+        card.className=`question-card ${index!==0?'hidden':''}`;
+        card.id=`question-${index}`;
+        const badges={affirmative:'✅ Afirmativo',negative:'❌ Negativo',question:'❓ Pregunta'};
+        const badge=`<span class="form-badge ${q.form}">${badges[q.form]}</span>`;
+        const sentHtml=q.sentence.replace('_____',`<span class="blank" id="blank-${index}">_____</span>`);
+        const opts=q.shuffled.map((opt,i)=>`<button class="option-btn" data-idx="${i}" data-qi="${index}">${opt}</button>`).join('');
+        card.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span style="font-size:.88rem;color:var(--text-medium);font-weight:600;flex:1;">Elige la forma correcta:</span>
+                ${badge}
+            </div>
+            <div class="hint-box"><div class="hint-label">💡 Pista</div>${q.hint}</div>
+            <div class="question-text">${sentHtml}</div>
+            <div class="translation">${q.translation}</div>
+            <div class="options-grid" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}
+                </button>
+            </div>`;
+        return card;
+    }
+
+    document.getElementById('questionsContainer').addEventListener('click',e=>{
+        const btn=e.target.closest('.option-btn');
+        if(!btn)return;
+        const qi=parseInt(btn.dataset.qi), idx=parseInt(btn.dataset.idx);
+        selectOption(qi,idx);
+    });
+
+    function selectOption(qi,optIdx){
+        if(answered[qi])return;
+        answered[qi]=true;
+        const q=quizData[qi];
+        const chosen=q.shuffled[optIdx];
+        const isCorrect=chosen===q.correct;
+        if(isCorrect)score++;
+        const blank=document.getElementById(`blank-${qi}`);
+        if(blank){blank.textContent=chosen;blank.className=`blank ${isCorrect?'correct':'incorrect'}`;}
+        document.querySelectorAll(`#options-${qi} .option-btn`).forEach((btn,i)=>{
+            btn.disabled=true;
+            const v=q.shuffled[i];
+            if(v===q.correct)btn.classList.add('correct');
+            else if(i===optIdx)btn.classList.add('incorrect');
+        });
+        buildFeedback(qi,chosen,isCorrect,q);
+        document.getElementById(`next-${qi}`).disabled=false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi,chosen,isCorrect,q){
+        const el=document.getElementById(`feedback-${qi}`);
+        el.className=`feedback show ${isCorrect?'correct':'incorrect'}`;
+        const exs=q.examples.map(e=>`<span class="rule-ex">${e}</span>`).join('');
+        if(isCorrect){
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">✅</span><div>
+                <div class="fb-title">¡Correcto!</div>
+                <div class="fb-subtitle">"${q.correct}" es la forma exacta</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-signal">
+                    <div class="fb-block-title">🔍 Señal clave</div>
+                    <div style="font-size:.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="signal-tag">${q.clue}</span> — ${q.clueExplain}
+                    </div>
+                </div>
+                <div class="fb-block fb-rule">
+                    <div class="fb-block-title">📐 Regla aplicada</div>
+                    <div class="rule-formula">I → am · he/she/it → is · we/you/they → are</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why">
+                    <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
+                    <div class="fb-why-text">${q.correctReason}</div>
+                </div>
+            </div>`;
+        } else {
+            const fb=q.feedback[chosen]||{errorType:'Error',explanation:'Revisa la regla.',rule:'I→am · he/she/it→is · we/you/they→are'};
+            el.innerHTML=`
+            <div class="fb-header"><span class="fb-icon">❌</span><div>
+                <div class="fb-title">Incorrecto</div>
+                <div class="fb-subtitle">Revisemos la señal clave</div>
+            </div></div>
+            <div class="fb-body">
+                <div class="fb-block fb-signal wrong">
+                    <div class="fb-block-title">🔍 Señal clave que debías identificar</div>
+                    <div style="font-size:.92rem;color:var(--text-dark);line-height:1.55;">
+                        <span class="signal-tag red">${q.clue}</span> — ${q.clueExplain}
+                    </div>
+                </div>
+                <div class="fb-block fb-error">
+                    <div class="fb-block-title">⚠️ El error: <span class="error-badge">${fb.errorType}</span></div>
+                    <div class="word-swap">
+                        <span class="ws-box ws-wrong">${chosen}</span>
+                        <span class="ws-arrow">→</span>
+                        <span class="ws-box ws-right">${q.correct}</span>
+                    </div>
+                    <div class="error-text">${fb.explanation}</div>
+                </div>
+                <div class="fb-block fb-rule">
+                    <div class="fb-block-title">📐 La regla correcta</div>
+                    <div class="rule-formula">I → am · he/she/it → is · we/you/they → are</div>
+                    <div class="rule-examples">${exs}</div>
+                </div>
+                <div class="fb-block fb-why">
+                    <div class="fb-block-title">💡 ¿Por qué es correcta la otra opción?</div>
+                    <div class="fb-why-text">${q.correctReason}</div>
+                </div>
+            </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){i<quizData.length-1?showQuestion(i+1):showResults();}
+    function prevQuestion(){if(currentQuestion>0)showQuestion(currentQuestion-1);}
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
+        const stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente! Dominas el verbo to be completamente. 🏆'
+            :pct>=70?'¡Muy bien! Sigue practicando las formas del to be. 💪'
+            :'Buen esfuerzo. Repasa I→am, he/she/it→is, we/you/they→are. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{if(i<stars)setTimeout(()=>s.classList.add('earned'),i*300);});
+    }
+    document.addEventListener('DOMContentLoaded',initQuiz);
+    </script>
+</body>
+</html>

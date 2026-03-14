@@ -378,7 +378,8 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 
 <script>
 // ── BASE URL ──────────────────────────────────────────────────────────────────
-const BASE = 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/jucumenglishcenter/Pre-a1/main';
+const BASE = 'https://jucumenglishcenter.github.io/Pre-a1';
+const PANEL = 'https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html';
 
 // ── QUIZLET (M1 — mismo set para todos los módulos hasta que haya sets por módulo)
 const QZ = {
@@ -393,33 +394,46 @@ const DATA = [
   {
     id:1, name:'Personal Identity', ok:true,
     img:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80',
-    tags:['Pronombres','To be','There is/are'],
+    tags:['Pronouns','To be','There is/are'],
     folder:'M1-Personal-Identity',
     topics:[
       {
-        label:'Pronouns: simple personal (I, you, we, him, her, his, it)',
+        label:'Pronouns: simple personal',
         folder:'Practicas/T1_PRONOUNS',
         filePfx:'PreA1_M1_Grammar_Pronouns',
+        summaries:[
+          { label:'📄 Pronouns', url:`${BASE}/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Summary_Pronouns.html` },
+        ],
       },
       {
-        label:'To be: affirmative & negative',
-        folder:'Practicas/T2_To be',
-        filePfx:'PreA1_M1_Grammar_To be',
+        label:'To be: Affirmative, Negative & Interrogative',
+        folder:'Practicas/T2_To_be',
+        filePfx:'PreA1_M1_Grammar_To_be',
+        summaries:[
+          { label:'📄 To be: Aff & Neg', url:`${BASE}/M1-Personal-Identity/Practicas/T2_To_be/PreA1_M1_Grammar_Summary_To_be__Affirmative-Negative_.html` },
+        ],
       },
       {
-        label:'To be: questions',
-        folder:'Practicas/T2_To be',
-        filePfx:'PreA1_M1_Grammar_To be',
+        label:'To be: Affirmative, Negative & Interrogative — Round 2',
+        folder:'Practicas/T2_To_be',
+        filePfx:'PreA1_M1_Grammar_To_be',
+        round2: true,
+        summaries:[
+          { label:'📄 To be: Questions', url:`${BASE}/M1-Personal-Identity/Practicas/T2_To_be/PreA1_M1_Grammar_Summary_To_be__Questions_.html` },
+        ],
       },
       {
         label:'There is / There are',
-        folder:'Practicas/T3_There is_are',
-        filePfx:'PreA1_M1_Grammar_There is-are',
+        folder:'Practicas/T3_There_is_are',
+        filePfx:'PreA1_M1_Grammar_There_is-are',
+        summaries:[
+          { label:'📄 There is / are', url:`${BASE}/M1-Personal-Identity/Practicas/T3_There_is_are/PreA1_M1_Grammar_Summary_There_is-are.html` },
+        ],
       },
     ],
-    reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading Comprehension_Personal Identity.html`,
-    listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal Identity.html`,
-    story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal Identity.html`,
+    reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading_Comprehension_Personal_Identity.html`,
+    listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal_Identity.html`,
+    story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal_Identity.html`,
     quizlet: QZ,
   },
   {
@@ -445,21 +459,29 @@ function tRow(topic, i, mid) {
   const f = topic.folder;
   const p = topic.filePfx;
   const mFolder = DATA.find(x => x.id === mid).folder;
-  const fillIn = ghUrl(mFolder, f, `${p}_Fill in`);
-  const ident  = ghUrl(mFolder, f, `${p}_Identification`);
-  const trans  = ghUrl(mFolder, f, `${p}_Transform`);
-  const chips = [
+
+  const suffix = topic.round2 ? '_P2' : '';
+  const fillIn = ghUrl(mFolder, f, `${p}_Fill_in${suffix}`);
+  const ident  = ghUrl(mFolder, f, `${p}_Identification${suffix}`);
+  const trans  = ghUrl(mFolder, f, `${p}_Transform${suffix}`);
+
+  const grammarChips = [
     `<a class="chip chip-fill" href="${fillIn}" target="_blank">✏️ Fill In</a>`,
     `<a class="chip chip-fill" href="${ident}"  target="_blank">🔍 Identification</a>`,
     `<a class="chip chip-fill" href="${trans}"  target="_blank">🔄 Transform</a>`,
   ].join('');
+
+  const summaryChips = (topic.summaries || []).map(s =>
+    `<a class="chip chip-out" href="${s.url}" target="_blank">${s.label}</a>`
+  ).join('');
+
   return `<div class="titem" id="g${mid}_${i}">
     <div class="ttrig" onclick="ti('g${mid}_${i}')">
       <span class="tn">${i+1}</span>
       <span class="ttext">${topic.label}</span>
       <span class="tchev">▾</span>
     </div>
-    <div class="tacts">${chips}</div>
+    <div class="tacts">${grammarChips}${summaryChips}</div>
   </div>`;
 }
 
@@ -491,11 +513,18 @@ function buildSec(s, m) {
     </div>`;
 
   } else if (s.type === 'materials') {
+    const summaryItems = m.topics.flatMap(t => t.summaries || []).map(s =>
+      `<a class="matitem" href="${s.url}" target="_blank">
+        <div class="matitem-ico">📄</div><span>${s.label.replace('📄 ','')}</span><span class="matitem-arr">→</span>
+      </a>`
+    ).join('');
     body = `<div class="matlist">
       <a class="matitem" href="${m.story}" target="_blank">
         <div class="matitem-ico">📗</div><span>Stories & Diálogos</span><span class="matitem-arr">→</span>
       </a>
-    </div>`;
+    </div>
+    <div class="sec-label">Resumen de Gramática</div>
+    <div class="matlist">${summaryItems}</div>`;
   }
 
   return `<div class="dsec" id="${id}">

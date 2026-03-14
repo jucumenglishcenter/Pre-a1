@@ -3,737 +3,1044 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comprensión Lectora · Personal Identity</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Lora:ital,wght@0,400;0,500;1,400&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Práctica de Listening | PRE-A1 — Módulo 1: Personal Identity</title>
 <style>
-:root{
-  --bg:#FAFAF6;--card:#FFFFFF;--text:#2A2A2A;--text-soft:#777777;
-  --border:#E8E5DC;--shadow:0 3px 16px rgba(0,0,0,0.06);--radius:14px;
-  --hl-bg:#FFF8E1;--hl-border:#FFD54F;
-  --rv-bg:#F3E5F5;--rv-text:#7B1FA2;
-  --level-primary:#F9A825;--level-dark:#E65100;--level-light:#FFF9C4;--level-mid:#FFECB3;
-  --level-gradient:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);
-  --level-glow:rgba(249,168,37,0.15);--level-badge-text:#4E3800;
-  --correct:#2E7D32;--correct-bg:#E8F5E9;--correct-border:#A5D6A7;
-  --wrong:#C62828;--wrong-bg:#FFEBEE;--wrong-border:#EF9A9A;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  --primary: #F59E0B;
+  --primary-dark: #D97706;
+  --bg-start: #FFFBEB;
+  --bg-end: #FEF3C7;
+  --shadow-s: 0 4px 20px rgba(245,158,11,0.15);
+  --shadow-l: 0 8px 30px rgba(245,158,11,0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  min-height: 100vh;
+  padding: 20px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased;}
-.container{max-width:780px;margin:0 auto;}
-.level-header{text-align:center;padding:2.2rem 2rem;border-radius:20px;color:white;position:relative;overflow:hidden;margin-bottom:1.5rem;background:var(--level-gradient);}
-.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,0.1);border-radius:50%;}
-.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.9rem;font-weight:600;position:relative;z-index:1;}
-.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:500;opacity:0.95;position:relative;z-index:1;margin-top:0.3rem;}
-.level-header .subtitle{opacity:0.85;font-size:0.88rem;font-weight:500;position:relative;z-index:1;margin-top:0.2rem;}
-.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.73rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:var(--level-light);color:var(--level-badge-text);padding:5px 14px;border-radius:20px;border:1.5px solid var(--level-mid);margin-bottom:1rem;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border-top:3.5px solid var(--level-primary);}
-.section-label{display:flex;align-items:center;gap:0.6rem;font-size:0.73rem;font-weight:800;text-transform:uppercase;letter-spacing:0.13em;color:var(--level-dark);margin-bottom:0.4rem;}
-.section-label::before{content:'';width:20px;height:3px;background:var(--level-primary);border-radius:2px;}
-.section-title{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:0.15rem;}
-.section-desc{font-size:0.87rem;color:var(--text-soft);margin-bottom:1.2rem;}
-/* vocab spans keep original styling from source */
-.vocab{background:var(--hl-bg);border-bottom:2.5px solid var(--hl-border);padding:1px 4px;border-radius:4px;font-weight:700;}
-.item-tabs{display:flex;gap:0.4rem;margin-bottom:0;flex-wrap:wrap;}
-.item-tab{padding:0.45rem 1.1rem;border-radius:8px 8px 0 0;font-size:0.83rem;font-weight:700;cursor:pointer;border:2px solid var(--border);border-bottom:none;background:#F7F5EE;transition:all 0.2s;font-family:'Nunito',sans-serif;color:var(--text-soft);}
-.item-tab:hover{background:var(--level-light);}
-.item-tab.active{background:var(--card);border-color:var(--level-primary);color:var(--level-dark);border-bottom:2px solid var(--card);margin-bottom:-2px;position:relative;z-index:1;}
-/* Story scroll container */
-.story-scroll-box{border:2px solid var(--level-primary);border-radius:0 12px 12px 12px;background:var(--card);height:420px;overflow-y:auto;padding:1.4rem 1.4rem 1rem;margin-bottom:1rem;}
-.story-scroll-box::-webkit-scrollbar{width:7px;}
-.story-scroll-box::-webkit-scrollbar-track{background:#f1f1f1;border-radius:4px;}
-.story-scroll-box::-webkit-scrollbar-thumb{background:var(--level-primary);border-radius:4px;}
-.story-panel{display:none;}
-.story-panel.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.story-block{margin-bottom:1.2rem;}
-.story-paragraph{font-family:'Lora',serif;font-size:1rem;line-height:1.9;padding:0.5rem 0.7rem;border-radius:8px;transition:background 0.2s;}
-.story-paragraph:hover{background:var(--level-glow);}
-.reveal-line{margin-top:4px;}
-.reveal-btn{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:0.76rem;font-weight:600;color:var(--rv-text);background:var(--rv-bg);border:none;padding:3px 10px;border-radius:6px;cursor:pointer;transition:all 0.2s;user-select:none;}
-.reveal-btn:hover{background:#E1BEE7;}
-.reveal-btn .arrow{transition:transform 0.25s;font-size:0.7rem;}
-.reveal-btn.open .arrow{transform:rotate(90deg);}
-.reveal-text{display:none;font-family:'Lora',serif;font-style:italic;font-size:0.87rem;color:var(--text-soft);margin-top:5px;padding-left:13px;border-left:2.5px solid #CE93D8;line-height:1.7;}
-.reveal-text.show{display:block;}
-.story-scroll-hint{text-align:center;font-size:0.75rem;color:var(--text-soft);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:6px;}
-.krashen-box{background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.5rem;border-left:4px solid #1565C0;display:flex;gap:0.8rem;align-items:flex-start;}
-.krashen-box .k-icon{font-size:1.4rem;line-height:1;padding-top:2px;}
-.krashen-box h4{color:#1565C0;font-size:0.9rem;margin-bottom:3px;}
-.krashen-box p{color:#555;font-size:0.82rem;line-height:1.6;}
-.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:0.9rem;}
-.ach-item{text-align:center;padding:10px 6px;border-radius:12px;background:#F5F5F0;border:1.5px solid var(--border);opacity:0.45;transition:all 0.3s;}
-.ach-item.unlocked{background:var(--level-light);border-color:var(--level-primary);opacity:1;box-shadow:0 2px 10px var(--level-glow);}
-.ach-item .ach-icon{font-size:1.5rem;margin-bottom:4px;}
-.ach-item .ach-name{font-size:0.63rem;color:var(--text-soft);line-height:1.3;font-weight:600;}
-.ach-item.unlocked .ach-name{color:var(--level-dark);}
-.mode-row{display:flex;gap:0.6rem;margin-bottom:1.2rem;}
-.mode-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0.9rem 0.5rem;border-radius:10px;border:2px solid var(--border);background:var(--card);cursor:pointer;transition:all 0.25s;font-family:'Nunito',sans-serif;}
-.mode-btn:hover{background:var(--level-light);}
-.mode-btn.active{background:var(--level-light);border-color:var(--level-primary);box-shadow:0 2px 10px var(--level-glow);}
-.mode-btn .mode-flags{font-size:1.3rem;}
-.mode-btn .mode-label{font-size:0.82rem;font-weight:700;color:var(--level-dark);}
-.mode-btn .mode-sub{font-size:0.72rem;color:var(--text-soft);}
-.mode-display{font-size:0.8rem;color:var(--text-soft);text-align:center;margin-bottom:1rem;font-weight:600;}
-.progress-wrap{margin-bottom:1.4rem;}
-.progress-bar{height:8px;background:#EEE;border-radius:4px;overflow:hidden;}
-.progress-fill{height:100%;background:var(--level-gradient);border-radius:4px;transition:width 0.5s ease;width:0%;}
-.progress-label{text-align:center;font-size:0.78rem;color:var(--text-soft);margin-top:5px;font-weight:600;}
-.q-card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;transition:all 0.3s;}
-.q-card.correct{border-color:var(--correct-border);background:var(--correct-bg);}
-.q-card.wrong{border-color:var(--wrong-border);background:var(--wrong-bg);}
-.q-badge{display:inline-block;font-size:0.72rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;background:var(--level-light);color:var(--level-dark);padding:3px 10px;border-radius:8px;border:1px solid var(--level-mid);margin-bottom:0.8rem;}
-.q-text{font-size:0.97rem;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.55;}
-.opts{display:flex;flex-direction:column;gap:8px;}
-.opt-btn{text-align:left;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-size:0.88rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif;font-weight:500;}
-.opt-btn:hover:not(:disabled){border-color:var(--level-primary);background:var(--level-light);transform:translateX(3px);}
-.opt-btn:disabled{cursor:not-allowed;}
-.opt-btn.sel-correct{background:linear-gradient(135deg,#388E3C,#4CAF50);color:white;border-color:#388E3C;}
-.opt-btn.sel-wrong{background:linear-gradient(135deg,#C62828,#EF5350);color:white;border-color:#C62828;}
-.opt-btn.show-correct{background:linear-gradient(135deg,#388E3C,#4CAF50);color:white;border-color:#388E3C;}
-.feedback{margin-top:1rem;padding:1rem 1.1rem;border-radius:10px;display:none;font-size:0.85rem;line-height:1.6;}
-.feedback.show{display:block;}
-.feedback.fb-ok{background:var(--correct-bg);border:1.5px solid var(--correct-border);}
-.feedback.fb-no{background:var(--wrong-bg);border:1.5px solid var(--wrong-border);}
-.feedback .fb-title{font-weight:800;font-size:0.92rem;margin-bottom:5px;}
-.feedback.fb-ok .fb-title{color:var(--correct);}
-.feedback.fb-no .fb-title{color:var(--wrong);}
-.feedback .fb-body{color:#555;}
-.feedback .fb-body strong{color:var(--level-dark);}
-.feedback .fb-tip{margin-top:8px;padding:7px 10px;background:rgba(0,0,0,0.04);border-radius:7px;font-size:0.79rem;color:var(--text-soft);}
-.submit-wrap{display:none;text-align:center;margin:1.5rem 0 0.5rem;}
-.submit-btn{background:var(--level-gradient);color:white;border:none;padding:0.9rem 3rem;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 4px 14px var(--level-glow);}
-.submit-btn:hover{transform:translateY(-2px);}
-.completion-card{display:none;text-align:center;padding:2rem 1.8rem;border-radius:18px;background:var(--level-gradient);color:white;margin-top:1.5rem;}
-.completion-card.show{display:block;}
-.cc-icon{font-size:3rem;margin-bottom:0.5rem;}
-.cc-title{font-family:'Fredoka',sans-serif;font-size:1.6rem;margin-bottom:0.3rem;}
-.cc-score{font-size:3.2rem;font-weight:800;text-shadow:2px 2px 6px rgba(0,0,0,0.2);}
-.cc-msg{font-size:0.97rem;opacity:0.95;margin:0.8rem 0;}
-.cc-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1.2rem 0;}
-.cc-stat{background:rgba(255,255,255,0.2);border-radius:12px;padding:0.8rem;}
-.cc-stat .cc-sn{font-size:1.5rem;font-weight:800;}
-.cc-stat .cc-sl{font-size:0.75rem;opacity:0.9;}
-.cc-krashen{background:rgba(255,255,255,0.15);border-radius:12px;padding:1rem;margin:1rem 0;text-align:left;}
-.cc-krashen h4{font-size:0.88rem;margin-bottom:5px;}
-.cc-krashen p{font-size:0.8rem;opacity:0.92;line-height:1.5;}
-.reset-btn{background:white;color:var(--level-dark);border:none;padding:0.75rem 2.5rem;border-radius:30px;font-size:0.97rem;font-weight:700;cursor:pointer;margin-top:0.5rem;font-family:'Nunito',sans-serif;}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;justify-content:center;align-items:center;}
-.modal-overlay.show{display:flex;}
-@keyframes popIn{0%{transform:scale(0.5);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
-.modal-box{background:var(--card);border-radius:18px;padding:2rem 1.8rem;text-align:center;max-width:320px;width:90%;border-top:4px solid var(--level-primary);animation:popIn 0.35s ease;}
-.modal-icon{font-size:3.5rem;margin-bottom:0.6rem;}
-.modal-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;color:var(--level-dark);margin-bottom:0.4rem;}
-.modal-text{font-size:0.88rem;color:var(--text-soft);margin-bottom:1.2rem;line-height:1.5;}
-.modal-btn{background:var(--level-gradient);color:white;border:none;padding:0.6rem 2rem;border-radius:24px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
-.footer{text-align:center;padding:1.5rem 1rem 0.5rem;color:#BCAAA4;font-size:0.76rem;line-height:1.8;}
-@media(max-width:600px){.level-header h1{font-size:1.5rem;}.card{padding:1.3rem;}.story-scroll-box{height:360px;}}
+
+.container { max-width: 820px; margin: 0 auto; }
+
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 20px; padding: 24px 20px; text-align: center;
+  margin-bottom: 18px; color: white; box-shadow: var(--shadow-l);
+}
+.header h1 { font-size: 1.7rem; margin-bottom: 6px; }
+.header-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.badge { background: rgba(255,255,255,0.22); padding: 5px 13px; border-radius: 18px; font-size: 0.82rem; }
+
+.nav-wrap { text-align: center; margin-bottom: 18px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border: none; border-radius: 25px;
+  font-size: 0.92rem; font-weight: 700; cursor: pointer;
+  text-decoration: none; transition: all 0.3s;
+  background: linear-gradient(135deg,#607D8B 0%,#455A64 100%); color: white;
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(69,90,100,0.4); }
+
+.controls-row { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.ctrl-box {
+  flex: 1; min-width: 220px; background: white; border-radius: 14px;
+  padding: 16px 18px; box-shadow: var(--shadow-s); text-align: center;
+}
+.ctrl-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1rem; }
+.btn-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.ctrl-btn {
+  padding: 9px 16px; border: 2px solid var(--primary);
+  background: white; color: var(--primary);
+  border-radius: 22px; font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s; font-family: inherit;
+}
+.ctrl-btn:hover { background: var(--bg-start); }
+.ctrl-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; box-shadow: var(--shadow-s);
+}
+
+.instructions {
+  background: white; border-radius: 14px; padding: 18px 20px;
+  margin-bottom: 18px; border-left: 4px solid var(--primary); box-shadow: var(--shadow-s);
+}
+.instructions h3 { color: var(--primary); margin-bottom: 8px; }
+.instructions ul { margin-left: 18px; color: #555; }
+.instructions li { margin: 6px 0; line-height: 1.6; font-size: 0.9rem; }
+
+.story-tabs-wrap {
+  background: white; border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 20px; box-shadow: var(--shadow-s);
+}
+.story-tabs-label { color: #888; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.story-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.story-tab {
+  padding: 10px 18px; border: 2px solid #E0E0E0;
+  background: #FAFAFA; border-radius: 22px;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: all 0.25s; font-family: inherit;
+}
+.story-tab:hover { border-color: var(--primary); background: var(--bg-start); }
+.story-tab.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; border-color: var(--primary-dark); box-shadow: var(--shadow-s);
+}
+
+.score-panel {
+  background: white; border-radius: 12px; padding: 13px 22px;
+  margin-bottom: 18px; display: flex; justify-content: space-between;
+  align-items: center; box-shadow: var(--shadow-s); flex-wrap: wrap; gap: 8px;
+}
+.score-item { text-align: center; flex: 1; min-width: 70px; }
+.score-item .slabel { font-size: 0.68rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+.score-item .sval { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+.score-item .sval.c { color: #4CAF50; }
+.score-item .sval.i { color: #f44336; }
+
+.level-section { margin-bottom: 26px; }
+.level-header {
+  padding: 13px 18px; border-radius: 13px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.level-header.easy { background: linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%); border-left: 5px solid #4CAF50; }
+.level-header.medium { background: linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 100%); border-left: 5px solid #FF9800; }
+.level-header.hard { background: linear-gradient(135deg,#FFEBEE 0%,#FFCDD2 100%); border-left: 5px solid #f44336; }
+.level-header .lhicon { font-size: 1.3rem; }
+.level-header .lhtitle { font-size: 1rem; font-weight: 700; }
+.level-header.easy .lhtitle { color: #2E7D32; }
+.level-header.medium .lhtitle { color: #E65100; }
+.level-header.hard .lhtitle { color: #C62828; }
+.level-header .lhsub { font-size: 0.82rem; color: #666; margin-left: auto; }
+
+.audio-card {
+  background: white; border-radius: 18px; padding: 22px;
+  margin-bottom: 18px; box-shadow: var(--shadow-s); transition: all 0.3s;
+}
+.audio-card:hover { box-shadow: var(--shadow-l); transform: translateY(-2px); }
+.audio-header {
+  display: flex; align-items: center; gap: 13px;
+  margin-bottom: 18px; padding-bottom: 13px;
+  border-bottom: 2px solid var(--bg-start);
+}
+.audio-num {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: white; flex-shrink: 0;
+}
+.audio-num.easy { background: linear-gradient(135deg,#4CAF50 0%,#388E3C 100%); }
+.audio-num.medium { background: linear-gradient(135deg,#FF9800 0%,#F57C00 100%); }
+.audio-num.hard { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
+.audio-meta h3 { color: #333; font-size: 0.97rem; }
+.audio-meta p { color: #888; font-size: 0.78rem; margin-top: 2px; }
+
+.player {
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  border-radius: 13px; padding: 18px; margin-bottom: 13px; text-align: center;
+}
+.play-btn {
+  width: 64px; height: 64px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; font-size: 1.6rem; cursor: pointer;
+  box-shadow: var(--shadow-s); transition: all 0.3s;
+}
+.play-btn:hover { transform: scale(1.1); box-shadow: var(--shadow-l); }
+.play-btn.playing { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
+
+.text-btns { margin-top: 13px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.text-btn {
+  padding: 7px 14px; border: 2px solid var(--primary);
+  background: white; color: var(--primary);
+  border-radius: 18px; font-size: 0.77rem; cursor: pointer;
+  transition: all 0.25s; font-family: inherit; font-weight: 600;
+}
+.text-btn:hover { background: var(--bg-start); }
+.text-btn.active { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; }
+.text-btn.es-btn { border-color: #FFA000; color: #F57C00; }
+.text-btn.es-btn:hover { background: #FFF8E1; }
+.text-btn.es-btn.active { background: linear-gradient(135deg,#FFA000 0%,#F57C00 100%); color: white; }
+
+.text-box {
+  margin-top: 12px; padding: 13px 15px;
+  background: rgba(255,255,255,0.95); border-radius: 9px;
+  text-align: left; border-left: 4px solid var(--primary);
+  display: none; margin-bottom: 8px;
+}
+.text-box.show { display: block; }
+.text-box p { color: #333; line-height: 1.7; font-size: 0.9rem; }
+.text-box .tblabel { font-size: 0.68rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+.es-box {
+  margin-top: 8px; padding: 13px 15px;
+  background: #FFF8E1; border-radius: 9px;
+  text-align: left; border-left: 4px solid #FFA000; display: none;
+}
+.es-box.show { display: block; }
+.es-box p { color: #5D4037; line-height: 1.7; font-size: 0.9rem; }
+.es-box .tblabel { font-size: 0.68rem; color: #F57C00; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+
+.show-q-btn {
+  width: 100%; padding: 13px; border: 2px dashed #9C27B0;
+  background: linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%);
+  color: #7B1FA2; border-radius: 11px; font-size: 0.92rem;
+  font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.show-q-btn:hover { background: linear-gradient(135deg,#E1BEE7 0%,#CE93D8 100%); transform: translateY(-1px); }
+.show-q-btn.active { background: linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%); color: white; border-style: solid; }
+
+.q-section { margin-top: 13px; display: none; }
+.q-section.show { display: block; }
+.q-section h4 { color: var(--primary); margin-bottom: 10px; font-size: 0.92rem; }
+.q-text {
+  background: #F5F5F5; padding: 11px 14px; border-radius: 9px;
+  margin-bottom: 11px; font-size: 0.95rem; color: #333; font-weight: 600; line-height: 1.5;
+}
+.options { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  display: flex; align-items: center; gap: 11px;
+  padding: 12px 14px; background: #FAFAFA;
+  border: 2px solid #E0E0E0; border-radius: 9px;
+  cursor: pointer; transition: all 0.2s;
+}
+.opt:hover:not(.disabled) { border-color: var(--primary); background: var(--bg-start); }
+.opt.correct { border-color: #4CAF50; background: #E8F5E9; }
+.opt.incorrect { border-color: #f44336; background: #FFEBEE; }
+.opt.show-correct { border-color: #4CAF50; background: #E8F5E9; }
+.opt.disabled { pointer-events: none; }
+.opt-letter {
+  width: 28px; height: 28px; background: #E0E0E0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; color: #666; flex-shrink: 0;
+}
+.opt.correct .opt-letter, .opt.show-correct .opt-letter { background: #4CAF50; color: white; }
+.opt.incorrect .opt-letter { background: #f44336; color: white; }
+.opt-text { flex: 1; color: #333; font-size: 0.9rem; }
+
+.feedback { margin-top: 11px; padding: 12px 14px; border-radius: 8px; display: none; font-size: 0.86rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct { background: #E8F5E9; border: 1px solid #A5D6A7; color: #2E7D32; }
+.feedback.incorrect { background: #FFEBEE; border: 1px solid #EF9A9A; color: #C62828; }
+
+.results-panel {
+  display: none; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 18px; padding: 28px; text-align: center; color: white;
+  margin-top: 18px; box-shadow: var(--shadow-l);
+}
+.results-panel.show { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.trophy { font-size: 3.5rem; margin-bottom: 12px; }
+.results-panel h2 { font-size: 1.7rem; margin-bottom: 8px; }
+.results-score { font-size: 2.8rem; font-weight: 700; margin: 12px 0; }
+.results-breakdown { display: flex; justify-content: center; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+.bd-item { background: rgba(255,255,255,0.2); padding: 13px 20px; border-radius: 13px; text-align: center; }
+.bd-item .bdname { font-size: 0.77rem; opacity: 0.9; margin-bottom: 4px; }
+.bd-item .bdscore { font-size: 1.4rem; font-weight: 700; }
+.results-msg { font-size: 0.97rem; opacity: 0.9; margin-top: 13px; }
+.btn-retry {
+  margin-top: 18px; padding: 13px 36px; background: white; color: var(--primary);
+  border: none; border-radius: 28px; font-size: 0.97rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.btn-retry:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+@media (max-width:600px) {
+  .header h1 { font-size: 1.3rem; }
+  .controls-row { flex-direction: column; }
+  .results-breakdown { flex-direction: column; }
+  .story-tabs { gap: 5px; }
+}
 </style>
 </head>
 <body>
-
 <div class="container">
-  <div class="level-header">
-    <div class="level-badge">🟡 Pre-A1</div>
-    <h1>📚 Comprensión Lectora</h1>
-    <div class="module-name">🪪 Personal Identity &amp; Family</div>
-    <p class="subtitle">Comprensión · Vocabulario · Pensamiento Crítico</p>
-  </div>
 
-  <div class="card">
-    <div class="section-label">Historias del módulo</div>
-    <div class="section-title">Selecciona una historia</div>
-    <div class="section-desc">Lee la historia con su traducción y responde las preguntas de comprensión</div>
-
-    <div class="item-tabs">
-      <button class="item-tab active" id="tab-1" onclick="selectStory(1)">📖 My Name Is Leo</button>
-      <button class="item-tab" id="tab-2" onclick="selectStory(2)">🖼️ Mia's Photo</button>
-      <button class="item-tab" id="tab-3" onclick="selectStory(3)">🌳 Saturday</button>
-      <button class="item-tab" id="tab-4" onclick="selectStory(4)">🤝 Kind People</button>
-    </div>
-
-    <div class="story-scroll-box" id="story-scroll-box">
-      <div id="story-1" class="story-panel active"></div>
-      <div id="story-2" class="story-panel"></div>
-      <div id="story-3" class="story-panel"></div>
-      <div id="story-4" class="story-panel"></div>
-    </div>
-    <div class="story-scroll-hint">↕ Desplázate para leer toda la historia · Haz clic en 🇪🇸 para ver la traducción</div>
-  </div>
-
-  <div class="krashen-box">
-    <div class="k-icon">🧠</div>
-    <div>
-      <h4>Input Comprensible (Krashen)</h4>
-      <p>Según el lingüista Stephen Krashen, adquirimos un idioma cuando entendemos mensajes. Lee la historia sin presión — tu cerebro absorbe patrones del inglés mientras disfrutas la narrativa. ¡Este es el <strong>"input comprensible"</strong> en acción!</p>
+  <div class="header">
+    <h1>🎧 Práctica de Listening</h1>
+    <div class="header-badges">
+      <span class="badge">💛 PRE-A1</span>
+      <span class="badge">📘 Módulo 1</span>
+      <span class="badge">🪪 Personal Identity</span>
+      <span class="badge">📖 4 Historias · 10 preguntas c/u</span>
     </div>
   </div>
 
-  <div class="card">
-    <div class="section-label">Logros</div>
-    <div class="section-title">🏆 Logros por Desbloquear</div>
-    <div class="section-desc">Responde correctamente para ganar insignias</div>
-    <div class="ach-grid">
-      <div class="ach-item" id="ach-first"><div class="ach-icon">🌱</div><div class="ach-name">Primera Respuesta</div></div>
-      <div class="ach-item" id="ach-streak"><div class="ach-icon">🔥</div><div class="ach-name">3 Seguidas</div></div>
-      <div class="ach-item" id="ach-literal"><div class="ach-icon">📖</div><div class="ach-name">Comp. Literal</div></div>
-      <div class="ach-item" id="ach-inferential"><div class="ach-icon">🔍</div><div class="ach-name">Comp. Inferencial</div></div>
-      <div class="ach-item" id="ach-critical"><div class="ach-icon">🎓</div><div class="ach-name">Pensamiento Crítico</div></div>
-      <div class="ach-item" id="ach-perfect"><div class="ach-icon">⭐</div><div class="ach-name">Perfección</div></div>
-      <div class="ach-item" id="ach-identity"><div class="ach-icon">🪪</div><div class="ach-name">Identidad Personal</div></div>
-      <div class="ach-item" id="ach-family"><div class="ach-icon">👨‍👩‍👧‍👦</div><div class="ach-name">Familia</div></div>
-    </div>
+  <div class="nav-wrap">
+    <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="nav-btn">🏠 Volver al Panel Principal</a>
   </div>
 
-  <div class="card">
-    <div class="section-label">Quiz de comprensión</div>
-    <div class="section-title" id="quiz-story-title">My Name Is Leo</div>
-    <div class="mode-row">
-      <button class="mode-btn active" id="mode-eses" onclick="setMode('es-es')">
-        <div class="mode-flags">🇪🇸➡️🇪🇸</div>
-        <div class="mode-label">Español → Español</div>
-        <div class="mode-sub">Comprensión total</div>
-      </button>
-      <button class="mode-btn" id="mode-esen" onclick="setMode('es-en')">
-        <div class="mode-flags">🇪🇸➡️🇬🇧</div>
-        <div class="mode-label">Español → English</div>
-        <div class="mode-sub">Desafío bilingüe</div>
-      </button>
-    </div>
-    <div class="mode-display" id="mode-display">Modo activo: Español → Español</div>
-    <div class="progress-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-      <div class="progress-label" id="progress-label">0 de 7 preguntas respondidas</div>
-    </div>
-    <div id="quiz-container"></div>
-    <div class="submit-wrap" id="submit-wrap">
-      <button class="submit-btn" onclick="showCompletion()">📊 Ver mis Resultados</button>
-    </div>
-    <div class="completion-card" id="completion-card">
-      <div class="cc-icon">🏆</div>
-      <div class="cc-title">¡Completado!</div>
-      <div class="cc-score" id="cc-score">0/7</div>
-      <div class="cc-msg" id="cc-msg"></div>
-      <div class="cc-stats">
-        <div class="cc-stat"><div class="cc-sn" id="cc-literal">-</div><div class="cc-sl">📖 Literal</div></div>
-        <div class="cc-stat"><div class="cc-sn" id="cc-infer">-</div><div class="cc-sl">🔍 Inferencial</div></div>
+  <div class="controls-row">
+    <div class="ctrl-box">
+      <h3>🌍 Acento del Audio</h3>
+      <div class="btn-row">
+        <button class="ctrl-btn active" onclick="setAccent('american')" data-accent="american">🇺🇸 Americano</button>
+        <button class="ctrl-btn" onclick="setAccent('british')" data-accent="british">🇬🇧 Británico</button>
       </div>
-      <div class="cc-krashen">
-        <h4>🧠 ¿Sabías que...?</h4>
-        <p>Al completar este ejercicio, expusiste tu cerebro a patrones naturales del inglés. Según Krashen, <strong>la adquisición ocurre inconscientemente</strong> cuando entendemos mensajes. ¡Cada historia que lees construye tu competencia lingüística!</p>
+    </div>
+    <div class="ctrl-box">
+      <h3>🎚️ Velocidad del Audio</h3>
+      <div class="btn-row">
+        <button class="ctrl-btn" onclick="setSpeed(0.6)" data-speed="0.6">🐢 Muy lento</button>
+        <button class="ctrl-btn" onclick="setSpeed(0.8)" data-speed="0.8">🚶 Lento</button>
+        <button class="ctrl-btn active" onclick="setSpeed(1)" data-speed="1">🏃 Normal</button>
       </div>
-      <button class="reset-btn" onclick="resetQuiz()">🔄 Intentar de Nuevo</button>
     </div>
   </div>
 
-  <footer class="footer">
-    <p>Personal Identity &amp; Family · Pre-A1 · JUCUM English Center</p>
-    <p>Comprensión Lectora — Basado en la teoría de Input Comprensible de Stephen Krashen</p>
-  </footer>
-</div>
-
-<div class="modal-overlay" id="ach-modal">
-  <div class="modal-box">
-    <div class="modal-icon" id="modal-icon">🏆</div>
-    <div class="modal-title" id="modal-title">¡Logro Desbloqueado!</div>
-    <div class="modal-text" id="modal-text"></div>
-    <button class="modal-btn" onclick="closeModal()">¡Genial! 🎉</button>
+  <div class="instructions">
+    <h3>📋 Instrucciones</h3>
+    <ul>
+      <li>Elige una historia con las <strong>pestañas de abajo</strong> (S1 – S4).</li>
+      <li>Presiona ▶️ para escuchar el audio — puedes escucharlo <strong>todas las veces que necesites</strong>.</li>
+      <li>Presiona <strong>"❓ Mostrar Pregunta"</strong> cuando estés listo para responder.</li>
+      <li>Si necesitas ayuda, usa los botones para ver el texto en inglés o en español.</li>
+      <li>Después de responder verás una <strong>retroalimentación</strong> que explica la respuesta correcta.</li>
+    </ul>
   </div>
+
+  <div class="story-tabs-wrap">
+    <div class="story-tabs-label">📖 Elige una historia para practicar:</div>
+    <div class="story-tabs" id="storyTabsContainer"></div>
+  </div>
+
+  <div class="score-panel">
+    <div class="score-item"><div class="slabel">Respondidas</div><div class="sval" id="answeredCount">0/10</div></div>
+    <div class="score-item"><div class="slabel">Correctas</div><div class="sval c" id="correctCount">0</div></div>
+    <div class="score-item"><div class="slabel">Incorrectas</div><div class="sval i" id="incorrectCount">0</div></div>
+  </div>
+
+  <div id="activitiesContainer"></div>
+
+  <div class="results-panel" id="resultsPanel">
+    <div class="trophy" id="trophy">🏆</div>
+    <h2 id="resultsTitle">¡Excelente!</h2>
+    <div class="results-score" id="resultsScore">0/10</div>
+    <div class="results-breakdown">
+      <div class="bd-item"><div class="bdname">🟢 Fácil</div><div class="bdscore" id="easyScore">0/4</div></div>
+      <div class="bd-item"><div class="bdname">🟡 Medio</div><div class="bdscore" id="mediumScore">0/3</div></div>
+      <div class="bd-item"><div class="bdname">🔴 Difícil</div><div class="bdscore" id="hardScore">0/3</div></div>
+    </div>
+    <div class="results-msg" id="resultsMsg"></div>
+    <button class="btn-retry" onclick="retryStory()">🔄 Intentar de nuevo</button>
+  </div>
+
 </div>
 
 <script>
+// ─────────────────────────────────────────────
+// SHUFFLE helper
+// ─────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-const BLOCKS = {
-1:[[`My name <strong>is</strong> Leo. <span class="vocab">I</span> am seven years old. <span class="vocab">I</span> live in <span class="vocab">a</span> small town with my <span class="vocab">family</span> — my mom, my <span class="vocab">dad</span>, and my sister Lara. <span class="vocab">We</span> have <span class="vocab">a</span> small house near the market.`,`Mi nombre es Leo. Yo tengo siete años. Vivo en un pueblo pequeño con mi familia — mi mamá, mi papá y mi hermana Lara. Tenemos una casa pequeña cerca del mercado.`],[`My <span class="vocab">dad</span> is tall and quiet. <span class="vocab">His</span> name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or <span class="vocab">a</span> small sweet.`,`Mi papá es alto y tranquilo. Su nombre es Marco. Trabaja en el mercado cada mañana y llega a casa al mediodía. Siempre nos trae algo — fruta, pan o un dulce pequeño.`],[`My mom is short and full of energy. <strong><span class="vocab">Her</span></strong> name is Irma. She sings while she cooks and laughs at <span class="vocab">her</span> own jokes. My sister Lara looks just like <span class="vocab">her</span> — <span class="vocab">same</span> nose, <span class="vocab">same</span> laugh.`,`Mi mamá es bajita y llena de energía. Su nombre es Irma. Canta mientras cocina y se ríe de sus propios chistes. Mi hermana Lara es igualita a ella — misma nariz, misma risa.`],[`Lara is five. She and <span class="vocab">I</span> are not the <span class="vocab">same</span> <span class="vocab">age</span>, but <span class="vocab">we</span> share a room. Sometimes that is hard. But at night, when <span class="vocab">it</span> is dark, she reaches across and holds my hand.`,`Lara tiene cinco. Ella y yo no tenemos la misma edad, pero compartimos un cuarto. A veces eso es difícil. Pero de noche, cuando está oscuro, ella me toma de la mano.`],[`<strong>There is</strong> also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. <span class="vocab">Everyone</span> on our street knows <span class="vocab">him</span>.`,`También está mi abuelo, Don Beto. Es mayor pero muy fuerte. Cada tarde se sienta afuera y saluda a los vecinos. Todos en nuestra calle lo conocen.`],[`On Sundays <span class="vocab">we</span> eat together — all of us at the same table. <span class="vocab">Dad</span> makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.`,`Los domingos comemos juntos — todos en la misma mesa. Papá hace arroz, mamá hace sopa, y el abuelo cuenta un cuento de cuando era joven. Siempre le pido el mismo del río grande.`],[`I am happy to be Leo, from this town, from this <span class="vocab">family</span>. Not every family is the same. But every family has something good in <span class="vocab">it</span>. That is what Don Beto says, and I believe <span class="vocab">him</span>.`,`Estoy feliz de ser Leo, de este pueblo, de esta familia . No toda familia es igual. Pero toda familia tiene algo bueno en ella . Eso es lo que dice Don Beto, y yo le creo.`]],
-2:[[`<span class="vocab">I</span> have <span class="vocab">a</span> big photo on my bedroom wall. <strong>There are</strong> eight people in <span class="vocab">it</span>, and <strong><span class="vocab">everyone</span></strong> is smiling. <span class="vocab">I</span> look at that photo every morning before school.`,`Yo tengo una foto grande en la pared de mi cuarto. Hay ocho personas en ella , y todos están sonriendo. La miro cada mañana antes de ir a la escuela.`],[`The tallest person is my <span class="vocab">dad</span>. <span class="vocab">His</span> name is Carlos. He has <span class="vocab">a</span> big smile and long arms. When he hugs <span class="vocab">you</span>, <span class="vocab">you</span> disappear a little. <span class="vocab">I</span> love that.`,`La persona más alta es mi papá . Su nombre es Carlos. Tiene una gran sonrisa y brazos largos. Cuando te abraza, desapareces un poco. Eso me encanta.`],[`Next to <span class="vocab">him</span> is my mom, Rosa. <strong><span class="vocab">Her</span></strong> eyes are always laughing even when <span class="vocab">her</span> mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.`,`Junto a él está mi mamá, Rosa. Sus ojos siempre ríen aunque su boca esté seria. Es enfermera y llega a casa cansada, pero siempre tiene tiempo para escucharme.`],[`My brother Nico is nine. He is a funny <span class="vocab">boy</span> — in the photo he is making a silly face. He always makes me laugh, even on bad days. <strong>The <span class="vocab">same</span></strong> face every time.`,`Mi hermano Nico tiene nueve años. Es un niño gracioso — en la foto está haciendo una mueca. Siempre me hace reír, hasta en los días malos. La misma cara siempre.`],[`<strong>There is</strong> also my grandma Norma. <strong>Her</strong> hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.`,`También está mi abuela Norma. Su cabello es blanco y sus manos son cálidas. Sabe cómo mejorar todo con una taza de té y una palabra tranquila.`],[`My grandpa Beto is next to her. <strong>They</strong> are the <span class="vocab">same</span> <span class="vocab">age</span> — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.`,`Mi abuelo Beto está junto a ella. Tienen la misma edad — los dos tienen setenta. Él es callado donde ella es ruidosa. Él escucha donde ella habla. Juntos son perfectos.`],[`The last two people in the photo are my aunt and uncle. <span class="vocab">Everyone</span> in my <span class="vocab">family</span> is different. But in that photo, <span class="vocab">we</span> all look like <span class="vocab">we</span> belong together. Because <span class="vocab">we</span> do.`,`Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes. Pero en esa foto, todos parecemos pertenecer juntos. Porque así es.`]],
-3:[[`Saturday is <span class="vocab">a</span> special day. <span class="vocab">We</span> do not go to school or work. <strong>There is</strong> no rush in the morning. My <span class="vocab">dad</span> makes eggs and <span class="vocab">everyone</span> sits at the table together.`,`El sábado es un día especial. Nosotros no vamos a la escuela ni al trabajo. No hay prisa por la mañana. Mi papá hace huevos y todos se sientan juntos a la mesa.`],[`After breakfast <span class="vocab">we</span> walk to the park. My grandpa Don Beto comes with us. <strong><span class="vocab">His</span></strong> walking stick makes a click-click sound on the sidewalk. <span class="vocab">I</span> like to walk next to <span class="vocab">him</span>.`,`Después del desayuno vamos al parque. Mi abuelo Don Beto viene con nosotros. Su bastón hace un click-click en la acera. A mí me gusta caminar a su lado.`],[`At the park <span class="vocab">I</span> play with my friend Ravi. <strong><span class="vocab">His</span></strong> little brother Arjun plays with my sister Lara. They are the <span class="vocab">same</span> <span class="vocab">age</span> — both five — so they understand each other perfectly.`,`En el parque juego con mi amigo Ravi. Su hermano pequeño Arjun juega con mi hermana Lara. Tienen la misma edad — los dos tienen cinco — así que se entienden perfectamente.`],[`Ravi is a funny <span class="vocab">boy</span>. He does voices for all the animals and <span class="vocab">I</span> cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.`,`Ravi es un niño gracioso. Hace voces de todos los animales y yo no puedo dejar de reírme. Su hermano mayor Dev nos mira y mueve la cabeza. Pero él está sonriendo.`],[`<strong><span class="vocab">Everyone</span></strong> at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch <span class="vocab">it</span> all — like they are watching a film.`,`Todos en el parque se conocen. Las mamás hablan cerca de la fuente. Los papás juegan fútbol. Los abuelos se sientan en un banco y miran todo — como si estuvieran viendo una película.`],[`When the sun goes down <span class="vocab">we</span> start walking home. My sister is sleepy and my <span class="vocab">dad</span> carries <span class="vocab">her</span> on his back. She is small and <span class="vocab">her</span> eyes are already closed.`,`Cuando el sol se pone empezamos a caminar a casa. Mi hermana tiene sueño y mi papá la lleva en la espalda. Ella es pequeña y sus ojos ya están cerrados.`],[`At home we drink tea and grandpa tells a story. I sit close to <span class="vocab">him</span> and listen. <span class="vocab">It</span> is the best part of Saturday — the quiet end, with my <span class="vocab">family</span>, all together.`,`En casa tomamos té y el abuelo cuenta un cuento. Yo me siento cerca de él y escucho. Es la mejor parte del sábado — el final tranquilo, con mi familia , todos juntos.`]],
-4:[[`<strong>My name is</strong> Nico and <span class="vocab">I</span> am eight years old. <span class="vocab">I</span> go to school on Avenida del Sol. <span class="vocab">I</span> have <span class="vocab">a</span> lot of friends, but I have learned something important: the best people are <strong><span class="vocab">kind</span></strong>.`,`Mi nombre es Nico y yo tengo ocho años. Voy a la escuela en la Avenida del Sol. Tengo muchos amigos, pero he aprendido algo importante: las mejores personas son amables .`],[`My <span class="vocab">dad</span> is the kindest person I know. <span class="vocab">His</span> name is Carlos. When I come home sad, he does not ask <span class="vocab">a</span> lot of questions. He just makes tea and sits with me until I feel better.`,`Mi papá es la persona más amable que conozco. Su nombre es Carlos. Cuando yo llego a casa triste, no hace muchas preguntas. Simplemente hace té y se sienta conmigo hasta que me siento mejor.`],[`<strong>There is</strong> also my neighbor Mrs. Ana. She lives alone. <strong><span class="vocab">Her</span></strong> <span class="vocab">family</span> is far away. Every morning she waves at me from <span class="vocab">her</span> window. I wave back. <span class="vocab">It</span> is a small thing, but <span class="vocab">it</span> makes <span class="vocab">her</span> smile big.`,`También está mi vecina, la señora Ana. Vive sola. Su familia está lejos. Cada mañana me saluda desde su ventana. Yo le devuelvo el saludo. Es una cosa pequeña, pero le hace sonreír mucho.`],[`At school my teacher Miss Pilar is <span class="vocab">kind</span> to <span class="vocab">everyone</span>. She never shouts. She explains things slowly and says, "Try again — <span class="vocab">you</span> can do <span class="vocab">it</span>." When I made a mistake on the board last week, she said, "Good try, Nico."`,`En la escuela mi maestra Miss Pilar es amable con todos . Nunca grita. Explica las cosas despacio y dice: "Intenta de nuevo — tú puedes." Cuando cometí un error en la pizarra la semana pasada, dijo: "Buen intento, Nico."`],[`My grandpa Beto is also kind. He is old but <strong>the <span class="vocab">same</span></strong> inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.`,`Mi abuelo Beto también es amable . Es mayor pero igual por dentro que siempre — paciente, tranquilo y cálido. Cuando lo visito, siempre tiene un cuento. Y en cada cuento, la persona amable gana.`],[`<strong>I</strong> think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my <span class="vocab">dad</span>, my grandpa. And I choose to be kind.`,`Creo que ser amable es como ser fuerte. Es una decisión cada día. Cuando alguien es malo conmigo, yo recuerdo a Miss Pilar, a mi papá, a mi abuelo. Y elijo ser amable .`],[`I do not know everything. I am only eight. But I know that my <span class="vocab">family</span> is kind, my friends are <strong>kind</strong>, and that is <span class="vocab">everyone</span> I need.`,`Yo no sé todo. Solo tengo ocho años. Pero sé que mi familia es amable , mis amigos son amables , y eso es todo lo que necesito.`]]
+// Build one activity: shuffle options, track correct letter
+function mk(id, level, title, desc, audio, spanish, question, correctText, wrong1, wrong2, fbCorrect, fbIncorrect) {
+  const opts = shuffle([
+    { text: correctText, ok: true },
+    { text: wrong1, ok: false },
+    { text: wrong2, ok: false }
+  ]);
+  let correctLetter = 'a';
+  opts.forEach((o, i) => { if (o.ok) correctLetter = ['a','b','c'][i]; });
+  return {
+    id, level, title, desc, audio, spanish, question,
+    options: opts.map(o => o.text),
+    correct: correctLetter,
+    feedback: { correct: fbCorrect, incorrect: fbIncorrect }
+  };
+}
+
+// ─────────────────────────────────────────────
+// STORIES
+// Pre-A1 rules:
+//   · Audio = 1–3 oraciones cortas, vocab básico
+//   · Pregunta = ¿quién?, ¿qué?, ¿cuántos?, ¿dónde?, ¿cómo es?
+//   · Respuesta correcta está dicha EXACTAMENTE en el audio
+//   · Fácil = 1 oración · Medio = 2 oraciones · Difícil = 2-3 oraciones
+//   · Feedback correcto = cita la frase clave en inglés
+//   · Feedback incorrecto = explica + cierra con ¡Escucha otra vez!
+// ─────────────────────────────────────────────
+
+const STORIES = {
+
+  // ══════════════════════════════════════
+  // S1 — My Name Is Leo
+  // ══════════════════════════════════════
+  s1: {
+    label: 'S1', emoji: '📖', title: 'S1 — My Name Is Leo',
+    activities: [
+      mk(1,'easy',
+        'El nombre del niño', 'Leo se presenta',
+        'My name is Leo.',
+        'Mi nombre es Leo.',
+        '¿Cómo se llama el niño?',
+        'Leo', 'Marco', 'Ravi',
+        '✔ ¡Correcto! Él dijo *"My name is Leo."*',
+        '✗ Él dijo *"My name is Leo."* — su nombre es Leo. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántos años tiene?', 'Leo dice su edad',
+        'I am seven years old.',
+        'Yo tengo siete años.',
+        '¿Cuántos años tiene Leo?',
+        'Siete años', 'Ocho años', 'Seis años',
+        '✔ ¡Correcto! Leo dijo *"I am seven years old."*',
+        '✗ Leo dijo *"I am seven years old"* — tiene siete años. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        '¿Cómo es el papá?', 'Leo describe a su papá',
+        'My dad is tall.',
+        'Mi papá es alto.',
+        '¿Cómo es el papá de Leo?',
+        'Alto', 'Bajo', 'Gordito',
+        '✔ ¡Correcto! Leo dijo *"My dad is tall."*',
+        '✗ Leo dijo *"My dad is tall"* — su papá es alto. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'El nombre del papá', 'Leo dice el nombre de su papá',
+        'His name is Marco.',
+        'Su nombre es Marco.',
+        '¿Cómo se llama el papá de Leo?',
+        'Marco', 'Beto', 'Carlos',
+        '✔ ¡Correcto! Leo dijo *"His name is Marco."*',
+        '✗ Leo dijo *"His name is Marco"* — el papá se llama Marco. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El nombre de mamá', 'Leo describe a su mamá',
+        'Her name is Irma. She sings while she cooks.',
+        'Su nombre es Irma. Ella canta mientras cocina.',
+        '¿Cómo se llama la mamá de Leo?',
+        'Irma', 'Rosa', 'Ana',
+        '✔ ¡Correcto! Leo dijo *"Her name is Irma."*',
+        '✗ Leo dijo *"Her name is Irma"* — la mamá se llama Irma. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'La hermana Lara', 'Leo habla de su hermana',
+        'My sister is Lara. She is five years old.',
+        'Mi hermana es Lara. Ella tiene cinco años.',
+        '¿Cuántos años tiene la hermana de Leo?',
+        'Cinco años', 'Siete años', 'Tres años',
+        '✔ ¡Correcto! Leo dijo *"She is five years old."*',
+        '✗ Leo dijo *"She is five years old"* — Lara tiene cinco años. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'La casa de Leo', 'Leo describe dónde vive',
+        'We have a small house. It is near the market.',
+        'Tenemos una casa pequeña. Está cerca del mercado.',
+        '¿Dónde está la casa de Leo? Escucha: "near the ___"',
+        'Cerca del mercado', 'Cerca de la escuela', 'Cerca del parque',
+        '✔ ¡Correcto! Leo dijo *"near the market"* — cerca del mercado.',
+        '✗ Leo dijo *"near the market"* — la casa está cerca del mercado. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        '¿Dónde trabaja el papá?', 'El papá de Leo',
+        'My dad works at the market. He always brings us fruit, bread, or a small sweet.',
+        'Mi papá trabaja en el mercado. Siempre nos trae fruta, pan o un dulce pequeño.',
+        '¿Dónde trabaja el papá de Leo? Escucha: "works at the ___"',
+        'En el mercado', 'En la escuela', 'En el hospital',
+        '✔ ¡Correcto! Leo dijo *"My dad works at the market."*',
+        '✗ Leo dijo *"works at the market"* — el papá trabaja en el mercado. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Don Beto cada tarde', 'El abuelo y los vecinos',
+        'There is also my grandpa Don Beto. Every afternoon he sits outside and waves at neighbors.',
+        'También está mi abuelo Don Beto. Cada tarde se sienta afuera y saluda a los vecinos.',
+        '¿Cómo se llama el abuelo de Leo?',
+        'Don Beto', 'Don Carlos', 'Don Marco',
+        '✔ ¡Correcto! Leo dijo *"my grandpa Don Beto."*',
+        '✗ Leo dijo *"my grandpa Don Beto"* — el abuelo se llama Don Beto. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'El domingo en familia', 'Todos juntos a la mesa',
+        'On Sundays we eat together. Dad makes rice and mom makes soup.',
+        'Los domingos comemos juntos. Papá hace arroz y mamá hace sopa.',
+        '¿Qué hace el papá de Leo los domingos?',
+        'Hace arroz', 'Hace sopa', 'Hace pan',
+        '✔ ¡Correcto! Leo dijo *"Dad makes rice."*',
+        '✗ Leo dijo *"Dad makes rice"* — el papá hace arroz. La mamá hace la sopa. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S2 — Mia's Family Photo
+  // ══════════════════════════════════════
+  s2: {
+    label: 'S2', emoji: '📖', title: "S2 — Mia's Family Photo",
+    activities: [
+      mk(1,'easy',
+        'La foto de Mia', 'Mia habla de una foto',
+        'I have a big photo on my wall.',
+        'Yo tengo una foto grande en mi pared.',
+        '¿Dónde está la foto grande de Mia?',
+        'En su pared', 'En la escuela', 'En la cocina',
+        '✔ ¡Correcto! Mia dijo *"I have a big photo on my wall."*',
+        '✗ Mia dijo *"on my wall"* — la foto está en su pared. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántas personas?', 'Mia cuenta a su familia',
+        'There are eight people in the photo.',
+        'Hay ocho personas en la foto.',
+        '¿Cuántas personas hay en la foto de Mia?',
+        'Ocho personas', 'Cinco personas', 'Seis personas',
+        '✔ ¡Correcto! Mia dijo *"There are eight people."*',
+        '✗ Mia dijo *"eight people"* — hay ocho personas. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El papá de Mia', 'Mia describe a su papá',
+        'My dad is the tallest person. His name is Carlos.',
+        'Mi papá es la persona más alta. Su nombre es Carlos.',
+        '¿Cómo se llama el papá de Mia?',
+        'Carlos', 'Marco', 'Beto',
+        '✔ ¡Correcto! Mia dijo *"His name is Carlos."*',
+        '✗ Mia dijo *"His name is Carlos"* — el papá se llama Carlos. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'La mamá de Mia', 'Mia habla de su mamá',
+        'My mom is Rosa. She is a nurse.',
+        'Mi mamá es Rosa. Ella es enfermera.',
+        '¿Cómo se llama la mamá de Mia?',
+        'Rosa', 'Irma', 'Ana',
+        '✔ ¡Correcto! Mia dijo *"My mom is Rosa."*',
+        '✗ Mia dijo *"My mom is Rosa"* — la mamá se llama Rosa. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El hermano Nico', 'Mia habla de su hermano',
+        'My brother Nico is nine. He is a funny boy.',
+        'Mi hermano Nico tiene nueve años. Es un niño gracioso.',
+        '¿Cuántos años tiene el hermano de Mia, Nico?',
+        'Nueve años', 'Siete años', 'Diez años',
+        '✔ ¡Correcto! Mia dijo *"My brother Nico is nine."*',
+        '✗ Mia dijo *"Nico is nine"* — tiene nueve años. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'La abuela Norma', 'Mia describe a su abuela',
+        'My grandma is Norma. Her hair is white.',
+        'Mi abuela es Norma. Su cabello es blanco.',
+        '¿De qué color es el cabello de la abuela Norma?',
+        'Blanco', 'Negro', 'Café',
+        '✔ ¡Correcto! Mia dijo *"Her hair is white."*',
+        '✗ Mia dijo *"Her hair is white"* — el cabello de Norma es blanco. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'Los dos abuelos', 'Mia compara a sus abuelos',
+        'My grandpa Beto is next to grandma. They are both seventy years old.',
+        'Mi abuelo Beto está junto a la abuela. Los dos tienen setenta años.',
+        '¿Cuántos años tienen los dos abuelos de Mia?',
+        'Los dos tienen setenta años', 'Los dos tienen sesenta años', 'Beto tiene setenta, Norma sesenta',
+        '✔ ¡Correcto! Mia dijo *"They are both seventy years old."*',
+        '✗ Mia dijo *"both seventy"* — los dos tienen setenta años. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        'La foto cada mañana', 'Mia y su rutina',
+        'I look at that photo every morning before school.',
+        'Yo miro esa foto cada mañana antes de la escuela.',
+        '¿Cuándo mira Mia la foto de su familia?',
+        'Cada mañana antes de la escuela', 'Cada noche antes de dormir', 'Solo los domingos',
+        '✔ ¡Correcto! Mia dijo *"every morning before school."*',
+        '✗ Mia dijo *"every morning before school"* — la mira cada mañana. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Nico en la foto', 'La cara de Nico',
+        'In the photo my brother Nico is making a silly face. He always makes me laugh.',
+        'En la foto mi hermano Nico está haciendo una cara chistosa. Siempre me hace reír.',
+        '¿Qué está haciendo Nico en la foto?',
+        'Una cara chistosa', 'Llorando', 'Durmiendo',
+        '✔ ¡Correcto! Mia dijo *"he is making a silly face."*',
+        '✗ Mia dijo *"making a silly face"* — Nico hace una cara chistosa. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'La tía y el tío', 'Las últimas personas en la foto',
+        'The last two people in the photo are my aunt and uncle. Everyone in my family is different.',
+        'Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes.',
+        '¿Quiénes son las últimas dos personas en la foto de Mia?',
+        'Su tía y su tío', 'Sus dos primos', 'Sus dos abuelos',
+        '✔ ¡Correcto! Mia dijo *"my aunt and uncle."*',
+        '✗ Mia dijo *"my aunt and uncle"* — son su tía y su tío. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S3 — Saturday at the Park
+  // ══════════════════════════════════════
+  s3: {
+    label: 'S3', emoji: '📖', title: 'S3 — Saturday at the Park',
+    activities: [
+      mk(1,'easy',
+        'El día especial', 'Leo habla del sábado',
+        'Saturday is a special day.',
+        'El sábado es un día especial.',
+        '¿Cómo llama Leo al sábado?',
+        'Un día especial', 'Un día normal', 'Un día de escuela',
+        '✔ ¡Correcto! Leo dijo *"Saturday is a special day."*',
+        '✗ Leo dijo *"Saturday is a special day"* — el sábado es especial. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        'El desayuno del sábado', 'El papá cocina',
+        'My dad makes eggs.',
+        'Mi papá hace huevos.',
+        '¿Qué hace el papá de Leo el sábado por la mañana?',
+        'Hace huevos', 'Hace sopa', 'Hace pan',
+        '✔ ¡Correcto! Leo dijo *"My dad makes eggs."*',
+        '✗ Leo dijo *"My dad makes eggs"* — el papá hace huevos. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El bastón de Don Beto', 'El abuelo en el parque',
+        'My grandpa Don Beto has a walking stick.',
+        'Mi abuelo Don Beto tiene un bastón.',
+        '¿Qué usa Don Beto para caminar?',
+        'Un bastón', 'Una silla de ruedas', 'El brazo de Leo',
+        '✔ ¡Correcto! Leo dijo *"Don Beto has a walking stick."*',
+        '✗ Leo dijo *"a walking stick"* — Don Beto usa un bastón. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'Le gusta caminar', 'Leo y su abuelo',
+        'I like to walk next to him.',
+        'Me gusta caminar junto a él.',
+        '¿Qué le gusta hacer a Leo en el parque?',
+        'Caminar junto a Don Beto', 'Jugar fútbol', 'Montar bicicleta',
+        '✔ ¡Correcto! Leo dijo *"I like to walk next to him."*',
+        '✗ Leo dijo *"I like to walk next to him"* — le gusta caminar junto al abuelo. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'La hermana cansada', 'Al regresar a casa',
+        'My sister is sleepy. My dad carries her on his back.',
+        'Mi hermana tiene sueño. Mi papá la lleva en su espalda.',
+        '¿Quién lleva a la hermana de Leo cuando tiene sueño?',
+        'Su papá la lleva en la espalda', 'Su mamá la carga en brazos', 'Su abuelo la lleva de la mano',
+        '✔ ¡Correcto! Leo dijo *"My dad carries her on his back."*',
+        '✗ Leo dijo *"dad carries her on his back"* — el papá la lleva. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'El té en casa', 'El abuelo cuenta un cuento',
+        'At home we drink tea. Grandpa tells a story.',
+        'En casa tomamos té. El abuelo cuenta un cuento.',
+        '¿Qué hace el abuelo cuando llegan a casa?',
+        'Cuenta un cuento', 'Cocina la cena', 'Mira la televisión',
+        '✔ ¡Correcto! Leo dijo *"Grandpa tells a story."*',
+        '✗ Leo dijo *"Grandpa tells a story"* — el abuelo cuenta un cuento. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'La mejor parte', 'Leo y su momento favorito',
+        'It is the best part of Saturday — the quiet end with my family.',
+        'Es la mejor parte del sábado — el final tranquilo con mi familia.',
+        '¿Con quiénes pasa Leo la mejor parte del sábado? Escucha: "with my ___"',
+        'Con su familia', 'Con sus amigos', 'Con sus vecinos',
+        '✔ ¡Correcto! Leo dijo *"with my family."*',
+        '✗ Leo dijo *"with my family"* — la mejor parte es estar con su familia. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        '¿Adónde NO van el sábado?', 'La mañana del sábado',
+        'We do not go to school or work. There is no rush in the morning.',
+        'No vamos a la escuela ni al trabajo. No hay prisa por la mañana.',
+        '¿Adónde NO va la familia de Leo el sábado? Escucha: "do not go to ___"',
+        'A la escuela ni al trabajo', 'Al mercado', 'Al parque',
+        '✔ ¡Correcto! Leo dijo *"We do not go to school or work."*',
+        '✗ Leo dijo *"do not go to school or work"* — el sábado no hay escuela ni trabajo. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Los ojos de la hermana', 'La hermana ya duerme',
+        'She is small. Her eyes are already closed.',
+        'Ella es pequeña. Sus ojos ya están cerrados.',
+        '¿Cómo están los ojos de la hermana de Leo?',
+        'Ya están cerrados', 'Están abiertos', 'Están llorando',
+        '✔ ¡Correcto! Leo dijo *"Her eyes are already closed."*',
+        '✗ Leo dijo *"Her eyes are already closed"* — sus ojos ya están cerrados. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'Todos en la mesa', 'El sábado por la mañana',
+        'My dad makes eggs and everyone sits at the table together.',
+        'Mi papá hace huevos y todos se sientan juntos a la mesa.',
+        '¿Qué hacen todos el sábado por la mañana?',
+        'Se sientan juntos a la mesa', 'Van al parque primero', 'Duermen hasta tarde',
+        '✔ ¡Correcto! Leo dijo *"everyone sits at the table together."*',
+        '✗ Leo dijo *"everyone sits at the table together"* — todos desayunan juntos. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S4 — Kind People
+  // ══════════════════════════════════════
+  s4: {
+    label: 'S4', emoji: '📖', title: 'S4 — Kind People',
+    activities: [
+      mk(1,'easy',
+        'El nombre del niño', 'Nico se presenta',
+        'My name is Nico.',
+        'Mi nombre es Nico.',
+        '¿Cómo se llama el niño que habla en esta historia?',
+        'Nico', 'Leo', 'Ravi',
+        '✔ ¡Correcto! Él dijo *"My name is Nico."*',
+        '✗ Él dijo *"My name is Nico"* — se llama Nico. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántos años tiene?', 'Nico dice su edad',
+        'I am eight years old.',
+        'Yo tengo ocho años.',
+        '¿Cuántos años tiene Nico?',
+        'Ocho años', 'Siete años', 'Nueve años',
+        '✔ ¡Correcto! Nico dijo *"I am eight years old."*',
+        '✗ Nico dijo *"I am eight years old"* — tiene ocho años. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El papá de Nico', 'Nico habla de su papá',
+        'My dad is Carlos. He is very kind.',
+        'Mi papá es Carlos. Él es muy amable.',
+        '¿Cómo se llama el papá de Nico?',
+        'Carlos', 'Marco', 'Beto',
+        '✔ ¡Correcto! Nico dijo *"My dad is Carlos."*',
+        '✗ Nico dijo *"My dad is Carlos"* — el papá se llama Carlos. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'La vecina sola', 'Nico habla de Mrs. Ana',
+        'My neighbor Mrs. Ana lives alone.',
+        'Mi vecina la señora Ana vive sola.',
+        '¿Con quién vive la señora Ana?',
+        'Vive sola', 'Vive con su hija', 'Vive con Nico',
+        '✔ ¡Correcto! Nico dijo *"Mrs. Ana lives alone."*',
+        '✗ Nico dijo *"lives alone"* — la señora Ana vive sola. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El saludo de la vecina', 'La señora Ana cada mañana',
+        'Every morning she waves at me from her window.',
+        'Cada mañana me saluda desde su ventana.',
+        '¿Desde dónde saluda la señora Ana a Nico?',
+        'Desde su ventana', 'Desde la puerta', 'Desde la calle',
+        '✔ ¡Correcto! Nico dijo *"she waves at me from her window."*',
+        '✗ Nico dijo *"from her window"* — saluda desde su ventana. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'Miss Pilar nunca grita', 'La maestra de Nico',
+        'My teacher is Miss Pilar. She is kind. She never shouts.',
+        'Mi maestra es Miss Pilar. Es amable. Ella nunca grita.',
+        '¿Cómo se llama la maestra de Nico?',
+        'Miss Pilar', 'Miss Rosa', 'Miss Ana',
+        '✔ ¡Correcto! Nico dijo *"My teacher is Miss Pilar."*',
+        '✗ Nico dijo *"My teacher is Miss Pilar"* — la maestra se llama Miss Pilar. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'Lo que dice Miss Pilar', 'Las palabras de la maestra',
+        'She says: "Try again — you can do it."',
+        'Ella dice: "Intenta de nuevo — tú puedes."',
+        '¿Qué le dice Miss Pilar a Nico cuando comete un error?',
+        '"Try again — you can do it"', '"That is wrong, do it again"', '"Ask your parents"',
+        '✔ ¡Correcto! Miss Pilar dice *"Try again — you can do it."* ¡Palabras de apoyo!',
+        '✗ Miss Pilar dice *"Try again — you can do it"* — siempre anima a los estudiantes. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        'El papá y el té', 'Nico llega triste a casa',
+        'When I am sad, my dad makes tea. He sits with me.',
+        'Cuando estoy triste, mi papá hace té. Se sienta conmigo.',
+        '¿Qué hace el papá de Nico? Escucha: "my dad makes ___"',
+        'Té', 'Sopa', 'Pan',
+        '✔ ¡Correcto! Nico dijo *"my dad makes tea."*',
+        '✗ Nico dijo *"my dad makes tea"* — el papá hace té. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'La sonrisa de la vecina', 'El efecto de un saludo pequeño',
+        'It is a small thing, but it makes her smile big.',
+        'Es una cosa pequeña, pero le hace sonreír mucho.',
+        '¿Qué dice Nico que es ese gesto? Escucha: "It is a ___ thing"',
+        'Una cosa pequeña', 'Una cosa difícil', 'Una cosa importante',
+        '✔ ¡Correcto! Nico dijo *"It is a small thing."*',
+        '✗ Nico dijo *"It is a small thing"* — es una cosa pequeña. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'Ser amable es una elección', 'La idea más importante de Nico',
+        'Being kind is like being strong. It is a choice every day.',
+        'Ser amable es como ser fuerte. Es una decisión cada día.',
+        '¿Qué dice Nico sobre ser amable?',
+        'Es una decisión de cada día', 'Es un regalo que recibes', 'Es una regla de la escuela',
+        '✔ ¡Correcto! Nico dijo *"It is a choice every day."*',
+        '✗ Nico dijo *"It is a choice every day"* — ser amable es una decisión diaria. ¡Escucha otra vez!'
+      )
+    ]
+  }
 };
 
-const STORY_META = {
-1:{t:"My Name Is Leo",desc:"Leo introduces himself and his small, happy family."},
-2:{t:"Mia\'s Family Photo",desc:"Mia describes the eight people in her family photo."},
-3:{t:"Saturday at the Park",desc:"Leo describes a typical happy Saturday with his family."},
-4:{t:"Kind People",desc:"Nico reflects on the kindest people in his life."}
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let currentKey = 's1';
+let currentSpeed = 1;
+let currentAccent = 'american';
+const synth = window.speechSynthesis;
+let voices = [];
+let currentVoice = null;
+let isPlaying = false;
+const storyState = {};
+Object.keys(STORIES).forEach(k => resetState(k));
+
+function resetState(k) {
+  storyState[k] = { answered: 0, correct: 0, incorrect: 0, easyOk: 0, medOk: 0, hardOk: 0, answered_q: {} };
+}
+
+// ─────────────────────────────────────────────
+// VOICES
+// ─────────────────────────────────────────────
+const VPREF = {
+  american: ['Google US English','Samantha','Microsoft Zira','en-US'],
+  british:  ['Google UK English Female','Daniel','Microsoft Hazel','en-GB']
 };
+function loadVoices() {
+  voices = synth.getVoices();
+  if (!voices.length) { setTimeout(loadVoices, 100); return; }
+  selectVoice(currentAccent);
+}
+function selectVoice(accent) {
+  for (const name of VPREF[accent]) {
+    const v = voices.find(v => v.name.includes(name));
+    if (v) { currentVoice = v; return; }
+  }
+  const lang = accent === 'american' ? 'en-US' : 'en-GB';
+  currentVoice = voices.find(v => v.lang === lang) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+}
+if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
 
-const S={
-1:{t:"My Name Is Leo",
-ee:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Cuántos años tiene Leo?",
-o:["Cinco años","Ocho años","Siete años","Seis años"],c:2,
-ok:"La historia dice: <strong>\"I am seven years old\"</strong> = Tengo siete años. <strong>Seven = 7.</strong>",
-no:"Busca la primera oración: <strong>\"I am seven years old.\"</strong> Seven = siete. No es cinco (five), ocho (eight) ni seis (six).",
-tip:"💡 Números: five=5, six=6, <strong>seven=7</strong>, eight=8."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Dónde trabaja el papá de Leo?",
-o:["En una escuela","En el mercado","En un hospital","En una tienda"],c:1,
-ok:"La historia dice: <strong>\"He works at the market\"</strong> = Trabaja en el mercado. <strong>Market = mercado.</strong>",
-no:"Busca: <strong>\"He works at the market every morning.\"</strong> Market = mercado.",
-tip:"💡 Market = mercado. School = escuela. Hospital = hospital."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Cómo es la mamá de Leo?",
-o:["Alta y tranquila","Seria y callada","Bajita y llena de energía","Alta y cansada"],c:2,
-ok:"La historia dice: <strong>\"My mom is short and full of energy\"</strong> = bajita y llena de energía. Short = bajita.",
-no:"Busca: <strong>\"My mom is short and full of energy.\"</strong> Short = bajita (no tall = alta).",
-tip:"💡 Short = bajita. Tall = alta. Full of energy = llena de energía."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"Lara toma la mano de Leo de noche. ¿Por qué lo hace?",
-o:["Porque tiene frío","Porque quiere a su hermano","Porque necesita ayuda","Porque tiene miedo"],c:1,
-ok:"Tomar la mano de alguien de noche es una señal de <strong>cariño y amor</strong>. Lara quiere a su hermano Leo.",
-no:"Cuando alguien te toma la mano, normalmente es porque te quiere. Es una señal de <strong>amor</strong>, no de frío o miedo.",
-tip:"💡 Holds my hand = me toma la mano. Es un gesto de amor entre hermanos."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Todos en la calle conocen al abuelo Don Beto. ¿Qué tipo de persona es?",
-o:["Triste y solitario","Amable y querido por todos","Enojado y serio","Muy joven"],c:1,
-ok:"Si <strong>todos lo conocen</strong>, es porque es una persona <strong>amable y querida</strong> en su vecindario.",
-no:"La historia dice: <strong>\"Everyone on our street knows him.\"</strong> Everyone = todos. Si todos te conocen, eres amable y querido.",
-tip:"💡 Everyone = todos. Knows = conoce. Si todos te conocen, eres una persona querida."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Los domingos toda la familia come junta. ¿Qué les gusta hacer juntos?",
-o:["Ver televisión solos","Comer y estar en familia","Trabajar todo el día","Hacer ejercicio"],c:1,
-ok:"La historia dice que los domingos comen juntos y el abuelo cuenta historias. Les gusta <strong>estar en familia</strong>.",
-no:"Busca: <strong>\"On Sundays we eat together.\"</strong> Together = juntos. Comen y comparten historias en familia.",
-tip:"💡 Together = juntos. Sunday = domingo. Eat together = comer juntos."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"Leo dice: \"Every family has something good in it.\" ¿Qué quiere decir?",
-o:["Que su familia es perfecta","Que todas las familias tienen algo bueno","Que solo las familias grandes son buenas","Que la familia de Leo es especial"],c:1,
-ok:"¡Exacto! Leo dice que <strong>todas las familias tienen algo bueno</strong>. Every = todas. 💛",
-no:"Every = todas. <strong>\"Every family has something good\"</strong> = Todas las familias tienen algo bueno. Este es el mensaje de la historia.",
-tip:"💡 Every = todas/todos. Every family = todas las familias. Good = bueno/a."}
-],
-en:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Cuántos años tiene Leo?",
-o:["Five years old","Eight years old","Seven years old","Six years old"],c:2,
-ok:"The story says: <strong>\"I am seven years old.\"</strong> Seven = siete. 💡 seven=7.",
-no:"Look at the first sentence: <strong>\"I am seven years old.\"</strong> Seven = 7 = siete.",
-tip:"💡 five=5, six=6, <strong>seven=7</strong>, eight=8."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Dónde trabaja el papá de Leo?",
-o:["At a school","At the market","At a hospital","At a shop"],c:1,
-ok:"The story says: <strong>\"He works at the market.\"</strong> Market = mercado. 💡 at = en.",
-no:"Look for: <strong>\"He works at the market every morning.\"</strong> Market = mercado.",
-tip:"💡 Market = mercado. School = escuela. Hospital = hospital. Shop = tienda."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Cómo es la mamá de Leo?",
-o:["Tall and quiet","Serious and silent","Short and full of energy","Tall and tired"],c:2,
-ok:"The story says: <strong>\"My mom is short and full of energy.\"</strong> Short = bajita. Full of energy = llena de energía.",
-no:"Look for: <strong>\"My mom is short and full of energy.\"</strong> Short = bajita (not tall = alta).",
-tip:"💡 Short = bajita. Tall = alta. Full of energy = llena de energía."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"Lara toma la mano de Leo de noche. ¿Por qué lo hace?",
-o:["Because she is cold","Because she loves her brother","Because she needs help","Because she is scared"],c:1,
-ok:"Taking someone\'s hand at night is a sign of <strong>love and affection</strong>. Lara loves her brother.",
-no:"When someone takes your hand, it usually means they love you. It is a sign of <strong>love</strong>.",
-tip:"💡 Holds my hand = me toma la mano. Loves = quiere. Brother = hermano."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Todos en la calle conocen al abuelo Don Beto. ¿Qué tipo de persona es?",
-o:["Sad and lonely","Kind and loved by everyone","Angry and serious","Very young"],c:1,
-ok:"If <strong>everyone knows him</strong>, it means he is a <strong>kind and beloved</strong> person in his neighborhood.",
-no:"The story says: <strong>\"Everyone on our street knows him.\"</strong> Everyone = todos. A person everyone knows is kind.",
-tip:"💡 Everyone = todos. Kind = amable. Loved = querido."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Los domingos toda la familia come junta. ¿Qué les gusta hacer juntos?",
-o:["Watch television alone","Eat together as a family","Work all day","Exercise"],c:1,
-ok:"The story says they eat together on Sundays and grandpa tells stories. They enjoy <strong>being together as a family</strong>.",
-no:"Look for: <strong>\"On Sundays we eat together.\"</strong> Together = juntos. They share meals and stories.",
-tip:"💡 Together = juntos. Eat = comer. Family = familia."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"Leo dice: \"Every family has something good in it.\" ¿Qué quiere decir?",
-o:["That his family is perfect","That every family has something good","That only big families are good","That Leo\'s family is special"],c:1,
-ok:"Leo says <strong>every family has something good</strong>. Every = todas. This is the message of the story. 💛",
-no:"Every = todas. <strong>\"Every family has something good\"</strong> = Todas las familias tienen algo bueno.",
-tip:"💡 Every = todas. Good = bueno. Every family = todas las familias."}
-]},
-2:{t:"Mia's Family Photo",
-ee:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Cuántas personas hay en la foto de Mia?",
-o:["Seis personas","Diez personas","Ocho personas","Cinco personas"],c:2,
-ok:"La historia dice: <strong>\"There are eight people in it\"</strong> = Hay ocho personas. Eight = ocho.",
-no:"Busca: <strong>\"There are eight people in it.\"</strong> Eight = ocho.",
-tip:"💡 There are = hay. Eight = 8 = ocho."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Cuál es el trabajo de la mamá de Mia?",
-o:["Es maestra","Es enfermera","Es doctora","Es cocinera"],c:1,
-ok:"La historia dice: <strong>\"She is a nurse\"</strong> = Es enfermera. Nurse = enfermera.",
-no:"Busca: <strong>\"She is a nurse.\"</strong> Nurse = enfermera, no maestra (teacher) ni doctora (doctor).",
-tip:"💡 Nurse = enfermera. Teacher = maestra. Doctor = doctora."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿De qué color es el cabello de la abuela Norma?",
-o:["Negro","Rojo","Blanco","Castaño"],c:2,
-ok:"La historia dice: <strong>\"Her hair is white\"</strong> = Su cabello es blanco. White = blanco.",
-no:"Busca: <strong>\"Her hair is white.\"</strong> Hair = cabello. White = blanco.",
-tip:"💡 Hair = cabello. White = blanco. Black = negro. Red = rojo."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"La mamá de Mia llega cansada pero siempre escucha a Mia. ¿Qué tipo de mamá es?",
-o:["Una mamá enojada","Una mamá que no trabaja","Una mamá dedicada y amorosa","Una mamá que solo quiere descansar"],c:2,
-ok:"Aunque está cansada, <strong>siempre escucha a Mia</strong>. Eso muestra que es una mamá dedicada y amorosa.",
-no:"La historia dice que llega cansada <strong>pero</strong> siempre escucha. But = pero. Eso muestra amor y dedicación.",
-tip:"💡 Tired = cansada. But = pero. \"Tired, but listens\" = cansada, pero escucha."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"El abuelo Beto es callado y la abuela Norma habla mucho. ¿Son una buena pareja?",
-o:["No, porque son muy diferentes","No, porque no se hablan","Sí, porque sus diferencias se complementan","Sí, porque los dos son ruidosos"],c:2,
-ok:"Mia dice que juntos son <strong>perfectos</strong>. Sus diferencias se complementan: él escucha, ella habla.",
-no:"Mia dice: <strong>\"together they are perfect\"</strong> = juntos son perfectos. Sus diferencias los complementan.",
-tip:"💡 Together = juntos. Perfect = perfecto. Opposite = opuesto."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Mia mira la foto cada mañana antes de ir a la escuela. ¿Por qué lo hace?",
-o:["Porque la foto es muy cara","Porque no le gusta la escuela","Porque su familia le da alegría y fuerza","Porque quiere ser fotógrafa"],c:2,
-ok:"Mirar a tu familia cada mañana muestra que <strong>su familia le da alegría y fuerza</strong> para el día.",
-no:"Hacerlo <em>cada mañana</em> muestra que es importante para ella. Su familia le da <strong>alegría y fuerza</strong>.",
-tip:"💡 Every morning = cada mañana. Before school = antes de la escuela."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"Mia dice: \"Everyone is different. But we belong together.\" ¿Qué quiere decir?",
-o:["Que su familia es perfecta e igual","Que solo las familias similares son buenas","Que aunque son diferentes, son una familia","Que ocho personas es el número perfecto"],c:2,
-ok:"¡Exacto! Aunque todos son diferentes, <strong>pertenecen juntos</strong>. Different = diferente. Together = juntos. 💛",
-no:"<strong>\"Everyone is different. But we belong together.\"</strong> Belong = pertenecer. Together = juntos.",
-tip:"💡 Different = diferente. Belong = pertenecer. Together = juntos."}
-],
-en:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Cuántas personas hay en la foto de Mia?",
-o:["Six people","Ten people","Eight people","Five people"],c:2,
-ok:"The story says: <strong>\"There are eight people in it.\"</strong> Eight = ocho.",
-no:"Look for: <strong>\"There are eight people in it.\"</strong> Eight = 8 = ocho.",
-tip:"💡 There are = hay. Eight = 8 = ocho. Six = seis."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Cuál es el trabajo de la mamá de Mia?",
-o:["She is a teacher","She is a nurse","She is a doctor","She is a cook"],c:1,
-ok:"The story says: <strong>\"She is a nurse.\"</strong> Nurse = enfermera.",
-no:"Look for: <strong>\"She is a nurse.\"</strong> Not teacher (maestra) or doctor (doctora).",
-tip:"💡 Nurse = enfermera. Teacher = maestra. Doctor = doctora."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿De qué color es el cabello de la abuela Norma?",
-o:["Black","Red","White","Brown"],c:2,
-ok:"The story says: <strong>\"Her hair is white.\"</strong> White = blanco.",
-no:"Look for: <strong>\"Her hair is white.\"</strong> White = blanco. Not black or red.",
-tip:"💡 White = blanco. Black = negro. Red = rojo. Brown = castaño."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"La mamá de Mia llega cansada pero siempre escucha a Mia. ¿Qué tipo de mamá es?",
-o:["An angry mom","A mom who doesn\'t work","A dedicated and loving mom","A mom who only wants to rest"],c:2,
-ok:"Even when she is tired, she <strong>always listens to Mia</strong>. That shows she is a dedicated and loving mom.",
-no:"The story says she comes home tired <strong>but</strong> always listens. But = pero. That shows love.",
-tip:"💡 Tired = cansada. But = pero. Listens = escucha. Loving = amorosa."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"El abuelo Beto es callado y la abuela Norma habla mucho. ¿Son una buena pareja?",
-o:["No, because they are very different","No, because they don\'t talk","Yes, because their differences complement each other","Yes, because they are both loud"],c:2,
-ok:"Mia says they are <strong>perfect together</strong>. Their differences complement each other: he listens, she talks.",
-no:"Mia says: <strong>\"together they are perfect.\"</strong> Their differences work well together.",
-tip:"💡 Together = juntos. Perfect = perfecto. Complement = complementar."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Mia mira la foto cada mañana antes de ir a la escuela. ¿Por qué lo hace?",
-o:["Because the photo is expensive","Because she doesn\'t like school","Because her family gives her joy and strength","Because she wants to be a photographer"],c:2,
-ok:"Looking at her family every morning shows that <strong>her family gives her joy and strength</strong> for the day.",
-no:"Doing it <em>every morning</em> shows it is important. Her family gives her <strong>joy and strength</strong>.",
-tip:"💡 Every morning = cada mañana. Joy = alegría. Strength = fuerza."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"Mia dice: \"Everyone is different. But we belong together.\" ¿Qué quiere decir?",
-o:["That her family is perfect and the same","That only similar families are good","That even though they are different, they are one family","That eight people is the perfect number"],c:2,
-ok:"Even though everyone is different, they <strong>belong together</strong>. Different = diferente. Together = juntos. 💛",
-no:"<strong>\"Everyone is different. But we belong together.\"</strong> Belong = pertenecer. Together = juntos.",
-tip:"💡 Different = diferente. Belong = pertenecer. Together = juntos."}
-]},
-3:{t:"Saturday at the Park",
-ee:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Qué hace el papá de Leo el sábado por la mañana?",
-o:["Va al mercado a trabajar","Duerme toda la mañana","Hace huevos y todos desayunan juntos","Lee el periódico solo"],c:2,
-ok:"La historia dice: <strong>\"My dad makes eggs and everyone sits at the table together.\"</strong> Makes eggs = hace huevos.",
-no:"Busca: <strong>\"My dad makes eggs and everyone sits at the table together.\"</strong>",
-tip:"💡 Makes eggs = hace huevos. Sits together = se sientan juntos. Saturday = sábado."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Qué hacen los papás en el parque?",
-o:["Se sientan en una banca","Juegan fútbol","Hablan cerca de la fuente","Cuidan a los bebés"],c:1,
-ok:"La historia dice: <strong>\"The dads play football.\"</strong> Play = jugar. Football = fútbol.",
-no:"Busca: <strong>\"The dads play football.\"</strong> Dads = papás. Football = fútbol.",
-tip:"💡 Play = jugar. Football = fútbol. The dads = los papás."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Cómo regresa la hermana de Leo a casa?",
-o:["Caminando sola","Su mamá la lleva de la mano","Corriendo rápido","Su papá la lleva en la espalda"],c:3,
-ok:"La historia dice: <strong>\"my dad carries her on his back\"</strong> = su papá la lleva en la espalda. Back = espalda.",
-no:"Busca: <strong>\"My sister is sleepy and my dad carries her on his back.\"</strong> Back = espalda.",
-tip:"💡 Carries = carga/lleva. Back = espalda. Sleepy = con sueño."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"Dev mueve la cabeza pero está sonriendo. ¿Está enojado?",
-o:["Sí, está muy enojado","Sí, quiere irse del parque","No, en realidad les encuentra graciosos","No, tiene sueño"],c:2,
-ok:"Dev mueve la cabeza pero <strong>está sonriendo</strong>. Una sonrisa muestra que no está enojado.",
-no:"La historia dice que mueve la cabeza <strong>pero está sonriendo</strong>. But = pero. La sonrisa muestra la emoción real.",
-tip:"💡 But = pero. Smiling = sonriendo. Una sonrisa muestra la emoción real."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Leo dice que lo mejor del sábado es estar en casa con el abuelo. ¿Qué le gusta más a Leo?",
-o:["Jugar fútbol en el parque","El tiempo tranquilo con su familia","Correr con su amigo Ravi","Comer en el parque"],c:1,
-ok:"Leo dice que <strong>\"the best part\"</strong> (lo mejor) es el momento tranquilo en casa con la familia.",
-no:"La historia dice: <strong>\"It is the best part of Saturday.\"</strong> Best = lo mejor. El tiempo familiar es lo favorito de Leo.",
-tip:"💡 Best = lo mejor. The best part = la mejor parte. Family = familia."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"¿Qué hacen los abuelos en el parque?",
-o:["Juegan fútbol con los papás","Cocinan comida para todos","Se sientan en una banca y observan todo","Caminar por el parque"],c:2,
-ok:"La historia dice: <strong>\"The grandpas sit on a bench and watch it all.\"</strong> Bench = banca. Watch = observar.",
-no:"Busca: <strong>\"The grandpas sit on a bench and watch it all.\"</strong> Sit = sentarse. Bench = banca.",
-tip:"💡 Sit = sentarse. Bench = banca. Watch = observar. Grandpas = abuelos."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"¿Cuál es el mensaje de la historia?",
-o:["El fútbol es el mejor deporte","Los parques son muy importantes","Los sábados en familia son especiales y crean recuerdos","Los sábados son mejores que los domingos"],c:2,
-ok:"¡Exacto! El sábado de Leo está lleno de familia y tradiciones. Esos momentos crean <strong>recuerdos especiales</strong>. 💛",
-no:"No es sobre fútbol ni parques. Es sobre un <strong>sábado familiar</strong> lleno de momentos especiales.",
-tip:"💡 Special = especial. Together = juntos. Family time = tiempo en familia."}
-],
-en:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Qué hace el papá de Leo el sábado por la mañana?",
-o:["He goes to the market to work","He sleeps all morning","He makes eggs and everyone eats together","He reads the newspaper alone"],c:2,
-ok:"The story says: <strong>\"My dad makes eggs and everyone sits at the table together.\"</strong>",
-no:"Look for: <strong>\"My dad makes eggs and everyone sits at the table together.\"</strong>",
-tip:"💡 Makes eggs = hace huevos. Together = juntos. Saturday = sábado."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Qué hacen los papás en el parque?",
-o:["They sit on a bench","They play football","They talk near the fountain","They look after the babies"],c:1,
-ok:"The story says: <strong>\"The dads play football.\"</strong> Play = jugar. Football = fútbol.",
-no:"Look for: <strong>\"The dads play football.\"</strong> Dads = papás.",
-tip:"💡 Play = jugar. Football = fútbol. Dads = papás."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Cómo regresa la hermana de Leo a casa?",
-o:["Walking alone","Her mom carries her by the hand","Running fast","Her dad carries her on his back"],c:3,
-ok:"The story says: <strong>\"my dad carries her on his back.\"</strong> Back = espalda. Carries = lleva.",
-no:"Look for: <strong>\"My sister is sleepy and my dad carries her on his back.\"</strong>",
-tip:"💡 Carries = carga/lleva. Back = espalda. Sleepy = con sueño."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"Dev mueve la cabeza pero está sonriendo. ¿Está enojado?",
-o:["Yes, he is very angry","Yes, he wants to leave the park","No, he actually finds them funny","No, he is sleepy"],c:2,
-ok:"Dev shakes his head but is <strong>smiling</strong>. A smile shows he is not angry — he finds them funny.",
-no:"The story says he shakes his head <strong>but is smiling</strong>. But = pero. The smile shows the real feeling.",
-tip:"💡 But = pero. Smiling = sonriendo. A smile shows the real emotion."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Leo dice que lo mejor del sábado es estar en casa con el abuelo. ¿Qué le gusta más a Leo?",
-o:["Playing football in the park","Quiet time with his family","Running with his friend Ravi","Eating in the park"],c:1,
-ok:"Leo says <strong>\"the best part\"</strong> is the quiet time at home with his family. Best = lo mejor.",
-no:"The story says: <strong>\"It is the best part of Saturday.\"</strong> Best = lo mejor.",
-tip:"💡 Best = lo mejor. The best part = la mejor parte. Quiet = tranquilo."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"¿Qué hacen los abuelos en el parque?",
-o:["They play football with the dads","They cook food for everyone","They sit on a bench and watch everything","They walk around the park"],c:2,
-ok:"The story says: <strong>\"The grandpas sit on a bench and watch it all.\"</strong> Bench = banca. Watch = observar.",
-no:"Look for: <strong>\"The grandpas sit on a bench and watch it all.\"</strong>",
-tip:"💡 Sit = sentarse. Bench = banca. Watch = observar. Grandpas = abuelos."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"¿Cuál es el mensaje de la historia?",
-o:["Football is the best sport","Parks are very important","Saturdays with family are special and create memories","Saturdays are better than Sundays"],c:2,
-ok:"Leo\'s Saturday is full of family and traditions. Those moments create <strong>special memories</strong>. 💛",
-no:"It\'s not about football or parks. It\'s about <strong>family time</strong> full of special moments.",
-tip:"💡 Special = especial. Memories = recuerdos. Family time = tiempo en familia."}
-]},
-4:{t:"Kind People",
-ee:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Qué hace el papá cuando Nico llega triste a casa?",
-o:["Le hace muchas preguntas","Lo manda a su cuarto","Hace té y se sienta con él","Lo lleva al médico"],c:2,
-ok:"La historia dice: <strong>\"He just makes tea and sits with me.\"</strong> Makes tea = hace té. Sits = se sienta.",
-no:"Busca: <strong>\"He just makes tea and sits with me until I feel better.\"</strong>",
-tip:"💡 Makes tea = hace té. Sits with me = se sienta conmigo. Just = simplemente."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Qué hace la señora Ana cada mañana?",
-o:["Le trae desayuno a Nico","Sale a caminar con él","Lo saluda con la mano desde su ventana","Le da dinero"],c:2,
-ok:"La historia dice: <strong>\"she waves at me from her window\"</strong> = lo saluda con la mano desde su ventana.",
-no:"Busca: <strong>\"Every morning she waves at me from her window.\"</strong> Waves = saluda con la mano.",
-tip:"💡 Wave = saludar con la mano. Window = ventana. Every morning = cada mañana."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Qué dice Miss Pilar cuando alguien comete un error?",
-o:["Se enoja y grita","Lo ignora","Dice: \'Intenta de nuevo, tú puedes\'","Lo manda a la dirección"],c:2,
-ok:"La historia dice: <strong>\"Try again — you can do it.\"</strong> = Intenta de nuevo, tú puedes.",
-no:"Busca: <strong>\"Try again — you can do it.\"</strong> Never shouts = nunca grita.",
-tip:"💡 Never = nunca. Try again = intenta de nuevo. You can do it = tú puedes."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"El saludo de Nico a la señora Ana es pequeño, pero la hace sonreír mucho. ¿Los gestos pequeños importan?",
-o:["No, solo los grandes gestos importan","No, la señora Ana es exagerada","Sí, los gestos pequeños pueden hacer muy feliz a alguien","Sí, pero solo si cuestan dinero"],c:2,
-ok:"Un saludo pequeño puede <strong>hacer muy feliz a alguien</strong>. La historia lo demuestra con la señora Ana.",
-no:"La historia dice: \"small thing, <strong>but</strong> it makes her smile big.\" Pequeño gesto, gran sonrisa.",
-tip:"💡 Small = pequeño. Smile = sonrisa. Big = grande. Las cosas pequeñas importan."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Cuando alguien es malo con Nico, él recuerda a su papá, a Miss Pilar y al abuelo. ¿Por qué?",
-o:["Para llamarles y pedir ayuda","Para sentirse triste","Porque ellos son amables y le inspiran a ser amable","Porque quiere contarles lo que pasó"],c:2,
-ok:"Nico los recuerda porque son <strong>ejemplos de amabilidad</strong>. Los recuerda para elegir ser amable también.",
-no:"Nico los recuerda como <strong>modelos de amabilidad</strong>. Kind = amable. Choose = elegir.",
-tip:"💡 Remember = recordar. Kind = amable. Choose = elegir. Inspire = inspirar."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Nico dice que ser amable es una elección. ¿Esto significa que la amabilidad es automática?",
-o:["Sí, la amabilidad es siempre automática","Sí, si eres buena persona siempre eres amable","No, ser amable es una decisión que tomamos cada día","No, solo los adultos pueden elegir"],c:2,
-ok:"¡No! Nico dice: <strong>\"It is a choice you make every day.\"</strong> Choice = elección. Every day = cada día.",
-no:"Nico dice: <strong>\"It is a choice you make every day.\"</strong> Choice = elección. No es automático.",
-tip:"💡 Choice = elección. Every day = cada día. Automatic = automático."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"¿Cuál es el mensaje de la historia?",
-o:["Los maestros son las personas más importantes","La amabilidad es muy importante y define quiénes somos","Solo los adultos pueden ser amables","Los niños son siempre más amables"],c:1,
-ok:"¡Exacto! La amabilidad define a las personas más importantes en la vida de Nico. 💛",
-no:"Nico dice que la amabilidad es lo más importante. Kind = amable. Kindness = amabilidad.",
-tip:"💡 Kind = amable. Kindness = amabilidad. Define = describe quiénes somos."}
-],
-en:[
-{b:"Pregunta 1/7 · Literal 📖",t:"literal",
-q:"¿Qué hace el papá cuando Nico llega triste a casa?",
-o:["He asks him many questions","He sends him to his room","He makes tea and sits with him","He takes him to the doctor"],c:2,
-ok:"The story says: <strong>\"He just makes tea and sits with me.\"</strong> Makes tea = hace té.",
-no:"Look for: <strong>\"He just makes tea and sits with me until I feel better.\"</strong>",
-tip:"💡 Makes tea = hace té. Sits with him = se sienta con él."},
-{b:"Pregunta 2/7 · Literal 📖",t:"literal",
-q:"¿Qué hace la señora Ana cada mañana?",
-o:["She brings Nico breakfast","She goes for a walk with him","She waves at him from her window","She gives him money"],c:2,
-ok:"The story says: <strong>\"she waves at me from her window.\"</strong> Waves = saluda con la mano.",
-no:"Look for: <strong>\"Every morning she waves at me from her window.\"</strong>",
-tip:"💡 Wave = saludar con la mano. Window = ventana. Every morning = cada mañana."},
-{b:"Pregunta 3/7 · Literal 📖",t:"literal",
-q:"¿Qué dice Miss Pilar cuando alguien comete un error?",
-o:["She gets angry and shouts","She ignores them","She says: \'Try again, you can do it\'","She sends them to the principal"],c:2,
-ok:"The story says: <strong>\"Try again — you can do it.\"</strong> She never shouts = nunca grita.",
-no:"Look for: <strong>\"Try again — you can do it.\"</strong> Never = nunca. Shouts = grita.",
-tip:"💡 Try again = intenta de nuevo. Never = nunca. Shouts = grita."},
-{b:"Pregunta 4/7 · Inferencial 🔍",t:"inferential",
-q:"El saludo de Nico a la señora Ana es pequeño, pero la hace sonreír mucho. ¿Los gestos pequeños importan?",
-o:["No, only big gestures matter","No, Mrs. Ana overreacts","Yes, small gestures can make someone very happy","Yes, but only if they cost money"],c:2,
-ok:"A small wave can <strong>make someone very happy</strong>. The story shows this with Mrs. Ana.",
-no:"The story says: \"small thing, <strong>but</strong> it makes her smile big.\" Small gesture, big smile.",
-tip:"💡 Small = pequeño. Smile = sonrisa. Big = grande. Small things matter."},
-{b:"Pregunta 5/7 · Inferencial 🔍",t:"inferential",
-q:"Cuando alguien es malo con Nico, él recuerda a su papá, a Miss Pilar y al abuelo. ¿Por qué?",
-o:["To call them and ask for help","To feel sad","Because they are kind and inspire him to be kind too","Because he wants to tell them what happened"],c:2,
-ok:"Nico remembers them because they are <strong>examples of kindness</strong>. He remembers them to choose to be kind too.",
-no:"Nico remembers them as <strong>models of kindness</strong>. Kind = amable. Choose = elegir.",
-tip:"💡 Remember = recordar. Kind = amable. Choose = elegir. Inspire = inspirar."},
-{b:"Pregunta 6/7 · Inferencial 🔍",t:"inferential",
-q:"Nico dice que ser amable es una elección. ¿Esto significa que la amabilidad es automática?",
-o:["Yes, kindness is always automatic","Yes, if you are a good person you are always kind","No, being kind is a decision we make every day","No, only adults can choose to be kind"],c:2,
-ok:"No! Nico says: <strong>\"It is a choice you make every day.\"</strong> Choice = elección. Every day = cada día.",
-no:"Nico says: <strong>\"It is a choice you make every day.\"</strong> Choice = eleccion. It is not automatic.",
-tip:"💡 Choice = elección. Every day = cada día. Automatic = automático."},
-{b:"Pregunta 7/7 · Pensamiento Crítico 🎓",t:"critical",
-q:"¿Cuál es el mensaje de la historia?",
-o:["Teachers are the most important people","Kindness is very important and defines who we are","Only adults can be kind","Children are always kinder than adults"],c:1,
-ok:"Kindness defines the most important people in Nico\'s life. <strong>Kindness defines who we are</strong>. 💛",
-no:"Nico says kindness is the most important quality. Kind = amable. Kindness = amabilidad.",
-tip:"💡 Kindness = amabilidad. Important = importante. Defines = define."}
-]}
-};
+// ─────────────────────────────────────────────
+// CONTROLS
+// ─────────────────────────────────────────────
+function setAccent(a) {
+  currentAccent = a;
+  selectVoice(a);
+  document.querySelectorAll('[data-accent]').forEach(b => b.classList.toggle('active', b.dataset.accent === a));
+  if (isPlaying) { synth.cancel(); isPlaying = false; resetPlayBtns(); }
+}
+function setSpeed(s) {
+  currentSpeed = s;
+  document.querySelectorAll('[data-speed]').forEach(b => b.classList.toggle('active', b.dataset.speed == s));
+}
+function resetPlayBtns() {
+  document.querySelectorAll('.play-btn').forEach(b => { b.classList.remove('playing'); b.textContent = '▶️'; });
+}
 
+// ─────────────────────────────────────────────
+// TABS
+// ─────────────────────────────────────────────
+function buildTabs() {
+  const wrap = document.getElementById('storyTabsContainer');
+  wrap.innerHTML = '';
+  Object.entries(STORIES).forEach(([k, s]) => {
+    const b = document.createElement('button');
+    b.className = 'story-tab' + (k === currentKey ? ' active' : '');
+    b.innerHTML = `${s.emoji} ${s.label}`;
+    b.title = s.title;
+    b.onclick = () => switchStory(k);
+    wrap.appendChild(b);
+  });
+}
+function switchStory(k) {
+  if (isPlaying) { synth.cancel(); isPlaying = false; }
+  currentKey = k;
+  document.querySelectorAll('.story-tab').forEach((b, i) => b.classList.toggle('active', Object.keys(STORIES)[i] === k));
+  document.getElementById('resultsPanel').classList.remove('show');
+  render();
+  updateScore();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function retryStory() {
+  resetState(currentKey);
+  document.getElementById('resultsPanel').classList.remove('show');
+  render();
+  updateScore();
+}
 
-let cur=1,mode='es-es',score=0,ans=new Set(),streak=0,litOk=0,infOk=0,critOk=false,mQ=[],mBusy=false;
-function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
-function buildOpts(opts,cor){const idx=opts.map(function(t,i){return{t:t,i:i};});const s=shuf(idx);return{s:s,c:s.findIndex(function(o){return o.i===cor;})};}
-function toggleReveal(btn){btn.nextElementSibling.classList.toggle('show');btn.classList.toggle('open');}
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function render() {
+  const container = document.getElementById('activitiesContainer');
+  const acts = STORIES[currentKey].activities;
+  const st = storyState[currentKey];
+  let html = '';
+  let curLevel = '';
 
-function renderAllStories(){
-  [1,2,3,4].forEach(function(k){
-    var meta=STORY_META[k];
-    var html='<div class="section-label">Historia '+k+' de 4</div><div class="section-title">'+meta.t+'</div><div class="section-desc">'+meta.desc+'</div>';
-    BLOCKS[k].forEach(function(b,i){
-      html+='<div class="story-block">'+
-        '<div class="story-paragraph">'+b[0]+'</div>'+
-        '<div class="reveal-line">'+
-        '<button class="reveal-btn" onclick="toggleReveal(this)">\uD83C\uDDEA\uD83C\uDDF8 <span class="arrow">\u203A</span></button>'+
-        '<div class="reveal-text">'+b[1]+'</div>'+
-        '</div></div>';
-    });
-    document.getElementById('story-'+k).innerHTML=html;
+  acts.forEach(act => {
+    if (act.level !== curLevel) {
+      if (curLevel) html += '</div>'; // close level-section
+      curLevel = act.level;
+      const info = {
+        easy:   ['🟢', 'Fácil',      '1 – 4'],
+        medium: ['🟡', 'Intermedio', '5 – 7'],
+        hard:   ['🔴', 'Difícil',    '8 – 10']
+      }[act.level];
+      html += `<div class="level-section">
+        <div class="level-header ${act.level}">
+          <span class="lhicon">${info[0]}</span>
+          <span class="lhtitle">Nivel ${info[1]}</span>
+          <span class="lhsub">Actividades ${info[2]}</span>
+        </div>`;
+    }
+
+    const ans = st.answered_q[act.id];
+    const sid = `${currentKey}_${act.id}`;
+
+    html += `
+    <div class="audio-card">
+      <div class="audio-header">
+        <div class="audio-num ${act.level}">${act.id}</div>
+        <div class="audio-meta"><h3>${act.title}</h3><p>${act.desc}</p></div>
+      </div>
+      <div class="player">
+        <button class="play-btn" onclick="playAudio('${sid}')" id="pb_${sid}">▶️</button>
+        <div class="text-btns">
+          <button class="text-btn" onclick="toggleBox('en_${sid}','tb_en_${sid}','📤 Ver texto en inglés','📤 Ocultar inglés')" id="tb_en_${sid}">📤 Ver texto en inglés</button>
+          <button class="text-btn es-btn" onclick="toggleBox('es_${sid}','tb_es_${sid}','🇪🇸 Ver en español','🇪🇸 Ocultar español')" id="tb_es_${sid}">🇪🇸 Ver en español</button>
+        </div>
+        <div class="text-box" id="en_${sid}"><div class="tblabel">📤 Texto en Inglés</div><p>${act.audio}</p></div>
+        <div class="es-box" id="es_${sid}"><div class="tblabel">🇪🇸 Traducción</div><p>${act.spanish}</p></div>
+      </div>
+      <button class="show-q-btn ${ans ? 'active' : ''}" id="sqb_${sid}" onclick="toggleQ('qs_${sid}','sqb_${sid}')">❓ ${ans ? 'Ver Pregunta' : 'Mostrar Pregunta'}</button>
+      <div class="q-section ${ans ? 'show' : ''}" id="qs_${sid}">
+        <h4>❓ Pregunta</h4>
+        <div class="q-text">${act.question}</div>
+        <div class="options" id="opts_${sid}">
+          ${act.options.map((opt, i) => {
+            const letter = ['a','b','c'][i];
+            let cls = 'opt';
+            if (ans) {
+              cls += ' disabled';
+              if (letter === ans.sel && ans.ok)   cls += ' correct';
+              else if (letter === ans.sel && !ans.ok) cls += ' incorrect';
+              else if (letter === act.correct && !ans.ok) cls += ' show-correct';
+            }
+            return `<div class="${cls}" onclick="answer('${currentKey}',${act.id},'${letter}')">
+              <span class="opt-letter">${['A','B','C'][i]}</span>
+              <span class="opt-text">${opt}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="feedback ${ans ? 'show ' + (ans.ok ? 'correct' : 'incorrect') : ''}" id="fb_${sid}">${ans ? (ans.ok ? act.feedback.correct : act.feedback.incorrect) : ''}</div>
+      </div>
+    </div>`;
+  });
+
+  html += '</div>'; // close last level-section
+  container.innerHTML = html;
+
+  // Restore audio texts for already-answered
+  Object.keys(st.answered_q).forEach(id => {
+    const sid = `${currentKey}_${id}`;
+    // do nothing extra, state already rendered above
   });
 }
 
-function selectStory(n){
-  cur=n;
-  [1,2,3,4].forEach(function(k){
-    document.getElementById('tab-'+k).classList.toggle('active',k===n);
-    document.getElementById('story-'+k).classList.toggle('active',k===n);
+// ─────────────────────────────────────────────
+// AUDIO
+// ─────────────────────────────────────────────
+const audioTexts = {};
+function cacheAudioText(sid, text) { audioTexts[sid] = text; }
+
+function playAudio(sid) {
+  const btn = document.getElementById(`pb_${sid}`);
+  if (isPlaying) { synth.cancel(); isPlaying = false; resetPlayBtns(); return; }
+  // Find the activity
+  const [sk, idStr] = sid.split('_');
+  const act = STORIES[sk].activities.find(a => a.id === parseInt(idStr));
+  const utt = new SpeechSynthesisUtterance(act.audio);
+  utt.voice = currentVoice;
+  utt.rate = currentSpeed;
+  utt.pitch = 1; utt.volume = 1;
+  isPlaying = true;
+  btn.classList.add('playing'); btn.textContent = '⏹️';
+  utt.onend = () => { isPlaying = false; btn.classList.remove('playing'); btn.textContent = '▶️'; };
+  utt.onerror = () => { isPlaying = false; btn.classList.remove('playing'); btn.textContent = '▶️'; };
+  synth.speak(utt);
+}
+
+// ─────────────────────────────────────────────
+// TOGGLES
+// ─────────────────────────────────────────────
+function toggleBox(boxId, btnId, labelShow, labelHide) {
+  const box = document.getElementById(boxId);
+  const btn = document.getElementById(btnId);
+  box.classList.toggle('show');
+  btn.classList.toggle('active');
+  btn.textContent = box.classList.contains('show') ? labelHide : labelShow;
+}
+function toggleQ(secId, btnId) {
+  const sec = document.getElementById(secId);
+  const btn = document.getElementById(btnId);
+  sec.classList.toggle('show');
+  btn.classList.toggle('active');
+  btn.textContent = sec.classList.contains('show') ? '❓ Ocultar Pregunta' : '❓ Mostrar Pregunta';
+}
+
+// ─────────────────────────────────────────────
+// ANSWER
+// ─────────────────────────────────────────────
+function answer(storyKey, id, sel) {
+  const st = storyState[storyKey];
+  if (st.answered_q[id]) return;
+  const act = STORIES[storyKey].activities.find(a => a.id === id);
+  const ok = sel === act.correct;
+  st.answered_q[id] = { sel, ok };
+  st.answered++;
+  if (ok) {
+    st.correct++;
+    if (id <= 4) st.easyOk++;
+    else if (id <= 7) st.medOk++;
+    else st.hardOk++;
+  } else {
+    st.incorrect++;
+  }
+
+  const sid = `${storyKey}_${id}`;
+  // Update options
+  document.querySelectorAll(`#opts_${sid} .opt`).forEach((el, i) => {
+    const letter = ['a','b','c'][i];
+    el.classList.add('disabled');
+    if (letter === sel) el.classList.add(ok ? 'correct' : 'incorrect');
+    if (letter === act.correct && !ok) el.classList.add('show-correct');
   });
-  // Scroll story box to top
-  document.getElementById('story-scroll-box').scrollTop=0;
-  document.getElementById('quiz-story-title').textContent=STORY_META[n].t;
-  resetQuiz(false);
+  // Show feedback
+  const fb = document.getElementById(`fb_${sid}`);
+  fb.innerHTML = ok ? act.feedback.correct : act.feedback.incorrect;
+  fb.className = `feedback show ${ok ? 'correct' : 'incorrect'}`;
+
+  updateScore();
+  if (st.answered === 10) setTimeout(showResults, 900);
 }
 
-function setMode(m){
-  mode=m;
-  document.getElementById('mode-eses').classList.toggle('active',m==='es-es');
-  document.getElementById('mode-esen').classList.toggle('active',m==='es-en');
-  document.getElementById('mode-display').textContent=m==='es-es'?'Modo activo: Espa\u00F1ol \u2192 Espa\u00F1ol':'Modo activo: Espa\u00F1ol \u2192 English';
-  resetQuiz(false);
+// ─────────────────────────────────────────────
+// SCORE / RESULTS
+// ─────────────────────────────────────────────
+function updateScore() {
+  const st = storyState[currentKey];
+  document.getElementById('answeredCount').textContent = `${st.answered}/10`;
+  document.getElementById('correctCount').textContent = st.correct;
+  document.getElementById('incorrectCount').textContent = st.incorrect;
+}
+function showResults() {
+  const st = storyState[currentKey];
+  const pct = st.correct * 10;
+  document.getElementById('resultsScore').textContent = `${st.correct}/10`;
+  document.getElementById('easyScore').textContent   = `${st.easyOk}/4`;
+  document.getElementById('mediumScore').textContent  = `${st.medOk}/3`;
+  document.getElementById('hardScore').textContent   = `${st.hardOk}/3`;
+  const trophy = document.getElementById('trophy');
+  const title  = document.getElementById('resultsTitle');
+  const msg    = document.getElementById('resultsMsg');
+  if (pct >= 90) { trophy.textContent='🏆'; title.textContent='¡Excelente!'; msg.textContent='¡Muy bien! Entendiste casi todo. ¡Sigue así!'; }
+  else if (pct >= 70) { trophy.textContent='🥈'; title.textContent='¡Muy bien!'; msg.textContent='Buen trabajo. Escucha otra vez los que fallaste y vuelve a intentar.'; }
+  else if (pct >= 50) { trophy.textContent='🥉'; title.textContent='¡Buen intento!'; msg.textContent='Vas avanzando. Escucha cada audio varias veces — ¡tú puedes!'; }
+  else { trophy.textContent='📚'; title.textContent='Sigue practicando'; msg.textContent='Usa el botón 🇪🇸 para ver la traducción y escucha de nuevo. ¡Con práctica vas a mejorar!'; }
+  const panel = document.getElementById('resultsPanel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth' });
 }
 
-function renderQuiz(){
-  var qs=mode==='es-es'?S[cur].ee:S[cur].en;
-  document.getElementById('quiz-container').innerHTML=qs.map(function(q,qi){
-    var id='q'+(qi+1);
-    var r=buildOpts(q.o,q.c);
-    return '<div class="q-card" id="'+id+'">'+
-      '<span class="q-badge">'+q.b+'</span>'+
-      '<div class="q-text">'+q.q+'</div>'+
-      '<div class="opts">'+r.s.map(function(o,oi){
-        return '<button class="opt-btn" onclick="checkAnswer(\''+id+'\','+oi+','+r.c+',\''+q.t+'\')">'+o.t+'</button>';
-      }).join('')+'</div>'+
-      '<div class="feedback fb-ok" id="fb-'+id+'-ok"><div class="fb-title">\u2705 \u00A1Correcto!</div><div class="fb-body">'+q.ok+'<div class="fb-tip">'+q.tip+'</div></div></div>'+
-      '<div class="feedback fb-no" id="fb-'+id+'-no"><div class="fb-title">\u274C Incorrecto</div><div class="fb-body">'+q.no+'<div class="fb-tip">'+q.tip+'</div></div></div>'+
-      '</div>';
-  }).join('');
-}
-
-function checkAnswer(id,sel,cor,type){
-  if(ans.has(id))return;
-  ans.add(id);
-  var card=document.getElementById(id);
-  var btns=card.querySelectorAll('.opt-btn');
-  btns.forEach(function(b){b.disabled=true;});
-  var ok=sel===cor;
-  btns[sel].classList.add(ok?'sel-correct':'sel-wrong');
-  if(!ok)btns[cor].classList.add('show-correct');
-  document.getElementById('fb-'+id+'-'+(ok?'ok':'no')).classList.add('show');
-  card.classList.add(ok?'correct':'wrong');
-  if(ok){score++;streak++;if(type==='literal')litOk++;if(type==='inferential')infOk++;if(type==='critical')critOk=true;checkAch();}else{streak=0;}
-  updProg();
-  if(ans.size===7){var sw=document.getElementById('submit-wrap');sw.style.display='block';setTimeout(function(){sw.scrollIntoView({behavior:'smooth',block:'center'});},350);}
-}
-
-function updProg(){
-  document.getElementById('progress-fill').style.width=(ans.size/7*100)+'%';
-  document.getElementById('progress-label').textContent=ans.size+' de 7 preguntas respondidas';
-}
-
-function checkAch(){
-  if(ans.size===1&&score===1)queue('ach-first','\uD83C\uDF31','\u00A1Primera Respuesta Correcta!','Respondiste bien tu primera pregunta. \u00A1El camino empieza aqu\u00ED!');
-  if(streak===3)queue('ach-streak','\uD83D\uDD25','\u00A1Racha de Fuego!','3 respuestas correctas seguidas. \u00A1Imparable!');
-  if(litOk>=3)queue('ach-literal','\uD83D\uDCD6','\u00A1Comprensi\u00F3n Literal Dominada!','Encontraste la informaci\u00F3n directa en el texto. \u00A1Excelente lectura!');
-  if(infOk>=2)queue('ach-inferential','\uD83D\uDD0D','\u00A1Detective del Texto!','Le\u00EDste entre l\u00EDneas y dedujiste ideas. \u00A1Comprensi\u00F3n profunda!');
-  if(critOk){queue('ach-critical','\uD83C\uDF93','\u00A1Pensamiento Cr\u00EDtico Activado!','Identificaste el mensaje central. \u00A1Eres un lector anal\u00EDtico!');queue('ach-identity','\uD83E\uDEAA','\u00A1Identidad Personal!','Comprendiste el tema central del m\u00F3dulo. \u00A1Brillante!');queue('ach-family','\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC66','\u00A1Experto en Familia!','Entendiste c\u00F3mo estas historias hablan del valor de la familia.');}
-}
-
-function queue(id,icon,title,text){var el=document.getElementById(id);if(el&&!el.classList.contains('unlocked')){el.classList.add('unlocked');mQ.push({icon:icon,title:title,text:text});if(!mBusy)nextModal();}}
-function nextModal(){if(!mQ.length){mBusy=false;return;}mBusy=true;var m=mQ.shift();document.getElementById('modal-icon').textContent=m.icon;document.getElementById('modal-title').textContent=m.title;document.getElementById('modal-text').textContent=m.text;document.getElementById('ach-modal').classList.add('show');}
-function closeModal(){document.getElementById('ach-modal').classList.remove('show');setTimeout(nextModal,280);}
-
-function showCompletion(){
-  document.getElementById('submit-wrap').style.display='none';
-  if(score===7)queue('ach-perfect','\u2B50','\u00A1Perfecci\u00F3n Total!','7/7 correctas. \u00A1Eres incre\u00EDble! \uD83C\uDF1F');
-  if(!mBusy)nextModal();
-  document.getElementById('cc-score').textContent=score+'/7';
-  document.getElementById('cc-literal').textContent=litOk+'/3';
-  document.getElementById('cc-infer').textContent=infOk+'/3';
-  var msgs=['\u00A1Sigue practicando! Lee la historia despacio. \uD83D\uDCAA','\u00A1Sigue practicando! Lee la historia despacio. \uD83D\uDCAA','\u00A1Buen intento! Vuelve al texto con calma. \uD83D\uDCD6','\u00A1Buen intento! Vuelve al texto con calma. \uD83D\uDCD6','\u00A1Muy bien! Casi lo logras. \u00A1Un poco m\u00E1s! \uD83D\uDC4F','\u00A1Excelente comprensi\u00F3n! Casi perfecto. \uD83C\uDF1F','\u00A1Perfecci\u00F3n absoluta! Dominas esta historia. \uD83C\uDFC6','\u00A1Perfecci\u00F3n absoluta! Dominas esta historia. \uD83C\uDFC6'];
-  document.getElementById('cc-msg').textContent=msgs[score];
-  var cc=document.getElementById('completion-card');cc.classList.add('show');
-  setTimeout(function(){cc.scrollIntoView({behavior:'smooth',block:'center'});},150);
-}
-
-function resetQuiz(scrollTop){
-  if(scrollTop===undefined)scrollTop=true;
-  score=0;ans.clear();streak=0;litOk=0;infOk=0;critOk=false;
-  renderQuiz();updProg();
-  document.getElementById('submit-wrap').style.display='none';
-  document.getElementById('completion-card').classList.remove('show');
-  if(scrollTop)window.scrollTo({top:0,behavior:'smooth'});
-}
-
-renderAllStories();
-selectStory(1);
-renderQuiz();
-updProg();
-
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+buildTabs();
+render();
+updateScore();
 </script>
 </body>
 </html>

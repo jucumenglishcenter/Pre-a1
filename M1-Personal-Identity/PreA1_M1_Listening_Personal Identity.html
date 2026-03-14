@@ -1,801 +1,1046 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprensión Auditiva | PRE-A1 — Módulo 1: Personal Identity</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Práctica de Listening | PRE-A1 — Módulo 1: Personal Identity</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body.pre-a1 {
-            --primary: #F59E0B;
-            --primary-light: #FCD34D;
-            --primary-dark: #D97706;
-            --accent: #FBBF24;
-            --bg-gradient-start: #FFFBEB;
-            --bg-gradient-end: #FEF3C7;
-            --text-dark: #78350F;
-            --text-medium: #92400E;
-            --text-light: #B45309;
-            --shadow-soft: 0 4px 20px rgba(245, 158, 11, 0.15);
-            --shadow-strong: 0 8px 30px rgba(245, 158, 11, 0.25);
-        }
+body {
+  --primary: #F59E0B;
+  --primary-dark: #D97706;
+  --bg-start: #FFFBEB;
+  --bg-end: #FEF3C7;
+  --shadow-s: 0 4px 20px rgba(245,158,11,0.15);
+  --shadow-l: 0 8px 30px rgba(245,158,11,0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+.container { max-width: 820px; margin: 0 auto; }
 
-        .container { max-width: 800px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 20px; padding: 24px 20px; text-align: center;
+  margin-bottom: 18px; color: white; box-shadow: var(--shadow-l);
+}
+.header h1 { font-size: 1.7rem; margin-bottom: 6px; }
+.header-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.badge { background: rgba(255,255,255,0.22); padding: 5px 13px; border-radius: 18px; font-size: 0.82rem; }
 
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: white;
-            box-shadow: var(--shadow-strong);
-        }
-        .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
-        .header-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
-        .badge { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(10px); }
+.nav-wrap { text-align: center; margin-bottom: 18px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border: none; border-radius: 25px;
+  font-size: 0.92rem; font-weight: 700; cursor: pointer;
+  text-decoration: none; transition: all 0.3s;
+  background: linear-gradient(135deg,#607D8B 0%,#455A64 100%); color: white;
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(69,90,100,0.4); }
 
-        .nav-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .nav-btn {
-            padding: 12px 24px; border: none; border-radius: 25px; font-size: 0.95rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; text-decoration: none;
-        }
-        .nav-btn.home { background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); color: white; }
-        .nav-btn.home:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(69,90,100,0.4); }
+.controls-row { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.ctrl-box {
+  flex: 1; min-width: 220px; background: white; border-radius: 14px;
+  padding: 16px 18px; box-shadow: var(--shadow-s); text-align: center;
+}
+.ctrl-box h3 { color: var(--primary); margin-bottom: 12px; font-size: 1rem; }
+.btn-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.ctrl-btn {
+  padding: 9px 16px; border: 2px solid var(--primary);
+  background: white; color: var(--primary);
+  border-radius: 22px; font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s; font-family: inherit;
+}
+.ctrl-btn:hover { background: var(--bg-start); }
+.ctrl-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; box-shadow: var(--shadow-s);
+}
 
-        .accent-selector {
-            background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px;
-            box-shadow: var(--shadow-soft); text-align: center;
-        }
-        .accent-selector h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.1rem; }
-        .accent-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .accent-btn {
-            padding: 12px 20px; border: 2px solid var(--primary); background: white; color: var(--primary);
-            border-radius: 25px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .accent-btn:hover { background: var(--bg-gradient-start); transform: translateY(-2px); }
-        .accent-btn.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white; box-shadow: var(--shadow-soft);
-        }
-        .accent-flag { font-size: 1.2rem; }
+.instructions {
+  background: white; border-radius: 14px; padding: 18px 20px;
+  margin-bottom: 18px; border-left: 4px solid var(--primary); box-shadow: var(--shadow-s);
+}
+.instructions h3 { color: var(--primary); margin-bottom: 8px; }
+.instructions ul { margin-left: 18px; color: #555; }
+.instructions li { margin: 6px 0; line-height: 1.6; font-size: 0.9rem; }
 
-        .instructions {
-            background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px;
-            border-left: 4px solid var(--primary); box-shadow: var(--shadow-soft);
-        }
-        .instructions h3 { color: var(--primary); margin-bottom: 10px; }
-        .instructions ul { margin-left: 20px; color: var(--text-dark); }
-        .instructions li { margin: 8px 0; line-height: 1.6; }
+.story-tabs-wrap {
+  background: white; border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 20px; box-shadow: var(--shadow-s);
+}
+.story-tabs-label { color: #888; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.story-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.story-tab {
+  padding: 10px 18px; border: 2px solid #E0E0E0;
+  background: #FAFAFA; border-radius: 22px;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: all 0.25s; font-family: inherit;
+}
+.story-tab:hover { border-color: var(--primary); background: var(--bg-start); }
+.story-tab.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; border-color: var(--primary-dark); box-shadow: var(--shadow-s);
+}
 
-        .speed-control {
-            background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px;
-            box-shadow: var(--shadow-soft); text-align: center;
-        }
-        .speed-control h3 { color: var(--primary); margin-bottom: 15px; }
-        .speed-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .speed-btn {
-            padding: 12px 24px; border: 2px solid var(--primary); background: white; color: var(--primary);
-            border-radius: 25px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
-        .speed-btn:hover { background: var(--bg-gradient-start); }
-        .speed-btn.active {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white;
-        }
+.score-panel {
+  background: white; border-radius: 12px; padding: 13px 22px;
+  margin-bottom: 18px; display: flex; justify-content: space-between;
+  align-items: center; box-shadow: var(--shadow-s); flex-wrap: wrap; gap: 8px;
+}
+.score-item { text-align: center; flex: 1; min-width: 70px; }
+.score-item .slabel { font-size: 0.68rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+.score-item .sval { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+.score-item .sval.c { color: #4CAF50; }
+.score-item .sval.i { color: #f44336; }
 
-        .score-panel {
-            background: white; border-radius: 12px; padding: 15px 25px; margin-bottom: 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: var(--shadow-soft); flex-wrap: wrap; gap: 10px;
-        }
-        .score-item { text-align: center; flex: 1; min-width: 80px; }
-        .score-item .label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
-        .score-item .value { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
-        .score-item .value.correct { color: #4CAF50; }
-        .score-item .value.incorrect { color: #f44336; }
+.level-section { margin-bottom: 26px; }
+.level-header {
+  padding: 13px 18px; border-radius: 13px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.level-header.easy { background: linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%); border-left: 5px solid #4CAF50; }
+.level-header.medium { background: linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 100%); border-left: 5px solid #FF9800; }
+.level-header.hard { background: linear-gradient(135deg,#FFEBEE 0%,#FFCDD2 100%); border-left: 5px solid #f44336; }
+.level-header .lhicon { font-size: 1.3rem; }
+.level-header .lhtitle { font-size: 1rem; font-weight: 700; }
+.level-header.easy .lhtitle { color: #2E7D32; }
+.level-header.medium .lhtitle { color: #E65100; }
+.level-header.hard .lhtitle { color: #C62828; }
+.level-header .lhsub { font-size: 0.82rem; color: #666; margin-left: auto; }
 
-        .level-section { margin-bottom: 30px; }
-        .level-header {
-            padding: 15px 20px; border-radius: 15px; margin-bottom: 15px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .level-header.easy { background: linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%); border-left: 5px solid #4CAF50; }
-        .level-header.medium { background: linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 100%); border-left: 5px solid #FF9800; }
-        .level-header.hard { background: linear-gradient(135deg,#FFEBEE 0%,#FFCDD2 100%); border-left: 5px solid #f44336; }
-        .level-header .icon { font-size: 1.5rem; }
-        .level-header .title { font-size: 1.1rem; font-weight: 700; }
-        .level-header.easy .title { color: #2E7D32; }
-        .level-header.medium .title { color: #E65100; }
-        .level-header.hard .title { color: #C62828; }
-        .level-header .subtitle { font-size: 0.85rem; color: #666; margin-left: auto; }
+.audio-card {
+  background: white; border-radius: 18px; padding: 22px;
+  margin-bottom: 18px; box-shadow: var(--shadow-s); transition: all 0.3s;
+}
+.audio-card:hover { box-shadow: var(--shadow-l); transform: translateY(-2px); }
+.audio-header {
+  display: flex; align-items: center; gap: 13px;
+  margin-bottom: 18px; padding-bottom: 13px;
+  border-bottom: 2px solid var(--bg-start);
+}
+.audio-num {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: white; flex-shrink: 0;
+}
+.audio-num.easy { background: linear-gradient(135deg,#4CAF50 0%,#388E3C 100%); }
+.audio-num.medium { background: linear-gradient(135deg,#FF9800 0%,#F57C00 100%); }
+.audio-num.hard { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
+.audio-meta h3 { color: #333; font-size: 0.97rem; }
+.audio-meta p { color: #888; font-size: 0.78rem; margin-top: 2px; }
 
-        .audio-card {
-            background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px;
-            box-shadow: var(--shadow-soft); transition: all 0.3s;
-        }
-        .audio-card:hover { box-shadow: var(--shadow-strong); transform: translateY(-2px); }
+.player {
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  border-radius: 13px; padding: 18px; margin-bottom: 13px; text-align: center;
+}
+.play-btn {
+  width: 64px; height: 64px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; font-size: 1.6rem; cursor: pointer;
+  box-shadow: var(--shadow-s); transition: all 0.3s;
+}
+.play-btn:hover { transform: scale(1.1); box-shadow: var(--shadow-l); }
+.play-btn.playing { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
 
-        .audio-header {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
-            padding-bottom: 15px; border-bottom: 2px solid var(--bg-gradient-start);
-        }
-        .audio-number {
-            width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; font-weight: 700; color: white;
-        }
-        .audio-number.easy { background: linear-gradient(135deg,#4CAF50 0%,#388E3C 100%); }
-        .audio-number.medium { background: linear-gradient(135deg,#FF9800 0%,#F57C00 100%); }
-        .audio-number.hard { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
-        .audio-title { flex: 1; }
-        .audio-title h3 { color: #333; font-size: 1rem; }
-        .audio-title p { color: #888; font-size: 0.8rem; margin-top: 3px; }
+.text-btns { margin-top: 13px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.text-btn {
+  padding: 7px 14px; border: 2px solid var(--primary);
+  background: white; color: var(--primary);
+  border-radius: 18px; font-size: 0.77rem; cursor: pointer;
+  transition: all 0.25s; font-family: inherit; font-weight: 600;
+}
+.text-btn:hover { background: var(--bg-start); }
+.text-btn.active { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; }
+.text-btn.es-btn { border-color: #FFA000; color: #F57C00; }
+.text-btn.es-btn:hover { background: #FFF8E1; }
+.text-btn.es-btn.active { background: linear-gradient(135deg,#FFA000 0%,#F57C00 100%); color: white; }
 
-        .audio-player {
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            border-radius: 15px; padding: 20px; margin-bottom: 15px; text-align: center;
-        }
-        .play-btn {
-            width: 70px; height: 70px; border-radius: 50%; border: none;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white; font-size: 1.8rem; cursor: pointer; box-shadow: var(--shadow-soft); transition: all 0.3s;
-        }
-        .play-btn:hover { transform: scale(1.1); box-shadow: var(--shadow-strong); }
-        .play-btn.playing { background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); }
+.text-box {
+  margin-top: 12px; padding: 13px 15px;
+  background: rgba(255,255,255,0.95); border-radius: 9px;
+  text-align: left; border-left: 4px solid var(--primary);
+  display: none; margin-bottom: 8px;
+}
+.text-box.show { display: block; }
+.text-box p { color: #333; line-height: 1.7; font-size: 0.9rem; }
+.text-box .tblabel { font-size: 0.68rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+.es-box {
+  margin-top: 8px; padding: 13px 15px;
+  background: #FFF8E1; border-radius: 9px;
+  text-align: left; border-left: 4px solid #FFA000; display: none;
+}
+.es-box.show { display: block; }
+.es-box p { color: #5D4037; line-height: 1.7; font-size: 0.9rem; }
+.es-box .tblabel { font-size: 0.68rem; color: #F57C00; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
 
-        .text-buttons { margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .text-btn {
-            padding: 8px 16px; border: 2px solid var(--primary); background: white; color: var(--primary);
-            border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.3s;
-        }
-        .text-btn:hover { background: var(--bg-gradient-start); }
-        .text-btn.active { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; }
-        .text-btn.spanish { border-color: #FFA000; color: #F57C00; }
-        .text-btn.spanish:hover { background: #FFF8E1; }
-        .text-btn.spanish.active { background: linear-gradient(135deg,#FFA000 0%,#F57C00 100%); color: white; }
+.show-q-btn {
+  width: 100%; padding: 13px; border: 2px dashed #9C27B0;
+  background: linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%);
+  color: #7B1FA2; border-radius: 11px; font-size: 0.92rem;
+  font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.show-q-btn:hover { background: linear-gradient(135deg,#E1BEE7 0%,#CE93D8 100%); transform: translateY(-1px); }
+.show-q-btn.active { background: linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%); color: white; border-style: solid; }
 
-        .text-container { margin-top: 15px; }
-        .audio-text {
-            padding: 15px; background: rgba(255,255,255,0.95); border-radius: 10px; text-align: left;
-            border-left: 4px solid var(--primary); display: none; margin-bottom: 10px;
-        }
-        .audio-text.show { display: block; }
-        .audio-text p { color: #333; line-height: 1.7; font-size: 0.9rem; }
-        .audio-text .label { font-size: 0.7rem; color: var(--primary); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+.q-section { margin-top: 13px; display: none; }
+.q-section.show { display: block; }
+.q-section h4 { color: var(--primary); margin-bottom: 10px; font-size: 0.92rem; }
+.q-text {
+  background: #F5F5F5; padding: 11px 14px; border-radius: 9px;
+  margin-bottom: 11px; font-size: 0.95rem; color: #333; font-weight: 600; line-height: 1.5;
+}
+.options { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  display: flex; align-items: center; gap: 11px;
+  padding: 12px 14px; background: #FAFAFA;
+  border: 2px solid #E0E0E0; border-radius: 9px;
+  cursor: pointer; transition: all 0.2s;
+}
+.opt:hover:not(.disabled) { border-color: var(--primary); background: var(--bg-start); }
+.opt.correct { border-color: #4CAF50; background: #E8F5E9; }
+.opt.incorrect { border-color: #f44336; background: #FFEBEE; }
+.opt.show-correct { border-color: #4CAF50; background: #E8F5E9; }
+.opt.disabled { pointer-events: none; }
+.opt-letter {
+  width: 28px; height: 28px; background: #E0E0E0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; color: #666; flex-shrink: 0;
+}
+.opt.correct .opt-letter, .opt.show-correct .opt-letter { background: #4CAF50; color: white; }
+.opt.incorrect .opt-letter { background: #f44336; color: white; }
+.opt-text { flex: 1; color: #333; font-size: 0.9rem; }
 
-        .spanish-text {
-            padding: 15px; background: #FFF8E1; border-radius: 10px; text-align: left;
-            border-left: 4px solid #FFA000; display: none;
-        }
-        .spanish-text.show { display: block; }
-        .spanish-text p { color: #5D4037; line-height: 1.7; font-size: 0.9rem; }
-        .spanish-text .label { font-size: 0.7rem; color: #F57C00; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+.feedback { margin-top: 11px; padding: 12px 14px; border-radius: 8px; display: none; font-size: 0.86rem; line-height: 1.6; }
+.feedback.show { display: block; }
+.feedback.correct { background: #E8F5E9; border: 1px solid #A5D6A7; color: #2E7D32; }
+.feedback.incorrect { background: #FFEBEE; border: 1px solid #EF9A9A; color: #C62828; }
 
-        .question-section { margin-top: 15px; display: none; }
-        .question-section.show { display: block; }
-        .question-section h4 { color: var(--primary); margin-bottom: 12px; font-size: 0.95rem; }
-        .question-text { background: #F5F5F5; padding: 12px 15px; border-radius: 10px; margin-bottom: 12px; font-size: 0.95rem; color: #333; }
+.results-panel {
+  display: none; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 18px; padding: 28px; text-align: center; color: white;
+  margin-top: 18px; box-shadow: var(--shadow-l);
+}
+.results-panel.show { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.trophy { font-size: 3.5rem; margin-bottom: 12px; }
+.results-panel h2 { font-size: 1.7rem; margin-bottom: 8px; }
+.results-score { font-size: 2.8rem; font-weight: 700; margin: 12px 0; }
+.results-breakdown { display: flex; justify-content: center; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+.bd-item { background: rgba(255,255,255,0.2); padding: 13px 20px; border-radius: 13px; text-align: center; }
+.bd-item .bdname { font-size: 0.77rem; opacity: 0.9; margin-bottom: 4px; }
+.bd-item .bdscore { font-size: 1.4rem; font-weight: 700; }
+.results-msg { font-size: 0.97rem; opacity: 0.9; margin-top: 13px; }
+.btn-retry {
+  margin-top: 18px; padding: 13px 36px; background: white; color: var(--primary);
+  border: none; border-radius: 28px; font-size: 0.97rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; font-family: inherit;
+}
+.btn-retry:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 
-        .options-container { display: flex; flex-direction: column; gap: 8px; }
-        .option {
-            display: flex; align-items: center; gap: 12px; padding: 12px 14px;
-            background: #FAFAFA; border: 2px solid #E0E0E0; border-radius: 10px;
-            cursor: pointer; transition: all 0.2s;
-        }
-        .option:hover:not(.disabled) { border-color: var(--primary); background: var(--bg-gradient-start); }
-        .option.correct { border-color: #4CAF50; background: #E8F5E9; }
-        .option.incorrect { border-color: #f44336; background: #FFEBEE; }
-        .option.show-correct { border-color: #4CAF50; background: #E8F5E9; }
-        .option.disabled { pointer-events: none; }
-        .option-letter {
-            width: 28px; height: 28px; background: #E0E0E0; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.85rem; color: #666;
-        }
-        .option.correct .option-letter, .option.show-correct .option-letter { background: #4CAF50; color: white; }
-        .option.incorrect .option-letter { background: #f44336; color: white; }
-        .option-text { flex: 1; color: #333; font-size: 0.9rem; }
-
-        .show-question-btn {
-            width: 100%; padding: 15px; border: 2px dashed #9C27B0;
-            background: linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%);
-            color: #7B1FA2; border-radius: 12px; font-size: 0.95rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s;
-        }
-        .show-question-btn:hover { background: linear-gradient(135deg,#E1BEE7 0%,#CE93D8 100%); transform: translateY(-2px); }
-        .show-question-btn.active { background: linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%); color: white; border-style: solid; }
-
-        .feedback { margin-top: 12px; padding: 14px; border-radius: 8px; display: none; font-size: 0.9rem; line-height: 1.6; }
-        .feedback.show { display: block; }
-        .feedback.correct { background: #E8F5E9; border: 1px solid #A5D6A7; color: #2E7D32; }
-        .feedback.incorrect { background: #FFEBEE; border: 1px solid #EF9A9A; color: #C62828; }
-        .feedback em { font-style: italic; font-weight: 600; }
-
-        .results-panel {
-            display: none;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 20px; padding: 30px; text-align: center; color: white;
-            margin-top: 20px; box-shadow: var(--shadow-strong);
-        }
-        .results-panel.show { display: block; }
-        .results-panel .trophy { font-size: 4rem; margin-bottom: 15px; }
-        .results-panel h2 { font-size: 1.8rem; margin-bottom: 10px; }
-        .results-score { font-size: 3rem; font-weight: 700; margin: 15px 0; }
-        .results-breakdown { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
-        .breakdown-item {
-            background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 15px;
-            text-align: center; backdrop-filter: blur(10px);
-        }
-        .breakdown-item .level-name { font-size: 0.8rem; opacity: 0.9; margin-bottom: 5px; }
-        .breakdown-item .level-score { font-size: 1.5rem; font-weight: 700; }
-        .results-message { font-size: 1rem; opacity: 0.9; margin-top: 15px; }
-        .btn-retry {
-            margin-top: 20px; padding: 15px 40px; background: white; color: var(--primary);
-            border: none; border-radius: 30px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
-        .btn-retry:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-
-        @media (max-width: 600px) {
-            .header h1 { font-size: 1.4rem; }
-            .accent-buttons { flex-direction: column; }
-            .speed-buttons { flex-direction: column; }
-            .results-breakdown { flex-direction: column; }
-        }
-    </style>
+@media (max-width:600px) {
+  .header h1 { font-size: 1.3rem; }
+  .controls-row { flex-direction: column; }
+  .results-breakdown { flex-direction: column; }
+  .story-tabs { gap: 5px; }
+}
+</style>
 </head>
-<body class="pre-a1">
+<body>
 <div class="container">
 
-    <!-- HEADER -->
-    <div class="header">
-        <h1>🎧 Comprensión Auditiva</h1>
-        <div class="header-info">
-            <span class="badge">💛 PRE-A1</span>
-            <span class="badge">📘 Módulo 1</span>
-            <span class="badge">🎯 Personal Identity</span>
-            <span class="badge">🔊 10 Audios</span>
-        </div>
+  <div class="header">
+    <h1>🎧 Práctica de Listening</h1>
+    <div class="header-badges">
+      <span class="badge">💛 PRE-A1</span>
+      <span class="badge">📘 Módulo 1</span>
+      <span class="badge">🪪 Personal Identity</span>
+      <span class="badge">📖 4 Historias · 10 preguntas c/u</span>
     </div>
+  </div>
 
-    <!-- NAVEGACIÓN -->
-    <div class="nav-buttons">
-        <a href="https://jucumenglishcenter.github.io/TALLER-DE-VERANO/" class="nav-btn home">🏠 Volver al Panel Principal</a>
+  <div class="nav-wrap">
+    <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="nav-btn">🏠 Volver al Panel Principal</a>
+  </div>
+
+  <div class="controls-row">
+    <div class="ctrl-box">
+      <h3>🌍 Acento del Audio</h3>
+      <div class="btn-row">
+        <button class="ctrl-btn active" onclick="setAccent('american')" data-accent="american">🇺🇸 Americano</button>
+        <button class="ctrl-btn" onclick="setAccent('british')" data-accent="british">🇬🇧 Británico</button>
+      </div>
     </div>
-
-    <!-- SELECTOR DE ACENTOS -->
-    <div class="accent-selector">
-        <h3>🌍 Selecciona el Acento del Audio</h3>
-        <div class="accent-buttons">
-            <button class="accent-btn active" onclick="setAccent('american')" data-accent="american">
-                <span class="accent-flag">🇺🇸</span><span>Americano</span>
-            </button>
-            <button class="accent-btn" onclick="setAccent('british')" data-accent="british">
-                <span class="accent-flag">🇬🇧</span><span>Británico</span>
-            </button>
-        </div>
+    <div class="ctrl-box">
+      <h3>🎚️ Velocidad del Audio</h3>
+      <div class="btn-row">
+        <button class="ctrl-btn" onclick="setSpeed(0.6)" data-speed="0.6">🐢 Muy lento</button>
+        <button class="ctrl-btn" onclick="setSpeed(0.8)" data-speed="0.8">🚶 Lento</button>
+        <button class="ctrl-btn active" onclick="setSpeed(1)" data-speed="1">🏃 Normal</button>
+      </div>
     </div>
+  </div>
 
-    <!-- INSTRUCCIONES -->
-    <div class="instructions">
-        <h3>📋 Instrucciones</h3>
-        <ul>
-            <li><strong>Selecciona tu acento preferido</strong> usando los botones de arriba (🇺🇸 Americano, 🇬🇧 Británico)</li>
-            <li>Escucha cada audio presionando el botón ▶️</li>
-            <li>Puedes escuchar las veces que necesites y cambiar de acento en cualquier momento</li>
-            <li>Cuando estés listo, presiona <strong>"❓ Mostrar Pregunta"</strong></li>
-            <li>Si necesitas ayuda, puedes ver el texto en inglés y/o en español</li>
-        </ul>
+  <div class="instructions">
+    <h3>📋 Instrucciones</h3>
+    <ul>
+      <li>Elige una historia con las <strong>pestañas de abajo</strong> (S1 – S4).</li>
+      <li>Presiona ▶️ para escuchar el audio — puedes escucharlo <strong>todas las veces que necesites</strong>.</li>
+      <li>Presiona <strong>"❓ Mostrar Pregunta"</strong> cuando estés listo para responder.</li>
+      <li>Si necesitas ayuda, usa los botones para ver el texto en inglés o en español.</li>
+      <li>Después de responder verás una <strong>retroalimentación</strong> que explica la respuesta correcta.</li>
+    </ul>
+  </div>
+
+  <div class="story-tabs-wrap">
+    <div class="story-tabs-label">📖 Elige una historia para practicar:</div>
+    <div class="story-tabs" id="storyTabsContainer"></div>
+  </div>
+
+  <div class="score-panel">
+    <div class="score-item"><div class="slabel">Respondidas</div><div class="sval" id="answeredCount">0/10</div></div>
+    <div class="score-item"><div class="slabel">Correctas</div><div class="sval c" id="correctCount">0</div></div>
+    <div class="score-item"><div class="slabel">Incorrectas</div><div class="sval i" id="incorrectCount">0</div></div>
+  </div>
+
+  <div id="activitiesContainer"></div>
+
+  <div class="results-panel" id="resultsPanel">
+    <div class="trophy" id="trophy">🏆</div>
+    <h2 id="resultsTitle">¡Excelente!</h2>
+    <div class="results-score" id="resultsScore">0/10</div>
+    <div class="results-breakdown">
+      <div class="bd-item"><div class="bdname">🟢 Fácil</div><div class="bdscore" id="easyScore">0/4</div></div>
+      <div class="bd-item"><div class="bdname">🟡 Medio</div><div class="bdscore" id="mediumScore">0/3</div></div>
+      <div class="bd-item"><div class="bdname">🔴 Difícil</div><div class="bdscore" id="hardScore">0/3</div></div>
     </div>
-
-    <!-- CONTROL DE VELOCIDAD -->
-    <div class="speed-control">
-        <h3>🎚️ Velocidad del Audio</h3>
-        <div class="speed-buttons">
-            <button class="speed-btn" onclick="setSpeed(0.6)" data-speed="0.6">🐢 Muy Lento</button>
-            <button class="speed-btn" onclick="setSpeed(0.8)" data-speed="0.8">🚶 Lento</button>
-            <button class="speed-btn active" onclick="setSpeed(1)" data-speed="1">🏃 Normal</button>
-        </div>
-    </div>
-
-    <!-- PANEL DE PUNTUACIÓN -->
-    <div class="score-panel">
-        <div class="score-item">
-            <div class="label">Respondidas</div>
-            <div class="value" id="answeredCount">0/10</div>
-        </div>
-        <div class="score-item">
-            <div class="label">Correctas</div>
-            <div class="value correct" id="correctCount">0</div>
-        </div>
-        <div class="score-item">
-            <div class="label">Incorrectas</div>
-            <div class="value incorrect" id="incorrectCount">0</div>
-        </div>
-    </div>
-
-    <!-- CONTENEDOR DE ACTIVIDADES -->
-    <div id="activitiesContainer"></div>
-
-    <!-- PANEL DE RESULTADOS -->
-    <div class="results-panel" id="resultsPanel">
-        <div class="trophy" id="trophy">🏆</div>
-        <h2 id="resultsTitle">¡Excelente!</h2>
-        <div class="results-score" id="resultsScore">0/10</div>
-        <div class="results-breakdown">
-            <div class="breakdown-item">
-                <div class="level-name">🟢 Fácil</div>
-                <div class="level-score" id="easyScore">0/4</div>
-            </div>
-            <div class="breakdown-item">
-                <div class="level-name">🟡 Intermedio</div>
-                <div class="level-score" id="mediumScore">0/3</div>
-            </div>
-            <div class="breakdown-item">
-                <div class="level-name">🔴 Difícil</div>
-                <div class="level-score" id="hardScore">0/3</div>
-            </div>
-        </div>
-        <div class="results-message" id="resultsMessage"></div>
-        <button class="btn-retry" onclick="location.reload()">🔄 Intentar de nuevo</button>
-    </div>
+    <div class="results-msg" id="resultsMsg"></div>
+    <button class="btn-retry" onclick="retryStory()">🔄 Intentar de nuevo</button>
+  </div>
 
 </div>
 
 <script>
-// ============================================================
-// ACTIVIDADES — PRE-A1 · Personal Identity · Módulo 1
-// Las opciones se aleatorizan al cargar. correct siempre
-// apunta al TEXTO de la respuesta correcta (no a a/b/c).
-// ============================================================
-const rawActivities = [
-
-    // ── FÁCILES (1-4) ────────────────────────────────────────
-
-    {
-        id: 1, level: 'easy',
-        title: 'El nombre de Leo',
-        desc: 'Leo dice cómo se llama',
-        audio: 'I am Leo.',
-        spanish: 'Yo soy Leo.',
-        question: '¿Cómo se llama el niño?',
-        correctAnswer: 'Leo',
-        distractors: ['Ana', 'Ravi'],
-        feedback: {
-            correct: '✔ ¡Muy bien! En el audio se escucha: <em>"I am Leo."</em> — "I am" significa "Yo soy". El nombre es Leo.',
-            incorrect: '✗ Escucha de nuevo: <em>"I am Leo."</em> — "I am" quiere decir "Yo soy". El niño dice su nombre: Leo. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 2, level: 'easy',
-        title: 'El nombre de Ana',
-        desc: 'Ana dice cómo se llama',
-        audio: 'My name is Ana.',
-        spanish: 'Mi nombre es Ana.',
-        question: '¿Cómo se llama la niña?',
-        correctAnswer: 'Ana',
-        distractors: ['Mia', 'Lara'],
-        feedback: {
-            correct: '✔ ¡Correcto! Se escucha: <em>"My name is Ana."</em> — "My name is" significa "Mi nombre es". La niña se llama Ana.',
-            incorrect: '✗ Presta atención: <em>"My name is Ana."</em> — La frase "My name is" significa "Mi nombre es". La respuesta correcta es Ana. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 3, level: 'easy',
-        title: '¿Cuántos años tiene Ana?',
-        desc: 'Ana dice su edad',
-        audio: 'I am seven years old.',
-        spanish: 'Yo tengo siete años.',
-        question: '¿Cuántos años tiene Ana?',
-        correctAnswer: 'Siete años',
-        distractors: ['Cinco años', 'Nueve años'],
-        feedback: {
-            correct: '✔ ¡Bien! Se escucha: <em>"I am seven years old."</em> — "seven" es el número siete. Ana tiene siete años.',
-            incorrect: '✗ Escucha bien el número: <em>"I am seven years old."</em> — "seven" = siete. La respuesta correcta es siete años. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 4, level: 'easy',
-        title: 'La familia de Leo',
-        desc: 'Leo habla de su familia',
-        audio: 'I live with my mom, my dad, and my sister.',
-        spanish: 'Vivo con mi mamá, mi papá y mi hermana.',
-        question: '¿Con quién vive Leo?',
-        correctAnswer: 'Con su mamá, su papá y su hermana',
-        distractors: ['Con su abuela y su abuelo', 'Con su mamá y su hermano'],
-        feedback: {
-            correct: '✔ ¡Excelente! Se escucha: <em>"I live with my mom, my dad, and my sister."</em> — "mom" = mamá, "dad" = papá, "sister" = hermana.',
-            incorrect: '✗ Atiende las palabras: <em>"I live with my mom, my dad, and my sister."</em> — Leo vive con su mamá, su papá y su hermana. ¡Escucha otra vez!'
-        }
-    },
-
-    // ── INTERMEDIAS (5-7) ─────────────────────────────────────
-
-    {
-        id: 5, level: 'medium',
-        title: 'La foto de familia',
-        desc: 'Mia describe las personas en la foto',
-        audio: 'There are five people in the photo. My dad, my mom, my brother, my grandma, and I.',
-        spanish: 'Hay cinco personas en la foto. Mi papá, mi mamá, mi hermano, mi abuela y yo.',
-        question: '¿Cuántas personas hay en la foto de Mia?',
-        correctAnswer: 'Cinco personas',
-        distractors: ['Tres personas', 'Ocho personas'],
-        feedback: {
-            correct: '✔ ¡Correcto! Se escucha: <em>"There are five people in the photo."</em> — "five" = cinco. En la foto hay cinco personas.',
-            incorrect: '✗ Escucha el número al inicio: <em>"There are five people in the photo."</em> — "five" = cinco. La respuesta correcta es cinco personas. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 6, level: 'medium',
-        title: 'El papá de Mia',
-        desc: 'Mia describe a su papá',
-        audio: 'The tallest person is my dad. His name is Carlos. He is very tall.',
-        spanish: 'La persona más alta es mi papá. Su nombre es Carlos. Es muy alto.',
-        question: '¿Cómo se llama el papá de Mia?',
-        correctAnswer: 'Carlos',
-        distractors: ['Marco', 'Nico'],
-        feedback: {
-            correct: '✔ ¡Muy bien! Se escucha: <em>"His name is Carlos."</em> — "His name is" = "Su nombre es". El papá se llama Carlos.',
-            incorrect: '✗ Escucha el nombre: <em>"His name is Carlos."</em> — "His name is" significa "Su nombre es". El papá de Mia se llama Carlos. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 7, level: 'medium',
-        title: 'La familia de Ravi',
-        desc: 'Ravi dice cuántas personas hay en su familia',
-        audio: 'There are six people in my family. My mom, my dad, two brothers, my grandpa, and me.',
-        spanish: 'Hay seis personas en mi familia. Mi mamá, mi papá, dos hermanos, mi abuelo y yo.',
-        question: '¿Cuántos hermanos tiene Ravi?',
-        correctAnswer: 'Dos hermanos',
-        distractors: ['Un hermano', 'Tres hermanos'],
-        feedback: {
-            correct: '✔ ¡Correcto! Se escucha: <em>"two brothers"</em> — "two" = dos. Ravi tiene dos hermanos.',
-            incorrect: '✗ Busca la palabra "brothers" (hermanos): <em>"two brothers"</em> — "two" = dos. Ravi tiene dos hermanos. ¡Escucha otra vez!'
-        }
-    },
-
-    // ── DIFÍCILES (8-10) ──────────────────────────────────────
-
-    {
-        id: 8, level: 'hard',
-        title: 'La hermana de Nico',
-        desc: 'Nico habla de su nueva hermanita',
-        audio: 'I have a new baby sister. Her name is Luli. She is only two days old.',
-        spanish: 'Yo tengo una nueva hermanita. Su nombre es Luli. Solo tiene dos días.',
-        question: '¿Cómo se llama la hermanita de Nico?',
-        correctAnswer: 'Luli',
-        distractors: ['Lara', 'Ana'],
-        feedback: {
-            correct: '✔ ¡Bien! Se escucha: <em>"Her name is Luli."</em> — "Her name is" = "Su nombre es". La hermanita se llama Luli.',
-            incorrect: '✗ Escucha el nombre de la bebé: <em>"Her name is Luli."</em> — La hermanita de Nico se llama Luli. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 9, level: 'hard',
-        title: 'Dev y Arjun',
-        desc: 'Ravi habla de la edad de sus hermanos',
-        audio: 'Dev is ten and Arjun is five. I am eight — yes, in the middle!',
-        spanish: 'Dev tiene diez y Arjun tiene cinco. Yo tengo ocho — ¡sí, estoy en el medio!',
-        question: '¿Cuántos años tiene Dev?',
-        correctAnswer: 'Diez años',
-        distractors: ['Ocho años', 'Cinco años'],
-        feedback: {
-            correct: '✔ ¡Excelente! Se escucha: <em>"Dev is ten"</em> — "ten" = diez. Dev tiene diez años.',
-            incorrect: '✗ Escucha el nombre "Dev" y el número que le sigue: <em>"Dev is ten"</em> — "ten" = diez. Dev tiene diez años, no ocho ni cinco. ¡Escucha otra vez!'
-        }
-    },
-
-    {
-        id: 10, level: 'hard',
-        title: 'Lara y Arjun en el parque',
-        desc: 'Leo describe a los niños en el parque',
-        audio: "Arjun plays with my sister Lara. They are the same age — both five. So they understand each other perfectly.",
-        spanish: 'Arjun juega con mi hermana Lara. Tienen la misma edad — los dos tienen cinco. Así que se entienden perfectamente.',
-        question: '¿Por qué Arjun y Lara se entienden perfectamente?',
-        correctAnswer: 'Porque tienen la misma edad',
-        distractors: ['Porque son hermanos', 'Porque viven en la misma casa'],
-        feedback: {
-            correct: '✔ ¡Muy bien! Se escucha: <em>"They are the same age — both five."</em> — "same age" = misma edad. Se entienden porque tienen cinco años los dos.',
-            incorrect: '✗ Escucha la razón: <em>"They are the same age — both five."</em> — "same age" = misma edad. Se entienden porque tienen la misma edad, no porque sean hermanos. ¡Escucha otra vez!'
-        }
-    }
-];
-
-// ── Aleatorizar las opciones de cada actividad ───────────────
+// ─────────────────────────────────────────────
+// SHUFFLE helper
+// ─────────────────────────────────────────────
 function shuffle(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
-const activities = rawActivities.map(act => {
-    const opts = shuffle([act.correctAnswer, ...act.distractors]);
-    const correctIndex = opts.indexOf(act.correctAnswer);
-    const correctKey = ['a', 'b', 'c'][correctIndex];
-    return { ...act, options: opts, correct: correctKey };
-});
+// Build one activity: shuffle options, track correct letter
+function mk(id, level, title, desc, audio, spanish, question, correctText, wrong1, wrong2, fbCorrect, fbIncorrect) {
+  const opts = shuffle([
+    { text: correctText, ok: true },
+    { text: wrong1, ok: false },
+    { text: wrong2, ok: false }
+  ]);
+  let correctLetter = 'a';
+  opts.forEach((o, i) => { if (o.ok) correctLetter = ['a','b','c'][i]; });
+  return {
+    id, level, title, desc, audio, spanish, question,
+    options: opts.map(o => o.text),
+    correct: correctLetter,
+    feedback: { correct: fbCorrect, incorrect: fbIncorrect }
+  };
+}
 
-// ── Variables globales ────────────────────────────────────────
+// ─────────────────────────────────────────────
+// STORIES
+// Pre-A1 rules:
+//   · Audio = 1–3 oraciones cortas, vocab básico
+//   · Pregunta = ¿quién?, ¿qué?, ¿cuántos?, ¿dónde?, ¿cómo es?
+//   · Respuesta correcta está dicha EXACTAMENTE en el audio
+//   · Fácil = 1 oración · Medio = 2 oraciones · Difícil = 2-3 oraciones
+//   · Feedback correcto = cita la frase clave en inglés
+//   · Feedback incorrecto = explica + cierra con ¡Escucha otra vez!
+// ─────────────────────────────────────────────
+
+const STORIES = {
+
+  // ══════════════════════════════════════
+  // S1 — My Name Is Leo
+  // ══════════════════════════════════════
+  s1: {
+    label: 'S1', emoji: '📖', title: 'S1 — My Name Is Leo',
+    activities: [
+      mk(1,'easy',
+        'El nombre del niño', 'Leo se presenta',
+        'My name is Leo.',
+        'Mi nombre es Leo.',
+        '¿Cómo se llama el niño?',
+        'Leo', 'Marco', 'Ravi',
+        '✔ ¡Correcto! Él dijo *"My name is Leo."*',
+        '✗ Él dijo *"My name is Leo."* — su nombre es Leo. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántos años tiene?', 'Leo dice su edad',
+        'I am seven years old.',
+        'Yo tengo siete años.',
+        '¿Cuántos años tiene Leo?',
+        'Siete años', 'Ocho años', 'Seis años',
+        '✔ ¡Correcto! Leo dijo *"I am seven years old."*',
+        '✗ Leo dijo *"I am seven years old"* — tiene siete años. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        '¿Cómo es el papá?', 'Leo describe a su papá',
+        'My dad is tall.',
+        'Mi papá es alto.',
+        '¿Cómo es el papá de Leo?',
+        'Alto', 'Bajo', 'Gordito',
+        '✔ ¡Correcto! Leo dijo *"My dad is tall."*',
+        '✗ Leo dijo *"My dad is tall"* — su papá es alto. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'El nombre del papá', 'Leo dice el nombre de su papá',
+        'His name is Marco.',
+        'Su nombre es Marco.',
+        '¿Cómo se llama el papá de Leo?',
+        'Marco', 'Beto', 'Carlos',
+        '✔ ¡Correcto! Leo dijo *"His name is Marco."*',
+        '✗ Leo dijo *"His name is Marco"* — el papá se llama Marco. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El nombre de mamá', 'Leo describe a su mamá',
+        'Her name is Irma. She sings while she cooks.',
+        'Su nombre es Irma. Ella canta mientras cocina.',
+        '¿Cómo se llama la mamá de Leo?',
+        'Irma', 'Rosa', 'Ana',
+        '✔ ¡Correcto! Leo dijo *"Her name is Irma."*',
+        '✗ Leo dijo *"Her name is Irma"* — la mamá se llama Irma. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'La hermana Lara', 'Leo habla de su hermana',
+        'My sister is Lara. She is five years old.',
+        'Mi hermana es Lara. Ella tiene cinco años.',
+        '¿Cuántos años tiene la hermana de Leo?',
+        'Cinco años', 'Siete años', 'Tres años',
+        '✔ ¡Correcto! Leo dijo *"She is five years old."*',
+        '✗ Leo dijo *"She is five years old"* — Lara tiene cinco años. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'La casa de Leo', 'Leo describe dónde vive',
+        'We have a small house. It is near the market.',
+        'Tenemos una casa pequeña. Está cerca del mercado.',
+        '¿Dónde está la casa de Leo? Escucha: "near the ___"',
+        'Cerca del mercado', 'Cerca de la escuela', 'Cerca del parque',
+        '✔ ¡Correcto! Leo dijo *"near the market"* — cerca del mercado.',
+        '✗ Leo dijo *"near the market"* — la casa está cerca del mercado. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        '¿Dónde trabaja el papá?', 'El papá de Leo',
+        'My dad works at the market. He always brings us fruit, bread, or a small sweet.',
+        'Mi papá trabaja en el mercado. Siempre nos trae fruta, pan o un dulce pequeño.',
+        '¿Dónde trabaja el papá de Leo? Escucha: "works at the ___"',
+        'En el mercado', 'En la escuela', 'En el hospital',
+        '✔ ¡Correcto! Leo dijo *"My dad works at the market."*',
+        '✗ Leo dijo *"works at the market"* — el papá trabaja en el mercado. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Don Beto cada tarde', 'El abuelo y los vecinos',
+        'There is also my grandpa Don Beto. Every afternoon he sits outside and waves at neighbors.',
+        'También está mi abuelo Don Beto. Cada tarde se sienta afuera y saluda a los vecinos.',
+        '¿Cómo se llama el abuelo de Leo?',
+        'Don Beto', 'Don Carlos', 'Don Marco',
+        '✔ ¡Correcto! Leo dijo *"my grandpa Don Beto."*',
+        '✗ Leo dijo *"my grandpa Don Beto"* — el abuelo se llama Don Beto. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'El domingo en familia', 'Todos juntos a la mesa',
+        'On Sundays we eat together. Dad makes rice and mom makes soup.',
+        'Los domingos comemos juntos. Papá hace arroz y mamá hace sopa.',
+        '¿Qué hace el papá de Leo los domingos?',
+        'Hace arroz', 'Hace sopa', 'Hace pan',
+        '✔ ¡Correcto! Leo dijo *"Dad makes rice."*',
+        '✗ Leo dijo *"Dad makes rice"* — el papá hace arroz. La mamá hace la sopa. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S2 — Mia's Family Photo
+  // ══════════════════════════════════════
+  s2: {
+    label: 'S2', emoji: '📖', title: "S2 — Mia's Family Photo",
+    activities: [
+      mk(1,'easy',
+        'La foto de Mia', 'Mia habla de una foto',
+        'I have a big photo on my wall.',
+        'Yo tengo una foto grande en mi pared.',
+        '¿Dónde está la foto grande de Mia?',
+        'En su pared', 'En la escuela', 'En la cocina',
+        '✔ ¡Correcto! Mia dijo *"I have a big photo on my wall."*',
+        '✗ Mia dijo *"on my wall"* — la foto está en su pared. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántas personas?', 'Mia cuenta a su familia',
+        'There are eight people in the photo.',
+        'Hay ocho personas en la foto.',
+        '¿Cuántas personas hay en la foto de Mia?',
+        'Ocho personas', 'Cinco personas', 'Seis personas',
+        '✔ ¡Correcto! Mia dijo *"There are eight people."*',
+        '✗ Mia dijo *"eight people"* — hay ocho personas. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El papá de Mia', 'Mia describe a su papá',
+        'My dad is the tallest person. His name is Carlos.',
+        'Mi papá es la persona más alta. Su nombre es Carlos.',
+        '¿Cómo se llama el papá de Mia?',
+        'Carlos', 'Marco', 'Beto',
+        '✔ ¡Correcto! Mia dijo *"His name is Carlos."*',
+        '✗ Mia dijo *"His name is Carlos"* — el papá se llama Carlos. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'La mamá de Mia', 'Mia habla de su mamá',
+        'My mom is Rosa. She is a nurse.',
+        'Mi mamá es Rosa. Ella es enfermera.',
+        '¿Cómo se llama la mamá de Mia?',
+        'Rosa', 'Irma', 'Ana',
+        '✔ ¡Correcto! Mia dijo *"My mom is Rosa."*',
+        '✗ Mia dijo *"My mom is Rosa"* — la mamá se llama Rosa. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El hermano Nico', 'Mia habla de su hermano',
+        'My brother Nico is nine. He is a funny boy.',
+        'Mi hermano Nico tiene nueve años. Es un niño gracioso.',
+        '¿Cuántos años tiene el hermano de Mia, Nico?',
+        'Nueve años', 'Siete años', 'Diez años',
+        '✔ ¡Correcto! Mia dijo *"My brother Nico is nine."*',
+        '✗ Mia dijo *"Nico is nine"* — tiene nueve años. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'La abuela Norma', 'Mia describe a su abuela',
+        'My grandma is Norma. Her hair is white.',
+        'Mi abuela es Norma. Su cabello es blanco.',
+        '¿De qué color es el cabello de la abuela Norma?',
+        'Blanco', 'Negro', 'Café',
+        '✔ ¡Correcto! Mia dijo *"Her hair is white."*',
+        '✗ Mia dijo *"Her hair is white"* — el cabello de Norma es blanco. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'Los dos abuelos', 'Mia compara a sus abuelos',
+        'My grandpa Beto is next to grandma. They are both seventy years old.',
+        'Mi abuelo Beto está junto a la abuela. Los dos tienen setenta años.',
+        '¿Cuántos años tienen los dos abuelos de Mia?',
+        'Los dos tienen setenta años', 'Los dos tienen sesenta años', 'Beto tiene setenta, Norma sesenta',
+        '✔ ¡Correcto! Mia dijo *"They are both seventy years old."*',
+        '✗ Mia dijo *"both seventy"* — los dos tienen setenta años. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        'La foto cada mañana', 'Mia y su rutina',
+        'I look at that photo every morning before school.',
+        'Yo miro esa foto cada mañana antes de la escuela.',
+        '¿Cuándo mira Mia la foto de su familia?',
+        'Cada mañana antes de la escuela', 'Cada noche antes de dormir', 'Solo los domingos',
+        '✔ ¡Correcto! Mia dijo *"every morning before school."*',
+        '✗ Mia dijo *"every morning before school"* — la mira cada mañana. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Nico en la foto', 'La cara de Nico',
+        'In the photo my brother Nico is making a silly face. He always makes me laugh.',
+        'En la foto mi hermano Nico está haciendo una cara chistosa. Siempre me hace reír.',
+        '¿Qué está haciendo Nico en la foto?',
+        'Una cara chistosa', 'Llorando', 'Durmiendo',
+        '✔ ¡Correcto! Mia dijo *"he is making a silly face."*',
+        '✗ Mia dijo *"making a silly face"* — Nico hace una cara chistosa. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'La tía y el tío', 'Las últimas personas en la foto',
+        'The last two people in the photo are my aunt and uncle. Everyone in my family is different.',
+        'Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes.',
+        '¿Quiénes son las últimas dos personas en la foto de Mia?',
+        'Su tía y su tío', 'Sus dos primos', 'Sus dos abuelos',
+        '✔ ¡Correcto! Mia dijo *"my aunt and uncle."*',
+        '✗ Mia dijo *"my aunt and uncle"* — son su tía y su tío. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S3 — Saturday at the Park
+  // ══════════════════════════════════════
+  s3: {
+    label: 'S3', emoji: '📖', title: 'S3 — Saturday at the Park',
+    activities: [
+      mk(1,'easy',
+        'El día especial', 'Leo habla del sábado',
+        'Saturday is a special day.',
+        'El sábado es un día especial.',
+        '¿Cómo llama Leo al sábado?',
+        'Un día especial', 'Un día normal', 'Un día de escuela',
+        '✔ ¡Correcto! Leo dijo *"Saturday is a special day."*',
+        '✗ Leo dijo *"Saturday is a special day"* — el sábado es especial. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        'El desayuno del sábado', 'El papá cocina',
+        'My dad makes eggs.',
+        'Mi papá hace huevos.',
+        '¿Qué hace el papá de Leo el sábado por la mañana?',
+        'Hace huevos', 'Hace sopa', 'Hace pan',
+        '✔ ¡Correcto! Leo dijo *"My dad makes eggs."*',
+        '✗ Leo dijo *"My dad makes eggs"* — el papá hace huevos. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El bastón de Don Beto', 'El abuelo en el parque',
+        'My grandpa Don Beto has a walking stick.',
+        'Mi abuelo Don Beto tiene un bastón.',
+        '¿Qué usa Don Beto para caminar?',
+        'Un bastón', 'Una silla de ruedas', 'El brazo de Leo',
+        '✔ ¡Correcto! Leo dijo *"Don Beto has a walking stick."*',
+        '✗ Leo dijo *"a walking stick"* — Don Beto usa un bastón. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'Le gusta caminar', 'Leo y su abuelo',
+        'I like to walk next to him.',
+        'Me gusta caminar junto a él.',
+        '¿Qué le gusta hacer a Leo en el parque?',
+        'Caminar junto a Don Beto', 'Jugar fútbol', 'Montar bicicleta',
+        '✔ ¡Correcto! Leo dijo *"I like to walk next to him."*',
+        '✗ Leo dijo *"I like to walk next to him"* — le gusta caminar junto al abuelo. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'La hermana cansada', 'Al regresar a casa',
+        'My sister is sleepy. My dad carries her on his back.',
+        'Mi hermana tiene sueño. Mi papá la lleva en su espalda.',
+        '¿Quién lleva a la hermana de Leo cuando tiene sueño?',
+        'Su papá la lleva en la espalda', 'Su mamá la carga en brazos', 'Su abuelo la lleva de la mano',
+        '✔ ¡Correcto! Leo dijo *"My dad carries her on his back."*',
+        '✗ Leo dijo *"dad carries her on his back"* — el papá la lleva. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'El té en casa', 'El abuelo cuenta un cuento',
+        'At home we drink tea. Grandpa tells a story.',
+        'En casa tomamos té. El abuelo cuenta un cuento.',
+        '¿Qué hace el abuelo cuando llegan a casa?',
+        'Cuenta un cuento', 'Cocina la cena', 'Mira la televisión',
+        '✔ ¡Correcto! Leo dijo *"Grandpa tells a story."*',
+        '✗ Leo dijo *"Grandpa tells a story"* — el abuelo cuenta un cuento. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'La mejor parte', 'Leo y su momento favorito',
+        'It is the best part of Saturday — the quiet end with my family.',
+        'Es la mejor parte del sábado — el final tranquilo con mi familia.',
+        '¿Con quiénes pasa Leo la mejor parte del sábado? Escucha: "with my ___"',
+        'Con su familia', 'Con sus amigos', 'Con sus vecinos',
+        '✔ ¡Correcto! Leo dijo *"with my family."*',
+        '✗ Leo dijo *"with my family"* — la mejor parte es estar con su familia. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        '¿Adónde NO van el sábado?', 'La mañana del sábado',
+        'We do not go to school or work. There is no rush in the morning.',
+        'No vamos a la escuela ni al trabajo. No hay prisa por la mañana.',
+        '¿Adónde NO va la familia de Leo el sábado? Escucha: "do not go to ___"',
+        'A la escuela ni al trabajo', 'Al mercado', 'Al parque',
+        '✔ ¡Correcto! Leo dijo *"We do not go to school or work."*',
+        '✗ Leo dijo *"do not go to school or work"* — el sábado no hay escuela ni trabajo. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'Los ojos de la hermana', 'La hermana ya duerme',
+        'She is small. Her eyes are already closed.',
+        'Ella es pequeña. Sus ojos ya están cerrados.',
+        '¿Cómo están los ojos de la hermana de Leo?',
+        'Ya están cerrados', 'Están abiertos', 'Están llorando',
+        '✔ ¡Correcto! Leo dijo *"Her eyes are already closed."*',
+        '✗ Leo dijo *"Her eyes are already closed"* — sus ojos ya están cerrados. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'Todos en la mesa', 'El sábado por la mañana',
+        'My dad makes eggs and everyone sits at the table together.',
+        'Mi papá hace huevos y todos se sientan juntos a la mesa.',
+        '¿Qué hacen todos el sábado por la mañana?',
+        'Se sientan juntos a la mesa', 'Van al parque primero', 'Duermen hasta tarde',
+        '✔ ¡Correcto! Leo dijo *"everyone sits at the table together."*',
+        '✗ Leo dijo *"everyone sits at the table together"* — todos desayunan juntos. ¡Escucha otra vez!'
+      )
+    ]
+  },
+
+  // ══════════════════════════════════════
+  // S4 — Kind People
+  // ══════════════════════════════════════
+  s4: {
+    label: 'S4', emoji: '📖', title: 'S4 — Kind People',
+    activities: [
+      mk(1,'easy',
+        'El nombre del niño', 'Nico se presenta',
+        'My name is Nico.',
+        'Mi nombre es Nico.',
+        '¿Cómo se llama el niño que habla en esta historia?',
+        'Nico', 'Leo', 'Ravi',
+        '✔ ¡Correcto! Él dijo *"My name is Nico."*',
+        '✗ Él dijo *"My name is Nico"* — se llama Nico. ¡Escucha otra vez!'
+      ),
+      mk(2,'easy',
+        '¿Cuántos años tiene?', 'Nico dice su edad',
+        'I am eight years old.',
+        'Yo tengo ocho años.',
+        '¿Cuántos años tiene Nico?',
+        'Ocho años', 'Siete años', 'Nueve años',
+        '✔ ¡Correcto! Nico dijo *"I am eight years old."*',
+        '✗ Nico dijo *"I am eight years old"* — tiene ocho años. ¡Escucha otra vez!'
+      ),
+      mk(3,'easy',
+        'El papá de Nico', 'Nico habla de su papá',
+        'My dad is Carlos. He is very kind.',
+        'Mi papá es Carlos. Él es muy amable.',
+        '¿Cómo se llama el papá de Nico?',
+        'Carlos', 'Marco', 'Beto',
+        '✔ ¡Correcto! Nico dijo *"My dad is Carlos."*',
+        '✗ Nico dijo *"My dad is Carlos"* — el papá se llama Carlos. ¡Escucha otra vez!'
+      ),
+      mk(4,'easy',
+        'La vecina sola', 'Nico habla de Mrs. Ana',
+        'My neighbor Mrs. Ana lives alone.',
+        'Mi vecina la señora Ana vive sola.',
+        '¿Con quién vive la señora Ana?',
+        'Vive sola', 'Vive con su hija', 'Vive con Nico',
+        '✔ ¡Correcto! Nico dijo *"Mrs. Ana lives alone."*',
+        '✗ Nico dijo *"lives alone"* — la señora Ana vive sola. ¡Escucha otra vez!'
+      ),
+      mk(5,'medium',
+        'El saludo de la vecina', 'La señora Ana cada mañana',
+        'Every morning she waves at me from her window.',
+        'Cada mañana me saluda desde su ventana.',
+        '¿Desde dónde saluda la señora Ana a Nico?',
+        'Desde su ventana', 'Desde la puerta', 'Desde la calle',
+        '✔ ¡Correcto! Nico dijo *"she waves at me from her window."*',
+        '✗ Nico dijo *"from her window"* — saluda desde su ventana. ¡Escucha otra vez!'
+      ),
+      mk(6,'medium',
+        'Miss Pilar nunca grita', 'La maestra de Nico',
+        'My teacher is Miss Pilar. She is kind. She never shouts.',
+        'Mi maestra es Miss Pilar. Es amable. Ella nunca grita.',
+        '¿Cómo se llama la maestra de Nico?',
+        'Miss Pilar', 'Miss Rosa', 'Miss Ana',
+        '✔ ¡Correcto! Nico dijo *"My teacher is Miss Pilar."*',
+        '✗ Nico dijo *"My teacher is Miss Pilar"* — la maestra se llama Miss Pilar. ¡Escucha otra vez!'
+      ),
+      mk(7,'medium',
+        'Lo que dice Miss Pilar', 'Las palabras de la maestra',
+        'She says: "Try again — you can do it."',
+        'Ella dice: "Intenta de nuevo — tú puedes."',
+        '¿Qué le dice Miss Pilar a Nico cuando comete un error?',
+        '"Try again — you can do it"', '"That is wrong, do it again"', '"Ask your parents"',
+        '✔ ¡Correcto! Miss Pilar dice *"Try again — you can do it."* ¡Palabras de apoyo!',
+        '✗ Miss Pilar dice *"Try again — you can do it"* — siempre anima a los estudiantes. ¡Escucha otra vez!'
+      ),
+      mk(8,'hard',
+        'El papá y el té', 'Nico llega triste a casa',
+        'When I am sad, my dad makes tea. He sits with me.',
+        'Cuando estoy triste, mi papá hace té. Se sienta conmigo.',
+        '¿Qué hace el papá de Nico? Escucha: "my dad makes ___"',
+        'Té', 'Sopa', 'Pan',
+        '✔ ¡Correcto! Nico dijo *"my dad makes tea."*',
+        '✗ Nico dijo *"my dad makes tea"* — el papá hace té. ¡Escucha otra vez!'
+      ),
+      mk(9,'hard',
+        'La sonrisa de la vecina', 'El efecto de un saludo pequeño',
+        'It is a small thing, but it makes her smile big.',
+        'Es una cosa pequeña, pero le hace sonreír mucho.',
+        '¿Qué dice Nico que es ese gesto? Escucha: "It is a ___ thing"',
+        'Una cosa pequeña', 'Una cosa difícil', 'Una cosa importante',
+        '✔ ¡Correcto! Nico dijo *"It is a small thing."*',
+        '✗ Nico dijo *"It is a small thing"* — es una cosa pequeña. ¡Escucha otra vez!'
+      ),
+      mk(10,'hard',
+        'Ser amable es una elección', 'La idea más importante de Nico',
+        'Being kind is like being strong. It is a choice every day.',
+        'Ser amable es como ser fuerte. Es una decisión cada día.',
+        '¿Qué dice Nico sobre ser amable?',
+        'Es una decisión de cada día', 'Es un regalo que recibes', 'Es una regla de la escuela',
+        '✔ ¡Correcto! Nico dijo *"It is a choice every day."*',
+        '✗ Nico dijo *"It is a choice every day"* — ser amable es una decisión diaria. ¡Escucha otra vez!'
+      )
+    ]
+  }
+};
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let currentKey = 's1';
 let currentSpeed = 1;
 let currentAccent = 'american';
-let answered = 0, correct = 0, incorrect = 0;
-let easyCorrect = 0, mediumCorrect = 0, hardCorrect = 0;
-let answeredQuestions = {};
-let synthesis = window.speechSynthesis;
+const synth = window.speechSynthesis;
 let voices = [];
 let currentVoice = null;
 let isPlaying = false;
-let currentBtn = null;
+const storyState = {};
+Object.keys(STORIES).forEach(k => resetState(k));
 
-const voicePreferences = {
-    american: ['Google US English','Microsoft Zira','Samantha','en-US','English (United States)'],
-    british:  ['Google UK English Female','Google UK English Male','Microsoft Hazel','Daniel','en-GB','English (United Kingdom)']
+function resetState(k) {
+  storyState[k] = { answered: 0, correct: 0, incorrect: 0, easyOk: 0, medOk: 0, hardOk: 0, answered_q: {} };
+}
+
+// ─────────────────────────────────────────────
+// VOICES
+// ─────────────────────────────────────────────
+const VPREF = {
+  american: ['Google US English','Samantha','Microsoft Zira','en-US'],
+  british:  ['Google UK English Female','Daniel','Microsoft Hazel','en-GB']
 };
-
 function loadVoices() {
-    voices = synthesis.getVoices();
-    if (voices.length === 0) { setTimeout(loadVoices, 100); return; }
-    selectVoiceByAccent(currentAccent);
+  voices = synth.getVoices();
+  if (!voices.length) { setTimeout(loadVoices, 100); return; }
+  selectVoice(currentAccent);
+}
+function selectVoice(accent) {
+  for (const name of VPREF[accent]) {
+    const v = voices.find(v => v.name.includes(name));
+    if (v) { currentVoice = v; return; }
+  }
+  const lang = accent === 'american' ? 'en-US' : 'en-GB';
+  currentVoice = voices.find(v => v.lang === lang) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+}
+if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
+
+// ─────────────────────────────────────────────
+// CONTROLS
+// ─────────────────────────────────────────────
+function setAccent(a) {
+  currentAccent = a;
+  selectVoice(a);
+  document.querySelectorAll('[data-accent]').forEach(b => b.classList.toggle('active', b.dataset.accent === a));
+  if (isPlaying) { synth.cancel(); isPlaying = false; resetPlayBtns(); }
+}
+function setSpeed(s) {
+  currentSpeed = s;
+  document.querySelectorAll('[data-speed]').forEach(b => b.classList.toggle('active', b.dataset.speed == s));
+}
+function resetPlayBtns() {
+  document.querySelectorAll('.play-btn').forEach(b => { b.classList.remove('playing'); b.textContent = '▶️'; });
 }
 
-function selectVoiceByAccent(accent) {
-    for (let name of voicePreferences[accent]) {
-        let v = voices.find(v => v.name.includes(name));
-        if (v) { currentVoice = v; return; }
-    }
-    const langCode = accent === 'american' ? 'en-US' : 'en-GB';
-    currentVoice = voices.find(v => v.lang === langCode)
-                || voices.find(v => v.lang.startsWith('en'))
-                || voices[0];
+// ─────────────────────────────────────────────
+// TABS
+// ─────────────────────────────────────────────
+function buildTabs() {
+  const wrap = document.getElementById('storyTabsContainer');
+  wrap.innerHTML = '';
+  Object.entries(STORIES).forEach(([k, s]) => {
+    const b = document.createElement('button');
+    b.className = 'story-tab' + (k === currentKey ? ' active' : '');
+    b.innerHTML = `${s.emoji} ${s.label}`;
+    b.title = s.title;
+    b.onclick = () => switchStory(k);
+    wrap.appendChild(b);
+  });
+}
+function switchStory(k) {
+  if (isPlaying) { synth.cancel(); isPlaying = false; }
+  currentKey = k;
+  document.querySelectorAll('.story-tab').forEach((b, i) => b.classList.toggle('active', Object.keys(STORIES)[i] === k));
+  document.getElementById('resultsPanel').classList.remove('show');
+  render();
+  updateScore();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function retryStory() {
+  resetState(currentKey);
+  document.getElementById('resultsPanel').classList.remove('show');
+  render();
+  updateScore();
 }
 
-if (synthesis) {
-    loadVoices();
-    synthesis.onvoiceschanged = loadVoices;
-}
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function render() {
+  const container = document.getElementById('activitiesContainer');
+  const acts = STORIES[currentKey].activities;
+  const st = storyState[currentKey];
+  let html = '';
+  let curLevel = '';
 
-function setAccent(accent) {
-    currentAccent = accent;
-    selectVoiceByAccent(accent);
-    document.querySelectorAll('.accent-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.accent === accent);
-    });
-    if (isPlaying) stopPlayback();
-}
-
-function setSpeed(speed) {
-    currentSpeed = speed;
-    document.querySelectorAll('.speed-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.speed == speed);
-    });
-}
-
-function stopPlayback() {
-    synthesis.cancel();
-    isPlaying = false;
-    document.querySelectorAll('.play-btn').forEach(b => {
-        b.classList.remove('playing');
-        b.textContent = '▶️';
-    });
-    currentBtn = null;
-}
-
-// ── Render ────────────────────────────────────────────────────
-function renderActivities() {
-    const container = document.getElementById('activitiesContainer');
-    let html = '';
-    let currentLevel = '';
-
-    const levelInfo = {
-        easy:   ['🟢', 'Fácil',       'Actividades 1–4'],
-        medium: ['🟡', 'Intermedio',   'Actividades 5–7'],
-        hard:   ['🔴', 'Difícil',      'Actividades 8–10']
-    };
-
-    activities.forEach(act => {
-        if (act.level !== currentLevel) {
-            if (currentLevel) html += '</div>';
-            currentLevel = act.level;
-            const li = levelInfo[act.level];
-            html += `
-            <div class="level-section">
-                <div class="level-header ${act.level}">
-                    <span class="icon">${li[0]}</span>
-                    <span class="title">Nivel ${li[1]}</span>
-                    <span class="subtitle">${li[2]}</span>
-                </div>`;
-        }
-
-        html += `
-        <div class="audio-card" id="card${act.id}">
-            <div class="audio-header">
-                <div class="audio-number ${act.level}">${act.id}</div>
-                <div class="audio-title">
-                    <h3>${act.title}</h3>
-                    <p>${act.desc}</p>
-                </div>
-            </div>
-
-            <div class="audio-player">
-                <button class="play-btn" onclick="playAudio(${act.id})" id="playBtn${act.id}">▶️</button>
-                <div class="text-buttons">
-                    <button class="text-btn" onclick="toggleText(${act.id})" id="textBtn${act.id}">📤 Ver texto en inglés</button>
-                    <button class="text-btn spanish" onclick="toggleSpanish(${act.id})" id="spanishBtn${act.id}">🇪🇸 Ver en español</button>
-                </div>
-                <div class="text-container">
-                    <div class="audio-text" id="englishText${act.id}">
-                        <div class="label">📤 Texto en Inglés</div>
-                        <p>${act.audio}</p>
-                    </div>
-                    <div class="spanish-text" id="spanishText${act.id}">
-                        <div class="label">🇪🇸 Traducción</div>
-                        <p>${act.spanish}</p>
-                    </div>
-                </div>
-            </div>
-
-            <button class="show-question-btn" id="showQ${act.id}" onclick="toggleQuestion(${act.id})">❓ Mostrar Pregunta</button>
-
-            <div class="question-section" id="questionSection${act.id}">
-                <h4>❓ Pregunta</h4>
-                <div class="question-text">${act.question}</div>
-                <div class="options-container" id="options${act.id}">
-                    ${act.options.map((opt, idx) => `
-                    <div class="option" onclick="selectAnswer(${act.id},'${['a','b','c'][idx]}','${act.correct}')">
-                        <span class="option-letter">${['A','B','C'][idx]}</span>
-                        <span class="option-text">${opt}</span>
-                    </div>`).join('')}
-                </div>
-                <div class="feedback" id="fb${act.id}"></div>
-            </div>
+  acts.forEach(act => {
+    if (act.level !== curLevel) {
+      if (curLevel) html += '</div>'; // close level-section
+      curLevel = act.level;
+      const info = {
+        easy:   ['🟢', 'Fácil',      '1 – 4'],
+        medium: ['🟡', 'Intermedio', '5 – 7'],
+        hard:   ['🔴', 'Difícil',    '8 – 10']
+      }[act.level];
+      html += `<div class="level-section">
+        <div class="level-header ${act.level}">
+          <span class="lhicon">${info[0]}</span>
+          <span class="lhtitle">Nivel ${info[1]}</span>
+          <span class="lhsub">Actividades ${info[2]}</span>
         </div>`;
-    });
-
-    html += '</div>';
-    container.innerHTML = html;
-}
-
-function playAudio(id) {
-    const btn = document.getElementById(`playBtn${id}`);
-    if (isPlaying) { stopPlayback(); return; }
-
-    const act = activities.find(a => a.id === id);
-    const utt = new SpeechSynthesisUtterance(act.audio);
-    utt.voice  = currentVoice;
-    utt.rate   = currentSpeed;
-    utt.pitch  = 1;
-    utt.volume = 1;
-
-    isPlaying = true;
-    currentBtn = btn;
-    btn.classList.add('playing');
-    btn.textContent = '⏹️';
-
-    utt.onend = utt.onerror = () => {
-        isPlaying = false;
-        btn.classList.remove('playing');
-        btn.textContent = '▶️';
-        currentBtn = null;
-    };
-
-    synthesis.speak(utt);
-}
-
-function toggleText(id) {
-    const el  = document.getElementById(`englishText${id}`);
-    const btn = document.getElementById(`textBtn${id}`);
-    el.classList.toggle('show');
-    btn.classList.toggle('active');
-    btn.textContent = el.classList.contains('show') ? '📤 Ocultar inglés' : '📤 Ver texto en inglés';
-}
-
-function toggleSpanish(id) {
-    const el  = document.getElementById(`spanishText${id}`);
-    const btn = document.getElementById(`spanishBtn${id}`);
-    el.classList.toggle('show');
-    btn.classList.toggle('active');
-    btn.textContent = el.classList.contains('show') ? '🇪🇸 Ocultar español' : '🇪🇸 Ver en español';
-}
-
-function toggleQuestion(id) {
-    const sec = document.getElementById(`questionSection${id}`);
-    const btn = document.getElementById(`showQ${id}`);
-    sec.classList.toggle('show');
-    btn.classList.toggle('active');
-    btn.textContent = sec.classList.contains('show') ? '❓ Ocultar Pregunta' : '❓ Mostrar Pregunta';
-}
-
-function selectAnswer(id, selected, correctKey) {
-    if (answeredQuestions[id]) return;
-    answeredQuestions[id] = true;
-
-    const act     = activities.find(a => a.id === id);
-    const opts    = document.querySelectorAll(`#options${id} .option`);
-    const fb      = document.getElementById(`fb${id}`);
-    const isOk    = selected === correctKey;
-
-    answered++;
-    if (isOk) {
-        correct++;
-        if (id <= 4) easyCorrect++;
-        else if (id <= 7) mediumCorrect++;
-        else hardCorrect++;
-    } else {
-        incorrect++;
     }
 
-    opts.forEach(opt => {
-        opt.classList.add('disabled');
-        const letter = opt.querySelector('.option-letter').textContent.toLowerCase();
-        if (letter === selected) opt.classList.add(isOk ? 'correct' : 'incorrect');
-        if (letter === correctKey && !isOk) opt.classList.add('show-correct');
-    });
+    const ans = st.answered_q[act.id];
+    const sid = `${currentKey}_${act.id}`;
 
-    fb.innerHTML = isOk ? act.feedback.correct : act.feedback.incorrect;
-    fb.classList.add('show', isOk ? 'correct' : 'incorrect');
+    html += `
+    <div class="audio-card">
+      <div class="audio-header">
+        <div class="audio-num ${act.level}">${act.id}</div>
+        <div class="audio-meta"><h3>${act.title}</h3><p>${act.desc}</p></div>
+      </div>
+      <div class="player">
+        <button class="play-btn" onclick="playAudio('${sid}')" id="pb_${sid}">▶️</button>
+        <div class="text-btns">
+          <button class="text-btn" onclick="toggleBox('en_${sid}','tb_en_${sid}','📤 Ver texto en inglés','📤 Ocultar inglés')" id="tb_en_${sid}">📤 Ver texto en inglés</button>
+          <button class="text-btn es-btn" onclick="toggleBox('es_${sid}','tb_es_${sid}','🇪🇸 Ver en español','🇪🇸 Ocultar español')" id="tb_es_${sid}">🇪🇸 Ver en español</button>
+        </div>
+        <div class="text-box" id="en_${sid}"><div class="tblabel">📤 Texto en Inglés</div><p>${act.audio}</p></div>
+        <div class="es-box" id="es_${sid}"><div class="tblabel">🇪🇸 Traducción</div><p>${act.spanish}</p></div>
+      </div>
+      <button class="show-q-btn ${ans ? 'active' : ''}" id="sqb_${sid}" onclick="toggleQ('qs_${sid}','sqb_${sid}')">❓ ${ans ? 'Ver Pregunta' : 'Mostrar Pregunta'}</button>
+      <div class="q-section ${ans ? 'show' : ''}" id="qs_${sid}">
+        <h4>❓ Pregunta</h4>
+        <div class="q-text">${act.question}</div>
+        <div class="options" id="opts_${sid}">
+          ${act.options.map((opt, i) => {
+            const letter = ['a','b','c'][i];
+            let cls = 'opt';
+            if (ans) {
+              cls += ' disabled';
+              if (letter === ans.sel && ans.ok)   cls += ' correct';
+              else if (letter === ans.sel && !ans.ok) cls += ' incorrect';
+              else if (letter === act.correct && !ans.ok) cls += ' show-correct';
+            }
+            return `<div class="${cls}" onclick="answer('${currentKey}',${act.id},'${letter}')">
+              <span class="opt-letter">${['A','B','C'][i]}</span>
+              <span class="opt-text">${opt}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="feedback ${ans ? 'show ' + (ans.ok ? 'correct' : 'incorrect') : ''}" id="fb_${sid}">${ans ? (ans.ok ? act.feedback.correct : act.feedback.incorrect) : ''}</div>
+      </div>
+    </div>`;
+  });
 
-    updateScore();
-    if (answered === activities.length) setTimeout(showResults, 1000);
+  html += '</div>'; // close last level-section
+  container.innerHTML = html;
+
+  // Restore audio texts for already-answered
+  Object.keys(st.answered_q).forEach(id => {
+    const sid = `${currentKey}_${id}`;
+    // do nothing extra, state already rendered above
+  });
 }
 
+// ─────────────────────────────────────────────
+// AUDIO
+// ─────────────────────────────────────────────
+const audioTexts = {};
+function cacheAudioText(sid, text) { audioTexts[sid] = text; }
+
+function playAudio(sid) {
+  const btn = document.getElementById(`pb_${sid}`);
+  if (isPlaying) { synth.cancel(); isPlaying = false; resetPlayBtns(); return; }
+  // Find the activity
+  const [sk, idStr] = sid.split('_');
+  const act = STORIES[sk].activities.find(a => a.id === parseInt(idStr));
+  const utt = new SpeechSynthesisUtterance(act.audio);
+  utt.voice = currentVoice;
+  utt.rate = currentSpeed;
+  utt.pitch = 1; utt.volume = 1;
+  isPlaying = true;
+  btn.classList.add('playing'); btn.textContent = '⏹️';
+  utt.onend = () => { isPlaying = false; btn.classList.remove('playing'); btn.textContent = '▶️'; };
+  utt.onerror = () => { isPlaying = false; btn.classList.remove('playing'); btn.textContent = '▶️'; };
+  synth.speak(utt);
+}
+
+// ─────────────────────────────────────────────
+// TOGGLES
+// ─────────────────────────────────────────────
+function toggleBox(boxId, btnId, labelShow, labelHide) {
+  const box = document.getElementById(boxId);
+  const btn = document.getElementById(btnId);
+  box.classList.toggle('show');
+  btn.classList.toggle('active');
+  btn.textContent = box.classList.contains('show') ? labelHide : labelShow;
+}
+function toggleQ(secId, btnId) {
+  const sec = document.getElementById(secId);
+  const btn = document.getElementById(btnId);
+  sec.classList.toggle('show');
+  btn.classList.toggle('active');
+  btn.textContent = sec.classList.contains('show') ? '❓ Ocultar Pregunta' : '❓ Mostrar Pregunta';
+}
+
+// ─────────────────────────────────────────────
+// ANSWER
+// ─────────────────────────────────────────────
+function answer(storyKey, id, sel) {
+  const st = storyState[storyKey];
+  if (st.answered_q[id]) return;
+  const act = STORIES[storyKey].activities.find(a => a.id === id);
+  const ok = sel === act.correct;
+  st.answered_q[id] = { sel, ok };
+  st.answered++;
+  if (ok) {
+    st.correct++;
+    if (id <= 4) st.easyOk++;
+    else if (id <= 7) st.medOk++;
+    else st.hardOk++;
+  } else {
+    st.incorrect++;
+  }
+
+  const sid = `${storyKey}_${id}`;
+  // Update options
+  document.querySelectorAll(`#opts_${sid} .opt`).forEach((el, i) => {
+    const letter = ['a','b','c'][i];
+    el.classList.add('disabled');
+    if (letter === sel) el.classList.add(ok ? 'correct' : 'incorrect');
+    if (letter === act.correct && !ok) el.classList.add('show-correct');
+  });
+  // Show feedback
+  const fb = document.getElementById(`fb_${sid}`);
+  fb.innerHTML = ok ? act.feedback.correct : act.feedback.incorrect;
+  fb.className = `feedback show ${ok ? 'correct' : 'incorrect'}`;
+
+  updateScore();
+  if (st.answered === 10) setTimeout(showResults, 900);
+}
+
+// ─────────────────────────────────────────────
+// SCORE / RESULTS
+// ─────────────────────────────────────────────
 function updateScore() {
-    document.getElementById('answeredCount').textContent = `${answered}/${activities.length}`;
-    document.getElementById('correctCount').textContent  = correct;
-    document.getElementById('incorrectCount').textContent = incorrect;
+  const st = storyState[currentKey];
+  document.getElementById('answeredCount').textContent = `${st.answered}/10`;
+  document.getElementById('correctCount').textContent = st.correct;
+  document.getElementById('incorrectCount').textContent = st.incorrect;
 }
-
 function showResults() {
-    const panel = document.getElementById('resultsPanel');
-    const pct   = (correct / activities.length) * 100;
-
-    document.getElementById('resultsScore').textContent  = `${correct}/${activities.length}`;
-    document.getElementById('easyScore').textContent     = `${easyCorrect}/4`;
-    document.getElementById('mediumScore').textContent   = `${mediumCorrect}/3`;
-    document.getElementById('hardScore').textContent     = `${hardCorrect}/3`;
-
-    const trophy  = document.getElementById('trophy');
-    const title   = document.getElementById('resultsTitle');
-    const message = document.getElementById('resultsMessage');
-
-    if (pct >= 90) {
-        trophy.textContent  = '🏆';
-        title.textContent   = '¡Excelente!';
-        message.textContent = '¡Reconoces muy bien los nombres, las edades y las familias en inglés!';
-    } else if (pct >= 70) {
-        trophy.textContent  = '🥈';
-        title.textContent   = '¡Muy bien!';
-        message.textContent = 'Buen progreso. Escucha los audios una vez más para seguir mejorando.';
-    } else if (pct >= 50) {
-        trophy.textContent  = '🥉';
-        title.textContent   = '¡Buen intento!';
-        message.textContent = 'Vas por buen camino. Repasa el vocabulario y vuelve a intentarlo.';
-    } else {
-        trophy.textContent  = '📚';
-        title.textContent   = 'Sigue practicando';
-        message.textContent = 'Escucha los audios varias veces antes de responder. ¡Tú puedes!';
-    }
-
-    panel.classList.add('show');
-    panel.scrollIntoView({ behavior: 'smooth' });
+  const st = storyState[currentKey];
+  const pct = st.correct * 10;
+  document.getElementById('resultsScore').textContent = `${st.correct}/10`;
+  document.getElementById('easyScore').textContent   = `${st.easyOk}/4`;
+  document.getElementById('mediumScore').textContent  = `${st.medOk}/3`;
+  document.getElementById('hardScore').textContent   = `${st.hardOk}/3`;
+  const trophy = document.getElementById('trophy');
+  const title  = document.getElementById('resultsTitle');
+  const msg    = document.getElementById('resultsMsg');
+  if (pct >= 90) { trophy.textContent='🏆'; title.textContent='¡Excelente!'; msg.textContent='¡Muy bien! Entendiste casi todo. ¡Sigue así!'; }
+  else if (pct >= 70) { trophy.textContent='🥈'; title.textContent='¡Muy bien!'; msg.textContent='Buen trabajo. Escucha otra vez los que fallaste y vuelve a intentar.'; }
+  else if (pct >= 50) { trophy.textContent='🥉'; title.textContent='¡Buen intento!'; msg.textContent='Vas avanzando. Escucha cada audio varias veces — ¡tú puedes!'; }
+  else { trophy.textContent='📚'; title.textContent='Sigue practicando'; msg.textContent='Usa el botón 🇪🇸 para ver la traducción y escucha de nuevo. ¡Con práctica vas a mejorar!'; }
+  const panel = document.getElementById('resultsPanel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth' });
 }
 
-renderActivities();
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+buildTabs();
+render();
+updateScore();
 </script>
 </body>
 </html>

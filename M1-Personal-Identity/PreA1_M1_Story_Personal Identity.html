@@ -52,6 +52,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 .section-label::before{content:'';width:20px;height:3px;background:var(--level-primary);border-radius:2px;}
 .section-title{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:0.15rem;}
 .section-desc{font-size:0.87rem;color:var(--text-soft);margin-bottom:1.2rem;}
+.vocab{background:var(--hl-bg);border-bottom:2.5px solid var(--hl-border);padding:1px 4px;border-radius:4px;font-weight:700;}
+.vocab-es{background:var(--hl-bg);border-bottom:2.5px solid var(--hl-border);padding:1px 4px;border-radius:4px;font-weight:600;}
 .note-word{border-bottom:2px dotted var(--note-dot);cursor:pointer;position:relative;padding-bottom:1px;font-weight:600;}
 .note-word::after{content:'💡';font-size:0.52rem;position:relative;top:-5px;margin-left:1px;}
 .note-word:hover{background:rgba(251,192,45,0.12);border-radius:3px;}
@@ -112,10 +114,11 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
     <p class="subtitle">Frases muy básicas · 4–6 palabras · Pronombres y verbo to be</p>
   </div>
   <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--hl-bg);border:2px solid var(--hl-border)"></span><span>Vocabulario del módulo</span></div>
     <div class="legend-item"><button class="reveal-btn" style="pointer-events:none">🇪🇸 <span class="arrow">›</span></button><span>Click → traducción</span></div>
     <div class="legend-item"><button class="audio-btn" style="pointer-events:none"><span class="flag">🔊</span> Audio</button><span>Click → pronunciación</span></div>
   </div>
-  <div id="voice-status">⚠️ Tu navegador tiene voces limitadas. Para mejor experiencia usa Google Chrome o Microsoft Edge.</div>
+  <div id="voice-status">⚠️ Tu navegador tiene voces limitadas. Para mejor experiencia usa <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.</div>
   <div class="parallel-toggle">
     <input type="checkbox" id="parallelCheck" onchange="toggleParallel(this.checked)">
     <label for="parallelCheck">🔄 Show English + Spanish side by side</label>
@@ -125,7 +128,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
     <button class="content-tab" onclick="switchContent('stories',this)">📖 Stories (S1–S4)</button>
   </div>
   <div class="content-panel active" id="panel-dialogues">
-    <div class="item-tabs"><button class="item-tab active" onclick="switchItem('dialogues','d1',this)">D1</button><button class="item-tab" onclick="switchItem('dialogues','d2',this)">D2</button><button class="item-tab" onclick="switchItem('dialogues','d3',this)">D3</button><button class="item-tab" onclick="switchItem('dialogues','d4',this)">D4</button></div>
+    <div class="item-tabs"><button class="item-tab active" onclick="switchItem('dialogues','d1',this)">D1</button><button class="item-tab " onclick="switchItem('dialogues','d2',this)">D2</button><button class="item-tab " onclick="switchItem('dialogues','d3',this)">D3</button><button class="item-tab " onclick="switchItem('dialogues','d4',this)">D4</button></div>
     <div class="item-panel active" id="dialogues-d1"><div class="card">
 <div class="section-label">Dialogue 1</div>
 <div class="section-title">First Day at School</div>
@@ -134,62 +137,62 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 <div class="chat-wrapper">
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">I am Leo. What is your name?</div>
+<div class="msg-text"><span class="vocab">I</span> am Leo. What is your name?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I am Leo. What is your name?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I am Leo. What is your name?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo soy Leo. ¿Cuál es tu nombre?</div>
+<div class="reveal-text"><span class="vocab-es">Yo soy</span> Leo. ¿Cuál es tu nombre?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">My name is Ana. I am seven years old.</div>
+<div class="msg-text">My name is Ana. <span class="vocab">I</span> am seven years old.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'My name is Ana. I am seven years old.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My name is Ana. I am seven years old.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Mi nombre es Ana. Yo tengo siete años.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Mi nombre es Ana. <span class="vocab-es">Yo</span> tengo siete años.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">We are in the same class! Are you new here?</div>
+<div class="msg-text"><span class="vocab">We</span> are in the <span class="vocab">same</span> class! <strong>Are</strong> <span class="vocab">you</span> new here?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'We are in the same class! Are you new here?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'We are in the same class! Are you new here?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Nosotros estamos en la misma clase. ¿Eres nueva aquí?</div>
+<div class="reveal-text"><span class="vocab-es">Nosotros</span> estamos en la misma clase. ¿Eres nueva aquí?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">Yes. I moved here last week. It is my first day.</div>
+<div class="msg-text">Yes. <span class="vocab">I</span> moved here last week. <span class="vocab">It</span> is my first day.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes. I moved here last week. It is my first day.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes. I moved here last week. It is my first day.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Sí. Me mudé aquí la semana pasada. Es mi primer día.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Sí. Me mudé aquí la semana pasada. <span class="vocab-es">Es</span> mi primer día.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">The same thing happened to me last year. It was scary at first.</div>
+<div class="msg-text">The <span class="vocab">same</span> thing happened to me last year. <strong><span class="vocab">It</span></strong> was scary at first.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'The same thing happened to me last year. It was scary at first.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'The same thing happened to me last year. It was scary at first.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Lo mismo me pasó a mí el año pasado. Al principio da miedo.</div>
+<div class="reveal-text">Lo <span class="vocab-es">mismo</span> me pasó <span class="vocab">a</span> mí el año pasado. Al principio da miedo.</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -206,106 +209,106 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Yes! Her name is Miss Rosa. Everyone likes her.</div>
+<div class="msg-text">Yes! <span class="vocab">Her</span> name is Miss Rosa. <span class="vocab">Everyone</span> likes <span class="vocab">her</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! Her name is Miss Rosa. Everyone likes her.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! Her name is Miss Rosa. Everyone likes her.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Sí! Su nombre es Miss Rosa. A todos les gusta.</div>
+<div class="reveal-text">¡Sí! <span class="vocab-es">Su</span> nombre es Miss Rosa. A <span class="vocab-es">todos</span> les gusta.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">Good. I was worried. Is everyone here friendly?</div>
+<div class="msg-text">Good. I was worried. Is <span class="vocab">everyone</span> here friendly?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Good. I was worried. Is everyone here friendly?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Good. I was worried. Is everyone here friendly?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bien. Yo estaba preocupada. ¿Todos aquí son amables?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bien. <span class="vocab-es">Yo</span> estaba preocupada. ¿<span class="vocab-es">Todos</span> aquí son amables?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Most people are. There is a boy called Ravi — his brother is in our class too.</div>
+<div class="msg-text">Most people are. There is <span class="vocab">a</span> <span class="vocab">boy</span> called Ravi — <span class="vocab">his</span> brother is in our class too.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Most people are. There is a boy called Ravi — his brother is in our class too.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Most people are. There is a boy called Ravi — his brother is in our class too.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">La mayoría sí. Hay un niño llamado Ravi — su hermano también está en nuestra clase.</div>
+<div class="reveal-text">La mayoría sí. <span class="vocab-es">Hay</span> un niño llamado Ravi — <span class="vocab-es">su</span> hermano también está en nuestra clase.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">Oh! I see. Is that him over there — the tall boy?</div>
+<div class="msg-text">Oh! I see. Is that <span class="vocab">him</span> over there — the tall <span class="vocab">boy</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Oh! I see. Is that him over there — the tall boy?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Oh! I see. Is that him over there — the tall boy?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Ah, ya veo! ¿Es él el de allá — el niño alto?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Ah, ya veo! ¿Es <span class="vocab-es">él</span> el de allá — el <span class="vocab-es">niño</span> alto?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">No, that is Dev, his brother. Ravi sits near the window.</div>
+<div class="msg-text">No, that is Dev, <strong><span class="vocab">his</span></strong> brother. Ravi sits near the window.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'No, that is Dev, his brother. Ravi sits near the window.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'No, that is Dev, his brother. Ravi sits near the window.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">No, ese es Dev, su hermano. Ravi se sienta cerca de la ventana.</div>
+<div class="reveal-text">No, ese es Dev, <span class="vocab-es">su</span> hermano. Ravi se sienta cerca de la ventana.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">I will say hello to him. Do we have class now or is it break?</div>
+<div class="msg-text">I will say hello to <span class="vocab">him</span>. Do <span class="vocab">we</span> have class now or is <span class="vocab">it</span> break?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I will say hello to him. Do we have class now or is it break?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I will say hello to him. Do we have class now or is it break?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Le voy a decir hola. ¿Nosotros tenemos clase ahora o es el recreo?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Le voy <span class="vocab">a</span> decir hola. ¿<span class="vocab-es">Nosotros</span> tenemos clase ahora o es el recreo?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Class starts in five minutes. There are still some empty seats.</div>
+<div class="msg-text">Class starts in five minutes. <strong>There are</strong> still some empty seats.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Class starts in five minutes. There are still some empty seats.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Class starts in five minutes. There are still some empty seats.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">La clase empieza en cinco minutos. Todavía hay algunos asientos vacíos.</div>
+<div class="reveal-text">La clase empieza en cinco minutos. Todavía <span class="vocab-es">hay</span> algunos asientos vacíos.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">I will sit next to you, if that is OK.</div>
+<div class="msg-text">I will sit next to <span class="vocab">you</span>, if that is OK.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I will sit next to you, if that is OK.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I will sit next to you, if that is OK.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Yo me sentaré a tu lado, si no te molesta.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Yo</span> me sentaré a tu lado, si no te molesta.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Of course! He will sit on the other side — I mean Ravi, not Dev.</div>
+<div class="msg-text">Of course! <span class="vocab">He</span> will sit on the other side — I mean Ravi, not Dev.</div>
 <div class="audio-row">
-<button class="audio-btn" onclick="speak(this,'Of course! Ravi can sit on the other side.','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'Of course! Ravi can sit on the other side.','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'Of course! He will sit on the other side — I mean Ravi, not Dev.','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'Of course! He will sit on the other side — I mean Ravi, not Dev.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
@@ -314,99 +317,99 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ana</div>
-<div class="msg-text">Great. I am glad I met you today, Leo.</div>
+<div class="msg-text">Great. <strong>I am</strong> glad I met <span class="vocab">you</span> today, Leo.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Great. I am glad I met you today, Leo.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Great. I am glad I met you today, Leo.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bien. Estoy contenta de haberte conocido hoy, Leo.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bien. <span class="vocab-es">Estoy</span> contenta de haberte conocido hoy, Leo.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Me too, Ana. We are going to be good friends.</div>
+<div class="msg-text">Me too, Ana. <span class="vocab">We</span> are going to be good friends.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Me too, Ana. We are going to be good friends.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Me too, Ana. We are going to be good friends.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo también, Ana. Nosotros vamos a ser buenos amigos.</div>
+<div class="reveal-text">Yo también, Ana. <span class="vocab-es">Nosotros</span> vamos a ser buenos amigos.</div>
 </div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="dialogues-d2"><div class="card">
+<div class="item-panel " id="dialogues-d2"><div class="card">
 <div class="section-label">Dialogue 2</div>
-<div class="section-title">The Family Photo</div>
-<div class="section-desc">Mia shows Sam a photo of her family.</div>
+<div class="section-title">The <span class="vocab">Family</span> Photo</div>
+<div class="section-desc">Mia shows Sam <span class="vocab">a</span> photo of <span class="vocab">her</span> <span class="vocab">family</span>.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="chat-wrapper">
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Sam, look! This is a photo of my family.</div>
+<div class="msg-text">Sam, look! This is <span class="vocab">a</span> photo of my <span class="vocab">family</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Sam, look! This is a photo of my family.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Sam, look! This is a photo of my family.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Sam, ¡mira! Esta es una foto de mi familia.</div>
+<div class="reveal-text">Sam, ¡mira! Esta es <span class="vocab-es">una</span> foto de mi <span class="vocab-es">familia</span>.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">Oh, nice! Who is that boy next to you?</div>
+<div class="msg-text">Oh, nice! Who is that <strong><span class="vocab">boy</span></strong> next to <span class="vocab">you</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Oh, nice! Who is that boy next to you?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Oh, nice! Who is that boy next to you?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Qué linda! ¿Quién es ese niño junto a ti?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Qué linda! ¿Quién es ese <span class="vocab-es">niño</span> junto <span class="vocab">a</span> ti?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">That is my brother Nico. His name means "victory."</div>
+<div class="msg-text">That is my brother Nico. <span class="vocab">His</span> name means "victory."</div>
 <div class="audio-row">
-<button class="audio-btn" onclick="speak(this,'That is my brother Nico. His name means victory.','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'That is my brother Nico. His name means victory.','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'That is my brother Nico. His name means "victory."','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'That is my brother Nico. His name means "victory."','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Ese es mi hermano Nico. Su nombre significa "victoria".</div>
+<div class="reveal-text">Ese es mi hermano Nico. <span class="vocab-es">Su</span> nombre significa "victoria".</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">I see. And who is that? Is that your dad?</div>
+<div class="msg-text"><span class="vocab">I</span> see. And who is that? Is that your <span class="vocab">dad</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I see. And who is that? Is that your dad?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I see. And who is that? Is that your dad?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Ya veo. ¿Y quién es ese? ¿Es tu papá?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Ya veo. ¿Y quién es ese? ¿Es tu <span class="vocab-es">papá</span>?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Yes! His name is Carlos. He is very tall.</div>
+<div class="msg-text">Yes! <strong><span class="vocab">His</span></strong> name is Carlos. He is very tall.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! His name is Carlos. He is very tall.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! His name is Carlos. He is very tall.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Sí! Su nombre es Carlos. Es muy alto.</div>
+<div class="reveal-text">¡Sí! <span class="vocab-es">Su</span> nombre es Carlos. Es muy alto.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">And the woman next to him? Is that your mom?</div>
+<div class="msg-text">And the woman next to <span class="vocab">him</span>? Is that your mom?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'And the woman next to him? Is that your mom?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'And the woman next to him? Is that your mom?','UK')"><span class="flag">🇬🇧</span> UK</button>
@@ -418,74 +421,74 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Yes, that is her. Her name is Rosa. She is funny.</div>
+<div class="msg-text">Yes, that is <strong><span class="vocab">her</span></strong>. <span class="vocab">Her</span> name is Rosa. She is funny.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes, that is her. Her name is Rosa. She is funny.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes, that is her. Her name is Rosa. She is funny.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Sí, es ella. Se llama Rosa. Es muy graciosa.</div>
+<div class="reveal-text">Sí, es <span class="vocab-es">ella</span>. Se llama Rosa. Es muy graciosa.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">Your family looks happy. There are five people in the photo.</div>
+<div class="msg-text">Your family looks happy. <strong>There are</strong> five people in the photo.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Your family looks happy. There are five people in the photo.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Your family looks happy. There are five people in the photo.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Tu familia parece feliz. Hay cinco personas en la foto.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Tu familia parece feliz. <span class="vocab-es">Hay</span> cinco personas en la foto.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Yes! My dad, my mom, my brother, my grandma, and I.</div>
+<div class="msg-text">Yes! My <span class="vocab">dad</span>, my mom, my brother, my grandma, and me.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! My dad, my mom, my brother, my grandma, and me.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! My dad, my mom, my brother, my grandma, and me.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Sí! Mi papá, mi mamá, mi hermano, mi abuela y yo.</div>
+<div class="reveal-text">¡Sí! Mi <span class="vocab-es">papá</span>, mi mamá, mi hermano, mi abuela y <span class="vocab-es">yo</span>.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">I only have three people in my family. Mom, dad, and me.</div>
+<div class="msg-text"><span class="vocab">I</span> only have three people in my family. Mom, <span class="vocab">dad</span>, and me.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I only have three people in my family. Mom, dad, and me.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I only have three people in my family. Mom, dad, and me.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Yo solo tengo tres personas en mi familia. Mamá, papá y yo.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Yo</span> solo tengo tres personas en mi familia. Mamá, papá y yo.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Three is lovely too. Everyone has a different family.</div>
+<div class="msg-text">Three is lovely too. <span class="vocab">Everyone</span> has a different family.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Three is lovely too. Everyone has a different family.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Three is lovely too. Everyone has a different family.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Todos tienen una familia diferente, y está bien.</div>
+<div class="reveal-text"><span class="vocab-es">Todos</span> tienen una <span class="vocab-es">familia</span> diferente, y está bien.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">True! Are you and Nico the same age?</div>
+<div class="msg-text">True! Are <span class="vocab">you</span> and Nico the <span class="vocab">same</span> <span class="vocab">age</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'True! Are you and Nico the same age?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'True! Are you and Nico the same age?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Verdad! ¿Tú y Nico tienen la misma edad?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Verdad! ¿Tú y Nico tienen <span class="vocab-es">la misma</span> edad?</div>
 </div>
 </div>
 <div class="chat-msg left">
@@ -497,31 +500,31 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">No — yo tengo siete y él tiene nueve. Él es el hermano mayor.</div>
+<div class="reveal-text">No — <span class="vocab-es">yo</span> tengo siete y él tiene nueve. Él es el hermano mayor.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Sam</div>
-<div class="msg-text">I am seven too! Mia, we are the same age.</div>
+<div class="msg-text"><strong>I am</strong> seven too! Mia, <span class="vocab">we</span> are the <span class="vocab">same</span> <span class="vocab">age</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I am seven too! Mia, we are the same age.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I am seven too! Mia, we are the same age.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Yo también tengo siete. Mia, nosotros tenemos la misma edad.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Yo</span> también tengo siete. Mia, <span class="vocab-es">nosotros</span> tenemos la <span class="vocab-es">misma</span> edad.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Really? You are a kind friend for noticing!</div>
+<div class="msg-text">Really? <span class="vocab">You</span> are a <strong><span class="vocab">kind</span></strong> friend for noticing!</div>
 <div class="audio-row">
-<button class="audio-btn" onclick="speak(this,'Really? That is so cool!','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'Really? That is so cool!','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'Really? You are a kind friend for noticing!','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'Really? You are a kind friend for noticing!','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¿De verdad? ¡Eres un amigo amable por fijarte!</div>
+<div class="reveal-text">¿De verdad? ¡Eres <span class="vocab-es">un</span> amigo <span class="vocab-es">amable</span> por fijarte!</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -538,14 +541,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Yes! Her name is Norma. She is seventy and still walks to the market every day.</div>
+<div class="msg-text">Yes! <strong>Her</strong> name is Norma. She is seventy and still walks to the market every day.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Sí! Su nombre es Norma. Tiene setenta años y todavía camina al mercado cada día.</div>
+<div class="reveal-text">¡Sí! <span class="vocab-es">Su</span> nombre es Norma. Tiene setenta años y todavía camina al mercado cada día.</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -557,44 +560,44 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Vaya. Yo quiero conocerla algún día.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Vaya. <span class="vocab-es">Yo</span> quiero conocerla algún día.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Mia</div>
-<div class="msg-text">Come to my house on Saturday! Everyone is welcome.</div>
+<div class="msg-text">Come to my house on Saturday! <strong><span class="vocab">Everyone</span></strong> is welcome.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Come to my house on Saturday! Everyone is welcome.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Come to my house on Saturday! Everyone is welcome.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Ven a mi casa el sábado! Todos son bienvenidos.</div>
+<div class="reveal-text">¡Ven a mi casa el sábado! <span class="vocab-es">Todos</span> son bienvenidos.</div>
 </div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="dialogues-d3"><div class="card">
+<div class="item-panel " id="dialogues-d3"><div class="card">
 <div class="section-label">Dialogue 3</div>
 <div class="section-title">Baby Luli</div>
-<div class="section-desc">Nico tells his friend Eva about his new baby sister.</div>
+<div class="section-desc">Nico tells <span class="vocab">his</span> friend Eva about <span class="vocab">his</span> new baby sister.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="chat-wrapper">
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">I have a new baby sister!</div>
+<div class="msg-text"><span class="vocab">I</span> have <strong><span class="vocab">a</span></strong> new baby sister!</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I have a new baby sister!','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I have a new baby sister!','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo tengo una nueva hermanita.</div>
+<div class="reveal-text"><span class="vocab-es">Yo</span> tengo una nueva hermanita.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">Really?! What is her name?</div>
+<div class="msg-text">Really?! <strong>What is</strong> <span class="vocab">her</span> name?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Really?! What is her name?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Really?! What is her name?','UK')"><span class="flag">🇬🇧</span> UK</button>
@@ -606,86 +609,86 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">Her name is Luli. She is only two days old.</div>
+<div class="msg-text"><span class="vocab">Her</span> name is Luli. She is only two days old.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Her name is Luli. She is only two days old.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Her name is Luli. She is only two days old.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Su nombre es Luli. Solo tiene dos días.</div>
+<div class="reveal-text"><span class="vocab-es">Su</span> nombre es Luli. Solo tiene dos días.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">Two days! There is a new baby in your house! Are you happy?</div>
+<div class="msg-text">Two days! <strong>There is</strong> <span class="vocab">a</span> new baby in your house! Are <span class="vocab">you</span> happy?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Two days! There is a new baby in your house! Are you happy?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Two days! There is a new baby in your house! Are you happy?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Dos días! Hay una bebé nueva en tu casa. ¿Estás contento?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Dos días! <span class="vocab-es">Hay</span> una bebé nueva en tu casa. ¿Estás contento?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">I am very happy. But a little tired. She cries at night.</div>
+<div class="msg-text"><span class="vocab">I</span> am very happy. But <span class="vocab">a</span> little tired. She cries at night.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I am very happy. But a little tired. She cries at night.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I am very happy. But a little tired. She cries at night.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo estoy muy feliz. Pero un poco cansado. Ella llora de noche.</div>
+<div class="reveal-text"><span class="vocab-es">Yo</span> estoy muy feliz. Pero un poco cansado. Ella llora de noche.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">Ha! All babies are like that. Is your dad at the hospital?</div>
+<div class="msg-text">Ha! All babies are like that. Is your <span class="vocab">dad</span> at the hospital?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Ha! All babies are like that. Is your dad at the hospital?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Ha! All babies are like that. Is your dad at the hospital?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Ja! Todos los bebés son así. ¿Está tu papá en el hospital?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Ja! Todos los bebés son así. ¿Está tu <span class="vocab-es">papá</span> en el hospital?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">Yes. His face was so happy when I called him.</div>
+<div class="msg-text">Yes. <span class="vocab">His</span> face was so happy when <span class="vocab">I</span> called <span class="vocab">him</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes. His face was so happy when I called him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes. His face was so happy when I called him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Sí. Su cara estaba muy feliz cuando lo llamé.</div>
+<div class="reveal-text">Sí. <span class="vocab-es">Su</span> cara estaba muy feliz cuando lo llamé.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">And your grandma? Is she at home with you?</div>
+<div class="msg-text">And your grandma? Is <strong>she</strong> at home with <span class="vocab">you</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'And your grandma? Is she at home with you?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'And your grandma? Is she at home with you?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¿Y tu abuela? ¿Está ella en casa contigo?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¿Y tu abuela? ¿Está <span class="vocab-es">ella</span> en casa contigo?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">Yes! She is the best. Everyone loves her.</div>
+<div class="msg-text">Yes! She is the best. <span class="vocab">Everyone</span> loves <span class="vocab">her</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! She is the best. Everyone loves her.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! She is the best. Everyone loves her.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Sí! Ella es lo mejor. Todos la quieren.</div>
+<div class="reveal-text">¡Sí! Ella es lo mejor. <span class="vocab-es">Todos</span> la quieren.</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -697,67 +700,67 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Yo quiero ver a Luli. ¿Puedo visitar este fin de semana?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Yo</span> quiero ver a Luli. ¿Puedo visitar este fin de semana?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">Of course! My dad says everyone is welcome. Come Saturday.</div>
+<div class="msg-text">Of course! My <span class="vocab">dad</span> says <span class="vocab">everyone</span> is welcome. Come Saturday.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Of course! My dad says everyone is welcome. Come Saturday.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Of course! My dad says everyone is welcome. Come Saturday.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Claro! Mi papá dice que todos son bienvenidos. Ven el sábado.</div>
+<div class="reveal-text">¡Claro! Mi <span class="vocab-es">papá</span> dice que <span class="vocab-es">todos</span> son bienvenidos. Ven el sábado.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">I will bring something for her.</div>
+<div class="msg-text"><strong>I will</strong> bring something for her.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I will bring something for her.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I will bring something for her.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Le traeré algo a ella.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Le <span class="vocab-es">traeré</span> algo a <span class="vocab-es">ella</span>.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">You are so kind, Eva. She will love it.</div>
+<div class="msg-text"><span class="vocab">You</span> are so <strong><span class="vocab">kind</span></strong>, Eva. She will love <span class="vocab">it</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'You are so kind, Eva. She will love it.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'You are so kind, Eva. She will love it.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Eres tan amable, Eva. A ella le encantará eso.</div>
+<div class="reveal-text">Eres tan <span class="vocab-es">amable</span>, Eva. A ella le encantará <span class="vocab-es">eso</span>.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Eva</div>
-<div class="msg-text">It is for Luli! Does she have the same eyes as you?</div>
+<div class="msg-text"><span class="vocab">It</span> is for Luli! Does she have <strong>the <span class="vocab">same</span></strong> eyes as you?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'It is for Luli! Does she have the same eyes as you?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'It is for Luli! Does she have the same eyes as you?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Es para Luli! ¿Tiene los mismos ojos que tú?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡<span class="vocab-es">Es</span> para Luli! ¿Tiene <span class="vocab-es">los mismos</span> ojos que tú?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Nico</div>
-<div class="msg-text">Yes, my dad says we have the same eyes — both brown.</div>
+<div class="msg-text">Yes, my <span class="vocab">dad</span> says <span class="vocab">we</span> have the <span class="vocab">same</span> eyes — both brown.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes, my dad says we have the same eyes — both brown.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes, my dad says we have the same eyes — both brown.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Sí, mi papá dice que tenemos los mismos ojos — los dos cafés.</div>
+<div class="reveal-text">Sí, mi <span class="vocab-es">papá</span> dice que <span class="vocab-es">tenemos</span> los <span class="vocab-es">mismos</span> ojos — los dos cafés.</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -781,56 +784,56 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Hasta el sábado, Eva! Yo ya no puedo esperar.</div>
+<div class="reveal-text">¡Hasta el sábado, Eva! <span class="vocab-es">Yo</span> ya no puedo esperar.</div>
 </div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="dialogues-d4"><div class="card">
+<div class="item-panel " id="dialogues-d4"><div class="card">
 <div class="section-label">Dialogue 4</div>
-<div class="section-title">Who Is in Your Family?</div>
+<div class="section-title">Who Is in Your <span class="vocab">Family</span>?</div>
 <div class="section-desc">Leo and Ravi compare their families at the park.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="chat-wrapper">
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Ravi, how many people are in your family?</div>
+<div class="msg-text">Ravi, how many people are in your <span class="vocab">family</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Ravi, how many people are in your family?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Ravi, how many people are in your family?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Ravi, ¿cuántas personas hay en tu familia?</div>
+<div class="reveal-text">Ravi, ¿cuántas personas hay en tu <span class="vocab-es">familia</span>?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">There are six. My mom, my dad, two brothers, my grandpa, and me.</div>
+<div class="msg-text"><strong>There are</strong> six. My mom, my <span class="vocab">dad</span>, two brothers, my grandpa, and me.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Hay seis. Mi mamá, mi papá, dos hermanos, mi abuelo y yo.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Hay</span> seis. Mi mamá, mi <span class="vocab-es">papá</span>, dos hermanos, mi abuelo y yo.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Six! I only have three. Mom, dad, and me.</div>
+<div class="msg-text">Six! <span class="vocab">I</span> only have three. Mom, <span class="vocab">dad</span>, and me.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Six! I only have three. Mom, dad, and me.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Six! I only have three. Mom, dad, and me.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¡Seis! Yo solo tengo tres. Mamá, papá y yo.</div>
+<div class="reveal-text">¡Seis! <span class="vocab-es">Yo</span> solo tengo tres. Mamá, <span class="vocab-es">papá</span> y yo.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">Three is nice too. Every family is different.</div>
+<div class="msg-text">Three is nice too. Every <span class="vocab">family</span> is different.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Three is nice too. Every family is different.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Three is nice too. Every family is different.','UK')"><span class="flag">🇬🇧</span> UK</button>
@@ -842,14 +845,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">True. Are your two brothers the same age?</div>
+<div class="msg-text">True. Are your two brothers the <span class="vocab">same</span> <span class="vocab">age</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'True. Are your two brothers the same age?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'True. Are your two brothers the same age?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Verdad. ¿Tus dos hermanos son de la misma edad?</div>
+<div class="reveal-text">Verdad. ¿Tus dos hermanos son de <span class="vocab-es">la misma</span> edad?</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -866,31 +869,31 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Are you in the middle then?</div>
+<div class="msg-text">Are <span class="vocab">you</span> in the middle then?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Are you in the middle then?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Are you in the middle then?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¿Tú estás en el medio entonces?</div>
+<div class="reveal-text">¿<span class="vocab-es">Tú</span> estás en el medio entonces?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">I am eight — yes, in the middle!</div>
+<div class="msg-text"><strong><span class="vocab">I</span> am</strong> eight — yes, in the middle!</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I am eight — yes, in the middle!','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I am eight — yes, in the middle!','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Tengo ocho — ¡sí, estoy en el medio!</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Tengo</span> ocho — ¡sí, estoy en el medio!</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">I see. Is Dev nice to you?</div>
+<div class="msg-text"><span class="vocab">I</span> see. Is Dev nice to <strong><span class="vocab">you</span></strong>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'I see. Is Dev nice to you?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I see. Is Dev nice to you?','UK')"><span class="flag">🇬🇧</span> UK</button>
@@ -902,43 +905,43 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">Yes. He is a good big brother. His friends are nice to me too.</div>
+<div class="msg-text">Yes. He is <span class="vocab">a</span> good big brother. <span class="vocab">His</span> friends are nice to me too.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes. He is a good big brother. His friends are nice to me too.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes. He is a good big brother. His friends are nice to me too.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Sí. Es un buen hermano mayor. Sus amigos también son amables conmigo.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Sí. Es <span class="vocab-es">un</span> buen hermano mayor. <span class="vocab-es">Sus</span> amigos también son amables conmigo.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">And little Arjun? Do you play with him?</div>
+<div class="msg-text">And little Arjun? Do <span class="vocab">you</span> play with <span class="vocab">him</span>?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'And little Arjun? Do you play with him?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'And little Arjun? Do you play with him?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">¿Y el pequeño Arjun? ¿Juegas con él?</div>
+<div class="reveal-text">¿Y el pequeño Arjun? ¿Juegas con <span class="vocab-es">él</span>?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">Every day! He is a funny little boy. I love him.</div>
+<div class="msg-text">Every day! He is <span class="vocab">a</span> funny little <span class="vocab">boy</span>. I love <span class="vocab">him</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Every day! He is a funny little boy. I love him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Every day! He is a funny little boy. I love him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Todos los días! Es un niño gracioso. Yo lo quiero mucho.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Todos los días! Es <span class="vocab-es">un</span> <span class="vocab-es">niño</span> gracioso. Yo lo quiero mucho.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">And your grandpa? Is he nice?</div>
+<div class="msg-text">And your grandpa? <strong>Is he</strong> nice?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'And your grandpa? Is he nice?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'And your grandpa? Is he nice?','UK')"><span class="flag">🇬🇧</span> UK</button>
@@ -950,14 +953,14 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">His name is Babu. He tells a lot of stories. Everyone loves him.</div>
+<div class="msg-text"><strong><span class="vocab">His</span></strong> name is Babu. He tells <span class="vocab">a</span> lot of stories. <span class="vocab">Everyone</span> loves <span class="vocab">him</span>.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'His name is Babu. He tells a lot of stories. Everyone loves him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'His name is Babu. He tells a lot of stories. Everyone loves him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Su nombre es Babu. Cuenta muchos cuentos. Todos lo quieren.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;"><span class="vocab-es">Su</span> nombre es Babu. Cuenta muchos cuentos. <span class="vocab-es">Todos</span> lo quieren.</div>
 </div>
 </div>
 <div class="chat-msg left">
@@ -981,19 +984,19 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Los dos! Es de India pero él vive aquí ahora.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Los dos! Es de India pero <span class="vocab-es">él</span> vive aquí ahora.</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">My grandpa is the same — from another town, but here now.</div>
+<div class="msg-text">My grandpa is the <span class="vocab">same</span> — from another town, but here now.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'My grandpa is the same — from another town, but here now.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My grandpa is the same — from another town, but here now.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi abuelo es igual — de otro pueblo, pero aquí ahora.</div>
+<div class="reveal-text">Mi abuelo es <span class="vocab-es">igual</span> — de otro pueblo, pero aquí ahora.</div>
 </div>
 </div>
 <div class="chat-msg right">
@@ -1005,31 +1008,31 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Quizás se conocen! ¿Es toda tu familia de aquí?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Quizás se conocen! ¿Es toda <span class="vocab-es">tu</span> familia de aquí?</div>
 </div>
 </div>
 <div class="chat-msg left">
 <div class="speaker-name">Leo</div>
-<div class="msg-text">Yes. My dad and his dad, all from here.</div>
+<div class="msg-text">Yes. My <span class="vocab">dad</span> and <span class="vocab">his</span> dad, all from here.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes. My dad and his dad, all from here.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes. My dad and his dad, all from here.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Sí. Mi papá y su papá, todos de aquí.</div>
+<div class="reveal-text">Sí. Mi <span class="vocab-es">papá</span> y su papá, todos de aquí.</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.</div>
+<div class="msg-text">Cool. My family is from many places — India, Lima, here. <span class="vocab">Everyone</span> is welcome everywhere.</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bueno. Mi familia es de muchos lugares — India, Lima, aquí. Todos son bienvenidos en todas partes.</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">Qué bueno. Mi familia es de muchos lugares — India, Lima, aquí. <span class="vocab-es">Todos</span> son bienvenidos en todas partes.</div>
 </div>
 </div>
 <div class="chat-msg left">
@@ -1041,19 +1044,19 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Estoy de acuerdo. Oye, ¿es ese tu papá allá?</div>
+<div class="reveal-text"><span class="vocab-es">Estoy</span> de acuerdo. Oye, ¿es ese tu <span class="vocab-es">papá</span> allá?</div>
 </div>
 </div>
 <div class="chat-msg right">
 <div class="speaker-name">Ravi</div>
-<div class="msg-text">Yes! And his friend. They play here every Sunday. Is it OK if we join them?</div>
+<div class="msg-text">Yes! And his friend. They play here every Sunday. Is <span class="vocab">it</span> OK if <span class="vocab">we</span> join them?</div>
 <div class="audio-row">
 <button class="audio-btn" onclick="speak(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Sí! Y su amigo. Juegan aquí cada domingo. ¿Está bien si nosotros nos unimos?</div>
+<div class="reveal-text" style="text-align:right;border-left:none;border-right:2.5px solid #CE93D8;padding-left:0;padding-right:13px;">¡Sí! Y su amigo. Juegan aquí cada domingo. ¿Está bien si <span class="vocab-es">nosotros</span> nos unimos?</div>
 </div>
 </div>
 <div class="chat-msg left">
@@ -1072,343 +1075,343 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div></div>
   </div>
   <div class="content-panel" id="panel-stories">
-    <div class="item-tabs"><button class="item-tab active" onclick="switchItem('stories','s1',this)">S1</button><button class="item-tab" onclick="switchItem('stories','s2',this)">S2</button><button class="item-tab" onclick="switchItem('stories','s3',this)">S3</button><button class="item-tab" onclick="switchItem('stories','s4',this)">S4</button></div>
+    <div class="item-tabs"><button class="item-tab active" onclick="switchItem('stories','s1',this)">S1</button><button class="item-tab " onclick="switchItem('stories','s2',this)">S2</button><button class="item-tab " onclick="switchItem('stories','s3',this)">S3</button><button class="item-tab " onclick="switchItem('stories','s4',this)">S4</button></div>
     <div class="item-panel active" id="stories-s1"><div class="card">
 <div class="section-label">Story 1</div>
 <div class="section-title">My Name Is Leo</div>
-<div class="section-desc">Leo introduces himself and his small, happy family.</div>
+<div class="section-desc">Leo introduces himself and <span class="vocab">his</span> small, happy <span class="vocab">family</span>.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="story-block">
-<div class="story-paragraph">My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.</div>
+<div class="story-paragraph">My name <strong>is</strong> Leo. <span class="vocab">I</span> am seven years old. <span class="vocab">I</span> live in <span class="vocab">a</span> small town with my <span class="vocab">family</span> — my mom, my <span class="vocab">dad</span>, and my sister Lara. <span class="vocab">We</span> have <span class="vocab">a</span> small house near the market.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi nombre es Leo. Yo tengo siete años. Vivo en un pueblo pequeño con mi familia — mi mamá, mi papá y mi hermana Lara. Tenemos una casa pequeña cerca del mercado.</div>
+<div class="reveal-text">Mi nombre es Leo. <span class="vocab-es">Yo</span> tengo siete años. Vivo en un pueblo pequeño con mi <span class="vocab-es">familia</span> — mi mamá, mi <span class="vocab-es">papá</span> y mi hermana Lara. Tenemos una casa pequeña cerca del mercado.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.</div>
+<div class="story-paragraph">My <span class="vocab">dad</span> is tall and quiet. <span class="vocab">His</span> name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or <span class="vocab">a</span> small sweet.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi papá es alto y tranquilo. Su nombre es Marco. Trabaja en el mercado cada mañana y llega a casa al mediodía. Siempre nos trae algo — fruta, pan o un dulce pequeño.</div>
+<div class="reveal-text">Mi <span class="vocab-es">papá</span> es alto y tranquilo. <span class="vocab-es">Su</span> nombre es Marco. Trabaja en el mercado cada mañana y llega a casa al mediodía. Siempre nos trae algo — fruta, pan o <span class="vocab-es">un</span> dulce pequeño.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.</div>
+<div class="story-paragraph">My mom is short and full of energy. <strong><span class="vocab">Her</span></strong> name is Irma. She sings while she cooks and laughs at <span class="vocab">her</span> own jokes. My sister Lara looks just like <span class="vocab">her</span> — <span class="vocab">same</span> nose, <span class="vocab">same</span> laugh.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi mamá es bajita y llena de energía. Su nombre es Irma. Canta mientras cocina y se ríe de sus propios chistes. Mi hermana Lara es igualita a ella — misma nariz, misma risa.</div>
+<div class="reveal-text">Mi mamá es bajita y llena de energía. <span class="vocab-es">Su</span> nombre es Irma. Canta mientras cocina y se ríe de sus propios chistes. Mi hermana Lara es igualita a ella — misma nariz, misma risa.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.</div>
+<div class="story-paragraph">Lara is five. She and <span class="vocab">I</span> are not the <span class="vocab">same</span> <span class="vocab">age</span>, but <span class="vocab">we</span> share a room. Sometimes that is hard. But at night, when <span class="vocab">it</span> is dark, she reaches across and holds my hand.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Lara tiene cinco. Ella y yo no tenemos la misma edad, pero compartimos un cuarto. A veces eso es difícil. Pero de noche, cuando está oscuro, ella me toma de la mano.</div>
+<div class="reveal-text">Lara tiene cinco. <span class="vocab-es">Ella</span> y <span class="vocab-es">yo</span> no tenemos la <span class="vocab-es">misma</span> edad, pero compartimos <span class="vocab-es">un</span> cuarto. A veces eso es difícil. Pero de noche, cuando está oscuro, ella me toma de la mano.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.</div>
+<div class="story-paragraph"><strong>There is</strong> also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. <span class="vocab">Everyone</span> on our street knows <span class="vocab">him</span>.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">También está mi abuelo, Don Beto. Es mayor pero muy fuerte. Cada tarde se sienta afuera y saluda a los vecinos. Todos en nuestra calle lo conocen.</div>
+<div class="reveal-text"><span class="vocab-es">También</span> está mi abuelo, Don Beto. Es mayor pero muy fuerte. Cada tarde se sienta afuera y saluda a los vecinos. <span class="vocab-es">Todos</span> en nuestra calle <span class="vocab-es">lo</span> conocen.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.</div>
+<div class="story-paragraph">On Sundays <span class="vocab">we</span> eat together — all of us at the same table. <span class="vocab">Dad</span> makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Los domingos comemos juntos — todos en la misma mesa. Papá hace arroz, mamá hace sopa, y el abuelo cuenta un cuento de cuando era joven. Siempre le pido el mismo del río grande.</div>
+<div class="reveal-text">Los domingos <span class="vocab-es">comemos</span> juntos — todos en la misma mesa. Papá hace arroz, mamá hace sopa, y el abuelo cuenta <span class="vocab-es">un</span> cuento de cuando era joven. Siempre le pido el mismo del río grande.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.</div>
+<div class="story-paragraph">I am happy to be Leo, from this town, from this <span class="vocab">family</span>. Not every family is the same. But every family has something good in <span class="vocab">it</span>. That is what Don Beto says, and I believe <span class="vocab">him</span>.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Estoy feliz de ser Leo, de este pueblo, de esta familia. No toda familia es igual. Pero toda familia tiene algo bueno en ella. Eso es lo que dice Don Beto, y yo le creo.</div>
+<div class="reveal-text"><span class="vocab-es">Estoy</span> feliz de ser Leo, de este pueblo, de esta <span class="vocab-es">familia</span>. No toda familia es igual. Pero toda familia tiene algo bueno en <span class="vocab-es">ella</span>. Eso es lo que dice Don Beto, y <span class="vocab-es">yo</span> le creo.</div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="stories-s2"><div class="card">
+<div class="item-panel " id="stories-s2"><div class="card">
 <div class="section-label">Story 2</div>
-<div class="section-title">Mia's Family Photo</div>
-<div class="section-desc">Mia describes the people in her favorite family photograph.</div>
+<div class="section-title">Mia's <span class="vocab">Family</span> Photo</div>
+<div class="section-desc">Mia describes the people in <span class="vocab">her</span> favorite <span class="vocab">family</span> photograph.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="story-block">
-<div class="story-paragraph">I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.</div>
+<div class="story-paragraph"><span class="vocab">I</span> have <span class="vocab">a</span> big photo on my bedroom wall. <strong>There are</strong> eight people in <span class="vocab">it</span>, and <strong><span class="vocab">everyone</span></strong> is smiling. <span class="vocab">I</span> look at that photo every morning before school.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo tengo una foto grande en la pared de mi cuarto. Hay ocho personas en ella, y todos están sonriendo. La miro cada mañana antes de ir a la escuela.</div>
+<div class="reveal-text"><span class="vocab-es">Yo</span> tengo <span class="vocab-es">una</span> foto grande en la pared de mi cuarto. <span class="vocab-es">Hay</span> ocho personas en <span class="vocab-es">ella</span>, y <span class="vocab-es">todos</span> están sonriendo. La miro cada mañana antes de ir <span class="vocab">a</span> la escuela.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.</div>
+<div class="story-paragraph">The tallest person is my <span class="vocab">dad</span>. <span class="vocab">His</span> name is Carlos. He has <span class="vocab">a</span> big smile and long arms. When he hugs <span class="vocab">you</span>, <span class="vocab">you</span> disappear a little. <span class="vocab">I</span> love that.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">La persona más alta es mi papá. Su nombre es Carlos. Tiene una gran sonrisa y brazos largos. Cuando te abraza, desapareces un poco. Eso me encanta.</div>
+<div class="reveal-text">La persona más alta es mi <span class="vocab-es">papá</span>. <span class="vocab-es">Su</span> nombre es Carlos. Tiene <span class="vocab-es">una</span> gran sonrisa y brazos largos. Cuando te abraza, desapareces un poco. Eso me encanta.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.</div>
+<div class="story-paragraph">Next to <span class="vocab">him</span> is my mom, Rosa. <strong><span class="vocab">Her</span></strong> eyes are always laughing even when <span class="vocab">her</span> mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Junto a él está mi mamá, Rosa. Sus ojos siempre ríen aunque su boca esté seria. Es enfermera y llega a casa cansada, pero siempre tiene tiempo para escucharme.</div>
+<div class="reveal-text">Junto a <span class="vocab-es">él</span> está mi mamá, Rosa. <span class="vocab-es">Sus</span> ojos siempre ríen aunque su boca esté seria. Es enfermera y llega a casa cansada, pero siempre tiene tiempo para escucharme.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.</div>
+<div class="story-paragraph">My brother Nico is nine. He is a funny <span class="vocab">boy</span> — in the photo he is making a silly face. He always makes me laugh, even on bad days. <strong>The <span class="vocab">same</span></strong> face every time.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi hermano Nico tiene nueve años. Es un niño gracioso — en la foto está haciendo una mueca. Siempre me hace reír, hasta en los días malos. La misma cara siempre.</div>
+<div class="reveal-text">Mi hermano Nico tiene nueve años. Es <span class="vocab-es">un</span> <span class="vocab-es">niño</span> gracioso — en la foto está haciendo una mueca. Siempre me hace reír, hasta en los días malos. <span class="vocab-es">La misma</span> cara siempre.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.</div>
+<div class="story-paragraph"><strong>There is</strong> also my grandma Norma. <strong>Her</strong> hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">También está mi abuela Norma. Su cabello es blanco y sus manos son cálidas. Sabe cómo mejorar todo con una taza de té y una palabra tranquila.</div>
+<div class="reveal-text"><span class="vocab-es">También</span> está mi abuela Norma. <span class="vocab-es">Su</span> cabello es blanco y sus manos son cálidas. Sabe cómo mejorar todo con <span class="vocab-es">una</span> taza de té y <span class="vocab-es">una</span> palabra tranquila.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.</div>
+<div class="story-paragraph">My grandpa Beto is next to her. <strong>They</strong> are the <span class="vocab">same</span> <span class="vocab">age</span> — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi abuelo Beto está junto a ella. Tienen la misma edad — los dos tienen setenta. Él es callado donde ella es ruidosa. Él escucha donde ella habla. Juntos son perfectos.</div>
+<div class="reveal-text">Mi abuelo Beto está junto a ella. <span class="vocab-es">Tienen</span> la <span class="vocab-es">misma</span> edad — los dos tienen setenta. Él es callado donde ella es ruidosa. Él escucha donde ella habla. Juntos son perfectos.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.</div>
+<div class="story-paragraph">The last two people in the photo are my aunt and uncle. <span class="vocab">Everyone</span> in my <span class="vocab">family</span> is different. But in that photo, <span class="vocab">we</span> all look like <span class="vocab">we</span> belong together. Because <span class="vocab">we</span> do.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes. Pero en esa foto, todos parecemos pertenecer juntos. Porque así es.</div>
+<div class="reveal-text">Las últimas dos personas en la foto son mi tía y mi tío. <span class="vocab-es">Todos</span> en mi <span class="vocab-es">familia</span> son diferentes. Pero en esa foto, todos parecemos pertenecer juntos. Porque así es.</div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="stories-s3"><div class="card">
+<div class="item-panel " id="stories-s3"><div class="card">
 <div class="section-label">Story 3</div>
 <div class="section-title">Saturday at the Park</div>
-<div class="section-desc">Leo describes a typical Saturday with his family and friends.</div>
+<div class="section-desc">Leo describes <span class="vocab">a</span> typical Saturday with <span class="vocab">his</span> <span class="vocab">family</span> and friends.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="story-block">
-<div class="story-paragraph">Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.</div>
+<div class="story-paragraph">Saturday is <span class="vocab">a</span> special day. <span class="vocab">We</span> do not go to school or work. <strong>There is</strong> no rush in the morning. My <span class="vocab">dad</span> makes eggs and <span class="vocab">everyone</span> sits at the table together.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">El sábado es un día especial. Nosotros no vamos a la escuela ni al trabajo. No hay prisa por la mañana. Mi papá hace huevos y todos se sientan juntos a la mesa.</div>
+<div class="reveal-text">El sábado es <span class="vocab-es">un</span> día especial. <span class="vocab-es">Nosotros</span> no vamos <span class="vocab">a</span> la escuela ni al trabajo. <span class="vocab-es">No hay</span> prisa por la mañana. Mi <span class="vocab-es">papá</span> hace huevos y todos se sientan juntos a la mesa.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.</div>
+<div class="story-paragraph">After breakfast <span class="vocab">we</span> walk to the park. My grandpa Don Beto comes with us. <strong><span class="vocab">His</span></strong> walking stick makes a click-click sound on the sidewalk. <span class="vocab">I</span> like to walk next to <span class="vocab">him</span>.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Después del desayuno vamos al parque. Mi abuelo Don Beto viene con nosotros. Su bastón hace un click-click en la acera. A mí me gusta caminar a su lado.</div>
+<div class="reveal-text">Después del desayuno <span class="vocab-es">vamos</span> al parque. Mi abuelo Don Beto viene con nosotros. <span class="vocab-es">Su</span> bastón hace un click-click en la acera. <span class="vocab-es">A mí</span> me gusta caminar a su lado.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.</div>
+<div class="story-paragraph">At the park <span class="vocab">I</span> play with my friend Ravi. <strong><span class="vocab">His</span></strong> little brother Arjun plays with my sister Lara. They are the <span class="vocab">same</span> <span class="vocab">age</span> — both five — so they understand each other perfectly.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">En el parque juego con mi amigo Ravi. Su hermano pequeño Arjun juega con mi hermana Lara. Tienen la misma edad — los dos tienen cinco — así que se entienden perfectamente.</div>
+<div class="reveal-text">En el parque <span class="vocab-es">juego</span> con mi amigo Ravi. <span class="vocab-es">Su</span> hermano pequeño Arjun juega con mi hermana Lara. Tienen la <span class="vocab-es">misma</span> edad — los dos tienen cinco — así que se entienden perfectamente.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.</div>
+<div class="story-paragraph">Ravi is a funny <span class="vocab">boy</span>. He does voices for all the animals and <span class="vocab">I</span> cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Ravi es un niño gracioso. Hace voces de todos los animales y yo no puedo dejar de reírme. Su hermano mayor Dev nos mira y mueve la cabeza. Pero él está sonriendo.</div>
+<div class="reveal-text">Ravi es <span class="vocab-es">un</span> <span class="vocab-es">niño</span> gracioso. Hace voces de todos los animales y <span class="vocab-es">yo</span> no puedo dejar de reírme. Su hermano mayor Dev nos mira y mueve la cabeza. Pero <span class="vocab-es">él</span> está sonriendo.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.</div>
+<div class="story-paragraph"><strong><span class="vocab">Everyone</span></strong> at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch <span class="vocab">it</span> all — like they are watching a film.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Todos en el parque se conocen. Las mamás hablan cerca de la fuente. Los papás juegan fútbol. Los abuelos se sientan en un banco y miran todo — como si estuvieran viendo una película.</div>
+<div class="reveal-text"><span class="vocab-es">Todos</span> en el parque se conocen. Las mamás hablan cerca de la fuente. Los papás juegan fútbol. Los abuelos se sientan en <span class="vocab-es">un</span> banco y miran todo — como si estuvieran viendo una película.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.</div>
+<div class="story-paragraph">When the sun goes down <span class="vocab">we</span> start walking home. My sister is sleepy and my <span class="vocab">dad</span> carries <span class="vocab">her</span> on his back. She is small and <span class="vocab">her</span> eyes are already closed.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Cuando el sol se pone empezamos a caminar a casa. Mi hermana tiene sueño y mi papá la lleva en la espalda. Ella es pequeña y sus ojos ya están cerrados.</div>
+<div class="reveal-text">Cuando el sol se pone <span class="vocab-es">empezamos</span> a caminar a casa. Mi hermana tiene sueño y mi <span class="vocab-es">papá</span> la lleva en la espalda. Ella es pequeña y <span class="vocab-es">sus</span> ojos ya están cerrados.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.</div>
+<div class="story-paragraph">At home we drink tea and grandpa tells a story. I sit close to <span class="vocab">him</span> and listen. <span class="vocab">It</span> is the best part of Saturday — the quiet end, with my <span class="vocab">family</span>, all together.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">En casa tomamos té y el abuelo cuenta un cuento. Yo me siento cerca de él y escucho. Es la mejor parte del sábado — el final tranquilo, con mi familia, todos juntos.</div>
+<div class="reveal-text">En casa tomamos té y el abuelo cuenta <span class="vocab-es">un</span> cuento. <span class="vocab-es">Yo</span> me siento cerca de <span class="vocab-es">él</span> y escucho. <span class="vocab-es">Es</span> la mejor parte del sábado — el final tranquilo, con mi <span class="vocab-es">familia</span>, todos juntos.</div>
 </div>
 </div>
 </div></div>
-    <div class="item-panel" id="stories-s4"><div class="card">
+<div class="item-panel " id="stories-s4"><div class="card">
 <div class="section-label">Story 4</div>
-<div class="section-title">Kind People</div>
-<div class="section-desc">Nico notices that the most important people in his life share one thing.</div>
+<div class="section-title"><span class="vocab">Kind</span> People</div>
+<div class="section-desc">Nico notices that the most important people in <span class="vocab">his</span> life share one thing.</div>
 <div class="level-badge">🟡 Pre-A1</div>
 <div class="story-block">
-<div class="story-paragraph">My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.</div>
+<div class="story-paragraph"><strong>My name is</strong> Nico and <span class="vocab">I</span> am eight years old. <span class="vocab">I</span> go to school on Avenida del Sol. <span class="vocab">I</span> have <span class="vocab">a</span> lot of friends, but I have learned something important: the best people are <strong><span class="vocab">kind</span></strong>.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi nombre es Nico y yo tengo ocho años. Voy a la escuela en la Avenida del Sol. Tengo muchos amigos, pero he aprendido algo importante: las mejores personas son amables.</div>
+<div class="reveal-text">Mi nombre es Nico y <span class="vocab-es">yo</span> tengo ocho años. Voy <span class="vocab">a</span> la escuela en la Avenida del Sol. Tengo <span class="vocab-es">muchos</span> amigos, pero he aprendido algo importante: las mejores personas son <span class="vocab-es">amables</span>.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.</div>
+<div class="story-paragraph">My <span class="vocab">dad</span> is the kindest person I know. <span class="vocab">His</span> name is Carlos. When I come home sad, he does not ask <span class="vocab">a</span> lot of questions. He just makes tea and sits with me until I feel better.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi papá es la persona más amable que conozco. Su nombre es Carlos. Cuando yo llego a casa triste, no hace muchas preguntas. Simplemente hace té y se sienta conmigo hasta que me siento mejor.</div>
+<div class="reveal-text">Mi <span class="vocab-es">papá</span> es la persona más amable que conozco. <span class="vocab-es">Su</span> nombre es Carlos. Cuando <span class="vocab-es">yo</span> llego a casa triste, no hace muchas preguntas. Simplemente hace té y se sienta conmigo hasta que me siento mejor.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile big.</div>
+<div class="story-paragraph"><strong>There is</strong> also my neighbor Mrs. Ana. She lives alone. <strong><span class="vocab">Her</span></strong> <span class="vocab">family</span> is far away. Every morning she waves at me from <span class="vocab">her</span> window. I wave back. <span class="vocab">It</span> is a small thing, but <span class="vocab">it</span> makes <span class="vocab">her</span> smile big.</div>
 <div class="audio-row" style="margin-left:0.7rem">
-<button class="audio-btn" onclick="speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile big.','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile big.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">También está mi vecina, la señora Ana. Vive sola. Su familia está lejos. Cada mañana me saluda desde su ventana. Yo le devuelvo el saludo. Es una cosa pequeña, pero le hace sonreír mucho.</div>
+<div class="reveal-text"><span class="vocab-es">También</span> está mi vecina, la señora Ana. Vive sola. <span class="vocab-es">Su</span> familia está lejos. Cada mañana me saluda desde <span class="vocab-es">su</span> ventana. Yo le devuelvo el saludo. Es <span class="vocab-es">una</span> cosa pequeña, pero le hace <span class="vocab-es">sonreír</span> mucho.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says, "Try again — you can do it." When I made a mistake on the board last week, she said, "Good try, Nico."</div>
+<div class="story-paragraph">At school my teacher Miss Pilar is <span class="vocab">kind</span> to <span class="vocab">everyone</span>. She never shouts. She explains things slowly and says, "Try again — <span class="vocab">you</span> can do <span class="vocab">it</span>." When I made a mistake on the board last week, she said, "Good try, Nico."</div>
 <div class="audio-row" style="margin-left:0.7rem">
-<button class="audio-btn" onclick="speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says, "Try again — you can do it." When I made a mistake on the board last week, she said, "Good try, Nico."','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says, "Try again — you can do it." When I made a mistake on the board last week, she said, "Good try, Nico."','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">En la escuela mi maestra Miss Pilar es amable con todos. Nunca grita. Explica las cosas despacio y dice: "Intenta de nuevo — tú puedes." Cuando cometí un error en la pizarra la semana pasada, dijo: "Buen intento, Nico."</div>
+<div class="reveal-text">En la escuela mi maestra Miss Pilar es amable con <span class="vocab-es">todos</span>. Nunca grita. Explica las cosas despacio y dice: "Intenta de nuevo — <span class="vocab-es">tú</span> puedes." Cuando cometí un error en la pizarra la semana pasada, dijo: "Buen intento, Nico."</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.</div>
+<div class="story-paragraph">My grandpa Beto is also kind. He is old but <strong>the <span class="vocab">same</span></strong> inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Mi abuelo Beto también es amable. Es mayor pero igual por dentro que siempre — paciente, tranquilo y cálido. Cuando lo visito, siempre tiene un cuento. Y en cada cuento, la persona amable gana.</div>
+<div class="reveal-text">Mi abuelo Beto también es <span class="vocab-es">amable</span>. Es mayor pero <span class="vocab-es">igual</span> por dentro que siempre — paciente, tranquilo y cálido. Cuando <span class="vocab-es">lo</span> visito, siempre tiene <span class="vocab-es">un</span> cuento. Y en cada cuento, la persona amable gana.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.</div>
+<div class="story-paragraph"><strong>I</strong> think being kind is like being strong. It takes a decision every day. When someone is mean to me, I remember Miss Pilar, my <span class="vocab">dad</span>, my grandpa. And I choose to be kind.</div>
 <div class="audio-row" style="margin-left:0.7rem">
-<button class="audio-btn" onclick="speak(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','US')"><span class="flag">🇺🇸</span> US</button>
-<button class="audio-btn" onclick="speak(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','UK')"><span class="flag">🇬🇧</span> UK</button>
+<button class="audio-btn" onclick="speak(this,'I think being kind is like being strong. It takes a decision every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','US')"><span class="flag">🇺🇸</span> US</button>
+<button class="audio-btn" onclick="speak(this,'I think being kind is like being strong. It takes a decision every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Creo que ser amable es como ser fuerte. Es una decisión cada día. Cuando alguien es malo conmigo, yo recuerdo a Miss Pilar, a mi papá, a mi abuelo. Y elijo ser amable.</div>
+<div class="reveal-text">Creo que ser amable es como ser fuerte. <span class="vocab-es">Es</span> una decisión cada día. Cuando alguien es malo conmigo, <span class="vocab-es">yo</span> recuerdo a Miss Pilar, a mi papá, a mi abuelo. Y elijo ser <span class="vocab-es">amable</span>.</div>
 </div>
 </div>
 <div class="story-block">
-<div class="story-paragraph">I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.</div>
+<div class="story-paragraph">I do not know everything. I am only eight. But I know that my <span class="vocab">family</span> is kind, my friends are <strong>kind</strong>, and that is <span class="vocab">everyone</span> I need.</div>
 <div class="audio-row" style="margin-left:0.7rem">
 <button class="audio-btn" onclick="speak(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.','US')"><span class="flag">🇺🇸</span> US</button>
 <button class="audio-btn" onclick="speak(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.','UK')"><span class="flag">🇬🇧</span> UK</button>
 </div>
 <div class="reveal-line" style="margin-left:0.7rem">
 <button class="reveal-btn" onclick="toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
-<div class="reveal-text">Yo no sé todo. Solo tengo ocho años. Pero sé que mi familia es amable, mis amigos son amables, y eso es todo lo que necesito.</div>
+<div class="reveal-text"><span class="vocab-es">Yo</span> no sé todo. Solo tengo ocho años. Pero sé que mi <span class="vocab-es">familia</span> es <span class="vocab-es">amable</span>, mis amigos son <span class="vocab-es">amables</span>, y eso es <span class="vocab-es">todo</span> lo que necesito.</div>
 </div>
 </div>
 </div></div>
   </div>
 </div>
 <script>
-const NOTES = ["I am = Yo soy / Yo estoy. Aquí Leo se presenta: <em>\"I am Leo\"</em> = Yo soy Leo. El verbo to be cambia según la persona: <em>I am, you are, he/she/it is</em>. Es el verbo más importante del inglés.", "Her aquí señala a una persona. En inglés <em>her</em> también es posesivo: <em>her name</em> = el nombre de ella. El contexto indica cuál es cuál.", "There is = Hay (singular). There are = Hay (plural). En inglés siempre se necesita <em>there</em> — no se puede omitir como en español.", "The same = lo mismo / el mismo. Same casi siempre va con the. Sin <em>the</em> suena incompleto.", "Everyone = todos / todo el mundo. Siempre lleva verbo singular: <em>Everyone is friendly</em> ✓ — nunca <em>Everyone are</em> ✗.", "Him = pronombre objeto: <em>I see him</em> = Yo lo veo. Se usa para señalar a una persona masculina."];
+const NOTES = ["<strong>I am</strong> = Yo soy / Yo estoy. Aquí Leo se presenta: <em>\"<strong>I am</strong> Leo\"</em> = Yo soy Leo. El verbo <strong>to be</strong> cambia según la persona: <em>I <strong>am</strong>, you <strong>are</strong>, he/she/it <strong>is</strong></em>. Es el verbo más importante del inglés.", "<strong>Her</strong> aquí señala a una persona: <em>\"But <strong>her</strong> — the teacher — she is very nice.\"</em> Ana apunta a la maestra y dice <em>her</em> antes de nombrarla. En inglés <em>her</em> también es posesivo: <em><strong>her</strong> name</em> = el nombre de ella. El contexto indica cuál es cuál.", "<strong>There is</strong> = Hay (singular). <strong>There are</strong> = Hay (plural). Aquí Leo dice: <em>\"<strong>There is</strong> a boy called Ravi\"</em> = Hay un chico llamado Ravi. En inglés siempre se necesita <em>there</em> — no se puede omitir como en español.", "<strong>The same</strong> = lo mismo / el mismo. Aquí Leo dice: <em>\"<strong>The same</strong> thing happened to me\"</em> = A mí me pasó lo mismo. <strong>Same</strong> casi siempre va con <strong>the</strong>. Sin <em>the</em> suena incompleto.", "<strong>Everyone</strong> = todos / todo el mundo. Aquí Ana pregunta: <em>\"Is <strong>everyone</strong> here friendly?\"</em> = ¿Todos aquí son amables? <strong>Everyone</strong> siempre lleva verbo singular: <em><strong>Everyone</strong> <strong>is</strong> friendly</em> ✓ — nunca <em>Everyone are</em> ✗.", "<strong>Him</strong> aquí señala a una persona: <em>\"<strong>Him</strong> — I mean, Ravi — will sit on the other side.\"</em> Leo apunta a Ravi y dice <em>him</em>, luego se corrige con el nombre. Es como decir <em>él</em> para señalar. <em>Him</em> = pronombre objeto: <em>I see <strong>him</strong></em> = Yo lo veo."];
 function toggleReveal(btn){const t=btn.nextElementSibling;t.classList.toggle('show');btn.classList.toggle('open');}
 function switchContent(type,btn){document.querySelectorAll('.content-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.content-tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+type).classList.add('active');btn.classList.add('active');closeAllNotes();}
 function switchItem(section,id,btn){const panel=document.getElementById('panel-'+section);panel.querySelectorAll('.item-panel').forEach(p=>p.classList.remove('active'));panel.querySelectorAll('.item-tab').forEach(t=>t.classList.remove('active'));document.getElementById(section+'-'+id).classList.add('active');btn.classList.add('active');closeAllNotes();}

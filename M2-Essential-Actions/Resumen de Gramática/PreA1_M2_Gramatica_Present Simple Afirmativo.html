@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Summary — Present Simple Affirmative | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#1A1A2E;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--neg:#AD1457;--neg-bg:#FCE4EC;
+--quest:#7B1FA2;--quest-bg:#F3E5F5;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+--s3p:#FF6F00;--s3p-bg:#FFF3E0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:800px;margin:0 auto}
+
+/* HEADER */
+.level-header{text-align:center;padding:2rem 1.5rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-10%;width:260px;height:260px;background:rgba(255,255,255,.08);border-radius:50%}
+.level-header::after{content:'';position:absolute;bottom:-30%;left:-8%;width:180px;height:180px;background:rgba(255,255,255,.06);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.85rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.25rem}
+.level-header .subtitle{opacity:.8;font-size:.82rem;position:relative;z-index:1;margin-top:.2rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+
+/* STEP TABS */
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .8rem;border-radius:8px;font-size:.77rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif;white-space:nowrap}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* LABELS */
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:.15rem;color:var(--ld)}
+.section-desc{font-size:.84rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
+
+/* GRAMMAR TAGS */
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj);display:inline-block}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb);display:inline-block}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp);display:inline-block}
+.g-s3p{background:var(--s3p-bg);color:var(--s3p);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--s3p);display:inline-block}
+
+/* TABLES */
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.6rem .7rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:left}
+.g-table td{padding:.6rem .7rem;border-bottom:1px solid #EEF4FF;vertical-align:middle;line-height:1.45}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+.g-table .hl{font-weight:700;color:var(--ld)}
+
+/* COMPARE GRID */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:var(--s3p-bg);border:2px solid #FFCC80}
+.compare-card.eng{background:var(--subj-bg);border:2px solid #90CAF9}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.88rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:#E65100}
+.compare-card.eng h4{color:var(--subj)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:3px 0}
+
+/* CONJ GRID */
+.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.8rem 0}
+.conj-item{padding:.65rem .4rem;border-radius:10px;text-align:center;background:#FAFCFF;border:1.5px solid var(--border)}
+.conj-item .pron{font-size:.72rem;color:var(--subj);font-weight:800;margin-bottom:2px}
+.conj-item .vrb{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--verb);line-height:1.2}
+.conj-item .meaning{font-size:.62rem;color:var(--text-soft);margin-top:2px}
+.conj-item.special{background:var(--s3p-bg);border-color:#FFCC80}
+.conj-item.special .vrb{color:var(--s3p)}
+.conj-item.special .pron{color:var(--s3p)}
+
+/* FORMULA BOX */
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem 1.2rem;margin:.8rem 0;font-family:'Fredoka',sans-serif;font-size:.92rem;color:var(--ld);line-height:2}
+.formula-box .row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.1rem}
+.formula-box .plus{color:var(--text-soft);font-size:.8rem}
+
+/* TIP CARD */
+.tip-card{background:var(--ll);border-radius:10px;padding:.75rem 1rem;margin:.45rem 0;font-size:.83rem;border-left:3.5px solid var(--lp);line-height:1.55}
+.tip-card strong{color:var(--ld)}
+
+/* ALERT CARD */
+.alert-card{background:var(--err-bg);border:2px solid #EF9A9A;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem;font-weight:700}
+.alert-card p{font-size:.82rem;color:#5A1010;line-height:1.55}
+
+/* INFO CARD (blue) */
+.info-card{background:var(--ll);border:2px solid var(--lm);border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.info-card .ititle{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.82rem;margin-bottom:.3rem;font-weight:700}
+.info-card p{font-size:.82rem;color:var(--text-soft);line-height:1.55}
+
+/* EXAMPLE ROWS */
+.ex-row{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .85rem;border-radius:10px;margin:.4rem 0;font-size:.87rem}
+.ex-row .icon{font-size:1.15rem;flex-shrink:0;margin-top:1px}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:var(--text-soft);margin-top:2px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+
+/* S+ES SPELLING GRID */
+.spell-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.8rem 0}
+.spell-card{background:#FAFCFF;border:1.5px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-size:.8rem}
+.spell-card h5{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.82rem;margin-bottom:.3rem}
+.spell-card .rule{color:var(--text-soft);margin-bottom:.2rem}
+.spell-card .eg{font-weight:700;color:var(--s3p)}
+
+/* EXERCISES */
+.ex-section{margin-top:1.3rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.88rem;margin-bottom:.8rem}
+.exercise{background:#FAFCFF;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #E8EEFF;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.87rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid #D0E4FF;border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left;line-height:1.35}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll);color:var(--ld)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+/* FEEDBACK */
+.fb{margin-top:.7rem;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-header .fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:2px}
+.fb-row .fb-text{flex:1;line-height:1.5}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.35rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.45rem .7rem;border-radius:8px;background:var(--ll);border:1px solid var(--lm);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
+/* SUMMARY */
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.1rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 22px;position:relative;font-size:.83rem;color:var(--text-soft);line-height:1.5}
+.summary-final li:before{content:"✔";position:absolute;left:0;color:var(--lp);font-weight:700}
+
+/* CHALLENGE BADGE */
+.challenge-badge{display:inline-block;background:linear-gradient(135deg,#7B1FA2,#9C27B0);color:#fff;font-family:'Fredoka',sans-serif;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-left:.5rem;vertical-align:middle}
+
+@media(max-width:600px){
+.level-header h1{font-size:1.4rem}
+.card{padding:1.1rem}
+.compare-grid{grid-template-columns:1fr}
+.conj-grid{grid-template-columns:repeat(2,1fr)}
+.spell-grid{grid-template-columns:1fr}
+.opts{grid-template-columns:1fr}
+.step-tabs{gap:.25rem}
+.step-tab{font-size:.72rem;padding:.4rem .6rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="level-header">
+  <div class="level-badge">💛 Pre-A1 · Grammar Summary</div>
+  <h1>📝 Present Simple</h1>
+  <div class="module-name">⚡ Affirmative — I have · He makes · They eat</div>
+  <p class="subtitle">5 pasos pedagógicos · 25 ejercicios interactivos · JUCUM English Center</p>
+</div>
+
+<div class="step-tabs" id="stepTabs"></div>
+<div id="cardArea"></div>
+
+<div class="summary-final" id="summaryFinal">
+  <h3>🎓 Lo que dominaste — Present Simple Affirmative</h3>
+  <ul id="summaryList"></ul>
+</div>
+
+</div>
+
+<script>
+var summaryPoints = [
+  "<b>Estructura:</b> Subject + base verb (I work, You eat, We play)",
+  "<b>3ra persona singular (he/she/it):</b> SIEMPRE agrega <b>-s</b> o <b>-es</b>",
+  "<b>Regla -es:</b> verbos en -ch, -sh, -x, -o, -ss → watches, goes, fixes",
+  "<b>Regla -ies:</b> consonante + y → study → <b>studies</b>",
+  "<b>Verbos irregulares clave:</b> have → <b>has</b> · do → <b>does</b> · be → <b>is/am/are</b>",
+  "<b>Uso:</b> hábitos, rutinas, hechos permanentes, verdades generales",
+  "<b>Marcadores:</b> always, usually, often, sometimes, never, every day"
+];
+
+var steps = [
+  // ─── PASO 1 ───
+  {icon:"🇪🇸", title:"Repaso en Español",
+  html:`<div class="section-label">Paso 1</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">El presente simple en español describe acciones habituales, rutinas y verdades. ¿Cómo funciona en español primero?</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>🇪🇸 En Español</h4>
+    <ul>
+      <li>Yo <b>como</b> pizza</li>
+      <li>Tú <b>estudias</b> inglés</li>
+      <li>Él <b>trabaja</b> aquí</li>
+      <li>Nosotros <b>vivimos</b> en Lima</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>🇬🇧 En Inglés</h4>
+    <ul>
+      <li>I <b>eat</b> pizza</li>
+      <li>You <b>study</b> English</li>
+      <li>He <b>works</b> here</li>
+      <li>We <b>live</b> in Lima</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 Concepto clave:</strong> El presente simple describe lo que haces <b>regularmente</b> — rutinas, hábitos y hechos permanentes. En español cambias la terminación del verbo por cada persona. En inglés también... pero ¡mucho menos!</div>
+
+<div class="section-label" style="margin-top:1rem">¿Cuándo lo usamos?</div>
+<table class="g-table">
+  <tr><th>Situación</th><th>🇪🇸 Ejemplo</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Rutina diaria</td><td>Yo me levanto a las 7</td><td>I wake up at 7</td></tr>
+  <tr><td>Hábito</td><td>Ella bebe café cada mañana</td><td>She drinks coffee every morning</td></tr>
+  <tr><td>Hecho permanente</td><td>El sol sale por el este</td><td>The sun rises in the east</td></tr>
+  <tr><td>Verdad general</td><td>Los perros comen carne</td><td>Dogs eat meat</td></tr>
+</table>`,
+  exercises:[
+    {q:'¿El presente simple describe acciones...?',a:'a',o:['habituales o rutinarias','que están pasando AHORA mismo'],
+     fc:'El presente simple describe hábitos, rutinas y hechos permanentes — cosas que se repiten.',
+     fi:'Las acciones que pasan AHORA mismo usan Present Continuous: I am eating.',
+     ex:'She drinks coffee every morning → Ella toma café cada mañana',
+     tip:'Palabras clave: "every day / always / usually" → present simple'},
+
+    {q:'En español, el verbo cambia para cada persona: yo como, él ___.',a:'a',o:['come','comimos'],
+     fc:'"Come" es la 3ra persona singular del verbo comer.',
+     fi:'"Comimos" es plural (nosotros). En presente: él come.',
+     ex:'Él come → He eats',tip:'Español: yo como, él come / Inglés: I eat, he eat-S'},
+
+    {q:'"Ella estudia inglés todos los días." Esta oración describe:',a:'b',o:['una acción en este momento','un hábito repetido'],
+     fc:'"Todos los días" indica repetición → present simple.',
+     fi:'"En este momento" sería: She is studying right now.',
+     ex:'She studies English every day → Ella estudia inglés todos los días'},
+
+    {q:'"Los gatos duermen mucho." ¿Qué tipo de hecho es?',a:'a',o:['Verdad general','Acción en progreso'],
+     fc:'Es una verdad general → present simple en inglés.',
+     fi:'Acción en progreso sería: The cat is sleeping (right now).',
+     ex:'Cats sleep a lot → Los gatos duermen mucho'},
+
+    {q:'¿Cuál oración expresa una rutina diaria?',a:'b',o:['Está lloviendo ahora','Me levanto a las 6 cada día'],
+     fc:'"Cada día" = rutina → present simple.',
+     fi:'"Está lloviendo ahora" = presente continuo, no simple.',
+     ex:'I wake up at 6 every day → Me levanto a las 6 cada día'}
+  ]},
+
+  // ─── PASO 2 ───
+  {icon:"🤝", title:"Similitudes",
+  html:`<div class="section-label">Paso 2</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Aunque parecen diferentes, español e inglés tienen mucho en común en el presente simple.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Mismo concepto</td><td>Acciones habituales</td><td>Habitual actions</td></tr>
+  <tr><td>Sujeto + verbo</td><td>Yo <b>trabajo</b> aquí</td><td>I <b>work</b> here</td></tr>
+  <tr><td>3ra persona diferente</td><td>Él trabaj<b>a</b></td><td>He work<b>s</b></td></tr>
+  <tr><td>Verbos irregulares</td><td>Yo <b>tengo</b>, él <b>tiene</b></td><td>I <b>have</b>, he <b>has</b></td></tr>
+  <tr><td>Marcadores de tiempo</td><td>siempre, nunca, a veces</td><td>always, never, sometimes</td></tr>
+</table>
+
+<div class="section-label" style="margin-top:1rem">Conjugación visual</div>
+<div class="conj-grid">
+  <div class="conj-item"><div class="pron">I</div><div class="vrb">work</div><div class="meaning">trabajo</div></div>
+  <div class="conj-item"><div class="pron">You</div><div class="vrb">work</div><div class="meaning">trabajas</div></div>
+  <div class="conj-item special"><div class="pron">He / She / It</div><div class="vrb">works</div><div class="meaning">trabaja ← +S!</div></div>
+  <div class="conj-item"><div class="pron">We</div><div class="vrb">work</div><div class="meaning">trabajamos</div></div>
+  <div class="conj-item"><div class="pron">You</div><div class="vrb">work</div><div class="meaning">trabajan</div></div>
+  <div class="conj-item"><div class="pron">They</div><div class="vrb">work</div><div class="meaning">trabajan</div></div>
+</div>
+
+<div class="tip-card"><strong>💡 Gran noticia:</strong> En inglés solo hay <b>una excepción</b>: He / She / It agrega -s al verbo. Todos los demás (I, You, We, They) usan el verbo base sin cambio. En español cambias el verbo 6 veces — ¡en inglés casi no!</div>`,
+  exercises:[
+    {q:'"I eat pizza." / "You eat pizza." El verbo es:',a:'b',o:['diferente','igual (eat)'],
+     fc:'Con I y You el verbo NO cambia. Siempre la misma forma base.',
+     fi:'El verbo solo cambia con He/She/It (agrega -s). Con I y You es igual.',
+     ex:'I eat / You eat / We eat / They eat — siempre igual',tip:'Solo He/She/It cambia. El resto usa el verbo base.'},
+
+    {q:'"She eat" or "She eats" — ¿cuál es correcto?',a:'a',o:['She eats','She eat'],
+     fc:'He/She/It siempre necesita -S. "She eats" es la única forma correcta.',
+     fi:'"She eat" sin -S es el error más común en inglés. ¡La -S es obligatoria!',
+     ex:'She eats pizza → Ella come pizza'},
+
+    {q:'¿Con qué pronombres el verbo NO cambia?',a:'b',o:['He, She, It','I, You, We, They'],
+     fc:'I, You, We, They siempre usan el verbo base sin ningún cambio.',
+     fi:'He, She, It son exactamente los que SÍ cambian — agregan -s/-es.',
+     ex:'We work / They work / I work — sin cambio'},
+
+    {q:'"Always, never, sometimes" son marcadores que indican:',a:'a',o:['hábito o rutina','acción en progreso'],
+     fc:'Estos adverbios de frecuencia señalan hábitos y rutinas — exactamente el uso del presente simple.',
+     fi:'Acción en progreso usa: right now, at the moment — no always/never.',
+     ex:'She always drinks tea → Ella siempre toma té',tip:'always/usually/often/sometimes/rarely/never = present simple'},
+
+    {q:'"I have" → "He ___"',a:'a',o:['has','have'],
+     fc:'"Have" es un verbo irregular: con He/She/It cambia completamente a HAS.',
+     fi:'"Have" nunca se usa con He/She/It. La forma correcta es siempre "has".',
+     ex:'I have a dog. She has a cat.',tip:'have → has (irregular, ¡memorizar!)'}
+  ]},
+
+  // ─── PASO 3 ───
+  {icon:"⚡", title:"Diferencias",
+  html:`<div class="section-label">Paso 3</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Clave</div>
+<div class="section-desc">Aquí están las diferencias más importantes. Presta atención especial a la 3ra persona y los verbos irregulares.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Explicación</th></tr>
+  <tr><td>Él trabaj<b>a</b></td><td>He work<b>s</b></td><td>Esp: -a/-e · Ing: <b>+s</b></td></tr>
+  <tr><td>Él <b>va</b></td><td>He <b>goes</b></td><td>go + es (no "gos")</td></tr>
+  <tr><td>Él <b>tiene</b></td><td>He <b>has</b> (≠ haves)</td><td>Completamente irregular</td></tr>
+  <tr><td>Él <b>hace</b></td><td>He <b>does</b> (≠ dos)</td><td>Completamente irregular</td></tr>
+  <tr><td>6 formas verbales</td><td>Solo 2 formas (work / works)</td><td>¡Inglés es más simple!</td></tr>
+</table>
+
+<div class="section-label" style="margin-top:1rem">Reglas de ortografía para He/She/It</div>
+<div class="spell-grid">
+  <div class="spell-card">
+    <h5>Regla 1: -CH / -SH / -X / -SS / -O</h5>
+    <div class="rule">→ agrega <b>-ES</b></div>
+    <div class="eg">watch → watch<b>es</b></div>
+    <div class="eg">go → go<b>es</b></div>
+    <div class="eg">fix → fix<b>es</b></div>
+  </div>
+  <div class="spell-card">
+    <h5>Regla 2: Consonante + Y</h5>
+    <div class="rule">→ cambia Y por <b>-IES</b></div>
+    <div class="eg">study → stud<b>ies</b></div>
+    <div class="eg">fly → fl<b>ies</b></div>
+    <div class="eg">carry → carr<b>ies</b></div>
+  </div>
+  <div class="spell-card">
+    <h5>Regla 3: Vocal + Y</h5>
+    <div class="rule">→ solo agrega <b>-S</b> (normal)</div>
+    <div class="eg">play → play<b>s</b></div>
+    <div class="eg">buy → buy<b>s</b></div>
+    <div class="eg">enjoy → enjoy<b>s</b></div>
+  </div>
+  <div class="spell-card">
+    <h5>Irregulares</h5>
+    <div class="rule">→ formas únicas</div>
+    <div class="eg">have → <b>has</b></div>
+    <div class="eg">do → <b>does</b></div>
+    <div class="eg">be → <b>is</b></div>
+  </div>
+</div>
+
+<div class="ex-row ex-right" style="margin-top:.8rem"><div class="icon">✅</div><div><div class="en"><span class="g-subj">She</span> <span class="g-s3p">studies</span> <span class="g-comp">every night</span>.</div><div class="es">study → studies (consonante + y → ies)</div></div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">She <b>studys</b> every night.</div><div class="es">"studys" no existe. La Y cambia a IES.</div></div></div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en"><span class="g-subj">He</span> <span class="g-s3p">watches</span> <span class="g-comp">TV after dinner</span>.</div><div class="es">watch → watches (termina en -ch → agrega -es)</div></div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">He <b>watchs</b> TV after dinner.</div><div class="es">"watchs" suena imposible en inglés. Siempre -es.</div></div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 3 más peligrosos</div>
+  <p>❌ He <b>have</b> → ✅ He <b>has</b><br>
+  ❌ She <b>do</b> homework → ✅ She <b>does</b> homework<br>
+  ❌ He <b>gos</b> to school → ✅ He <b>goes</b> to school</p>
+</div>`,
+  exercises:[
+    {q:'"She ___ to school every day."',a:'b',o:['go','goes'],
+     fc:'She + go → goes. El verbo termina en -o, así que agrega -ES.',
+     fi:'"go" sin cambio es incorrecto con She/He/It. Siempre necesita -ES.',
+     ex:'She goes to school → Ella va al colegio',tip:'go → goes (no "gos")'},
+
+    {q:'"He ___ math at university."',a:'b',o:['studys','studies'],
+     fc:'study termina en consonante + Y → la Y cambia a IES: studies.',
+     fi:'"studys" no existe en inglés. La Y siempre cambia a IES.',
+     ex:'He studies math → Él estudia matemáticas'},
+
+    {q:'"My sister ___ two cats."',a:'a',o:['has','have'],
+     fc:'My sister = She → have es irregular: She HAS. No sigue la regla normal.',
+     fi:'"have" nunca se usa con He/She/It. La forma correcta es siempre "has".',
+     ex:'She has two cats → Ella tiene dos gatos',tip:'have → has (¡irregularísimo!)'},
+
+    {q:'"It ___ every night." (llover = rain)',a:'b',o:['raints','rains'],
+     fc:'rain es un verbo normal → solo agrega -S: rains. Nada más.',
+     fi:'"raints" no existe en inglés. Solo se agrega -S simple.',
+     ex:'It rains a lot here → Llueve mucho aquí'},
+
+    {q:'"She ___ the dishes after lunch." (wash)',a:'a',o:['washes','washs'],
+     fc:'wash termina en -sh → agrega -ES: washes. Regla obligatoria.',
+     fi:'"washs" no existe. Verbos en -sh siempre toman -ES, nunca solo -S.',
+     ex:'She washes the dishes → Ella lava los platos'}
+  ]},
+
+  // ─── PASO 4 ───
+  {icon:"💡", title:"Consejos",
+  html:`<div class="section-label">Paso 4</div>
+<div class="section-title">Paso 4: 💡 Consejos y Trucos</div>
+<div class="section-desc">Estrategias para nunca olvidar las reglas del present simple.</div>
+
+<div class="tip-card"><strong>🎯 Tip 1 — Solo una excepción:</strong> En inglés hay solo <b>una regla especial</b>: He / She / It agrega -S al verbo. Todos los demás pronombres (I, You, We, They) usan el verbo exactamente igual, sin cambio.</div>
+
+<div class="tip-card"><strong>🎯 Tip 2 — El truco de la -S:</strong> Antes de añadir -S a He/She/It, pregúntate: ¿el verbo termina en -ch, -sh, -x, -o, -ss? Si sí → usa <b>-ES</b>. ¿Termina en consonante + Y? → <b>-IES</b>. ¿Nada de esto? → solo <b>-S</b>.</div>
+
+<div class="tip-card"><strong>🎯 Tip 3 — Memoriza los irregulares:</strong> Solo 3 verbos son completamente irregulares en presente simple afirmativo:<br>
+• <b>have → has</b> &nbsp;·&nbsp; <b>do → does</b> &nbsp;·&nbsp; <b>be → is/am/are</b></div>
+
+<div class="tip-card"><strong>🎯 Tip 4 — Los marcadores son tus aliados:</strong> Si ves <b>always, usually, often, sometimes, never, every day/week/month</b> en la oración → es present simple. ¡Automático!</div>
+
+<div class="formula-box">
+  <div class="row">I / You / We / They &nbsp;+&nbsp; <span class="g-verb">verb (base)</span> &nbsp;+&nbsp; <span class="g-comp">complement</span></div>
+  <div class="row">He / She / It &nbsp;+&nbsp; <span class="g-s3p">verb + s/es/ies</span> &nbsp;+&nbsp; <span class="g-comp">complement</span></div>
+</div>
+
+<div class="section-label" style="margin-top:1rem">Cheat sheet — 3ra persona</div>
+<table class="g-table">
+  <tr><th>Terminación del verbo</th><th>Qué hacer</th><th>Ejemplo</th></tr>
+  <tr><td>-ch, -sh, -x, -ss, -o</td><td>+ <b>ES</b></td><td>watch→<b>watches</b>, go→<b>goes</b></td></tr>
+  <tr><td>consonante + Y</td><td>Y → <b>IES</b></td><td>study→<b>studies</b>, fly→<b>flies</b></td></tr>
+  <tr><td>vocal + Y</td><td>+ <b>S</b></td><td>play→<b>plays</b>, buy→<b>buys</b></td></tr>
+  <tr><td>la mayoría</td><td>+ <b>S</b></td><td>work→<b>works</b>, eat→<b>eats</b></td></tr>
+  <tr><td>have / do</td><td>→ <b>has / does</b></td><td>She <b>has</b>, He <b>does</b></td></tr>
+</table>`,
+  exercises:[
+    {q:'"They ___ basketball every Saturday."',a:'a',o:['play','plays'],
+     fc:'They usa el verbo base sin cambio. "Play" es correcto.',
+     fi:'"plays" solo se usa con He/She/It, nunca con They.',
+     ex:'They play basketball → Ellos juegan basketball',tip:'They = verbo base (sin -S)'},
+
+    {q:'"My dad ___ the car on Sundays." (wash)',a:'b',o:['washs','washes'],
+     fc:'wash termina en -sh → agrega -ES: washes. Regla obligatoria.',
+     fi:'"washs" no existe en inglés. Verbos en -sh siempre toman -ES.',
+     ex:'He washes the car → Él lava el carro'},
+
+    {q:'"The bird ___ south every winter." (fly)',a:'a',o:['flies','flys'],
+     fc:'fly termina en consonante + Y → la Y cambia a IES: flies.',
+     fi:'"flys" no existe. Consonante + Y siempre cambia a IES.',
+     ex:'It flies south → Vuela al sur',tip:'fly → flies, cry → cries, try → tries'},
+
+    {q:'¿Qué marcador indica present simple?',a:'b',o:['right now','every morning'],
+     fc:'"Every morning" indica una rutina repetida → present simple.',
+     fi:'"Right now" indica algo que pasa en este momento → presente continuo.',
+     ex:'She jogs every morning → Ella trota cada mañana'},
+
+    {q:'"He ___ his homework after school." (do)',a:'b',o:['dos','does'],
+     fc:'do es irregular: He → DOES. Es la única forma correcta.',
+     fi:'"dos" no existe en inglés. Do siempre cambia a "does" con He/She/It.',
+     ex:'He does his homework → Él hace su tarea',tip:'do → does (no "dos")'}
+  ]},
+
+  // ─── PASO 5 ───
+  {icon:"✨", title:"Práctica Final",
+  html:`<div class="section-label">Paso 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final <span class="challenge-badge">🔥 Nivel avanzado</span></div>
+<div class="section-desc">Combina todo lo aprendido. Las preguntas mezclan reglas, excepciones y contexto real.</div>
+
+<div class="formula-box">
+  <div class="row"><span class="g-subj">I/You/We/They</span> <span class="g-verb">eat · work · study · have · go</span></div>
+  <div class="row"><span class="g-subj">He/She/It</span> <span class="g-s3p">eats · works · studies · has · goes</span></div>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">🏃</div><div>
+  <div class="en"><span class="g-subj">My brother</span> <span class="g-s3p">runs</span> <span class="g-comp">5 km every morning</span>.</div>
+  <div class="es">Mi hermano corre 5 km cada mañana.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">📚</div><div>
+  <div class="en"><span class="g-subj">Maria and Juan</span> <span class="g-verb">study</span> <span class="g-comp">together on Fridays</span>.</div>
+  <div class="es">Maria y Juan estudian juntos los viernes.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">🐦</div><div>
+  <div class="en"><span class="g-subj">The parrot</span> <span class="g-s3p">watches</span> <span class="g-comp">TV with us every evening</span>.</div>
+  <div class="es">El loro ve TV con nosotros cada tarde.</div>
+</div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 5 errores más comunes</div>
+  <p>
+  ❌ She <b>have</b> a dog → ✅ She <b>has</b> a dog<br>
+  ❌ He <b>studys</b> → ✅ He <b>studies</b> (consonante + Y → IES)<br>
+  ❌ She <b>do</b> yoga → ✅ She <b>does</b> yoga<br>
+  ❌ He <b>gos</b> to work → ✅ He <b>goes</b> to work<br>
+  ❌ They <b>eats</b> lunch → ✅ They <b>eat</b> lunch (They = no -S)
+  </p>
+</div>`,
+  exercises:[
+    {q:'"My parents ___ coffee every morning."',a:'a',o:['drink','drinks'],
+     fc:'My parents = They → verbo base sin cambio: drink.',
+     fi:'"drinks" solo se usa con He/She/It, nunca con They o My parents.',
+     ex:'They drink coffee → Ellos toman café'},
+
+    {q:'"The dog ___ its tail when happy." (wag)',a:'b',o:['wag','wags'],
+     fc:'The dog = It → agrega -S al verbo: wags. Regla obligatoria.',
+     fi:'"wag" sin -S es incorrecto con It/He/She. Siempre necesita la -S.',
+     ex:'It wags its tail → Mueve la cola'},
+
+    {q:'"Carlos always ___ his best at school." (do)',a:'a',o:['does','do'],
+     fc:'Carlos = He → do es irregular: DOES. No sigue la regla normal de +S.',
+     fi:'"do" sin cambio es incorrecto con He/She/It. Siempre debe ser "does".',
+     ex:'He does his best → Él da lo mejor de sí',tip:'do → does (irregularísimo, ¡no olvidar!)'},
+
+    {q:'"My cat ___ on the roof every night." (sleep)',a:'a',o:['sleeps','sleep'],
+     fc:'My cat = It → agrega -S: sleeps.',
+     fi:'"sleep" sin -S es incorrecto con It/He/She.',
+     ex:'It sleeps on the roof → Duerme en el techo'},
+
+    {q:'"Lena and I ___ to the gym on Tuesdays." (go)',a:'b',o:['goes','go'],
+     fc:'"Lena and I" = We → verbo base: go (sin -ES).',
+     fi:'"goes" solo para He/She/It, no para We.',
+     ex:'We go to the gym → Vamos al gimnasio',tip:'Lena and I = WE → sin cambio'}
+  ]}
+];
+
+var curStep=0;
+var scores={};
+var answered={};
+
+function renderStepTabs(){
+  var c=document.getElementById('stepTabs');
+  c.innerHTML='';
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='step-tab'+(i===curStep?' active':'');
+    var k='s'+i;
+    if(scores[k]!==undefined&&i<curStep)b.classList.add('done');
+    b.textContent=(i+1)+'. '+s.icon+' '+s.title;
+    b.addEventListener('click',function(){
+      curStep=i;
+      renderStepTabs();
+      renderCard();
+      document.getElementById('summaryFinal').classList.remove('show');
+    });
+    c.appendChild(b);
+  });
+}
+
+function renderCard(){
+  var s=steps[curStep];
+  var k='s'+curStep;
+  if(scores[k]===undefined)scores[k]=0;
+
+  var h='<div class="card active">'+s.html+'<div class="ex-section"><h3>✏️ Ejercicios — '+s.title+'</h3>';
+
+  s.exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    var optA='a) '+e.o[0];
+    var optB='b) '+e.o[1];
+    h+='<div class="exercise" id="'+eid+'">';
+    h+='<div class="exercise-q">'+(i+1)+'. '+e.q+'</div>';
+    h+='<div class="opts">';
+    h+='<button class="opt-btn" id="btn-'+eid+'-a">'+optA+'</button>';
+    h+='<button class="opt-btn" id="btn-'+eid+'-b">'+optB+'</button>';
+    h+='</div>';
+
+    var correctText=e.o[e.a==='a'?0:1];
+
+    h+='<div class="fb fb-ok" id="fbok-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">🎉</span> Correcto!</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">'+correctText+'</span> — '+e.fc+'</div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: '+e.fi+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+
+    h+='<div class="fb fb-bad" id="fbbad-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">'+e.fi+'</span></div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">Respuesta correcta: <span class="fb-correct-answer">'+correctText+'</span> — '+e.fc+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='</div>';
+  });
+
+  h+='<div class="score-bar"><div class="num" id="sc-'+k+'">0 / 5</div><div class="lbl">Puntuación del paso</div></div>';
+  h+='</div></div>';
+
+  document.getElementById('cardArea').innerHTML=h;
+
+  steps[curStep].exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    var btnA=document.getElementById('btn-'+eid+'-a');
+    var btnB=document.getElementById('btn-'+eid+'-b');
+    btnA.addEventListener('click',function(){chk(eid,'a',e.a,k,i);});
+    btnB.addEventListener('click',function(){chk(eid,'b',e.a,k,i);});
+  });
+}
+
+function chk(eid,sel,correct,k,idx){
+  if(answered[eid])return;
+  answered[eid]=true;
+
+  var ex=document.getElementById(eid);
+  var btnA=document.getElementById('btn-'+eid+'-a');
+  var btnB=document.getElementById('btn-'+eid+'-b');
+  btnA.disabled=true;
+  btnB.disabled=true;
+
+  if(sel===correct){
+    ex.classList.add('correct');
+    if(sel==='a')btnA.classList.add('sel-ok');
+    else btnB.classList.add('sel-ok');
+    document.getElementById('fbok-'+eid).classList.add('show');
+    scores[k]++;
+  } else {
+    ex.classList.add('incorrect');
+    if(sel==='a'){btnA.classList.add('sel-bad');btnB.classList.add('show-ok');}
+    else{btnB.classList.add('sel-bad');btnA.classList.add('show-ok');}
+    document.getElementById('fbbad-'+eid).classList.add('show');
+  }
+
+  document.getElementById('sc-'+k).textContent=scores[k]+' / 5';
+
+  var allDone=true;
+  for(var i=0;i<5;i++){if(!answered[k+'e'+i]){allDone=false;break;}}
+  if(allDone&&curStep===4){
+    setTimeout(function(){
+      var sf=document.getElementById('summaryFinal');
+      var sl=document.getElementById('summaryList');
+      sl.innerHTML=summaryPoints.map(function(s){return '<li>'+s+'</li>';}).join('');
+      sf.classList.add('show');
+      sf.scrollIntoView({behavior:'smooth'});
+    },700);
+  }
+}
+
+renderStepTabs();
+renderCard();
+</script>
+</body>
+</html>

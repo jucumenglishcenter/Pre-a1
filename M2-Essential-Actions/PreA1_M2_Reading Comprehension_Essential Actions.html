@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Comprehension | Module 7 | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Lora:ital,wght@0,400;0,500;1,400&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#fff9e6 0%,#fff3cd 100%);min-height:100vh;padding:15px;padding-bottom:40px;-webkit-font-smoothing:antialiased}
+.container{max-width:620px;margin:0 auto}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);border-radius:20px;padding:28px 20px;text-align:center;margin-bottom:18px;box-shadow:0 8px 25px rgba(249,168,37,.4);position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);animation:shimmer 3s infinite}
+@keyframes shimmer{0%,100%{transform:rotate(0deg)}50%{transform:rotate(180deg)}}
+.header h1{font-family:'Fredoka',sans-serif;color:#fff;font-size:1.85rem;margin-bottom:6px;text-shadow:2px 2px 4px rgba(0,0,0,.2);position:relative;z-index:1}
+.header .subtitle{color:rgba(255,255,255,.92);font-size:.95rem;margin-bottom:10px;position:relative;z-index:1}
+.level-badge{display:inline-block;background:rgba(255,255,255,.25);padding:6px 16px;border-radius:20px;font-size:.82rem;color:#fff;font-weight:700;backdrop-filter:blur(5px);position:relative;z-index:1}
+.level-indicator{font-size:1.8rem;margin-top:8px;position:relative;z-index:1}
+
+/* KRASHEN */
+.krashen-box{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border-radius:15px;padding:16px 18px;margin-bottom:18px;border-left:5px solid #2196f3}
+.krashen-box .icon-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.krashen-box h4{color:#1565c0;font-size:.98rem}
+.krashen-box p{color:#555;font-size:.83rem;line-height:1.6}
+
+/* MODE SELECTOR */
+.mode-section{background:#fff;border-radius:15px;padding:18px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,.07)}
+.mode-section h3{text-align:center;color:#666;font-size:.9rem;margin-bottom:12px}
+.mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-btn{padding:16px 12px;border:3px solid #F9A825;border-radius:14px;background:#fff;cursor:pointer;transition:all .3s;text-align:center}
+.mode-btn:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(249,168,37,.25)}
+.mode-btn.active{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);border-color:#E65100}
+.mode-btn .flags{font-size:1.4rem;margin-bottom:6px}
+.mode-btn .mode-title{font-weight:700;color:#d48806;font-size:.85rem;margin-bottom:3px}
+.mode-btn.active .mode-title{color:#fff}
+.mode-btn .mode-desc{font-size:.72rem;color:#888}
+.mode-btn.active .mode-desc{color:rgba(255,255,255,.85)}
+
+/* ACHIEVEMENTS */
+.achievements-section{background:#fff;border-radius:15px;padding:18px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,.07)}
+.achievements-section h3{text-align:center;color:#d48806;font-size:.98rem;margin-bottom:4px}
+.achievements-section .sub{text-align:center;color:#999;font-size:.77rem;margin-bottom:13px}
+.achievements-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.achievement{text-align:center;padding:10px 6px;border-radius:11px;background:#f5f5f5;transition:all .3s;opacity:.45}
+.achievement.unlocked{background:linear-gradient(135deg,#fff9e6 0%,#fff3cd 100%);opacity:1;box-shadow:0 3px 10px rgba(249,168,37,.28)}
+.achievement .ach-icon{font-size:1.4rem;margin-bottom:4px}
+.achievement .ach-name{font-size:.62rem;color:#666;line-height:1.3}
+.achievement.unlocked .ach-name{color:#d48806;font-weight:700}
+
+/* STORY SELECTOR */
+.story-selector-section{background:#fff;border-radius:15px;padding:18px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,.07)}
+.story-selector-section h3{text-align:center;color:#d48806;font-size:.95rem;margin-bottom:12px}
+.story-selector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.story-sel-btn{padding:14px 10px;border:2.5px solid #e0e0e0;border-radius:13px;background:#fff;cursor:pointer;transition:all .3s;text-align:center;font-family:'Nunito',sans-serif}
+.story-sel-btn:hover{border-color:#F9A825;background:#fffbf0;transform:translateY(-2px)}
+.story-sel-btn.active{border-color:#F9A825;background:linear-gradient(135deg,#fff9e6 0%,#fff3cd 100%);box-shadow:0 3px 12px rgba(249,168,37,.25)}
+.story-sel-btn .s-num{font-size:.7rem;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.story-sel-btn .s-title{font-size:.88rem;font-weight:700;color:#555;line-height:1.3}
+.story-sel-btn.active .s-title{color:#d48806}
+.story-sel-btn .s-badge{font-size:.65rem;color:#888;margin-top:3px}
+.story-sel-btn.completed .s-title::after{content:' ✓';color:#4caf50}
+.story-sel-btn .s-stars{font-size:.75rem;color:#ccc;margin-top:2px;letter-spacing:1px}
+.story-sel-btn.completed .s-stars{color:#F9A825}
+
+/* STORY PANEL */
+.story-section{background:#fff;border-radius:15px;margin-bottom:18px;box-shadow:0 4px 15px rgba(0,0,0,.07);overflow:hidden}
+.story-header{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:filter .2s}
+.story-header:hover{filter:brightness(1.05)}
+.story-header h3{color:#fff;font-family:'Fredoka',sans-serif;font-size:1rem;display:flex;align-items:center;gap:8px}
+.story-toggle{color:#fff;font-size:1.1rem;transition:transform .3s}
+.story-toggle.open{transform:rotate(180deg)}
+.story-content{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.story-content.open{max-height:9999px}
+.story-inner{padding:16px;max-height:420px;overflow-y:auto}
+.story-inner::-webkit-scrollbar{width:6px}
+.story-inner::-webkit-scrollbar-track{background:#f1f1f1;border-radius:3px}
+.story-inner::-webkit-scrollbar-thumb{background:#F9A825;border-radius:3px}
+
+/* GLOBAL TRANSLATE BAR */
+.global-translate-bar{padding:10px 16px 0;display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.global-trans-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;color:#7b1fa2;background:#f3e5f5;border:1.5px solid #ce93d8;padding:4px 12px;border-radius:8px;cursor:pointer;transition:all .2s}
+.global-trans-btn:hover{background:#e1bee7}
+.global-trans-btn.active{background:#ce93d8;color:#fff;border-color:#ab47bc}
+
+/* STORY BLOCKS */
+.story-block{margin-bottom:14px;padding:12px 14px;background:#fffbf0;border-radius:10px;border-left:4px solid #F9A825}
+.story-para{font-family:'Lora',serif;font-size:.97rem;line-height:1.9;color:#333;cursor:pointer;border-radius:6px;transition:background .18s;padding:2px 4px;margin:-2px -4px}
+.story-para:hover{background:rgba(249,168,37,.12)}
+.story-para .vocab{color:#d48806;font-weight:700}
+.story-para .gram{color:#1565c0;font-style:italic}
+.story-para .sp-hint{font-family:'Nunito',sans-serif;font-size:.62rem;color:#F9A825;margin-left:6px;opacity:.7}
+.story-audio-row{display:flex;gap:6px;margin-top:5px;margin-left:4px}
+.audio-btn{display:inline-flex;align-items:center;gap:3px;font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:700;border:1.5px solid #e0e0e0;background:#fafafa;color:#555;padding:2px 9px;border-radius:7px;cursor:pointer;transition:all .2s}
+.audio-btn:hover{background:#f0f0f0;border-color:#bdbdbd}
+.audio-btn.playing{border-color:#F9A825;background:rgba(249,168,37,.1);color:#d48806}
+.reveal-line-story{margin-top:5px;margin-left:4px}
+.reveal-btn-s{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:.73rem;font-weight:600;color:#7b1fa2;background:#f3e5f5;border:none;padding:3px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+.reveal-btn-s:hover{background:#e1bee7}
+.reveal-btn-s .arr{transition:transform .22s;font-size:.65rem}
+.reveal-btn-s.open .arr{transform:rotate(90deg)}
+.reveal-text-s{display:none;font-family:'Lora',serif;font-style:italic;font-size:.84rem;color:#777;margin-top:4px;padding-left:12px;border-left:2.5px solid #ce93d8;animation:fadeIn .22s ease;line-height:1.7}
+.reveal-text-s.show{display:block}
+.full-translated .reveal-text-s{display:block!important}
+.full-translated .reveal-btn-s{background:#ce93d8;color:#fff}
+.full-translated .reveal-btn-s .arr{transform:rotate(90deg)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+
+/* TTS word highlight */
+.tts-word{transition:background .1s;border-radius:3px}
+.tts-word.lit{background:rgba(249,168,37,.45)}
+
+/* QUIZ */
+.quiz-section{background:#fff;border-radius:15px;padding:18px;box-shadow:0 4px 15px rgba(0,0,0,.07)}
+.quiz-header{text-align:center;margin-bottom:16px}
+.quiz-header h3{color:#d48806;font-size:1.05rem;margin-bottom:4px}
+.mode-indicator{color:#888;font-size:.82rem}
+
+.progress-container{margin-bottom:18px}
+.progress-bar{height:10px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);border-radius:5px;transition:width .5s ease;width:0}
+.progress-text{text-align:center;font-size:.78rem;color:#888;margin-top:6px}
+
+/* QUESTION CARDS */
+.question-card{background:#fafafa;border-radius:14px;padding:18px;margin-bottom:14px;border:2px solid #e0e0e0;transition:all .3s}
+.question-card.correct{border-color:#4caf50;background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%)}
+.question-card.incorrect{border-color:#f44336;background:linear-gradient(135deg,#ffebee 0%,#ffcdd2 100%)}
+.question-badge{display:inline-block;background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);color:#fff;padding:4px 11px;border-radius:14px;font-size:.72rem;font-weight:700;margin-bottom:11px}
+.question-text{font-size:.97rem;color:#333;margin-bottom:13px;line-height:1.5}
+.options-grid{display:flex;flex-direction:column;gap:9px}
+.option-btn{padding:13px 16px;border:2px solid #e0e0e0;border-radius:11px;background:#fff;color:#555;font-size:.87rem;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s;text-align:left}
+.option-btn:hover:not(:disabled){border-color:#F9A825;background:#fffbf0;transform:translateX(4px)}
+.option-btn:disabled{cursor:not-allowed}
+.option-btn.selected-correct{background:linear-gradient(135deg,#4caf50 0%,#66bb6a 100%);color:#fff;border-color:#4caf50}
+.option-btn.selected-wrong{background:linear-gradient(135deg,#f44336 0%,#ef5350 100%);color:#fff;border-color:#f44336}
+.option-btn.show-correct{background:linear-gradient(135deg,#4caf50 0%,#66bb6a 100%);color:#fff;border-color:#4caf50}
+
+/* 4-layer feedback */
+.feedback{margin-top:13px;padding:14px;border-radius:11px;display:none;animation:fadeIn .3s ease}
+.feedback.show{display:block}
+.feedback.correct-fb{background:#e8f5e9;border:2px solid #a5d6a7}
+.feedback.incorrect-fb{background:#ffebee;border:2px solid #ef9a9a}
+.feedback-title{font-weight:700;font-size:.95rem;margin-bottom:7px}
+.feedback.correct-fb .feedback-title{color:#2e7d32}
+.feedback.incorrect-fb .feedback-title{color:#c62828}
+.fb-layer{font-size:.8rem;color:#555;margin-bottom:5px;line-height:1.5;padding-left:8px;border-left:2px solid #ccc}
+.fb-layer:last-child{margin-bottom:0}
+.fb-layer strong{color:#444}
+
+/* Submit & Completion */
+.submit-section{display:none;text-align:center;margin:20px 0}
+.submit-btn{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);color:#fff;border:none;padding:16px 40px;border-radius:30px;font-size:1rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 5px 20px rgba(249,168,37,.4);transition:all .3s}
+.submit-btn:hover{transform:scale(1.05)}
+
+.completion-card{display:none;background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);border-radius:20px;padding:28px;text-align:center;margin-top:20px;box-shadow:0 8px 25px rgba(249,168,37,.4);animation:bounceIn .5s ease}
+@keyframes bounceIn{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.completion-card.show{display:block}
+.completion-icon{font-size:3.5rem;margin-bottom:12px}
+.completion-title{color:#fff;font-family:'Fredoka',sans-serif;font-size:1.5rem;margin-bottom:8px}
+.completion-score{font-size:2.8rem;font-weight:700;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,.2)}
+.completion-message{color:rgba(255,255,255,.92);font-size:.95rem;margin:12px 0}
+.completion-stats{background:rgba(255,255,255,.2);border-radius:12px;padding:14px;margin:16px 0;color:#fff}
+.completion-stats h4{font-size:.88rem;margin-bottom:8px}
+.stat-row{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:4px;opacity:.9}
+.completion-krashen{background:rgba(255,255,255,.15);border-radius:12px;padding:14px;margin:14px 0;color:#fff}
+.completion-krashen h4{font-size:.88rem;margin-bottom:7px}
+.completion-krashen p{font-size:.78rem;opacity:.92;line-height:1.55}
+.reset-btn{background:#fff;color:#d48806;border:none;padding:14px 38px;border-radius:30px;font-size:.95rem;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .3s;margin-top:8px}
+.reset-btn:hover{transform:scale(1.05);box-shadow:0 5px 20px rgba(0,0,0,.2)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal-content{background:#fff;border-radius:20px;padding:28px;text-align:center;max-width:310px;margin:20px;animation:bounceIn .4s ease}
+.modal-icon{font-size:3.5rem;margin-bottom:12px}
+.modal-title{color:#d48806;font-family:'Fredoka',sans-serif;font-size:1.25rem;margin-bottom:9px}
+.modal-text{color:#666;font-size:.88rem;margin-bottom:18px}
+.modal-btn{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);color:#fff;border:none;padding:11px 32px;border-radius:24px;font-size:.95rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer}
+
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <h1>&#x1F4DA; Reading Comprehension</h1>
+  <div class="subtitle">Module 7 &bull; Essential Actions</div>
+  <div class="level-badge">&#x1F49B; Pre-A1</div>
+  <div class="level-indicator">&#x1F49B;</div>
+</header>
+
+<!-- KRASHEN -->
+<div class="krashen-box">
+  <div class="icon-title">
+    <span>&#x1F9E0;</span>
+    <h4>Input Comprensible (Krashen)</h4>
+  </div>
+  <p>Seg&uacute;n Stephen Krashen, adquirimos un idioma cuando entendemos mensajes. Lee cada historia sin presi&oacute;n &mdash; tu cerebro absorbe patrones del ingl&eacute;s mientras disfrutas la narrativa. &iexcl;Este es el &ldquo;input comprensible&rdquo; en acci&oacute;n!</p>
+</div>
+
+<!-- MODE SELECTOR -->
+<div class="mode-section">
+  <h3>Selecciona el modo de pr&aacute;ctica</h3>
+  <div class="mode-buttons">
+    <button class="mode-btn active" id="btn-es-es" onclick="setMode('es-es',this)">
+      <div class="flags">&#x1F1EA;&#x1F1F8;&#x27A1;&#xFE0F;&#x1F1EA;&#x1F1F8;</div>
+      <div class="mode-title">Espa&ntilde;ol &rarr; Espa&ntilde;ol</div>
+      <div class="mode-desc">Comprensi&oacute;n total</div>
+    </button>
+    <button class="mode-btn" id="btn-es-en" onclick="setMode('es-en',this)">
+      <div class="flags">&#x1F1EA;&#x1F1F8;&#x27A1;&#xFE0F;&#x1F1EC;&#x1F1E7;</div>
+      <div class="mode-title">Espa&ntilde;ol &rarr; English</div>
+      <div class="mode-desc">Desaf&iacute;o biling&uuml;e</div>
+    </button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="achievements-section">
+  <h3>&#x1F3C6; Logros por Desbloquear</h3>
+  <p class="sub">Responde correctamente para ganar insignias</p>
+  <div class="achievements-grid">
+    <div class="achievement" id="ach-first"><div class="ach-icon">&#x1F331;</div><div class="ach-name">Primera Respuesta</div></div>
+    <div class="achievement" id="ach-streak"><div class="ach-icon">&#x1F525;</div><div class="ach-name">3 Correctas Seguidas</div></div>
+    <div class="achievement" id="ach-literal"><div class="ach-icon">&#x1F4D6;</div><div class="ach-name">Comprensi&oacute;n Literal</div></div>
+    <div class="achievement" id="ach-inferential"><div class="ach-icon">&#x1F50D;</div><div class="ach-name">Comprensi&oacute;n Inferencial</div></div>
+    <div class="achievement" id="ach-critical"><div class="ach-icon">&#x1F393;</div><div class="ach-name">Pensamiento Cr&iacute;tico</div></div>
+    <div class="achievement" id="ach-perfect"><div class="ach-icon">&#x2B50;</div><div class="ach-name">Perfecci&oacute;n</div></div>
+    <div class="achievement" id="ach-action"><div class="ach-icon">&#x26A1;</div><div class="ach-name">Acci&oacute;n Esencial</div></div>
+    <div class="achievement" id="ach-explorer"><div class="ach-icon">&#x1F30D;</div><div class="ach-name">Explorador</div></div>
+  </div>
+</div>
+
+<!-- STORY SELECTOR -->
+<div class="story-selector-section">
+  <h3>&#x1F4D1; Selecciona una Historia</h3>
+  <div class="story-selector-grid">
+    <button class="story-sel-btn active" id="sel-s1" onclick="selectStory(1)">
+      <div class="s-num">Historia 1</div>
+      <div class="s-title">Every Morning</div>
+      <div class="s-badge">Marco &bull; Rutina diaria</div>
+      <div class="s-stars" id="stars-s1">&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;</div>
+    </button>
+    <button class="story-sel-btn" id="sel-s2" onclick="selectStory(2)">
+      <div class="s-num">Historia 2</div>
+      <div class="s-title">What I Can Do</div>
+      <div class="s-badge">Ana &bull; Habilidades</div>
+      <div class="s-stars" id="stars-s2">&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;</div>
+    </button>
+    <button class="story-sel-btn" id="sel-s3" onclick="selectStory(3)">
+      <div class="s-num">Historia 3</div>
+      <div class="s-title">A Typical Day</div>
+      <div class="s-badge">Sara &bull; Un d&iacute;a normal</div>
+      <div class="s-stars" id="stars-s3">&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;</div>
+    </button>
+    <button class="story-sel-btn" id="sel-s4" onclick="selectStory(4)">
+      <div class="s-num">Historia 4</div>
+      <div class="s-title">Giving &amp; Receiving</div>
+      <div class="s-badge">Ben &amp; Rosa &bull; Compartir</div>
+      <div class="s-stars" id="stars-s4">&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;&#x2606;</div>
+    </button>
+  </div>
+</div>
+
+<!-- STORY PANEL -->
+<div class="story-section">
+  <div class="story-header" onclick="toggleStory()">
+    <h3 id="story-panel-title">&#x1F4D6; Historia 1: Every Morning</h3>
+    <span class="story-toggle open" id="story-toggle">&#x25BC;</span>
+  </div>
+  <div class="story-content open" id="story-content">
+    <div class="global-translate-bar">
+      <button class="global-trans-btn" id="global-trans-btn" onclick="toggleGlobalTranslate()">&#x1F1EA;&#x1F1F8; Mostrar traducciones</button>
+    </div>
+    <div class="story-inner" id="story-inner">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3>&#x270F;&#xFE0F; Quiz de Comprensi&oacute;n</h3>
+    <div class="mode-indicator" id="mode-display">Modo: Espa&ntilde;ol &rarr; Espa&ntilde;ol &bull; Historia 1</div>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text">0 de 7 preguntas</div>
+  </div>
+  <div id="questions-container"></div>
+  <div class="submit-section" id="submit-section">
+    <button class="submit-btn" onclick="showCompletion()">&#x1F4CA; Ver Resultados</button>
+  </div>
+  <div class="completion-card" id="completion-card">
+    <div class="completion-icon">&#x1F3C6;</div>
+    <div class="completion-title">&iexcl;Completado!</div>
+    <div class="completion-score" id="final-score">0/7</div>
+    <div class="completion-message" id="completion-message"></div>
+    <div class="completion-stats" id="completion-stats">
+      <h4>&#x1F4CA; Desglose de Resultados</h4>
+      <div class="stat-row"><span>Literal (P1-P3):</span><span id="stat-literal">-</span></div>
+      <div class="stat-row"><span>Inferencial (P4-P6):</span><span id="stat-inferential">-</span></div>
+      <div class="stat-row"><span>Pensamiento Cr&iacute;tico (P7):</span><span id="stat-critical">-</span></div>
+    </div>
+    <div class="completion-krashen">
+      <h4>&#x1F9E0; &iquest;Sab&iacute;as que...?</h4>
+      <p>Al completar este ejercicio, tu cerebro ha absorbido patrones naturales del ingl&eacute;s. Seg&uacute;n Krashen, <strong>la adquisici&oacute;n ocurre inconscientemente</strong> cuando entendemos mensajes. &iexcl;Cada historia que lees construye tu competencia ling&uuml;&iacute;stica!</p>
+    </div>
+    <button class="reset-btn" onclick="resetQuiz()">&#x1F504; Intentar de Nuevo</button>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ACHIEVEMENT MODAL -->
+<div class="modal-overlay" id="achievement-modal">
+  <div class="modal-content">
+    <div class="modal-icon" id="modal-icon">&#x1F3C6;</div>
+    <h3 class="modal-title">&iexcl;Logro Desbloqueado!</h3>
+    <p class="modal-text" id="modal-text">Has completado algo incre&iacute;ble</p>
+    <button class="modal-btn" onclick="closeModal()">&iexcl;Genial!</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const STORIES = {
+  1: {
+    title: 'Historia 1: Every Morning',
+    sel_title: 'Every Morning',
+    sel_char: 'Marco &bull; Rutina matutina',
+    paragraphs: [
+      { en: 'My name is Marco. I get up early. I wash my face. I brush my teeth. Then I go to the kitchen.', tts: 'My name is Marco. I get up early. I wash my face. I brush my teeth. Then I go to the kitchen.', es: 'Mi nombre es Marco. Me levanto temprano. Me lavo la cara. Me cepillo los dientes. Luego voy a la cocina.' },
+      { en: 'I make coffee every morning. I get some bread too. I sit down and eat. It is a simple meal. I like it a lot.', tts: 'I make coffee every morning. I get some bread too. I sit down and eat. It is a simple meal. I like it a lot.', es: 'Hago café cada mañana. También agarro un poco de pan. Me siento y como. Es una comida sencilla. Me gusta mucho.' },
+      { en: 'After breakfast, I do my chores. I make my bed first. Then I sweep the floor. I keep my room clean. It does not take long.', tts: 'After breakfast, I do my chores. I make my bed first. Then I sweep the floor. I keep my room clean. It does not take long.', es: 'Después del desayuno, hago mis quehaceres. Primero tiendo mi cama. Luego barro el piso. Mantengo mi cuarto limpio. No tarda mucho.' },
+      { en: 'Then I get my bag. I take my keys too. I come back for my phone. I do not want to forget. I am ready to go.', tts: 'Then I get my bag. I take my keys too. I come back for my phone. I do not want to forget. I am ready to go.', es: 'Luego agarro mi bolsa. También tomo mis llaves. Regreso por mi teléfono. No quiero olvidar nada. Estoy listo para salir.' },
+      { en: 'I do this every day. It is a good habit. A clean start is nice. I keep my mornings simple. That is how I like it.', tts: 'I do this every day. It is a good habit. A clean start is nice. I keep my mornings simple. That is how I like it.', es: 'Hago esto cada día. Es un buen hábito. Un buen comienzo es agradable. Mantengo mis mañanas simples. Así es como me gusta.' },
+      { en: 'My mornings make me happy. I do not rush at all. I take my time always. I feel calm and ready. It is a great start.', tts: 'My mornings make me happy. I do not rush at all. I take my time always. I feel calm and ready. It is a great start.', es: 'Mis mañanas me hacen feliz. No tengo prisa en absoluto. Siempre me tomo mi tiempo. Me siento tranquilo y listo. Es una gran manera de empezar.' },
+    ]
+  },
+  2: {
+    title: 'Historia 2: What I Can Do',
+    sel_title: 'What I Can Do',
+    sel_char: 'Ana &bull; Habilidades',
+    paragraphs: [
+      { en: 'My name is Ana. I can do many things. I can cook at home. I can read and write. I can use a computer.', tts: 'My name is Ana. I can do many things. I can cook at home. I can read and write. I can use a computer.', es: 'Mi nombre es Ana. Puedo hacer muchas cosas. Puedo cocinar en casa. Puedo leer y escribir. Puedo usar una computadora.' },
+      { en: 'I can also make things. I can make cards for people. I use paper and colors. I give them to my friends. They love to get them.', tts: 'I can also make things. I can make cards for people. I use paper and colors. I give them to my friends. They love to get them.', es: 'También puedo hacer cosas. Puedo hacer tarjetas para la gente. Uso papel y colores. Las doy a mis amigos. Les encanta recibirlas.' },
+      { en: 'But I cannot do everything. I cannot drive a car. I cannot speak French. That is okay for now. We all have things to learn.', tts: 'But I cannot do everything. I cannot drive a car. I cannot speak French. That is okay for now. We all have things to learn.', es: 'Pero no puedo hacer todo. No puedo manejar un auto. No puedo hablar francés. Eso está bien por ahora. Todos tenemos cosas que aprender.' },
+      { en: 'I am learning English now. I repeat new words every day. I ask my teacher for help. She is very kind to me. I keep on trying hard.', tts: 'I am learning English now. I repeat new words every day. I ask my teacher for help. She is very kind to me. I keep on trying hard.', es: 'Ahora estoy aprendiendo inglés. Repito palabras nuevas cada día. Le pregunto a mi maestra cuando olvido. Ella es muy amable conmigo. Sigo esforzándome mucho.' },
+      { en: 'I want to call my friends. I want to use English well. I can become a good speaker. I just have to keep going. I will not give up.', tts: 'I want to call my friends. I want to use English well. I can become a good speaker. I just have to keep going. I will not give up.', es: 'Quiero llamar a mis amigos. Quiero usar bien el inglés. Puedo llegar a ser una buena hablante. Solo tengo que seguir adelante. No me voy a rendir.' },
+      { en: 'Small steps are still steps. I do a little each day. I keep going every day. I know I can do it. That is enough for me.', tts: 'Small steps are still steps. I do a little each day. I keep going every day. I know I can do it. That is enough for me.', es: 'Los pasos pequeños siguen siendo pasos. Hago un poco cada día. Sigo adelante cada día. Sé que puedo lograrlo. Eso es suficiente para mí.' },
+    ]
+  },
+  3: {
+    title: 'Historia 3: A Typical Day',
+    sel_title: 'A Typical Day',
+    sel_char: 'Sara &bull; Un d&iacute;a normal',
+    paragraphs: [
+      { en: 'My name is Sara. I get up at seven. I make tea first thing. I have a small breakfast. Then I get ready for work.', tts: 'My name is Sara. I get up at seven. I make tea first thing. I have a small breakfast. Then I get ready for work.', es: 'Me llamo Sara. Me levanto a las siete. Lo primero que hago es preparar té. Desayuno algo ligero. Luego me alisto para el trabajo.' },
+      { en: 'I take the bus to work. The ride is not long. I arrive at work on time. I do many things at work. I help people every day.', tts: 'I take the bus to work. The ride is not long. I arrive at work on time. I do many things at work. I help people every day.', es: 'Tomo el autobús al trabajo. El recorrido no es largo. Llego a mi trabajo a tiempo. Hago muchas cosas en el trabajo. Ayudo a la gente todos los días.' },
+      { en: 'At lunch, I get some food. I take a short walk too. The fresh air is very good. I come back and feel better. Then I do more work.', tts: 'At lunch, I get some food. I take a short walk too. The fresh air is very good. I come back and feel better. Then I do more work.', es: 'En el almuerzo, consigo comida. También salgo a caminar un poco. El aire fresco es muy bueno. Regreso y me siento mejor. Luego hago más trabajo.' },
+      { en: 'In the afternoon, I have meetings. I ask questions and take notes. I make a task list too. I keep it on my desk. It helps me a lot.', tts: 'In the afternoon, I have meetings. I ask questions and take notes. I make a task list too. I keep it on my desk. It helps me a lot.', es: 'Por la tarde tengo una reunión. Hago preguntas y tomo notas. Hago una lista de cosas por hacer. La mantengo en mi escritorio. Me ayuda mucho.' },
+      { en: 'I take the bus back home. I come in and sit down. I make a simple dinner. I have it on the couch. It is a good end.', tts: 'I take the bus back home. I come in and sit down. I make a simple dinner. I have it on the couch. It is a good end.', es: 'Tomo el autobús de regreso a casa. Entro y me siento. Preparo una cena sencilla. La como en el sofá. Es un buen final.' },
+      { en: 'I do this every weekday. It is a good routine. I keep to my schedule. It makes my day easy. I like my typical day.', tts: 'I do this every weekday. It is a good routine. I keep to my schedule. It makes my day easy. I like my typical day.', es: 'Hago esto cada día de la semana. Es una buena rutina. Me apego a mi horario. Hace mi día más fácil. Me gusta mi día típico.' },
+    ]
+  },
+  4: {
+    title: 'Historia 4: Giving and Receiving',
+    sel_title: 'Giving &amp; Receiving',
+    sel_char: 'Ben &amp; Rosa &bull; Compartir',
+    paragraphs: [
+      { en: 'Ben has a neighbor named Rosa. She is old and kind. Ben likes her very much. He comes to see her often. They are good friends.', tts: 'Ben has a neighbor named Rosa. She is old and kind. Ben likes her very much. He comes to see her often. They are good friends.', es: 'Ben tiene una vecina llamada Rosa. Ella es mayor y amable. Ben la aprecia mucho. Viene a verla seguido. Son buenos amigos.' },
+      { en: 'Ben gives Rosa fruit each week. He gets it at the market. He takes it to her door. She is always so happy. She says thank you each time.', tts: 'Ben gives Rosa fruit each week. He gets it at the market. He takes it to her door. She is always so happy. She says thank you each time.', es: 'Ben le da fruta a Rosa cada semana. La compra en el mercado. Se la lleva a su puerta. Ella siempre está feliz de recibirla. Le da las gracias cada vez.' },
+      { en: 'Rosa gives back in return. She makes good food for Ben. She asks him to come eat. He always says yes. He sits at her table.', tts: 'Rosa gives back in return. She makes good food for Ben. She asks him to come eat. He always says yes. He sits at her table.', es: 'Rosa le devuelve el favor. Ella le prepara buena comida a Ben. Le pide que venga a comer. Él siempre dice que sí. Se sienta a su mesa.' },
+      { en: 'One day Rosa needs help. She wants to use her phone. She does not know how. She asks Ben to show her. He shows her each step slowly. She repeats what he does.', tts: 'One day Rosa needs help. She wants to use her phone. She does not know how. She asks Ben to show her. He shows her each step slowly. She repeats what he does.', es: 'Un día Rosa necesita ayuda. Quiere usar su teléfono. No sabe cómo hacerlo. Le pide a Ben que le enseñe. Él le muestra cada paso despacio. Ella repite lo que él hace.' },
+      { en: 'Rosa keeps on trying hard. At last she can do it. She makes her first call. She hears her son speak. She is so happy.', tts: 'Rosa keeps on trying hard. At last she can do it. She makes her first call. She hears her son speak. She is so happy.', es: 'Rosa sigue intentándolo con esfuerzo. Por fin puede hacerlo. Hace su primera llamada. Escucha a su hijo en la línea. Está muy feliz.' },
+      { en: 'Ben and Rosa help each other. They give and they take. They use what they know. Small acts of help are big. They are a great team.', tts: 'Ben and Rosa help each other. They give and they take. They use what they know. Small acts of help are big. They are a great team.', es: 'Ben y Rosa se ayudan mutuamente. Dan y reciben. Usan lo que saben. Los pequeños actos de ayuda son grandes. Son un gran equipo.' },
+    ]
+  },
+};
+
+// Questions: [question_es, answer_es_options, correct_idx_es, answer_en_options, correct_idx_en, type, feedback_correct, feedback_incorrect]
+// feedback: {evidencia, gramatica, vocabulario, estrategia}
+const QUESTIONS = {
+  1: [
+    {
+      q_es: '¿Qué hace Marco antes de ir a la cocina?',
+      opts_es: ['Hace café y agarra pan', 'Se lava la cara y se cepilla los dientes', 'Barre el piso y tiende la cama', 'Agarra su bolsa y sus llaves'],
+      correct_es: 1,
+      opts_en: ['He makes coffee and gets bread', 'He washes his face and brushes his teeth', 'He sweeps the floor and makes his bed', 'He gets his bag and his keys'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I wash my face. I brush my teeth. Then I go to the kitchen."', gr: '<em>Then</em> = luego. Marca que la cocina viene DESPUÉS del baño.', vo: '<em>Wash face</em> = lavarse la cara. <em>Brush teeth</em> = cepillarse los dientes.', st: 'El orden es clave: baño → cocina. Busca qué hace antes de ir a la cocina.' },
+      fb_no: { ev: '"I wash my face. I brush my teeth. <strong>Then</strong> I go to the kitchen."', gr: '<em>Then</em> muestra que el baño ocurre antes que la cocina.', vo: '<em>Face</em> = cara. <em>Teeth</em> = dientes. Higiene personal, no desayuno.', st: 'Las acciones de la cocina (café, pan) vienen DESPUÉS — no son las primeras.' }
+    },
+    {
+      q_es: '¿Qué desayuna Marco?',
+      opts_es: ['Huevos y jugo', 'Café y un poco de pan', 'Cereal y leche', 'Solo café'],
+      correct_es: 1,
+      opts_en: ['Eggs and juice', 'Coffee and a little bread', 'Cereal and milk', 'Only coffee'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I make coffee every morning. I get some bread too."', gr: '<em>Every morning</em> = cada mañana. <em>Some bread</em> = un poco de pan.', vo: '<em>Coffee</em> = café. <em>Bread</em> = pan. Una comida sencilla.', st: 'El P2 describe exactamente el desayuno de Marco — dos elementos simples.' },
+      fb_no: { ev: '"I make coffee. I get some bread too." Solo eso — nada más.', gr: '<em>Too</em> = también. Indica que ambos (café y pan) van juntos.', vo: '<em>Simple meal</em> = comida sencilla. Sin huevos, cereal ni jugo.', st: '"It is a simple meal" confirma que es algo básico — no busques opciones elaboradas.' }
+    },
+    {
+      q_es: '¿Qué quehaceres hace Marco después del desayuno?',
+      opts_es: ['Lava los platos y barre la sala', 'Tiende su cama y barre el piso', 'Limpia el baño y saca la basura', 'Lava la ropa y ordena su cuarto'],
+      correct_es: 1,
+      opts_en: ['He washes dishes and sweeps the living room', 'He makes his bed and sweeps the floor', 'He cleans the bathroom and takes out the trash', 'He does laundry and organizes his room'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I make my bed first. Then I sweep the floor. I keep my room clean."', gr: '<em>First/Then</em> = primero/luego. Indica el orden de las dos acciones.', vo: '<em>Make the bed</em> = tender la cama. <em>Sweep</em> = barrer.', st: 'El P3 lista exactamente dos quehaceres — búscalos con las palabras clave.' },
+      fb_no: { ev: '"I make my bed first. Then I sweep the floor." Estas son las dos.', gr: '<em>Make my bed</em> = tender la cama. <em>Sweep the floor</em> = barrer el piso.', vo: '<em>Bed</em> = cama. <em>Floor</em> = piso. No baño, no ropa, no sala.', st: 'Solo dos quehaceres aparecen en el texto — ni más ni menos.' }
+    },
+    {
+      q_es: '¿Qué lleva Marco cuando sale de casa?',
+      opts_es: ['Solo su bolsa', 'Su bolsa, sus llaves y su teléfono', 'Su bolsa y su libro', 'Sus llaves y su computadora'],
+      correct_es: 1,
+      opts_en: ['Only his bag', 'His bag, his keys, and his phone', 'His bag and his book', 'His keys and his computer'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I get my bag. I take my keys too. I come back for my phone."', gr: 'Tres acciones separadas: <em>get bag</em>, <em>take keys</em>, <em>come back for phone</em>.', vo: '<em>Bag</em> = bolsa. <em>Keys</em> = llaves. <em>Phone</em> = teléfono.', st: 'Cuenta los objetos en el P4 — son exactamente tres y todos se mencionan.' },
+      fb_no: { ev: '"I get my bag. I take my keys. I come back for my phone." Son tres.', gr: 'Tres verbos distintos para tres objetos distintos.', vo: '<em>Bag</em> + <em>keys</em> + <em>phone</em>. No libro ni computadora.', st: 'Cada oración del P4 menciona un objeto diferente — lee las tres.' }
+    },
+    {
+      q_es: '¿Por qué Marco mantiene sus mañanas simples?',
+      opts_es: ['Porque no tiene tiempo para más cosas', 'Porque así es como a él le gusta', 'Porque su trabajo empieza muy temprano', 'Porque vive solo y no tiene ayuda'],
+      correct_es: 1,
+      opts_en: ['Because he does not have time for more things', 'Because that is how he likes it', 'Because his job starts very early', 'Because he lives alone and has no help'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"I keep my mornings simple. That is how I like it."', gr: '<em>That is how I like it</em> = así es como me gusta. Expresa preferencia personal.', vo: '<em>Like</em> = gustar. Es una elección, no una limitación.', st: '"That is how I like it" da la razón directamente — es su preferencia, no una obligación.' },
+      fb_no: { ev: '"That is how I <strong>like it</strong>." La razón es su preferencia personal.', gr: '<em>I like it</em> = me gusta. No dice que no tenga tiempo ni que trabaje temprano.', vo: '<em>Like</em> = gustar (elección positiva). No hay limitación externa.', st: 'La frase "That is how I like it" da la respuesta directamente.' }
+    },
+    {
+      q_es: '¿Cómo se siente Marco al salir de casa?',
+      opts_es: ['Cansado y con prisa', 'Tranquilo y listo para el día', 'Nervioso y olvidadizo', 'Aburrido y sin energía'],
+      correct_es: 1,
+      opts_en: ['Tired and in a rush', 'Calm and ready for the day', 'Nervous and forgetful', 'Bored and without energy'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"I feel calm and ready. It is a great start."', gr: '<em>Calm</em> = tranquilo. <em>Ready</em> = listo. <em>Great start</em> = gran comienzo.', vo: '<em>Calm</em> = tranquilo. <em>Ready</em> = preparado.', st: 'El P6 termina con "feel calm and ready" — describe exactamente su estado al salir.' },
+      fb_no: { ev: '"I feel <strong>calm and ready</strong>." Estas son sus palabras exactas.', gr: '<em>Calm</em> = tranquilo (no nervioso ni cansado). <em>Ready</em> = listo.', vo: '<em>Do not rush</em> = no tiene prisa. Lo contrario de apresurado.', st: '"I do not rush at all" elimina la opción de prisa; "calm" elimina cansancio.' }
+    },
+    {
+      q_es: '¿Cuál es el mensaje principal de esta historia?',
+      opts_es: ['Levantarse muy temprano es lo más importante', 'Una rutina matutina simple y positiva puede hacer el día mejor', 'El café y el pan son el mejor desayuno', 'Marco es un personaje especial y diferente a todos'],
+      correct_es: 1,
+      opts_en: ['Waking up very early is the most important thing', 'A simple and positive morning routine can make the day better', 'Coffee and bread are the best breakfast', 'Marco is a special character different from everyone'],
+      correct_en: 1,
+      type: 'critical',
+      fb_ok: { ev: '"It is a good habit." y "My mornings make me happy." y "It is a great start."', gr: '<em>Good habit</em> = buen hábito. <em>Great start</em> = gran comienzo del día.', vo: '<em>Simple</em> + <em>happy</em> + <em>great start</em> son las palabras clave del mensaje.', st: 'El mensaje abarca toda la historia — no es un detalle como el café o la hora.' },
+      fb_no: { ev: '"My mornings make me happy" — el café es un detalle, no el mensaje central.', gr: 'El texto no dice que sea necesario levantarse muy temprano.', vo: '<em>Routine</em> = rutina. <em>Simple</em> = simple pero valiosa.', st: 'Pensamiento crítico: distingue entre los ejemplos de la historia y su lección central.' }
+    },
+  ],
+  2: [
+    {
+      q_es: '¿Qué cosas puede hacer Ana según el primer párrafo?',
+      opts_es: ['Manejar, nadar y cocinar', 'Cocinar, leer, escribir y usar la computadora', 'Hablar francés, cocinar y leer', 'Nadar, cantar y usar la computadora'],
+      correct_es: 1,
+      opts_en: ['Drive, swim, and cook', 'Cook, read and write, and use a computer', 'Speak French, cook, and read', 'Swim, sing, and use a computer'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I can cook at home. I can read and write. I can use a computer."', gr: '<em>Can</em> + verbo = habilidad. Tres oraciones con <em>can</em>.', vo: '<em>Cook</em> = cocinar. <em>Read and write</em> = leer y escribir. <em>Computer</em> = computadora.', st: 'Busca todas las oraciones con \'I can\' en el P1 — son las habilidades de Ana.' },
+      fb_no: { ev: '"I can cook... I can read and write... I can use a computer." Son exactamente estas.', gr: '<em>Can</em> expresa habilidad. Busca cada \'I can\' en el P1.', vo: '<em>Cook, read and write, computer</em> — no manejar, no nadar.', st: 'Lee el P1 completo y anota cada \'I can\' — son las tres habilidades.' }
+    },
+    {
+      q_es: '¿Qué tipo de cosas hace Ana para sus amigos?',
+      opts_es: ['Les cocina comida especial', 'Les hace tarjetas con papel y colores', 'Les enseña a usar la computadora', 'Les da dinero para sus necesidades'],
+      correct_es: 1,
+      opts_en: ['She cooks special food for them', 'She makes cards with paper and colors', 'She teaches them to use a computer', 'She gives them money for their needs'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I can make cards for people. I use paper and colors. I give them to my friends."', gr: '<em>Make cards</em> = hacer tarjetas. <em>Paper and colors</em> = papel y colores.', vo: '<em>Cards</em> = tarjetas. <em>Friends</em> = amigos. Una habilidad creativa.', st: 'El P2 habla de una habilidad adicional — hacer tarjetas a mano para otros.' },
+      fb_no: { ev: '"I make cards for people. I use paper and colors." Esta es la respuesta.', gr: '<em>Cards</em> = tarjetas (no comida, no clases, no dinero).', vo: '<em>Paper and colors</em> = papel y colores. Es una actividad manual y creativa.', st: '"They love to get them" confirma que los amigos reciben tarjetas, no otra cosa.' }
+    },
+    {
+      q_es: '¿Qué NO puede hacer Ana?',
+      opts_es: ['Cocinar en casa', 'Manejar un auto y hablar francés', 'Hacer tarjetas para sus amigos', 'Usar la computadora'],
+      correct_es: 1,
+      opts_en: ['Cook at home', 'Drive a car and speak French', 'Make cards for her friends', 'Use a computer'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I cannot drive a car. I cannot speak French."', gr: '<em>Cannot</em> = no puede. Negación del modal <em>can</em>.', vo: '<em>Drive</em> = manejar. <em>French</em> = francés. Las dos limitaciones exactas.', st: 'Busca "But I cannot" en el P3 — introduce las limitaciones de Ana.' },
+      fb_no: { ev: '"I cannot drive a car. I cannot speak French." Estas son las dos.', gr: '<em>Cannot</em> = no puede (negación de can).', vo: '<em>Drive</em> y <em>French</em> son las únicas limitaciones mencionadas.', st: '"But" al inicio del P3 señala el cambio de habilidades a limitaciones.' }
+    },
+    {
+      q_es: '¿Qué hace Ana cada día para aprender inglés?',
+      opts_es: ['Ve películas en inglés', 'Repite palabras nuevas y pide ayuda a su maestra', 'Lee libros en inglés', 'Escucha canciones en inglés'],
+      correct_es: 1,
+      opts_en: ['She watches movies in English', 'She repeats new words and asks her teacher for help', 'She reads books in English', 'She listens to songs in English'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I repeat new words every day. I ask my teacher for help."', gr: '<em>Every day</em> = cada día (frecuencia). <em>Ask for help</em> = pedir ayuda.', vo: '<em>Repeat</em> = repetir. <em>Teacher</em> = maestra. Sus dos acciones diarias.', st: '"Every day" en el P4 indica exactamente lo que hace con regularidad.' },
+      fb_no: { ev: '"I repeat new words every day. I ask my teacher for help."', gr: '<em>Every day</em> señala el hábito diario — no películas ni canciones.', vo: '<em>Repeat words</em> y <em>ask teacher</em> son las dos acciones exactas.', st: 'El P4 describe el método de aprendizaje diario de Ana — son solo dos acciones.' }
+    },
+    {
+      q_es: '¿Cuál es el gran objetivo de Ana con el inglés?',
+      opts_es: ['Enseñar inglés en una escuela', 'Llamar a sus amigos y usar el inglés bien', 'Viajar a otro país', 'Ganar un concurso de idiomas'],
+      correct_es: 1,
+      opts_en: ['To teach English at a school', 'To call her friends and use English well', 'To travel to another country', 'To win a language competition'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"I want to call my friends. I want to use English well."', gr: '<em>Want to</em> + verbo = deseo/objetivo. Dos metas concretas.', vo: '<em>Call</em> = llamar. <em>Use well</em> = usar bien. Sus dos objetivos.', st: '"Want to" introduce sus metas — ambas están en el P5.' },
+      fb_no: { ev: '"I want to call my friends. I want to use English well." Estas son sus metas.', gr: '<em>Want to</em> = quiero (deseo). No dice enseñar ni viajar.', vo: '<em>Call friends</em> y <em>use English well</em> — dos objetivos claros.', st: 'El P5 lista exactamente lo que Ana quiere lograr — busca las dos frases con \'want to\'.' }
+    },
+    {
+      q_es: '¿Qué significa para Ana \'Small steps are still steps\'?',
+      opts_es: ['Que los pasos grandes son más importantes', 'Que el progreso pequeño también tiene valor', 'Que hay que aprender inglés muy rápido', 'Que Ana camina despacio todos los días'],
+      correct_es: 1,
+      opts_en: ['That big steps are more important', 'That small progress also has value', 'That you must learn English very fast', 'That Ana walks slowly every day'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"Small steps are still steps. I do a little each day."', gr: '<em>Still</em> = aun así/de todas formas. Afirma el valor de algo pequeño.', vo: '<em>Steps</em> = pasos hacia una meta. <em>Still</em> = siguen contando.', st: '"Still steps" = aunque sean pequeños, siguen siendo avance real hacia la meta.' },
+      fb_no: { ev: '"Small steps are <strong>still</strong> steps." <em>Still</em> = aun así.', gr: '<em>Still</em> refuerza el valor, no lo niega. No dice que los grandes sean mejores.', vo: '<em>Steps</em> = avance (no caminar literalmente).', st: 'Esta frase resume la filosofía de Ana — poco a poco también es progreso.' }
+    },
+    {
+      q_es: '¿Cuál es el mensaje principal de esta historia?',
+      opts_es: ['El inglés es el idioma más difícil del mundo', 'Con determinación y pasos pequeños puedes alcanzar tus metas', 'Ana es mejor que otras personas por su esfuerzo', 'Es imposible aprender sin vivir en otro país'],
+      correct_es: 1,
+      opts_en: ['English is the hardest language in the world', 'With determination and small steps you can reach your goals', 'Ana is better than others because of her effort', 'It is impossible to learn without living abroad'],
+      correct_en: 1,
+      type: 'critical',
+      fb_ok: { ev: '"Small steps are still steps." y "I will not give up." y "I know I can do it."', gr: '<em>Determination</em> = determinación. <em>Keep going</em> = seguir adelante.', vo: '<em>Steps, keep going, can do it</em> — vocabulario de perseverancia.', st: 'El mensaje abarca el arco completo de Ana: acepta límites pero no se rinde.' },
+      fb_no: { ev: '"Small steps are still steps" — el mensaje es perseverancia, no dificultad.', gr: 'El texto muestra esfuerzo positivo, no superioridad ni imposibilidad.', vo: '<em>Keep going</em> + <em>will not give up</em> = el corazón del mensaje.', st: 'Pensamiento crítico: los detalles (francés, tarjetas) ilustran el mensaje, no son el mensaje.' }
+    },
+  ],
+  3: [
+    {
+      q_es: '¿A qué hora se levanta Sara y qué hace primero?',
+      opts_es: ['A las seis y hace café', 'A las siete y prepara té', 'A las ocho y come un desayuno grande', 'A las nueve y toma el autobús'],
+      correct_es: 1,
+      opts_en: ['At six and she makes coffee', 'At seven and she makes tea', 'At eight and she eats a big breakfast', 'At nine and she takes the bus'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I get up at seven. I make tea first thing."', gr: '<em>First thing</em> = lo primero que hace. Inmediatamente al levantarse.', vo: '<em>Seven</em> = siete. <em>Tea</em> = té. <em>First thing</em> = lo primero.', st: '"First thing" indica la acción inmediata — no hay nada antes del té.' },
+      fb_no: { ev: '"I get up at seven. I make tea <strong>first thing</strong>."', gr: '<em>First thing</em> = lo primero. No café, no a las seis.', vo: '<em>Tea</em> (no coffee). <em>Seven</em> (no six, no eight).', st: 'Lee la primera y segunda oración del P1 para encontrar hora y primera acción.' }
+    },
+    {
+      q_es: '¿Cómo va Sara al trabajo y qué hace cuando llega?',
+      opts_es: ['Camina y descansa antes de empezar', 'Toma el autobús y llega a tiempo', 'Va en carro y llega tarde a veces', 'Va en bicicleta y come algo al llegar'],
+      correct_es: 1,
+      opts_en: ['She walks and rests before starting', 'She takes the bus and arrives on time', 'She goes by car and sometimes arrives late', 'She goes by bicycle and eats something on arrival'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"I take the bus to work. I arrive at work on time."', gr: '<em>Take the bus</em> = tomar el autobús. <em>On time</em> = a tiempo.', vo: '<em>Bus</em> = autobús. <em>On time</em> = puntual.', st: 'El P2 da dos datos exactos: medio de transporte Y cómo llega.' },
+      fb_no: { ev: '"I take the bus. I arrive on time." Ambos datos están en el P2.', gr: '<em>Take the bus</em> = autobús (no carro, no bici, no caminar).', vo: '<em>On time</em> = a tiempo (no tarde).', st: 'El P2 tiene dos datos importantes juntos — transporte y puntualidad.' }
+    },
+    {
+      q_es: '¿Qué hace Sara durante el almuerzo?',
+      opts_es: ['Come con sus compañeros de trabajo', 'Consigue comida y da una caminata corta', 'Solo descansa en su escritorio', 'Habla por teléfono con amigos'],
+      correct_es: 1,
+      opts_en: ['She eats with her coworkers', 'She gets food and takes a short walk', 'She just rests at her desk', 'She talks on the phone with friends'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"At lunch, I get some food. I take a short walk too."', gr: '<em>Too</em> = también. Hace DOS cosas al mediodía.', vo: '<em>Lunch</em> = almuerzo. <em>Short walk</em> = caminata corta.', st: '"At lunch" señala el párrafo. "Too" confirma que hace más de una cosa.' },
+      fb_no: { ev: '"At lunch, I get some food. I take a short walk <strong>too</strong>."', gr: '<em>Too</em> = también. Indica segunda acción adicional.', vo: '<em>Walk</em> = caminar (no descansar ni hablar por teléfono).', st: 'El P3 empieza con "At lunch" — ese es el párrafo correcto.' }
+    },
+    {
+      q_es: '¿Qué hace Sara en la tarde?',
+      opts_es: ['Sale a caminar y descansa', 'Tiene reuniones y hace una lista de tareas', 'Trabaja desde casa en su computadora', 'Llama a su familia por teléfono'],
+      correct_es: 1,
+      opts_en: ['She goes for a walk and rests', 'She has meetings and makes a task list', 'She works from home on her computer', 'She calls her family on the phone'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"In the afternoon, I have meetings. I make a task list too."', gr: '<em>In the afternoon</em> = por la tarde. Señal de tiempo exacta.', vo: '<em>Meetings</em> = reuniones. <em>Task list</em> = lista de tareas.', st: 'El P4 describe exactamente las dos actividades de Sara en la tarde.' },
+      fb_no: { ev: '"I have meetings. I make a task list too." Ambas están en el P4.', gr: '<em>In the afternoon</em> señala el párrafo correcto.', vo: '<em>Meetings</em> = reuniones. <em>Task list</em> = lista de tareas.', st: 'La caminata es del almuerzo (P3), no de la tarde (P4). El momento importa.' }
+    },
+    {
+      q_es: '¿Cómo termina Sara su día cuando llega a casa?',
+      opts_es: ['Hace ejercicio y llama a amigos', 'Prepara una cena sencilla y la come en el sofá', 'Trabaja más horas desde casa', 'Sale a caminar otra vez'],
+      correct_es: 1,
+      opts_en: ['She exercises and calls friends', 'She makes a simple dinner and eats it on the couch', 'She works more hours from home', 'She goes for another walk'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"I make a simple dinner. I have it on the couch. It is a good end."', gr: '<em>Simple dinner</em> = cena sencilla. <em>Have it</em> = comerla.', vo: '<em>Couch</em> = sofá. <em>Good end</em> = buen final del día.', st: '"It is a good end" confirma que esto cierra el día — es el P5 completo.' },
+      fb_no: { ev: '"I make a simple dinner. I have it on the <strong>couch</strong>."', gr: '<em>Simple</em> = sencilla. <em>Couch</em> = sofá. No ejercicio ni trabajo.', vo: '<em>Good end</em> = buen final. Confirma que esto cierra el día.', st: 'El P5 describe exactamente el final del día de Sara.' }
+    },
+    {
+      q_es: '¿Qué actitud tiene Sara hacia su rutina diaria?',
+      opts_es: ['La encuentra aburrida y monótona', 'La valora y la disfruta', 'Le genera mucho estrés', 'La sigue solo porque debe trabajar'],
+      correct_es: 1,
+      opts_en: ['She finds it boring and monotonous', 'She values it and enjoys it', 'It generates a lot of stress for her', 'She follows it only because she must work'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"It is a good routine." y "I like my typical day."', gr: '<em>Good</em> = buena (valoración positiva). <em>I like</em> = me gusta.', vo: '<em>Good routine</em> + <em>like</em> = actitud positiva clara.', st: '"I like my typical day" es la declaración más directa sobre su actitud.' },
+      fb_no: { ev: '"I <strong>like</strong> my typical day." Esa es su actitud.', gr: '<em>Like</em> = gustar. No hay estrés ni aburrimiento en el texto.', vo: '<em>Good routine</em> y <em>like</em> indican apreciación, no obligación.', st: 'La última oración de la historia expresa cómo se siente Sara directamente.' }
+    },
+    {
+      q_es: '¿Cuál es el mensaje principal de esta historia?',
+      opts_es: ['El transporte público es siempre la mejor opción', 'Una rutina organizada hace la vida más fácil y agradable', 'Hay que trabajar muy duro todos los días', 'Sara es una persona perfecta sin problemas'],
+      correct_es: 1,
+      opts_en: ['Public transport is always the best option', 'An organized routine makes life easier and more enjoyable', 'You have to work very hard every day', 'Sara is a perfect person with no problems'],
+      correct_en: 1,
+      type: 'critical',
+      fb_ok: { ev: '"It is a good routine." y "It makes my day easy." y "I like my typical day."', gr: '<em>Routine</em> = rutina. <em>Easy</em> = fácil. <em>Like</em> = disfrutar.', vo: '<em>Good routine + easy + like</em> = el mensaje en tres palabras.', st: 'El mensaje no es el autobús ni las reuniones — es el valor de una buena rutina.' },
+      fb_no: { ev: '"It is a good routine. It makes my day easy." La rutina es el mensaje.', gr: 'El autobús es un detalle de transporte, no la lección de la historia.', vo: '<em>Routine</em> y <em>easy</em> son las palabras centrales del mensaje.', st: 'Pensamiento crítico: los detalles (autobús, lista, sofá) ilustran la rutina, no son el tema.' }
+    },
+  ],
+  4: [
+    {
+      q_es: '¿Quién es Rosa y cómo la describe la historia?',
+      opts_es: ['La maestra de inglés de Ben', 'La vecina mayor y amable de Ben', 'La hermana de Ben', 'La jefa de Ben en el trabajo'],
+      correct_es: 1,
+      opts_en: ['Ben\'s English teacher', 'Ben\'s older and kind neighbor', 'Ben\'s sister', 'Ben\'s boss at work'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"Ben has a neighbor named Rosa. She is old and kind."', gr: '<em>Neighbor</em> = vecino/a. <em>Old</em> = mayor. <em>Kind</em> = amable.', vo: '<em>Neighbor</em> = vecina. <em>Kind</em> = amable. Dos descriptores directos.', st: 'La primera oración presenta a Rosa — nombre, relación y dos características.' },
+      fb_no: { ev: '"Ben has a <strong>neighbor</strong> named Rosa. She is old and kind."', gr: '<em>Neighbor</em> = vecino/a (no maestra, hermana ni jefa).', vo: '<em>Old</em> = mayor. <em>Kind</em> = amable. Exactamente dos adjetivos.', st: 'La primera oración da toda la información necesaria sobre quién es Rosa.' }
+    },
+    {
+      q_es: '¿Qué hace Ben con la fruta que compra en el mercado?',
+      opts_es: ['La guarda para él solo', 'Se la lleva a Rosa a su puerta', 'La vende en el mercado', 'La lleva al trabajo'],
+      correct_es: 1,
+      opts_en: ['He keeps it for himself', 'He takes it to Rosa at her door', 'He sells it at the market', 'He takes it to work'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"Ben gives Rosa fruit each week. He gets it at the market. He takes it to her door."', gr: '<em>Takes it to her door</em> = se la lleva a su puerta. Destino específico.', vo: '<em>Fruit</em> = fruta. <em>Door</em> = puerta. <em>Each week</em> = cada semana.', st: 'El P2 describe tres pasos: compra → da → lleva a la puerta.' },
+      fb_no: { ev: '"He <strong>takes it to her door</strong>." El destino es su puerta.', gr: '<em>Takes it to</em> = se lo lleva a. Movimiento hacia un destino.', vo: '<em>Her door</em> = la puerta de ella (de Rosa). No el trabajo, no para sí.', st: '"He takes it to her door" es la acción final y más específica del P2.' }
+    },
+    {
+      q_es: '¿Cómo devuelve Rosa el favor a Ben?',
+      opts_es: ['Le da dinero cada semana', 'Le prepara buena comida y lo invita a comer', 'Le ayuda a limpiar su casa', 'Le trae fruta del mercado también'],
+      correct_es: 1,
+      opts_en: ['She gives him money each week', 'She makes good food and invites him to eat', 'She helps him clean his house', 'She also brings him fruit from the market'],
+      correct_en: 1,
+      type: 'literal',
+      fb_ok: { ev: '"Rosa gives back in return. She makes good food for Ben. She asks him to come eat."', gr: '<em>Gives back in return</em> = devuelve el favor. <em>Asks him to come</em> = lo invita.', vo: '<em>Good food</em> = buena comida. <em>Come eat</em> = venir a comer.', st: '"Gives back in return" introduce cómo Rosa corresponde — busca qué hace en el P3.' },
+      fb_no: { ev: '"She makes good food. She asks him to come eat." Eso es lo que hace.', gr: '<em>Makes food</em> = prepara comida (no dinero, no limpieza, no fruta).', vo: '<em>Food</em> = comida. <em>Come eat</em> = venir a comer.', st: '"Gives back in return" + P3 = cocina e invita. Simple y directo.' }
+    },
+    {
+      q_es: '¿Por qué Rosa le pide ayuda a Ben con el teléfono?',
+      opts_es: ['Porque el teléfono está roto', 'Porque quiere usarlo pero no sabe cómo', 'Porque necesita un teléfono nuevo', 'Porque Ben tiene un teléfono mejor'],
+      correct_es: 1,
+      opts_en: ['Because the phone is broken', 'Because she wants to use it but does not know how', 'Because she needs a new phone', 'Because Ben has a better phone'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"She wants to use her phone. She does not know how."', gr: '<em>Does not know how</em> = no sabe cómo hacerlo. Falta de habilidad.', vo: '<em>Know how</em> = saber cómo. <em>Does not</em> = no sabe.', st: 'El P4 da dos oraciones que juntas explican el problema de Rosa.' },
+      fb_no: { ev: '"She <strong>does not know how</strong>." No está roto — ella no sabe usarlo.', gr: '<em>Does not know how</em> = falta de habilidad, no falla del equipo.', vo: '<em>Her phone</em> = su teléfono (ya lo tiene, no necesita uno nuevo).', st: '"Her phone" indica que el teléfono existe — el problema es la habilidad.' }
+    },
+    {
+      q_es: '¿Qué logra Rosa al final y qué muestra eso sobre su carácter?',
+      opts_es: ['Que se rinde cuando es difícil', 'Que persiste y logra hacer su primera llamada', 'Que necesita que Ben lo haga por ella', 'Que los teléfonos son demasiado difíciles para ella'],
+      correct_es: 1,
+      opts_en: ['That she gives up when it is hard', 'That she persists and makes her first call', 'That she needs Ben to do it for her', 'That phones are too difficult for her'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"Rosa keeps on trying hard. At last she can do it. She makes her first call."', gr: '<em>Keeps on trying</em> = sigue intentando. <em>At last</em> = por fin.', vo: '<em>At last</em> = por fin (después de esfuerzo). <em>First call</em> = primera llamada.', st: '"At last" indica que hubo esfuerzo previo — la persistencia llevó al éxito.' },
+      fb_no: { ev: '"Rosa keeps on trying hard. <strong>At last</strong> she can do it."', gr: '<em>At last</em> = por fin. Indica éxito después de persistencia.', vo: '<em>Keeps on trying</em> = sigue intentando (no se rinde).', st: '"Keeps on trying" + "at last she can" = persistencia que lleva al éxito.' }
+    },
+    {
+      q_es: '¿Qué tipo de relación tienen Ben y Rosa?',
+      opts_es: ['Una relación formal de negocios', 'Una relación de ayuda mutua donde ambos dan y reciben', 'Solo son vecinos que se saludan', 'Rosa ayuda a Ben pero Ben no la ayuda'],
+      correct_es: 1,
+      opts_en: ['A formal business relationship', 'A relationship of mutual help where both give and receive', 'They are just neighbors who say hello', 'Rosa helps Ben but Ben does not help her'],
+      correct_en: 1,
+      type: 'inferential',
+      fb_ok: { ev: '"Ben and Rosa help each other. They give and they take." y "They are a great team."', gr: '<em>Each other</em> = mutuamente. <em>Give and take</em> = dar y recibir.', vo: '<em>Great team</em> = gran equipo. <em>Help each other</em> = ayuda mutua.', st: '"Give and take" resume que los dos dan Y los dos reciben — es recíproco.' },
+      fb_no: { ev: '"They give and they take." y "They are a great <strong>team</strong>."', gr: '<em>Each other</em> = de ambos lados. Ben da fruta; Rosa da comida y ayuda.', vo: '<em>Team</em> implica reciprocidad. <em>Give and take</em> = mutuo.', st: 'La historia completa muestra acciones de ambos lados — no es unilateral.' }
+    },
+    {
+      q_es: '¿Cuál es el mensaje principal de esta historia?',
+      opts_es: ['La tecnología es difícil para las personas mayores', 'Los pequeños actos de ayuda mutua hacen la vida mejor', 'Ben es inusual porque es muy generoso', 'La fruta es el mejor regalo para los vecinos'],
+      correct_es: 1,
+      opts_en: ['Technology is hard for older people', 'Small mutual acts of help make life better', 'Ben is unusual because he is very generous', 'Fruit is the best gift for neighbors'],
+      correct_en: 1,
+      type: 'critical',
+      fb_ok: { ev: '"Small acts of help are big. They are a great team."', gr: '<em>Small acts</em> = actos pequeños. <em>Big</em> = grandes en valor e impacto.', vo: '<em>Acts of help</em> = actos de ayuda. <em>Big</em> = tienen gran valor.', st: '"Small acts of help are big" — esta frase casi dice el mensaje textualmente.' },
+      fb_no: { ev: '"Small acts of help are <strong>big</strong>." El mensaje es sobre ayuda mutua.', gr: 'La fruta y el teléfono son ejemplos — el tema es la ayuda mutua en sí.', vo: '<em>Small</em> ≠ sin valor. <em>Big</em> = impacto grande.', st: 'Piensa en toda la historia: fruta, comida, teléfono — todos son el mismo tema.' }
+    },
+  ],
+};
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let currentMode = 'es-es';
+let currentStory = 1;
+let score = 0;
+let answered = new Set();
+let streak = 0;
+let literalCorrect = 0;
+let inferentialCorrect = 0;
+let criticalCorrect = false;
+let modalQueue = [];
+let modalShowing = false;
+const totalQ = 7;
+const storyScores = {1:null,2:null,3:null,4:null};
+let shuffledQuestions = [];
+
+// Fisher-Yates shuffle
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+// Build shuffled questions with remapped correct index
+function buildShuffledQuestions(storyId, mode) {
+  const qs = QUESTIONS[storyId];
+  return qs.map((q, qi) => {
+    const isEs = mode === 'es-es';
+    const opts = isEs ? q.opts_es : q.opts_en;
+    const correctOrig = isEs ? q.correct_es : q.correct_en;
+    // Create indexed options
+    const indexed = opts.map((text, idx) => ({text, isCorrect: idx === correctOrig}));
+    const shuffled = shuffle(indexed);
+    const newCorrect = shuffled.findIndex(o => o.isCorrect);
+    return {
+      q_es: q.q_es,
+      opts: shuffled.map(o => o.text),
+      correct: newCorrect,
+      type: q.type,
+      fb_ok: q.fb_ok,
+      fb_no: q.fb_no
+    };
+  });
+}
+
+// ═══════════════════════════════════════════════
+// STORY RENDERING
+// ═══════════════════════════════════════════════
+function renderStory(storyId) {
+  const story = STORIES[storyId];
+  const inner = document.getElementById('story-inner');
+  inner.innerHTML = '';
+  story.paragraphs.forEach((p, i) => {
+    const block = document.createElement('div');
+    block.className = 'story-block';
+    block.innerHTML = `
+      <div class="story-para" onclick="speakStory(this,'${p.tts.replace(/'/g,"\\'")}')">
+        ${p.en}
+        <span class="sp-hint">&#x1F50A;</span>
+      </div>
+      <div class="story-audio-row">
+        <button class="audio-btn" onclick="speakBtn(this,'${p.tts.replace(/'/g,"\\'")}','US')">&#x1F1FA;&#x1F1F8; US</button>
+        <button class="audio-btn" onclick="speakBtn(this,'${p.tts.replace(/'/g,"\\'")}','UK')">&#x1F1EC;&#x1F1E7; UK</button>
+      </div>
+      <div class="reveal-line-story">
+        <button class="reveal-btn-s" onclick="toggleRevealS(this)">&#x1F1EA;&#x1F1F8; <span class="arr">&#x203A;</span></button>
+        <div class="reveal-text-s">${p.es}</div>
+      </div>
+    `;
+    inner.appendChild(block);
+  });
+  document.getElementById('story-panel-title').innerHTML = `&#x1F4D6; ${story.title}`;
+  // Reset global translate btn
+  const btn = document.getElementById('global-trans-btn');
+  btn.classList.remove('active');
+  btn.innerHTML = '&#x1F1EA;&#x1F1F8; Mostrar traducciones';
+  inner.closest('.story-content').classList.remove('full-translated');
+}
+
+function toggleRevealS(btn) {
+  const text = btn.nextElementSibling;
+  text.classList.toggle('show');
+  btn.classList.toggle('open');
+}
+
+function toggleGlobalTranslate() {
+  const btn = document.getElementById('global-trans-btn');
+  const content = document.getElementById('story-content');
+  const isOn = btn.classList.toggle('active');
+  btn.innerHTML = isOn ? '&#x1F1EA;&#x1F1F8; Ocultar traducciones' : '&#x1F1EA;&#x1F1F8; Mostrar traducciones';
+  if (isOn) {
+    content.classList.add('full-translated');
+    content.querySelectorAll('.reveal-text-s').forEach(t => t.classList.add('show'));
+    content.querySelectorAll('.reveal-btn-s').forEach(b => b.classList.add('open'));
+  } else {
+    content.classList.remove('full-translated');
+    content.querySelectorAll('.reveal-text-s').forEach(t => t.classList.remove('show'));
+    content.querySelectorAll('.reveal-btn-s').forEach(b => b.classList.remove('open'));
+  }
+}
+
+// ═══════════════════════════════════════════════
+// QUIZ RENDERING
+// ═══════════════════════════════════════════════
+const TYPE_LABELS = {
+  literal: 'Literal &#x1F4D6;',
+  inferential: 'Inferencial &#x1F50D;',
+  critical: 'Pensamiento Cr&iacute;tico &#x1F393;'
+};
+
+function renderQuiz() {
+  shuffledQuestions = buildShuffledQuestions(currentStory, currentMode);
+  const container = document.getElementById('questions-container');
+  container.innerHTML = '';
+  shuffledQuestions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `qcard-${i}`;
+    let optsHtml = q.opts.map((opt, oi) =>
+      `<button class="option-btn" onclick="checkAnswer(${i},${oi})">${String.fromCharCode(97+oi)}) ${opt}</button>`
+    ).join('');
+    card.innerHTML = `
+      <span class="question-badge">Pregunta ${i+1}/7 &bull; ${TYPE_LABELS[q.type]}</span>
+      <div class="question-text">${q.q_es}</div>
+      <div class="options-grid">${optsHtml}</div>
+      <div class="feedback correct-fb" id="fb-${i}-ok">
+        <div class="feedback-title">&#x2705; &iexcl;Correcto!</div>
+        <div class="fb-layer"><strong>&#x1F4DC; Evidencia:</strong> ${q.fb_ok.ev}</div>
+        <div class="fb-layer"><strong>&#x1F4D0; Gram&aacute;tica:</strong> ${q.fb_ok.gr}</div>
+        <div class="fb-layer"><strong>&#x1F4AC; Vocabulario:</strong> ${q.fb_ok.vo}</div>
+        <div class="fb-layer"><strong>&#x1F9E0; Estrategia:</strong> ${q.fb_ok.st}</div>
+      </div>
+      <div class="feedback incorrect-fb" id="fb-${i}-no">
+        <div class="feedback-title">&#x274C; Incorrecto</div>
+        <div class="fb-layer"><strong>&#x1F4DC; Evidencia:</strong> ${q.fb_no.ev}</div>
+        <div class="fb-layer"><strong>&#x1F4D0; Gram&aacute;tica:</strong> ${q.fb_no.gr}</div>
+        <div class="fb-layer"><strong>&#x1F4AC; Vocabulario:</strong> ${q.fb_no.vo}</div>
+        <div class="fb-layer"><strong>&#x1F9E0; Estrategia:</strong> ${q.fb_no.st}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+
+// ═══════════════════════════════════════════════
+// CHECK ANSWER
+// ═══════════════════════════════════════════════
+function checkAnswer(qIdx, selectedIdx) {
+  if (answered.has(qIdx)) return;
+  answered.add(qIdx);
+  const q = shuffledQuestions[qIdx];
+  const isCorrect = selectedIdx === q.correct;
+  const card = document.getElementById(`qcard-${qIdx}`);
+  const buttons = card.querySelectorAll('.option-btn');
+  buttons.forEach(b => b.disabled = true);
+  buttons[selectedIdx].classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
+  if (!isCorrect) buttons[q.correct].classList.add('show-correct');
+  document.getElementById(`fb-${qIdx}-${isCorrect?'ok':'no'}`).classList.add('show');
+  card.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+  if (isCorrect) {
+    score++;
+    streak++;
+    if (q.type === 'literal') literalCorrect++;
+    if (q.type === 'inferential') inferentialCorrect++;
+    if (q.type === 'critical') criticalCorrect = true;
+    checkAchievements(qIdx);
+  } else {
+    streak = 0;
+  }
+  updateProgress();
+  if (answered.size === totalQ) {
+    setTimeout(() => {
+      document.getElementById('submit-section').style.display = 'block';
+      document.getElementById('submit-section').scrollIntoView({behavior:'smooth',block:'center'});
+    }, 600);
+  }
+}
+
+function updateProgress() {
+  const pct = (answered.size / totalQ) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${answered.size} de ${totalQ} preguntas`;
+}
+
+// ═══════════════════════════════════════════════
+// ACHIEVEMENTS
+// ═══════════════════════════════════════════════
+function checkAchievements(qIdx) {
+  if (answered.size === 1 && score === 1) queueAchievement('ach-first','&#x1F331;','&iexcl;Primera Respuesta Correcta!');
+  if (streak === 3) queueAchievement('ach-streak','&#x1F525;','&iexcl;3 Respuestas Correctas Seguidas!');
+  if (literalCorrect >= 3) queueAchievement('ach-literal','&#x1F4D6;','&iexcl;Comprensi&oacute;n Literal Dominada!');
+  if (inferentialCorrect >= 3) queueAchievement('ach-inferential','&#x1F50D;','&iexcl;Comprensi&oacute;n Inferencial Lograda!');
+  if (criticalCorrect) {
+    queueAchievement('ach-critical','&#x1F393;','&iexcl;Pensamiento Cr&iacute;tico Activado!');
+    queueAchievement('ach-action','&#x26A1;','&iexcl;Acci&oacute;n Esencial: Mensaje Comprendido!');
+  }
+}
+
+function queueAchievement(id, icon, text) {
+  const el = document.getElementById(id);
+  if (el && !el.classList.contains('unlocked')) {
+    el.classList.add('unlocked');
+    modalQueue.push({icon, text});
+    if (!modalShowing) showNextModal();
+  }
+}
+
+function showNextModal() {
+  if (modalQueue.length === 0) { modalShowing = false; return; }
+  modalShowing = true;
+  const {icon, text} = modalQueue.shift();
+  document.getElementById('modal-icon').innerHTML = icon;
+  document.getElementById('modal-text').innerHTML = text;
+  document.getElementById('achievement-modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('achievement-modal').classList.remove('show');
+  setTimeout(showNextModal, 300);
+}
+
+// ═══════════════════════════════════════════════
+// COMPLETION
+// ═══════════════════════════════════════════════
+function showCompletion() {
+  document.getElementById('submit-section').style.display = 'none';
+  storyScores[currentStory] = score;
+  updateStorySelector();
+
+  const lit = Math.min(literalCorrect, 3);
+  const inf = Math.min(inferentialCorrect, 3);
+  const crit = criticalCorrect ? 1 : 0;
+
+  document.getElementById('final-score').textContent = `${score}/7`;
+  document.getElementById('stat-literal').textContent = `${lit}/3`;
+  document.getElementById('stat-inferential').textContent = `${inf}/3`;
+  document.getElementById('stat-critical').textContent = crit ? '&#x2705; Correcto' : '&#x274C; Incorrecto';
+
+  let msg = '';
+  if (score === 7) { msg = '&iexcl;Excelente comprensi&oacute;n lectora! &#x1F31F;'; queueAchievement('ach-perfect','&#x2B50;','&iexcl;Puntuaci&oacute;n Perfecta!'); }
+  else if (score >= 5) msg = '&iexcl;Muy bien! Tienes buena comprensi&oacute;n. &#x1F44D;';
+  else if (score >= 3) msg = 'Buen intento. Lee la historia otra vez. &#x1F4D6;';
+  else msg = 'Sigue practicando. &iexcl;T&uacute; puedes! &#x1F4AA;';
+
+  // Check explorer (all 4 stories completed)
+  const allDone = [1,2,3,4].every(s => storyScores[s] !== null);
+  if (allDone) queueAchievement('ach-explorer','&#x1F30D;','&iexcl;Explorador: &iexcl;Completaste las 4 historias!');
+
+  document.getElementById('completion-message').innerHTML = msg;
+  document.getElementById('completion-card').classList.add('show');
+  document.getElementById('completion-card').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function updateStorySelector() {
+  [1,2,3,4].forEach(s => {
+    const sc = storyScores[s];
+    const btn = document.getElementById(`sel-s${s}`);
+    const stars = document.getElementById(`stars-s${s}`);
+    if (sc !== null) {
+      btn.classList.add('completed');
+      const filledStars = '&#x2605;'.repeat(sc) + '&#x2606;'.repeat(7-sc);
+      stars.innerHTML = filledStars;
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// RESET / MODE / STORY SELECT
+// ═══════════════════════════════════════════════
+function resetQuiz() {
+  score = 0; answered.clear(); streak = 0;
+  literalCorrect = 0; inferentialCorrect = 0; criticalCorrect = false;
+  document.getElementById('submit-section').style.display = 'none';
+  document.getElementById('completion-card').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateModeDisplay();
+  resetQuiz();
+}
+
+function updateModeDisplay() {
+  const modeText = currentMode === 'es-es' ? 'Espa&ntilde;ol &rarr; Espa&ntilde;ol' : 'Espa&ntilde;ol &rarr; English';
+  document.getElementById('mode-display').innerHTML = `Modo: ${modeText} &bull; Historia ${currentStory}`;
+}
+
+function selectStory(storyId) {
+  currentStory = storyId;
+  document.querySelectorAll('.story-sel-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`sel-s${storyId}`).classList.add('active');
+  renderStory(storyId);
+  updateModeDisplay();
+  resetQuiz();
+}
+
+// ═══════════════════════════════════════════════
+// STORY TOGGLE
+// ═══════════════════════════════════════════════
+function toggleStory() {
+  const content = document.getElementById('story-content');
+  const toggle = document.getElementById('story-toggle');
+  content.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════
+// TTS
+// ═══════════════════════════════════════════════
+let currentAudioBtn = null;
+let usVoice = null, ukVoice = null, voicesReady = false;
+let globalRate = 0.82;
+
+function loadVoices() {
+  const voices = speechSynthesis.getVoices();
+  if (!voices.length) return;
+  voicesReady = true;
+  const usPat = [
+    v => v.lang==='en-US' && /samantha|allison|ava|aaron|nicky/i.test(v.name),
+    v => v.lang==='en-US' && /google us/i.test(v.name),
+    v => v.lang==='en-US'
+  ];
+  const ukPat = [
+    v => v.lang==='en-GB' && /daniel|kate|serena/i.test(v.name),
+    v => v.lang==='en-GB',
+    v => v.lang.startsWith('en')
+  ];
+  for (const p of usPat) { const m = voices.find(p); if (m) { usVoice = m; break; } }
+  for (const p of ukPat) { const m = voices.find(v => p(v) && v !== usVoice); if (m) { ukVoice = m; break; } }
+}
+speechSynthesis.getVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 800);
+
+function stopAll() {
+  speechSynthesis.cancel();
+  if (currentAudioBtn) { currentAudioBtn.classList.remove('playing'); currentAudioBtn = null; }
+  document.querySelectorAll('.tts-word.lit').forEach(w => w.classList.remove('lit'));
+  document.querySelectorAll('.story-para.playing').forEach(el => el.classList.remove('playing'));
+}
+
+function speakBtn(btn, text, accent) {
+  if (currentAudioBtn === btn && speechSynthesis.speaking) { stopAll(); return; }
+  stopAll();
+  if (!voicesReady) loadVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate = globalRate;
+  if (accent === 'US') { utt.lang = 'en-US'; if (usVoice) utt.voice = usVoice; }
+  else { utt.lang = 'en-GB'; if (ukVoice) utt.voice = ukVoice; }
+  btn.classList.add('playing');
+  currentAudioBtn = btn;
+  utt.onend = utt.onerror = () => { btn.classList.remove('playing'); currentAudioBtn = null; };
+  speechSynthesis.speak(utt);
+}
+
+function speakStory(el, text) {
+  if (el.classList.contains('playing') && speechSynthesis.speaking) { stopAll(); return; }
+  stopAll();
+  if (!voicesReady) loadVoices();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate = globalRate;
+  utt.lang = 'en-US';
+  if (usVoice) utt.voice = usVoice;
+  el.classList.add('playing');
+  utt.onend = utt.onerror = () => { el.classList.remove('playing'); };
+  speechSynthesis.speak(utt);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+renderStory(1);
+renderQuiz();
+updateModeDisplay();
+</script>
+</body>
+</html>

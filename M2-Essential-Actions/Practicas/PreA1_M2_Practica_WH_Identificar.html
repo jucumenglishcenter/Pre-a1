@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identification - Pre-A1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#F59E0B;--primary-light:#FCD34D;--primary-dark:#D97706;--bg-gradient-start:#FFFBEB;--bg-gradient-end:#FEF3C7;--text-dark:#78350F;--text-medium:#92400E;--text-light:#B45309;--success:#10B981;--success-light:#D1FAE5;--success-dark:#059669;--error:#EF4444;--error-light:#FEE2E2;--error-dark:#DC2626;--info:#3B82F6;--info-light:#DBEAFE;--info-dark:#1D4ED8;--purple:#8B5CF6;--purple-dark:#6D28D9;--shadow-soft:0 4px 20px rgba(245,158,11,0.15);--border-radius:20px;}
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));min-height:100vh;color:var(--text-dark);}
+        .header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-soft);}
+        .back-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;text-decoration:none;color:var(--text-dark);transition:all .2s;flex-shrink:0;}
+        .back-btn:hover{background:rgba(255,255,255,0.5);transform:scale(1.1);}
+        .header-info{flex:1;}.header-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:white;}
+        .header-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:2px;}
+        .progress-indicator{background:rgba(255,255,255,0.3);padding:0.4rem 0.9rem;border-radius:20px;font-weight:700;color:white;font-size:0.9rem;}
+        .progress-container{height:6px;background:rgba(255,255,255,0.3);}
+        .progress-fill{height:100%;background:white;transition:width .5s ease;width:0%;}
+        main{padding:1.5rem;max-width:650px;margin:0 auto;}
+        .instructions{background:white;border-radius:16px;padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow-soft);border-left:5px solid var(--primary);display:flex;gap:0.75rem;align-items:flex-start;}
+        .instructions-icon{font-size:1.6rem;flex-shrink:0;}
+        .instructions-title{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:0.2rem;}
+        .instructions-text{font-size:0.85rem;color:var(--text-medium);line-height:1.5;}
+        .wh-ref{background:white;border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1.25rem;box-shadow:var(--shadow-soft);display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;}
+        .wh-ref-label{font-size:0.75rem;font-weight:800;color:var(--text-medium);text-transform:uppercase;letter-spacing:.5px;width:100%;margin-bottom:0.2rem;}
+        .wh-pill{display:inline-flex;flex-direction:column;align-items:center;background:var(--bg-gradient-start);border:1.5px solid var(--primary-light);border-radius:10px;padding:0.3rem 0.7rem;min-width:70px;}
+        .wh-pill .eng{font-weight:800;color:var(--primary-dark);font-size:0.95rem;}
+        .wh-pill .esp{font-size:0.72rem;color:var(--text-medium);}
+        .question-card{background:white;border-radius:var(--border-radius);box-shadow:var(--shadow-soft);padding:1.5rem;margin-bottom:1rem;animation:slideIn .4s ease;}
+        .question-card.hidden{display:none;}
+        @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+        .q-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;}
+        .question-number{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;flex-shrink:0;}
+        .q-label{font-size:0.88rem;color:var(--text-medium);font-weight:600;}
+        /* Translation context box */
+        .context-box{background:#F0F9FF;border:1px solid #BAE6FD;border-radius:10px;padding:0.6rem 0.9rem;margin-bottom:0.9rem;font-size:0.88rem;color:var(--info-dark);font-weight:600;}
+        .context-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--info-dark);margin-bottom:0.15rem;}
+        .sentence-options{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:0.5rem;}
+        .sent-option{border:2.5px solid #E5E7EB;border-radius:14px;padding:1rem 1.1rem;cursor:pointer;transition:all .2s;background:white;text-align:left;font-family:'Nunito',sans-serif;display:flex;gap:0.75rem;align-items:flex-start;}
+        .sent-option:hover:not(.disabled){border-color:var(--primary);background:var(--bg-gradient-start);transform:translateX(4px);}
+        .sent-option.disabled{cursor:default;}
+        .sent-option.correct{border-color:var(--success);background:var(--success-light);}
+        .sent-option.incorrect{border-color:var(--error);background:var(--error-light);}
+        .option-letter{width:26px;height:26px;border-radius:50%;background:var(--primary-light);color:var(--primary-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;margin-top:1px;font-family:'Fredoka',sans-serif;}
+        .sent-option.correct .option-letter{background:var(--success);color:white;}
+        .sent-option.incorrect .option-letter{background:var(--error);color:white;}
+        .option-text{font-size:0.98rem;color:var(--text-dark);line-height:1.55;font-weight:600;flex:1;}
+        .option-status{font-size:1.1rem;margin-left:auto;flex-shrink:0;opacity:0;}
+        .sent-option.correct .option-status,.sent-option.incorrect .option-status{opacity:1;}
+        .feedback{margin-top:1.25rem;border-radius:16px;overflow:hidden;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+        .feedback.show{display:block;animation:fadeUp .35s ease;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .fb-header{padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;}
+        .feedback.correct .fb-header{background:linear-gradient(135deg,var(--success),var(--success-dark));}
+        .feedback.incorrect .fb-header{background:linear-gradient(135deg,var(--error),var(--error-dark));}
+        .fb-icon{font-size:1.6rem;}
+        .fb-title{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:white;font-weight:600;}
+        .fb-subtitle{font-size:0.8rem;color:rgba(255,255,255,0.85);margin-top:1px;}
+        .fb-body{background:white;border:2px solid;border-top:none;border-radius:0 0 16px 16px;padding:1.25rem;display:flex;flex-direction:column;gap:0.9rem;}
+        .feedback.correct .fb-body{border-color:var(--success);}
+        .feedback.incorrect .fb-body{border-color:var(--error);}
+        .fb-block{border-radius:12px;padding:0.9rem 1rem;}
+        .fb-block-title{font-weight:800;font-size:0.78rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+        .error-badge{display:inline-block;background:var(--error);color:white;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.72rem;font-weight:700;margin-left:4px;}
+        .fb-compare{background:#F8FAFC;border:1px solid #E2E8F0;}
+        .fb-compare .fb-block-title{color:#475569;}
+        .compare-row{display:flex;align-items:flex-start;gap:0.6rem;padding:0.4rem 0;border-bottom:1px dashed #E2E8F0;}
+        .compare-row:last-child{border-bottom:none;}
+        .compare-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;white-space:nowrap;padding:0.15rem 0.5rem;border-radius:6px;flex-shrink:0;margin-top:2px;}
+        .compare-label.wrong{background:var(--error-light);color:var(--error-dark);}
+        .compare-label.right{background:var(--success-light);color:var(--success-dark);}
+        .compare-text{font-size:0.95rem;color:var(--text-dark);line-height:1.55;}
+        .fb-error-block{background:var(--error-light);border:1px solid #FECACA;}
+        .fb-error-block .fb-block-title{color:var(--error-dark);}
+        .word-swap{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin:0.6rem 0;flex-wrap:wrap;}
+        .ws-box{padding:0.4rem 0.8rem;border-radius:8px;font-weight:700;font-size:0.9rem;}
+        .ws-wrong{background:white;color:var(--error);border:2px solid var(--error);text-decoration:line-through;}
+        .ws-arrow{font-size:1.3rem;color:#94A3B8;}
+        .ws-right{background:var(--success);color:white;}
+        .error-text{font-size:0.9rem;color:var(--text-dark);line-height:1.55;}
+        .fb-rule{background:var(--info-light);border:1px solid #BFDBFE;}
+        .fb-rule .fb-block-title{color:var(--info-dark);}
+        .rule-formula{background:white;border-radius:8px;padding:0.5rem 0.9rem;font-family:'Fredoka',sans-serif;font-size:0.95rem;color:var(--info-dark);font-weight:600;margin-bottom:0.6rem;text-align:center;border:1px solid #BFDBFE;}
+        .rule-examples{display:flex;flex-wrap:wrap;gap:0.4rem;}
+        .rule-ex{font-size:0.82rem;background:white;border:1px solid #BFDBFE;border-radius:6px;padding:0.2rem 0.5rem;color:var(--success-dark);font-weight:700;}
+        .fb-why{background:#F0FDF4;border:1px solid #BBF7D0;}
+        .fb-why .fb-block-title{color:var(--success-dark);}
+        .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
+        .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
+        .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
+        .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
+        .nav-btn:disabled{opacity:.4;cursor:default;}
+        .nav-btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .results-screen{display:none;text-align:center;padding:2rem 1.5rem;}
+        .results-screen.show{display:block;animation:fadeUp .5s ease;}
+        .results-emoji{font-size:4rem;margin-bottom:1rem;}
+        .results-title{font-family:'Fredoka',sans-serif;font-size:2rem;margin-bottom:0.5rem;}
+        .results-score{font-size:3rem;font-weight:800;color:var(--purple);margin:1rem 0;}
+        .results-message{font-size:1.05rem;color:var(--text-medium);margin-bottom:1.5rem;}
+        .stars-container{display:flex;justify-content:center;gap:0.5rem;margin:1.5rem 0;}
+        .star{font-size:2.5rem;opacity:.3;transition:all .5s ease;}
+        .star.earned{opacity:1;animation:starPop .5s ease;}
+        @keyframes starPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+        .results-buttons{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+        .result-btn{padding:1rem 2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all .2s;}
+        .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
+        .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
+        .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔍 Identification</div>
+            <div class="header-subtitle">💛 Pre-A1 · Present Simple · Wh- Questions</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">¿Cuál pregunta es correcta?</div>
+                <div class="instructions-text">Lee la traducción en azul y elige la pregunta Wh- bien formada.</div>
+            </div>
+        </div>
+        <div class="wh-ref">
+            <div class="wh-ref-label">📌 Palabras de pregunta</div>
+            <div class="wh-pill"><span class="eng">What</span><span class="esp">¿Qué?</span></div>
+            <div class="wh-pill"><span class="eng">Where</span><span class="esp">¿Dónde?</span></div>
+            <div class="wh-pill"><span class="eng">When</span><span class="esp">¿Cuándo?</span></div>
+            <div class="wh-pill"><span class="eng">Who</span><span class="esp">¿Quién?</span></div>
+        </div>
+        <div id="questionsContainer"></div>
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de nuevo</button>
+                <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="result-btn secondary">← Volver al panel</a>
+            </div>
+        </div>
+    </main>
+    <script>
+    function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+    // Each question has a Spanish translation shown as context.
+    // Errors: wrong Wh- word · wrong Do/Does · verb with -s after Does · no auxiliary (wrong order)
+    const quizData = [
+        {
+            id:1, translation:"¿Qué come Marco por las mañanas?",
+            options:[
+                {text:"What does Marco eat every morning?", correct:true},
+                {text:"Where does Marco eat every morning?", correct:false, errorWord:"Where", correctWord:"What", errorType:"Wh- incorrecta", explanation:"'Where' pregunta por un lugar (¿Dónde?). La traducción dice '¿Qué come?'. La palabra correcta es: What."},
+                {text:"What does Marco eats every morning?", correct:false, errorWord:"eats", correctWord:"eat", errorType:"Verbo incorrecto", explanation:"Después de 'does', el verbo no lleva -s. La forma correcta es: does Marco eat (no 'eats')."}
+            ],
+            rule:"What + does + Marco + verbo?", correctReason:"'What' = ¿Qué? La pregunta correcta es: What does Marco eat every morning?",
+            examples:["What does Marco eat?","What do you make?","What does Sara have?"]
+        },
+        {
+            id:2, translation:"¿A dónde va Sara después del trabajo?",
+            options:[
+                {text:"Where does Sara go after work?", correct:true},
+                {text:"When does Sara go after work?", correct:false, errorWord:"When", correctWord:"Where", errorType:"Wh- incorrecta", explanation:"'When' pregunta por un momento (¿Cuándo?). La traducción dice '¿A dónde va?'. La palabra correcta es: Where."},
+                {text:"Where do Sara go after work?", correct:false, errorWord:"do", correctWord:"does", errorType:"Error de auxiliar", explanation:"Sara = ella. Para preguntar con él/ella, se usa: Does (no 'Do')."}
+            ],
+            rule:"Where + does + Sara + verbo?", correctReason:"'Where' = ¿A dónde? La pregunta correcta es: Where does Sara go after work?",
+            examples:["Where does Sara go?","Where do you eat?","Where does Ben work?"]
+        },
+        {
+            id:3, translation:"¿Cuándo van Ben y Rosa al mercado?",
+            options:[
+                {text:"When do Ben and Rosa go to the market?", correct:true},
+                {text:"What do Ben and Rosa go to the market?", correct:false, errorWord:"What", correctWord:"When", errorType:"Wh- incorrecta", explanation:"'What' pregunta por una cosa (¿Qué?). La traducción dice '¿Cuándo van?'. La palabra correcta es: When."},
+                {text:"When does Ben and Rosa go to the market?", correct:false, errorWord:"does", correctWord:"do", errorType:"Error de auxiliar", explanation:"'Ben and Rosa' = ellos. Para preguntar con I/you/we/they, se usa: Do (no 'Does')."}
+            ],
+            rule:"When + do + Ben and Rosa + verbo?", correctReason:"'When' = ¿Cuándo? 'Ben and Rosa' = ellos → Do. La pregunta correcta es: When do Ben and Rosa go?",
+            examples:["When do Ben and Rosa go?","When do you eat?","When do they work?"]
+        },
+        {
+            id:4, translation:"¿A quién ayuda Sara en el trabajo?",
+            options:[
+                {text:"Who does Sara help at work?", correct:true},
+                {text:"What does Sara help at work?", correct:false, errorWord:"What", correctWord:"Who", errorType:"Wh- incorrecta", explanation:"'What' pregunta por una cosa (¿Qué?). La traducción dice '¿A quién ayuda?'. La palabra correcta es: Who."},
+                {text:"Who does Sara helps at work?", correct:false, errorWord:"helps", correctWord:"help", errorType:"Verbo incorrecto", explanation:"Después de 'does', el verbo no lleva -s. La forma correcta es: does Sara help (no 'helps')."}
+            ],
+            rule:"Who + does + Sara + verbo?", correctReason:"'Who' = ¿A quién? La pregunta correcta es: Who does Sara help at work?",
+            examples:["Who does Sara help?","Who do you call?","Who does Ben give fruit to?"]
+        },
+        {
+            id:5, translation:"¿Qué hace Marco en la mañana?",
+            options:[
+                {text:"What does Marco do in the morning?", correct:true},
+                {text:"Where does Marco do in the morning?", correct:false, errorWord:"Where", correctWord:"What", errorType:"Wh- incorrecta", explanation:"'Where' pregunta por un lugar (¿Dónde?). La traducción dice '¿Qué hace?'. La palabra correcta es: What."},
+                {text:"What do Marco do in the morning?", correct:false, errorWord:"do", correctWord:"does", errorType:"Error de auxiliar", explanation:"Marco = él. Para preguntar con él/ella, se usa: Does (no 'Do')."}
+            ],
+            rule:"What + does + Marco + verbo?", correctReason:"'What' = ¿Qué? Marco = él → Does. La pregunta correcta es: What does Marco do in the morning?",
+            examples:["What does Marco do?","What does she make?","What does he eat?"]
+        },
+        {
+            id:6, translation:"¿Dónde come Sara al mediodía?",
+            options:[
+                {text:"Where does Sara eat at lunch?", correct:true},
+                {text:"When does Sara eat at lunch?", correct:false, errorWord:"When", correctWord:"Where", errorType:"Wh- incorrecta", explanation:"'When' pregunta por un momento (¿Cuándo?). La traducción dice '¿Dónde come?'. La palabra correcta es: Where."},
+                {text:"Where does Sara eats at lunch?", correct:false, errorWord:"eats", correctWord:"eat", errorType:"Verbo incorrecto", explanation:"Después de 'does', el verbo no lleva -s. La forma correcta es: does Sara eat (no 'eats')."}
+            ],
+            rule:"Where + does + Sara + verbo?", correctReason:"'Where' = ¿Dónde? La pregunta correcta es: Where does Sara eat at lunch?",
+            examples:["Where does Sara eat?","Where do you work?","Where does Marco sweep?"]
+        },
+        {
+            id:7, translation:"¿Cuándo barre Marco?",
+            options:[
+                {text:"When does Marco sweep?", correct:true},
+                {text:"Who does Marco sweep?", correct:false, errorWord:"Who", correctWord:"When", errorType:"Wh- incorrecta", explanation:"'Who' pregunta por una persona (¿Quién?). La traducción dice '¿Cuándo barre?'. La palabra correcta es: When."},
+                {text:"When do Marco sweep?", correct:false, errorWord:"do", correctWord:"does", errorType:"Error de auxiliar", explanation:"Marco = él. Para preguntar con él/ella, se usa: Does (no 'Do')."}
+            ],
+            rule:"When + does + Marco + verbo?", correctReason:"'When' = ¿Cuándo? Marco = él → Does. La pregunta correcta es: When does Marco sweep?",
+            examples:["When does Marco sweep?","When does she eat?","When do you go?"]
+        },
+        {
+            id:8, translation:"¿A quién le da fruta Ben?",
+            options:[
+                {text:"Who does Ben give fruit to?", correct:true},
+                {text:"Where does Ben give fruit to?", correct:false, errorWord:"Where", correctWord:"Who", errorType:"Wh- incorrecta", explanation:"'Where' pregunta por un lugar (¿Dónde?). La traducción dice '¿A quién le da?'. La palabra correcta es: Who."},
+                {text:"Who does Ben gives fruit to?", correct:false, errorWord:"gives", correctWord:"give", errorType:"Verbo incorrecto", explanation:"Después de 'does', el verbo no lleva -s. La forma correcta es: does Ben give (no 'gives')."}
+            ],
+            rule:"Who + does + Ben + verbo?", correctReason:"'Who' = ¿A quién? La pregunta correcta es: Who does Ben give fruit to?",
+            examples:["Who does Ben give fruit to?","Who do you help?","Who does she call?"]
+        },
+        {
+            id:9, translation:"¿Qué toman ellos en el desayuno?",
+            options:[
+                {text:"What do they have for breakfast?", correct:true},
+                {text:"When do they have for breakfast?", correct:false, errorWord:"When", correctWord:"What", errorType:"Wh- incorrecta", explanation:"'When' pregunta por un momento (¿Cuándo?). La traducción dice '¿Qué toman?'. La palabra correcta es: What."},
+                {text:"What does they have for breakfast?", correct:false, errorWord:"does", correctWord:"do", errorType:"Error de auxiliar", explanation:"'They' = ellos. Para preguntar con I/you/we/they, se usa: Do (no 'Does')."}
+            ],
+            rule:"What + do + they + verbo?", correctReason:"'What' = ¿Qué? 'They' = ellos → Do. La pregunta correcta es: What do they have for breakfast?",
+            examples:["What do they have?","What do you eat?","What do we make?"]
+        },
+        {
+            id:10, translation:"¿Dónde vive Rosa?",
+            options:[
+                {text:"Where does Rosa live?", correct:true},
+                {text:"What does Rosa live?", correct:false, errorWord:"What", correctWord:"Where", errorType:"Wh- incorrecta", explanation:"'What' pregunta por una cosa (¿Qué?). La traducción dice '¿Dónde vive?'. La palabra correcta es: Where."},
+                {text:"Where do Rosa live?", correct:false, errorWord:"do", correctWord:"does", errorType:"Error de auxiliar", explanation:"Rosa = ella. Para preguntar con él/ella, se usa: Does (no 'Do')."}
+            ],
+            rule:"Where + does + Rosa + verbo?", correctReason:"'Where' = ¿Dónde? Rosa = ella → Does. La pregunta correcta es: Where does Rosa live?",
+            examples:["Where does Rosa live?","Where do you go?","Where does Marco work?"]
+        }
+    ];
+
+    let currentQuestion=0,score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const container=document.getElementById('questionsContainer');
+        container.innerHTML='';
+        quizData.forEach((q,i)=>{q.shuffled=shuffle(q.options);container.appendChild(createCard(q,i));});
+        showQuestion(0);updateProgress();
+    }
+
+    function createCard(q,index){
+        const card=document.createElement('div');
+        card.className=`question-card ${index!==0?'hidden':''}`;
+        card.id=`question-${index}`;
+        const letters=['A','B','C'];
+        card.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span class="q-label">¿Cuál pregunta es correcta?</span>
+            </div>
+            <div class="context-box">
+                <div class="context-label">🌐 Traducción</div>
+                ${q.translation}
+            </div>
+            <div class="sentence-options" id="options-${index}">
+                ${q.shuffled.map((opt,i)=>`
+                    <button class="sent-option" onclick="selectOption(${index},${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt.text}</div>
+                        <span class="option-status"></span>
+                    </button>`).join('')}
+            </div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index===quizData.length-1?'Ver resultados 🎉':'Siguiente →'}
+                </button>
+            </div>`;
+        return card;
+    }
+
+    function selectOption(qi,optIdx){
+        if(answered[qi])return;
+        answered[qi]=true;
+        const q=quizData[qi];
+        const selected=q.shuffled[optIdx];
+        const isCorrect=selected.correct;
+        if(isCorrect)score++;
+        document.querySelectorAll(`#options-${qi} .sent-option`).forEach((btn,i)=>{
+            btn.classList.add('disabled');
+            const opt=q.shuffled[i];
+            if(opt.correct){btn.classList.add('correct');btn.querySelector('.option-status').textContent='✅';}
+            else if(i===optIdx&&!isCorrect){btn.classList.add('incorrect');btn.querySelector('.option-status').textContent='❌';}
+        });
+        buildFeedback(qi,selected,isCorrect,q);
+        document.getElementById(`next-${qi}`).disabled=false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi,selected,isCorrect,q){
+        const el=document.getElementById(`feedback-${qi}`);
+        el.className=`feedback show ${isCorrect?'correct':'incorrect'}`;
+        const correctOpt=q.shuffled.find(o=>o.correct);
+        const ruleExamples=q.examples.map(e=>`<span class="rule-ex">${e}</span>`).join('');
+        if(isCorrect){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto!</div><div class="fb-subtitle">Identificaste la pregunta correcta</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                </div>`;
+        }else{
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Revisemos qué pasó</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-compare"><div class="fb-block-title" style="color:#64748B;">🔄 Tu elección vs. la correcta</div>
+                        <div class="compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text">${selected.text}</span></div>
+                        <div class="compare-row"><span class="compare-label right">Correcto</span><span class="compare-text">${correctOpt.text}</span></div>
+                    </div>
+                    <div class="fb-block fb-error-block"><div class="fb-block-title">⚠️ Error: <span class="error-badge">${selected.errorType}</span></div>
+                        <div class="word-swap"><span class="ws-box ws-wrong">${selected.errorWord}</span><span class="ws-arrow">→</span><span class="ws-box ws-right">${selected.correctWord}</span></div>
+                        <div class="error-text">${selected.explanation}</div>
+                    </div>
+                    <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){if(i<quizData.length-1)showQuestion(i+1);else showResults();}
+    function prevQuestion(){if(currentQuestion>0)showQuestion(currentQuestion-1);}
+    function updateProgress(){document.getElementById('progressFill').style.width=(answered.filter(Boolean).length/quizData.length*100)+'%';}
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
+        const stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90?'¡Excelente! Identificas preguntas Wh- perfectamente. 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪':'Buen esfuerzo. Repasa las reglas e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{if(i<stars)setTimeout(()=>s.classList.add('earned'),i*300);});
+    }
+    document.addEventListener('DOMContentLoaded',initQuiz);
+    </script>
+</body>
+</html>

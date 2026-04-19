@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprensión Auditiva | PRE-A1 — Essential Actions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       CSS VARIABLES — PRE-A1 YELLOW PALETTE
+    ══════════════════════════════════════════ */
+    :root {
+      --primary:   #F59E0B;
+      --primary-l: #FCD34D;
+      --primary-d: #D97706;
+      --accent:    #FBBF24;
+      --bg-start:  #FFFBEB;
+      --bg-end:    #FEF3C7;
+      --text-dk:   #78350F;
+      --text-md:   #92400E;
+      --text-lt:   #B45309;
+      --shadow-s:  0 4px 20px rgba(245,158,11,.15);
+      --shadow-l:  0 8px 30px rgba(245,158,11,.25);
+      --easy-c:    #16A34A;
+      --med-c:     #D97706;
+      --hard-c:    #DC2626;
+      --radius:    16px;
+    }
+
+    /* ══════════════════════════════════════════
+       BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      min-height: 100vh;
+      padding: 20px 16px 40px;
+      color: #2A2A2A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 820px; margin: 0 auto; }
+
+    /* ══════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════ */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      margin-bottom: 18px;
+      color: white;
+      box-shadow: var(--shadow-l);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -12%;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,.1);
+      border-radius: 50%;
+    }
+    .header h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 6px;
+    }
+    .header-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .badge {
+      background: rgba(255,255,255,.22);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .82rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    .nav-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
+      color: white;
+      border-radius: 25px;
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-home:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(69,90,100,.4); }
+
+    /* ══════════════════════════════════════════
+       INSTRUCTIONS
+    ══════════════════════════════════════════ */
+    .instructions {
+      background: white;
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-s);
+    }
+    .instructions h3 { color: var(--primary-d); font-size: 1rem; margin-bottom: 10px; }
+    .instructions ul { margin-left: 20px; }
+    .instructions li { margin: 6px 0; font-size: .9rem; line-height: 1.6; color: var(--text-dk); }
+
+    /* ══════════════════════════════════════════
+       ACCENT SELECTOR
+    ══════════════════════════════════════════ */
+    .accent-box {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-s);
+      text-align: center;
+    }
+    .accent-box h3 { color: var(--primary-d); font-size: 1rem; margin-bottom: 12px; }
+    .accent-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .accent-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border: 2px solid var(--primary);
+      background: white;
+      color: var(--primary-d);
+      border-radius: 25px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .accent-btn:hover { background: var(--bg-start); }
+    .accent-btn.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      color: white;
+      box-shadow: var(--shadow-s);
+    }
+
+    /* ══════════════════════════════════════════
+       STORY TABS
+    ══════════════════════════════════════════ */
+    .story-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .story-tab {
+      flex: 1;
+      min-width: 120px;
+      padding: 12px 10px;
+      border: 2px solid var(--primary-l);
+      background: white;
+      border-radius: var(--radius);
+      font-family: 'Nunito', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all .22s;
+      box-shadow: var(--shadow-s);
+      line-height: 1.3;
+    }
+    .story-tab:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .story-tab.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      color: white;
+      border-color: var(--primary-d);
+      box-shadow: var(--shadow-l);
+    }
+    .story-tab .tab-number { font-size: .7rem; opacity: .8; display: block; }
+    .story-tab .tab-name   { display: block; margin-top: 2px; }
+
+    /* ══════════════════════════════════════════
+       SCORE PANEL
+    ══════════════════════════════════════════ */
+    .score-panel {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      box-shadow: var(--shadow-s);
+    }
+    .score-item { text-align: center; flex: 1; min-width: 70px; }
+    .score-item .s-label { font-size: .68rem; color: #999; text-transform: uppercase; letter-spacing: .05em; }
+    .score-item .s-value { font-size: 1.3rem; font-weight: 800; color: var(--primary-d); }
+    .score-item .s-value.c { color: #16A34A; }
+    .score-item .s-value.w { color: #DC2626; }
+
+    /* ══════════════════════════════════════════
+       STORY PANEL
+    ══════════════════════════════════════════ */
+    .story-panel { display: none; }
+    .story-panel.active { display: block; }
+
+    /* ══════════════════════════════════════════
+       LEVEL SECTION HEADER
+    ══════════════════════════════════════════ */
+    .level-section { margin-bottom: 28px; }
+    .level-head {
+      padding: 13px 18px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .level-head.easy  { background: linear-gradient(135deg,#DCFCE7,#BBF7D0); border-left: 5px solid #16A34A; }
+    .level-head.medium{ background: linear-gradient(135deg,#FEF9C3,#FDE68A); border-left: 5px solid #D97706; }
+    .level-head.hard  { background: linear-gradient(135deg,#FEE2E2,#FECACA); border-left: 5px solid #DC2626; }
+    .level-head .lh-icon  { font-size: 1.4rem; }
+    .level-head .lh-title { font-size: 1.05rem; font-weight: 800; }
+    .level-head.easy  .lh-title { color: #14532D; }
+    .level-head.medium .lh-title { color: #78350F; }
+    .level-head.hard  .lh-title { color: #7F1D1D; }
+    .level-head .lh-sub { font-size: .8rem; color: #666; margin-left: auto; }
+
+    /* ══════════════════════════════════════════
+       AUDIO CARD
+    ══════════════════════════════════════════ */
+    .audio-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-s);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .audio-card:hover { box-shadow: var(--shadow-l); transform: translateY(-2px); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--bg-start);
+    }
+    .card-num {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; font-weight: 800; color: white; flex-shrink: 0;
+    }
+    .card-num.easy   { background: linear-gradient(135deg,#16A34A,#15803D); }
+    .card-num.medium { background: linear-gradient(135deg,#D97706,#B45309); }
+    .card-num.hard   { background: linear-gradient(135deg,#DC2626,#B91C1C); }
+    .card-meta h3 { color: #333; font-size: .97rem; font-weight: 800; }
+    .card-meta p  { color: #999; font-size: .78rem; margin-top: 2px; }
+
+    /* ── Player ── */
+    .player-zone {
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    /* Speed control per card */
+    .card-speed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .card-speed label { font-size: .78rem; color: var(--text-md); font-weight: 700; }
+    .card-speed input[type=range] {
+      width: 110px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .speed-val {
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--primary-d);
+      min-width: 36px;
+      text-align: left;
+    }
+
+    .play-btn {
+      width: 66px; height: 66px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      color: white;
+      font-size: 1.6rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-s);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .play-btn:hover { transform: scale(1.08); box-shadow: var(--shadow-l); }
+    .play-btn.playing { background: linear-gradient(135deg,#DC2626,#B91C1C); }
+
+    .text-toggle-row {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .txt-btn {
+      padding: 7px 14px;
+      border: 2px solid var(--primary);
+      background: white;
+      color: var(--primary-d);
+      border-radius: 20px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .txt-btn:hover { background: var(--bg-start); }
+    .txt-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-d));
+      color: white;
+      border-color: var(--primary-d);
+    }
+    .txt-btn.es { border-color: #F59E0B; color: #92400E; }
+    .txt-btn.es:hover { background: #FFFDE7; }
+    .txt-btn.es.active { background: linear-gradient(135deg,#FFA000,#F57C00); color: white; border-color:#F57C00; }
+
+    .text-box {
+      padding: 13px 15px;
+      border-radius: 10px;
+      font-size: .9rem;
+      line-height: 1.7;
+      color: #333;
+      display: none;
+      margin-top: 10px;
+      text-align: left;
+    }
+    .text-box.show { display: block; }
+    .text-box.en {
+      background: rgba(255,255,255,.95);
+      border-left: 4px solid var(--primary);
+    }
+    .text-box.sp {
+      background: #FFFDE7;
+      border-left: 4px solid #FFA000;
+      color: #5D4037;
+    }
+    .text-box .box-label {
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+    .text-box.en .box-label { color: var(--primary-d); }
+    .text-box.sp .box-label { color: #F57C00; }
+
+    /* ── Show Question button ── */
+    .show-q-btn {
+      width: 100%;
+      padding: 14px;
+      border: 2px dashed #9C27B0;
+      background: linear-gradient(135deg,#F3E5F5,#E1BEE7);
+      color: #7B1FA2;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .92rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .show-q-btn:hover { background: linear-gradient(135deg,#E1BEE7,#CE93D8); transform: translateY(-2px); }
+    .show-q-btn.open  { background: linear-gradient(135deg,#9C27B0,#7B1FA2); color: white; border-style: solid; }
+
+    /* ── Question Section ── */
+    .q-section { display: none; margin-top: 14px; }
+    .q-section.show { display: block; }
+    .q-text {
+      background: #F5F5F5;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: .93rem;
+      color: #333;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .q-label { color: var(--primary-d); font-size: .88rem; font-weight: 800; margin-bottom: 10px; }
+
+    /* ── Options ── */
+    .options { display: flex; flex-direction: column; gap: 8px; }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 13px;
+      background: #FAFAFA;
+      border: 2px solid #E0E0E0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .opt:hover:not(.disabled) { border-color: var(--primary); background: var(--bg-start); }
+    .opt.disabled  { pointer-events: none; }
+    .opt.correct   { border-color: #16A34A; background: #DCFCE7; }
+    .opt.incorrect { border-color: #DC2626; background: #FEE2E2; }
+    .opt.show-c    { border-color: #16A34A; background: #DCFCE7; }
+    .opt-letter {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #E0E0E0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .82rem; color: #666; flex-shrink: 0;
+    }
+    .opt.correct   .opt-letter,
+    .opt.show-c    .opt-letter { background: #16A34A; color: white; }
+    .opt.incorrect .opt-letter { background: #DC2626; color: white; }
+    .opt-text { flex: 1; font-size: .9rem; color: #333; }
+
+    /* ── Feedback ── */
+    .feedback {
+      margin-top: 11px;
+      padding: 11px 13px;
+      border-radius: 9px;
+      font-size: .85rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .feedback.show  { display: block; }
+    .feedback.ok    { background: #DCFCE7; border: 1px solid #86EFAC; color: #14532D; }
+    .feedback.wrong { background: #FEE2E2; border: 1px solid #FCA5A5; color: #7F1D1D; }
+
+    /* ══════════════════════════════════════════
+       RESULTS PANEL
+    ══════════════════════════════════════════ */
+    .results {
+      display: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      color: white;
+      margin-top: 22px;
+      box-shadow: var(--shadow-l);
+    }
+    .results.show { display: block; }
+    .results .trophy { font-size: 4rem; margin-bottom: 12px; }
+    .results h2 { font-family: 'Fredoka', sans-serif; font-size: 1.9rem; margin-bottom: 8px; }
+    .results .big-score { font-size: 3rem; font-weight: 800; margin: 12px 0; }
+    .results-breakdown {
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 18px 0;
+    }
+    .bd-item {
+      background: rgba(255,255,255,.2);
+      padding: 13px 22px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .bd-item .bd-name  { font-size: .78rem; opacity: .9; margin-bottom: 4px; }
+    .bd-item .bd-score { font-size: 1.5rem; font-weight: 800; }
+    .results-msg { font-size: .97rem; opacity: .9; margin-top: 12px; }
+    .btn-retry {
+      margin-top: 20px;
+      padding: 14px 38px;
+      background: white;
+      color: var(--primary-d);
+      border: none;
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-retry:hover { transform: scale(1.05); box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.45rem; }
+      .story-tabs { gap: 6px; }
+      .story-tab { min-width: 100px; padding: 10px 8px; font-size: .78rem; }
+      .results-breakdown { flex-direction: column; }
+      .accent-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body class="pre-a1">
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🎧 Comprensión Auditiva</h1>
+    <div class="header-badges">
+      <span class="badge">💛 PRE-A1</span>
+      <span class="badge">📘 Módulo 2</span>
+      <span class="badge">🎯 Essential Actions</span>
+      <span class="badge">📊 4 Stories · 10 preguntas c/u</span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-row">
+    <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="nav-home">🏠 Volver al Panel Principal</a>
+  </div>
+
+  <!-- INSTRUCCIONES -->
+  <div class="instructions">
+    <h3>📋 Instrucciones</h3>
+    <ul>
+      <li>Selecciona una <strong>Story</strong> usando las pestañas de arriba.</li>
+      <li>Ajusta la <strong>velocidad</strong> con el control deslizante en cada pregunta.</li>
+      <li>Escucha el audio con el botón ▶️ tantas veces como necesites.</li>
+      <li>Selecciona el <strong>acento</strong> (🇺🇸 Americano / 🇬🇧 Británico) antes de escuchar.</li>
+      <li>Presiona <strong>"❓ Mostrar Pregunta"</strong> cuando estés listo para responder.</li>
+      <li>Puedes ver el texto en inglés y/o su traducción si necesitas ayuda.</li>
+    </ul>
+  </div>
+
+  <!-- ACCENT SELECTOR -->
+  <div class="accent-box">
+    <h3>🌐 Selecciona el Acento del Audio</h3>
+    <div class="accent-btns">
+      <button class="accent-btn active" data-accent="US" onclick="setAccent('US',this)">
+        🇺🇸 Americano
+      </button>
+      <button class="accent-btn" data-accent="UK" onclick="setAccent('UK',this)">
+        🇬🇧 Británico
+      </button>
+    </div>
+  </div>
+
+  <!-- STORY TABS -->
+  <div class="story-tabs">
+    <button class="story-tab active" onclick="switchStory(1,this)">
+      <span class="tab-number">Story 1</span>
+      <span class="tab-name">Morning Routine</span>
+    </button>
+    <button class="story-tab" onclick="switchStory(2,this)">
+      <span class="tab-number">Story 2</span>
+      <span class="tab-name">What I Can Do</span>
+    </button>
+    <button class="story-tab" onclick="switchStory(3,this)">
+      <span class="tab-number">Story 3</span>
+      <span class="tab-name">A Typical Day</span>
+    </button>
+    <button class="story-tab" onclick="switchStory(4,this)">
+      <span class="tab-number">Story 4</span>
+      <span class="tab-name">Giving &amp; Receiving</span>
+    </button>
+  </div>
+
+  <!-- SCORE PANEL -->
+  <div class="score-panel" id="scorePanel">
+    <div class="score-item">
+      <div class="s-label">Story activa</div>
+      <div class="s-value" id="storyLabel">S1</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">Respondidas</div>
+      <div class="s-value" id="answeredCount">0/10</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">Correctas</div>
+      <div class="s-value c" id="correctCount">0</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">Incorrectas</div>
+      <div class="s-value w" id="incorrectCount">0</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       STORY PANELS (rendered by JS)
+  ═══════════════════════════════════════ -->
+  <div id="panel-s1" class="story-panel active"></div>
+  <div id="panel-s2" class="story-panel"></div>
+  <div id="panel-s3" class="story-panel"></div>
+  <div id="panel-s4" class="story-panel"></div>
+
+  <!-- RESULTS PANEL -->
+  <div class="results" id="resultsPanel">
+    <div class="trophy" id="trophy">🏆</div>
+    <h2 id="resultsTitle">¡Excelente!</h2>
+    <div class="big-score" id="bigScore">0/10</div>
+    <div class="results-breakdown">
+      <div class="bd-item"><div class="bd-name">🟢 Fácil</div><div class="bd-score" id="easyScore">0/4</div></div>
+      <div class="bd-item"><div class="bd-name">🟡 Intermedio</div><div class="bd-score" id="medScore">0/3</div></div>
+      <div class="bd-item"><div class="bd-name">🔴 Difícil</div><div class="bd-score" id="hardScore">0/3</div></div>
+    </div>
+    <div class="results-msg" id="resultsMsg"></div>
+    <button class="btn-retry" onclick="retryStory()">🔄 Intentar de nuevo</button>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ══════════════════════════════════════════════
+     DATA — 4 STORIES × 10 QUESTIONS EACH
+     correct field stores the INDEX (0,1,2) of the
+     correct option in the ORIGINAL options array.
+     Fisher-Yates shuffle randomizes display order.
+══════════════════════════════════════════════ -->
+<script>
+/* ════════════════════════════════════════════
+   STORY DATA
+   Each activity:
+     audio   : text spoken by TTS
+     question: in Spanish
+     options : [correct_answer, wrong1, wrong2]  ← correct is ALWAYS index 0 here
+     feedback.correct / feedback.incorrect
+   The render function shuffles options so the
+   correct one lands in a random position each load.
+════════════════════════════════════════════ */
+const storiesData = {
+
+  // ─────────────────────────────────────────
+  // STORY 1 — Every Morning (Marco)
+  // Fuente: "My name is Marco. I get up early.
+  // I wash my face. I brush my teeth. Then I
+  // go to the kitchen. I make coffee every
+  // morning. I get some bread too. I get my
+  // bag. I take my keys too. I come back for
+  // my phone. I am ready to go."
+  // ─────────────────────────────────────────
+  s1: {
+    title: 'Every Morning',
+    activities: [
+      // ── FÁCILES ──
+      {
+        id: 1, level: 'easy',
+        title: '¿Quién es el personaje?',
+        desc: 'Escucha el nombre',
+        audio: 'My name is Marco.',
+        spanish: 'Mi nombre es Marco.',
+        question: '¿Cómo se llama el personaje?',
+        options: ['Marco', 'Pedro', 'Luis'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Marco."</em>',
+          incorrect: '✗ El audio dice <em>"My name is Marco."</em> El nombre es Marco. ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 2, level: 'easy',
+        title: '¿Qué prepara Marco?',
+        desc: 'Escucha la bebida',
+        audio: 'I make coffee.',
+        spanish: 'Preparo café.',
+        question: '¿Qué prepara Marco?',
+        options: ['Café', 'Té', 'Jugo'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"coffee"</em>. Coffee = café.',
+          incorrect: '✗ El audio dice <em>"coffee"</em> (café). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 3, level: 'easy',
+        title: '¿Qué agarra Marco para comer?',
+        desc: 'Escucha el alimento',
+        audio: 'I get some bread.',
+        spanish: 'Agarro un poco de pan.',
+        question: '¿Qué agarra Marco para comer?',
+        options: ['Pan', 'Arroz', 'Pasta'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"bread"</em>. Bread = pan.',
+          incorrect: '✗ El audio dice <em>"bread"</em> (pan). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 4, level: 'easy',
+        title: '¿Por qué regresa Marco?',
+        desc: 'Escucha el cognado',
+        audio: 'I come back for my phone.',
+        spanish: 'Regreso por mi teléfono.',
+        question: '¿Por qué regresa Marco?',
+        options: ['Por su teléfono', 'Por su bolsa', 'Por su libro'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"phone"</em>. Phone = teléfono.',
+          incorrect: '✗ El audio dice <em>"phone"</em> (teléfono). ¡Escucha otra vez!'
+        }
+      },
+      // ── INTERMEDIAS ──
+      {
+        id: 5, level: 'medium',
+        title: '¿Cuántas acciones hace Marco al levantarse?',
+        desc: 'Escucha y cuenta las acciones',
+        audio: 'I wash my face. I brush my teeth.',
+        spanish: 'Me lavo la cara. Me cepillo los dientes.',
+        question: '¿Cuántas cosas hace Marco al levantarse?',
+        options: ['Dos cosas', 'Una cosa', 'Tres cosas'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio menciona dos acciones: lavarse la cara y cepillarse los dientes.',
+          incorrect: '✗ El audio menciona dos acciones. ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué agarra Marco y qué toma?',
+        desc: 'Escucha los dos objetos',
+        audio: 'I get my bag. I take my keys.',
+        spanish: 'Agarro mi bolsa. Tomo mis llaves.',
+        question: '¿Qué toma Marco en el audio?',
+        options: ['Sus llaves', 'Su teléfono', 'Su libro'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I take my keys"</em>. Keys = llaves.',
+          incorrect: '✗ El audio dice <em>"take my keys"</em>: toma sus llaves. ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
+        title: '¿Qué hace Marco después del desayuno?',
+        desc: 'Escucha la acción',
+        audio: 'I make my bed.',
+        spanish: 'Tiendo mi cama.',
+        question: '¿Qué hace Marco después del desayuno?',
+        options: ['Tiende su cama', 'Barre el piso', 'Sale de casa'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"make my bed"</em> (tender la cama).',
+          incorrect: '✗ El audio dice <em>"make my bed"</em>: tiende su cama. ¡Escucha otra vez!'
+        }
+      },
+      // ── DIFÍCILES ──
+      {
+        id: 8, level: 'hard',
+        title: '¿Qué hace Marco para limpiar?',
+        desc: 'Escucha las dos acciones de limpieza',
+        audio: 'I make my bed. I sweep the floor.',
+        spanish: 'Tiendo mi cama. Barro el piso.',
+        question: '¿Qué hace Marco primero para limpiar?',
+        options: ['Tiende su cama', 'Barre el piso', 'Lava los platos'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice primero: <em>"I make my bed"</em> (tiende la cama).',
+          incorrect: '✗ El audio dice <em>"make my bed"</em> primero: tiende su cama. ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 9, level: 'hard',
+        title: '¿Qué agarra Marco y por qué regresa?',
+        desc: 'Escucha los dos objetos',
+        audio: 'I get my bag. I come back for my phone.',
+        spanish: 'Agarro mi bolsa. Regreso por mi teléfono.',
+        question: '¿Qué agarra Marco primero?',
+        options: ['Su bolsa', 'Sus llaves', 'Su libro'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice primero: <em>"I get my bag"</em>. Bag = bolsa.',
+          incorrect: '✗ El audio dice <em>"get my bag"</em> primero: agarra su bolsa. ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 10, level: 'hard',
+        title: '¿Está listo Marco para salir?',
+        desc: 'Escucha el nombre y el estado',
+        audio: 'My name is Marco. I am ready to go.',
+        spanish: 'Mi nombre es Marco. Estoy listo para salir.',
+        question: '¿Cómo está Marco al final de su rutina?',
+        options: ['Listo para salir', 'Cansado', 'Con hambre'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I am ready to go"</em>: listo para salir.',
+          incorrect: '✗ El audio dice <em>"I am ready to go"</em>: Marco está listo para salir. ¡Escucha otra vez!'
+        }
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────
+  // STORY 2 — What I Can Do (Ana)
+  // ─────────────────────────────────────────
+  s2: {
+    title: 'What I Can Do',
+    activities: [
+      // ── FÁCILES ──
+      {
+        id: 1, level: 'easy',
+        title: '¿Quién es el personaje?',
+        desc: 'Escucha el nombre',
+        audio: 'My name is Ana.',
+        spanish: 'Mi nombre es Ana.',
+        question: '¿Cómo se llama el personaje?',
+        options: ['Ana', 'Rosa', 'Sara'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Ana."</em>',
+          incorrect: '✗ El audio dice <em>"My name is Ana."</em> ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 2, level: 'easy',
+        title: '¿Dónde cocina Ana?',
+        desc: 'Escucha el lugar',
+        audio: 'I cook at home.',
+        spanish: 'Cocino en casa.',
+        question: '¿Dónde cocina Ana?',
+        options: ['En casa', 'En el mercado', 'En la escuela'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"at home"</em>. Home = casa.',
+          incorrect: '✗ El audio dice <em>"at home"</em> (en casa). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 3, level: 'easy',
+        title: '¿Qué usa Ana para crear tarjetas?',
+        desc: 'Escucha los materiales',
+        audio: 'I use paper.',
+        spanish: 'Uso papel.',
+        question: '¿Qué usa Ana para hacer tarjetas?',
+        options: ['Papel', 'Madera', 'Tela'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"paper"</em>. Paper = papel.',
+          incorrect: '✗ El audio dice <em>"paper"</em> (papel). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 4, level: 'easy',
+        title: '¿Qué idioma estudia Ana?',
+        desc: 'Escucha el nombre del idioma',
+        audio: 'I am learning English.',
+        spanish: 'Estoy aprendiendo inglés.',
+        question: '¿Qué idioma aprende Ana?',
+        options: ['Inglés', 'Francés', 'Portugués'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"English"</em>. English = inglés.',
+          incorrect: '✗ El audio dice <em>"English"</em> (inglés). ¡Escucha otra vez!'
+        }
+      },
+      // ── INTERMEDIAS ──
+      {
+        id: 5, level: 'medium',
+        title: '¿Qué idioma NO puede hablar Ana?',
+        desc: 'Escucha el nombre del idioma',
+        audio: 'I cannot speak French.',
+        spanish: 'No puedo hablar francés.',
+        question: '¿Qué idioma no puede hablar Ana?',
+        options: ['Francés', 'Inglés', 'Italiano'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"French"</em>. French = francés.',
+          incorrect: '✗ El audio dice <em>"French"</em> (francés). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿A quién le da tarjetas Ana?',
+        desc: 'Escucha a quién',
+        audio: 'I give cards to my friends.',
+        spanish: 'Doy tarjetas a mis amigos.',
+        question: '¿A quién le da tarjetas Ana?',
+        options: ['A sus amigos', 'A su familia', 'A su maestra'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"my friends"</em>. Friends = amigos.',
+          incorrect: '✗ El audio dice <em>"my friends"</em> (amigos). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
+        title: '¿Con quién estudia Ana inglés?',
+        desc: 'Escucha la persona',
+        audio: 'I ask my teacher for help.',
+        spanish: 'Le pido ayuda a mi maestra.',
+        question: '¿A quién le pide ayuda Ana?',
+        options: ['A su maestra', 'A su mamá', 'A su amigo'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"my teacher"</em>. Teacher = maestra.',
+          incorrect: '✗ El audio dice <em>"my teacher"</em> (maestra). ¡Escucha otra vez!'
+        }
+      },
+      // ── DIFÍCILES ──
+      {
+        id: 8, level: 'hard',
+        title: '¿Qué puede usar Ana?',
+        desc: 'Escucha el cognado y el nombre',
+        audio: 'My name is Ana. I can use a computer.',
+        spanish: 'Mi nombre es Ana. Puedo usar una computadora.',
+        question: '¿Qué puede usar Ana?',
+        options: ['Una computadora', 'Una cámara', 'Un televisor'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"computer"</em>. Computer = computadora.',
+          incorrect: '✗ El audio dice <em>"computer"</em> (computadora). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 9, level: 'hard',
+        title: '¿Qué idioma estudia y cuál no habla Ana?',
+        desc: 'Escucha los dos idiomas',
+        audio: 'I am learning English. I cannot speak French.',
+        spanish: 'Estoy aprendiendo inglés. No puedo hablar francés.',
+        question: '¿Qué idioma NO puede hablar Ana?',
+        options: ['Francés', 'Chino', 'Árabe'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"French"</em>. French = francés.',
+          incorrect: '✗ El audio dice <em>"French"</em> (francés). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 10, level: 'hard',
+        title: '¿A quién le da tarjetas Ana?',
+        desc: 'Escucha el nombre y el destinatario',
+        audio: 'My name is Ana. I give cards to my friends.',
+        spanish: 'Mi nombre es Ana. Doy tarjetas a mis amigos.',
+        question: '¿Qué da Ana a sus amigos?',
+        options: ['Tarjetas', 'Libros', 'Flores'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I give cards"</em>. Cards = tarjetas.',
+          incorrect: '✗ El audio dice <em>"cards"</em> (tarjetas). ¡Escucha otra vez!'
+        }
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────
+  // STORY 3 — A Typical Day (Sara)
+  // ─────────────────────────────────────────
+  s3: {
+    title: 'A Typical Day',
+    activities: [
+      // ── FÁCILES ──
+      {
+        id: 1, level: 'easy',
+        title: '¿Quién es el personaje?',
+        desc: 'Escucha el nombre',
+        audio: 'My name is Sara.',
+        spanish: 'Me llamo Sara.',
+        question: '¿Cómo se llama el personaje?',
+        options: ['Sara', 'Ana', 'Rosa'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Sara."</em>',
+          incorrect: '✗ El audio dice <em>"My name is Sara."</em> ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 2, level: 'easy',
+        title: '¿A qué hora se levanta Sara?',
+        desc: 'Escucha el número',
+        audio: 'I get up at seven.',
+        spanish: 'Me levanto a las siete.',
+        question: '¿A qué hora se levanta Sara?',
+        options: ['A las siete', 'A las seis', 'A las ocho'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"at seven"</em>. Seven = siete.',
+          incorrect: '✗ El audio dice <em>"at seven"</em> (siete). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 3, level: 'easy',
+        title: '¿Qué prepara Sara primero?',
+        desc: 'Escucha la bebida',
+        audio: 'I make tea.',
+        spanish: 'Preparo té.',
+        question: '¿Qué prepara Sara primero?',
+        options: ['Té', 'Café', 'Leche'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"tea"</em>. Tea = té.',
+          incorrect: '✗ El audio dice <em>"tea"</em> (té). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 4, level: 'easy',
+        title: '¿Cómo va Sara al trabajo?',
+        desc: 'Escucha el transporte',
+        audio: 'I take the bus.',
+        spanish: 'Tomo el autobús.',
+        question: '¿Cómo va Sara al trabajo?',
+        options: ['En bus', 'En auto', 'A pie'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"bus"</em>. Bus = autobús.',
+          incorrect: '✗ El audio dice <em>"bus"</em> (autobús). ¡Escucha otra vez!'
+        }
+      },
+      // ── INTERMEDIAS ──
+      {
+        id: 5, level: 'medium',
+        title: '¿Dónde trabaja Sara?',
+        desc: 'Escucha el lugar',
+        audio: 'I arrive at work.',
+        spanish: 'Llego al trabajo.',
+        question: '¿Adónde llega Sara?',
+        options: ['Al trabajo', 'A la escuela', 'Al mercado'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"at work"</em>. Work = trabajo.',
+          incorrect: '✗ El audio dice <em>"at work"</em> (trabajo). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué hace Sara en la tarde?',
+        desc: 'Escucha la actividad',
+        audio: 'I have meetings.',
+        spanish: 'Tengo reuniones.',
+        question: '¿Qué tiene Sara en la tarde?',
+        options: ['Reuniones', 'Clases', 'Fiestas'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"meetings"</em>. Meetings = reuniones.',
+          incorrect: '✗ El audio dice <em>"meetings"</em> (reuniones). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
+        title: '¿Qué hace Sara además de comer?',
+        desc: 'Escucha la actividad',
+        audio: 'I take a walk.',
+        spanish: 'Doy un paseo.',
+        question: '¿Qué hace Sara?',
+        options: ['Da un paseo', 'Duerme', 'Lee'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I take a walk."</em> Walk = caminar / paseo.',
+          incorrect: '✗ El audio dice <em>"a walk"</em> (paseo / caminata). ¡Escucha otra vez!'
+        }
+      },
+      // ── DIFÍCILES ──
+      {
+        id: 8, level: 'hard',
+        title: '¿A qué hora se levanta Sara y qué prepara?',
+        desc: 'Escucha el número y la bebida',
+        audio: 'I get up at seven. I make tea.',
+        spanish: 'Me levanto a las siete. Preparo té.',
+        question: '¿Qué prepara Sara justo después de levantarse?',
+        options: ['Té', 'Café', 'Jugo'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I make tea"</em>. Tea = té.',
+          incorrect: '✗ El audio dice <em>"make tea"</em> (té). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 9, level: 'hard',
+        title: '¿Qué prepara Sara después del paseo?',
+        desc: 'Escucha la comida',
+        audio: 'I make a simple dinner.',
+        spanish: 'Preparo una cena sencilla.',
+        question: '¿Qué prepara Sara en la noche?',
+        options: ['Cena', 'Desayuno', 'Almuerzo'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"dinner"</em>. Dinner = cena.',
+          incorrect: '✗ El audio dice <em>"dinner"</em> (cena). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 10, level: 'hard',
+        title: '¿Qué prepara Sara y cómo regresa?',
+        desc: 'Escucha la comida y el transporte',
+        audio: 'I make a simple dinner. I take the bus.',
+        spanish: 'Preparo una cena sencilla. Tomo el autobús.',
+        question: '¿Cómo regresa Sara a casa?',
+        options: ['En bus', 'En taxi', 'A pie'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I take the bus"</em>. Bus = autobús.',
+          incorrect: '✗ El audio dice <em>"take the bus"</em> (autobús). ¡Escucha otra vez!'
+        }
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────
+  // STORY 4 — Giving and Receiving (Ben & Rosa)
+  // ─────────────────────────────────────────
+  s4: {
+    title: 'Giving & Receiving',
+    activities: [
+      // ── FÁCILES ──
+      {
+        id: 1, level: 'easy',
+        title: '¿Cómo se llama el personaje principal?',
+        desc: 'Escucha el nombre',
+        audio: 'His name is Ben.',
+        spanish: 'Su nombre es Ben.',
+        question: '¿Cómo se llama el personaje principal?',
+        options: ['Ben', 'Marco', 'Tom'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"His name is Ben."</em>',
+          incorrect: '✗ El audio dice <em>"His name is Ben."</em> ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 2, level: 'easy',
+        title: '¿Cómo se llama la vecina?',
+        desc: 'Escucha el nombre',
+        audio: 'Her name is Rosa.',
+        spanish: 'Su nombre es Rosa.',
+        question: '¿Cómo se llama la vecina?',
+        options: ['Rosa', 'Ana', 'Sara'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"Her name is Rosa."</em>',
+          incorrect: '✗ El audio dice <em>"Her name is Rosa."</em> ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 3, level: 'easy',
+        title: '¿Qué lleva Ben?',
+        desc: 'Escucha lo que lleva',
+        audio: 'Ben gives Rosa fruit.',
+        spanish: 'Ben le da fruta a Rosa.',
+        question: '¿Qué le da Ben a Rosa?',
+        options: ['Fruta', 'Pan', 'Café'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"fruit"</em>. Fruit = fruta.',
+          incorrect: '✗ El audio dice <em>"fruit"</em> (fruta). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 4, level: 'easy',
+        title: '¿Dónde compra Ben?',
+        desc: 'Escucha el lugar',
+        audio: 'He gets it at the market.',
+        spanish: 'Lo compra en el mercado.',
+        question: '¿Dónde compra Ben la fruta?',
+        options: ['En el mercado', 'En la plaza', 'En el parque'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"market"</em>. Market = mercado.',
+          incorrect: '✗ El audio dice <em>"market"</em> (mercado). ¡Escucha otra vez!'
+        }
+      },
+      // ── INTERMEDIAS ──
+      {
+        id: 5, level: 'medium',
+        title: '¿Con qué frecuencia va Ben?',
+        desc: 'Escucha la frecuencia',
+        audio: 'Ben visits Rosa each week.',
+        spanish: 'Ben visita a Rosa cada semana.',
+        question: '¿Con qué frecuencia visita Ben a Rosa?',
+        options: ['Cada semana', 'Cada día', 'Cada mes'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"each week"</em>. Week = semana.',
+          incorrect: '✗ El audio dice <em>"each week"</em> (cada semana). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué necesita Rosa?',
+        desc: 'Escucha el cognado',
+        audio: 'Rosa wants to use her phone.',
+        spanish: 'Rosa quiere usar su teléfono.',
+        question: '¿Qué quiere usar Rosa?',
+        options: ['Su teléfono', 'Su computadora', 'Su radio'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"phone"</em>. Phone = teléfono.',
+          incorrect: '✗ El audio dice <em>"phone"</em> (teléfono). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
+        title: '¿A quién llama Rosa?',
+        desc: 'Escucha el familiar',
+        audio: 'Rosa calls her son.',
+        spanish: 'Rosa llama a su hijo.',
+        question: '¿A quién llama Rosa?',
+        options: ['A su hijo', 'A Ben', 'A su maestra'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"her son"</em>. Son = hijo.',
+          incorrect: '✗ El audio dice <em>"her son"</em> (su hijo). ¡Escucha otra vez!'
+        }
+      },
+      // ── DIFÍCILES ──
+      {
+        id: 8, level: 'hard',
+        title: '¿Qué le da Ben a Rosa y dónde?',
+        desc: 'Escucha el objeto y el lugar',
+        audio: 'Ben gives Rosa fruit. He gets it at the market.',
+        spanish: 'Ben le da fruta a Rosa. Lo compra en el mercado.',
+        question: '¿Dónde compra Ben la fruta para Rosa?',
+        options: ['En el mercado', 'En la tienda', 'En el parque'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"at the market"</em>. Market = mercado.',
+          incorrect: '✗ El audio dice <em>"at the market"</em> (mercado). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 9, level: 'hard',
+        title: '¿Qué quiere Rosa y a quién llama?',
+        desc: 'Escucha el cognado y el familiar',
+        audio: 'Rosa wants to use her phone. Rosa calls her son.',
+        spanish: 'Rosa quiere usar su teléfono. Rosa llama a su hijo.',
+        question: '¿A quién llama Rosa con su teléfono?',
+        options: ['A su hijo', 'A su vecina', 'A su amiga'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"Rosa calls her son"</em>. Son = hijo.',
+          incorrect: '✗ El audio dice <em>"her son"</em> (su hijo). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 10, level: 'hard',
+        title: '¿Qué hace Rosa con su teléfono?',
+        desc: 'Escucha el cognado y la persona',
+        audio: 'Rosa calls her son. She is happy.',
+        spanish: 'Rosa llama a su hijo. Ella está feliz.',
+        question: '¿Cómo se siente Rosa al final?',
+        options: ['Feliz', 'Triste', 'Cansada'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"She is happy."</em> Happy = feliz.',
+          incorrect: '✗ El audio dice <em>"happy"</em> (feliz). ¡Escucha otra vez!'
+        }
+      }
+    ]
+  }
+};
+
+/* ════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════ */
+let currentStory = 's1';
+let currentAccent = 'US';
+
+// Per-story state
+const state = {
+  s1: { answered: 0, correct: 0, incorrect: 0, easy: 0, medium: 0, hard: 0, done: {} },
+  s2: { answered: 0, correct: 0, incorrect: 0, easy: 0, medium: 0, hard: 0, done: {} },
+  s3: { answered: 0, correct: 0, incorrect: 0, easy: 0, medium: 0, hard: 0, done: {} },
+  s4: { answered: 0, correct: 0, incorrect: 0, easy: 0, medium: 0, hard: 0, done: {} },
+};
+
+/* ════════════════════════════════════════════
+   VOICE ENGINE
+════════════════════════════════════════════ */
+let usVoice = null, ukVoice = null, voicesReady = false;
+let activeSpeech = null;   // current SpeechSynthesisUtterance
+let activePlayBtn = null;  // current play button element
+
+function loadVoices() {
+  const voices = speechSynthesis.getVoices();
+  if (!voices.length) return;
+  voicesReady = true;
+
+  const usPat = [
+    v => v.lang === 'en-US' && /samantha|allison|ava|tom|alex|aaron|nicky/i.test(v.name),
+    v => v.lang === 'en-US' && /google us/i.test(v.name),
+    v => v.lang === 'en-US' && /microsoft.*online/i.test(v.name),
+    v => v.lang === 'en-US',
+  ];
+  const ukPat = [
+    v => v.lang === 'en-GB' && /daniel|kate|serena|oliver|martha/i.test(v.name),
+    v => v.lang === 'en-GB' && /google uk/i.test(v.name),
+    v => v.lang === 'en-GB' && /microsoft.*online/i.test(v.name),
+    v => v.lang === 'en-GB',
+    v => v.lang === 'en-AU',
+    v => v.lang.startsWith('en'),
+  ];
+
+  for (const p of usPat) { const m = voices.find(p); if (m) { usVoice = m; break; } }
+  for (const p of ukPat) {
+    const m = voices.find(v => p(v) && v !== usVoice);
+    if (m) { ukVoice = m; break; }
+  }
+}
+
+speechSynthesis.getVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+[100, 600, 1600].forEach(t => setTimeout(loadVoices, t));
+
+function stopAll() {
+  speechSynthesis.cancel();
+  if (activePlayBtn) {
+    activePlayBtn.classList.remove('playing');
+    activePlayBtn.textContent = '▶️';
+    activePlayBtn = null;
+  }
+}
+
+/* ════════════════════════════════════════════
+   ACCENT SELECTOR
+════════════════════════════════════════════ */
+function setAccent(accent, btn) {
+  currentAccent = accent;
+  stopAll();
+  document.querySelectorAll('.accent-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ════════════════════════════════════════════
+   FISHER-YATES SHUFFLE
+════════════════════════════════════════════ */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ════════════════════════════════════════════
+   RENDER A STORY PANEL
+════════════════════════════════════════════ */
+function renderStory(storyKey) {
+  const data = storiesData[storyKey];
+  const panel = document.getElementById('panel-' + storyKey);
+  const letters = ['A', 'B', 'C'];
+
+  let html = '';
+  let lastLevel = '';
+
+  data.activities.forEach(act => {
+    // ── Level header
+    if (act.level !== lastLevel) {
+      if (lastLevel) html += '</div>'; // close previous level-section
+      lastLevel = act.level;
+      const levelMap = {
+        easy:   { icon: '🟢', label: 'Fácil',      range: '1-4',  cls: 'easy'   },
+        medium: { icon: '🟡', label: 'Intermedio',  range: '5-7',  cls: 'medium' },
+        hard:   { icon: '🔴', label: 'Difícil',     range: '8-10', cls: 'hard'   },
+      };
+      const lv = levelMap[act.level];
+      html += `
+      <div class="level-section">
+        <div class="level-head ${lv.cls}">
+          <span class="lh-icon">${lv.icon}</span>
+          <span class="lh-title">Nivel ${lv.label}</span>
+          <span class="lh-sub">Preguntas ${lv.range}</span>
+        </div>`;
+    }
+
+    // ── Shuffle options; track which index is correct
+    const correctText = act.options[0]; // index 0 is always correct in source data
+    const shuffled = shuffle(act.options);
+    const correctIdx = shuffled.indexOf(correctText);
+    const correctLetter = ['a', 'b', 'c'][correctIdx];
+    const uid = storyKey + '_' + act.id;
+
+    // ── Build options HTML
+    let optsHTML = '';
+    shuffled.forEach((opt, i) => {
+      optsHTML += `
+        <div class="opt" id="opt_${uid}_${letters[i]}"
+             onclick="selectAnswer('${uid}','${letters[i]}','${correctLetter}','${act.level}')">
+          <span class="opt-letter">${letters[i]}</span>
+          <span class="opt-text">${opt}</span>
+        </div>`;
+    });
+
+    html += `
+    <div class="audio-card" id="card_${uid}">
+      <div class="card-header">
+        <div class="card-num ${act.level}">${act.id}</div>
+        <div class="card-meta">
+          <h3>${act.title}</h3>
+          <p>${act.desc}</p>
+        </div>
+      </div>
+
+      <div class="player-zone">
+        <!-- Speed control per card -->
+        <div class="card-speed">
+          <label>🔊 Velocidad:</label>
+          <input type="range" min="0.5" max="1.2" step="0.05" value="0.82"
+                 oninput="updateCardSpeed(this,'speed_${uid}')">
+          <span class="speed-val" id="speed_${uid}">0.82×</span>
+        </div>
+
+        <button class="play-btn" id="playbtn_${uid}"
+                onclick="playCard('${uid}', \`${act.audio.replace(/`/g,'\\`')}\`, 'playbtn_${uid}')">
+          ▶️
+        </button>
+
+        <div class="text-toggle-row">
+          <button class="txt-btn" id="entoggle_${uid}" onclick="toggleText('en','${uid}')">
+            📤 Ver texto en inglés
+          </button>
+          <button class="txt-btn es" id="estoggle_${uid}" onclick="toggleText('es','${uid}')">
+            🇪🇸 Ver en español
+          </button>
+        </div>
+
+        <div class="text-box en" id="entext_${uid}">
+          <div class="box-label">📤 Texto en inglés</div>
+          ${act.audio}
+        </div>
+        <div class="text-box sp" id="estext_${uid}">
+          <div class="box-label">🇪🇸 Traducción</div>
+          ${act.spanish}
+        </div>
+      </div><!-- /player-zone -->
+
+      <button class="show-q-btn" id="showqbtn_${uid}" onclick="toggleQuestion('${uid}')">
+        ❓ Mostrar Pregunta
+      </button>
+
+      <div class="q-section" id="qsec_${uid}">
+        <div class="q-label">❓ Pregunta</div>
+        <div class="q-text">${act.question}</div>
+        <div class="options" id="opts_${uid}">
+          ${optsHTML}
+        </div>
+        <div class="feedback" id="fb_${uid}"></div>
+      </div>
+    </div>`;
+  });
+
+  if (lastLevel) html += '</div>'; // close last level-section
+  panel.innerHTML = html;
+}
+
+/* ════════════════════════════════════════════
+   SPEED CONTROL PER CARD
+════════════════════════════════════════════ */
+const cardSpeeds = {};
+
+function updateCardSpeed(slider, displayId) {
+  const val = parseFloat(slider.value);
+  cardSpeeds[displayId] = val;
+  document.getElementById(displayId).textContent = val.toFixed(2) + '×';
+}
+
+function getCardSpeed(uid) {
+  return cardSpeeds['speed_' + uid] || 0.82;
+}
+
+/* ════════════════════════════════════════════
+   PLAY AUDIO
+════════════════════════════════════════════ */
+function playCard(uid, text, btnId) {
+  const btn = document.getElementById(btnId);
+
+  // If this button is already playing → stop
+  if (activePlayBtn === btn && speechSynthesis.speaking) {
+    stopAll();
+    return;
+  }
+  stopAll();
+  if (!voicesReady) loadVoices();
+
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate  = getCardSpeed(uid);
+  utt.pitch = 1;
+  utt.volume = 1;
+
+  if (currentAccent === 'US') {
+    utt.lang  = 'en-US';
+    if (usVoice) utt.voice = usVoice;
+  } else {
+    utt.lang  = 'en-GB';
+    if (ukVoice) utt.voice = ukVoice;
+  }
+
+  btn.classList.add('playing');
+  btn.textContent = '⏹️';
+  activePlayBtn = btn;
+
+  utt.onend  = () => { btn.classList.remove('playing'); btn.textContent = '▶️'; activePlayBtn = null; };
+  utt.onerror = () => { btn.classList.remove('playing'); btn.textContent = '▶️'; activePlayBtn = null; };
+
+  speechSynthesis.speak(utt);
+}
+
+/* ════════════════════════════════════════════
+   TOGGLE TEXT / SPANISH
+════════════════════════════════════════════ */
+function toggleText(lang, uid) {
+  if (lang === 'en') {
+    const box = document.getElementById('entext_' + uid);
+    const btn = document.getElementById('entoggle_' + uid);
+    const on  = box.classList.toggle('show');
+    btn.classList.toggle('active', on);
+    btn.textContent = on ? '📤 Ocultar inglés' : '📤 Ver texto en inglés';
+  } else {
+    const box = document.getElementById('estext_' + uid);
+    const btn = document.getElementById('estoggle_' + uid);
+    const on  = box.classList.toggle('show');
+    btn.classList.toggle('active', on);
+    btn.textContent = on ? '🇪🇸 Ocultar español' : '🇪🇸 Ver en español';
+  }
+}
+
+/* ════════════════════════════════════════════
+   TOGGLE QUESTION
+════════════════════════════════════════════ */
+function toggleQuestion(uid) {
+  const sec = document.getElementById('qsec_' + uid);
+  const btn = document.getElementById('showqbtn_' + uid);
+  const on  = sec.classList.toggle('show');
+  btn.classList.toggle('open', on);
+  btn.textContent = on ? '❓ Ocultar Pregunta' : '❓ Mostrar Pregunta';
+}
+
+/* ════════════════════════════════════════════
+   SELECT ANSWER
+════════════════════════════════════════════ */
+function selectAnswer(uid, selected, correctLetter, level) {
+  const st = state[currentStory];
+  if (st.done[uid]) return; // already answered
+  st.done[uid] = true;
+
+  const isCorrect = selected === correctLetter;
+  const letters   = ['a', 'b', 'c'];
+
+  // Disable all options and mark them
+  letters.forEach(l => {
+    const opt = document.getElementById('opt_' + uid + '_' + l.toUpperCase());
+    if (!opt) return;
+    opt.classList.add('disabled');
+    if (l === selected)     opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+    if (l === correctLetter && !isCorrect) opt.classList.add('show-c');
+  });
+
+  // Update state
+  st.answered++;
+  if (isCorrect) {
+    st.correct++;
+    if (level === 'easy')   st.easy++;
+    if (level === 'medium') st.medium++;
+    if (level === 'hard')   st.hard++;
+  } else {
+    st.incorrect++;
+  }
+
+  // Feedback
+  const storyData = storiesData[currentStory];
+  const actId     = parseInt(uid.split('_')[1]);
+  const act       = storyData.activities.find(a => a.id === actId);
+  const fb        = document.getElementById('fb_' + uid);
+  fb.innerHTML    = isCorrect ? act.feedback.correct : act.feedback.incorrect;
+  fb.className    = 'feedback show ' + (isCorrect ? 'ok' : 'wrong');
+
+  // Update score panel
+  updateScorePanel();
+
+  // Show results when all 10 answered
+  if (st.answered === 10) {
+    setTimeout(showResults, 900);
+  }
+}
+
+/* ════════════════════════════════════════════
+   SCORE PANEL
+════════════════════════════════════════════ */
+function updateScorePanel() {
+  const st = state[currentStory];
+  document.getElementById('answeredCount').textContent = st.answered + '/10';
+  document.getElementById('correctCount').textContent  = st.correct;
+  document.getElementById('incorrectCount').textContent = st.incorrect;
+}
+
+/* ════════════════════════════════════════════
+   SHOW RESULTS
+════════════════════════════════════════════ */
+function showResults() {
+  const st   = state[currentStory];
+  const pct  = (st.correct / 10) * 100;
+  const panel = document.getElementById('resultsPanel');
+
+  document.getElementById('bigScore').textContent  = st.correct + '/10';
+  document.getElementById('easyScore').textContent = st.easy   + '/4';
+  document.getElementById('medScore').textContent  = st.medium + '/3';
+  document.getElementById('hardScore').textContent = st.hard   + '/3';
+
+  const trophy = document.getElementById('trophy');
+  const title  = document.getElementById('resultsTitle');
+  const msg    = document.getElementById('resultsMsg');
+
+  const storyTitle = storiesData[currentStory].title;
+
+  if (pct >= 90) {
+    trophy.textContent = '🏆'; title.textContent = '¡Excelente!';
+    msg.textContent = `Comprendiste muy bien "${storyTitle}". ¡Sigue así!`;
+  } else if (pct >= 70) {
+    trophy.textContent = '🥈'; title.textContent = '¡Muy bien!';
+    msg.textContent = `Buen progreso con "${storyTitle}". ¡Sigue practicando!`;
+  } else if (pct >= 50) {
+    trophy.textContent = '🥉'; title.textContent = '¡Buen intento!';
+    msg.textContent = `Vas por buen camino. Repasa "${storyTitle}" y vuelve a intentarlo.`;
+  } else {
+    trophy.textContent = '📚'; title.textContent = 'Sigue practicando';
+    msg.textContent = `Escucha los audios de "${storyTitle}" de nuevo y presta atención a cada detalle.`;
+  }
+
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════════
+   RETRY (reset current story only)
+════════════════════════════════════════════ */
+function retryStory() {
+  stopAll();
+  // Reset state for current story
+  state[currentStory] = { answered: 0, correct: 0, incorrect: 0, easy: 0, medium: 0, hard: 0, done: {} };
+  // Hide results
+  document.getElementById('resultsPanel').classList.remove('show');
+  // Re-render (shuffles options again)
+  renderStory(currentStory);
+  // Scroll to top
+  updateScorePanel();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════════
+   SWITCH STORY (TAB)
+════════════════════════════════════════════ */
+function switchStory(num, btn) {
+  stopAll();
+  currentStory = 's' + num;
+
+  // Update tabs
+  document.querySelectorAll('.story-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show/hide panels
+  document.querySelectorAll('.story-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-s' + num).classList.add('active');
+
+  // Update story label in score panel
+  document.getElementById('storyLabel').textContent = 'S' + num;
+
+  // Hide results
+  document.getElementById('resultsPanel').classList.remove('show');
+
+  // Update score display for this story
+  updateScorePanel();
+}
+
+/* ════════════════════════════════════════════
+   INIT — render all 4 stories on load
+════════════════════════════════════════════ */
+['s1','s2','s3','s4'].forEach(renderStory);
+</script>
+</body>
+</html>

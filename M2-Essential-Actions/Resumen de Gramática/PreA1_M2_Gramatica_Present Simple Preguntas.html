@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Summary — Present Simple Yes/No Questions | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#1A1A2E;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--quest:#7B1FA2;--quest-bg:#F3E5F5;
+--aux:#6A1B9A;--aux-bg:#F3E5F5;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+--does:#AD1457;--does-bg:#FCE4EC;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:800px;margin:0 auto}
+
+.level-header{text-align:center;padding:2rem 1.5rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-10%;width:260px;height:260px;background:rgba(255,255,255,.08);border-radius:50%}
+.level-header::after{content:'';position:absolute;bottom:-30%;left:-8%;width:180px;height:180px;background:rgba(255,255,255,.06);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.85rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.25rem}
+.level-header .subtitle{opacity:.8;font-size:.82rem;position:relative;z-index:1;margin-top:.2rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .8rem;border-radius:8px;font-size:.77rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif;white-space:nowrap}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:.15rem;color:var(--ld)}
+.section-desc{font-size:.84rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
+
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj);display:inline-block}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb);display:inline-block}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp);display:inline-block}
+.g-aux{background:var(--aux-bg);color:var(--aux);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--aux);display:inline-block}
+.g-does{background:var(--does-bg);color:var(--does);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--does);display:inline-block}
+
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.6rem .7rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:left}
+.g-table td{padding:.6rem .7rem;border-bottom:1px solid #f0ece0;vertical-align:middle;line-height:1.45}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:#FFF8E1;border:2px solid #FFCC80}
+.compare-card.eng{background:var(--quest-bg);border:2px solid #CE93D8}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.88rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:#E65100}
+.compare-card.eng h4{color:var(--quest)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:3px 0}
+
+.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.8rem 0}
+.conj-item{padding:.65rem .4rem;border-radius:10px;text-align:center;background:#FAFAF6;border:1.5px solid var(--border)}
+.conj-item .pron{font-size:.7rem;color:var(--subj);font-weight:800;margin-bottom:2px}
+.conj-item .vrb{font-family:'Fredoka',sans-serif;font-size:.88rem;color:var(--aux);line-height:1.3}
+.conj-item .meaning{font-size:.62rem;color:var(--text-soft);margin-top:2px}
+.conj-item.s3{background:var(--does-bg);border-color:#F48FB1}
+.conj-item.s3 .pron{color:var(--does)}
+.conj-item.s3 .vrb{color:var(--does)}
+
+.dos-col{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.8rem 0}
+.col-card{background:#FAFAF6;border:1.5px solid var(--border);border-radius:10px;padding:.8rem}
+.col-card h5{font-family:'Fredoka',sans-serif;font-size:.82rem;margin-bottom:.5rem}
+.col-card.do-c h5{color:var(--aux)}
+.col-card.does-c h5{color:var(--does)}
+.col-card ul{list-style:none;font-size:.8rem;color:var(--text-soft)}
+.col-card li{padding:2px 0}
+
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.8rem 0}
+.ans-card{padding:.8rem;border-radius:10px;font-size:.82rem}
+.ans-card.yes-c{background:var(--ok-bg);border:1.5px solid #A5D6A7}
+.ans-card.no-c{background:var(--err-bg);border:1.5px solid #EF9A9A}
+.ans-card h5{font-family:'Fredoka',sans-serif;font-size:.82rem;margin-bottom:.4rem}
+.ans-card.yes-c h5{color:var(--ok)}
+.ans-card.no-c h5{color:var(--err)}
+.ans-card ul{list-style:none}
+.ans-card li{padding:2px 0;color:var(--text-soft)}
+
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem 1.2rem;margin:.8rem 0;font-family:'Fredoka',sans-serif;font-size:.9rem;color:var(--ld);line-height:2.1}
+.formula-box .row{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.1rem}
+
+.tip-card{background:var(--ll);border-radius:10px;padding:.75rem 1rem;margin:.45rem 0;font-size:.83rem;border-left:3.5px solid var(--lp);line-height:1.55}
+.tip-card strong{color:var(--ld)}
+
+.alert-card{background:var(--err-bg);border:2px solid #EF9A9A;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem;font-weight:700}
+.alert-card p{font-size:.82rem;color:#5A1010;line-height:1.6}
+
+.ex-row{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .85rem;border-radius:10px;margin:.4rem 0;font-size:.87rem}
+.ex-row .icon{font-size:1.15rem;flex-shrink:0;margin-top:1px}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:var(--text-soft);margin-top:2px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+
+.ex-section{margin-top:1.3rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.88rem;margin-bottom:.8rem}
+.exercise{background:#FAFAF6;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #EAE6D8;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.87rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid var(--lm);border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left;line-height:1.35}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll);color:var(--ld)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+.fb{margin-top:.7rem;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:2px}
+.fb-row .fb-text{flex:1;line-height:1.5}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.35rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.45rem .7rem;border-radius:8px;background:var(--ll);border:1px solid var(--lm);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.1rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 22px;position:relative;font-size:.83rem;color:var(--text-soft);line-height:1.5}
+.summary-final li:before{content:"✔";position:absolute;left:0;color:var(--lp);font-weight:700}
+
+.challenge-badge{display:inline-block;background:linear-gradient(135deg,#7B1FA2,#9C27B0);color:#fff;font-family:'Fredoka',sans-serif;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-left:.5rem;vertical-align:middle}
+
+@media(max-width:600px){
+.level-header h1{font-size:1.4rem}
+.card{padding:1.1rem}
+.compare-grid,.conj-grid,.dos-col,.ans-grid{grid-template-columns:1fr}
+.opts{grid-template-columns:1fr}
+.step-tabs{gap:.25rem}
+.step-tab{font-size:.72rem;padding:.4rem .6rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="level-header">
+  <div class="level-badge">💛 Pre-A1 · Grammar Summary</div>
+  <h1>📝 Present Simple</h1>
+  <div class="module-name">❓ Yes/No Questions — Do you have? · Does he make?</div>
+  <p class="subtitle">5 pasos pedagógicos · 25 ejercicios interactivos · JUCUM English Center</p>
+</div>
+
+<div class="step-tabs" id="stepTabs"></div>
+<div id="cardArea"></div>
+
+<div class="summary-final" id="summaryFinal">
+  <h3>🎓 Lo que dominaste — Present Simple Yes/No Questions</h3>
+  <ul id="summaryList"></ul>
+</div>
+
+</div>
+<script>
+var summaryPoints = [
+  "<b>Do</b> + I/you/we/they + verbo base? → Do you eat? Do they work?",
+  "<b>Does</b> + he/she/it + verbo base? → Does she eat? Does he work?",
+  "<b>Con Does</b> el verbo NUNCA lleva -S: Does she eat<b>s</b>? ❌ → Does she eat? ✅",
+  "<b>Respuesta corta Sí:</b> Yes, I do. / Yes, she does.",
+  "<b>Respuesta corta No:</b> No, I don't. / No, she doesn't.",
+  "<b>Inversión obligatoria:</b> en inglés el auxiliar va ANTES del sujeto para preguntar",
+  "<b>Nunca:</b> You eat? / She eats? / Does she eats? / Do he work?"
+];
+
+var steps = [
+
+// ══════════════════════════════════════════════
+// PASO 1
+// ══════════════════════════════════════════════
+{icon:"🇪🇸", title:"Repaso en Español",
+html:`<div class="section-label">Paso 1</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">En español preguntamos de dos maneras: subiendo el tono o invirtiendo el sujeto. En inglés siempre usamos un auxiliar especial al inicio. Veamos primero el español.</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>🇪🇸 Afirmativo</h4>
+    <ul>
+      <li>Tú <b>comes</b> pizza.</li>
+      <li>Ella <b>trabaja</b> aquí.</li>
+      <li>Él <b>tiene</b> un perro.</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>❓ Pregunta en Español</h4>
+    <ul>
+      <li>¿<b>Comes</b> pizza?</li>
+      <li>¿<b>Trabaja</b> ella aquí?</li>
+      <li>¿<b>Tiene</b> él un perro?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 En español:</strong> Para preguntar podemos <b>subir el tono</b> ("¿Comes pizza?") o <b>invertir</b> el orden sujeto-verbo ("¿Trabaja ella?"). En inglés siempre se usa un auxiliar (do/does) — el tono solo no alcanza.</div>
+
+<div class="section-label" style="margin-top:1rem">¿Cuándo usamos preguntas de Sí/No?</div>
+<table class="g-table">
+  <tr><th>Situación</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Preguntar por rutina</td><td>¿Desayunas todos los días?</td><td>Do you eat breakfast every day?</td></tr>
+  <tr><td>Preguntar por hábito</td><td>¿Ella bebe café?</td><td>Does she drink coffee?</td></tr>
+  <tr><td>Preguntar posesión</td><td>¿Él tiene carro?</td><td>Does he have a car?</td></tr>
+  <tr><td>Preguntar hecho general</td><td>¿Los gatos comen carne?</td><td>Do cats eat meat?</td></tr>
+</table>`,
+exercises:[
+  {q:'En español, ¿cómo podemos hacer una pregunta de sí/no?',a:'b',o:['Solo invirtiendo el orden','Subiendo el tono o invirtiendo el orden'],
+   fc:'En español podemos solo subir el tono ("¿Comes pizza?") o invertir ("¿Come pizza ella?"). Las dos formas son válidas.',
+   fi:'"Solo invirtiendo" es incompleto — el tono ascendente también sirve en español.',
+   ex:'¿Comes pizza? / ¿Come pizza ella? — ambas válidas en español'},
+
+  {q:'"¿Ella trabaja aquí?" es una pregunta de:',a:'a',o:['Sí o No','Información abierta'],
+   fc:'Se responde con "Sí, trabaja aquí" o "No, no trabaja aquí" — es una pregunta de sí/no.',
+   fi:'Las preguntas abiertas piden información específica: ¿Dónde trabaja? ¿Cuándo trabaja?',
+   ex:'¿Trabaja ella aquí? → Does she work here?'},
+
+  {q:'"¿Dónde vives?" es una pregunta de:',a:'a',o:['Información abierta (wh-)','Sí o No'],
+   fc:'"¿Dónde?" pide información específica, no una respuesta de sí/no.',
+   fi:'Sí/No solo tiene dos respuestas posibles: sí o no. "¿Dónde?" necesita una dirección.',
+   ex:'¿Dónde vives? = Where do you live? (información, no sí/no)'},
+
+  {q:'¿Cuál es una pregunta de Sí/No?',a:'b',o:['¿Cuántos hermanos tienes?','¿Tienes hermanos?'],
+   fc:'"¿Tienes hermanos?" solo admite dos respuestas: "Sí, tengo" o "No, no tengo" — es perfecta pregunta de sí/no.',
+   fi:'"¿Cuántos hermanos tienes?" pide un número específico — no se puede responder solo con sí o no.',
+   ex:'¿Tienes hermanos? → Do you have siblings?'},
+
+  {q:'En inglés, ¿podemos preguntar solo subiendo el tono como en español?',a:'a',o:['No, siempre necesitamos el auxiliar do/does','Sí, es igual que en español'],
+   fc:'En inglés siempre necesitamos el auxiliar do/does al inicio. Solo subir el tono no forma una pregunta correcta.',
+   fi:'"You eat pizza?" sin auxiliar no es una pregunta formal correcta — suena a sorpresa o confirmación, no a pregunta real.',
+   ex:'You eat pizza? ❌ → Do you eat pizza? ✅',
+   tip:'Inglés: auxiliar obligatorio · Español: tono o inversión bastan'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 2
+// ══════════════════════════════════════════════
+{icon:"🤝", title:"Similitudes",
+html:`<div class="section-label">Paso 2</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Aunque el mecanismo es diferente, las preguntas de sí/no comparten principios importantes entre ambos idiomas.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Mismo concepto: sí o no</td><td>¿Comes pizza?</td><td>Do you eat pizza?</td></tr>
+  <tr><td>Verbo en forma simple</td><td>¿Com<b>es</b>? ¿Com<b>e</b>?</td><td>Do you <b>eat</b>? (base)</td></tr>
+  <tr><td>Distinción por persona</td><td>¿com<b>es</b>? / ¿com<b>e</b>?</td><td><b>Do</b> you? / <b>Does</b> she?</td></tr>
+  <tr><td>Signo de pregunta al final</td><td>¿...?</td><td>...?</td></tr>
+  <tr><td>Respuesta corta posible</td><td>Sí / No</td><td>Yes, I do. / No, I don't.</td></tr>
+</table>
+
+<div class="section-label" style="margin-top:1rem">Las dos formas del auxiliar</div>
+<div class="dos-col">
+  <div class="col-card do-c">
+    <h5>🔵 DO</h5>
+    <ul>
+      <li>Do <b>I</b> work?</li>
+      <li>Do <b>you</b> work?</li>
+      <li>Do <b>we</b> work?</li>
+      <li>Do <b>they</b> work?</li>
+    </ul>
+  </div>
+  <div class="col-card does-c">
+    <h5>🔴 DOES</h5>
+    <ul>
+      <li>Does <b>he</b> work?</li>
+      <li>Does <b>she</b> work?</li>
+      <li>Does <b>it</b> work?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 Conexión con lo aprendido:</strong> ¿Recuerdas <b>don't / doesn't</b> del negativo? Las preguntas usan los mismos auxiliares: <b>do</b> (I/you/we/they) y <b>does</b> (he/she/it). ¡La lógica es la misma!</div>`,
+exercises:[
+  {q:'"Do you eat pizza?" — ¿qué palabra inicia la pregunta?',a:'b',o:['You','Do'],
+   fc:'Las preguntas de sí/no en inglés siempre empiezan con el auxiliar: Do o Does.',
+   fi:'"You" es el sujeto — va después del auxiliar, no al inicio.',
+   ex:'Do you eat pizza? → ¿Comes pizza?',
+   tip:'Auxiliar PRIMERO, sujeto SEGUNDO — siempre'},
+
+  {q:'¿Con qué pronombres usamos "Does"?',a:'a',o:['He, She, It','I, You, We, They'],
+   fc:'"Does" es exclusivo de He / She / It — la 3ra persona singular, igual que en el negativo.',
+   fi:'"I, You, We, They" usan "Do", no "Does". Son grupos distintos.',
+   ex:'Does she work? → ¿Trabaja ella?',
+   tip:'Does = He/She/It · Do = todos los demás'},
+
+  {q:'"Does she drink coffee?" — ¿cuál es la respuesta corta afirmativa?',a:'a',o:['Yes, she does.','Yes, she drink.'],
+   fc:'"Yes, she does." — la respuesta corta repite el auxiliar Does, no el verbo drink.',
+   fi:'"Yes, she drink" además de usar el verbo en vez del auxiliar, olvida la -S. La respuesta corta nunca incluye el verbo principal.',
+   ex:'Does she drink coffee? → Yes, she does. / No, she doesn\'t.',
+   tip:'Respuesta corta: Yes/No + pronombre + auxiliar'},
+
+  {q:'"Do they play football?" — respuesta corta negativa:',a:'b',o:['No, they doesn\'t.','No, they don\'t.'],
+   fc:'"They" usa "don\'t" — tanto en preguntas como en respuestas cortas: "No, they don\'t."',
+   fi:'"Doesn\'t" es exclusivo de He/She/It, nunca se usa con "they".',
+   ex:'Do they play? → No, they don\'t.',
+   tip:'Respuesta = No + pronombre + don\'t/doesn\'t'},
+
+  {q:'¿Qué tienen en común las preguntas de sí/no en español e inglés?',a:'a',o:['Solo se responden con sí o no','Usan el mismo auxiliar do/does'],
+   fc:'En ambos idiomas la respuesta siempre es sí o no — ese concepto es idéntico en los dos idiomas.',
+   fi:'El auxiliar do/does es exclusivo del inglés; el español no lo usa — eso es una diferencia, no una similitud.',
+   ex:'¿Comes pizza? / Do you eat pizza? → Sí / Yes, I do.'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 3
+// ══════════════════════════════════════════════
+{icon:"⚡", title:"Diferencias",
+html:`<div class="section-label">Paso 3</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Clave</div>
+<div class="section-desc">Aquí están las diferencias que más errores generan. Presta atención especial a la posición del auxiliar y al verbo base.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Diferencia</th></tr>
+  <tr><td>¿Com<b>es</b> pizza?</td><td><b>Do</b> you <b>eat</b> pizza?</td><td>Auxiliar al inicio, verbo base</td></tr>
+  <tr><td>¿Trabaj<b>a</b> ella?</td><td><b>Does</b> she <b>work</b>?</td><td>Does, no "works" en la pregunta</td></tr>
+  <tr><td>¿Tiene él carro?</td><td>Does he <b>have</b> a car?</td><td>have (base), no "has"</td></tr>
+  <tr><td>¿...? (dos signos)</td><td>...? (solo al final)</td><td>Sin signo de apertura ¿</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ La -S desaparece del verbo con Does</div>
+  <p>En afirmativo: She <b>works</b> here. (verbo con -S)<br>
+  En pregunta: <b>Does</b> she <b>work</b> here? (verbo sin -S, la -S está en "does")<br><br>
+  ❌ Does she <b>works</b>? &nbsp;→&nbsp; ✅ Does she <b>work</b>?<br>
+  ❌ Does he <b>has</b>? &nbsp;→&nbsp; ✅ Does he <b>have</b>?</p>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-aux">Do</span> <span class="g-subj">you</span> <span class="g-verb">eat</span> <span class="g-comp">meat</span>?</div>
+  <div class="es">¿Comes carne? (eat = base, Do al inicio)</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">You <b>eat</b> meat?</div>
+  <div class="es">Sin auxiliar — no es pregunta correcta en inglés.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-does">Does</span> <span class="g-subj">she</span> <span class="g-verb">have</span> <span class="g-comp">a cat</span>?</div>
+  <div class="es">¿Ella tiene un gato? (have = base, no "has")</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">Does she <b>has</b> a cat?</div>
+  <div class="es">"has" incorrecto — después de Does siempre va la forma base.</div>
+</div></div>`,
+exercises:[
+  {q:'"___ you eat breakfast every day?"',a:'a',o:['Do','Does'],
+   fc:'"You" usa "Do". Does es solo para He/She/It.',
+   fi:'"Does" nunca se usa con You, I, We o They.',
+   ex:'Do you eat breakfast? → ¿Desayunas todos los días?'},
+
+  {q:'"Does she ___ coffee?" (drink)',a:'b',o:['drinks','drink'],
+   fc:'Después de "Does" el verbo siempre va en forma base: drink, sin -S.',
+   fi:'"drinks" con -S es incorrecto después de Does. La -S ya está en "Does" — no puede estar en dos lugares.',
+   ex:'Does she drink coffee? → ¿Ella bebe café?',
+   tip:'Does + verbo BASE siempre (sin -s, sin -es)'},
+
+  {q:'"___ he have a dog?"',a:'a',o:['Does','Do'],
+   fc:'"He" exige "Does". Es la 3ra persona singular — siempre Does.',
+   fi:'"Do" nunca se usa con He, She o It.',
+   ex:'Does he have a dog? → ¿Él tiene un perro?',
+   tip:'He/She/It → Does siempre'},
+
+  {q:'"Does your sister ___ English?" (speak)',a:'a',o:['speak','speaks'],
+   fc:'Después de "Does" el verbo va en forma base: speak, sin ninguna terminación.',
+   fi:'"speaks" con -S es el error más común con Does. La -S ya está en "Does", no puede estar también en el verbo.',
+   ex:'Does your sister speak English? → ¿Tu hermana habla inglés?'},
+
+  {q:'"___ cats eat meat?"',a:'b',o:['Does','Do'],
+   fc:'"Cats" es plural — equivale a They — usa "Do".',
+   fi:'"Does" es solo para sujetos singulares (He/She/It), no para plurales como "cats".',
+   ex:'Do cats eat meat? → ¿Los gatos comen carne?'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 4
+// ══════════════════════════════════════════════
+{icon:"💡", title:"Consejos",
+html:`<div class="section-label">Paso 4</div>
+<div class="section-title">Paso 4: 💡 Consejos y Trucos</div>
+<div class="section-desc">Estrategias para formar preguntas correctas y dar respuestas cortas sin errores.</div>
+
+<div class="tip-card"><strong>🎯 Tip 1 — El mismo grupo que +S y doesn't:</strong> ¿El sujeto lleva -S en afirmativo (She work<b>s</b>)? → usa <b>Does</b>. ¿No lleva -S (I work)? → usa <b>Do</b>. Los tres temas del presente simple — afirmativo, negativo y pregunta — usan la misma lógica.</div>
+
+<div class="tip-card"><strong>🎯 Tip 2 — La -S siempre en un solo lugar:</strong><br>
+• Afirmativo: She work<b>s</b> (en el verbo)<br>
+• Negativo: She <b>doesn't</b> work (en el auxiliar)<br>
+• Pregunta: <b>Does</b> she work? (en el auxiliar)<br>
+La -S viaja al auxiliar cuando hay don't/doesn't/does.</div>
+
+<div class="tip-card"><strong>🎯 Tip 3 — Respuestas cortas: repite el auxiliar:</strong><br>
+"Does she work?" → <b>Yes, she does.</b> / <b>No, she doesn't.</b><br>
+"Do you eat?" → <b>Yes, I do.</b> / <b>No, I don't.</b><br>
+Nunca repitas el verbo principal en la respuesta corta.</div>
+
+<div class="tip-card"><strong>🎯 Tip 4 — Formula mental para preguntar:</strong><br>
+① ¿Es He/She/It? → Does &nbsp; ② + sujeto &nbsp; ③ + verbo BASE<br>
+"She eats" → <b>Does</b> + <b>she</b> + <b>eat</b>? ✅</div>
+
+<div class="formula-box">
+  <div class="row"><span class="g-aux">Do</span> + <span class="g-subj">I/you/we/they</span> + <span class="g-verb">verb (base)</span> + <span class="g-comp">complement</span>?</div>
+  <div class="row"><span class="g-does">Does</span> + <span class="g-subj">he/she/it</span> + <span class="g-verb">verb (base)</span> + <span class="g-comp">complement</span>?</div>
+</div>
+
+<div class="ans-grid">
+  <div class="ans-card yes-c">
+    <h5>✅ Respuestas SÍ</h5>
+    <ul>
+      <li>Yes, I <b>do</b>.</li>
+      <li>Yes, you <b>do</b>.</li>
+      <li>Yes, he/she <b>does</b>.</li>
+      <li>Yes, we/they <b>do</b>.</li>
+    </ul>
+  </div>
+  <div class="ans-card no-c">
+    <h5>❌ Respuestas NO</h5>
+    <ul>
+      <li>No, I <b>don't</b>.</li>
+      <li>No, you <b>don't</b>.</li>
+      <li>No, he/she <b>doesn't</b>.</li>
+      <li>No, we/they <b>don't</b>.</li>
+    </ul>
+  </div>
+</div>`,
+exercises:[
+  {q:'"Does your mom cook?" → respuesta afirmativa corta:',a:'b',o:['Yes, she cooks.','Yes, she does.'],
+   fc:'"Yes, she does." — la respuesta corta siempre repite el auxiliar, nunca el verbo principal.',
+   fi:'"Yes, she cooks" usa el verbo, no el auxiliar. En respuestas cortas el verbo no aparece.',
+   ex:'Does she cook? → Yes, she does. / No, she doesn\'t.',
+   tip:'Respuesta corta: Yes/No + pronombre + do/does/don\'t/doesn\'t'},
+
+  {q:'"Do you speak French?" → respuesta negativa corta:',a:'a',o:['No, I don\'t.','No, I doesn\'t.'],
+   fc:'"No, I don\'t." — "I" pertenece al grupo que usa "do/don\'t", igual que en el afirmativo y el negativo.',
+   fi:'"Doesn\'t" es exclusivo de He/She/It. "I" nunca lo usa — ni en preguntas ni en respuestas.',
+   ex:'Do you speak French? → No, I don\'t.',
+   tip:'I → don\'t (nunca doesn\'t)'},
+
+  {q:'"___ your dog eat vegetables?"',a:'b',o:['Do','Does'],
+   fc:'"Your dog" = It → usa "Does".',
+   fi:'"Do" es incorrecto con sujetos singulares como "your dog" (It).',
+   ex:'Does your dog eat vegetables? → ¿Tu perro come verduras?'},
+
+  {q:'"Do they ___ a big house?" (have)',a:'b',o:['has','have'],
+   fc:'Después de "Do" el verbo siempre va en forma base: have.',
+   fi:'"Has" es la forma afirmativa de He/She/It. Con Do, el verbo vuelve a su base.',
+   ex:'Do they have a big house? → ¿Ellos tienen una casa grande?'},
+
+  {q:'"Does he ___ to school on Sundays?" (go)',a:'a',o:['go','goes'],
+   fc:'Después de "Does" el verbo va en forma base: go, sin -ES.',
+   fi:'"Goes" es la forma afirmativa. Dentro de una pregunta con Does, el verbo pierde la terminación.',
+   ex:'Does he go to school? → ¿Él va al colegio?',
+   tip:'Does + verbo base: go (no goes), eat (no eats), have (no has)'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 5
+// ══════════════════════════════════════════════
+{icon:"✨", title:"Práctica Final",
+html:`<div class="section-label">Paso 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final <span class="challenge-badge">🔥 Nivel avanzado</span></div>
+<div class="section-desc">Sujetos complejos, respuestas cortas y oraciones desafiantes. Demuestra que dominas las tres formas del presente simple.</div>
+
+<div class="formula-box">
+  <div class="row">Aff: <span class="g-subj">She</span> <span class="g-verb">works</span> · Neg: She <span class="g-aux">doesn't</span> <span class="g-verb">work</span> · Q: <span class="g-does">Does</span> she <span class="g-verb">work</span>?</div>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">🏫</div><div>
+  <div class="en"><span class="g-does">Does</span> <span class="g-subj">your teacher</span> <span class="g-verb">speak</span> <span class="g-comp">Spanish</span>?</div>
+  <div class="es">¿Tu profesor/a habla español?</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div>
+  <div class="en"><span class="g-aux">Do</span> <span class="g-subj">your parents</span> <span class="g-verb">work</span> <span class="g-comp">on weekends</span>?</div>
+  <div class="es">¿Tus padres trabajan los fines de semana?</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">🐶</div><div>
+  <div class="en"><span class="g-does">Does</span> <span class="g-subj">your dog</span> <span class="g-verb">eat</span> <span class="g-comp">vegetables</span>?</div>
+  <div class="es">¿Tu perro come verduras?</div>
+</div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 5 errores más comunes</div>
+  <p>
+  ❌ You eat pizza? → ✅ <b>Do</b> you eat pizza? (auxiliar obligatorio)<br>
+  ❌ Does she <b>eats</b>? → ✅ Does she <b>eat</b>? (verbo base con Does)<br>
+  ❌ Does he <b>has</b>? → ✅ Does he <b>have</b>? (have, no has)<br>
+  ❌ <b>Do</b> he work? → ✅ <b>Does</b> he work? (He exige Does)<br>
+  ❌ Yes, she <b>work</b>. → ✅ Yes, she <b>does</b>. (respuesta corta con auxiliar)
+  </p>
+</div>`,
+exercises:[
+  {q:'"___ your brother study every night?"',a:'a',o:['Does','Do'],
+   fc:'"Your brother" = He → usa "Does". He/She/It siempre necesita Does.',
+   fi:'"Do" es incorrecto con "your brother" porque es un sujeto singular (He).',
+   ex:'Does your brother study? → ¿Tu hermano estudia?'},
+
+  {q:'"Do Maria and Carlos ___ together?" (work)',a:'b',o:['works','work'],
+   fc:'"Maria and Carlos" = They (plural) → Do + verbo base: work, sin -S.',
+   fi:'"works" con -S pertenece a la forma afirmativa. Con Do, el verbo vuelve a su forma base.',
+   ex:'Do they work together? → ¿Trabajan juntos?'},
+
+  {q:'"Does the machine ___ well?" (work)',a:'b',o:['works','work'],
+   fc:'"Does" ya lleva la -S — el verbo después siempre va en forma base: work.',
+   fi:'"works" pondría la -S dos veces (en Does y en el verbo). La -S solo puede estar en un lugar.',
+   ex:'Does the machine work? → ¿La máquina funciona?',
+   tip:'Does = la -S ya está ahí. Verbo base siempre.'},
+
+  {q:'"Does she have a pet?" → "Yes, ___"',a:'a',o:['she does.','she has.'],
+   fc:'"Yes, she does." — la respuesta corta usa el auxiliar Does, no el verbo have/has.',
+   fi:'"She has" es una respuesta larga pero no la respuesta corta. La respuesta corta repite el auxiliar.',
+   ex:'Does she have a pet? → Yes, she does.',
+   tip:'Respuesta corta = auxiliar, nunca el verbo principal'},
+
+  {q:'¿Cuál pregunta está completamente correcta?',a:'b',o:['Do your cat sleeps a lot?','Does your cat sleep a lot?'],
+   fc:'"Does your cat sleep a lot?" tiene todo correcto: Does para It, verbo base "sleep".',
+   fi:'"Do your cat sleeps" tiene dos errores: "Do" incorrecto para "cat" (It) y "sleeps" con -S que no debe estar ahí.',
+   ex:'Does your cat sleep a lot? → ¿Tu gato duerme mucho?',
+   tip:'Does + It + verbo base — los tres elementos correctos'}
+]}
+
+];
+
+var curStep=0;
+var scores={};
+var answered={};
+
+function renderStepTabs(){
+  var c=document.getElementById('stepTabs');
+  c.innerHTML='';
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='step-tab'+(i===curStep?' active':'');
+    var k='s'+i;
+    if(scores[k]!==undefined&&i<curStep)b.classList.add('done');
+    b.textContent=(i+1)+'. '+s.icon+' '+s.title;
+    b.addEventListener('click',function(){
+      curStep=i;
+      renderStepTabs();
+      renderCard();
+      document.getElementById('summaryFinal').classList.remove('show');
+    });
+    c.appendChild(b);
+  });
+}
+
+function renderCard(){
+  var s=steps[curStep];
+  var k='s'+curStep;
+  if(scores[k]===undefined)scores[k]=0;
+  var h='<div class="card active">'+s.html+'<div class="ex-section"><h3>✏️ Ejercicios — '+s.title+'</h3>';
+  s.exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    h+='<div class="exercise" id="'+eid+'">';
+    h+='<div class="exercise-q">'+(i+1)+'. '+e.q+'</div>';
+    h+='<div class="opts">';
+    h+='<button class="opt-btn" id="btn-'+eid+'-a">a) '+e.o[0]+'</button>';
+    h+='<button class="opt-btn" id="btn-'+eid+'-b">b) '+e.o[1]+'</button>';
+    h+='</div>';
+    var ct=e.o[e.a==='a'?0:1];
+    h+='<div class="fb fb-ok" id="fbok-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">🎉</span> Correcto!</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: '+e.fi+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='<div class="fb fb-bad" id="fbbad-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">'+e.fi+'</span></div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">Respuesta correcta: <span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='</div>';
+  });
+  h+='<div class="score-bar"><div class="num" id="sc-'+k+'">0 / 5</div><div class="lbl">Puntuación del paso</div></div>';
+  h+='</div></div>';
+  document.getElementById('cardArea').innerHTML=h;
+  steps[curStep].exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    document.getElementById('btn-'+eid+'-a').addEventListener('click',function(){chk(eid,'a',e.a,k);});
+    document.getElementById('btn-'+eid+'-b').addEventListener('click',function(){chk(eid,'b',e.a,k);});
+  });
+}
+
+function chk(eid,sel,correct,k){
+  if(answered[eid])return;
+  answered[eid]=true;
+  var ex=document.getElementById(eid);
+  var ba=document.getElementById('btn-'+eid+'-a');
+  var bb=document.getElementById('btn-'+eid+'-b');
+  ba.disabled=true; bb.disabled=true;
+  if(sel===correct){
+    ex.classList.add('correct');
+    (sel==='a'?ba:bb).classList.add('sel-ok');
+    document.getElementById('fbok-'+eid).classList.add('show');
+    scores[k]++;
+  } else {
+    ex.classList.add('incorrect');
+    (sel==='a'?ba:bb).classList.add('sel-bad');
+    (sel==='a'?bb:ba).classList.add('show-ok');
+    document.getElementById('fbbad-'+eid).classList.add('show');
+  }
+  document.getElementById('sc-'+k).textContent=scores[k]+' / 5';
+  var allDone=true;
+  for(var i=0;i<5;i++){if(!answered[k+'e'+i]){allDone=false;break;}}
+  if(allDone&&curStep===4){
+    setTimeout(function(){
+      var sf=document.getElementById('summaryFinal');
+      document.getElementById('summaryList').innerHTML=summaryPoints.map(function(s){return '<li>'+s+'</li>';}).join('');
+      sf.classList.add('show');
+      sf.scrollIntoView({behavior:'smooth'});
+    },700);
+  }
+}
+
+renderStepTabs();
+renderCard();
+</script>
+</body>
+</html>

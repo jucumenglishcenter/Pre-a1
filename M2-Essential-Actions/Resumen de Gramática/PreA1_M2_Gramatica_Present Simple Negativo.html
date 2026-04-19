@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Summary — Present Simple Negative | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#1A1A2E;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--neg:#AD1457;--neg-bg:#FCE4EC;
+--aux:#6A1B9A;--aux-bg:#F3E5F5;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:800px;margin:0 auto}
+
+.level-header{text-align:center;padding:2rem 1.5rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-10%;width:260px;height:260px;background:rgba(255,255,255,.08);border-radius:50%}
+.level-header::after{content:'';position:absolute;bottom:-30%;left:-8%;width:180px;height:180px;background:rgba(255,255,255,.06);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.85rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.25rem}
+.level-header .subtitle{opacity:.8;font-size:.82rem;position:relative;z-index:1;margin-top:.2rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .8rem;border-radius:8px;font-size:.77rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif;white-space:nowrap}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:.15rem;color:var(--ld)}
+.section-desc{font-size:.84rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
+
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj);display:inline-block}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb);display:inline-block}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp);display:inline-block}
+.g-neg{background:var(--neg-bg);color:var(--neg);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--neg);display:inline-block}
+.g-aux{background:var(--aux-bg);color:var(--aux);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--aux);display:inline-block}
+
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.6rem .7rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:left}
+.g-table td{padding:.6rem .7rem;border-bottom:1px solid #f0ece0;vertical-align:middle;line-height:1.45}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:#FFF8E1;border:2px solid #FFCC80}
+.compare-card.eng{background:var(--neg-bg);border:2px solid #F48FB1}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.88rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:#E65100}
+.compare-card.eng h4{color:var(--neg)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:3px 0}
+
+.conj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.8rem 0}
+.conj-item{padding:.65rem .4rem;border-radius:10px;text-align:center;background:#FAFAF6;border:1.5px solid var(--border)}
+.conj-item .pron{font-size:.7rem;color:var(--subj);font-weight:800;margin-bottom:2px}
+.conj-item .vrb{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--neg);line-height:1.3}
+.conj-item .meaning{font-size:.62rem;color:var(--text-soft);margin-top:2px}
+.conj-item.s3{background:var(--neg-bg);border-color:#F48FB1}
+.conj-item.s3 .pron{color:var(--neg)}
+
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem 1.2rem;margin:.8rem 0;font-family:'Fredoka',sans-serif;font-size:.9rem;color:var(--ld);line-height:2.1}
+.formula-box .row{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.1rem}
+
+.tip-card{background:var(--ll);border-radius:10px;padding:.75rem 1rem;margin:.45rem 0;font-size:.83rem;border-left:3.5px solid var(--lp);line-height:1.55}
+.tip-card strong{color:var(--ld)}
+
+.alert-card{background:var(--err-bg);border:2px solid #EF9A9A;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem;font-weight:700}
+.alert-card p{font-size:.82rem;color:#5A1010;line-height:1.6}
+
+.ex-row{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .85rem;border-radius:10px;margin:.4rem 0;font-size:.87rem}
+.ex-row .icon{font-size:1.15rem;flex-shrink:0;margin-top:1px}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:var(--text-soft);margin-top:2px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+
+.dos-col{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.8rem 0}
+.col-card{background:#FAFAF6;border:1.5px solid var(--border);border-radius:10px;padding:.8rem}
+.col-card h5{font-family:'Fredoka',sans-serif;font-size:.82rem;margin-bottom:.5rem}
+.col-card.dont h5{color:var(--aux)}
+.col-card.doesnt h5{color:var(--neg)}
+.col-card ul{list-style:none;font-size:.8rem;color:var(--text-soft)}
+.col-card li{padding:2px 0}
+
+.ex-section{margin-top:1.3rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.88rem;margin-bottom:.8rem}
+.exercise{background:#FAFAF6;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #EAE6D8;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.87rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid var(--lm);border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left;line-height:1.35}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll);color:var(--ld)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+.fb{margin-top:.7rem;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:2px}
+.fb-row .fb-text{flex:1;line-height:1.5}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.35rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.45rem .7rem;border-radius:8px;background:var(--ll);border:1px solid var(--lm);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.1rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 22px;position:relative;font-size:.83rem;color:var(--text-soft);line-height:1.5}
+.summary-final li:before{content:"✔";position:absolute;left:0;color:var(--lp);font-weight:700}
+
+.challenge-badge{display:inline-block;background:linear-gradient(135deg,#7B1FA2,#9C27B0);color:#fff;font-family:'Fredoka',sans-serif;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-left:.5rem;vertical-align:middle}
+
+@media(max-width:600px){
+.level-header h1{font-size:1.4rem}
+.card{padding:1.1rem}
+.compare-grid,.conj-grid,.dos-col{grid-template-columns:1fr}
+.opts{grid-template-columns:1fr}
+.step-tabs{gap:.25rem}
+.step-tab{font-size:.72rem;padding:.4rem .6rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="level-header">
+  <div class="level-badge">💛 Pre-A1 · Grammar Summary</div>
+  <h1>📝 Present Simple</h1>
+  <div class="module-name">🚫 Negative — I don't have · She doesn't make</div>
+  <p class="subtitle">5 pasos pedagógicos · 25 ejercicios interactivos · JUCUM English Center</p>
+</div>
+
+<div class="step-tabs" id="stepTabs"></div>
+<div id="cardArea"></div>
+
+<div class="summary-final" id="summaryFinal">
+  <h3>🎓 Lo que dominaste — Present Simple Negative</h3>
+  <ul id="summaryList"></ul>
+</div>
+
+</div>
+<script>
+var summaryPoints = [
+  "<b>I / You / We / They</b> → <b>don't</b> + verbo base: I don't eat, They don't work",
+  "<b>He / She / It</b> → <b>doesn't</b> + verbo base: She doesn't eat, He doesn't work",
+  "<b>Con doesn't</b> el verbo NUNCA lleva -S: She doesn't eat<b>s</b> ❌ → She doesn't eat ✅",
+  "<b>don't</b> = do not &nbsp;·&nbsp; <b>doesn't</b> = does not (contracciones)",
+  "<b>El verbo principal</b> siempre en forma base, sin importar el sujeto",
+  "<b>No</b> en español va ANTES del verbo · <b>don't/doesn't</b> va ENTRE sujeto y verbo",
+  "<b>Nunca:</b> I not eat / She no eats / He don't work"
+];
+
+var steps = [
+
+// ══════════════════════════════════════════════
+// PASO 1
+// ══════════════════════════════════════════════
+{icon:"🇪🇸", title:"Repaso en Español",
+html:`<div class="section-label">Paso 1</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">En español negamos con "no" antes del verbo. En inglés usamos un auxiliar especial: do/does + not. Veamos primero cómo funciona en español.</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>✅ Afirmativo</h4>
+    <ul>
+      <li>Yo <b>como</b> pizza</li>
+      <li>Tú <b>trabajas</b> aquí</li>
+      <li>Ella <b>estudia</b> inglés</li>
+      <li>Nosotros <b>vivimos</b> en Lima</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>🚫 Negativo en Español</h4>
+    <ul>
+      <li>Yo <b>no</b> como pizza</li>
+      <li>Tú <b>no</b> trabajas aquí</li>
+      <li>Ella <b>no</b> estudia inglés</li>
+      <li>Nosotros <b>no</b> vivimos en Lima</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 Regla en español:</strong> Para negar, colocamos <b>"no"</b> directamente antes del verbo. El verbo no cambia su forma — solo aparece "no" delante. ¡Simple!</div>
+
+<div class="section-label" style="margin-top:1rem">¿Cuándo usamos el negativo?</div>
+<table class="g-table">
+  <tr><th>Situación</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Negar una rutina</td><td>Yo <b>no</b> desayuno</td><td>I <b>don't</b> eat breakfast</td></tr>
+  <tr><td>Negar un hábito</td><td>Ella <b>no</b> bebe café</td><td>She <b>doesn't</b> drink coffee</td></tr>
+  <tr><td>Negar un hecho</td><td>Los gatos <b>no</b> comen pizza</td><td>Cats <b>don't</b> eat pizza</td></tr>
+  <tr><td>Negar posesión</td><td>Él <b>no</b> tiene carro</td><td>He <b>doesn't</b> have a car</td></tr>
+</table>`,
+exercises:[
+  {q:'En español, ¿dónde va "no" para negar?',a:'a',o:['Antes del verbo','Después del verbo'],
+   fc:'"No" siempre va antes del verbo en español: "Yo no trabajo."',
+   fi:'"No" nunca va después. "Yo trabajo no" no es español correcto.',
+   ex:'Yo no como pizza → I don\'t eat pizza'},
+
+  {q:'"Ella trabaja aquí." → forma negativa:',a:'b',o:['Ella trabaja no aquí','Ella no trabaja aquí'],
+   fc:'"No" va antes del verbo: "Ella no trabaja aquí."',
+   fi:'"Trabaja no" pone el "no" en posición incorrecta.',
+   ex:'Ella no trabaja → She doesn\'t work'},
+
+  {q:'Al negar en español, ¿el verbo cambia su forma?',a:'b',o:['Sí, cambia','No, permanece igual'],
+   fc:'El verbo no cambia. Solo aparece "no" delante: "como" → "no como".',
+   fi:'Incorrecto: "Sí, cambia" confunde el negativo con otra conjugación. "Yo como" → "Yo no como" — el verbo "como" es idéntico.',
+   ex:'como → no como · trabaja → no trabaja'},
+
+  {q:'"Los perros no comen chocolate." ¿Qué niega esta oración?',a:'a',o:['Un hecho general','Una acción en este momento'],
+   fc:'Niega un hecho general sobre los perros — hábito/verdad permanente.',
+   fi:'Para acción en progreso usaríamos: "no están comiendo ahora mismo".',
+   ex:'Dogs don\'t eat chocolate → Los perros no comen chocolate'},
+
+  {q:'¿Cuál es la traducción de "She doesn\'t drink coffee"?',a:'b',o:['Ella no está bebiendo café','Ella no bebe café'],
+   fc:'"Doesn\'t drink" = negativo de rutina/hábito → "no bebe" (presente simple).',
+   fi:'"No está bebiendo" sería presente continuo: She isn\'t drinking coffee.',
+   ex:'She doesn\'t drink coffee → Ella no bebe café',
+   tip:'doesn\'t + verbo base = negativo de hábito/rutina'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 2
+// ══════════════════════════════════════════════
+{icon:"🤝", title:"Similitudes",
+html:`<div class="section-label">Paso 2</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Aunque el negativo inglés usa un auxiliar nuevo, comparte varias cosas con el español.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>El concepto es igual</td><td>Negar una acción habitual</td><td>Negate a habitual action</td></tr>
+  <tr><td>Negación entre sujeto y verbo</td><td>Yo <b>no</b> trabajo</td><td>I <b>don't</b> work</td></tr>
+  <tr><td>El verbo principal no cambia</td><td>no com<b>o</b> · no trabaj<b>a</b></td><td>don't <b>work</b> (base)</td></tr>
+  <tr><td>Contracciones posibles</td><td>no → (igual)</td><td>do not → <b>don't</b></td></tr>
+  <tr><td>Mismos marcadores de tiempo</td><td>nunca, siempre, a veces</td><td>never, always, sometimes</td></tr>
+</table>
+
+<div class="section-label" style="margin-top:1rem">Las dos formas del auxiliar negativo</div>
+<div class="dos-col">
+  <div class="col-card dont">
+    <h5>🔵 DON'T</h5>
+    <ul>
+      <li>I don't work</li>
+      <li>You don't work</li>
+      <li>We don't work</li>
+      <li>They don't work</li>
+    </ul>
+  </div>
+  <div class="col-card doesnt">
+    <h5>🔴 DOESN'T</h5>
+    <ul>
+      <li>He doesn't work</li>
+      <li>She doesn't work</li>
+      <li>It doesn't work</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 Clave visual:</strong> <b>don't</b> para I / You / We / They. <b>doesn't</b> para He / She / It. El auxiliar carga la marca de 3ra persona — el verbo después siempre queda en forma base.</div>`,
+exercises:[
+  {q:'"I don\'t eat" significa:',a:'b',o:['Yo estoy comiendo','Yo no como'],
+   fc:'"Don\'t eat" = negativo de hábito/rutina. "No como" (no es una acción en progreso).',
+   fi:'"Estoy comiendo" sería el presente continuo: I am eating.',
+   ex:'I don\'t eat pizza → Yo no como pizza'},
+
+  {q:'¿Con qué pronombres usamos "doesn\'t"?',a:'a',o:['He, She, It','I, You, We, They'],
+   fc:'"Doesn\'t" es exclusivo de He / She / It — la 3ra persona singular.',
+   fi:'"I, You, We, They" usan "don\'t", no "doesn\'t". Son grupos diferentes.',
+   ex:'She doesn\'t work → Ella no trabaja',
+   tip:'doesn\'t = He/She/It · don\'t = todos los demás'},
+
+  {q:'"We don\'t live in Lima." ¿Cuántas formas tiene "don\'t"?',a:'b',o:['Cambia con cada pronombre','Una sola (don\'t)'],
+   fc:'"Don\'t" no se conjuga. La misma forma sirve para I, You, We y They — siempre igual.',
+   fi:'"Cambia con cada pronombre" describe el español, no el inglés. En inglés "don\'t" es invariable — no hay "I dont / you donts".',
+   ex:'I don\'t / You don\'t / We don\'t / They don\'t — igual siempre'},
+
+  {q:'"Don\'t" es la contracción de:',a:'a',o:['do not','does not'],
+   fc:'"Don\'t" = do + not juntos. "Does not" = "doesn\'t" (diferente).',
+   fi:'"Does not" se contrae en "doesn\'t", no en "don\'t".',
+   ex:'I do not eat = I don\'t eat · She does not eat = She doesn\'t eat',
+   tip:'do not → don\'t · does not → doesn\'t'},
+
+  {q:'"They ___ speak French."',a:'a',o:['don\'t','doesn\'t'],
+   fc:'"They" usa "don\'t". Doesn\'t es solo para He/She/It.',
+   fi:'"Doesn\'t" nunca se usa con They, We, I o You.',
+   ex:'They don\'t speak French → Ellos no hablan francés'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 3
+// ══════════════════════════════════════════════
+{icon:"⚡", title:"Diferencias",
+html:`<div class="section-label">Paso 3</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Clave</div>
+<div class="section-desc">Aquí están las trampas más comunes. El negativo inglés funciona distinto al español en puntos muy específicos.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Diferencia</th></tr>
+  <tr><td>Yo <b>no</b> trabajo</td><td>I <b>don't</b> work</td><td>Auxiliar, no solo "no"</td></tr>
+  <tr><td>Ella <b>no</b> trabaja</td><td>She <b>doesn't</b> work</td><td>Auxiliar diferente para ella</td></tr>
+  <tr><td>Ella no trabaj<b>a</b></td><td>She doesn't work (sin -s)</td><td>Verbo vuelve a forma base</td></tr>
+  <tr><td>Un solo "no"</td><td>don't / doesn't (dos formas)</td><td>Inglés distingue persona</td></tr>
+  <tr><td>Ella no <b>habla</b> inglés</td><td>She doesn't <b>speak</b> English</td><td>have/has → doesn't have</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ La trampa más grande: la -S se mueve</div>
+  <p>En afirmativo: She work<b>s</b> → la -S está en el verbo.<br>
+  En negativo: She <b>doesn't</b> work → la -S está en el auxiliar, el verbo vuelve a su forma base.<br><br>
+  ❌ She doesn't work<b>s</b> &nbsp;→&nbsp; ✅ She doesn't <b>work</b></p>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-subj">She</span> <span class="g-aux">doesn't</span> <span class="g-verb">eat</span> <span class="g-comp">meat</span>.</div>
+  <div class="es">Ella no come carne. (eat = base, sin -S)</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">She doesn't <b>eats</b> meat.</div>
+  <div class="es">"eats" con -S es incorrecto después de doesn't.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-subj">He</span> <span class="g-aux">doesn't</span> <span class="g-verb">have</span> <span class="g-comp">a car</span>.</div>
+  <div class="es">Él no tiene carro. (have = base, no "has")</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">He doesn't <b>has</b> a car.</div>
+  <div class="es">"has" es incorrecto. Después de doesn't siempre: have.</div>
+</div></div>`,
+exercises:[
+  {q:'"She doesn\'t ___ meat." (eat)',a:'b',o:['eats','eat'],
+   fc:'Después de "doesn\'t" el verbo SIEMPRE va en forma base: eat.',
+   fi:'"eats" con -S es incorrecto después de doesn\'t. La -S ya está en "doesn\'t".',
+   ex:'She doesn\'t eat meat → Ella no come carne',
+   tip:'doesn\'t + verbo BASE (sin -s) siempre'},
+
+  {q:'"He doesn\'t ___ a car." (have)',a:'a',o:['have','has'],
+   fc:'Después de "doesn\'t" siempre va la forma base: have, no "has".',
+   fi:'"has" es la forma afirmativa de He. Con doesn\'t, el verbo vuelve a su base.',
+   ex:'He doesn\'t have a car → Él no tiene carro',
+   tip:'He has → He doesn\'t have (la -S se mueve al auxiliar)'},
+
+  {q:'"My brother ___ work on weekends."',a:'b',o:['don\'t','doesn\'t'],
+   fc:'"My brother" = He → usa "doesn\'t".',
+   fi:'"Don\'t" es para I/You/We/They, nunca para He/She/It.',
+   ex:'He doesn\'t work → Él no trabaja',
+   tip:'My brother = He → doesn\'t'},
+
+  {q:'"I ___ like coffee."',a:'a',o:['don\'t','doesn\'t'],
+   fc:'"I" usa "don\'t". Doesn\'t solo es para He/She/It.',
+   fi:'"Doesn\'t" nunca se usa con I.',
+   ex:'I don\'t like coffee → No me gusta el café'},
+
+  {q:'"The cat ___ eat vegetables." ¿Qué falta?',a:'b',o:['don\'t','doesn\'t'],
+   fc:'"The cat" = It → usa "doesn\'t".',
+   fi:'"Don\'t" es incorrecto con It/He/She.',
+   ex:'The cat doesn\'t eat vegetables → El gato no come verduras'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 4
+// ══════════════════════════════════════════════
+{icon:"💡", title:"Consejos",
+html:`<div class="section-label">Paso 4</div>
+<div class="section-title">Paso 4: 💡 Consejos y Trucos</div>
+<div class="section-desc">Estrategias para elegir entre don't y doesn't sin equivocarse.</div>
+
+<div class="tip-card"><strong>🎯 Tip 1 — El mismo grupo que +S:</strong> ¿El sujeto usa <b>-S</b> en afirmativo (He works, She eats)? → usa <b>doesn't</b>. ¿No usa -S (I work, They eat)? → usa <b>don't</b>. ¡La lógica es la misma!</div>
+
+<div class="tip-card"><strong>🎯 Tip 2 — La -S se mueve, no desaparece:</strong> En afirmativo la -S está en el verbo: She eat<b>s</b>. En negativo la -S se mueve al auxiliar: She <b>doesn't</b> eat. La -S nunca está en dos lugares a la vez.</div>
+
+<div class="tip-card"><strong>🎯 Tip 3 — Truco de sustitución:</strong> Si puedes reemplazar el sujeto por He/She/It → usa <b>doesn't</b>. Si puedes reemplazarlo por I/You/We/They → usa <b>don't</b>.<br>
+"My mom" = She → doesn't &nbsp;·&nbsp; "My friends" = They → don't</div>
+
+<div class="tip-card"><strong>🎯 Tip 4 — Errores clásicos a evitar:</strong><br>
+❌ "I not eat" → ✅ "I <b>don't</b> eat" (necesitas el auxiliar)<br>
+❌ "She no eats" → ✅ "She <b>doesn't</b> eat" (no es español)<br>
+❌ "He don't work" → ✅ "He <b>doesn't</b> work" (He exige doesn't)</div>
+
+<div class="formula-box">
+  <div class="row"><span class="g-subj">I / You / We / They</span> + <span class="g-aux">don't</span> + <span class="g-verb">verb (base)</span> + <span class="g-comp">complement</span></div>
+  <div class="row"><span class="g-subj">He / She / It</span> + <span class="g-aux">doesn't</span> + <span class="g-verb">verb (base)</span> + <span class="g-comp">complement</span></div>
+</div>
+
+<div class="conj-grid">
+  <div class="conj-item"><div class="pron">I</div><div class="vrb">don't work</div><div class="meaning">no trabajo</div></div>
+  <div class="conj-item"><div class="pron">You</div><div class="vrb">don't work</div><div class="meaning">no trabajas</div></div>
+  <div class="conj-item s3"><div class="pron">He / She / It</div><div class="vrb">doesn't work</div><div class="meaning">no trabaja</div></div>
+  <div class="conj-item"><div class="pron">We</div><div class="vrb">don't work</div><div class="meaning">no trabajamos</div></div>
+  <div class="conj-item" style="grid-column:span 2"><div class="pron">They</div><div class="vrb">don't work</div><div class="meaning">no trabajan</div></div>
+</div>`,
+exercises:[
+  {q:'"My friends ___ eat fish."',a:'b',o:['doesn\'t','don\'t'],
+   fc:'"My friends" = They → usan "don\'t".',
+   fi:'"Doesn\'t" solo es para He/She/It, no para grupos/plurales.',
+   ex:'They don\'t eat fish → Ellos no comen pescado'},
+
+  {q:'"My mom ___ drink coffee."',a:'a',o:['doesn\'t','don\'t'],
+   fc:'"My mom" = She → usa "doesn\'t".',
+   fi:'"Don\'t" nunca se usa con She/He/It.',
+   ex:'She doesn\'t drink coffee → Ella no toma café'},
+
+  {q:'"She doesn\'t ___ TV every day." (watch)',a:'b',o:['watchs','watch'],
+   fc:'Después de "doesn\'t" el verbo va en forma base: watch.',
+   fi:'"watchs" no existe además de ser incorrecto después de doesn\'t.',
+   ex:'She doesn\'t watch TV → Ella no ve televisión',
+   tip:'doesn\'t + verbo base siempre (sin -s, sin -es)'},
+
+  {q:'"My dog ___ like baths."',a:'a',o:['doesn\'t','don\'t'],
+   fc:'"My dog" = It → usa "doesn\'t".',
+   fi:'"Don\'t" es para I/You/We/They, no para animales u objetos singulares.',
+   ex:'It doesn\'t like baths → No le gustan los baños'},
+
+  {q:'"You ___ need to shout."',a:'b',o:['doesn\'t','don\'t'],
+   fc:'"You" usa "don\'t". Doesn\'t nunca va con You.',
+   fi:'"Doesn\'t" es exclusivo de He/She/It.',
+   ex:'You don\'t need to shout → No necesitas gritar'}
+]},
+
+// ══════════════════════════════════════════════
+// PASO 5
+// ══════════════════════════════════════════════
+{icon:"✨", title:"Práctica Final",
+html:`<div class="section-label">Paso 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final <span class="challenge-badge">🔥 Nivel avanzado</span></div>
+<div class="section-desc">Oraciones más largas, sujetos complejos y casos especiales. Aplica todo lo aprendido.</div>
+
+<div class="formula-box">
+  <div class="row">¿He/She/It? → <span class="g-aux">doesn't</span> + <span class="g-verb">verb base</span></div>
+  <div class="row">¿I/You/We/They? → <span class="g-aux">don't</span> + <span class="g-verb">verb base</span></div>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">🐱</div><div>
+  <div class="en"><span class="g-subj">My cat</span> <span class="g-aux">doesn't</span> <span class="g-verb">eat</span> <span class="g-comp">vegetables</span>.</div>
+  <div class="es">Mi gato no come verduras.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">👩‍👦</div><div>
+  <div class="en"><span class="g-subj">Maria and her sister</span> <span class="g-aux">don't</span> <span class="g-verb">study</span> <span class="g-comp">on weekends</span>.</div>
+  <div class="es">Maria y su hermana no estudian los fines de semana.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">👨</div><div>
+  <div class="en"><span class="g-subj">My dad</span> <span class="g-aux">doesn't</span> <span class="g-verb">have</span> <span class="g-comp">a bike</span>.</div>
+  <div class="es">Mi papá no tiene una bicicleta.</div>
+</div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 5 errores más comunes</div>
+  <p>
+  ❌ She doesn't <b>eats</b> → ✅ She doesn't <b>eat</b> (sin -S después de doesn't)<br>
+  ❌ He doesn't <b>has</b> → ✅ He doesn't <b>have</b> (have, no has)<br>
+  ❌ He <b>don't</b> work → ✅ He <b>doesn't</b> work (He exige doesn't)<br>
+  ❌ I <b>not</b> eat → ✅ I <b>don't</b> eat (siempre necesitas el auxiliar)<br>
+  ❌ She <b>no</b> works → ✅ She <b>doesn't</b> work (no mezcles español e inglés)
+  </p>
+</div>`,
+exercises:[
+  {q:'"My teacher ___ use a computer."',a:'a',o:['doesn\'t','don\'t'],
+   fc:'"My teacher" = She/He → usa "doesn\'t".',
+   fi:'"Don\'t" es incorrecto con sujetos singulares como "my teacher".',
+   ex:'She doesn\'t use a computer → Ella no usa computadora'},
+
+  {q:'"Carlos and Maria ___ eat breakfast."',a:'a',o:['don\'t','doesn\'t'],
+   fc:'"Carlos and Maria" = They (plural) → usa "don\'t".',
+   fi:'"Doesn\'t" es solo para sujetos singulares: He/She/It.',
+   ex:'They don\'t eat breakfast → Ellos no desayunan'},
+
+  {q:'"He doesn\'t ___ a lot." (talk)',a:'b',o:['talks','talk'],
+   fc:'Después de "doesn\'t" el verbo siempre va en forma base: talk.',
+   fi:'"talks" con -S es incorrecto. La -S ya está representada en "doesn\'t".',
+   ex:'He doesn\'t talk a lot → Él no habla mucho',
+   tip:'doesn\'t + verbo base (nunca con -s/-es)'},
+
+  {q:'"The machine ___ work well."',a:'a',o:['doesn\'t','don\'t'],
+   fc:'"The machine" = It → usa "doesn\'t".',
+   fi:'"Don\'t" es incorrecto con objetos o cosas singulares (It).',
+   ex:'It doesn\'t work well → No funciona bien'},
+
+  {q:'¿Cuál oración está completamente correcta?',a:'b',o:['He don\'t have a dog','My sister doesn\'t have a dog'],
+   fc:'"My sister doesn\'t have a dog." — sujeto She, auxiliar correcto, verbo en base.',
+   fi:'"He don\'t" mezcla He (3ra persona) con don\'t (incorrecto). Debe ser "doesn\'t".',
+   ex:'She doesn\'t have a dog → Ella no tiene un perro',
+   tip:'He/She/It + doesn\'t siempre. Don\'t + He = error grave'}
+]}
+
+];
+
+var curStep=0;
+var scores={};
+var answered={};
+
+function renderStepTabs(){
+  var c=document.getElementById('stepTabs');
+  c.innerHTML='';
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='step-tab'+(i===curStep?' active':'');
+    var k='s'+i;
+    if(scores[k]!==undefined&&i<curStep)b.classList.add('done');
+    b.textContent=(i+1)+'. '+s.icon+' '+s.title;
+    b.addEventListener('click',function(){
+      curStep=i;
+      renderStepTabs();
+      renderCard();
+      document.getElementById('summaryFinal').classList.remove('show');
+    });
+    c.appendChild(b);
+  });
+}
+
+function renderCard(){
+  var s=steps[curStep];
+  var k='s'+curStep;
+  if(scores[k]===undefined)scores[k]=0;
+  var h='<div class="card active">'+s.html+'<div class="ex-section"><h3>✏️ Ejercicios — '+s.title+'</h3>';
+  s.exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    h+='<div class="exercise" id="'+eid+'">';
+    h+='<div class="exercise-q">'+(i+1)+'. '+e.q+'</div>';
+    h+='<div class="opts">';
+    h+='<button class="opt-btn" id="btn-'+eid+'-a">a) '+e.o[0]+'</button>';
+    h+='<button class="opt-btn" id="btn-'+eid+'-b">b) '+e.o[1]+'</button>';
+    h+='</div>';
+    var ct=e.o[e.a==='a'?0:1];
+    h+='<div class="fb fb-ok" id="fbok-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">🎉</span> Correcto!</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: '+e.fi+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='<div class="fb fb-bad" id="fbbad-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">'+e.fi+'</span></div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">Respuesta correcta: <span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='</div>';
+  });
+  h+='<div class="score-bar"><div class="num" id="sc-'+k+'">0 / 5</div><div class="lbl">Puntuación del paso</div></div>';
+  h+='</div></div>';
+  document.getElementById('cardArea').innerHTML=h;
+  steps[curStep].exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    document.getElementById('btn-'+eid+'-a').addEventListener('click',function(){chk(eid,'a',e.a,k);});
+    document.getElementById('btn-'+eid+'-b').addEventListener('click',function(){chk(eid,'b',e.a,k);});
+  });
+}
+
+function chk(eid,sel,correct,k){
+  if(answered[eid])return;
+  answered[eid]=true;
+  var ex=document.getElementById(eid);
+  var ba=document.getElementById('btn-'+eid+'-a');
+  var bb=document.getElementById('btn-'+eid+'-b');
+  ba.disabled=true; bb.disabled=true;
+  if(sel===correct){
+    ex.classList.add('correct');
+    (sel==='a'?ba:bb).classList.add('sel-ok');
+    document.getElementById('fbok-'+eid).classList.add('show');
+    scores[k]++;
+  } else {
+    ex.classList.add('incorrect');
+    (sel==='a'?ba:bb).classList.add('sel-bad');
+    (sel==='a'?bb:ba).classList.add('show-ok');
+    document.getElementById('fbbad-'+eid).classList.add('show');
+  }
+  document.getElementById('sc-'+k).textContent=scores[k]+' / 5';
+  var allDone=true;
+  for(var i=0;i<5;i++){if(!answered[k+'e'+i]){allDone=false;break;}}
+  if(allDone&&curStep===4){
+    setTimeout(function(){
+      var sf=document.getElementById('summaryFinal');
+      document.getElementById('summaryList').innerHTML=summaryPoints.map(function(s){return '<li>'+s+'</li>';}).join('');
+      sf.classList.add('show');
+      sf.scrollIntoView({behavior:'smooth'});
+    },700);
+  }
+}
+
+renderStepTabs();
+renderCard();
+</script>
+</body>
+</html>

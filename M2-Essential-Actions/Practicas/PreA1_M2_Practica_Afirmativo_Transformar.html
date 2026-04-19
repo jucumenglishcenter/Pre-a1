@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform - Pre-A1 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --orange: #F97316; --orange-light: #FFF7ED; --orange-dark: #C2410C;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end)); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; }
+        .progress-container { height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .transform-visual { background:var(--bg-gradient-start); border:1px solid var(--primary-light); border-radius:14px; padding:1rem; margin-bottom:1rem; }
+        .transform-box { padding:0.7rem 0.9rem; border-radius:10px; }
+        .transform-box.base { background:var(--orange-light); border:1px solid #FED7AA; margin-bottom:0.5rem; }
+        .transform-box.goal { background:#F0F9FF; border:1px solid #BAE6FD; }
+        .transform-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; display:block; margin-bottom:0.3rem; }
+        .transform-box.base .transform-label { color:var(--orange-dark); }
+        .transform-box.goal .transform-label { color:var(--info-dark); }
+        .transform-sentence { font-size:1rem; font-weight:600; color:var(--text-dark); line-height:1.5; }
+        .verb-present { color:var(--orange-dark); font-weight:800; background:#FED7AA; padding:0 3px; border-radius:3px; }
+        .new-subject { color:var(--info-dark); font-weight:800; background:#BAE6FD; padding:0 4px; border-radius:3px; }
+        .transform-arrow { text-align:center; font-size:1rem; color:var(--text-light); margin:0.2rem 0; }
+        .options-container { display:flex; flex-direction:column; gap:0.65rem; margin-bottom:0.5rem; }
+        .option-btn { border:2.5px solid #E5E7EB; border-radius:13px; padding:0.85rem 1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:center; }
+        .option-btn:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .option-btn.disabled { cursor:default; }
+        .option-btn.correct { border-color:var(--success); background:var(--success-light); }
+        .option-btn.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .option-btn.correct .option-letter { background:var(--success); color:white; }
+        .option-btn.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); font-weight:600; flex:1; }
+        .option-btn.correct .option-text { color:var(--success-dark); }
+        .option-btn.incorrect .option-text { color:var(--error-dark); }
+        .verb-highlight { font-weight:800; }
+        .option-btn.correct .verb-highlight { color:var(--success-dark); }
+        .option-btn.incorrect .verb-highlight { color:var(--error-dark); text-decoration:underline wavy; }
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.15rem 0.55rem; border-radius:6px; font-size:0.72rem; font-weight:700; margin-left:4px; }
+        .fb-transform { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-transform .fb-block-title { color:#475569; }
+        .transform-flow { display:flex; flex-direction:column; gap:0.4rem; }
+        .tf-step { padding:0.5rem 0.8rem; border-radius:9px; font-size:0.93rem; font-weight:600; line-height:1.5; }
+        .tf-step.original { background:var(--orange-light); color:var(--orange-dark); border:1px solid #FED7AA; }
+        .tf-step.correct-form { background:var(--success-light); color:var(--success-dark); border:1px solid #BBF7D0; }
+        .tf-step.wrong-form { background:var(--error-light); color:var(--error-dark); border:1px solid #FECACA; text-decoration:line-through; }
+        .tf-label { font-size:0.7rem; font-weight:800; text-transform:uppercase; margin-right:6px; opacity:.7; }
+        .tf-arrow { text-align:center; color:#94A3B8; font-size:0.9rem; }
+        .vb-hl { font-weight:800; text-decoration:underline; }
+        .fb-error-block { background:var(--error-light); border:1px solid #FECACA; }
+        .fb-error-block .fb-block-title { color:var(--error-dark); }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:#94A3B8; }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.9rem; color:var(--text-dark); line-height:1.55; }
+        .fb-rule { background:var(--info-light); border:1px solid #BFDBFE; }
+        .fb-rule .fb-block-title { color:var(--info-dark); }
+        .rule-formula { background:white; border-radius:8px; padding:0.5rem 0.9rem; font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--info-dark); font-weight:600; margin-bottom:0.6rem; text-align:center; border:1px solid #BFDBFE; }
+        .rule-examples { display:flex; flex-wrap:wrap; gap:0.4rem; }
+        .rule-ex { display:flex; align-items:center; gap:0.3rem; font-size:0.82rem; background:white; border:1px solid #BFDBFE; border-radius:6px; padding:0.2rem 0.5rem; }
+        .rule-ex .base { color:var(--info-dark); font-weight:600; }
+        .rule-ex .arrow { color:#94A3B8; }
+        .rule-ex .form { color:var(--success-dark); font-weight:700; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔄 Transform</div>
+            <div class="header-subtitle">💛 Pre-A1 · Present Simple · Affirmative</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔄</div>
+            <div>
+                <div class="instructions-title">Cambia el sujeto</div>
+                <div class="instructions-text">Lee la oración original. El sujeto cambia — elige la versión correcta con el nuevo sujeto.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de nuevo</button>
+                <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="result-btn secondary">← Volver al panel</a>
+            </div>
+        </div>
+    </main>
+    <script>
+    function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    const quizData = [
+        {
+            id:1, base:"I get up early.", presentVerb:"get", newSubject:"Marco",
+            goal:"Nuevo sujeto: Marco",
+            options:[
+                {text:"Marco gets up early.", correct:true, verbUsed:"gets"},
+                {text:"Marco get up early.", correct:false, verbUsed:"get", errorType:"Falta la -s", explanation:"Marco = él. Con él, el verbo lleva -s: gets."},
+                {text:"Marco geting up early.", correct:false, verbUsed:"geting", errorType:"Forma incorrecta", explanation:"'Geting' no existe aquí. Con él, la forma es: gets."}
+            ],
+            correctReason:"'I' cambia a 'Marco' (él). Con él, el verbo lleva -s: get → gets.",
+            rule:"I get → Marco gets",
+            examples:["I get → he gets","I eat → she eats"]
+        },
+        {
+            id:2, base:"Marco makes coffee.", presentVerb:"makes", newSubject:"I",
+            goal:"Nuevo sujeto: I",
+            options:[
+                {text:"I make coffee.", correct:true, verbUsed:"make"},
+                {text:"I makes coffee.", correct:false, verbUsed:"makes", errorType:"Error de sujeto", explanation:"'Makes' es para él / ella. Con 'I', el verbo no cambia: make."},
+                {text:"I maks coffee.", correct:false, verbUsed:"maks", errorType:"Error ortográfico", explanation:"'Maks' no existe. Con 'I', la forma es: make."}
+            ],
+            correctReason:"'Marco' (él) cambia a 'I'. Con 'I', el verbo no lleva -s: makes → make.",
+            rule:"Marco makes → I make",
+            examples:["he makes → I make","she goes → I go"]
+        },
+        {
+            id:3, base:"I wash my face.", presentVerb:"wash", newSubject:"Marco",
+            goal:"Nuevo sujeto: Marco",
+            options:[
+                {text:"Marco washes his face.", correct:true, verbUsed:"washes"},
+                {text:"Marco wash his face.", correct:false, verbUsed:"wash", errorType:"Falta la -es", explanation:"Marco = él. 'Wash' termina en -sh → agrega -es: washes."},
+                {text:"Marco washs his face.", correct:false, verbUsed:"washs", errorType:"Error ortográfico", explanation:"'Washs' no existe. Los verbos en -sh agregan -es: wash → washes."}
+            ],
+            correctReason:"'I' cambia a 'Marco' (él). 'Wash' termina en -sh → wash + es = washes.",
+            rule:"I wash → Marco washes",
+            examples:["I wash → he washes","I brush → she brushes"]
+        },
+        {
+            id:4, base:"Rosa makes good food.", presentVerb:"makes", newSubject:"Rosa and Ben",
+            goal:"Nuevo sujeto: Rosa and Ben",
+            options:[
+                {text:"Rosa and Ben make good food.", correct:true, verbUsed:"make"},
+                {text:"Rosa and Ben makes good food.", correct:false, verbUsed:"makes", errorType:"Error de sujeto", explanation:"'Makes' es para él / ella. 'Rosa and Ben' = ellos. Con ellos, el verbo no cambia: make."},
+                {text:"Rosa and Ben maks good food.", correct:false, verbUsed:"maks", errorType:"Error ortográfico", explanation:"'Maks' no existe. Con ellos, la forma es: make."}
+            ],
+            correctReason:"'Rosa' (ella) cambia a 'Rosa and Ben' (ellos). Con ellos, el verbo no lleva -s: makes → make.",
+            rule:"Rosa makes → Rosa and Ben make",
+            examples:["she makes → they make","he goes → we go"]
+        },
+        {
+            id:5, base:"Rosa does her chores.", presentVerb:"does", newSubject:"I",
+            goal:"Nuevo sujeto: I",
+            options:[
+                {text:"I do my chores.", correct:true, verbUsed:"do"},
+                {text:"I does my chores.", correct:false, verbUsed:"does", errorType:"Error de sujeto", explanation:"'Does' es para él / ella. Con 'I', la forma es: do."},
+                {text:"I dos my chores.", correct:false, verbUsed:"dos", errorType:"Error ortográfico", explanation:"'Dos' no existe. Con 'I', la forma correcta es: do."}
+            ],
+            correctReason:"'Rosa' (ella) cambia a 'I'. 'Does' vuelve a su forma original: does → do.",
+            rule:"Rosa does → I do",
+            examples:["she does → I do","he does → you do"]
+        },
+        {
+            id:6, base:"Ben goes to the market.", presentVerb:"goes", newSubject:"Ben and Rosa",
+            goal:"Nuevo sujeto: Ben and Rosa",
+            options:[
+                {text:"Ben and Rosa go to the market.", correct:true, verbUsed:"go"},
+                {text:"Ben and Rosa goes to the market.", correct:false, verbUsed:"goes", errorType:"Error de sujeto", explanation:"'Goes' es para él / ella. 'Ben and Rosa' = ellos. Con ellos, el verbo vuelve a su forma: go."},
+                {text:"Ben and Rosa gos to the market.", correct:false, verbUsed:"gos", errorType:"Error ortográfico", explanation:"'Gos' no existe. Con ellos, la forma es: go."}
+            ],
+            correctReason:"'Ben' (él) cambia a 'Ben and Rosa' (ellos). Con ellos, el verbo vuelve a su forma: goes → go.",
+            rule:"Ben goes → Ben and Rosa go",
+            examples:["he goes → they go","she does → we do"]
+        },
+        {
+            id:7, base:"I sweep the floor.", presentVerb:"sweep", newSubject:"Marco",
+            goal:"Nuevo sujeto: Marco",
+            options:[
+                {text:"Marco sweeps the floor.", correct:true, verbUsed:"sweeps"},
+                {text:"Marco sweep the floor.", correct:false, verbUsed:"sweep", errorType:"Falta la -s", explanation:"Marco = él. Con él, el verbo lleva -s: sweeps."},
+                {text:"Marco sweepses the floor.", correct:false, verbUsed:"sweepses", errorType:"Error ortográfico", explanation:"'Sweepses' no existe. 'Sweep' solo agrega -s: sweeps."}
+            ],
+            correctReason:"'I' cambia a 'Marco' (él). Con él, el verbo lleva -s: sweep → sweeps.",
+            rule:"I sweep → Marco sweeps",
+            examples:["I sweep → he sweeps","I keep → she keeps"]
+        },
+        {
+            id:8, base:"Marco keeps his room clean.", presentVerb:"keeps", newSubject:"I",
+            goal:"Nuevo sujeto: I",
+            options:[
+                {text:"I keep my room clean.", correct:true, verbUsed:"keep"},
+                {text:"I keeps my room clean.", correct:false, verbUsed:"keeps", errorType:"Error de sujeto", explanation:"'Keeps' es para él / ella. Con 'I', el verbo no cambia: keep."},
+                {text:"I keepes my room clean.", correct:false, verbUsed:"keepes", errorType:"Error ortográfico", explanation:"'Keepes' no existe. Con 'I', la forma es: keep."}
+            ],
+            correctReason:"'Marco' (él) cambia a 'I'. Con 'I', el verbo no lleva -s: keeps → keep.",
+            rule:"Marco keeps → I keep",
+            examples:["he keeps → I keep","she sweeps → you sweep"]
+        },
+        {
+            id:9, base:"Ben gives fruit to Rosa.", presentVerb:"gives", newSubject:"Ben and Sara",
+            goal:"Nuevo sujeto: Ben and Sara",
+            options:[
+                {text:"Ben and Sara give fruit to Rosa.", correct:true, verbUsed:"give"},
+                {text:"Ben and Sara gives fruit to Rosa.", correct:false, verbUsed:"gives", errorType:"Error de sujeto", explanation:"'Gives' es para él / ella. 'Ben and Sara' = ellos. Con ellos, el verbo vuelve a su forma: give."},
+                {text:"Ben and Sara gves fruit to Rosa.", correct:false, verbUsed:"gves", errorType:"Error ortográfico", explanation:"'Gves' no existe. Con ellos, la forma correcta es: give."}
+            ],
+            correctReason:"'Ben' (él) cambia a 'Ben and Sara' (ellos). Con ellos, el verbo vuelve a su forma: gives → give.",
+            rule:"Ben gives → Ben and Sara give",
+            examples:["he gives → they give","she makes → we make"]
+        },
+        {
+            id:10, base:"I sit down and eat.", presentVerb:"sit", newSubject:"Marco",
+            goal:"Nuevo sujeto: Marco",
+            options:[
+                {text:"Marco sits down and eats.", correct:true, verbUsed:"sits"},
+                {text:"Marco sit down and eat.", correct:false, verbUsed:"sit", errorType:"Falta la -s", explanation:"Marco = él. Con él, los dos verbos llevan -s: sits and eats."},
+                {text:"Marco sits down and eat.", correct:false, verbUsed:"eat", errorType:"Falta la -s en 'eat'", explanation:"Los dos verbos deben tener -s con Marco (él): sits and eats."}
+            ],
+            correctReason:"'I' cambia a 'Marco' (él). Con él, todos los verbos en la oración llevan -s: sit → sits, eat → eats.",
+            rule:"I sit and eat → Marco sits and eats",
+            examples:["I sit → he sits","I eat → she eats"]
+        }
+    ];
+
+    let currentQuestion = 0, score = 0;
+    let answered = new Array(quizData.length).fill(false);
+
+    function initQuiz() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+        quizData.forEach((q, i) => { q.shuffled = shuffle(q.options); container.appendChild(createCard(q, i)); });
+        showQuestion(0);
+        updateProgress();
+    }
+
+    function createCard(q, index) {
+        const card = document.createElement('div');
+        card.className = `question-card ${index !== 0 ? 'hidden' : ''}`;
+        card.id = `question-${index}`;
+        const letters = ['A','B','C'];
+        const baseHighlighted = q.base.replace(q.presentVerb, `<span class="verb-present">${q.presentVerb}</span>`);
+        const goalHighlighted = q.goal.replace(q.newSubject, `<span class="new-subject">${q.newSubject}</span>`);
+
+        card.innerHTML = `
+            <div class="q-header">
+                <div class="question-number">${index + 1}</div>
+                <span style="font-size:0.82rem;color:var(--text-medium);font-weight:600;">Cambia el sujeto</span>
+            </div>
+            <div class="transform-visual">
+                <div class="transform-box base">
+                    <span class="transform-label">🔶 Oración original</span>
+                    <div class="transform-sentence">${baseHighlighted}</div>
+                </div>
+                <div class="transform-arrow">⬇ Cambia a...</div>
+                <div class="transform-box goal">
+                    <span class="transform-label">🎯 Objetivo</span>
+                    <div class="transform-sentence">${goalHighlighted}</div>
+                </div>
+            </div>
+            <div class="options-container" id="options-${index}">
+                ${q.shuffled.map((opt,i) => `
+                    <button class="option-btn" onclick="selectOption(${index}, ${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt.text.replace(opt.verbUsed, `<span class="verb-highlight">${opt.verbUsed}</span>`)}</div>
+                    </button>`).join('')}
+            </div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index === 0 ? 'disabled' : ''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index === quizData.length - 1 ? 'Ver resultados 🎉' : 'Siguiente →'}
+                </button>
+            </div>`;
+        return card;
+    }
+
+    function selectOption(qi, optIdx) {
+        if (answered[qi]) return;
+        answered[qi] = true;
+        const q = quizData[qi];
+        const selected = q.shuffled[optIdx];
+        const isCorrect = selected.correct;
+        const correctOpt = q.shuffled.find(o => o.correct);
+        if (isCorrect) score++;
+        document.querySelectorAll(`#options-${qi} .option-btn`).forEach((btn, i) => {
+            btn.classList.add('disabled');
+            if (q.shuffled[i].correct) btn.classList.add('correct');
+            else if (i === optIdx) btn.classList.add('incorrect');
+        });
+        buildFeedback(qi, selected, isCorrect, correctOpt, q);
+        document.getElementById(`next-${qi}`).disabled = false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi, selected, isCorrect, correctOpt, q) {
+        const el = document.getElementById(`feedback-${qi}`);
+        el.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+        const ruleExamples = q.examples.map(e => {
+            const p = e.split(' → ');
+            return `<span class="rule-ex"><span class="base">${p[0]}</span><span class="arrow">→</span><span class="form">${p[1]}</span></span>`;
+        }).join('');
+
+        const pBase = q.base.replace(q.presentVerb, `<span class="vb-hl">${q.presentVerb}</span>`);
+        const pCorrect = correctOpt.text.replace(correctOpt.verbUsed, `<span class="vb-hl">${correctOpt.verbUsed}</span>`);
+        const pWrong = !isCorrect ? selected.text.replace(selected.verbUsed, `<span class="vb-hl">${selected.verbUsed}</span>`) : null;
+
+        const flowHTML = `<div class="transform-flow">
+            <div class="tf-step original"><span class="tf-label">Original:</span>${pBase}</div>
+            <div class="tf-arrow">⬇</div>
+            ${!isCorrect ? `<div class="tf-step wrong-form"><span class="tf-label">Tu respuesta:</span>${pWrong}</div><div class="tf-arrow">↕</div>` : ''}
+            <div class="tf-step correct-form"><span class="tf-label">Correcto:</span>${pCorrect}</div>
+        </div>`;
+
+        if (isCorrect) {
+            el.innerHTML = `
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto!</div><div class="fb-subtitle">Cambiaste el verbo correctamente</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-transform"><div class="fb-block-title">🔄 Cambio realizado</div>${flowHTML}</div>
+                    <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                </div>`;
+        } else {
+            el.innerHTML = `
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Revisemos qué falló</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-transform"><div class="fb-block-title">🔄 Tu respuesta vs. la correcta</div>${flowHTML}</div>
+                    <div class="fb-block fb-error-block"><div class="fb-block-title">⚠️ Error: <span class="error-badge">${selected.errorType}</span></div>
+                        <div class="word-swap"><span class="ws-box ws-wrong">${selected.verbUsed}</span><span class="ws-arrow">→</span><span class="ws-box ws-right">${correctOpt.verbUsed}</span></div>
+                        <div class="error-text">${selected.explanation}</div>
+                    </div>
+                    <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Cómo debía hacerse?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i) {
+        document.querySelectorAll('.question-card').forEach((c,idx) => c.classList.toggle('hidden', idx !== i));
+        document.getElementById('currentQ').textContent = i + 1;
+        currentQuestion = i;
+    }
+    function nextQuestion(i) { if (i < quizData.length - 1) showQuestion(i + 1); else showResults(); }
+    function prevQuestion() { if (currentQuestion > 0) showQuestion(currentQuestion - 1); }
+    function updateProgress() {
+        document.getElementById('progressFill').style.width = (answered.filter(Boolean).length / quizData.length * 100) + '%';
+    }
+    function showResults() {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct = score / quizData.length * 100;
+        document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
+        const stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
+        document.getElementById('resultsMessage').textContent = pct >= 90
+            ? '¡Excelente! Cambias el verbo perfectamente. 🏆'
+            : pct >= 70 ? '¡Muy bien! Sigue practicando. 💪'
+            : 'Buen esfuerzo. Repasa las reglas e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i) => { if (i < stars) setTimeout(() => s.classList.add('earned'), i * 300); });
+    }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

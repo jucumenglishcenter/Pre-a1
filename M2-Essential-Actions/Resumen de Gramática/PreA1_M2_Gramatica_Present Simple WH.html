@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Summary — Present Simple Wh- Questions | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FAFAF6;--card:#fff;--text:#1A1A2E;--text-soft:#777;--border:#E8E5DC;
+--shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
+--lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
+--lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
+--badge-text:#4E3800;
+--subj:#1565C0;--subj-bg:#E3F2FD;
+--verb:#E53935;--verb-bg:#FFEBEE;
+--comp:#00897B;--comp-bg:#E0F2F1;
+--wh:#7B1FA2;--wh-bg:#F3E5F5;
+--aux:#6A1B9A;--aux-bg:#EDE7F6;
+--does:#AD1457;--does-bg:#FCE4EC;
+--ok:#2E7D32;--ok-bg:#E8F5E9;
+--err:#C62828;--err-bg:#FFEBEE;
+--note-bg:#FFFDE7;--note-border:#FBC02D;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
+.container{max-width:800px;margin:0 auto}
+
+.level-header{text-align:center;padding:2rem 1.5rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
+.level-header::before{content:'';position:absolute;top:-40%;right:-10%;width:260px;height:260px;background:rgba(255,255,255,.08);border-radius:50%}
+.level-header::after{content:'';position:absolute;bottom:-30%;left:-8%;width:180px;height:180px;background:rgba(255,255,255,.06);border-radius:50%}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.85rem;font-weight:600;position:relative;z-index:1}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.25rem}
+.level-header .subtitle{opacity:.8;font-size:.82rem;position:relative;z-index:1;margin-top:.2rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+
+.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.step-tab{padding:.45rem .8rem;border-radius:8px;font-size:.77rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif;white-space:nowrap}
+.step-tab:hover{background:var(--ll)}
+.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
+.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
+.card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.section-label{display:flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
+.section-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:.15rem;color:var(--ld)}
+.section-desc{font-size:.84rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
+
+.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj);display:inline-block}
+.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb);display:inline-block}
+.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp);display:inline-block}
+.g-wh{background:var(--wh-bg);color:var(--wh);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--wh);display:inline-block}
+.g-aux{background:var(--aux-bg);color:var(--aux);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--aux);display:inline-block}
+.g-does{background:var(--does-bg);color:var(--does);padding:1px 7px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--does);display:inline-block}
+
+.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
+.g-table th{background:var(--lg);color:#fff;padding:.6rem .7rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:left}
+.g-table td{padding:.6rem .7rem;border-bottom:1px solid #f0ece0;vertical-align:middle;line-height:1.45}
+.g-table tr:nth-child(even) td{background:var(--ll)}
+.g-table tr:last-child td{border-bottom:none}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
+.compare-card{padding:1rem;border-radius:12px;text-align:center}
+.compare-card.esp{background:#FFF8E1;border:2px solid #FFCC80}
+.compare-card.eng{background:var(--wh-bg);border:2px solid #CE93D8}
+.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.88rem;margin-bottom:.5rem}
+.compare-card.esp h4{color:#E65100}
+.compare-card.eng h4{color:var(--wh)}
+.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
+.compare-card li{padding:3px 0}
+
+.wh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:.8rem 0}
+.wh-card{padding:.65rem .5rem;border-radius:10px;text-align:center;background:#FAFAF6;border:1.5px solid var(--border)}
+.wh-card .word{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--wh);font-weight:700}
+.wh-card .esp{font-size:.7rem;color:var(--text-soft);margin-top:2px}
+.wh-card .eg{font-size:.65rem;color:var(--text-soft);font-style:italic;margin-top:1px}
+
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem 1.2rem;margin:.8rem 0;font-family:'Fredoka',sans-serif;font-size:.9rem;color:var(--ld);line-height:2.1}
+.formula-box .row{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.1rem}
+
+.tip-card{background:var(--ll);border-radius:10px;padding:.75rem 1rem;margin:.45rem 0;font-size:.83rem;border-left:3.5px solid var(--lp);line-height:1.55}
+.tip-card strong{color:var(--ld)}
+
+.alert-card{background:var(--err-bg);border:2px solid #EF9A9A;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
+.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem;font-weight:700}
+.alert-card p{font-size:.82rem;color:#5A1010;line-height:1.6}
+
+.ex-row{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .85rem;border-radius:10px;margin:.4rem 0;font-size:.87rem}
+.ex-row .icon{font-size:1.15rem;flex-shrink:0;margin-top:1px}
+.ex-row .en{font-weight:700;color:var(--text)}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.8rem;color:var(--text-soft);margin-top:2px}
+.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
+.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
+
+.build-steps{background:#FAFAF6;border:1.5px solid var(--border);border-radius:12px;padding:1rem;margin:.8rem 0;font-size:.82rem}
+.build-steps h5{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.85rem;margin-bottom:.6rem}
+.build-step{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px dashed #e8e5dc}
+.build-step:last-child{border-bottom:none}
+.build-step .num{background:var(--lp);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+.build-step .arrow{color:var(--text-soft);font-size:.9rem}
+
+.ex-section{margin-top:1.3rem;padding-top:1rem;border-top:2px dashed var(--lm)}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.88rem;margin-bottom:.8rem}
+.exercise{background:#FAFAF6;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #EAE6D8;transition:.2s}
+.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
+.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
+.exercise-q{font-size:.87rem;margin-bottom:.7rem;line-height:1.5;font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.opt-btn{padding:.65rem .5rem;border:2px solid var(--lm);border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left;line-height:1.35}
+.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll);color:var(--ld)}
+.opt-btn:disabled{cursor:not-allowed;opacity:.7}
+.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
+.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+
+.fb{margin-top:.7rem;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
+.fb.show{display:block;animation:fbSlide .35s ease}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
+.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
+.fb-icon{font-size:1.2rem}
+.fb-body{padding:.8rem 1rem}
+.fb.fb-ok .fb-body{background:var(--ok-bg)}
+.fb.fb-bad .fb-body{background:var(--err-bg)}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row:last-child{margin-bottom:0}
+.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:2px}
+.fb-row .fb-text{flex:1;line-height:1.5}
+.fb-correct-answer{color:var(--ok);font-weight:700}
+.fb-wrong-reason{color:var(--err);font-weight:600}
+.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.35rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
+.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
+.fb-tip{margin-top:.5rem;padding:.45rem .7rem;border-radius:8px;background:var(--ll);border:1px solid var(--lm);font-size:.76rem;color:#6D4C00}
+.fb-tip strong{color:var(--ld)}
+
+.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
+.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
+.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
+.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
+.summary-final.show{display:block;animation:fadeIn .4s ease}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.1rem}
+.summary-final ul{list-style:none}
+.summary-final li{padding:4px 0 4px 22px;position:relative;font-size:.83rem;color:var(--text-soft);line-height:1.5}
+.summary-final li:before{content:"✔";position:absolute;left:0;color:var(--lp);font-weight:700}
+
+.challenge-badge{display:inline-block;background:linear-gradient(135deg,#7B1FA2,#9C27B0);color:#fff;font-family:'Fredoka',sans-serif;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-left:.5rem;vertical-align:middle}
+
+@media(max-width:600px){
+.level-header h1{font-size:1.4rem}
+.card{padding:1.1rem}
+.compare-grid{grid-template-columns:1fr}
+.wh-grid{grid-template-columns:repeat(2,1fr)}
+.opts{grid-template-columns:1fr}
+.step-tabs{gap:.25rem}
+.step-tab{font-size:.72rem;padding:.4rem .6rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="level-header">
+  <div class="level-badge">💛 Pre-A1 · Grammar Summary</div>
+  <h1>📝 Present Simple</h1>
+  <div class="module-name">🔍 Wh- Questions — What do you do? · Where does she go?</div>
+  <p class="subtitle">5 pasos pedagógicos · 25 ejercicios interactivos · JUCUM English Center</p>
+</div>
+
+<div class="step-tabs" id="stepTabs"></div>
+<div id="cardArea"></div>
+
+<div class="summary-final" id="summaryFinal">
+  <h3>🎓 Lo que dominaste — Present Simple Wh- Questions</h3>
+  <ul id="summaryList"></ul>
+</div>
+
+</div>
+<script>
+var summaryPoints = [
+  "<b>Fórmula:</b> Wh- + do/does + sujeto + verbo base?",
+  "<b>What</b>=qué · <b>Where</b>=dónde · <b>When</b>=cuándo · <b>Who</b>=quién · <b>Why</b>=por qué · <b>How</b>=cómo",
+  "<b>Do</b> con I/you/we/they → What do you eat?",
+  "<b>Does</b> con he/she/it → Where does she go? — verbo siempre en forma base",
+  "<b>Diferencia clave con sí/no:</b> la palabra Wh- va al INICIO, antes del auxiliar",
+  "<b>Nunca:</b> Where she goes? / What does he eats? / Do what you eat?",
+  "<b>Respuesta:</b> no es sí/no — da información completa: She goes to school."
+];
+
+var steps = [
+
+// ══════════════════════════════════
+// PASO 1
+// ══════════════════════════════════
+{icon:"🇪🇸", title:"Repaso en Español",
+html:`<div class="section-label">Paso 1</div>
+<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
+<div class="section-desc">Las preguntas Wh- piden información específica, no sí o no. En español usamos palabras interrogativas al inicio. Veamos cómo funciona.</div>
+
+<div class="compare-grid">
+  <div class="compare-card esp">
+    <h4>🇪🇸 Preguntas de información</h4>
+    <ul>
+      <li>¿<b>Qué</b> comes?</li>
+      <li>¿<b>Dónde</b> vives?</li>
+      <li>¿<b>Cuándo</b> estudias?</li>
+      <li>¿<b>Por qué</b> corres?</li>
+    </ul>
+  </div>
+  <div class="compare-card eng">
+    <h4>🇬🇧 Wh- Questions</h4>
+    <ul>
+      <li><b>What</b> do you eat?</li>
+      <li><b>Where</b> do you live?</li>
+      <li><b>When</b> do you study?</li>
+      <li><b>Why</b> do you run?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-card"><strong>💡 Concepto clave:</strong> Una pregunta Wh- pide <b>información específica</b> — no se responde con sí o no. La respuesta siempre da un dato: un lugar, una hora, una razón, una acción. Es lo mismo en español e inglés.</div>
+
+<div class="section-label" style="margin-top:1rem">Las palabras Wh- más importantes</div>
+<div class="wh-grid">
+  <div class="wh-card"><div class="word">What</div><div class="esp">¿Qué?</div><div class="eg">What do you eat?</div></div>
+  <div class="wh-card"><div class="word">Where</div><div class="esp">¿Dónde?</div><div class="eg">Where do you live?</div></div>
+  <div class="wh-card"><div class="word">When</div><div class="esp">¿Cuándo?</div><div class="eg">When do you study?</div></div>
+  <div class="wh-card"><div class="word">Who</div><div class="esp">¿Quién?</div><div class="eg">Who do you call?</div></div>
+  <div class="wh-card"><div class="word">Why</div><div class="esp">¿Por qué?</div><div class="eg">Why do you run?</div></div>
+  <div class="wh-card"><div class="word">How</div><div class="esp">¿Cómo?</div><div class="eg">How do you go?</div></div>
+</div>`,
+exercises:[
+  {q:'¿Qué tipo de respuesta da una pregunta Wh-?',a:'a',o:['Información específica (lugar, hora, razón...)','Solo sí o no'],
+   fc:'Las preguntas Wh- piden información específica: un lugar, una hora, una razón, etc.',
+   fi:'Las preguntas de sí/no (Do you eat? Does she work?) son las que se responden con sí o no. Las Wh- necesitan más información.',
+   ex:'Where do you live? → I live in Lima. (no es solo sí/no)'},
+
+  {q:'"¿Dónde vives?" es una pregunta Wh- porque:',a:'a',o:['Pide un lugar específico, no sí/no','Usa el verbo vivir'],
+   fc:'"¿Dónde?" pide una ubicación específica — la respuesta da un lugar, no sí o no.',
+   fi:'El tipo de verbo no determina si es Wh-. Lo que importa es la palabra interrogativa y el tipo de respuesta.',
+   ex:'¿Dónde vives? → Where do you live? → I live in Lima.'},
+
+  {q:'"What" en español significa:',a:'b',o:['¿Dónde?','¿Qué?'],
+   fc:'"What" = ¿Qué? · "Where" = ¿Dónde? Son palabras diferentes.',
+   fi:'"¿Dónde?" en inglés es "Where", no "What".',
+   ex:'What do you eat? → ¿Qué comes?',
+   tip:'What=Qué · Where=Dónde · When=Cuándo · Who=Quién · Why=Por qué · How=Cómo'},
+
+  {q:'"Where" en español significa:',a:'b',o:['¿Cuándo?','¿Dónde?'],
+   fc:'"Where" = ¿Dónde? Pregunta por un lugar.',
+   fi:'"¿Cuándo?" en inglés es "When", no "Where".',
+   ex:'Where does she go? → ¿Dónde va ella?',
+   tip:'Where=Dónde (lugar) · When=Cuándo (tiempo)'},
+
+  {q:'¿Cuál pregunta es una pregunta Wh-?',a:'a',o:['Why do you study English?','Do you study English?'],
+   fc:'"Why do you study English?" comienza con una palabra Wh- (Why = ¿Por qué?) y pide una razón.',
+   fi:'"Do you study English?" es una pregunta de sí/no — comienza con el auxiliar Do, no con una palabra Wh-.',
+   ex:'Why do you study English? → Because I want to travel.'}
+]},
+
+// ══════════════════════════════════
+// PASO 2
+// ══════════════════════════════════
+{icon:"🤝", title:"Similitudes",
+html:`<div class="section-label">Paso 2</div>
+<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
+<div class="section-desc">Las preguntas Wh- en inglés comparten mucho con el español. La lógica es la misma — solo cambia la estructura.</div>
+
+<table class="g-table">
+  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
+  <tr><td>Palabra interrogativa al inicio</td><td><b>¿Qué</b> comes?</td><td><b>What</b> do you eat?</td></tr>
+  <tr><td>Piden información, no sí/no</td><td>¿Dónde vives? → Lima</td><td>Where do you live? → In Lima</td></tr>
+  <tr><td>Distinción por persona</td><td>¿Qué com<b>es</b>? / ¿Qué com<b>e</b>?</td><td>What <b>do</b> you eat? / What <b>does</b> she eat?</td></tr>
+  <tr><td>Auxiliar + verbo base en inglés</td><td>¿Qué <b>comes</b>?</td><td>What do you <b>eat</b>? (base)</td></tr>
+  <tr><td>Mismo vocabulario interrogativo</td><td>qué, dónde, cuándo, quién</td><td>what, where, when, who</td></tr>
+</table>
+
+<div class="tip-card"><strong>💡 Conexión con lo aprendido:</strong> Las preguntas Wh- usan los mismos auxiliares que las preguntas sí/no: <b>do</b> (I/you/we/they) y <b>does</b> (he/she/it). La única diferencia es que al inicio aparece la palabra Wh-.</div>
+
+<div class="section-label" style="margin-top:1rem">Cómo se construye: paso a paso</div>
+<div class="build-steps">
+  <h5>🔨 De sí/no a Wh- — ¡solo agrega la palabra interrogativa al inicio!</h5>
+  <div class="build-step"><div class="num">1</div><span>Pregunta sí/no:</span><span class="arrow">→</span><span><b>Do you eat pizza?</b></span></div>
+  <div class="build-step"><div class="num">2</div><span>Agrega Wh- al inicio:</span><span class="arrow">→</span><span><b>What</b> do you eat?</span></div>
+  <div class="build-step"><div class="num">3</div><span>Sí/no:</span><span class="arrow">→</span><span><b>Does she go to school?</b></span></div>
+  <div class="build-step"><div class="num">4</div><span>Agrega Wh- al inicio:</span><span class="arrow">→</span><span><b>Where</b> does she go?</span></div>
+</div>`,
+exercises:[
+  {q:'"What do you eat?" — ¿qué palabra va primero?',a:'b',o:['Do','What'],
+   fc:'La palabra Wh- (What) siempre va al inicio, antes del auxiliar.',
+   fi:'"Do" es el auxiliar — va en segundo lugar, después de la palabra Wh-.',
+   ex:'What do you eat? → ¿Qué comes?',
+   tip:'Orden: Wh- → do/does → sujeto → verbo base'},
+
+  {q:'Para hacer una pregunta Wh-, ¿qué se agrega a la pregunta de sí/no?',a:'a',o:['Una palabra Wh- al inicio','El auxiliar al final'],
+   fc:'La palabra Wh- (What, Where, When...) se coloca al inicio de la pregunta de sí/no.',
+   fi:'El auxiliar ya existe en la pregunta de sí/no. No se agrega al final — la Wh- se pone al principio.',
+   ex:'Do you eat? → What do you eat?'},
+
+  {q:'"Where does she live?" — ¿con qué pronombre corresponde "does"?',a:'b',o:['I, You, We, They','He, She, It'],
+   fc:'"Does" corresponde a He/She/It. "She" pertenece a ese grupo.',
+   fi:'"Do" corresponde a I/You/We/They. "She" no pertenece a ese grupo.',
+   ex:'Where does she live? → ¿Dónde vive ella?',
+   tip:'She → Does (igual que en preguntas sí/no y en el negativo)'},
+
+  {q:'"Why do they work on Sundays?" La respuesta es:',a:'a',o:['Información (razón)','Sí o No'],
+   fc:'"Why" pregunta por una razón — la respuesta da una causa, no sí o no.',
+   fi:'Las preguntas Wh- nunca se responden con sí o no. Siempre piden información específica.',
+   ex:'Why do they work on Sundays? → Because they need the money.'},
+
+  {q:'"When do you eat breakfast?" — ¿qué tipo de información pide?',a:'b',o:['Un lugar','Un momento / hora'],
+   fc:'"When" pregunta por tiempo: cuándo, a qué hora, en qué momento.',
+   fi:'"Where" es el que pregunta por lugar. "When" pregunta por tiempo.',
+   ex:'When do you eat breakfast? → At 7 a.m.',
+   tip:'When=tiempo · Where=lugar · What=cosa · Who=persona · Why=razón'}
+]},
+
+// ══════════════════════════════════
+// PASO 3
+// ══════════════════════════════════
+{icon:"⚡", title:"Diferencias",
+html:`<div class="section-label">Paso 3</div>
+<div class="section-title">Paso 3: ⚡ Diferencias Clave</div>
+<div class="section-desc">Aquí están las trampas más comunes. El orden de las palabras en inglés es diferente al español.</div>
+
+<table class="g-table">
+  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Diferencia</th></tr>
+  <tr><td>¿Qué <b>comes</b>?</td><td>What <b>do</b> you <b>eat</b>?</td><td>Necesita auxiliar do/does</td></tr>
+  <tr><td>¿Dónde <b>va</b> ella?</td><td>Where <b>does</b> she <b>go</b>?</td><td>Does + verbo base (no "goes")</td></tr>
+  <tr><td>¿Por qué estudias?</td><td>Why do <b>you</b> study?</td><td>Sujeto explícito siempre</td></tr>
+  <tr><td>¿<b>Qué</b> haces? (tú)</td><td>What do <b>you do</b>?</td><td>"do" aparece dos veces</td></tr>
+</table>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Orden obligatorio: Wh- + do/does + sujeto + verbo base</div>
+  <p>❌ Where she goes? (falta auxiliar, verbo incorrecto)<br>
+  ❌ Where does she goes? (verbo con -S después de does)<br>
+  ✅ Where <b>does</b> she <b>go</b>? (auxiliar + verbo base)<br><br>
+  ❌ What you eat? (falta auxiliar)<br>
+  ✅ What <b>do</b> you <b>eat</b>? (auxiliar obligatorio)</p>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-wh">What</span> <span class="g-aux">do</span> <span class="g-subj">you</span> <span class="g-verb">eat</span> <span class="g-comp">for breakfast</span>?</div>
+  <div class="es">¿Qué comes en el desayuno?</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">What you eat for breakfast?</div>
+  <div class="es">Falta el auxiliar "do" — el auxiliar es siempre obligatorio.</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">✅</div><div>
+  <div class="en"><span class="g-wh">Where</span> <span class="g-does">does</span> <span class="g-subj">she</span> <span class="g-verb">go</span> <span class="g-comp">after school</span>?</div>
+  <div class="es">¿Dónde va ella después del colegio?</div>
+</div></div>
+<div class="ex-row ex-wrong"><div class="icon">❌</div><div>
+  <div class="en">Where does she <b>goes</b> after school?</div>
+  <div class="es">"goes" con -S es incorrecto después de "does".</div>
+</div></div>`,
+exercises:[
+  {q:'"___ do you live?"',a:'a',o:['Where','When'],
+   fc:'"Where" pregunta por un lugar (¿Dónde?). La pregunta es sobre dónde vives.',
+   fi:'"When" pregunta por tiempo (¿Cuándo?). No corresponde a una pregunta sobre lugar.',
+   ex:'Where do you live? → ¿Dónde vives?'},
+
+  {q:'"What ___ she eat for lunch?"',a:'b',o:['do','does'],
+   fc:'"She" pertenece a He/She/It → usa "does".',
+   fi:'"Do" es para I/You/We/They. "She" exige "does".',
+   ex:'What does she eat for lunch? → ¿Qué come ella en el almuerzo?',
+   tip:'She → does (igual que en preguntas sí/no)'},
+
+  {q:'"Where does he ___ every morning?" (go)',a:'a',o:['go','goes'],
+   fc:'Después de "does" el verbo siempre va en forma base: go, sin -ES.',
+   fi:'"goes" con -ES es la forma afirmativa. Con "does" el verbo pierde la terminación.',
+   ex:'Where does he go every morning? → ¿Dónde va él cada mañana?',
+   tip:'does + verbo base: go (no goes), eat (no eats), work (no works)'},
+
+  {q:'"___ do they study?" (¿Cuándo?)',a:'b',o:['Where','When'],
+   fc:'"When" pregunta por tiempo (¿Cuándo?). La pregunta es sobre el momento en que estudian.',
+   fi:'"Where" pregunta por lugar (¿Dónde?). No corresponde a una pregunta temporal.',
+   ex:'When do they study? → ¿Cuándo estudian?'},
+
+  {q:'¿Cuál oración está correctamente formada?',a:'a',o:['Why do you run every day?','Why you run every day?'],
+   fc:'"Why do you run every day?" tiene el orden correcto: Wh- + auxiliar + sujeto + verbo base.',
+   fi:'"Why you run every day?" falta el auxiliar "do". En inglés el auxiliar es siempre obligatorio en preguntas.',
+   ex:'Why do you run? → ¿Por qué corres?',
+   tip:'Wh- + do/does + sujeto + verbo base — siempre'}
+]},
+
+// ══════════════════════════════════
+// PASO 4
+// ══════════════════════════════════
+{icon:"💡", title:"Consejos",
+html:`<div class="section-label">Paso 4</div>
+<div class="section-title">Paso 4: 💡 Consejos y Trucos</div>
+<div class="section-desc">Estrategias para construir preguntas Wh- correctas sin dudar.</div>
+
+<div class="tip-card"><strong>🎯 Tip 1 — Memoriza las 6 palabras Wh-:</strong><br>
+<b>What</b>=Qué &nbsp;·&nbsp; <b>Where</b>=Dónde &nbsp;·&nbsp; <b>When</b>=Cuándo<br>
+<b>Who</b>=Quién &nbsp;·&nbsp; <b>Why</b>=Por qué &nbsp;·&nbsp; <b>How</b>=Cómo<br>
+Todas empiezan con "Wh" excepto "How".</div>
+
+<div class="tip-card"><strong>🎯 Tip 2 — La fórmula es siempre igual:</strong><br>
+<span style="color:var(--wh);font-weight:700">Wh-</span> + <span style="color:var(--aux);font-weight:700">do/does</span> + <span style="color:var(--subj);font-weight:700">sujeto</span> + <span style="color:var(--verb);font-weight:700">verbo base</span>?<br>
+La diferencia entre Do y Does es la misma de siempre: He/She/It → Does.</div>
+
+<div class="tip-card"><strong>🎯 Tip 3 — "What do you do?" tiene "do" dos veces:</strong><br>
+El primer "do" es el auxiliar de la pregunta.<br>
+El segundo "do" es el verbo principal (hacer/trabajar).<br>
+"What do you <b>do</b>?" = ¿Qué haces? / ¿A qué te dedicas?</div>
+
+<div class="tip-card"><strong>🎯 Tip 4 — El auxiliar nunca desaparece:</strong><br>
+En español podemos decir "¿Dónde vas?" sin auxiliar.<br>
+En inglés SIEMPRE necesitas do/does: "Where <b>do</b> you go?" ✅<br>
+Omitirlo es el error número uno.</div>
+
+<div class="formula-box">
+  <div class="row"><span class="g-wh">Wh-</span> + <span class="g-aux">do</span> + <span class="g-subj">I/you/we/they</span> + <span class="g-verb">verb (base)</span>?</div>
+  <div class="row"><span class="g-wh">Wh-</span> + <span class="g-does">does</span> + <span class="g-subj">he/she/it</span> + <span class="g-verb">verb (base)</span>?</div>
+</div>
+
+<table class="g-table">
+  <tr><th>Wh-</th><th>Pregunta de ejemplo</th><th>Tipo de respuesta</th></tr>
+  <tr><td><b>What</b></td><td>What do you eat?</td><td>Una cosa: pizza, rice...</td></tr>
+  <tr><td><b>Where</b></td><td>Where does she live?</td><td>Un lugar: Lima, home...</td></tr>
+  <tr><td><b>When</b></td><td>When do they study?</td><td>Un tiempo: at 6, on Monday...</td></tr>
+  <tr><td><b>Why</b></td><td>Why does he run?</td><td>Una razón: because...</td></tr>
+  <tr><td><b>How</b></td><td>How do you go?</td><td>Un modo: by bus, on foot...</td></tr>
+</table>`,
+exercises:[
+  {q:'"___ does your brother work?" (¿Dónde?)',a:'a',o:['Where','When'],
+   fc:'"Where" pregunta por lugar (¿Dónde?). La pregunta es sobre el lugar de trabajo.',
+   fi:'"When" pregunta por tiempo (¿Cuándo?). No corresponde a una pregunta de lugar.',
+   ex:'Where does your brother work? → ¿Dónde trabaja tu hermano?'},
+
+  {q:'"What ___ you do on weekends?"',a:'b',o:['does','do'],
+   fc:'"You" pertenece al grupo I/You/We/They → usa "do".',
+   fi:'"Does" es para He/She/It. "You" nunca usa "does".',
+   ex:'What do you do on weekends? → ¿Qué haces los fines de semana?'},
+
+  {q:'"What do you do?" tiene "do" dos veces porque:',a:'a',o:['El primero es auxiliar y el segundo es el verbo hacer','Es un error gramatical'],
+   fc:'El primer "do" es el auxiliar de la pregunta. El segundo "do" es el verbo principal (hacer/trabajar). Los dos son correctos y necesarios.',
+   fi:'"Es un error gramatical" es incorrecto — "What do you do?" es perfectamente natural. El inglés lo necesita porque "do" puede ser auxiliar Y verbo al mismo tiempo.',
+   ex:'What do you do? → ¿Qué haces? / ¿A qué te dedicas?'},
+
+  {q:'"___ does she go to the gym?"',a:'b',o:['What','When'],
+   fc:'"When" pregunta por tiempo — cuándo va ella al gimnasio.',
+   fi:'"What" pregunta por una cosa. No se usa para preguntar por el momento en que algo ocurre.',
+   ex:'When does she go to the gym? → ¿Cuándo va ella al gimnasio?'},
+
+  {q:'"How do you go to school?" — ¿qué tipo de respuesta espera?',a:'a',o:['Un modo de transporte','Un lugar'],
+   fc:'"How" pregunta por el modo o la manera — la respuesta es: by bus, on foot, by car...',
+   fi:'"Where" es el que pide un lugar. "How" pide la manera en que algo ocurre.',
+   ex:'How do you go to school? → By bus. / On foot.',
+   tip:'How=cómo/de qué manera · Where=en qué lugar'}
+]},
+
+// ══════════════════════════════════
+// PASO 5
+// ══════════════════════════════════
+{icon:"✨", title:"Práctica Final",
+html:`<div class="section-label">Paso 5</div>
+<div class="section-title">Paso 5: ✨ Práctica Final <span class="challenge-badge">🔥 Nivel avanzado</span></div>
+<div class="section-desc">Sujetos complejos, elección de palabra Wh- correcta y orden de elementos. Demuestra que dominas toda la estructura.</div>
+
+<div class="formula-box">
+  <div class="row"><span class="g-wh">Wh-</span> + <span class="g-aux">do/does</span> + <span class="g-subj">sujeto</span> + <span class="g-verb">verbo base</span>?</div>
+</div>
+
+<div class="ex-row ex-right"><div class="icon">🏫</div><div>
+  <div class="en"><span class="g-wh">Where</span> <span class="g-does">does</span> <span class="g-subj">your teacher</span> <span class="g-verb">live</span>?</div>
+  <div class="es">¿Dónde vive tu profesor/a?</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div>
+  <div class="en"><span class="g-wh">What</span> <span class="g-aux">do</span> <span class="g-subj">your parents</span> <span class="g-verb">do</span> <span class="g-comp">on Sundays</span>?</div>
+  <div class="es">¿Qué hacen tus padres los domingos?</div>
+</div></div>
+
+<div class="ex-row ex-right"><div class="icon">🐶</div><div>
+  <div class="en"><span class="g-wh">Why</span> <span class="g-does">does</span> <span class="g-subj">your dog</span> <span class="g-verb">bark</span> <span class="g-comp">at night</span>?</div>
+  <div class="es">¿Por qué ladra tu perro de noche?</div>
+</div></div>
+
+<div class="alert-card">
+  <div class="atitle">⚠️ Los 5 errores más comunes</div>
+  <p>
+  ❌ Where she goes? → ✅ Where <b>does</b> she <b>go</b>? (auxiliar + verbo base)<br>
+  ❌ What you eat? → ✅ What <b>do</b> you eat? (auxiliar obligatorio)<br>
+  ❌ Where does he <b>goes</b>? → ✅ Where does he <b>go</b>? (verbo base con does)<br>
+  ❌ <b>Do</b> what you eat? → ✅ <b>What do</b> you eat? (Wh- va primero)<br>
+  ❌ <b>When</b> do you live? → ✅ <b>Where</b> do you live? (elegir la Wh- correcta)
+  </p>
+</div>`,
+exercises:[
+  {q:'"___ do your parents work?" (¿Dónde?)',a:'b',o:['When','Where'],
+   fc:'"Where" pregunta por lugar (¿Dónde?). La pregunta es sobre el lugar de trabajo.',
+   fi:'"When" pregunta por tiempo (¿Cuándo?). No corresponde a una pregunta sobre lugar.',
+   ex:'Where do your parents work? → ¿Dónde trabajan tus padres?'},
+
+  {q:'"What ___ your sister study?"',a:'a',o:['does','do'],
+   fc:'"Your sister" = She → pertenece a He/She/It → usa "does".',
+   fi:'"Do" es para I/You/We/They. "Your sister" equivale a "She" y exige "does".',
+   ex:'What does your sister study? → ¿Qué estudia tu hermana?'},
+
+  {q:'"Why does the cat ___ so much?" (sleep)',a:'b',o:['sleeps','sleep'],
+   fc:'Después de "does" el verbo va en forma base: sleep, sin -S.',
+   fi:'"sleeps" con -S es la forma afirmativa. Con "does" en preguntas el verbo vuelve a su base.',
+   ex:'Why does the cat sleep so much? → ¿Por qué duerme tanto el gato?',
+   tip:'does + verbo base siempre — en preguntas Wh- igual que en sí/no'},
+
+  {q:'"___ do you go to school?" (¿Cómo?)',a:'a',o:['How','Why'],
+   fc:'"How" pregunta por el modo o manera (¿Cómo?). La respuesta es: by bus, on foot...',
+   fi:'"Why" pregunta por razón o causa (¿Por qué?). No corresponde a una pregunta sobre el modo.',
+   ex:'How do you go to school? → By bus. / On foot.',
+   tip:'How=cómo (modo) · Why=por qué (razón)'},
+
+  {q:'¿Cuál pregunta está completamente correcta?',a:'b',o:['What does he eats for breakfast?','What does he eat for breakfast?'],
+   fc:'"What does he eat for breakfast?" tiene Does para He y verbo base "eat". Todo correcto.',
+   fi:'"What does he eats?" agrega -S al verbo después de "does" — ese es el error. La -S ya está en "does", no puede estar también en el verbo.',
+   ex:'What does he eat for breakfast? → ¿Qué come él en el desayuno?',
+   tip:'does + verbo base: eat (no eats), go (no goes), work (no works)'}
+]}
+
+];
+
+var curStep=0;
+var scores={};
+var answered={};
+
+function renderStepTabs(){
+  var c=document.getElementById('stepTabs');
+  c.innerHTML='';
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='step-tab'+(i===curStep?' active':'');
+    var k='s'+i;
+    if(scores[k]!==undefined&&i<curStep)b.classList.add('done');
+    b.textContent=(i+1)+'. '+s.icon+' '+s.title;
+    b.addEventListener('click',function(){
+      curStep=i;
+      renderStepTabs();
+      renderCard();
+      document.getElementById('summaryFinal').classList.remove('show');
+    });
+    c.appendChild(b);
+  });
+}
+
+function renderCard(){
+  var s=steps[curStep];
+  var k='s'+curStep;
+  if(scores[k]===undefined)scores[k]=0;
+  var h='<div class="card active">'+s.html+'<div class="ex-section"><h3>✏️ Ejercicios — '+s.title+'</h3>';
+  s.exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    h+='<div class="exercise" id="'+eid+'">';
+    h+='<div class="exercise-q">'+(i+1)+'. '+e.q+'</div>';
+    h+='<div class="opts">';
+    h+='<button class="opt-btn" id="btn-'+eid+'-a">a) '+e.o[0]+'</button>';
+    h+='<button class="opt-btn" id="btn-'+eid+'-b">b) '+e.o[1]+'</button>';
+    h+='</div>';
+    var ct=e.o[e.a==='a'?0:1];
+    h+='<div class="fb fb-ok" id="fbok-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">🎉</span> Correcto!</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: '+e.fi+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='<div class="fb fb-bad" id="fbbad-'+eid+'">';
+    h+='<div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div>';
+    h+='<div class="fb-body">';
+    h+='<div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">'+e.fi+'</span></div></div>';
+    h+='<div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">Respuesta correcta: <span class="fb-correct-answer">'+ct+'</span> — '+e.fc+'</div></div>';
+    if(e.ex)h+='<div class="fb-example">📝 '+e.ex+'</div>';
+    if(e.tip)h+='<div class="fb-tip"><strong>💡 Recuerda:</strong> '+e.tip+'</div>';
+    h+='</div></div>';
+    h+='</div>';
+  });
+  h+='<div class="score-bar"><div class="num" id="sc-'+k+'">0 / 5</div><div class="lbl">Puntuación del paso</div></div>';
+  h+='</div></div>';
+  document.getElementById('cardArea').innerHTML=h;
+  steps[curStep].exercises.forEach(function(e,i){
+    var eid=k+'e'+i;
+    document.getElementById('btn-'+eid+'-a').addEventListener('click',function(){chk(eid,'a',e.a,k);});
+    document.getElementById('btn-'+eid+'-b').addEventListener('click',function(){chk(eid,'b',e.a,k);});
+  });
+}
+
+function chk(eid,sel,correct,k){
+  if(answered[eid])return;
+  answered[eid]=true;
+  var ex=document.getElementById(eid);
+  var ba=document.getElementById('btn-'+eid+'-a');
+  var bb=document.getElementById('btn-'+eid+'-b');
+  ba.disabled=true; bb.disabled=true;
+  if(sel===correct){
+    ex.classList.add('correct');
+    (sel==='a'?ba:bb).classList.add('sel-ok');
+    document.getElementById('fbok-'+eid).classList.add('show');
+    scores[k]++;
+  } else {
+    ex.classList.add('incorrect');
+    (sel==='a'?ba:bb).classList.add('sel-bad');
+    (sel==='a'?bb:ba).classList.add('show-ok');
+    document.getElementById('fbbad-'+eid).classList.add('show');
+  }
+  document.getElementById('sc-'+k).textContent=scores[k]+' / 5';
+  var allDone=true;
+  for(var i=0;i<5;i++){if(!answered[k+'e'+i]){allDone=false;break;}}
+  if(allDone&&curStep===4){
+    setTimeout(function(){
+      var sf=document.getElementById('summaryFinal');
+      document.getElementById('summaryList').innerHTML=summaryPoints.map(function(s){return '<li>'+s+'</li>';}).join('');
+      sf.classList.add('show');
+      sf.scrollIntoView({behavior:'smooth'});
+    },700);
+  }
+}
+
+renderStepTabs();
+renderCard();
+</script>
+</body>
+</html>

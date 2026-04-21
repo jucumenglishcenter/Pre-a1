@@ -639,9 +639,6 @@ body {
       <span class="speed-display">0.82×</span>
     </div>
   </div>
-
-      <span class="play-all-progress" id="pa-prog-panel-d1"></span>
-  </div>
 <div class="chat-wrapper">
 
     <div class="chat-msg left">
@@ -974,9 +971,6 @@ body {
       <input type="range" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this)">
       <span class="speed-display">0.82×</span>
     </div>
-  </div>
-
-      <span class="play-all-progress" id="pa-prog-panel-d2"></span>
   </div>
 <div class="chat-wrapper">
 
@@ -1311,9 +1305,6 @@ body {
       <span class="speed-display">0.82×</span>
     </div>
   </div>
-
-      <span class="play-all-progress" id="pa-prog-panel-d3"></span>
-  </div>
 <div class="chat-wrapper">
 
     <div class="chat-msg left">
@@ -1647,9 +1638,6 @@ body {
       <input type="range" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this)">
       <span class="speed-display">0.82×</span>
     </div>
-  </div>
-
-      <span class="play-all-progress" id="pa-prog-panel-d4"></span>
   </div>
 <div class="chat-wrapper">
 
@@ -2608,11 +2596,11 @@ function toggleReveal(btn) {
 function toggleFullTranslate(btn) {
   const card = btn.closest('.card');
   const isOn = btn.classList.toggle('active');
-  btn.textContent = isOn ? '🌐 Hide translations' : '🌐 Show all translations';
+  btn.innerHTML = isOn ? '🌐 Hide translations' : '🌐 Show all translations';
   if (isOn) {
     card.classList.add('full-translated');
     card.querySelectorAll('.reveal-text').forEach(t => t.classList.add('show'));
-    card.querySelectorAll('.reveal-btn').forEach(b => { b.classList.add('open'); });
+    card.querySelectorAll('.reveal-btn').forEach(b => b.classList.add('open'));
   } else {
     card.classList.remove('full-translated');
     card.querySelectorAll('.reveal-text').forEach(t => t.classList.remove('show'));

@@ -11,7 +11,6 @@
   --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3;
   --lg:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);
   --lglow:rgba(249,168,37,0.15); --lbt:#4E3800;
-
   /* ── base ── */
   --bg:#FAFAF6; --card:#FFFFFF; --text:#2A2A2A; --ts:#777777;
   --border:#E8E5DC; --shadow:0 3px 16px rgba(0,0,0,0.06); --rad:14px;
@@ -19,7 +18,6 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh;}
-
 /* ── HEADER ── */
 header{
   background:var(--card);border-bottom:1.5px solid var(--border);
@@ -41,11 +39,6 @@ header{
   background:var(--ll);color:var(--lbt);
   border:1.5px solid var(--lm);padding:4px 12px;border-radius:20px;
 }
-
-
-
-
-
 /* ── HERO ── */
 .hero{
   background:var(--lg);
@@ -54,7 +47,6 @@ header{
 .hero::before{content:'';position:absolute;top:-40%;right:-8%;width:280px;height:280px;background:rgba(255,255,255,0.1);border-radius:50%;}
 .hero::after{content:'';position:absolute;bottom:-60%;left:-5%;width:200px;height:200px;background:rgba(255,255,255,0.06);border-radius:50%;}
 .hero-in{max-width:860px;margin:0 auto;position:relative;z-index:1;}
-
 .hlevel-badge{
   display:inline-flex;align-items:center;gap:6px;
   font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
@@ -71,20 +63,16 @@ header{
   color:#fff;padding:5px 13px;border-radius:20px;
   font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;
 }
-
 /* ── MAIN ── */
 main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
-
 .stitle{
   font-family:'Fredoka',sans-serif;font-size:20px;font-weight:600;
   color:var(--text);margin-bottom:16px;
   display:flex;align-items:center;gap:10px;
 }
 .stitle::before{content:'';display:block;width:20px;height:3px;background:var(--lp);border-radius:2px;}
-
 /* ── MODULE CARDS ── */
 .mgrid{display:flex;flex-direction:column;gap:10px;}
-
 .mcard{
   background:var(--card);border-radius:var(--rad);
   border:1px solid var(--border);border-top:3.5px solid var(--lp);
@@ -99,24 +87,17 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   border-color:var(--lp);
 }
 .mcard.locked{opacity:0.5;cursor:default;filter:grayscale(20%);}
-
 .mcard-img{
   width:100px;flex-shrink:0;
   background-size:cover;background-position:center;
   position:relative;
 }
 .mcard-img::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,var(--card));}
-
 .mcard-body{flex:1;padding:16px 18px;display:flex;align-items:center;gap:14px;}
-
-
-
-.mcard.locked 
-
+.mcard.locked
 .minfo{flex:1;}
 .mname{font-family:'Fredoka',sans-serif;font-size:17px;font-weight:600;color:var(--text);line-height:1.2;}
 .mcard.locked .mname{color:#BBB;}
-
 .mtags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
 .mtag{
   font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
@@ -125,7 +106,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   padding:2px 9px;border-radius:20px;
 }
 .mcard.locked .mtag{background:#F5F3EE;color:#CCC;border-color:#E0DDD5;}
-
 .mcard-cta{
   display:flex;align-items:center;padding:0 18px;flex-shrink:0;
 }
@@ -139,7 +119,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 }
 .mcard:not(.locked):hover .cta-btn{background:var(--lg);color:#fff;border-color:var(--lp);}
 .lock-cta{font-size:16px;color:#CCC;}
-
 /* ── OVERLAY ── */
 .overlay{
   position:fixed;inset:0;
@@ -149,7 +128,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   transition:opacity 0.28s;
 }
 .overlay.on{opacity:1;pointer-events:all;}
-
 /* ── DRAWER ── */
 .drawer{
   position:fixed;top:0;right:0;bottom:0;
@@ -164,7 +142,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   overflow:hidden;
 }
 .drawer.on{transform:translateX(0);}
-
 /* DRAWER HEADER */
 .dhead{
   background:var(--lg);
@@ -172,7 +149,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   display:flex;align-items:center;gap:12px;
   flex-shrink:0;
 }
-
 .dhead-name{font-family:'Fredoka',sans-serif;font-size:17px;font-weight:600;color:#fff;flex:1;line-height:1.2;}
 .dclose{
   width:34px;height:34px;border-radius:50%;
@@ -182,7 +158,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   transition:background 0.15s;flex-shrink:0;
 }
 .dclose:hover{background:rgba(255,255,255,0.35);}
-
 /* DRAWER IMAGE */
 .dimg{
   height:120px;flex-shrink:0;
@@ -195,12 +170,10 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
   color:rgba(255,255,255,0.88);letter-spacing:0.06em;text-transform:uppercase;
 }
-
 /* DRAWER SCROLL */
 .dscroll{flex:1;overflow-y:auto;padding:14px 14px 32px;}
 .dscroll::-webkit-scrollbar{width:3px;}
 .dscroll::-webkit-scrollbar-thumb{background:var(--lm);border-radius:4px;}
-
 /* SECTION BLOCKS */
 .dsec{
   background:var(--card);border:1px solid var(--border);border-top:3px solid var(--lp);
@@ -209,7 +182,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   transition:border-top-color 0.18s,box-shadow 0.18s;
 }
 .dsec.open{box-shadow:0 4px 16px var(--lglow);}
-
 .dsec-trig{
   display:flex;align-items:center;gap:10px;
   padding:12px 14px;cursor:pointer;user-select:none;
@@ -217,7 +189,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 }
 .dsec-trig:hover{background:var(--ll);}
 .dsec.open .dsec-trig{background:var(--ll);}
-
 .dsec-ico{
   width:36px;height:36px;border-radius:8px;
   background:var(--ll);border:1.5px solid var(--lm);
@@ -225,15 +196,12 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   font-size:18px;flex-shrink:0;transition:all 0.18s;
 }
 .dsec.open .dsec-ico{background:var(--lg);}
-
 .dsec-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--text);flex:1;}
 .dsec-meta{font-size:11px;color:var(--ts);font-family:'Nunito',sans-serif;font-weight:600;flex-shrink:0;}
 .dsec-chev{font-size:11px;color:var(--ts);transition:transform 0.22s,color 0.15s;margin-left:4px;}
 .dsec.open .dsec-chev{transform:rotate(180deg);color:var(--ld);}
-
 .dsec-body{display:none;padding:0 14px 12px;border-top:1.5px dashed var(--lm);}
 .dsec.open .dsec-body{display:block;}
-
 /* SECTION LABEL inside drawer */
 .sec-label{
   display:flex;align-items:center;gap:6px;
@@ -242,10 +210,8 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   margin:10px 0 6px;
 }
 .sec-label::before{content:'';width:16px;height:2.5px;background:var(--lp);border-radius:2px;}
-
 /* TOPICS ACCORDION */
 .tacc{display:flex;flex-direction:column;gap:4px;}
-
 .titem{
   border:1px solid var(--border);border-radius:10px;
   overflow:hidden;background:var(--card);
@@ -253,14 +219,12 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 }
 .titem:hover{border-color:var(--lp);}
 .titem.open{border-color:var(--lp);box-shadow:0 2px 10px var(--lglow);}
-
 .ttrig{
   display:flex;align-items:center;gap:9px;
   padding:9px 12px;cursor:pointer;user-select:none;transition:background 0.12s;
 }
 .ttrig:hover{background:var(--ll);}
 .titem.open .ttrig{background:var(--ll);}
-
 .tn{
   font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;
   width:22px;height:22px;border-radius:6px;flex-shrink:0;
@@ -269,12 +233,10 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   transition:all 0.15s;
 }
 .titem.open .tn{background:var(--lg);color:#fff;}
-
 .ttext{font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;color:var(--ts);flex:1;line-height:1.4;}
 .titem.open .ttext{color:var(--text);}
 .tchev{font-size:10px;color:#CCC;transition:transform 0.18s;flex-shrink:0;}
 .titem.open .tchev{transform:rotate(180deg);color:var(--ld);}
-
 .tacts{
   display:none;gap:6px;flex-wrap:wrap;
   padding:8px 12px 10px 43px;
@@ -282,7 +244,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   background:#FFFDF5;
 }
 .titem.open .tacts{display:flex;}
-
 /* CHIPS */
 .chip{
   font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
@@ -293,7 +254,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 .chip-fill:hover{box-shadow:0 3px 10px var(--lglow);transform:translateY(-1px);}
 .chip-out{background:var(--ll);color:var(--ld);border:1.5px solid var(--lm);}
 .chip-out:hover{background:var(--lm);}
-
 /* DIRECT CHIPS */
 .drow{padding-top:9px;display:flex;flex-wrap:wrap;gap:7px;}
 .dchip{
@@ -306,7 +266,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   transition:all 0.15s;
 }
 .dchip:hover{box-shadow:0 4px 14px var(--lglow);transform:translateY(-1px);}
-
 /* MATERIALS */
 .matlist{padding-top:9px;display:flex;flex-direction:column;gap:6px;}
 .matitem{
@@ -321,7 +280,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 .matitem-ico{width:36px;height:36px;border-radius:8px;background:var(--ll);border:1.5px solid var(--lm);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .matitem span{flex:1;}
 .matitem-arr{color:var(--lp);font-size:15px;font-weight:800;}
-
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .mcard{animation:fadeUp 0.36s ease both;}
@@ -332,7 +290,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 </style>
 </head>
 <body>
-
 <header>
   <div class="hlogo">
     <div class="hbadge">JUCUM EC</div>
@@ -340,7 +297,6 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
     <div class="hlevel">Pre-A1</div>
   </div>
 </header>
-
 <div class="hero">
   <div class="hero-in">
     <div class="hlevel-badge">🌟 Nivel Pre-A1</div>
@@ -356,17 +312,14 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
     </div>
   </div>
 </div>
-
 <main>
   <div class="stitle">Módulos del Nivel</div>
   <div class="mgrid" id="root"></div>
 </main>
-
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-
 <div class="drawer" id="drawer">
   <div class="dhead">
-    
+
     <div class="dhead-name" id="d-name"></div>
     <button class="dclose" onclick="closeDrawer()">✕</button>
   </div>
@@ -375,12 +328,10 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
   </div>
   <div class="dscroll" id="d-scroll"></div>
 </div>
-
 <script>
 // ── BASE URL ──────────────────────────────────────────────────────────────────
 const BASE = 'https://jucumenglishcenter.github.io/Pre-a1';
 const PANEL = 'https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html';
-
 // ── QUIZLET
 const QZ = {
   esp_ing:     'https://quizlet.com/pe/1155523542/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=3e1a1ca6-c109-4f8d-b627-df6ce0495d6b',
@@ -388,7 +339,6 @@ const QZ = {
   definiciones:'https://quizlet.com/pe/1155523364/prea1-vocabulario-definiciones-flash-cards/?funnelUUID=5558d159-57b1-489f-a06b-136ee2902306',
   ordenar:     'https://quizlet.com/pe/1155523639/prea1-escritura-ordenar-flash-cards/?funnelUUID=34e615db-9474-49fa-889e-2987a7c9d779',
 };
-
 // ── DATA ──────────────────────────────────────────────────────────────────────
 const DATA = [
   {
@@ -439,11 +389,51 @@ const DATA = [
     quizlet: QZ,
   },
   {
-    id:2, name:'Essential Actions', ok:false,
+    id:2, name:'Essential Actions', ok:true,
     img:'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&q=80',
     tags:['Present Simple','Negación','Wh- questions'],
-    folder:'M2-Essential-Actions',
-    topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ,
+    topics:[
+      {
+        label:'Present Simple: Afirmativo',
+        fillin:        `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Completar.html`,
+        identification:`${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Identificar.html`,
+        transform:     `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Transformar.html`,
+        summaries:[
+          { label:'📄 Present Simple: Afirmativo', url:`${BASE}/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Afirmativo.html` },
+        ],
+      },
+      {
+        label:'Present Simple: Negativo',
+        fillin:        `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Completar.html`,
+        identification:`${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Identificar.html`,
+        transform:     `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Transformar.html`,
+        summaries:[
+          { label:'📄 Present Simple: Negativo', url:`${BASE}/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Negativo.html` },
+        ],
+      },
+      {
+        label:'Present Simple: Preguntas Yes/No',
+        fillin:        `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Completar.html`,
+        identification:`${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Identificar.html`,
+        transform:     `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Transformar.html`,
+        summaries:[
+          { label:'📄 Present Simple: Preguntas', url:`${BASE}/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Preguntas.html` },
+        ],
+      },
+      {
+        label:'Present Simple: Wh- Questions',
+        fillin:        `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Completar.html`,
+        identification:`${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Identificar.html`,
+        transform:     `${BASE}/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Transformar.html`,
+        summaries:[
+          { label:'📄 Present Simple: WH', url:`${BASE}/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20WH.html` },
+        ],
+      },
+    ],
+    reading:  `${BASE}/M2-Essential-Actions/PreA1_M2_Reading%20Comprehension_Essential%20Actions.html`,
+    listening:`${BASE}/M2-Essential-Actions/PreA1_M2_Listening_Essential%20Actions.html`,
+    story:    `${BASE}/M2-Essential-Actions/PreA1_M2_Story_Essential%20Actions.html`,
+    quizlet: QZ,
   },
   { id:3, name:'Community & Places',      ok:false, img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
   { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
@@ -451,16 +441,13 @@ const DATA = [
   { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
   { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
 ];
-
 // ── HELPERS ───────────────────────────────────────────────────────────────────
-
 function tRow(topic, i, mid) {
   const grammarChips = [
     `<a class="chip chip-fill" href="${topic.fillin}"        target="_blank">✏️ Fill In</a>`,
     `<a class="chip chip-fill" href="${topic.identification}" target="_blank">🔍 Identification</a>`,
     `<a class="chip chip-fill" href="${topic.transform}"     target="_blank">🔄 Transform</a>`,
   ].join('');
-
   return `<div class="titem" id="g${mid}_${i}">
     <div class="ttrig" onclick="ti('g${mid}_${i}')">
       <span class="tn">${i+1}</span>
@@ -470,33 +457,27 @@ function tRow(topic, i, mid) {
     <div class="tacts">${grammarChips}</div>
   </div>`;
 }
-
 function buildSec(s, m) {
   const id = `ds_${m.id}_${s.id}`;
   let body = '';
   const meta = s.type === 'grammar' ? `${m.topics.length} temas` : '';
-
   if (s.type === 'grammar') {
     body = `<div class="sec-label">Temas del módulo</div>
             <div class="tacc">${m.topics.map((t,i) => tRow(t, i, m.id)).join('')}</div>`;
-
   } else if (s.type === 'reading') {
     body = `<div class="drow">
       <a class="dchip" href="${m.reading}" target="_blank">📖 Abrir actividad</a>
     </div>`;
-
   } else if (s.type === 'listening') {
     body = `<div class="drow">
       <a class="dchip" href="${m.listening}" target="_blank">🎧 Abrir actividad</a>
     </div>`;
-
   } else if (s.type === 'quizlet') {
     body = `<div class="drow">
       <a class="dchip" href="${m.quizlet.esp_ing}"      target="_blank">🔤 Esp → Ing</a>
       <a class="dchip" href="${m.quizlet.traducir}"     target="_blank">✍️ Traducir</a>
       <a class="dchip" href="${m.quizlet.ordenar}"      target="_blank">🔀 Ordenar</a>
     </div>`;
-
   } else if (s.type === 'materials') {
     const summaryItems = m.topics.flatMap(t => t.summaries || []).map(s =>
       `<a class="matitem" href="${s.url}" target="_blank">
@@ -511,7 +492,6 @@ function buildSec(s, m) {
     <div class="sec-label">Resumen de Gramática</div>
     <div class="matlist">${summaryItems}</div>`;
   }
-
   return `<div class="dsec" id="${id}">
     <div class="dsec-trig" onclick="ti('${id}')">
       <div class="dsec-ico">${s.ico}</div>
@@ -522,7 +502,6 @@ function buildSec(s, m) {
     <div class="dsec-body">${body}</div>
   </div>`;
 }
-
 const SECS = [
   { id:'mt', ico:'📚', label:'Materiales',            type:'materials' },
   { id:'gr', ico:'📝', label:'Práctica de Gramática', type:'grammar'   },
@@ -530,7 +509,6 @@ const SECS = [
   { id:'ls', ico:'🎧', label:'Comprensión Auditiva',  type:'listening' },
   { id:'qu', ico:'🃏', label:'Quizlet',               type:'quizlet'   },
 ];
-
 function buildCard(m) {
   const tags = m.tags.map(t => `<span class="mtag">${t}</span>`).join('');
   const cta = m.ok
@@ -547,9 +525,7 @@ function buildCard(m) {
     ${cta}
   </div>`;
 }
-
 function ti(id) { document.getElementById(id).classList.toggle('open'); }
-
 function openDrawer(id) {
   const m = DATA.find(x => x.id === id);
   document.getElementById('d-name').textContent = m.name;
@@ -560,13 +536,11 @@ function openDrawer(id) {
   document.getElementById('overlay').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
-
 function closeDrawer() {
   document.getElementById('drawer').classList.remove('on');
   document.getElementById('overlay').classList.remove('on');
   document.body.style.overflow = '';
 }
-
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 document.getElementById('root').innerHTML = DATA.map(buildCard).join('');
 </script>

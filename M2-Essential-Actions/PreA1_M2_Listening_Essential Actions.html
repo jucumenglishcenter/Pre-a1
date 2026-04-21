@@ -527,7 +527,7 @@
       <span class="badge">💛 PRE-A1</span>
       <span class="badge">📘 Módulo 2</span>
       <span class="badge">🎯 Essential Actions</span>
-      <span class="badge">📊 4 Stories · 10 preguntas c/u</span>
+      <span class="badge">📊 4 temas · 10 preguntas c/u</span>
     </div>
   </div>
 
@@ -570,15 +570,15 @@
     </button>
     <button class="story-tab" onclick="switchStory(2,this)">
       <span class="tab-number">Story 2</span>
-      <span class="tab-name">What I Can Do</span>
+      <span class="tab-name">Skills &amp; Class</span>
     </button>
     <button class="story-tab" onclick="switchStory(3,this)">
       <span class="tab-number">Story 3</span>
-      <span class="tab-name">A Typical Day</span>
+      <span class="tab-name">Daily Life</span>
     </button>
     <button class="story-tab" onclick="switchStory(4,this)">
       <span class="tab-number">Story 4</span>
-      <span class="tab-name">Giving &amp; Receiving</span>
+      <span class="tab-name">Sharing &amp; Study</span>
     </button>
   </div>
 
@@ -645,36 +645,17 @@
 ════════════════════════════════════════════ */
 const storiesData = {
 
-  // ─────────────────────────────────────────
-  // STORY 1 — Every Morning (Marco)
-  // Fuente: "My name is Marco. I get up early.
-  // I wash my face. I brush my teeth. Then I
-  // go to the kitchen. I make coffee every
-  // morning. I get some bread too. I get my
-  // bag. I take my keys too. I come back for
-  // my phone. I am ready to go."
-  // ─────────────────────────────────────────
+  // ════════════════════════════════════════
+  // TAB 1 — S1 "Every Morning" (Marco) + D1 (Tom & Sara)
+  // Foco: acciones de mañana, objetos, horas
+  // ════════════════════════════════════════
   s1: {
-    title: 'Every Morning',
+    title: 'Morning Routine',
     activities: [
-      // ── FÁCILES ──
       {
         id: 1, level: 'easy',
-        title: '¿Quién es el personaje?',
-        desc: 'Escucha el nombre',
-        audio: 'My name is Marco.',
-        spanish: 'Mi nombre es Marco.',
-        question: '¿Cómo se llama el personaje?',
-        options: ['Marco', 'Pedro', 'Luis'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Marco."</em>',
-          incorrect: '✗ El audio dice <em>"My name is Marco."</em> El nombre es Marco. ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 2, level: 'easy',
         title: '¿Qué prepara Marco?',
-        desc: 'Escucha la bebida',
+        desc: 'S1 — escucha la bebida',
         audio: 'I make coffee.',
         spanish: 'Preparo café.',
         question: '¿Qué prepara Marco?',
@@ -685,9 +666,9 @@ const storiesData = {
         }
       },
       {
-        id: 3, level: 'easy',
-        title: '¿Qué agarra Marco para comer?',
-        desc: 'Escucha el alimento',
+        id: 2, level: 'easy',
+        title: '¿Qué agarra Marco?',
+        desc: 'S1 — escucha el alimento',
         audio: 'I get some bread.',
         spanish: 'Agarro un poco de pan.',
         question: '¿Qué agarra Marco para comer?',
@@ -698,165 +679,175 @@ const storiesData = {
         }
       },
       {
+        id: 3, level: 'easy',
+        title: '¿A qué hora trabaja Tom?',
+        desc: 'D1 — escucha el número',
+        audio: 'My job is at eight.',
+        spanish: 'Mi trabajo es a las ocho.',
+        question: '¿A qué hora empieza el trabajo de Tom?',
+        options: ['A las ocho', 'A las siete', 'A las nueve'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"eight"</em>. Eight = ocho.',
+          incorrect: '✗ El audio dice <em>"eight"</em> (ocho). ¡Escucha otra vez!'
+        }
+      },
+      {
         id: 4, level: 'easy',
+        title: '¿A qué hora empieza Sara?',
+        desc: 'D1 — escucha el número',
+        audio: 'I do not start until nine.',
+        spanish: 'Yo no empiezo hasta las nueve.',
+        question: '¿A qué hora empieza Sara?',
+        options: ['A las nueve', 'A las ocho', 'A las diez'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"nine"</em>. Nine = nueve.',
+          incorrect: '✗ El audio dice <em>"nine"</em> (nueve). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 5, level: 'medium',
+        title: '¿Qué toma Marco además de la bolsa?',
+        desc: 'S1 — escucha los dos objetos',
+        audio: 'I get my bag. I take my keys.',
+        spanish: 'Agarro mi bolsa. Tomo mis llaves.',
+        question: '¿Qué toma Marco además de la bolsa?',
+        options: ['Sus llaves', 'Su teléfono', 'Su libro'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I take my keys"</em>. Keys = llaves.',
+          incorrect: '✗ El audio dice <em>"keys"</em> (llaves). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué hace Sara con su tiempo libre?',
+        desc: 'D1 — escucha la actividad',
+        audio: 'I use that extra time to read a little.',
+        spanish: 'Uso ese tiempo extra para leer un poco.',
+        question: '¿Qué hace Sara con su tiempo libre?',
+        options: ['Lee un poco', 'Duerme', 'Cocina'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"to read a little"</em>. Read = leer.',
+          incorrect: '✗ El audio dice <em>"to read"</em> (leer). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
         title: '¿Por qué regresa Marco?',
-        desc: 'Escucha el cognado',
+        desc: 'S1 — escucha el cognado',
         audio: 'I come back for my phone.',
         spanish: 'Regreso por mi teléfono.',
         question: '¿Por qué regresa Marco?',
-        options: ['Por su teléfono', 'Por su bolsa', 'Por su libro'],
+        options: ['Por su teléfono', 'Por sus llaves', 'Por su bolsa'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"phone"</em>. Phone = teléfono.',
           incorrect: '✗ El audio dice <em>"phone"</em> (teléfono). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS ──
-      {
-        id: 5, level: 'medium',
-        title: '¿Cuántas acciones hace Marco al levantarse?',
-        desc: 'Escucha y cuenta las acciones',
-        audio: 'I wash my face. I brush my teeth.',
-        spanish: 'Me lavo la cara. Me cepillo los dientes.',
-        question: '¿Cuántas cosas hace Marco al levantarse?',
-        options: ['Dos cosas', 'Una cosa', 'Tres cosas'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio menciona dos acciones: lavarse la cara y cepillarse los dientes.',
-          incorrect: '✗ El audio menciona dos acciones. ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 6, level: 'medium',
-        title: '¿Qué agarra Marco y qué toma?',
-        desc: 'Escucha los dos objetos',
-        audio: 'I get my bag. I take my keys.',
-        spanish: 'Agarro mi bolsa. Tomo mis llaves.',
-        question: '¿Qué toma Marco en el audio?',
-        options: ['Sus llaves', 'Su teléfono', 'Su libro'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I take my keys"</em>. Keys = llaves.',
-          incorrect: '✗ El audio dice <em>"take my keys"</em>: toma sus llaves. ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 7, level: 'medium',
-        title: '¿Qué hace Marco después del desayuno?',
-        desc: 'Escucha la acción',
-        audio: 'I make my bed.',
-        spanish: 'Tiendo mi cama.',
-        question: '¿Qué hace Marco después del desayuno?',
-        options: ['Tiende su cama', 'Barre el piso', 'Sale de casa'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"make my bed"</em> (tender la cama).',
-          incorrect: '✗ El audio dice <em>"make my bed"</em>: tiende su cama. ¡Escucha otra vez!'
-        }
-      },
-      // ── DIFÍCILES ──
       {
         id: 8, level: 'hard',
-        title: '¿Qué hace Marco para limpiar?',
-        desc: 'Escucha las dos acciones de limpieza',
+        title: '¿Qué hace Marco primero al limpiar?',
+        desc: 'S1 — escucha dos acciones',
         audio: 'I make my bed. I sweep the floor.',
         spanish: 'Tiendo mi cama. Barro el piso.',
-        question: '¿Qué hace Marco primero para limpiar?',
+        question: '¿Qué hace Marco primero?',
         options: ['Tiende su cama', 'Barre el piso', 'Lava los platos'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice primero: <em>"I make my bed"</em> (tiende la cama).',
-          incorrect: '✗ El audio dice <em>"make my bed"</em> primero: tiende su cama. ¡Escucha otra vez!'
+          incorrect: '✗ El audio dice primero <em>"make my bed"</em>: tiende su cama. ¡Escucha otra vez!'
         }
       },
       {
         id: 9, level: 'hard',
-        title: '¿Qué agarra Marco y por qué regresa?',
-        desc: 'Escucha los dos objetos',
-        audio: 'I get my bag. I come back for my phone.',
-        spanish: 'Agarro mi bolsa. Regreso por mi teléfono.',
-        question: '¿Qué agarra Marco primero?',
-        options: ['Su bolsa', 'Sus llaves', 'Su libro'],
+        title: '¿Qué ofrece Sara a Tom?',
+        desc: 'D1 — escucha la oferta',
+        audio: 'Come with me this morning. I can take you.',
+        spanish: 'Ven conmigo esta mañana. Te puedo llevar.',
+        question: '¿Qué le ofrece Sara a Tom?',
+        options: ['Llevarlo', 'Prestarle dinero', 'Darle comida'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice primero: <em>"I get my bag"</em>. Bag = bolsa.',
-          incorrect: '✗ El audio dice <em>"get my bag"</em> primero: agarra su bolsa. ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"I can take you"</em>: lo puede llevar.',
+          incorrect: '✗ El audio dice <em>"I can take you"</em>: Sara lo puede llevar. ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
-        title: '¿Está listo Marco para salir?',
-        desc: 'Escucha el nombre y el estado',
-        audio: 'My name is Marco. I am ready to go.',
-        spanish: 'Mi nombre es Marco. Estoy listo para salir.',
+        title: '¿Marco termina listo?',
+        desc: 'S1 — escucha el estado final',
+        audio: 'I am ready to go.',
+        spanish: 'Estoy listo para salir.',
         question: '¿Cómo está Marco al final de su rutina?',
         options: ['Listo para salir', 'Cansado', 'Con hambre'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I am ready to go"</em>: listo para salir.',
-          incorrect: '✗ El audio dice <em>"I am ready to go"</em>: Marco está listo para salir. ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"I am ready to go"</em> (listo para salir).',
+          incorrect: '✗ El audio dice <em>"ready to go"</em>: está listo para salir. ¡Escucha otra vez!'
         }
       }
     ]
   },
 
-  // ─────────────────────────────────────────
-  // STORY 2 — What I Can Do (Ana)
-  // ─────────────────────────────────────────
+  // ════════════════════════════════════════
+  // TAB 2 — S2 "What I Can Do" (Ana) + D2 (Mrs. Kim & Ben)
+  // Foco: idiomas, objetos de clase, días, nombres de personas
+  // ════════════════════════════════════════
   s2: {
-    title: 'What I Can Do',
+    title: 'Skills & Class',
     activities: [
-      // ── FÁCILES ──
       {
         id: 1, level: 'easy',
-        title: '¿Quién es el personaje?',
-        desc: 'Escucha el nombre',
-        audio: 'My name is Ana.',
-        spanish: 'Mi nombre es Ana.',
-        question: '¿Cómo se llama el personaje?',
-        options: ['Ana', 'Rosa', 'Sara'],
+        title: '¿Cómo se llama la maestra?',
+        desc: 'D2 — escucha el nombre',
+        audio: 'Good morning, Ben. My name is Mrs. Kim.',
+        spanish: 'Buenos días, Ben. Mi nombre es la Sra. Kim.',
+        question: '¿Cómo se llama la maestra?',
+        options: ['Mrs. Kim', 'Mrs. Lee', 'Mrs. Park'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Ana."</em>',
-          incorrect: '✗ El audio dice <em>"My name is Ana."</em> ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Mrs. Kim."</em>',
+          incorrect: '✗ El audio dice <em>"Mrs. Kim."</em> ¡Escucha otra vez!'
         }
       },
       {
         id: 2, level: 'easy',
-        title: '¿Dónde cocina Ana?',
-        desc: 'Escucha el lugar',
-        audio: 'I cook at home.',
-        spanish: 'Cocino en casa.',
-        question: '¿Dónde cocina Ana?',
-        options: ['En casa', 'En el mercado', 'En la escuela'],
+        title: '¿Cómo se llama el alumno?',
+        desc: 'D2 — escucha el nombre',
+        audio: 'Good morning, Ben. Can you repeat after me?',
+        spanish: 'Buenos días, Ben. ¿Puedes repetir después de mí?',
+        question: '¿Cómo se llama el alumno?',
+        options: ['Ben', 'Tom', 'Luis'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"at home"</em>. Home = casa.',
-          incorrect: '✗ El audio dice <em>"at home"</em> (en casa). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"Good morning, Ben."</em>',
+          incorrect: '✗ El audio dice <em>"Ben."</em> ¡Escucha otra vez!'
         }
       },
       {
         id: 3, level: 'easy',
-        title: '¿Qué usa Ana para crear tarjetas?',
-        desc: 'Escucha los materiales',
-        audio: 'I use paper.',
-        spanish: 'Uso papel.',
-        question: '¿Qué usa Ana para hacer tarjetas?',
-        options: ['Papel', 'Madera', 'Tela'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"paper"</em>. Paper = papel.',
-          incorrect: '✗ El audio dice <em>"paper"</em> (papel). ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 4, level: 'easy',
-        title: '¿Qué idioma estudia Ana?',
-        desc: 'Escucha el nombre del idioma',
+        title: '¿Qué idioma aprende Ana?',
+        desc: 'S2 — escucha el idioma',
         audio: 'I am learning English.',
         spanish: 'Estoy aprendiendo inglés.',
         question: '¿Qué idioma aprende Ana?',
-        options: ['Inglés', 'Francés', 'Portugués'],
+        options: ['Inglés', 'Francés', 'Chino'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"English"</em>. English = inglés.',
           incorrect: '✗ El audio dice <em>"English"</em> (inglés). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS ──
+      {
+        id: 4, level: 'easy',
+        title: '¿Qué puede usar Ana?',
+        desc: 'S2 — escucha el cognado',
+        audio: 'I can use a computer.',
+        spanish: 'Puedo usar una computadora.',
+        question: '¿Qué puede usar Ana?',
+        options: ['Una computadora', 'Una cámara', 'Un televisor'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"computer"</em>. Computer = computadora.',
+          incorrect: '✗ El audio dice <em>"computer"</em> (computadora). ¡Escucha otra vez!'
+        }
+      },
       {
         id: 5, level: 'medium',
-        title: '¿Qué idioma NO puede hablar Ana?',
-        desc: 'Escucha el nombre del idioma',
+        title: '¿Qué idioma NO habla Ana?',
+        desc: 'S2 — escucha el idioma',
         audio: 'I cannot speak French.',
         spanish: 'No puedo hablar francés.',
         question: '¿Qué idioma no puede hablar Ana?',
@@ -868,154 +859,152 @@ const storiesData = {
       },
       {
         id: 6, level: 'medium',
-        title: '¿A quién le da tarjetas Ana?',
-        desc: 'Escucha a quién',
-        audio: 'I give cards to my friends.',
-        spanish: 'Doy tarjetas a mis amigos.',
-        question: '¿A quién le da tarjetas Ana?',
-        options: ['A sus amigos', 'A su familia', 'A su maestra'],
+        title: '¿Qué usa Ben para tomar notas?',
+        desc: 'D2 — escucha el objeto',
+        audio: 'I use a notebook to take notes.',
+        spanish: 'Uso un cuaderno para tomar notas.',
+        question: '¿Qué usa Ben para tomar notas?',
+        options: ['Un cuaderno', 'Una computadora', 'Su teléfono'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"my friends"</em>. Friends = amigos.',
-          incorrect: '✗ El audio dice <em>"my friends"</em> (amigos). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"notebook"</em>. Notebook = cuaderno.',
+          incorrect: '✗ El audio dice <em>"notebook"</em> (cuaderno). ¡Escucha otra vez!'
         }
       },
       {
         id: 7, level: 'medium',
-        title: '¿Con quién estudia Ana inglés?',
-        desc: 'Escucha la persona',
-        audio: 'I ask my teacher for help.',
-        spanish: 'Le pido ayuda a mi maestra.',
-        question: '¿A quién le pide ayuda Ana?',
-        options: ['A su maestra', 'A su mamá', 'A su amigo'],
+        title: '¿Qué da Ana a sus amigos?',
+        desc: 'S2 — escucha el objeto',
+        audio: 'I give cards to my friends.',
+        spanish: 'Doy tarjetas a mis amigos.',
+        question: '¿Qué da Ana a sus amigos?',
+        options: ['Tarjetas', 'Flores', 'Libros'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"my teacher"</em>. Teacher = maestra.',
-          incorrect: '✗ El audio dice <em>"my teacher"</em> (maestra). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"cards"</em>. Cards = tarjetas.',
+          incorrect: '✗ El audio dice <em>"cards"</em> (tarjetas). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES ──
       {
         id: 8, level: 'hard',
-        title: '¿Qué puede usar Ana?',
-        desc: 'Escucha el cognado y el nombre',
-        audio: 'My name is Ana. I can use a computer.',
-        spanish: 'Mi nombre es Ana. Puedo usar una computadora.',
-        question: '¿Qué puede usar Ana?',
-        options: ['Una computadora', 'Una cámara', 'Un televisor'],
+        title: '¿Cuándo es el examen de Ben?',
+        desc: 'D2 — escucha el día',
+        audio: 'Does the test come on Friday?',
+        spanish: '¿El examen es el viernes?',
+        question: '¿Cuándo pregunta Ben que es el examen?',
+        options: ['El viernes', 'El lunes', 'El jueves'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"computer"</em>. Computer = computadora.',
-          incorrect: '✗ El audio dice <em>"computer"</em> (computadora). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"Friday"</em>. Friday = viernes.',
+          incorrect: '✗ El audio dice <em>"Friday"</em> (viernes). ¡Escucha otra vez!'
         }
       },
       {
         id: 9, level: 'hard',
-        title: '¿Qué idioma estudia y cuál no habla Ana?',
-        desc: 'Escucha los dos idiomas',
+        title: '¿Ana aprende y no puede hablar?',
+        desc: 'S2 — escucha dos idiomas',
         audio: 'I am learning English. I cannot speak French.',
         spanish: 'Estoy aprendiendo inglés. No puedo hablar francés.',
-        question: '¿Qué idioma NO puede hablar Ana?',
-        options: ['Francés', 'Chino', 'Árabe'],
+        question: '¿Qué idioma está aprendiendo Ana?',
+        options: ['Inglés', 'Chino', 'Árabe'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"French"</em>. French = francés.',
-          incorrect: '✗ El audio dice <em>"French"</em> (francés). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"learning English"</em>. English = inglés.',
+          incorrect: '✗ El audio dice <em>"English"</em> (inglés). ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
-        title: '¿A quién le da tarjetas Ana?',
-        desc: 'Escucha el nombre y el destinatario',
-        audio: 'My name is Ana. I give cards to my friends.',
-        spanish: 'Mi nombre es Ana. Doy tarjetas a mis amigos.',
-        question: '¿Qué da Ana a sus amigos?',
-        options: ['Tarjetas', 'Libros', 'Flores'],
+        title: '¿Quién le pide ayuda a la maestra?',
+        desc: 'S2 — escucha a quién le pide ayuda Ana',
+        audio: 'I ask my teacher for help.',
+        spanish: 'Le pido ayuda a mi maestra.',
+        question: '¿A quién le pide ayuda Ana?',
+        options: ['A su maestra', 'A su amiga', 'A su mamá'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I give cards"</em>. Cards = tarjetas.',
-          incorrect: '✗ El audio dice <em>"cards"</em> (tarjetas). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"my teacher"</em>. Teacher = maestra.',
+          incorrect: '✗ El audio dice <em>"my teacher"</em> (maestra). ¡Escucha otra vez!'
         }
       }
     ]
   },
 
-  // ─────────────────────────────────────────
-  // STORY 3 — A Typical Day (Sara)
-  // ─────────────────────────────────────────
+  // ════════════════════════════════════════
+  // TAB 3 — S3 "A Typical Day" (Sara) + D3 (Ana & Mr. Park)
+  // Foco: tienda, precios, cantidades, horario de Sara
+  // ════════════════════════════════════════
   s3: {
-    title: 'A Typical Day',
+    title: 'Daily Life',
     activities: [
-      // ── FÁCILES ──
       {
         id: 1, level: 'easy',
-        title: '¿Quién es el personaje?',
-        desc: 'Escucha el nombre',
-        audio: 'My name is Sara.',
-        spanish: 'Me llamo Sara.',
-        question: '¿Cómo se llama el personaje?',
-        options: ['Sara', 'Ana', 'Rosa'],
+        title: '¿Qué busca Ana en la tienda?',
+        desc: 'D3 — escucha el objeto',
+        audio: 'Excuse me. Do you have any pens?',
+        spanish: 'Disculpe. ¿Tienen lapiceros?',
+        question: '¿Qué busca Ana en la tienda?',
+        options: ['Lapiceros', 'Cuadernos', 'Libros'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"My name is Sara."</em>',
-          incorrect: '✗ El audio dice <em>"My name is Sara."</em> ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"pens"</em>. Pens = lapiceros.',
+          incorrect: '✗ El audio dice <em>"pens"</em> (lapiceros). ¡Escucha otra vez!'
         }
       },
       {
         id: 2, level: 'easy',
-        title: '¿A qué hora se levanta Sara?',
-        desc: 'Escucha el número',
-        audio: 'I get up at seven.',
-        spanish: 'Me levanto a las siete.',
-        question: '¿A qué hora se levanta Sara?',
-        options: ['A las siete', 'A las seis', 'A las ocho'],
+        title: '¿Cuánto cuesta el lapicero?',
+        desc: 'D3 — escucha el número',
+        audio: 'This one is two soles.',
+        spanish: 'Este cuesta dos soles.',
+        question: '¿Cuánto cuesta el lapicero?',
+        options: ['Dos soles', 'Tres soles', 'Un sol'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"at seven"</em>. Seven = siete.',
-          incorrect: '✗ El audio dice <em>"at seven"</em> (siete). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"two soles"</em>. Two = dos.',
+          incorrect: '✗ El audio dice <em>"two soles"</em> (dos soles). ¡Escucha otra vez!'
         }
       },
       {
         id: 3, level: 'easy',
+        title: '¿A qué hora se levanta Sara?',
+        desc: 'S3 — escucha el número',
+        audio: 'I get up at seven.',
+        spanish: 'Me levanto a las siete.',
+        question: '¿A qué hora se levanta Sara?',
+        options: ['A las siete', 'A las seis', 'A las cinco'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"seven"</em>. Seven = siete.',
+          incorrect: '✗ El audio dice <em>"seven"</em> (siete). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 4, level: 'easy',
         title: '¿Qué prepara Sara primero?',
-        desc: 'Escucha la bebida',
-        audio: 'I make tea.',
-        spanish: 'Preparo té.',
-        question: '¿Qué prepara Sara primero?',
-        options: ['Té', 'Café', 'Leche'],
+        desc: 'S3 — escucha la bebida',
+        audio: 'I make tea first thing.',
+        spanish: 'Lo primero que hago es preparar té.',
+        question: '¿Qué prepara Sara al levantarse?',
+        options: ['Té', 'Leche', 'Agua'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"tea"</em>. Tea = té.',
           incorrect: '✗ El audio dice <em>"tea"</em> (té). ¡Escucha otra vez!'
         }
       },
       {
-        id: 4, level: 'easy',
-        title: '¿Cómo va Sara al trabajo?',
-        desc: 'Escucha el transporte',
-        audio: 'I take the bus.',
-        spanish: 'Tomo el autobús.',
-        question: '¿Cómo va Sara al trabajo?',
-        options: ['En bus', 'En auto', 'A pie'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"bus"</em>. Bus = autobús.',
-          incorrect: '✗ El audio dice <em>"bus"</em> (autobús). ¡Escucha otra vez!'
-        }
-      },
-      // ── INTERMEDIAS ──
-      {
         id: 5, level: 'medium',
-        title: '¿Dónde trabaja Sara?',
-        desc: 'Escucha el lugar',
-        audio: 'I arrive at work.',
-        spanish: 'Llego al trabajo.',
-        question: '¿Adónde llega Sara?',
-        options: ['Al trabajo', 'A la escuela', 'Al mercado'],
+        title: '¿Cuántos lapiceros quiere Ana?',
+        desc: 'D3 — escucha el número',
+        audio: 'Can I take two of them?',
+        spanish: '¿Puedo llevar dos?',
+        question: '¿Cuántos lapiceros quiere Ana?',
+        options: ['Dos', 'Tres', 'Cuatro'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"at work"</em>. Work = trabajo.',
-          incorrect: '✗ El audio dice <em>"at work"</em> (trabajo). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"two"</em>. Two = dos.',
+          incorrect: '✗ El audio dice <em>"two"</em> (dos). ¡Escucha otra vez!'
         }
       },
       {
         id: 6, level: 'medium',
-        title: '¿Qué hace Sara en la tarde?',
-        desc: 'Escucha la actividad',
-        audio: 'I have meetings.',
-        spanish: 'Tengo reuniones.',
+        title: '¿Qué tiene Sara en la tarde?',
+        desc: 'S3 — escucha la actividad',
+        audio: 'In the afternoon, I have meetings.',
+        spanish: 'Por la tarde tengo reuniones.',
         question: '¿Qué tiene Sara en la tarde?',
-        options: ['Reuniones', 'Clases', 'Fiestas'],
+        options: ['Reuniones', 'Clases', 'Visitas'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"meetings"</em>. Meetings = reuniones.',
           incorrect: '✗ El audio dice <em>"meetings"</em> (reuniones). ¡Escucha otra vez!'
@@ -1023,190 +1012,187 @@ const storiesData = {
       },
       {
         id: 7, level: 'medium',
-        title: '¿Qué hace Sara además de comer?',
-        desc: 'Escucha la actividad',
-        audio: 'I take a walk.',
-        spanish: 'Doy un paseo.',
-        question: '¿Qué hace Sara?',
-        options: ['Da un paseo', 'Duerme', 'Lee'],
+        title: '¿Cuándo llegan cosas nuevas a la tienda?',
+        desc: 'D3 — escucha el día',
+        audio: 'We get new things every Monday.',
+        spanish: 'Recibimos cosas nuevas cada lunes.',
+        question: '¿Qué día llegan cosas nuevas a la tienda?',
+        options: ['El lunes', 'El viernes', 'El miércoles'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I take a walk."</em> Walk = caminar / paseo.',
-          incorrect: '✗ El audio dice <em>"a walk"</em> (paseo / caminata). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"Monday"</em>. Monday = lunes.',
+          incorrect: '✗ El audio dice <em>"Monday"</em> (lunes). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES ──
       {
         id: 8, level: 'hard',
-        title: '¿A qué hora se levanta Sara y qué prepara?',
-        desc: 'Escucha el número y la bebida',
-        audio: 'I get up at seven. I make tea.',
-        spanish: 'Me levanto a las siete. Preparo té.',
-        question: '¿Qué prepara Sara justo después de levantarse?',
-        options: ['Té', 'Café', 'Jugo'],
+        title: '¿Qué pide Ana además de los lapiceros?',
+        desc: 'D3 — escucha el objeto',
+        audio: 'Does this store have notebooks?',
+        spanish: '¿Esta tienda tiene cuadernos?',
+        question: '¿Qué más pregunta Ana si tienen?',
+        options: ['Cuadernos', 'Bolígrafos', 'Papeles'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I make tea"</em>. Tea = té.',
-          incorrect: '✗ El audio dice <em>"make tea"</em> (té). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"notebooks"</em>. Notebooks = cuadernos.',
+          incorrect: '✗ El audio dice <em>"notebooks"</em> (cuadernos). ¡Escucha otra vez!'
         }
       },
       {
         id: 9, level: 'hard',
-        title: '¿Qué prepara Sara después del paseo?',
-        desc: 'Escucha la comida',
-        audio: 'I make a simple dinner.',
-        spanish: 'Preparo una cena sencilla.',
-        question: '¿Qué prepara Sara en la noche?',
-        options: ['Cena', 'Desayuno', 'Almuerzo'],
+        title: '¿Cómo va Sara al trabajo?',
+        desc: 'S3 — escucha el transporte',
+        audio: 'I take the bus to work.',
+        spanish: 'Tomo el autobús al trabajo.',
+        question: '¿Cómo va Sara al trabajo?',
+        options: ['En bus', 'A pie', 'En taxi'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"dinner"</em>. Dinner = cena.',
-          incorrect: '✗ El audio dice <em>"dinner"</em> (cena). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"bus"</em>. Bus = autobús.',
+          incorrect: '✗ El audio dice <em>"bus"</em> (autobús). ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
-        title: '¿Qué prepara Sara y cómo regresa?',
-        desc: 'Escucha la comida y el transporte',
-        audio: 'I make a simple dinner. I take the bus.',
-        spanish: 'Preparo una cena sencilla. Tomo el autobús.',
-        question: '¿Cómo regresa Sara a casa?',
-        options: ['En bus', 'En taxi', 'A pie'],
+        title: '¿Qué prepara Sara de noche?',
+        desc: 'S3 — escucha la comida',
+        audio: 'I make a simple dinner.',
+        spanish: 'Preparo una cena sencilla.',
+        question: '¿Qué prepara Sara en la noche?',
+        options: ['Cena', 'Almuerzo', 'Desayuno'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I take the bus"</em>. Bus = autobús.',
-          incorrect: '✗ El audio dice <em>"take the bus"</em> (autobús). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"dinner"</em>. Dinner = cena.',
+          incorrect: '✗ El audio dice <em>"dinner"</em> (cena). ¡Escucha otra vez!'
         }
       }
     ]
   },
 
-  // ─────────────────────────────────────────
-  // STORY 4 — Giving and Receiving (Ben & Rosa)
-  // ─────────────────────────────────────────
+  // ════════════════════════════════════════
+  // TAB 4 — S4 "Giving & Receiving" (Ben & Rosa) + D4 (Lily & Marco)
+  // Foco: regalos, vecinos, estudio, papel, té
+  // ════════════════════════════════════════
   s4: {
-    title: 'Giving & Receiving',
+    title: 'Sharing & Study',
     activities: [
-      // ── FÁCILES ──
       {
         id: 1, level: 'easy',
-        title: '¿Cómo se llama el personaje principal?',
-        desc: 'Escucha el nombre',
-        audio: 'His name is Ben.',
-        spanish: 'Su nombre es Ben.',
-        question: '¿Cómo se llama el personaje principal?',
-        options: ['Ben', 'Marco', 'Tom'],
+        title: '¿Cómo se llama la compañera de Marco?',
+        desc: 'D4 — escucha el nombre',
+        audio: 'Thanks, Lily. You are a great study partner.',
+        spanish: 'Gracias, Lily. Eres una gran compañera de estudio.',
+        question: '¿Cómo se llama la compañera de Marco?',
+        options: ['Lily', 'Rosa', 'Mrs. Kim'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"His name is Ben."</em>',
-          incorrect: '✗ El audio dice <em>"His name is Ben."</em> ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"Thanks, Lily."</em>',
+          incorrect: '✗ El audio dice <em>"Lily."</em> ¡Escucha otra vez!'
         }
       },
       {
         id: 2, level: 'easy',
-        title: '¿Cómo se llama la vecina?',
-        desc: 'Escucha el nombre',
-        audio: 'Her name is Rosa.',
-        spanish: 'Su nombre es Rosa.',
-        question: '¿Cómo se llama la vecina?',
-        options: ['Rosa', 'Ana', 'Sara'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"Her name is Rosa."</em>',
-          incorrect: '✗ El audio dice <em>"Her name is Rosa."</em> ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 3, level: 'easy',
-        title: '¿Qué lleva Ben?',
-        desc: 'Escucha lo que lleva',
+        title: '¿Qué le da Ben a Rosa?',
+        desc: 'S4 — escucha el objeto',
         audio: 'Ben gives Rosa fruit.',
         spanish: 'Ben le da fruta a Rosa.',
         question: '¿Qué le da Ben a Rosa?',
-        options: ['Fruta', 'Pan', 'Café'],
+        options: ['Fruta', 'Pan', 'Flores'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"fruit"</em>. Fruit = fruta.',
           incorrect: '✗ El audio dice <em>"fruit"</em> (fruta). ¡Escucha otra vez!'
         }
       },
       {
+        id: 3, level: 'easy',
+        title: '¿Qué ofrece Marco a Lily?',
+        desc: 'D4 — escucha la bebida',
+        audio: 'I can make us some tea.',
+        spanish: 'Puedo prepararnos un poco de té.',
+        question: '¿Qué ofrece Marco a Lily?',
+        options: ['Té', 'Café', 'Chocolate'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"tea"</em>. Tea = té.',
+          incorrect: '✗ El audio dice <em>"tea"</em> (té). ¡Escucha otra vez!'
+        }
+      },
+      {
         id: 4, level: 'easy',
-        title: '¿Dónde compra Ben?',
-        desc: 'Escucha el lugar',
-        audio: 'He gets it at the market.',
-        spanish: 'Lo compra en el mercado.',
-        question: '¿Dónde compra Ben la fruta?',
-        options: ['En el mercado', 'En la plaza', 'En el parque'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"market"</em>. Market = mercado.',
-          incorrect: '✗ El audio dice <em>"market"</em> (mercado). ¡Escucha otra vez!'
-        }
-      },
-      // ── INTERMEDIAS ──
-      {
-        id: 5, level: 'medium',
-        title: '¿Con qué frecuencia va Ben?',
-        desc: 'Escucha la frecuencia',
-        audio: 'Ben visits Rosa each week.',
-        spanish: 'Ben visita a Rosa cada semana.',
-        question: '¿Con qué frecuencia visita Ben a Rosa?',
-        options: ['Cada semana', 'Cada día', 'Cada mes'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"each week"</em>. Week = semana.',
-          incorrect: '✗ El audio dice <em>"each week"</em> (cada semana). ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 6, level: 'medium',
-        title: '¿Qué necesita Rosa?',
-        desc: 'Escucha el cognado',
+        title: '¿Qué quiere usar Rosa?',
+        desc: 'S4 — escucha el cognado',
         audio: 'Rosa wants to use her phone.',
         spanish: 'Rosa quiere usar su teléfono.',
         question: '¿Qué quiere usar Rosa?',
-        options: ['Su teléfono', 'Su computadora', 'Su radio'],
+        options: ['Su teléfono', 'Su radio', 'Su televisor'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"phone"</em>. Phone = teléfono.',
           incorrect: '✗ El audio dice <em>"phone"</em> (teléfono). ¡Escucha otra vez!'
         }
       },
       {
+        id: 5, level: 'medium',
+        title: '¿Dónde compra Ben la fruta?',
+        desc: 'S4 — escucha el lugar',
+        audio: 'He gets it at the market.',
+        spanish: 'Lo compra en el mercado.',
+        question: '¿Dónde compra Ben la fruta?',
+        options: ['En el mercado', 'En la tienda', 'En el parque'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"market"</em>. Market = mercado.',
+          incorrect: '✗ El audio dice <em>"market"</em> (mercado). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué pide Marco para escribir?',
+        desc: 'D4 — escucha el objeto',
+        audio: 'Can I get some paper? I want to make notes.',
+        spanish: '¿Puedo conseguir papel? Quiero tomar notas.',
+        question: '¿Qué pide Marco para escribir?',
+        options: ['Papel', 'Un cuaderno', 'Un lapicero'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"paper"</em>. Paper = papel.',
+          incorrect: '✗ El audio dice <em>"paper"</em> (papel). ¡Escucha otra vez!'
+        }
+      },
+      {
         id: 7, level: 'medium',
+        title: '¿Dónde guarda Marco su libro?',
+        desc: 'D4 — escucha el lugar',
+        audio: 'I keep it on my desk.',
+        spanish: 'Lo guardo en mi escritorio.',
+        question: '¿Dónde guarda Marco el libro?',
+        options: ['En su escritorio', 'En su bolsa', 'En la cama'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"on my desk"</em>. Desk = escritorio.',
+          incorrect: '✗ El audio dice <em>"my desk"</em> (escritorio). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 8, level: 'hard',
         title: '¿A quién llama Rosa?',
-        desc: 'Escucha el familiar',
+        desc: 'S4 — escucha el familiar',
         audio: 'Rosa calls her son.',
         spanish: 'Rosa llama a su hijo.',
         question: '¿A quién llama Rosa?',
-        options: ['A su hijo', 'A Ben', 'A su maestra'],
+        options: ['A su hijo', 'A Ben', 'A su vecina'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"her son"</em>. Son = hijo.',
           incorrect: '✗ El audio dice <em>"her son"</em> (su hijo). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES ──
       {
-        id: 8, level: 'hard',
-        title: '¿Qué le da Ben a Rosa y dónde?',
-        desc: 'Escucha el objeto y el lugar',
+        id: 9, level: 'hard',
+        title: '¿Qué le da Ben a Rosa y dónde lo compra?',
+        desc: 'S4 — escucha el objeto y el lugar',
         audio: 'Ben gives Rosa fruit. He gets it at the market.',
         spanish: 'Ben le da fruta a Rosa. Lo compra en el mercado.',
         question: '¿Dónde compra Ben la fruta para Rosa?',
-        options: ['En el mercado', 'En la tienda', 'En el parque'],
+        options: ['En el mercado', 'En la tienda', 'En la feria'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"at the market"</em>. Market = mercado.',
-          incorrect: '✗ El audio dice <em>"at the market"</em> (mercado). ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 9, level: 'hard',
-        title: '¿Qué quiere Rosa y a quién llama?',
-        desc: 'Escucha el cognado y el familiar',
-        audio: 'Rosa wants to use her phone. Rosa calls her son.',
-        spanish: 'Rosa quiere usar su teléfono. Rosa llama a su hijo.',
-        question: '¿A quién llama Rosa con su teléfono?',
-        options: ['A su hijo', 'A su vecina', 'A su amiga'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"Rosa calls her son"</em>. Son = hijo.',
-          incorrect: '✗ El audio dice <em>"her son"</em> (su hijo). ¡Escucha otra vez!'
+          incorrect: '✗ El audio dice <em>"market"</em> (mercado). ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
-        title: '¿Qué hace Rosa con su teléfono?',
-        desc: 'Escucha el cognado y la persona',
+        title: '¿Rosa lo logra y cómo se siente?',
+        desc: 'S4 — escucha el estado',
         audio: 'Rosa calls her son. She is happy.',
         spanish: 'Rosa llama a su hijo. Ella está feliz.',
         question: '¿Cómo se siente Rosa al final?',

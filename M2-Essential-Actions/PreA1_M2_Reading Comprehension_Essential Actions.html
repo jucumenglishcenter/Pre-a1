@@ -80,6 +80,9 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#fff9e6 0
 
 /* GLOBAL TRANSLATE BAR */
 .global-translate-bar{padding:10px 16px 0;display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.read-all-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;color:#E65100;background:#fff3e0;border:1.5px solid #F9A825;padding:4px 12px;border-radius:8px;cursor:pointer;transition:all .2s}
+.read-all-btn:hover{background:#ffe0b2}
+.read-all-btn.playing{background:linear-gradient(135deg,#F9A825 0%,#E65100 100%);color:#fff;border-color:#E65100}
 .global-trans-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;color:#7b1fa2;background:#f3e5f5;border:1.5px solid #ce93d8;padding:4px 12px;border-radius:8px;cursor:pointer;transition:all .2s}
 .global-trans-btn:hover{background:#e1bee7}
 .global-trans-btn.active{background:#ce93d8;color:#fff;border-color:#ab47bc}
@@ -273,6 +276,7 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#fff9e6 0
   </div>
   <div class="story-content open" id="story-content">
     <div class="global-translate-bar">
+      <button class="read-all-btn" id="read-all-btn" onclick="toggleReadAll()">&#x1F50A; Leer historia</button>
       <button class="global-trans-btn" id="global-trans-btn" onclick="toggleGlobalTranslate()">&#x1F1EA;&#x1F1F8; Mostrar traducciones</button>
     </div>
     <div class="story-inner" id="story-inner">
@@ -977,6 +981,7 @@ function updateModeDisplay() {
 
 function selectStory(storyId) {
   currentStory = storyId;
+  stopAll();
   document.querySelectorAll('.story-sel-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(`sel-s${storyId}`).classList.add('active');
   renderStory(storyId);
@@ -1028,6 +1033,8 @@ function stopAll() {
   if (currentAudioBtn) { currentAudioBtn.classList.remove('playing'); currentAudioBtn = null; }
   document.querySelectorAll('.tts-word.lit').forEach(w => w.classList.remove('lit'));
   document.querySelectorAll('.story-para.playing').forEach(el => el.classList.remove('playing'));
+  const readBtn = document.getElementById('read-all-btn');
+  if (readBtn) { readBtn.classList.remove('playing'); readBtn.innerHTML = '&#x1F50A; Leer historia'; }
 }
 
 function speakBtn(btn, text, accent) {
@@ -1042,6 +1049,36 @@ function speakBtn(btn, text, accent) {
   currentAudioBtn = btn;
   utt.onend = utt.onerror = () => { btn.classList.remove('playing'); currentAudioBtn = null; };
   speechSynthesis.speak(utt);
+}
+
+function speakFullStory() {
+  if (!voicesReady) loadVoices();
+  const story = STORIES[currentStory];
+  const fullText = story.paragraphs.map(p => p.tts).join(' ');
+  const btn = document.getElementById('read-all-btn');
+  const utt = new SpeechSynthesisUtterance(fullText);
+  utt.rate = globalRate;
+  utt.lang = 'en-US';
+  if (usVoice) utt.voice = usVoice;
+  btn.classList.add('playing');
+  btn.innerHTML = '&#x23F9; Detener';
+  currentAudioBtn = btn;
+  utt.onend = utt.onerror = () => {
+    btn.classList.remove('playing');
+    btn.innerHTML = '&#x1F50A; Leer historia';
+    currentAudioBtn = null;
+  };
+  speechSynthesis.speak(utt);
+}
+
+function toggleReadAll() {
+  const btn = document.getElementById('read-all-btn');
+  if (btn.classList.contains('playing')) {
+    stopAll();
+  } else {
+    stopAll();
+    speakFullStory();
+  }
 }
 
 function speakStory(el, text) {

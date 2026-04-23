@@ -647,6 +647,8 @@ const storiesData = {
 
   // ════════════════════════════════════════
   // TAB 1 — S1 "Every Morning" (Marco) + D1 (Tom & Sara)
+  // Párrafos difíciles: P1, P2, P3
+  // Párrafos intermedios: oraciones de P4, P5 (sin solapar)
   // ════════════════════════════════════════
   s1: {
     title: 'Morning Routine',
@@ -704,51 +706,51 @@ const storiesData = {
           incorrect: '✗ El audio dice <em>"nine"</em> (nueve). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS: 1 oración completa ──
+      // ── INTERMEDIAS: 2 oraciones de P4/P5 (no usados en difíciles) ──
       {
         id: 5, level: 'medium',
-        title: '¿Qué hace Marco cada mañana?',
-        desc: 'S1 — oración larga del cuento',
-        audio: 'I make coffee every morning. I get some bread too.',
-        spanish: 'Hago café cada mañana. También agarro un poco de pan.',
-        question: '¿Qué prepara Marco todas las mañanas?',
-        options: ['Café', 'Té', 'Leche'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"It is a simple meal"</em>. Simple = sencilla.',
-          incorrect: '✗ El audio dice <em>"a simple meal"</em> (comida sencilla). ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 6, level: 'medium',
         title: '¿Cómo son las mañanas de Marco?',
-        desc: 'S1 — oración larga del cuento',
+        desc: 'S1 — P5, dos oraciones del cuento',
         audio: 'My mornings make me happy. I do not rush at all.',
         spanish: 'Mis mañanas me hacen feliz. No tengo prisa en absoluto.',
-        question: '¿Cómo se siente Marco por las mañanas?',
-        options: ['Feliz y sin prisa', 'Cansado', 'Con mucha prisa'],
+        question: '¿Cómo se siente Marco en las mañanas?',
+        options: ['Feliz', 'Triste', 'Cansado'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"make me happy"</em>. Happy = feliz.',
+          correct: '✔ ¡Correcto! El audio dice: <em>"happy"</em>. Happy = feliz.',
           incorrect: '✗ El audio dice <em>"happy"</em> (feliz). ¡Escucha otra vez!'
         }
       },
       {
-        id: 7, level: 'medium',
-        title: '¿Con qué va Tom al trabajo?',
-        desc: 'D1 — oración larga del diálogo',
-        audio: 'I get my bag and go to work. It is a short walk.',
-        spanish: 'Agarro mi bolso y voy al trabajo. Es una caminata corta.',
-        question: '¿Cómo va Tom al trabajo?',
-        options: ['Caminando', 'En bus', 'En auto'],
+        id: 6, level: 'medium',
+        title: '¿Qué dice Marco de su hábito?',
+        desc: 'S1 — P4, dos oraciones del cuento',
+        audio: 'I keep my mornings simple. I feel calm and ready.',
+        spanish: 'Mantengo mis mañanas simples. Me siento tranquilo y listo.',
+        question: '¿Cómo mantiene Marco sus mañanas?',
+        options: ['Simples', 'Muy ocupadas', 'Complicadas'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"a short walk"</em>. Walk = caminar.',
-          incorrect: '✗ El audio dice <em>"a short walk"</em>: va caminando. ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"simple"</em>. Simple = simples.',
+          incorrect: '✗ El audio dice <em>"simple"</em> (simples). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES: párrafo completo de S1 ──
+      {
+        id: 7, level: 'medium',
+        title: '¿Cómo va Tom al trabajo?',
+        desc: 'D1 — dos oraciones del diálogo',
+        audio: 'Yes, it is at eight. I have to come in on time.',
+        spanish: 'Sí, es a las ocho. Tengo que llegar a tiempo.',
+        question: '¿A qué hora empieza el trabajo?',
+        options: ['A las ocho', 'A las diez', 'A las once'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"at eight"</em>. Eight = ocho.',
+          incorrect: '✗ El audio dice <em>"at eight"</em> (ocho). ¡Escucha otra vez!'
+        }
+      },
+      // ── DIFÍCILES: párrafos P3, P1, P2 (sin oraciones de P4/P5) ──
       {
         id: 8, level: 'hard',
         title: 'Marco se alista — párrafo completo',
-        desc: 'S1 — escucha todo el párrafo',
+        desc: 'S1 P3 — escucha todo el párrafo',
         audio: 'Then I get my bag. I take my keys too. I come back for my phone. I do not want to forget. I am ready to go.',
         spanish: 'Luego agarro mi bolsa. También tomo mis llaves. Regreso por mi teléfono. No quiero olvidar nada. Estoy listo para salir.',
         question: '¿Qué toma Marco además de la bolsa?',
@@ -761,11 +763,11 @@ const storiesData = {
       {
         id: 9, level: 'hard',
         title: 'Marco desayuna — párrafo completo',
-        desc: 'S1 — escucha todo el párrafo',
+        desc: 'S1 P1 — escucha todo el párrafo',
         audio: 'I make coffee every morning. I get some bread too. I sit down and eat. It is a simple meal. I like it a lot.',
         spanish: 'Hago café cada mañana. También agarro un poco de pan. Me siento y como. Es una comida sencilla. Me gusta mucho.',
-        question: '¿Cómo describe Marco su desayuno?',
-        options: ['Una comida sencilla', 'Una comida grande', 'Una comida cara'],
+        question: '¿Qué prepara Marco todas las mañanas?',
+        options: ['Café', 'Té', 'Leche'],
         feedback: {
           correct: '✔ ¡Correcto! El audio dice: <em>"I make coffee every morning"</em>. Coffee = café.',
           incorrect: '✗ El audio dice <em>"coffee"</em> (café). ¡Escucha otra vez!'
@@ -774,7 +776,7 @@ const storiesData = {
       {
         id: 10, level: 'hard',
         title: 'Marco limpia — párrafo completo',
-        desc: 'S1 — escucha todo el párrafo',
+        desc: 'S1 P2 — escucha todo el párrafo',
         audio: 'After breakfast, I do my chores. I make my bed first. Then I sweep the floor. I keep my room clean. It does not take long.',
         spanish: 'Después del desayuno hago mis quehaceres. Primero tiendo mi cama. Luego barro el piso. Mantengo mi cuarto limpio. No tarda mucho.',
         question: '¿Qué hace Marco primero después del desayuno?',
@@ -789,6 +791,8 @@ const storiesData = {
 
   // ════════════════════════════════════════
   // TAB 2 — S2 "What I Can Do" (Ana) + D2 (Mrs. Kim & Ben)
+  // Párrafos difíciles: P9, P7, P8
+  // Párrafos intermedios: oraciones de P10, P11 (no usados en difíciles)
   // ════════════════════════════════════════
   s2: {
     title: 'Skills & Class',
@@ -846,51 +850,51 @@ const storiesData = {
           incorrect: '✗ El audio dice <em>"Friday"</em> (viernes). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS ──
+      // ── INTERMEDIAS: P10, P11 (sin solapar con difíciles P9, P7, P8) ──
       {
         id: 5, level: 'medium',
-        title: '¿Qué repite Ana cada día?',
-        desc: 'S2 — oración larga del cuento',
-        audio: 'I repeat new words every day. I ask my teacher for help.',
-        spanish: 'Repito palabras nuevas cada día. Le pido ayuda a mi maestra.',
-        question: '¿Qué repite Ana todos los días?',
-        options: ['Palabras nuevas', 'Canciones', 'Números'],
+        title: '¿Ana se rinde?',
+        desc: 'S2 — P10, dos oraciones del cuento',
+        audio: 'I want to use English well. I can become a good speaker.',
+        spanish: 'Quiero usar bien el inglés. Puedo llegar a ser una buena hablante.',
+        question: '¿Qué idioma quiere usar bien Ana?',
+        options: ['Inglés', 'Alemán', 'Japonés'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"new words"</em>. Words = palabras.',
-          incorrect: '✗ El audio dice <em>"new words"</em> (palabras nuevas). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"English"</em>. English = inglés.',
+          incorrect: '✗ El audio dice <em>"English"</em> (inglés). ¡Escucha otra vez!'
         }
       },
       {
         id: 6, level: 'medium',
-        title: '¿Qué quiere Ana para sus amigos?',
-        desc: 'S2 — oración larga del cuento',
-        audio: 'I can make cards for people. I use paper and colors.',
-        spanish: 'Puedo hacer tarjetas para la gente. Uso papel y colores.',
-        question: '¿Con qué hace Ana las tarjetas?',
-        options: ['Papel y colores', 'Tijeras y pegamento', 'Tela y agujas'],
+        title: '¿Qué hace Ana paso a paso?',
+        desc: 'S2 — P11, dos oraciones del cuento',
+        audio: 'I want to call my friends. I will not give up.',
+        spanish: 'Quiero llamar a mis amigos. No me voy a rendir.',
+        question: '¿Qué dice Ana que NO va a hacer?',
+        options: ['Rendirse', 'Estudiar', 'Practicar'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I give them to my friends"</em>. Friends = amigos.',
-          incorrect: '✗ El audio dice <em>"my friends"</em> (amigos). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"I will not give up"</em>: no se rinde.',
+          incorrect: '✗ El audio dice <em>"not give up"</em>: Ana no se rinde. ¡Escucha otra vez!'
         }
       },
       {
         id: 7, level: 'medium',
-        title: '¿Ana se rinde?',
-        desc: 'S2 — oración larga del cuento',
-        audio: 'I just have to keep going. I will not give up.',
-        spanish: 'Solo tengo que seguir adelante. No me voy a rendir.',
-        question: '¿Qué dice Ana que NO va a hacer?',
-        options: ['Rendirse', 'Estudiar', 'Practicar'],
+        title: '¿Qué usa Ben en clase?',
+        desc: 'D2 — dos oraciones del diálogo',
+        audio: 'I use a notebook in class. I use it to take notes.',
+        spanish: 'Uso un cuaderno en clase. Lo uso para tomar notas.',
+        question: '¿Qué usa Ben para tomar notas?',
+        options: ['Un cuaderno', 'Su teléfono', 'Una hoja suelta'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I will not give up"</em>: no se va a rendir.',
-          incorrect: '✗ El audio dice <em>"not give up"</em>: no se rinde. ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"notebook"</em>. Notebook = cuaderno.',
+          incorrect: '✗ El audio dice <em>"notebook"</em> (cuaderno). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES: párrafo completo de S2 ──
+      // ── DIFÍCILES: párrafos P9, P7, P8 (sin oraciones de P10/P11) ──
       {
         id: 8, level: 'hard',
         title: 'Ana aprende — párrafo completo',
-        desc: 'S2 — escucha todo el párrafo',
+        desc: 'S2 P9 — escucha todo el párrafo',
         audio: 'I am learning English now. I repeat new words every day. I ask my teacher for help. She is very kind to me. I keep on trying hard.',
         spanish: 'Ahora estoy aprendiendo inglés. Repito palabras nuevas cada día. Le pido ayuda a mi maestra. Ella es muy amable conmigo. Sigo esforzándome mucho.',
         question: '¿A quién le pide ayuda Ana?',
@@ -903,20 +907,20 @@ const storiesData = {
       {
         id: 9, level: 'hard',
         title: 'Ana hace tarjetas — párrafo completo',
-        desc: 'S2 — escucha todo el párrafo',
+        desc: 'S2 P7 — escucha todo el párrafo',
         audio: 'I can also make things. I can make cards for people. I use paper and colors. I give them to my friends. They love to get them.',
         spanish: 'También puedo hacer cosas. Puedo hacer tarjetas para la gente. Uso papel y colores. Las doy a mis amigos. Les encanta recibirlas.',
         question: '¿A quién le da Ana sus tarjetas?',
         options: ['A sus amigos', 'A su familia', 'A su maestra'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I use paper and colors"</em>. Paper = papel.',
-          incorrect: '✗ El audio dice <em>"paper and colors"</em> (papel y colores). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"I give them to my friends"</em>. Friends = amigos.',
+          incorrect: '✗ El audio dice <em>"my friends"</em> (amigos). ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
         title: 'Ana no puede todo — párrafo completo',
-        desc: 'S2 — escucha todo el párrafo',
+        desc: 'S2 P8 — escucha todo el párrafo',
         audio: 'But I cannot do everything. I cannot drive a car. I cannot speak French. That is okay for now. We all have things to learn.',
         spanish: 'Pero no puedo hacer todo. No puedo manejar un auto. No puedo hablar francés. Eso está bien por ahora. Todos tenemos cosas que aprender.',
         question: '¿Qué no puede manejar Ana?',
@@ -931,6 +935,8 @@ const storiesData = {
 
   // ════════════════════════════════════════
   // TAB 3 — S3 "A Typical Day" (Sara) + D3 (Ana & Mr. Park)
+  // Párrafos difíciles: P12, P14, P16
+  // Párrafos intermedios: oraciones de P13, P15, D3 (no usados en difíciles)
   // ════════════════════════════════════════
   s3: {
     title: 'Daily Life',
@@ -988,11 +994,37 @@ const storiesData = {
           incorrect: '✗ El audio dice <em>"Monday"</em> (lunes). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS ──
+      // ── INTERMEDIAS: P13, P15, D3 (sin solapar con difíciles P12/P14/P16) ──
       {
         id: 5, level: 'medium',
+        title: '¿Cómo llega Sara al trabajo?',
+        desc: 'S3 — P13, dos oraciones del cuento',
+        audio: 'I take the bus to work. I arrive at work on time.',
+        spanish: 'Tomo el autobús al trabajo. Llego a mi trabajo a tiempo.',
+        question: '¿Cómo va Sara al trabajo?',
+        options: ['En bus', 'A pie', 'En taxi'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"I take the bus"</em>. Bus = autobús.',
+          incorrect: '✗ El audio dice <em>"the bus"</em> (autobús). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 6, level: 'medium',
+        title: '¿Qué hace Sara con su lista?',
+        desc: 'S3 — P15, dos oraciones del cuento',
+        audio: 'In the afternoon, I have meetings. I ask questions and take notes.',
+        spanish: 'Por la tarde tengo reuniones. Hago preguntas y tomo notas.',
+        question: '¿Qué tiene Sara por la tarde?',
+        options: ['Reuniones', 'Clases', 'Visitas'],
+        feedback: {
+          correct: '✔ ¡Correcto! El audio dice: <em>"meetings"</em>. Meetings = reuniones.',
+          incorrect: '✗ El audio dice <em>"meetings"</em> (reuniones). ¡Escucha otra vez!'
+        }
+      },
+      {
+        id: 7, level: 'medium',
         title: '¿Con qué frecuencia va Ana?',
-        desc: 'D3 — oración larga del diálogo',
+        desc: 'D3 — dos oraciones del diálogo',
         audio: 'Yes. I come every week. You have good things here.',
         spanish: 'Sí. Vengo cada semana. Tienen buenas cosas aquí.',
         question: '¿Con qué frecuencia va Ana a la tienda?',
@@ -1002,37 +1034,11 @@ const storiesData = {
           incorrect: '✗ El audio dice <em>"every week"</em> (cada semana). ¡Escucha otra vez!'
         }
       },
-      {
-        id: 6, level: 'medium',
-        title: '¿Qué hace Sara por la tarde?',
-        desc: 'S3 — oración larga del cuento',
-        audio: 'In the afternoon, I have meetings. I ask questions and take notes.',
-        spanish: 'Por la tarde tengo reuniones. Hago preguntas y tomo notas.',
-        question: '¿Qué tiene Sara por las tardes?',
-        options: ['Reuniones', 'Clases', 'Visitas'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"meetings"</em>. Meetings = reuniones.',
-          incorrect: '✗ El audio dice <em>"meetings"</em> (reuniones). ¡Escucha otra vez!'
-        }
-      },
-      {
-        id: 7, level: 'medium',
-        title: '¿Qué hace Sara al mediodía?',
-        desc: 'S3 — oración larga del cuento',
-        audio: 'I take a short walk too. The fresh air is very good.',
-        spanish: 'También salgo a caminar un poco. El aire fresco es muy bueno.',
-        question: '¿Qué hace Sara además de comer en el almuerzo?',
-        options: ['Da una caminata', 'Duerme', 'Lee'],
-        feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"a short walk"</em>. Walk = caminata.',
-          incorrect: '✗ El audio dice <em>"a short walk"</em> (caminata). ¡Escucha otra vez!'
-        }
-      },
-      // ── DIFÍCILES: párrafo completo de S3 ──
+      // ── DIFÍCILES: párrafos P12, P14, P16 (sin oraciones de P13/P15) ──
       {
         id: 8, level: 'hard',
         title: 'Sara en la mañana — párrafo completo',
-        desc: 'S3 — escucha todo el párrafo',
+        desc: 'S3 P12 — escucha todo el párrafo',
         audio: 'My name is Sara. I get up at seven. I make tea first thing. I have a small breakfast. Then I get ready for work.',
         spanish: 'Me llamo Sara. Me levanto a las siete. Lo primero que hago es preparar té. Desayuno algo ligero. Luego me alisto para el trabajo.',
         question: '¿Cómo se llama el personaje?',
@@ -1045,20 +1051,20 @@ const storiesData = {
       {
         id: 9, level: 'hard',
         title: 'Sara en el almuerzo — párrafo completo',
-        desc: 'S3 — escucha todo el párrafo',
+        desc: 'S3 P14 — escucha todo el párrafo',
         audio: 'At lunch, I get some food. I take a short walk too. The fresh air is very good. I come back and feel better. Then I do more work.',
         spanish: 'En el almuerzo consigo comida. También salgo a caminar un poco. El aire fresco es muy bueno. Regreso y me siento mejor. Luego hago más trabajo.',
-        question: '¿Cómo describe Sara el aire afuera?',
-        options: ['Muy bueno', 'Frío', 'Caliente'],
+        question: '¿Cuándo sale Sara a caminar?',
+        options: ['Al almuerzo', 'En la mañana', 'En la noche'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"I take a short walk"</em>. Walk = caminata.',
-          incorrect: '✗ El audio dice <em>"a short walk"</em> (caminata). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"At lunch"</em>. Lunch = almuerzo.',
+          incorrect: '✗ El audio dice <em>"At lunch"</em> (al almuerzo). ¡Escucha otra vez!'
         }
       },
       {
         id: 10, level: 'hard',
         title: 'Sara regresa a casa — párrafo completo',
-        desc: 'S3 — escucha todo el párrafo',
+        desc: 'S3 P16 — escucha todo el párrafo',
         audio: 'I take the bus back home. I come in and sit down. I make a simple dinner. I have it on the couch. It is a good end.',
         spanish: 'Tomo el autobús de regreso. Entro y me siento. Preparo una cena sencilla. La como en el sofá. Es un buen final.',
         question: '¿Qué prepara Sara cuando llega a casa?',
@@ -1073,6 +1079,8 @@ const storiesData = {
 
   // ════════════════════════════════════════
   // TAB 4 — S4 "Giving & Receiving" (Ben & Rosa) + D4 (Lily & Marco)
+  // Párrafos difíciles: P18, P19, P22
+  // Párrafos intermedios: oraciones de P20, P21, D4 (no usados en difíciles)
   // ════════════════════════════════════════
   s4: {
     title: 'Sharing & Study',
@@ -1130,51 +1138,51 @@ const storiesData = {
           incorrect: '✗ El audio dice <em>"phone"</em> (teléfono). ¡Escucha otra vez!'
         }
       },
-      // ── INTERMEDIAS ──
+      // ── INTERMEDIAS: P20, P21, D4 (sin solapar con difíciles P18/P19/P22) ──
       {
         id: 5, level: 'medium',
         title: '¿Qué hace Rosa por Ben?',
-        desc: 'S4 — oración larga del cuento',
-        audio: 'She makes good food for Ben. She asks him to come eat.',
-        spanish: 'Ella le prepara buena comida a Ben. Le pide que venga a comer.',
-        question: '¿Qué hace Rosa para Ben?',
-        options: ['Le prepara comida', 'Le da fruta', 'Le compra ropa'],
+        desc: 'S4 — P20, dos oraciones del cuento',
+        audio: 'Rosa gives back in return. She makes good food for Ben.',
+        spanish: 'Rosa le devuelve el favor. Ella le prepara buena comida a Ben.',
+        question: '¿Para quién prepara Rosa la comida?',
+        options: ['Para Ben', 'Para Lily', 'Para Tom'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"good food for Ben"</em>. Food = comida.',
-          incorrect: '✗ El audio dice <em>"good food"</em> (comida). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"good food for Ben"</em>.',
+          incorrect: '✗ El audio dice <em>"for Ben"</em>: es para Ben. ¡Escucha otra vez!'
         }
       },
       {
         id: 6, level: 'medium',
-        title: '¿Con qué frecuencia visita Ben a Rosa?',
-        desc: 'S4 — oración larga del cuento',
-        audio: 'Ben gives Rosa fruit each week. He gets it at the market.',
-        spanish: 'Ben le da fruta a Rosa cada semana. La compra en el mercado.',
-        question: '¿Qué le da Ben a Rosa cada semana?',
-        options: ['Fruta', 'Comida', 'Flores'],
+        title: '¿Rosa aprende con Ben?',
+        desc: 'S4 — P21, dos oraciones del cuento',
+        audio: 'She asks Ben to show her. He shows her each step slowly.',
+        spanish: 'Le pide a Ben que le enseñe. Él le muestra cada paso despacio.',
+        question: '¿A quién le pide ayuda Rosa?',
+        options: ['A Ben', 'A Lily', 'A Sara'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"fruit"</em>. Fruit = fruta.',
-          incorrect: '✗ El audio dice <em>"fruit"</em> (fruta). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"She asks Ben to show her."</em>',
+          incorrect: '✗ El audio dice <em>"asks Ben"</em>: le pide ayuda a Ben. ¡Escucha otra vez!'
         }
       },
       {
         id: 7, level: 'medium',
-        title: '¿Qué le pide Lily a Marco?',
-        desc: 'D4 — oración larga del diálogo',
-        audio: 'Can you repeat lesson three with me?',
-        spanish: '¿Puedes repasar la lección tres conmigo?',
-        question: '¿Qué lección quiere repasar Lily?',
-        options: ['La lección tres', 'La lección uno', 'La lección dos'],
+        title: '¿Qué pide Marco y para qué?',
+        desc: 'D4 — dos oraciones del diálogo',
+        audio: 'Can I get some paper? I want to make notes.',
+        spanish: '¿Puedo conseguir papel? Quiero tomar notas.',
+        question: '¿Para qué quiere Marco el papel?',
+        options: ['Para tomar notas', 'Para dibujar', 'Para envolver algo'],
         feedback: {
-          correct: '✔ ¡Correcto! El audio dice: <em>"lesson three"</em>. Three = tres.',
-          incorrect: '✗ El audio dice <em>"lesson three"</em> (lección tres). ¡Escucha otra vez!'
+          correct: '✔ ¡Correcto! El audio dice: <em>"I want to make notes"</em>. Notes = notas.',
+          incorrect: '✗ El audio dice <em>"make notes"</em> (tomar notas). ¡Escucha otra vez!'
         }
       },
-      // ── DIFÍCILES: párrafo completo de S4 ──
+      // ── DIFÍCILES: párrafos P18, P19, P22 (sin oraciones de P20/P21) ──
       {
         id: 8, level: 'hard',
         title: 'Ben y Rosa son amigos — párrafo completo',
-        desc: 'S4 — escucha todo el párrafo',
+        desc: 'S4 P18 — escucha todo el párrafo',
         audio: 'Ben has a neighbor named Rosa. She is old and kind. Ben likes her very much. He comes to see her often. They are good friends.',
         spanish: 'Ben tiene una vecina llamada Rosa. Ella es mayor y amable. Ben la aprecia mucho. Viene a verla seguido. Son buenos amigos.',
         question: '¿Cómo se llama la vecina de Ben?',
@@ -1187,7 +1195,7 @@ const storiesData = {
       {
         id: 9, level: 'hard',
         title: 'Ben lleva fruta — párrafo completo',
-        desc: 'S4 — escucha todo el párrafo',
+        desc: 'S4 P19 — escucha todo el párrafo',
         audio: 'Ben gives Rosa fruit each week. He gets it at the market. He takes it to her door. She is always so happy. She says thank you each time.',
         spanish: 'Ben le da fruta a Rosa cada semana. La compra en el mercado. Se la lleva a su puerta. Ella siempre está muy feliz. Le da las gracias cada vez.',
         question: '¿Adónde va Ben a comprar la fruta?',
@@ -1200,7 +1208,7 @@ const storiesData = {
       {
         id: 10, level: 'hard',
         title: 'Rosa aprende a llamar — párrafo completo',
-        desc: 'S4 — escucha todo el párrafo',
+        desc: 'S4 P22 — escucha todo el párrafo',
         audio: 'Rosa keeps on trying hard. At last she can do it. She makes her first call. She hears her son speak. She is so happy.',
         spanish: 'Rosa sigue intentándolo. Por fin puede hacerlo. Hace su primera llamada. Escucha a su hijo en la línea. Está muy feliz.',
         question: '¿A quién escucha Rosa en su primera llamada?',

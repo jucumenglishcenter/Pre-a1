@@ -332,12 +332,18 @@ main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 // ── BASE URL ──────────────────────────────────────────────────────────────────
 const BASE = 'https://jucumenglishcenter.github.io/Pre-a1';
 const PANEL = 'https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html';
-// ── QUIZLET
-const QZ = {
+// ── QUIZLET — Módulo 1 (general Pre-A1)
+const QZ_M1 = {
   esp_ing:     'https://quizlet.com/pe/1155523542/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=3e1a1ca6-c109-4f8d-b627-df6ce0495d6b',
   traducir:    'https://quizlet.com/pe/1155523540/prea1-escritura-traducir-flash-cards/?funnelUUID=2f0841af-38cc-4cc1-85cb-29ad194db1fc',
   definiciones:'https://quizlet.com/pe/1155523364/prea1-vocabulario-definiciones-flash-cards/?funnelUUID=5558d159-57b1-489f-a06b-136ee2902306',
   ordenar:     'https://quizlet.com/pe/1155523639/prea1-escritura-ordenar-flash-cards/?funnelUUID=34e615db-9474-49fa-889e-2987a7c9d779',
+};
+// ── QUIZLET — Módulo 2: Essential Actions
+const QZ_M2 = {
+  esp_ing:  'https://quizlet.com/pe/1171988725/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=55c5c2eb-5f2d-4735-a556-13db286c66fd',
+  traducir: 'https://quizlet.com/pe/1171995589/prea1-escritura-traducir-flash-cards/',
+  ordenar:  'https://quizlet.com/pe/1171994853/prea1-escritura-ordenar-flash-cards/',
 };
 // ── DATA ──────────────────────────────────────────────────────────────────────
 const DATA = [
@@ -386,7 +392,7 @@ const DATA = [
     reading:  `${BASE}/M1-Personal-Identity/PreA1_M1_Reading%20Comprehension_Personal%20Identity.html`,
     listening:`${BASE}/M1-Personal-Identity/PreA1_M1_Listening_Personal%20Identity.html`,
     story:    `${BASE}/M1-Personal-Identity/PreA1_M1_Story_Personal%20Identity.html`,
-    quizlet: QZ,
+    quizlet: QZ_M1,
   },
   {
     id:2, name:'Essential Actions', ok:true,
@@ -433,13 +439,13 @@ const DATA = [
     reading:  `${BASE}/M2-Essential-Actions/PreA1_M2_Reading%20Comprehension_Essential%20Actions.html`,
     listening:`${BASE}/M2-Essential-Actions/PreA1_M2_Listening_Essential%20Actions.html`,
     story:    `${BASE}/M2-Essential-Actions/PreA1_M2_Story_Essential%20Actions.html`,
-    quizlet: QZ,
+    quizlet: QZ_M2,
   },
-  { id:3, name:'Community & Places',      ok:false, img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
-  { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
-  { id:5, name:'Food & Health',           ok:false, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
-  { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
-  { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  { id:3, name:'Community & Places',      ok:false, img:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ_M1 },
+  { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ_M1 },
+  { id:5, name:'Food & Health',           ok:false, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ_M1 },
+  { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ_M1 },
+  { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ_M1 },
 ];
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function tRow(topic, i, mid) {

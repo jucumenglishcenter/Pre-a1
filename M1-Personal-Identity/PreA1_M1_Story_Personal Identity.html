@@ -34,6 +34,23 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 .parallel-toggle{display:flex;align-items:center;gap:0.5rem;font-size:0.83rem;color:var(--text-soft);margin-bottom:1rem;padding:0.5rem 1rem;background:var(--card);border-radius:8px;border:1px solid var(--border);}
 .parallel-toggle input{cursor:pointer;}
 .parallel-toggle label{cursor:pointer;font-weight:600;}
+
+/* === SPEED CONTROLLER (NEW) === */
+.speed-control{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-bottom:1rem;padding:0.7rem 1.1rem;background:var(--card);border-radius:10px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.speed-control .speed-label{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:700;color:var(--level-dark);white-space:nowrap;}
+.speed-control .speed-icon{font-size:1.05rem;}
+.speed-control input[type="range"]{flex:1;min-width:140px;height:6px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--level-light),var(--level-primary));border-radius:6px;outline:none;cursor:pointer;}
+.speed-control input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,168,37,0.5);cursor:pointer;transition:transform 0.15s;}
+.speed-control input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
+.speed-control input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,168,37,0.5);cursor:pointer;}
+.speed-control .speed-value{display:inline-flex;align-items:center;justify-content:center;min-width:54px;font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:600;color:var(--level-dark);background:var(--level-light);border:1.5px solid var(--level-mid);border-radius:8px;padding:3px 10px;}
+.speed-presets{display:flex;gap:4px;}
+.speed-preset{font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;color:var(--text-soft);background:transparent;border:1.5px solid var(--border);padding:3px 9px;border-radius:6px;cursor:pointer;transition:all 0.18s;}
+.speed-preset:hover{background:var(--level-light);border-color:var(--level-mid);color:var(--level-dark);}
+.speed-preset.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);}
+@media(max-width:600px){.speed-control{gap:0.5rem;}.speed-control .speed-label{font-size:0.78rem;}.speed-presets{width:100%;justify-content:space-between;}}
+/* === END SPEED CONTROLLER === */
+
 .content-tabs{display:flex;gap:0.5rem;margin-bottom:1.2rem;padding:0.4rem;background:var(--card);border-radius:14px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.04);}
 .content-tab{flex:1;text-align:center;padding:0.7rem;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;border:2px solid transparent;background:transparent;font-family:'Nunito',sans-serif;}
 .content-tab:hover{background:#F5F5F0;}
@@ -119,6 +136,20 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
     <div class="legend-item"><button class="audio-btn" style="pointer-events:none"><span class="flag">🔊</span> Audio</button><span>Click → pronunciación</span></div>
   </div>
   <div id="voice-status">⚠️ Tu navegador tiene voces limitadas. Para mejor experiencia usa <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.</div>
+
+  <!-- === SPEED CONTROLLER (NEW) === -->
+  <div class="speed-control" role="group" aria-label="Velocidad del audio">
+    <span class="speed-label"><span class="speed-icon">🐢</span> Velocidad</span>
+    <input type="range" id="speedSlider" min="0.5" max="1.2" step="0.05" value="0.82" aria-label="Ajustar velocidad de audio" oninput="updateSpeed(this.value)">
+    <span class="speed-value" id="speedValue">0.82×</span>
+    <div class="speed-presets">
+      <button class="speed-preset" onclick="setSpeed(0.6,this)">Lento</button>
+      <button class="speed-preset active" onclick="setSpeed(0.82,this)">Normal</button>
+      <button class="speed-preset" onclick="setSpeed(1.0,this)">Rápido</button>
+    </div>
+  </div>
+  <!-- === END SPEED CONTROLLER === -->
+
   <div class="parallel-toggle">
     <input type="checkbox" id="parallelCheck" onchange="toggleParallel(this.checked)">
     <label for="parallelCheck">🔄 Show English + Spanish side by side</label>
@@ -1418,7 +1449,28 @@ function switchItem(section,id,btn){const panel=document.getElementById('panel-'
 let voicesReady=false,usVoice=null,ukVoice=null,currentBtn=null;
 function loadVoices(){const voices=speechSynthesis.getVoices();if(!voices.length)return;voicesReady=true;const usP=[v=>v.lang==='en-US'&&/samantha|allison|ava|tom|alex|nicky|aaron/i.test(v.name),v=>v.lang==='en-US'&&/google us/i.test(v.name),v=>v.lang==='en-US'];const ukP=[v=>v.lang==='en-GB'&&/daniel|kate|serena|oliver|martha/i.test(v.name),v=>v.lang==='en-GB'&&/google uk/i.test(v.name),v=>v.lang==='en-GB'];for(const p of usP){const m=voices.find(p);if(m){usVoice=m;break;}}for(const p of ukP){const m=voices.find(v=>p(v)&&v!==usVoice);if(m){ukVoice=m;break;}}if(!ukVoice)ukVoice=voices.find(v=>v.lang==='en-AU')||voices.find(v=>v.lang.startsWith('en')&&v!==usVoice);const st=document.getElementById('voice-status');if(!usVoice||!ukVoice||usVoice===ukVoice)st.style.display='block';}
 speechSynthesis.getVoices();if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;[100,500,1500].forEach(d=>setTimeout(loadVoices,d));
-function speak(btn,text,accent){if(currentBtn===btn&&speechSynthesis.speaking){speechSynthesis.cancel();btn.classList.remove('playing');currentBtn=null;return;}if(speechSynthesis.speaking){speechSynthesis.cancel();if(currentBtn)currentBtn.classList.remove('playing');}if(!voicesReady)loadVoices();const u=new SpeechSynthesisUtterance(text);u.rate=0.82;u.pitch=1;if(accent==='US'){u.lang='en-US';if(usVoice)u.voice=usVoice;}else{u.lang='en-GB';if(ukVoice)u.voice=ukVoice;}btn.classList.add('playing');currentBtn=btn;u.onend=()=>{btn.classList.remove('playing');currentBtn=null;};u.onerror=()=>{btn.classList.remove('playing');currentBtn=null;};speechSynthesis.speak(u);}
+
+/* === SPEED CONTROL (NEW) === */
+let currentSpeed = 0.82;
+function updateSpeed(val){
+  currentSpeed = parseFloat(val);
+  document.getElementById('speedValue').textContent = currentSpeed.toFixed(2)+'×';
+  // Sincronizar botones preset
+  document.querySelectorAll('.speed-preset').forEach(p=>p.classList.remove('active'));
+  if(Math.abs(currentSpeed-0.6)<0.025){document.querySelectorAll('.speed-preset')[0].classList.add('active');}
+  else if(Math.abs(currentSpeed-0.82)<0.025){document.querySelectorAll('.speed-preset')[1].classList.add('active');}
+  else if(Math.abs(currentSpeed-1.0)<0.025){document.querySelectorAll('.speed-preset')[2].classList.add('active');}
+}
+function setSpeed(val,btn){
+  currentSpeed = val;
+  document.getElementById('speedSlider').value = val;
+  document.getElementById('speedValue').textContent = val.toFixed(2)+'×';
+  document.querySelectorAll('.speed-preset').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+}
+/* === END SPEED CONTROL === */
+
+function speak(btn,text,accent){if(currentBtn===btn&&speechSynthesis.speaking){speechSynthesis.cancel();btn.classList.remove('playing');currentBtn=null;return;}if(speechSynthesis.speaking){speechSynthesis.cancel();if(currentBtn)currentBtn.classList.remove('playing');}if(!voicesReady)loadVoices();const u=new SpeechSynthesisUtterance(text);u.rate=currentSpeed;u.pitch=1;if(accent==='US'){u.lang='en-US';if(usVoice)u.voice=usVoice;}else{u.lang='en-GB';if(ukVoice)u.voice=ukVoice;}btn.classList.add('playing');currentBtn=btn;u.onend=()=>{btn.classList.remove('playing');currentBtn=null;};u.onerror=()=>{btn.classList.remove('playing');currentBtn=null;};speechSynthesis.speak(u);}
 let activeNote=null;
 function showNote(wordEl,idx){closeAllNotes();const popup=document.createElement('div');popup.className='note-popup';popup.innerHTML=`<button class="note-close" onclick="closeAllNotes()">×</button><div class="note-header">💡 Nota</div><div class="note-body">${NOTES[idx]}</div>`;wordEl.style.position='relative';wordEl.appendChild(popup);requestAnimationFrame(()=>{const r=popup.getBoundingClientRect();if(r.top<10)popup.classList.add('pos-below');if(r.left<10){popup.style.left='0';popup.style.transform='none';}else if(r.right>window.innerWidth-10){popup.style.left='auto';popup.style.right='0';popup.style.transform='none';}popup.classList.add('show');});activeNote=popup;}
 function closeAllNotes(){document.querySelectorAll('.note-popup').forEach(n=>n.remove());activeNote=null;}

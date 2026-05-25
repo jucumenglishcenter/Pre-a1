@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform - Possessive Adjectives | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end)); min-height:100vh; color:var(--text-dark); }
+
+        .header { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; }
+        .progress-container { height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; transition:width .5s ease; width:0%; }
+
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; flex-wrap:wrap; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; margin-left:auto; background:#EDE9FE; color:#7C3AED; }
+
+        .transform-visual { margin-bottom:1.25rem; }
+        .transform-box { border-radius:14px; padding:0.9rem 1.1rem; margin-bottom:0.5rem; }
+        .transform-box.base { background:#FFF7E0; border:2px solid var(--primary-light); }
+        .transform-box.goal { background:#DBEAFE; border:2px solid #93C5FD; }
+        .transform-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; display:block; margin-bottom:0.3rem; }
+        .transform-box.base .transform-label { color:var(--primary-dark); }
+        .transform-box.goal .transform-label { color:var(--info-dark); }
+        .transform-sentence { font-size:1rem; line-height:1.55; color:var(--text-dark); font-weight:600; }
+        .transform-arrow { text-align:center; font-size:0.85rem; color:var(--text-medium); font-weight:700; margin:0.4rem 0; }
+        .word-highlight { background:#FEF3C7; color:var(--primary-dark); padding:0.05rem 0.3rem; border-radius:5px; font-weight:700; }
+
+        .options-container { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:0.5rem; }
+        .option-btn { border:2.5px solid #E5E7EB; border-radius:14px; padding:1rem 1.1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:flex-start; }
+        .option-btn:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .option-btn.disabled { cursor:default; }
+        .option-btn.correct { border-color:var(--success); background:var(--success-light); }
+        .option-btn.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:30px; height:30px; border-radius:50%; background:#F1F5F9; color:var(--text-medium); font-family:'Fredoka',sans-serif; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+        .option-btn.correct .option-letter { background:var(--success); color:white; }
+        .option-btn.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { flex:1; font-size:1rem; line-height:1.55; color:var(--text-dark); font-weight:500; }
+
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; }
+
+        .transform-flow { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .transform-flow .fb-block-title { color:#475569; }
+        .tf-step { background:white; border:1.5px solid #E2E8F0; border-radius:10px; padding:0.55rem 0.8rem; margin:0.4rem 0; font-size:0.92rem; line-height:1.4; color:var(--text-dark); }
+        .tf-step.present { border-color:var(--primary-light); }
+        .tf-step.past-wrong { border-color:var(--error); background:#FFF1F2; }
+        .tf-step.past-correct { border-color:var(--success); background:#F0FDF4; }
+        .tf-label { display:inline-block; font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-right:0.5rem; color:var(--text-medium); }
+        .tf-step.past-wrong .tf-label { color:var(--error-dark); }
+        .tf-step.past-correct .tf-label { color:var(--success-dark); }
+        .tf-arrow { text-align:center; font-size:1rem; color:var(--text-medium); }
+        .vb-highlight { background:#FEF3C7; color:var(--primary-dark); padding:0.05rem 0.3rem; border-radius:5px; font-weight:700; }
+        .tf-step.past-wrong .vb-highlight { background:#FECDD3; color:var(--error-dark); }
+        .tf-step.past-correct .vb-highlight { background:#BBF7D0; color:var(--success-dark); }
+
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.72rem; font-weight:700; margin-left:auto; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.5rem 0; }
+        .ws-box { padding:0.35rem 0.9rem; border-radius:8px; font-weight:700; font-size:0.95rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.2rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; margin-top:0.5rem; }
+
+        .fb-rule { background:var(--info-light); border:1px solid #BFDBFE; }
+        .fb-rule .fb-block-title { color:var(--info-dark); }
+        .rule-formula { background:white; border-radius:8px; padding:0.5rem 0.9rem; font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--info-dark); font-weight:600; margin-bottom:0.6rem; text-align:center; border:1px solid #BFDBFE; }
+        .rule-examples { display:flex; flex-wrap:wrap; gap:0.4rem; }
+        .rule-ex { display:flex; align-items:center; gap:0.3rem; font-size:0.8rem; background:white; border:1px solid #BFDBFE; border-radius:6px; padding:0.2rem 0.5rem; }
+        .rule-ex .base { color:var(--info-dark); font-weight:600; }
+        .rule-ex .arrow { color:#94A3B8; }
+        .rule-ex .past { color:var(--success-dark); font-weight:700; }
+
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+    
+        /* ---- Botón Ver en español (traducción oculta) ---- */
+        .translate-wrap { margin-top:0.6rem; }
+        .translate-btn { display:inline-flex; align-items:center; gap:0.4rem; background:var(--bg-gradient-end); color:var(--primary-dark); border:1.5px solid var(--primary-light); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .translate-btn:hover { background:var(--primary-light); color:var(--text-dark); }
+        .translation-es { display:none; margin-top:0.6rem; background:#FFFDE7; border-left:4px solid var(--primary); border-radius:0 10px 10px 0; padding:0.6rem 0.9rem; color:var(--text-medium); font-style:italic; font-size:0.88rem; line-height:1.5; }
+        .translation-es.show { display:block; animation:fadeUp .25s ease; }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="panel-prea1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔄 Transform</div>
+            <div class="header-subtitle">💛 Pre-A1 · Possessive Adjectives</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔄</div>
+            <div>
+                <div class="instructions-title">Transforma la oración</div>
+                <div class="instructions-text">Lee la oración original. Elige la versión correcta según el cambio de sujeto que se pide.</div>
+            </div>
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="panel-prea1.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    // ============================================================
+    // DATOS — TRANSFORM Possessive Adjectives
+    // El "goalText" es NEUTRAL — solo indica el cambio de sujeto,
+    // nunca revela el posesivo (my/your/his/her/our/their/its)
+    // que el alumno debe elegir.
+    // ============================================================
+    const quizData = [
+        {
+            id: 1,
+            base: "She feeds her dog before dinner.",
+            translation: "Ella alimenta a su perro antes de la cena.",
+            targetWord: "She feeds her",
+            goalText: "Cambia el sujeto a 'Tom'.",
+            options: [
+                { text: "Tom feeds her dog before dinner.", correct: false, mark: "her",
+                  errorType: "Posesivo de género incorrecto",
+                  explanation: "No cambiaste el posesivo. Tom es masculino → corresponde a 'he', y el posesivo de 'he' es 'his', no 'her'." },
+                { text: "Tom feeds their dog before dinner.", correct: false, mark: "their",
+                  errorType: "Posesivo plural en singular",
+                  explanation: "'Their' es de 'they' (plural). Pero Tom es UNA persona (singular masculino) → 'his'." },
+                { text: "Tom feeds his dog before dinner.", correct: true, mark: "his" }
+
+            ],
+            correctReason: "Tom es masculino singular → 'he'. El posesivo de 'he' es 'his'. Por eso 'Tom feeds his dog'.",
+            rule: "he → his (masculino singular)",
+            examples: ["he → his", "she → her", "they → their"]
+        },
+        {
+            id: 2,
+            base: "I walk to my school every morning.",
+            translation: "Yo camino a mi escuela todas las mañanas.",
+            targetWord: "I walk to my",
+            goalText: "Cambia el sujeto a 'We'.",
+            options: [
+                { text: "We walk to our school every morning.", correct: true, mark: "our" },
+                { text: "We walk to my school every morning.", correct: false, mark: "my",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "Cambiaste el sujeto pero no el posesivo. 'My' es de 'I' (yo). Si el sujeto ahora es 'we', el posesivo debe ser 'our'." },
+                { text: "We walk to your school every morning.", correct: false, mark: "your",
+                  errorType: "Posesivo de persona incorrecta",
+                  explanation: "'Your' es de 'you' (tú/ustedes). Pero el sujeto es 'we' (nosotros) → 'our'." }
+
+            ],
+            correctReason: "'We' (nosotros) tiene como posesivo 'our'. Por eso 'We walk to our school'.",
+            rule: "we → our (primera persona plural)",
+            examples: ["I → my", "we → our", "they → their"]
+        },
+        {
+            id: 3,
+            base: "His cat sleeps near him every night.",
+            translation: "Su gato duerme cerca de él todas las noches.",
+            targetWord: "His cat sleeps near him",
+            goalText: "Cambia el sujeto a 'Ana'.",
+            options: [
+                { text: "His cat sleeps near her every night.", correct: false, mark: "His",
+                  errorType: "Posesivo de género incorrecto",
+                  explanation: "No cambiaste el posesivo inicial. Ana es femenina → 'she', y el posesivo de 'she' es 'her', no 'his'." },
+                { text: "Her cat sleeps near her every night.", correct: true, mark: "Her" },
+                { text: "Their cat sleeps near her every night.", correct: false, mark: "Their",
+                  errorType: "Posesivo plural en singular",
+                  explanation: "'Their' es de 'they' (plural). Pero Ana es una persona sola (singular femenino) → 'her'." }
+
+            ],
+            correctReason: "Ana es femenino singular → 'she'. El posesivo de 'she' es 'her'. Por eso 'Her cat sleeps near her'.",
+            rule: "she → her (femenino singular)",
+            examples: ["he → his", "she → her", "I → my"]
+        },
+        {
+            id: 4,
+            base: "Tom rides his bike every afternoon.",
+            translation: "Tom monta su bicicleta todas las tardes.",
+            targetWord: "Tom rides his",
+            goalText: "Cambia el sujeto a 'Mia and Ana'.",
+            options: [
+                { text: "Mia and Ana ride his bikes every afternoon.", correct: false, mark: "his",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "Cambiaste el sujeto pero no el posesivo. 'His' es de 'he' (masculino singular). Pero 'Mia and Ana' son DOS personas → 'they' → 'their'." },
+                { text: "Mia and Ana ride her bikes every afternoon.", correct: false, mark: "her",
+                  errorType: "Posesivo singular en plural",
+                  explanation: "'Her' es para UNA persona femenina. Pero son DOS (Mia y Ana) → 'they'. El posesivo de 'they' es 'their'." },
+                { text: "Mia and Ana ride their bikes every afternoon.", correct: true, mark: "their" }
+
+            ],
+            correctReason: "'Mia and Ana' = 'they' (ellas, plural). El posesivo de 'they' es 'their'. Por eso 'their bikes'.",
+            rule: "they → their (tercera persona plural)",
+            examples: ["he → his", "she → her", "they → their"]
+        },
+        {
+            id: 5,
+            base: "Ana looks for her book inside the bag.",
+            translation: "Ana busca su libro dentro de la mochila.",
+            targetWord: "Ana looks for her",
+            goalText: "Cambia el sujeto a 'I'.",
+            options: [
+                { text: "I look for my book inside the bag.", correct: true, mark: "my" },
+                { text: "I look for her book inside the bag.", correct: false, mark: "her",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "Cambiaste el sujeto y el verbo, pero olvidaste el posesivo. 'Her' es de 'she' (Ana). El sujeto ahora es 'I' → 'my'." },
+                { text: "I look for your book inside the bag.", correct: false, mark: "your",
+                  errorType: "Posesivo de persona incorrecta",
+                  explanation: "'Your' es de 'you' (tú). Pero el sujeto es 'I' (yo) → el posesivo es 'my'." }
+
+            ],
+            correctReason: "'I' (yo) tiene como posesivo 'my' (mi). Por eso 'I look for my book'.",
+            rule: "I → my (primera persona singular)",
+            examples: ["I → my", "you → your", "he → his"]
+        },
+        {
+            id: 6,
+            base: "We sit near our teacher during class.",
+            translation: "Nos sentamos cerca de nuestra maestra durante la clase.",
+            targetWord: "We sit near our",
+            goalText: "Cambia el sujeto a 'The students'.",
+            options: [
+                { text: "The students sit near our teacher during class.", correct: false, mark: "our",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "No cambiaste el posesivo. 'Our' es de 'we' (nosotros). Pero 'the students' = 'they' (tercera persona plural) → 'their'." },
+                { text: "The students sit near their teacher during class.", correct: true, mark: "their" },
+                { text: "The students sit near his teacher during class.", correct: false, mark: "his",
+                  errorType: "Posesivo singular en plural",
+                  explanation: "'His' es para UN estudiante masculino. Pero 'the students' son varios → 'they' → 'their'." }
+
+            ],
+            correctReason: "'The students' = 'they' (ellos, tercera persona plural). El posesivo de 'they' es 'their'. Por eso 'their teacher'.",
+            rule: "they → their (tercera persona plural)",
+            examples: ["we → our", "they → their", "I → my"]
+        },
+        {
+            id: 7,
+            base: "My brother plays with his dog near the park.",
+            translation: "Mi hermano juega con su perro cerca del parque.",
+            targetWord: "My brother plays with his",
+            goalText: "Cambia el sujeto a 'My sister'.",
+            options: [
+                { text: "My sister plays with his dog near the park.", correct: false, mark: "his",
+                  errorType: "Posesivo de género incorrecto",
+                  explanation: "No cambiaste el posesivo. 'His' es de 'he' (masculino). Pero 'sister' = hermana = chica → 'she', y su posesivo es 'her'." },
+                { text: "My sister plays with my dog near the park.", correct: false, mark: "my",
+                  errorType: "Posesivo de persona incorrecta",
+                  explanation: "'My' es de 'I' (yo). Pero el sujeto que juega es 'my sister' (ella) → su posesivo es 'her'. ¡Ojo: el perro es de la hermana, no mío!" },
+                { text: "My sister plays with her dog near the park.", correct: true, mark: "her" }
+
+            ],
+            correctReason: "'My sister' = 'she' (femenino singular). El posesivo de 'she' es 'her'. Por eso 'her dog'.",
+            rule: "she → her (femenino singular)",
+            examples: ["he → his", "she → her", "brother → his / sister → her"]
+        },
+        {
+            id: 8,
+            base: "You finish your homework before dinner.",
+            translation: "Tú terminas tu tarea antes de la cena.",
+            targetWord: "You finish your",
+            goalText: "Cambia el sujeto a 'He'.",
+            options: [
+                { text: "He finishes his homework before dinner.", correct: true, mark: "his" },
+                { text: "He finishes your homework before dinner.", correct: false, mark: "your",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "No cambiaste el posesivo. 'Your' es de 'you' (tú). Pero el sujeto ahora es 'he' (él) → 'his'." },
+                { text: "He finishes her homework before dinner.", correct: false, mark: "her",
+                  errorType: "Posesivo de género incorrecto",
+                  explanation: "'Her' es de 'she' (ella). Pero el sujeto es 'he' (él, masculino) → 'his'." }
+
+            ],
+            correctReason: "'He' (él, masculino singular) tiene como posesivo 'his'. Por eso 'his homework'.",
+            rule: "he → his (masculino singular)",
+            examples: ["you → your", "he → his", "she → her"]
+        },
+        {
+            id: 9,
+            base: "Their cat sleeps inside its box every night.",
+            translation: "Su gato duerme dentro de su caja todas las noches.",
+            targetWord: "Their cat sleeps inside its",
+            goalText: "Cambia el sujeto a 'My cat'.",
+            options: [
+                { text: "My cat sleeps inside my box every night.", correct: false, mark: "inside my box",
+                  errorType: "Posesivo del animal cambiado",
+                  explanation: "Cambiaste DOS posesivos. El primero (Their → My) está bien. Pero el segundo (its) se refiere al GATO, no al dueño. La caja es DEL GATO → 'its box' se mantiene." },
+                { text: "My cat sleeps inside its box every night.", correct: true, mark: "My" },
+                { text: "My cat sleeps inside their box every night.", correct: false, mark: "their box",
+                  errorType: "Posesivo del animal incorrecto",
+                  explanation: "'Their' es de 'they' (varios). Pero la caja pertenece al GATO (un solo animal) → 'its'. Solo cambia el primer posesivo, no el del animal." }
+
+            ],
+            correctReason: "El primer posesivo (del dueño) cambia: 'Their' → 'My'. Pero el segundo posesivo (del gato hacia su caja) no cambia: sigue siendo 'its'. La caja le pertenece al gato.",
+            rule: "Cada posesivo se refiere a su propio sujeto",
+            examples: ["they → their", "I → my", "it (cat) → its"]
+        },
+        {
+            id: 10,
+            base: "His parents drive him to school every day.",
+            translation: "Sus padres lo llevan a la escuela todos los días.",
+            targetWord: "His parents drive him",
+            goalText: "Cambia el sujeto a 'Mia's parents'.",
+            options: [
+                { text: "His parents drive her to school every day.", correct: false, mark: "His",
+                  errorType: "Posesivo no actualizado",
+                  explanation: "Solo cambiaste 'him' por 'her', pero olvidaste el posesivo del principio. Los padres son DE MIA (ella) → 'Her parents'." },
+                { text: "Their parents drive her to school every day.", correct: false, mark: "Their",
+                  errorType: "Posesivo plural en singular",
+                  explanation: "'Their' es de 'they' (varios dueños). Pero los padres son DE UNA persona: Mia → 'her parents'." },
+                { text: "Her parents drive her to school every day.", correct: true, mark: "Her" }
+
+            ],
+            correctReason: "Mia es femenino singular → 'she'. El posesivo de 'she' es 'her'. Por eso 'Her parents drive her'.",
+            rule: "she → her (femenino singular)",
+            examples: ["he → his", "she → her", "they → their"]
+        }
+    ];
+
+    let currentQuestion = 0, score = 0;
+    let answered = new Array(quizData.length).fill(false);
+
+    function shuffleArray(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    function initQuiz() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+        quizData.forEach((q, i) => {
+            q.shuffled = shuffleArray(q.options);
+            container.appendChild(createCard(q, i));
+        });
+        showQuestion(0);
+        updateProgress();
+    }
+
+    function createCard(q, index) {
+        const card = document.createElement('div');
+        card.className = `question-card ${index !== 0 ? 'hidden' : ''}`;
+        card.id = `question-${index}`;
+        const letters = ['A','B','C'];
+
+        const baseHighlighted = q.targetWord
+            ? q.base.replace(q.targetWord, `<span class="word-highlight">${q.targetWord}</span>`)
+            : q.base;
+
+        card.innerHTML = `
+            <div class="q-header">
+                <div class="question-number">${index + 1}</div>
+                <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
+                <span class="topic-badge">👤 Possessives</span>
+            </div>
+            <div class="transform-visual">
+                <div class="transform-box base">
+                    <span class="transform-label">🔶 Oración original</span>
+                    <div class="transform-sentence">${baseHighlighted}</div>
+                </div>
+                <div class="transform-arrow">⬇ Transforma a...</div>
+                <div class="transform-box goal">
+                    <span class="transform-label">🎯 Objetivo</span>
+                    <div class="transform-sentence">${q.goalText}</div>
+                </div>
+            </div>
+            <div class="translate-wrap">
+                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
+                <div class="translation-es" id="translation-${index}">${q.translation}</div>
+            </div>
+            <div class="options-container" id="options-${index}">
+                ${q.shuffled.map((opt, i) => `
+                    <button class="option-btn" data-idx="${i}" onclick="selectOption(${index}, ${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt.text}</div>
+                    </button>
+                `).join('')}
+            </div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index === 0 ? 'disabled' : ''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index === quizData.length - 1 ? 'Ver Resultados 🎉' : 'Siguiente →'}
+                </button>
+            </div>
+        `;
+        return card;
+    }
+
+    function selectOption(qi, optIdx) {
+        if (answered[qi]) return;
+        answered[qi] = true;
+        const q = quizData[qi];
+        const selected = q.shuffled[optIdx];
+        const isCorrect = selected.correct;
+        const correctOpt = q.shuffled.find(o => o.correct);
+        if (isCorrect) score++;
+
+        const buttons = document.querySelectorAll(`#options-${qi} .option-btn`);
+        buttons.forEach((btn, i) => {
+            btn.classList.add('disabled');
+            const opt = q.shuffled[i];
+            if (opt.correct) btn.classList.add('correct');
+            else if (i === optIdx) btn.classList.add('incorrect');
+        });
+
+        buildFeedback(qi, selected, isCorrect, correctOpt, q);
+        document.getElementById(`next-${qi}`).disabled = false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi, selected, isCorrect, correctOpt, q) {
+        const el = document.getElementById(`feedback-${qi}`);
+        el.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        const ruleExamples = q.examples.map(e => {
+            if (e.includes(' → ')) {
+                const p = e.split(' → ');
+                return `<span class="rule-ex"><span class="base">${p[0]}</span><span class="arrow">→</span><span class="past">${p[1]}</span></span>`;
+            } else {
+                return `<span class="rule-ex"><span class="past">${e}</span></span>`;
+            }
+        }).join('');
+
+        const baseRender = q.targetWord
+            ? q.base.replace(q.targetWord, `<span class="vb-highlight">${q.targetWord}</span>`)
+            : q.base;
+        const correctRender = correctOpt.mark
+            ? correctOpt.text.replace(correctOpt.mark, `<span class="vb-highlight">${correctOpt.mark}</span>`)
+            : correctOpt.text;
+        const wrongRender = !isCorrect && selected.mark
+            ? selected.text.replace(selected.mark, `<span class="vb-highlight">${selected.mark}</span>`)
+            : selected.text;
+
+        const transformFlow = `
+            <div class="fb-block transform-flow">
+                <div class="fb-block-title">🔄 Flujo de transformación</div>
+                <div class="tf-step present"><span class="tf-label">Original:</span>${baseRender}</div>
+                <div class="tf-arrow">⬇</div>
+                ${!isCorrect ? `<div class="tf-step past-wrong"><span class="tf-label">Tu respuesta:</span>${wrongRender}</div><div class="tf-arrow">↕</div>` : ''}
+                <div class="tf-step past-correct"><span class="tf-label">Correcto:</span>${correctRender}</div>
+            </div>
+        `;
+
+        if (isCorrect) {
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">✅</span>
+                    <div>
+                        <div class="fb-title">¡Correcto! Transformaste bien</div>
+                        <div class="fb-subtitle">Veamos el flujo y la regla</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    ${transformFlow}
+                    <div class="fb-block fb-rule">
+                        <div class="fb-block-title">📐 Regla aplicada</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-block fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>
+            `;
+        } else {
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">❌</span>
+                    <div>
+                        <div class="fb-title">Incorrecto — revisemos juntos</div>
+                        <div class="fb-subtitle">Mira el flujo de la transformación</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    ${transformFlow}
+                    <div class="fb-block fb-error">
+                        <div class="fb-block-title">⚠️ El error: <span class="error-badge">${selected.errorType}</span></div>
+                        <div class="word-swap">
+                            <span class="ws-box ws-wrong">${selected.mark}</span>
+                            <span class="ws-arrow">→</span>
+                            <span class="ws-box ws-right">${correctOpt.mark}</span>
+                        </div>
+                        <div class="error-text">${selected.explanation}</div>
+                    </div>
+                    <div class="fb-block fb-rule">
+                        <div class="fb-block-title">📐 La regla correcta</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-block fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function showQuestion(i) {
+        document.querySelectorAll('.question-card').forEach((c, idx) => c.classList.toggle('hidden', idx !== i));
+        document.getElementById('currentQ').textContent = i + 1;
+        currentQuestion = i;
+    }
+    function nextQuestion(i) { i < quizData.length - 1 ? showQuestion(i + 1) : showResults(); }
+    function prevQuestion() { if (currentQuestion > 0) showQuestion(currentQuestion - 1); }
+    function updateProgress() {
+        const done = answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width = (done / quizData.length * 100) + '%';
+    }
+    function showResults() {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct = score / quizData.length * 100;
+        document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
+        let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
+        document.getElementById('resultsMessage').textContent = pct >= 90
+            ? '¡Excelente! Transformaste perfecto. 🏆'
+            : pct >= 70 ? '¡Muy bien! Sigue practicando. 💪'
+            : 'Buen esfuerzo. Repasa las reglas y vuelve a intentarlo. 📚';
+        document.querySelectorAll('.star').forEach((s, i) => {
+            if (i < stars) setTimeout(() => s.classList.add('earned'), i * 300);
+        });
+    }
+    
+    function toggleTranslation(i) {
+        const box = document.getElementById('translation-' + i);
+        const btn = document.getElementById('translate-btn-' + i);
+        if (!box) return;
+        const isShown = box.classList.toggle('show');
+        if (btn) btn.innerHTML = isShown ? '🙈 Ocultar traducción' : '🌐 Ver en español';
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

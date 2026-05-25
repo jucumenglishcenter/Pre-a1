@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fill in the Blanks - Plurals (-s/-es/-ies) | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#D1FAE5; color:#059669; }
+
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+
+        .question-text { font-size:1.1rem; line-height:1.7; margin-bottom:0.4rem; font-weight:600; }
+        .blank { display:inline-block; min-width:80px; padding:0.2rem 0.6rem; background:var(--primary-light); border:2px dashed var(--primary-dark); border-radius:8px; text-align:center; font-weight:700; color:var(--primary-dark); transition:all .3s; }
+        .blank.correct { background:var(--success-light); border:2px solid var(--success); color:var(--success-dark); }
+        .blank.incorrect { background:var(--error-light); border:2px solid var(--error); color:var(--error-dark); }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.85rem; margin-bottom:1rem; }
+
+        .options-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin-top:0.5rem; }
+        .option-btn { padding:0.9rem 0.5rem; border:2.5px solid #E5E7EB; border-radius:12px; background:white; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; transition:all .2s; color:var(--text-dark); }
+        .option-btn:hover:not(:disabled) { border-color:var(--primary); background:var(--primary-light); transform:translateY(-2px); }
+        .option-btn:disabled { cursor:default; }
+        .option-btn.correct { border-color:var(--success); background:var(--success-light); color:var(--success-dark); }
+        .option-btn.incorrect { border-color:var(--error); background:var(--error-light); color:var(--error-dark); }
+
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; }
+
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:0.9rem 1rem; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+
+        .fb-error { background:var(--error-light); border-radius:12px; padding:0.9rem 1rem; }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; margin-left:auto; }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-word-row { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ew-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ew-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ew-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ew-right { background:var(--success); color:white; }
+        .error-rule { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+
+        .fb-rule { background:var(--info-light); border:1px solid #BFDBFE; border-radius:12px; padding:0.9rem 1rem; }
+        .fb-rule .fb-block-title { color:var(--info-dark); }
+        .rule-formula { background:white; border-radius:8px; padding:0.5rem 0.9rem; font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--info-dark); font-weight:600; margin-bottom:0.6rem; text-align:center; border:1px solid #BFDBFE; }
+        .rule-examples { display:flex; flex-wrap:wrap; gap:0.4rem; }
+        .rule-ex { display:flex; align-items:center; gap:0.3rem; font-size:0.82rem; background:white; border:1px solid #BFDBFE; border-radius:6px; padding:0.2rem 0.5rem; }
+        .rule-ex .base { color:var(--info-dark); font-weight:600; }
+        .rule-ex .arrow { color:#94A3B8; }
+        .rule-ex .past { color:var(--success-dark); font-weight:700; }
+
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:0.9rem 1rem; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+    
+        /* ---- Botón Ver en español (traducción oculta) ---- */
+        .translate-wrap { margin-top:0.6rem; }
+        .translate-btn { display:inline-flex; align-items:center; gap:0.4rem; background:var(--bg-gradient-end); color:var(--primary-dark); border:1.5px solid var(--primary-light); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .translate-btn:hover { background:var(--primary-light); color:var(--text-dark); }
+        .translation-es { display:none; margin-top:0.6rem; background:#FFFDE7; border-left:4px solid var(--primary); border-radius:0 10px 10px 0; padding:0.6rem 0.9rem; color:var(--text-medium); font-style:italic; font-size:0.88rem; line-height:1.5; }
+        .translation-es.show { display:block; animation:fadeUp .25s ease; }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="panel-prea1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">📝 Fill in the Blanks</div>
+            <div class="header-subtitle">💛 Pre-A1 · Singular vs Plural</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/10</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔢</div>
+            <div>
+                <div class="instructions-title">Completa con el plural correcto</div>
+                <div class="instructions-text">Mira cómo termina la palabra singular. Eso te dice si debes usar -s, -es o cambiar y → ies.</div>
+            </div>
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore">0/10</div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="panel-prea1.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [
+    {
+        "id": 1,
+        "sentence": "Tom has many _____ inside his desk near the books.",
+        "translation": "Tom tiene muchos lápices dentro de su escritorio cerca de los libros.",
+        "hint": "Mira con qué letra termina la palabra singular.",
+        "options": [
+            "pencilies",
+            "pencilses",
+            "pencils"
+        ],
+        "correct": "pencils",
+        "feedback": {
+            "pencilies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' solo aplica cuando termina en CONSONANTE + Y (baby → babies). 'Pencil' termina en L, no en Y. Solo agrega '-s'.",
+                "rule": "Consonante + y → -ies / Otros → -s"
+            },
+            "pencilses": {
+                "errorType": "Plural duplicado",
+                "explanation": "'-es' solo va después de s, x, ss, ch, sh. 'Pencil' termina en L → solo '-s': pencils.",
+                "rule": "-es solo después de s/x/ss/ch/sh"
+            }
+        },
+        "correctReason": "'Pencil' termina en consonante normal (l). Regla general: solo agrega '-s' → pencils.",
+        "rule": "Sustantivo + s (regla general)",
+        "examples": [
+            "pencil → pencils",
+            "book → books",
+            "dog → dogs"
+        ]
+    },
+    {
+        "id": 2,
+        "sentence": "There are two _____ in the classroom this year.",
+        "translation": "Hay dos clases en el salón este año.",
+        "hint": "La palabra singular termina en dos consonantes iguales. Fíjate.",
+        "options": [
+            "classs",
+            "classes",
+            "classies"
+        ],
+        "correct": "classes",
+        "feedback": {
+            "classs": {
+                "errorType": "Plural mal formado — triple s",
+                "explanation": "En inglés nunca hay tres consonantes iguales seguidas. Para terminaciones en -ss agregamos '-es' (no '-s' solo) → classes.",
+                "rule": "Termina en -ss → agregar -es"
+            },
+            "classies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' solo aplica a palabras que terminan en CONSONANTE + Y (study → studies). 'Class' termina en SS → '-es': classes.",
+                "rule": "Consonante + y → -ies / Termina en -ss → -es"
+            }
+        },
+        "correctReason": "'Class' termina en -ss. Para s/x/ss/ch/sh agregamos '-es' → classes.",
+        "rule": "Termina en s/x/ss/ch/sh → agregar -es",
+        "examples": [
+            "class → classes",
+            "box → boxes",
+            "bus → buses"
+        ]
+    },
+    {
+        "id": 3,
+        "sentence": "Three _____ ago, Mia started this year at school.",
+        "translation": "Hace tres años, Mia empezó este año en la escuela.",
+        "hint": "Mira la última letra. Antes hay otra letra — ¿es vocal o consonante?",
+        "options": [
+            "years",
+            "yearies",
+            "yeares"
+        ],
+        "correct": "years",
+        "feedback": {
+            "yearies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' solo aplica con CONSONANTE antes de Y (baby → babies). En 'year', la letra antes de Y es VOCAL (e). Solo agrega '-s' → years.",
+                "rule": "Vocal + y → -s / Consonante + y → -ies"
+            },
+            "yeares": {
+                "errorType": "Uso incorrecto de -es",
+                "explanation": "'-es' solo después de s, x, ss, ch, sh. 'Year' termina en Y. Como hay vocal antes de Y → solo '-s'.",
+                "rule": "-es solo para s/x/ss/ch/sh"
+            }
+        },
+        "correctReason": "'Year' termina en VOCAL (e) + Y. Regla: vocal antes de Y → solo agrega '-s' → years. Compara con 'baby' (consonante + y) → babies.",
+        "rule": "Vocal + y → solo -s",
+        "examples": [
+            "year → years",
+            "day → days",
+            "boy → boys"
+        ]
+    },
+    {
+        "id": 4,
+        "sentence": "The cat has three _____ inside the box near the door.",
+        "translation": "La gata tiene tres bebés dentro de la caja cerca de la puerta.",
+        "hint": "Mira la última letra. Antes hay otra letra — ¿es vocal o consonante?",
+        "options": [
+            "babys",
+            "babyes",
+            "babies"
+        ],
+        "correct": "babies",
+        "feedback": {
+            "babys": {
+                "errorType": "Regla -ies no aplicada",
+                "explanation": "Solo agregaste '-s'. Pero 'baby' termina en CONSONANTE (b) + Y. La regla: cambia Y por I y agrega '-es' → babies.",
+                "rule": "Consonante + y → cambiar y por i + es"
+            },
+            "babyes": {
+                "errorType": "Regla Y → I no aplicada",
+                "explanation": "Agregaste '-es' pero dejaste la Y. La regla completa: consonante + Y → cambia Y por I y luego '-es' → babies.",
+                "rule": "consonante + y → y se vuelve i → -ies"
+            }
+        },
+        "correctReason": "'Baby' termina en consonante (b) + Y. Regla: cambia Y por I y agrega '-es' → babies. Es la regla -ies.",
+        "rule": "Consonante + y → -ies",
+        "examples": [
+            "baby → babies",
+            "city → cities",
+            "story → stories"
+        ]
+    },
+    {
+        "id": 5,
+        "sentence": "Ana puts the books inside two _____ near the door.",
+        "translation": "Ana pone los libros dentro de dos cajas cerca de la puerta.",
+        "hint": "Mira con qué letra termina la palabra singular.",
+        "options": [
+            "boxs",
+            "boxes",
+            "boxies"
+        ],
+        "correct": "boxes",
+        "feedback": {
+            "boxs": {
+                "errorType": "Regla -es no aplicada",
+                "explanation": "'Box' termina en X. Las palabras que terminan en s/x/ss/ch/sh agregan '-es' (necesario para poder pronunciarlas).",
+                "rule": "Termina en -x → agregar -es"
+            },
+            "boxies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' es para palabras que terminan en CONSONANTE + Y (baby → babies). 'Box' termina en X → '-es': boxes.",
+                "rule": "Consonante + y → -ies / Termina en -x → -es"
+            }
+        },
+        "correctReason": "'Box' termina en X. Para palabras que terminan en s/x/ss/ch/sh agregamos '-es' → boxes.",
+        "rule": "Termina en -x → agregar -es",
+        "examples": [
+            "box → boxes",
+            "fox → foxes",
+            "class → classes"
+        ]
+    },
+    {
+        "id": 6,
+        "sentence": "Tom reads two _____ before he goes to bed every night.",
+        "translation": "Tom lee dos cuentos antes de irse a la cama todas las noches.",
+        "hint": "Mira la última letra. Antes hay otra letra — ¿es vocal o consonante?",
+        "options": [
+            "stories",
+            "storys",
+            "storyes"
+        ],
+        "correct": "stories",
+        "feedback": {
+            "storys": {
+                "errorType": "Regla -ies no aplicada",
+                "explanation": "Solo agregaste '-s'. 'Story' termina en CONSONANTE (r) + Y. Regla: cambia Y por I y agrega '-es' → stories.",
+                "rule": "Consonante + y → cambiar y por i + es"
+            },
+            "storyes": {
+                "errorType": "Regla Y → I no aplicada",
+                "explanation": "Agregaste '-es' pero no cambiaste la Y. La regla: consonante + Y → cambia Y por I y agrega '-es' → stories (no storyes).",
+                "rule": "consonante + y → y se vuelve i"
+            }
+        },
+        "correctReason": "'Story' termina en consonante (r) + Y. Regla -ies: cambia Y por I y agrega '-es' → stories.",
+        "rule": "Consonante + y → -ies",
+        "examples": [
+            "story → stories",
+            "baby → babies",
+            "city → cities"
+        ]
+    },
+    {
+        "id": 7,
+        "sentence": "There are five _____ near the school during the year.",
+        "translation": "Hay cinco días cerca de la escuela durante el año.",
+        "hint": "Mira la última letra. Antes hay otra letra — ¿es vocal o consonante?",
+        "options": [
+            "daies",
+            "days",
+            "dayes"
+        ],
+        "correct": "days",
+        "feedback": {
+            "daies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' solo cuando hay CONSONANTE antes de Y. 'Day' tiene VOCAL (a) antes de Y → solo agrega '-s'.",
+                "rule": "Vocal + y → -s / Consonante + y → -ies"
+            },
+            "dayes": {
+                "errorType": "Uso incorrecto de -es",
+                "explanation": "'-es' va después de s/x/ss/ch/sh. 'Day' termina en Y (con vocal antes) → solo '-s' → days.",
+                "rule": "Vocal + y → solo -s"
+            }
+        },
+        "correctReason": "'Day' termina en VOCAL (a) + Y. Cuando hay vocal antes de Y, solo agrega '-s' → days.",
+        "rule": "Vocal + y → solo -s",
+        "examples": [
+            "day → days",
+            "year → years",
+            "boy → boys"
+        ]
+    },
+    {
+        "id": 8,
+        "sentence": "Mia washes two _____ near the window after dinner.",
+        "translation": "Mia lava dos platos cerca de la ventana después de la cena.",
+        "hint": "Mira con qué letras termina la palabra singular.",
+        "options": [
+            "dishs",
+            "dishies",
+            "dishes"
+        ],
+        "correct": "dishes",
+        "feedback": {
+            "dishs": {
+                "errorType": "Regla -es no aplicada",
+                "explanation": "'Dish' termina en -sh. Para s/x/ss/ch/sh agregamos '-es' (necesario para pronunciar) → dishes.",
+                "rule": "Termina en -sh → agregar -es"
+            },
+            "dishies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' es solo para consonante + Y. 'Dish' termina en SH → '-es': dishes.",
+                "rule": "Consonante + y → -ies / Termina en -sh → -es"
+            }
+        },
+        "correctReason": "'Dish' termina en -sh. Para s/x/ss/ch/sh agregamos '-es' → dishes.",
+        "rule": "Termina en -sh → agregar -es",
+        "examples": [
+            "dish → dishes",
+            "wish → wishes",
+            "bus → buses"
+        ]
+    },
+    {
+        "id": 9,
+        "sentence": "Tom and Ana watch the birds during _____ at the park.",
+        "translation": "Tom y Ana miran a las aves durante los almuerzos en el parque.",
+        "hint": "Mira con qué letras termina la palabra singular.",
+        "options": [
+            "lunches",
+            "lunchs",
+            "lunchies"
+        ],
+        "correct": "lunches",
+        "feedback": {
+            "lunchs": {
+                "errorType": "Regla -es no aplicada",
+                "explanation": "'Lunch' termina en -ch. Para s/x/ss/ch/sh agregamos '-es' → lunches.",
+                "rule": "Termina en -ch → agregar -es"
+            },
+            "lunchies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' es para consonante + Y. 'Lunch' termina en CH → '-es': lunches.",
+                "rule": "Consonante + y → -ies / Termina en -ch → -es"
+            }
+        },
+        "correctReason": "'Lunch' termina en -ch. Para s/x/ss/ch/sh agregamos '-es' → lunches.",
+        "rule": "Termina en -ch → agregar -es",
+        "examples": [
+            "lunch → lunches",
+            "watch → watches",
+            "church → churches"
+        ]
+    },
+    {
+        "id": 10,
+        "sentence": "Mia has many _____ inside her bag near the door.",
+        "translation": "Mia tiene muchas llaves dentro de su mochila cerca de la puerta.",
+        "hint": "Mira la última letra. Antes hay otra letra — ¿es vocal o consonante?",
+        "options": [
+            "kies",
+            "keys",
+            "keyes"
+        ],
+        "correct": "keys",
+        "feedback": {
+            "kies": {
+                "errorType": "Regla -ies mal aplicada",
+                "explanation": "'-ies' solo cuando hay CONSONANTE antes de Y. 'Key' tiene VOCAL (e) antes de Y → solo '-s' → keys.",
+                "rule": "Vocal + y → -s / Consonante + y → -ies"
+            },
+            "keyes": {
+                "errorType": "Uso incorrecto de -es",
+                "explanation": "'-es' va después de s/x/ss/ch/sh. 'Key' termina en Y con vocal antes → solo '-s' → keys.",
+                "rule": "Vocal + y → solo -s"
+            }
+        },
+        "correctReason": "'Key' termina en VOCAL (e) + Y. Cuando hay vocal antes de Y, solo agrega '-s' → keys.",
+        "rule": "Vocal + y → solo -s",
+        "examples": [
+            "key → keys",
+            "day → days",
+            "boy → boys"
+        ]
+    }
+];
+    const TOPIC_BADGE = {"icon": "🔢", "label": "Plurals"};
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = new Array(quizData.length).fill(false);
+
+    function shuffleArray(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    function initQuiz() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+        quizData.forEach((q, index) => container.appendChild(createQuestionCard(q, index)));
+        showQuestion(0);
+        updateProgress();
+    }
+
+    function createQuestionCard(q, index) {
+        const card = document.createElement('div');
+        card.className = `question-card ${index !== 0 ? 'hidden' : ''}`;
+        card.id = `question-${index}`;
+        const shuffled = shuffleArray(q.options);
+
+        card.innerHTML = `
+            <div class="q-header">
+                <div class="question-number">${index + 1}</div>
+                <span class="topic-badge">${TOPIC_BADGE.icon} ${TOPIC_BADGE.label}</span>
+            </div>
+            <div class="hint-box">
+                <div class="hint-label">💡 Pista</div>
+                ${q.hint}
+            </div>
+            <p class="question-text">${q.sentence.replace('_____', `<span class="blank" id="blank-${index}">?</span>`)}</p>
+            <div class="translate-wrap">
+                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
+                <div class="translation-es" id="translation-${index}">${q.translation}</div>
+            </div>
+            <div class="options-grid" id="options-${index}">
+                ${shuffled.map((opt, i) => `
+                    <button class="option-btn" data-idx="${i}" data-opt="${opt}" onclick="selectAnswer(${index}, this)">${opt}</button>
+                `).join('')}
+            </div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index === 0 ? 'disabled' : ''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>
+                    ${index === quizData.length - 1 ? 'Ver Resultados 🎉' : 'Siguiente →'}
+                </button>
+            </div>
+        `;
+        return card;
+    }
+
+    function selectAnswer(qi, btn) {
+        if (answered[qi]) return;
+        answered[qi] = true;
+        const selected = btn.getAttribute('data-opt');
+        const q = quizData[qi];
+        const isCorrect = selected === q.correct;
+        if (isCorrect) score++;
+
+        const blank = document.getElementById(`blank-${qi}`);
+        blank.textContent = selected;
+        blank.className = `blank ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        document.querySelectorAll(`#options-${qi} .option-btn`).forEach(b => {
+            b.disabled = true;
+            const t = b.getAttribute('data-opt');
+            if (t === q.correct) b.classList.add('correct');
+            else if (t === selected) b.classList.add('incorrect');
+        });
+
+        buildFeedback(qi, selected, isCorrect, q);
+        document.getElementById(`next-${qi}`).disabled = false;
+        updateProgress();
+    }
+
+    function buildFeedback(qi, selected, isCorrect, q) {
+        const el = document.getElementById(`feedback-${qi}`);
+        el.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        const ruleExamples = q.examples.map(e => {
+            if (e.includes(' → ')) {
+                const p = e.split(' → ');
+                return `<span class="rule-ex"><span class="base">${p[0]}</span><span class="arrow">→</span><span class="past">${p[1]}</span></span>`;
+            } else {
+                return `<span class="rule-ex"><span class="past">${e}</span></span>`;
+            }
+        }).join('');
+
+        if (isCorrect) {
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">✅</span>
+                    <div>
+                        <div class="fb-title">¡Correcto!</div>
+                        <div class="fb-subtitle">Elegiste la palabra correcta</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    <div class="fb-rule">
+                        <div class="fb-block-title">📐 Regla aplicada</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>
+            `;
+        } else {
+            const err = q.feedback[selected] || { errorType: 'Error', explanation: 'Respuesta incorrecta.', rule: '' };
+            el.innerHTML = `
+                <div class="fb-header">
+                    <span class="fb-icon">❌</span>
+                    <div>
+                        <div class="fb-title">Incorrecto</div>
+                        <div class="fb-subtitle">Revisemos juntos qué pasó</div>
+                    </div>
+                </div>
+                <div class="fb-body">
+                    <div class="fb-compare">
+                        <div class="fb-block-title" style="color:#64748B;">🔄 Tu respuesta vs. la correcta</div>
+                        <div class="fb-compare-row">
+                            <span class="compare-label wrong">Tú escribiste</span>
+                            <span class="compare-text"><span class="word-wrong">${selected}</span></span>
+                        </div>
+                        <div class="fb-compare-row">
+                            <span class="compare-label right">Correcto</span>
+                            <span class="compare-text"><span class="word-right">${q.correct}</span></span>
+                        </div>
+                    </div>
+                    <div class="fb-error">
+                        <div class="fb-block-title">⚠️ Tipo de error: <span class="error-badge">${err.errorType}</span></div>
+                        <div class="error-word-row">
+                            <span class="ew-box ew-wrong">${selected}</span>
+                            <span class="ew-arrow">→</span>
+                            <span class="ew-box ew-right">${q.correct}</span>
+                        </div>
+                        <div class="error-rule">${err.explanation}</div>
+                        ${err.rule ? `<div style="margin-top:0.5rem;font-size:0.82rem;color:var(--error-dark);font-weight:700;">📌 ${err.rule}</div>` : ''}
+                    </div>
+                    <div class="fb-rule">
+                        <div class="fb-block-title">📐 La regla correcta</div>
+                        <div class="rule-formula">${q.rule}</div>
+                        <div class="rule-examples">${ruleExamples}</div>
+                    </div>
+                    <div class="fb-why">
+                        <div class="fb-block-title">💡 ¿Por qué es correcta la respuesta?</div>
+                        <div class="fb-why-text">${q.correctReason}</div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function showQuestion(i) {
+        document.querySelectorAll('.question-card').forEach((c, idx) => c.classList.toggle('hidden', idx !== i));
+        document.getElementById('currentQ').textContent = i + 1;
+        currentQuestion = i;
+    }
+
+    function nextQuestion(i) {
+        if (i < quizData.length - 1) showQuestion(i + 1);
+        else showResults();
+    }
+
+    function prevQuestion() { if (currentQuestion > 0) showQuestion(currentQuestion - 1); }
+
+    function updateProgress() {
+        const done = answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width = (done / quizData.length * 100) + '%';
+    }
+
+    function showResults() {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
+        const rs = document.getElementById('resultsScreen');
+        rs.classList.add('show');
+        const pct = score / quizData.length * 100;
+        document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
+        let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
+        document.getElementById('resultsMessage').textContent = pct >= 90
+            ? '¡Excelente! Dominas este tema. 🏆'
+            : pct >= 70 ? '¡Muy bien! Sigue practicando. 💪'
+            : 'Buen esfuerzo. Repasa las reglas e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s, i) => {
+            if (i < stars) setTimeout(() => s.classList.add('earned'), i * 300);
+        });
+    }
+
+    
+    function toggleTranslation(i) {
+        const box = document.getElementById('translation-' + i);
+        const btn = document.getElementById('translate-btn-' + i);
+        if (!box) return;
+        const isShown = box.classList.toggle('show');
+        if (btn) btn.innerHTML = isShown ? '🙈 Ocultar traducción' : '🌐 Ver en español';
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

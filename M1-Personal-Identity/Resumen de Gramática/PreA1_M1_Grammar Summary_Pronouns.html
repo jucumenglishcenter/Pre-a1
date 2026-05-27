@@ -6,7 +6,6 @@
 <title>Grammar Summary — Pronouns | Pre-A1 | JUCUM</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
-
 :root{
 --bg:#FAFAF6;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
 --shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
@@ -18,8 +17,6 @@
 --comp:#00897B;--comp-bg:#E0F2F1;
 --neg:#AD1457;--neg-bg:#FCE4EC;
 --quest:#7B1FA2;--quest-bg:#F3E5F5;
---obj:#BF360C;--obj-bg:#FFF3E0;
---poss:#2E7D32;--poss-bg:#E8F5E9;
 --ok:#2E7D32;--ok-bg:#E8F5E9;
 --err:#C62828;--err-bg:#FFEBEE;
 --note-bg:#FFFDE7;--note-border:#FBC02D;
@@ -27,36 +24,46 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
 .container{max-width:780px;margin:0 auto}
+
 .level-header{text-align:center;padding:2rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
 .level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,.1);border-radius:50%}
 .level-header h1{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:600;position:relative;z-index:1}
 .level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.2rem}
 .level-header .subtitle{opacity:.8;font-size:.85rem;position:relative;z-index:1;margin-top:.15rem}
-.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem}
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem;position:relative;z-index:1}
+
 .step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
 .step-tab{padding:.45rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif}
 .step-tab:hover{background:var(--ll)}
 .step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
 .step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
 .card.active{display:block;animation:fadeIn .3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
 .section-label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
-.section-label::before{content:'';width:20px;height:3px;background:var(--lp);border-radius:2px}
+.section-label::before{content:"";width:20px;height:3px;background:var(--lp);border-radius:2px}
 .section-title{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:.1rem}
-.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem}
-.g-subj{background:var(--subj-bg);color:var(--subj);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--subj)}
-.g-verb{background:var(--verb-bg);color:var(--verb);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--verb)}
-.g-comp{background:var(--comp-bg);color:var(--comp);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--comp)}
-.g-neg{background:var(--neg-bg);color:var(--neg);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--neg)}
-.g-quest{background:var(--quest-bg);color:var(--quest);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--quest)}
-.g-obj{background:var(--obj-bg);color:var(--obj);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--obj)}
-.g-poss{background:var(--poss-bg);color:var(--poss);padding:1px 6px;border-radius:4px;font-weight:700;border-bottom:2.5px solid var(--poss)}
+.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
+
+/* GRAMMAR TAGS - inline-block prevents overlap */
+.g-subj,.g-verb,.g-comp,.g-neg,.g-quest,.g-prep,.g-time,.g-art{display:inline-block;padding:1px 7px;border-radius:4px;font-weight:700;margin:0 1px;line-height:1.5}
+.g-subj{background:var(--subj-bg);color:var(--subj);border-bottom:2.5px solid var(--subj)}
+.g-verb{background:var(--verb-bg);color:var(--verb);border-bottom:2.5px solid var(--verb)}
+.g-comp{background:var(--comp-bg);color:var(--comp);border-bottom:2.5px solid var(--comp)}
+.g-neg{background:var(--neg-bg);color:var(--neg);border-bottom:2.5px solid var(--neg)}
+.g-quest{background:var(--quest-bg);color:var(--quest);border-bottom:2.5px solid var(--quest)}
+.g-prep{background:#FFE0B2;color:#E65100;border-bottom:2.5px solid #FB8C00}
+.g-time{background:#F8BBD0;color:#AD1457;border-bottom:2.5px solid #C2185B}
+.g-art{background:#FFF59D;color:#F57F17;border-bottom:2.5px solid #FBC02D}
+
 .g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
 .g-table th{background:var(--lg);color:#fff;padding:.65rem .6rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle;line-height:1.65}
 .g-table tr:nth-child(even) td{background:var(--ll)}
 .g-table tr:last-child td{border-bottom:none}
+
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
 .compare-card{padding:1rem;border-radius:12px;text-align:center}
 .compare-card.esp{background:var(--ll);border:2px solid var(--lm)}
@@ -65,384 +72,333 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 .compare-card.esp h4{color:var(--ld)}
 .compare-card.eng h4{color:var(--subj)}
 .compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
-.compare-card li{padding:2px 0}
-.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:1.9}
-.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp)}
+.compare-card li{padding:3px 0;line-height:1.5}
+
+.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:2.1}
+.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp);line-height:1.65}
 .tip-card strong{color:var(--ld)}
 .alert-card{background:var(--err-bg);border:2px solid #EF5350;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
 .alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem}
-.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.5}
-.ex-row{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
+.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.65}
+
+.viz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin:.8rem 0}
+.viz-item{padding:.7rem .5rem;border-radius:10px;text-align:center;background:var(--card);border:1.5px solid var(--lm);font-size:.82rem}
+.viz-item .ico{font-size:1.6rem;display:block;margin-bottom:.3rem}
+.viz-item .lbl{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.95rem;display:block}
+.viz-item .es{font-style:italic;color:var(--text-soft);font-size:.74rem;display:block;margin-top:2px}
+
+.rule-grid{display:grid;grid-template-columns:1fr;gap:.5rem;margin:.8rem 0}
+.rule-item{padding:.7rem 1rem;border-radius:10px;background:var(--card);border:1.5px solid var(--lm);display:flex;align-items:flex-start;gap:.7rem}
+.rule-item .num{font-family:'Fredoka',sans-serif;background:var(--lp);color:#fff;min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+.rule-item .info{flex:1;font-size:.85rem;line-height:1.6}
+.rule-item .info strong{color:var(--ld);display:block;margin-bottom:2px}
+
+.timeline{display:flex;align-items:center;justify-content:space-between;margin:1rem 0;padding:.8rem;background:var(--ll);border-radius:12px;border:1.5px solid var(--lm);gap:.4rem;flex-wrap:wrap}
+.tl-point{flex:1;min-width:75px;text-align:center;padding:.5rem .3rem;background:#fff;border-radius:8px;border:2px solid var(--lm)}
+.tl-point .ico{font-size:1.3rem;display:block}
+.tl-point .lbl{font-family:'Fredoka',sans-serif;font-size:.78rem;color:var(--ld);margin-top:2px;display:block}
+.tl-arrow{color:var(--lp);font-size:1.2rem;font-weight:700}
+
+.ex-row{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
 .ex-row:hover{background:var(--lglow)}
-.ex-row .icon{font-size:1.2rem;flex-shrink:0}
-.ex-row .en{font-weight:700;color:var(--text)}
-.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:1px}
+.ex-row .icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.ex-row .body{flex:1;min-width:0}
+.ex-row .en{font-weight:700;color:var(--text);line-height:1.7;word-spacing:1px}
+.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:3px;line-height:1.5}
 .ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
 .ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
-.pronoun-map{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.8rem 0}
-.p-tag{padding:.55rem .4rem;border-radius:10px;text-align:center;font-size:.78rem;font-weight:700}
-.p-tag.subj{background:var(--subj-bg);color:var(--subj);border:1.5px solid #90CAF9}
-.p-tag.obj{background:var(--obj-bg);color:var(--obj);border:1.5px solid #FFAB91}
-.p-tag.poss{background:var(--poss-bg);color:var(--poss);border:1.5px solid #A5D6A7}
-.p-tag div:first-child{font-family:'Fredoka',sans-serif;font-size:1rem}
-.p-tag div:last-child{font-size:.7rem;opacity:.8;margin-top:2px}
+
 .ex-section{margin-top:1.2rem;padding-top:1rem;border-top:2px dashed var(--lm)}
-.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.9rem;margin-bottom:.8rem}
+.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.95rem;margin-bottom:.8rem}
 .exercise{background:#fafafa;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #eee;transition:.2s}
 .exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
 .exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
-.exercise-q{font-size:.88rem;margin-bottom:.7rem;line-height:1.4}
+.exercise-q{font-size:.9rem;margin-bottom:.7rem;line-height:1.55;font-weight:600}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-.opt-btn{padding:.65rem .5rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text-soft);font-size:.83rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:left}
+.opt-btn{padding:.7rem .55rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text);font-size:.85rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:center;line-height:1.35}
 .opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll)}
 .opt-btn:disabled{cursor:not-allowed;opacity:.7}
 .opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
 .opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
 .opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+
 .fb{margin-top:.7rem;padding:0;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
 .fb.show{display:block;animation:fbSlide .35s ease}
-@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:500px;transform:translateY(0)}}
-.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600}
+@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:600px;transform:translateY(0)}}
+.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600}
 .fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
 .fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
 .fb-header .fb-icon{font-size:1.2rem}
 .fb-body{padding:.8rem 1rem}
 .fb.fb-ok .fb-body{background:var(--ok-bg)}
 .fb.fb-bad .fb-body{background:var(--err-bg)}
-.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.4rem}
+.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem}
 .fb-row:last-child{margin-bottom:0}
-.fb-row .fb-dot{font-size:.9rem;flex-shrink:0;margin-top:1px}
-.fb-row .fb-text{flex:1}
+.fb-row .fb-dot{font-size:.95rem;flex-shrink:0;margin-top:1px}
+.fb-row .fb-text{flex:1;line-height:1.55}
+.fb-row .fb-text strong{color:var(--text)}
 .fb-correct-answer{color:var(--ok);font-weight:700}
 .fb-wrong-reason{color:var(--err);font-weight:600}
-.fb-example{display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;padding:3px 10px;border-radius:6px;font-size:.78rem;font-weight:700}
+.fb-example{display:inline-block;margin-top:.5rem;padding:5px 12px;border-radius:6px;font-size:.79rem;font-weight:700}
 .fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
 .fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
-.fb-tip{margin-top:.5rem;padding:.5rem .7rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.76rem;color:#6D4C00}
+.fb-tip{margin-top:.5rem;padding:.5rem .75rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.78rem;color:#6D4C00;line-height:1.5}
 .fb-tip strong{color:var(--ld)}
+
 .score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
 .score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
 .score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+
 .summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
 .summary-final.show{display:block;animation:fadeIn .4s ease}
-.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.2rem}
+.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.15rem}
 .summary-final ul{list-style:none}
-.summary-final li{padding:4px 0 4px 20px;position:relative;font-size:.83rem;color:var(--text-soft)}
-.summary-final li:before{content:"✔";position:absolute;left:0;color:var(--lp);font-weight:700}
-@media(max-width:600px){.level-header h1{font-size:1.4rem}.step-tabs{flex-wrap:wrap}.card{padding:1.2rem}.compare-grid{grid-template-columns:1fr}.pronoun-map{grid-template-columns:repeat(3,1fr)}}
+.summary-final li{padding:5px 0 5px 22px;position:relative;font-size:.85rem;color:var(--text-soft);line-height:1.6}
+.summary-final li:before{content:"\2713";position:absolute;left:0;color:var(--lp);font-weight:700;font-size:1rem}
+.summary-final .total-score{margin-top:1rem;padding:.8rem;background:var(--ll);border-radius:10px;text-align:center;font-family:'Fredoka',sans-serif}
+.summary-final .total-score .big{font-size:1.6rem;color:var(--ld)}
+.summary-final .total-score .small{font-size:.8rem;color:var(--text-soft);font-weight:600}
 
+@media(max-width:600px){
+.level-header h1{font-size:1.4rem}
+.card{padding:1.2rem}
+.compare-grid,.viz-grid{grid-template-columns:1fr 1fr}
+.timeline{flex-direction:column}
+.tl-arrow{transform:rotate(90deg)}
+.opts{grid-template-columns:1fr}
+}
+
+.why-box{background:#EDF7ED;border:1.5px solid #A5D6A7;border-left:4px solid var(--ok);border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;font-size:.83rem;line-height:1.6}.why-box .wt{font-family:'Fredoka',sans-serif;color:var(--ok);font-size:.8rem;display:block;margin-bottom:.2rem}.note-box{background:var(--note-bg);border:1.5px solid var(--note-border);border-left:4px solid var(--lp);border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;font-size:.83rem;line-height:1.6}.note-box .nt{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.8rem;display:block;margin-bottom:.2rem}.illus{display:flex;justify-content:center;align-items:center;gap:.5rem;margin:.4rem 0 1rem;background:linear-gradient(135deg,#FFF9C4,#FFECB3);border:2px dashed var(--lm);border-radius:16px;padding:1rem}.illus .big{font-size:3.2rem;line-height:1}.illus .big.sm{font-size:2.4rem}.info-illus{display:flex;align-items:center;gap:.8rem;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin:.6rem 0}.info-illus .emo{font-size:2.4rem;line-height:1;flex-shrink:0}.info-illus .txt{font-size:.85rem;line-height:1.55}.info-illus .txt b{color:var(--ld)}.eg-card{position:relative;display:flex;align-items:center;gap:.7rem;background:#E3F2FD;border:2px solid #64B5F6;border-radius:12px;padding:1rem .9rem .9rem;margin:.4rem 0 1.1rem}.eg-card .eg-emo{font-size:2.3rem;line-height:1;flex-shrink:0}.eg-card .eg-body .en{font-weight:800;color:#0D47A1;font-size:.95rem;line-height:1.4}.eg-card .eg-body .es{font-family:'Lora',serif;font-style:italic;color:#1565C0;font-size:.82rem;margin-top:3px}.eg-card::before{content:'\1F4DD EJEMPLO';position:absolute;top:-11px;left:14px;background:#1565C0;color:#fff;font-family:'Fredoka',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.06em;padding:2px 9px;border-radius:20px}.eg-card.ok{background:#E8F5E9;border-color:#81C784}.eg-card.ok .en{color:#1B5E20}.eg-card.ok .es{color:#2E7D32}.eg-card.ok::before{content:'\2705 BIEN';background:#2E7D32}.eg-card.bad{background:#FFEBEE;border-color:#EF9A9A}.eg-card.bad .en{color:#B71C1C}.eg-card.bad .es{color:#C62828}.eg-card.bad::before{content:'\274C MAL';background:#C62828}
+.art-hero{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.8rem 0}.art-hero.three{grid-template-columns:1fr 1fr 1fr}.art-box{background:#fff;border:2px solid var(--lm);border-radius:16px;padding:1rem .9rem;text-align:center;box-shadow:0 2px 10px rgba(249,168,37,.10)}.art-box .word{font-family:'Fredoka',sans-serif;font-size:2.6rem;font-weight:700;color:var(--ld);line-height:1;background:linear-gradient(135deg,#FFF9C4,#FFE082);border-radius:12px;padding:.5rem 0;margin-bottom:.5rem}.art-box.eng .word{background:linear-gradient(135deg,#E3F2FD,#90CAF9);color:#0D47A1}.art-box .role{font-family:'Fredoka',sans-serif;font-size:.78rem;color:var(--lp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}.art-box.eng .role{color:#1976D2}.art-box .desc{font-size:.8rem;color:var(--text-soft);line-height:1.5}.vs-grid{margin:.8rem 0}.vs-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:.5rem;margin:.55rem 0}.vs-side{border-radius:12px;padding:.7rem .8rem;font-size:.84rem;line-height:1.45}.vs-side .flag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:.2rem;opacity:.85}.vs-side.es{background:var(--ll);border:1.5px solid var(--lm)}.vs-side.es .flag{color:var(--ld)}.vs-side.en{background:#E3F2FD;border:1.5px solid #90CAF9}.vs-side.en .flag{color:#1565C0}.vs-mid{display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--lp)}@media(max-width:600px){.art-hero,.art-hero.three{grid-template-columns:1fr}.vs-row{grid-template-columns:1fr;gap:.3rem}.vs-mid{transform:rotate(90deg);padding:.1rem 0}}.audio-row{display:flex;gap:6px;margin-top:.55rem;flex-wrap:wrap}.audio-btn{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;border:1.5px solid #90CAF9;background:#fff;color:#0D47A1;padding:3px 11px;border-radius:8px;cursor:pointer;transition:all .2s;user-select:none}.audio-btn:hover{background:#E3F2FD;border-color:#42A5F5;transform:translateY(-1px)}.audio-btn.playing{border-color:var(--lp);background:var(--lglow);color:var(--ld)}.audio-btn .flag{font-size:.85rem}.eg-card.ok .audio-btn{border-color:#81C784;color:#1B5E20}.eg-card.ok .audio-btn:hover{background:#E8F5E9;border-color:#66BB6A}#voice-status{text-align:center;font-size:.76rem;color:var(--text-soft);margin:0 0 1rem;padding:.5rem .7rem;background:var(--card);border-radius:8px;border:1px solid var(--border);display:none}
 </style>
 </head>
+
 <body>
 <div class="container">
 <div class="level-header">
-<div class="level-badge">💛 Pre-A1</div>
-<h1>📝 Grammar Summary</h1>
-<div class="module-name">🪪 Personal Identity — Pronombres Personales</div>
-<p class="subtitle">5 pasos pedagógicos · 25 ejercicios interactivos</p>
+<div class="level-badge">Pre-A1 · Nivel Básico</div>
+<h1>Grammar Summary</h1>
+<div class="module-name">🪪 Pronombres Personales</div>
+<p class="subtitle">I · You · He · She · It · We · Him · Her · His · 5 pasos × 5 ejercicios</p>
 </div>
-<div class="step-tabs" id="stepTabs">
-<button class="step-tab active" id="tab-s0">1. 🇪🇸 Repaso en Español</button>
-<button class="step-tab" id="tab-s1">2. 🤝 Similitudes</button>
-<button class="step-tab" id="tab-s2">3. ⚡ Diferencias</button>
-<button class="step-tab" id="tab-s3">4. 💡 Consejos</button>
-<button class="step-tab" id="tab-s4">5. ✨ Práctica Final</button>
-</div>
-<div id="cardArea">
-<div class="card active" id="card-s0">
-<div class="section-label">Paso 1 de 5</div>
-<div class="section-title">Paso 1: 🇪🇸 Repaso en Español</div>
-<div class="section-desc">Los pronombres personales reemplazan el nombre de una persona o cosa para no repetirlo.</div>
-
-<div class="compare-grid">
-  <div class="compare-card esp">
-    <h4>🇪🇸 Español</h4>
-    <ul>
-      <li>Yo → primera persona</li>
-      <li>Tú → segunda persona</li>
-      <li>Él / Ella → tercera persona</li>
-      <li>Nosotros → primera plural</li>
-      <li>Eso / Aquello → cosas</li>
-    </ul>
-  </div>
-  <div class="compare-card eng">
-    <h4>🇬🇧 English</h4>
-    <ul>
-      <li>I → first person</li>
-      <li>You → second person</li>
-      <li>He / She → third person</li>
-      <li>We → first plural</li>
-      <li>It → things/animals</li>
-    </ul>
-  </div>
-</div>
-
-<div class="ex-row"><div class="icon">👦</div><div><div class="en">Juan está feliz → <b>Él</b> está feliz</div><div class="es">"Él" reemplaza el nombre "Juan" para no repetirlo</div></div></div>
-<div class="ex-row"><div class="icon">📚</div><div><div class="en">El libro es nuevo → <b>Eso</b> es nuevo</div><div class="es">"Eso" reemplaza a "el libro" — una cosa inanimada</div></div></div>
-<div class="ex-row"><div class="icon">👨‍👩‍👧</div><div><div class="en">María y yo somos amigos → <b>Nosotros</b> somos amigos</div><div class="es">"Nosotros" agrupa a más de una persona incluyéndote a ti</div></div></div>
-
-<div class="tip-card"><strong>💡 Recuerda:</strong> En español podemos decir "Estoy feliz" sin usar el pronombre. En inglés el pronombre <em>siempre</em> es obligatorio.</div>
-<div class="ex-section"><h3>✏️ Ejercicios — Repaso en Español</h3>
-<div class="exercise" id="s0e0"><div class="exercise-q">1. ¿Qué pronombre reemplaza a ’María’ en ’María es amable’?</div><div class="opts"><button class="opt-btn" id="s0e0ba">a) Él</button><button class="opt-btn" id="s0e0bb">b) Ella</button></div><div class="fb fb-ok" id="fbok-s0e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Ella</span> — María es mujer → usamos ’Ella’ para reemplazar su nombre.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Él’ se usa para hombres. María es mujer, necesitamos ’Ella’.</div></div><div class="fb-example">📝 María es amable → Ella es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Él = hombre · Ella = mujer</div></div></div><div class="fb fb-bad" id="fbbad-s0e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Él’ se usa para hombres. María es mujer, necesitamos ’Ella’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Ella</span> — María es mujer → usamos ’Ella’ para reemplazar su nombre.</div></div><div class="fb-example">📝 María es amable → Ella es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Él = hombre · Ella = mujer</div></div></div></div>
-<div class="exercise" id="s0e1"><div class="exercise-q">2. ’Carlos y yo’ se reemplaza por:</div><div class="opts"><button class="opt-btn" id="s0e1ba">a) Nosotros</button><button class="opt-btn" id="s0e1bb">b) Tú</button></div><div class="fb fb-ok" id="fbok-s0e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Nosotros</span> — Carlos y yo = dos personas incluyéndome = ’Nosotros’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Tú’ se refiere a otra persona, no incluye a quien habla.</div></div><div class="fb-example">📝 Carlos y yo somos amigos → Nosotros somos amigos</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Yo + otra persona = Nosotros / We</div></div></div><div class="fb fb-bad" id="fbbad-s0e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Tú’ se refiere a otra persona, no incluye a quien habla.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Nosotros</span> — Carlos y yo = dos personas incluyéndome = ’Nosotros’.</div></div><div class="fb-example">📝 Carlos y yo somos amigos → Nosotros somos amigos</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Yo + otra persona = Nosotros / We</div></div></div></div>
-<div class="exercise" id="s0e2"><div class="exercise-q">3. ¿Qué pronombre usas para hablar de ti mismo?</div><div class="opts"><button class="opt-btn" id="s0e2ba">a) Tú</button><button class="opt-btn" id="s0e2bb">b) Yo</button></div><div class="fb fb-ok" id="fbok-s0e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Yo</span> — ’Yo’ siempre habla de uno mismo: ’Yo soy Leo’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Tú’ es para la persona con quien hablas, no para ti mismo.</div></div><div class="fb-example">📝 Yo soy un niño → I am a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Yo = I · ambos hablan de UNO MISMO</div></div></div><div class="fb fb-bad" id="fbbad-s0e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Tú’ es para la persona con quien hablas, no para ti mismo.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Yo</span> — ’Yo’ siempre habla de uno mismo: ’Yo soy Leo’.</div></div><div class="fb-example">📝 Yo soy un niño → I am a boy</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Yo = I · ambos hablan de UNO MISMO</div></div></div></div>
-<div class="exercise" id="s0e3"><div class="exercise-q">4. ’El perro está feliz’ → ¿qué pronombre reemplaza a ’el perro’?</div><div class="opts"><button class="opt-btn" id="s0e3ba">a) Eso (cosa/animal)</button><button class="opt-btn" id="s0e3bb">b) Él (hombre)</button></div><div class="fb fb-ok" id="fbok-s0e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Eso (cosa/animal)</span> — Los animales y cosas se reemplazan con ’Eso’ en español (It en inglés).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Él’ es solo para personas masculinas. Un perro es animal → usamos ’Eso/It’.</div></div><div class="fb-example">📝 El perro es amable → Eso es amable → It is kind</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Animal o cosa = It en inglés, nunca He o She</div></div></div><div class="fb fb-bad" id="fbbad-s0e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Él’ es solo para personas masculinas. Un perro es animal → usamos ’Eso/It’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Eso (cosa/animal)</span> — Los animales y cosas se reemplazan con ’Eso’ en español (It en inglés).</div></div><div class="fb-example">📝 El perro es amable → Eso es amable → It is kind</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Animal o cosa = It en inglés, nunca He o She</div></div></div></div>
-<div class="exercise" id="s0e4"><div class="exercise-q">5. ¿Para qué sirven los pronombres personales?</div><div class="opts"><button class="opt-btn" id="s0e4ba">a) Para describir cómo es algo</button><button class="opt-btn" id="s0e4bb">b) Para reemplazar un nombre y no repetirlo</button></div><div class="fb fb-ok" id="fbok-s0e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Para reemplazar un nombre y no repetirlo</span> — Los pronombres evitan repetir el nombre: ’Ana... Ella...’ en vez de ’Ana... Ana...’</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: Describir algo es función de adjetivos (’amable’, ’feliz’), no de pronombres.</div></div><div class="fb-example">📝 Ana es amable. Ella tiene siete años. → Ella reemplaza a Ana</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Pronombre = reemplaza un nombre para no repetirlo</div></div></div><div class="fb fb-bad" id="fbbad-s0e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">Describir algo es función de adjetivos (’amable’, ’feliz’), no de pronombres.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Para reemplazar un nombre y no repetirlo</span> — Los pronombres evitan repetir el nombre: ’Ana... Ella...’ en vez de ’Ana... Ana...’</div></div><div class="fb-example">📝 Ana es amable. Ella tiene siete años. → Ella reemplaza a Ana</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Pronombre = reemplaza un nombre para no repetirlo</div></div></div></div>
-<div class="score-bar"><div class="num" id="sc-s0">0/5</div><div class="lbl">Puntuación del paso</div></div>
-</div></div>
-<div class="card" id="card-s1">
-<div class="section-label">Paso 2 de 5</div>
-<div class="section-title">Paso 2: 🤝 Similitudes ESP ↔ ENG</div>
-<div class="section-desc">Español e inglés comparten la misma lógica de pronombres personales.</div>
-
-<table class="g-table">
-  <tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th></tr>
-  <tr><td>1ª persona singular</td><td>Yo</td><td><span class="g-subj">I</span></td></tr>
-  <tr><td>2ª persona</td><td>Tú</td><td><span class="g-subj">You</span></td></tr>
-  <tr><td>3ª masc. singular</td><td>Él</td><td><span class="g-subj">He</span></td></tr>
-  <tr><td>3ª fem. singular</td><td>Ella</td><td><span class="g-subj">She</span></td></tr>
-  <tr><td>1ª plural</td><td>Nosotros</td><td><span class="g-subj">We</span></td></tr>
-</table>
-
-<div class="pronoun-map">
-  <div class="p-tag subj"><div>Yo</div><div>→ I</div></div>
-  <div class="p-tag subj"><div>Tú</div><div>→ You</div></div>
-  <div class="p-tag subj"><div>Él</div><div>→ He</div></div>
-  <div class="p-tag subj"><div>Ella</div><div>→ She</div></div>
-  <div class="p-tag subj"><div>Eso/Aquello</div><div>→ It</div></div>
-  <div class="p-tag subj"><div>Nosotros</div><div>→ We</div></div>
-</div>
-
-<div class="tip-card"><strong>💡 Clave:</strong> Los dos idiomas tienen exactamente la misma cantidad de pronombres sujeto. ¡Solo cambia la palabra!</div>
-<div class="ex-section"><h3>✏️ Ejercicios — Similitudes</h3>
-<div class="exercise" id="s1e0"><div class="exercise-q">1. ’Yo’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e0ba">a) I</button><button class="opt-btn" id="s1e0bb">b) You</button></div><div class="fb fb-ok" id="fbok-s1e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I</span> — ’I’ = ’Yo’. Siempre en MAYÚSCULA en inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’You’ = ’Tú’, no ’Yo’. Son personas distintas.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ’I’ siempre mayúscula — única letra que es su propio pronombre</div></div></div><div class="fb fb-bad" id="fbbad-s1e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’You’ = ’Tú’, no ’Yo’. Son personas distintas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I</span> — ’I’ = ’Yo’. Siempre en MAYÚSCULA en inglés.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ’I’ siempre mayúscula — única letra que es su propio pronombre</div></div></div></div>
-<div class="exercise" id="s1e1"><div class="exercise-q">2. ’Ella’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e1ba">a) He</button><button class="opt-btn" id="s1e1bb">b) She</button></div><div class="fb fb-ok" id="fbok-s1e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">She</span> — ’She’ = ’Ella’ (mujeres). ’He’ = ’Él’ (hombres).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He’ es para hombres. Para mujeres usamos ’She’.</div></div><div class="fb-example">📝 She is kind → Ella es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = Ella · He = Él — igual que en español</div></div></div><div class="fb fb-bad" id="fbbad-s1e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He’ es para hombres. Para mujeres usamos ’She’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">She</span> — ’She’ = ’Ella’ (mujeres). ’He’ = ’Él’ (hombres).</div></div><div class="fb-example">📝 She is kind → Ella es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = Ella · He = Él — igual que en español</div></div></div></div>
-<div class="exercise" id="s1e2"><div class="exercise-q">3. ’Nosotros’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e2ba">a) You</button><button class="opt-btn" id="s1e2bb">b) We</button></div><div class="fb fb-ok" id="fbok-s1e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">We</span> — ’We’ = ’Nosotros’. Grupo que incluye a quien habla.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’You’ = ’Tú/Ustedes’, no incluye a quien habla.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We siempre incluye a quien habla + otras personas</div></div></div><div class="fb fb-bad" id="fbbad-s1e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’You’ = ’Tú/Ustedes’, no incluye a quien habla.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">We</span> — ’We’ = ’Nosotros’. Grupo que incluye a quien habla.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We siempre incluye a quien habla + otras personas</div></div></div></div>
-<div class="exercise" id="s1e3"><div class="exercise-q">4. ¿Cuál pronombre en inglés sirve para COSAS y ANIMALES?</div><div class="opts"><button class="opt-btn" id="s1e3ba">a) It</button><button class="opt-btn" id="s1e3bb">b) He</button></div><div class="fb fb-ok" id="fbok-s1e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">It</span> — ’It’ reemplaza cosas, animales y conceptos. Es único del inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He’ es solo para personas masculinas, nunca para cosas.</div></div><div class="fb-example">📝 The dog is kind → It is kind / El perro es amable → Eso es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It = cosa/animal · nunca para personas</div></div></div><div class="fb fb-bad" id="fbbad-s1e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He’ es solo para personas masculinas, nunca para cosas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">It</span> — ’It’ reemplaza cosas, animales y conceptos. Es único del inglés.</div></div><div class="fb-example">📝 The dog is kind → It is kind / El perro es amable → Eso es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It = cosa/animal · nunca para personas</div></div></div></div>
-<div class="exercise" id="s1e4"><div class="exercise-q">5. ’Él’ en inglés es:</div><div class="opts"><button class="opt-btn" id="s1e4ba">a) He</button><button class="opt-btn" id="s1e4bb">b) She</button></div><div class="fb fb-ok" id="fbok-s1e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">He</span> — ’He’ = ’Él’. Para personas masculinas.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’She’ = ’Ella’. Para personas femeninas.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = Él · She = Ella</div></div></div><div class="fb fb-bad" id="fbbad-s1e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’She’ = ’Ella’. Para personas femeninas.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">He</span> — ’He’ = ’Él’. Para personas masculinas.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = Él · She = Ella</div></div></div></div>
-<div class="score-bar"><div class="num" id="sc-s1">0/5</div><div class="lbl">Puntuación del paso</div></div>
-</div></div>
-<div class="card" id="card-s2">
-<div class="section-label">Paso 3 de 5</div>
-<div class="section-title">Paso 3: ⚡ Diferencias Importantes</div>
-<div class="section-desc">Hay diferencias clave que debes memorizar para no cometer errores.</div>
-
-<table class="g-table">
-  <tr><th>🇪🇸 Español</th><th>🇬🇧 Inglés</th><th>💡 Explicación</th></tr>
-  <tr><td>yo (minúscula)</td><td><span class="g-subj">I</span> (MAYÚSCULA)</td><td>"I" siempre mayúscula, sin excepción</td></tr>
-  <tr><td>Tú / Ustedes (2 palabras)</td><td><span class="g-subj">You</span> (1 sola palabra)</td><td>"You" es singular Y plural al mismo tiempo</td></tr>
-  <tr><td>a él / a ella (después del verbo)</td><td><span class="g-obj">Him / Her</span></td><td>Formas objeto — van después del verbo</td></tr>
-  <tr><td>Su (de él)</td><td><span class="g-poss">His</span></td><td>Pronombre posesivo masculino</td></tr>
-  <tr><td>"Está feliz" (sin pronombre)</td><td><span class="g-subj">He</span> is happy</td><td>En inglés el sujeto es OBLIGATORIO</td></tr>
-</table>
-
-<div class="alert-card">
-  <div class="atitle">⚠️ ¡Atención! El pronombre es obligatorio en inglés</div>
-  <p>En español podemos decir "Está feliz" sin mencionar quién. En inglés SIEMPRE necesitas el pronombre:</p>
-</div>
-
-<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">Is happy.</div><div class="es">Incorrecto en inglés — ¿quién? Falta el sujeto.</div></div></div>
-<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en"><span class="g-subj">He</span> is happy.</div><div class="es">Él está feliz. — sujeto obligatorio</div></div></div>
-<div class="ex-row ex-wrong"><div class="icon">❌</div><div><div class="en">i am happy.</div><div class="es">"i" en minúscula — siempre debe ser mayúscula</div></div></div>
-<div class="ex-row ex-right"><div class="icon">✅</div><div><div class="en"><span class="g-subj">I</span> am happy.</div><div class="es">Yo estoy feliz. — "I" siempre mayúscula</div></div></div>
-<div class="ex-section"><h3>✏️ Ejercicios — Diferencias</h3>
-<div class="exercise" id="s2e0"><div class="exercise-q">1. ¿Cómo se escribe ’yo’ en inglés?</div><div class="opts"><button class="opt-btn" id="s2e0ba">a) i</button><button class="opt-btn" id="s2e0bb">b) I</button></div><div class="fb fb-ok" id="fbok-s2e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I</span> — ’I’ siempre con MAYÚSCULA en inglés. Sin excepción.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’i’ minúscula es un error muy común. En inglés ’I’ siempre es mayúscula.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ’I’ es la única letra del abecedario que es su propio pronombre → siempre mayúscula</div></div></div><div class="fb fb-bad" id="fbbad-s2e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’i’ minúscula es un error muy común. En inglés ’I’ siempre es mayúscula.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I</span> — ’I’ siempre con MAYÚSCULA en inglés. Sin excepción.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> ’I’ es la única letra del abecedario que es su propio pronombre → siempre mayúscula</div></div></div></div>
-<div class="exercise" id="s2e1"><div class="exercise-q">2. ’You’ en inglés puede significar:</div><div class="opts"><button class="opt-btn" id="s2e1ba">a) Tú Y Ustedes (ambos)</button><button class="opt-btn" id="s2e1bb">b) Solo Tú</button></div><div class="fb fb-ok" id="fbok-s2e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Tú Y Ustedes (ambos)</span> — ’You’ sirve para una persona (Tú) y para varias (Ustedes). ¡Un solo pronombre para dos!</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: No es solo ’Tú’. ’You’ también reemplaza ’Ustedes’. Es el mismo pronombre.</div></div><div class="fb-example">📝 You are kind → Tú eres amable / You are kind → Ustedes son amables</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You = Tú + Ustedes = un pronombre 2 en 1</div></div></div><div class="fb fb-bad" id="fbbad-s2e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">No es solo ’Tú’. ’You’ también reemplaza ’Ustedes’. Es el mismo pronombre.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Tú Y Ustedes (ambos)</span> — ’You’ sirve para una persona (Tú) y para varias (Ustedes). ¡Un solo pronombre para dos!</div></div><div class="fb-example">📝 You are kind → Tú eres amable / You are kind → Ustedes son amables</div><div class="fb-tip"><strong>💡 Recuerda:</strong> You = Tú + Ustedes = un pronombre 2 en 1</div></div></div></div>
-<div class="exercise" id="s2e2"><div class="exercise-q">3. ’I gave it to ___ ’ (a él). ¿Qué va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e2ba">a) he</button><button class="opt-btn" id="s2e2bb">b) him</button></div><div class="fb fb-ok" id="fbok-s2e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">him</span> — Después del verbo usamos ’him’ (objeto). ’He’ solo va antes del verbo como sujeto.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He’ es el sujeto — va antes del verbo. Después del verbo necesitamos ’him’.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = sujeto (antes del verbo) · Him = objeto (después del verbo)</div></div></div><div class="fb fb-bad" id="fbbad-s2e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He’ es el sujeto — va antes del verbo. Después del verbo necesitamos ’him’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">him</span> — Después del verbo usamos ’him’ (objeto). ’He’ solo va antes del verbo como sujeto.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = sujeto (antes del verbo) · Him = objeto (después del verbo)</div></div></div></div>
-<div class="exercise" id="s2e3"><div class="exercise-q">4. ’I call ___ ’ (a ella). ¿Qué va en el espacio?</div><div class="opts"><button class="opt-btn" id="s2e3ba">a) her</button><button class="opt-btn" id="s2e3bb">b) she</button></div><div class="fb fb-ok" id="fbok-s2e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">her</span> — ’Her’ va después del verbo (objeto). ’She’ solo va como sujeto antes del verbo.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’She’ es el sujeto. Aquí el sujeto es ’I’. Ana está en posición de objeto → ’her’.</div></div><div class="fb-example">📝 I call her → Yo la llamo a ella</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = sujeto · Her = objeto (igual que He/Him pero para mujeres)</div></div></div><div class="fb fb-bad" id="fbbad-s2e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’She’ es el sujeto. Aquí el sujeto es ’I’. Ana está en posición de objeto → ’her’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">her</span> — ’Her’ va después del verbo (objeto). ’She’ solo va como sujeto antes del verbo.</div></div><div class="fb-example">📝 I call her → Yo la llamo a ella</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = sujeto · Her = objeto (igual que He/Him pero para mujeres)</div></div></div></div>
-<div class="exercise" id="s2e4"><div class="exercise-q">5. En inglés, ’¿es correcto decir solo ’Is happy’ sin pronombre?</div><div class="opts"><button class="opt-btn" id="s2e4ba">a) Sí, igual que en español</button><button class="opt-btn" id="s2e4bb">b) No, falta el pronombre sujeto</button></div><div class="fb fb-ok" id="fbok-s2e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">No, falta el pronombre sujeto</span> — En inglés el sujeto es OBLIGATORIO. Siempre debes decir quién: ’He is happy’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: En español omitimos el pronombre a veces, pero en inglés NUNCA se omite.</div></div><div class="fb-example">📝 He is happy → Él está feliz (pronombre He es obligatorio)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Regla de oro: en inglés siempre necesitas decir QUIÉN hace la acción</div></div></div><div class="fb fb-bad" id="fbbad-s2e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">En español omitimos el pronombre a veces, pero en inglés NUNCA se omite.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">No, falta el pronombre sujeto</span> — En inglés el sujeto es OBLIGATORIO. Siempre debes decir quién: ’He is happy’.</div></div><div class="fb-example">📝 He is happy → Él está feliz (pronombre He es obligatorio)</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Regla de oro: en inglés siempre necesitas decir QUIÉN hace la acción</div></div></div></div>
-<div class="score-bar"><div class="num" id="sc-s2">0/5</div><div class="lbl">Puntuación del paso</div></div>
-</div></div>
-<div class="card" id="card-s3">
-<div class="section-label">Paso 4 de 5</div>
-<div class="section-title">Paso 4: 💡 Consejos Prácticos</div>
-<div class="section-desc">Trucos para recordar los pronombres sin confundirte.</div>
-
-<div class="tip-card"><strong>Tip 1 — La regla de la MAYÚSCULA:</strong> "I" siempre mayúscula. En español "yo" es minúscula, pero en inglés "I" es especial. Truco: imagina que eres tan importante que tu pronombre merece mayúscula.</div>
-<div class="tip-card"><strong>Tip 2 — "You" es 2×1:</strong> Sirve para "Tú" (singular) y "Ustedes" (plural). ¡Menos trabajo para memorizar! Cuando no sabes cuántas personas son, "You" siempre funciona.</div>
-<div class="tip-card"><strong>Tip 3 — Sujeto vs. Objeto:</strong> He/She van ANTES del verbo (sujeto). Him/Her van DESPUÉS del verbo (objeto). Truco: "Le doy a ___ " → objeto → him/her.</div>
-<div class="tip-card"><strong>Tip 4 — "It" para todo lo que no es persona:</strong> Cosas, animales, el clima, el tiempo, el día. "It is Monday." "It is raining." "It is a dog."</div>
-
-<div class="section-label">Mapa visual — Pronombres sujeto</div>
-<div class="pronoun-map">
-  <div class="p-tag subj"><div>I</div><div>Yo</div></div>
-  <div class="p-tag subj"><div>You</div><div>Tú/Uds.</div></div>
-  <div class="p-tag subj"><div>He</div><div>Él</div></div>
-  <div class="p-tag subj"><div>She</div><div>Ella</div></div>
-  <div class="p-tag subj"><div>It</div><div>Eso/Animal</div></div>
-  <div class="p-tag subj"><div>We</div><div>Nosotros</div></div>
-</div>
-
-<div class="section-label">Mapa visual — Objeto y Posesivo</div>
-<div class="pronoun-map">
-  <div class="p-tag obj"><div>Him</div><div>a él</div></div>
-  <div class="p-tag obj"><div>Her</div><div>a ella</div></div>
-  <div class="p-tag poss"><div>His</div><div>de él</div></div>
-</div>
-<div class="ex-section"><h3>✏️ Ejercicios — Consejos</h3>
-<div class="exercise" id="s3e0"><div class="exercise-q">1. ’___ dad is kind.’ (Su papá — de él). ¿Qué pronombre usas?</div><div class="opts"><button class="opt-btn" id="s3e0ba">a) His</button><button class="opt-btn" id="s3e0bb">b) Him</button></div><div class="fb fb-ok" id="fbok-s3e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">His</span> — ’His’ es el pronombre posesivo masculino: ’His dad’ = ’Su papá de él’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Him’ es el pronombre objeto, no posesivo. ’His’ indica pertenencia.</div></div><div class="fb-example">📝 His dad is kind → Su papá (de él) es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> His = de él (posesivo, antes de sustantivo) · Him = a él (objeto, después de verbo)</div></div></div><div class="fb fb-bad" id="fbbad-s3e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Him’ es el pronombre objeto, no posesivo. ’His’ indica pertenencia.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">His</span> — ’His’ es el pronombre posesivo masculino: ’His dad’ = ’Su papá de él’.</div></div><div class="fb-example">📝 His dad is kind → Su papá (de él) es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> His = de él (posesivo, antes de sustantivo) · Him = a él (objeto, después de verbo)</div></div></div></div>
-<div class="exercise" id="s3e1"><div class="exercise-q">2. ’I see ___ .’ (a él). ¿Qué pronombre usas?</div><div class="opts"><button class="opt-btn" id="s3e1ba">a) he</button><button class="opt-btn" id="s3e1bb">b) him</button></div><div class="fb fb-ok" id="fbok-s3e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">him</span> — Después del verbo ’see’ necesitamos el objeto: ’him’. ’He’ solo va como sujeto.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’He’ es sujeto — solo va antes del verbo. Aquí va después de ’see’, así que necesitamos ’him’.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Después de un verbo → objeto: him (no he)</div></div></div><div class="fb fb-bad" id="fbbad-s3e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’He’ es sujeto — solo va antes del verbo. Aquí va después de ’see’, así que necesitamos ’him’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">him</span> — Después del verbo ’see’ necesitamos el objeto: ’him’. ’He’ solo va como sujeto.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Después de un verbo → objeto: him (no he)</div></div></div></div>
-<div class="exercise" id="s3e2"><div class="exercise-q">3. ’___ is a boy.’ ¿Qué pronombre para una cosa/animal?</div><div class="opts"><button class="opt-btn" id="s3e2ba">a) It</button><button class="opt-btn" id="s3e2bb">b) Him</button></div><div class="fb fb-ok" id="fbok-s3e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">It</span> — ’It’ se usa como sujeto para cosas y animales. ’It is a dog.’ ’It is Monday.’</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Him’ es el objeto masculino, no el sujeto para cosas. Para cosas como sujeto usamos ’It’.</div></div><div class="fb-example">📝 It is a family → Es una familia / It is a dog → Es un perro</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It puede ser sujeto o objeto para cosas/animales</div></div></div><div class="fb fb-bad" id="fbbad-s3e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Him’ es el objeto masculino, no el sujeto para cosas. Para cosas como sujeto usamos ’It’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">It</span> — ’It’ se usa como sujeto para cosas y animales. ’It is a dog.’ ’It is Monday.’</div></div><div class="fb-example">📝 It is a family → Es una familia / It is a dog → Es un perro</div><div class="fb-tip"><strong>💡 Recuerda:</strong> It puede ser sujeto o objeto para cosas/animales</div></div></div></div>
-<div class="exercise" id="s3e3"><div class="exercise-q">4. ¿Cuál de estas oraciones está bien escrita?</div><div class="opts"><button class="opt-btn" id="s3e3ba">a) i am happy</button><button class="opt-btn" id="s3e3bb">b) I am happy</button></div><div class="fb fb-ok" id="fbok-s3e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I am happy</span> — ’I am happy’ — ’I’ siempre mayúscula en inglés.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’i am happy’ tiene ’i’ minúscula. En inglés ’I’ SIEMPRE es mayúscula. Es la única forma correcta.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Nunca escribas ’i’ minúscula cuando es el pronombre yo</div></div></div><div class="fb fb-bad" id="fbbad-s3e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’i am happy’ tiene ’i’ minúscula. En inglés ’I’ SIEMPRE es mayúscula. Es la única forma correcta.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I am happy</span> — ’I am happy’ — ’I’ siempre mayúscula en inglés.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Nunca escribas ’i’ minúscula cuando es el pronombre yo</div></div></div></div>
-<div class="exercise" id="s3e4"><div class="exercise-q">5. ’I call ___ .’ (a ella). ¿Qué pronombre usas?</div><div class="opts"><button class="opt-btn" id="s3e4ba">a) her</button><button class="opt-btn" id="s3e4bb">b) she</button></div><div class="fb fb-ok" id="fbok-s3e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">her</span> — Después del verbo ’call’ va el objeto: ’her’. ’She’ solo va como sujeto.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’She’ es sujeto, va antes del verbo. ’Her’ va después del verbo como objeto.</div></div><div class="fb-example">📝 I call her → Yo la llamo a ella</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = sujeto (antes del verbo) · Her = objeto (después del verbo)</div></div></div><div class="fb fb-bad" id="fbbad-s3e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’She’ es sujeto, va antes del verbo. ’Her’ va después del verbo como objeto.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">her</span> — Después del verbo ’call’ va el objeto: ’her’. ’She’ solo va como sujeto.</div></div><div class="fb-example">📝 I call her → Yo la llamo a ella</div><div class="fb-tip"><strong>💡 Recuerda:</strong> She = sujeto (antes del verbo) · Her = objeto (después del verbo)</div></div></div></div>
-<div class="score-bar"><div class="num" id="sc-s3">0/5</div><div class="lbl">Puntuación del paso</div></div>
-</div></div>
-<div class="card" id="card-s4">
-<div class="section-label">Paso 5 de 5</div>
-<div class="section-title">Paso 5: ✨ Práctica Final</div>
-<div class="section-desc">Aplica todo lo que aprendiste sobre pronombres personales.</div>
-
-<div class="formula-box">
-  <div><span class="g-subj">Sujeto</span>: I / You / He / She / It / We</div>
-  <div><span class="g-obj">Objeto</span>: Him / Her / It</div>
-  <div><span class="g-poss">Posesivo</span>: His (de él)</div>
-</div>
-
-<div class="section-label">Ejemplos con color-coding</div>
-<div class="ex-row ex-right"><div class="icon">👦</div><div><div class="en"><span class="g-subj">I</span> <span class="g-verb">am</span> <span class="g-comp">a boy</span>.</div><div class="es">Yo soy un niño.</div></div></div>
-<div class="ex-row ex-right"><div class="icon">👧</div><div><div class="en"><span class="g-subj">She</span> <span class="g-verb">is</span> <span class="g-comp">kind</span>.</div><div class="es">Ella es amable.</div></div></div>
-<div class="ex-row ex-right"><div class="icon">👨‍👩‍👧</div><div><div class="en"><span class="g-poss">His</span> <span class="g-comp">dad</span> <span class="g-verb">is</span> <span class="g-comp">kind</span>.</div><div class="es">Su papá (de él) es amable.</div></div></div>
-<div class="ex-row ex-right"><div class="icon">📞</div><div><div class="en"><span class="g-subj">I</span> <span class="g-verb">call</span> <span class="g-obj">her</span>.</div><div class="es">Yo la llamo (a ella).</div></div></div>
-<div class="ex-row ex-right"><div class="icon">👀</div><div><div class="en"><span class="g-subj">We</span> <span class="g-verb">are</span> <span class="g-comp">the same age</span>.</div><div class="es">Nosotros tenemos la misma edad.</div></div></div>
-
-<div class="alert-card">
-  <div class="atitle">⚠️ Los 3 errores más comunes</div>
-  <p>❌ "i am happy" → ✅ "<b>I</b> am happy" — I siempre mayúscula<br>❌ "Him is a boy" → ✅ "<b>He</b> is a boy" — Him es objeto, no sujeto<br>❌ "I see she" → ✅ "I see <b>her</b>" — She es sujeto, después del verbo usamos Her</p>
-</div>
-<div class="ex-section"><h3>✏️ Ejercicios — Práctica Final</h3>
-<div class="exercise" id="s4e0"><div class="exercise-q">1. ’___ am happy.’ (Yo). ¿Cuál es el pronombre correcto?</div><div class="opts"><button class="opt-btn" id="s4e0ba">a) I</button><button class="opt-btn" id="s4e0bb">b) You</button></div><div class="fb fb-ok" id="fbok-s4e0"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">I</span> — ’I am happy.’ — I = Yo. Siempre mayúscula, siempre con ’am’.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’You’ = Tú/Ustedes, no Yo. Para hablar de ti mismo usa ’I’.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am siempre van juntos — la pareja perfecta</div></div></div><div class="fb fb-bad" id="fbbad-s4e0"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’You’ = Tú/Ustedes, no Yo. Para hablar de ti mismo usa ’I’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">I</span> — ’I am happy.’ — I = Yo. Siempre mayúscula, siempre con ’am’.</div></div><div class="fb-example">📝 I am a boy → Yo soy un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> I + am siempre van juntos — la pareja perfecta</div></div></div></div>
-<div class="exercise" id="s4e1"><div class="exercise-q">2. ’___ is a boy.’ (Él). ¿Cuál es el pronombre correcto?</div><div class="opts"><button class="opt-btn" id="s4e1ba">a) Him</button><button class="opt-btn" id="s4e1bb">b) He</button></div><div class="fb fb-ok" id="fbok-s4e1"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">He</span> — ’He is a boy.’ — He es el pronombre sujeto masculino.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’Him’ es objeto, no sujeto. El sujeto de la oración necesita ’He’.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = sujeto (antes del verbo) · Him = objeto (después del verbo)</div></div></div><div class="fb fb-bad" id="fbbad-s4e1"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’Him’ es objeto, no sujeto. El sujeto de la oración necesita ’He’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">He</span> — ’He is a boy.’ — He es el pronombre sujeto masculino.</div></div><div class="fb-example">📝 He is a boy → Él es un niño</div><div class="fb-tip"><strong>💡 Recuerda:</strong> He = sujeto (antes del verbo) · Him = objeto (después del verbo)</div></div></div></div>
-<div class="exercise" id="s4e2"><div class="exercise-q">3. ’I call ___ .’ (a él). ¿Cuál es el pronombre correcto?</div><div class="opts"><button class="opt-btn" id="s4e2ba">a) him</button><button class="opt-btn" id="s4e2bb">b) his</button></div><div class="fb fb-ok" id="fbok-s4e2"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">him</span> — ’I call him.’ — ’him’ es el objeto masculino, va después del verbo.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’His’ es posesivo (de él), no objeto. Después de ’call’ necesitas ’him’.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Him = a él (objeto) · His = de él (posesivo)</div></div></div><div class="fb fb-bad" id="fbbad-s4e2"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’His’ es posesivo (de él), no objeto. Después de ’call’ necesitas ’him’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">him</span> — ’I call him.’ — ’him’ es el objeto masculino, va después del verbo.</div></div><div class="fb-example">📝 I see him → Yo lo veo a él</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Him = a él (objeto) · His = de él (posesivo)</div></div></div></div>
-<div class="exercise" id="s4e3"><div class="exercise-q">4. ’___ family is kind.’ (de ella). ¿Cuál es el pronombre correcto?</div><div class="opts"><button class="opt-btn" id="s4e3ba">a) Her</button><button class="opt-btn" id="s4e3bb">b) She</button></div><div class="fb fb-ok" id="fbok-s4e3"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">Her</span> — ’Her family’ — ’Her’ antes de un sustantivo indica posesión (de ella).</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’She’ es sujeto, no posesivo. Para indicar pertenencia femenina usamos ’Her’.</div></div><div class="fb-example">📝 Her family is kind → Su familia (de ella) es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Her puede ser objeto (después del verbo) Y posesivo (antes de un sustantivo)</div></div></div><div class="fb fb-bad" id="fbbad-s4e3"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’She’ es sujeto, no posesivo. Para indicar pertenencia femenina usamos ’Her’.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">Her</span> — ’Her family’ — ’Her’ antes de un sustantivo indica posesión (de ella).</div></div><div class="fb-example">📝 Her family is kind → Su familia (de ella) es amable</div><div class="fb-tip"><strong>💡 Recuerda:</strong> Her puede ser objeto (después del verbo) Y posesivo (antes de un sustantivo)</div></div></div></div>
-<div class="exercise" id="s4e4"><div class="exercise-q">5. ’___ are the same age.’ (Nosotros). ¿Cuál es el pronombre correcto?</div><div class="opts"><button class="opt-btn" id="s4e4ba">a) We</button><button class="opt-btn" id="s4e4bb">b) It</button></div><div class="fb fb-ok" id="fbok-s4e4"><div class="fb-header"><span class="fb-icon">🎉</span> ¡Correcto!</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text"><span class="fb-correct-answer">We</span> — ’We are the same age.’ — We = Nosotros. Grupo que incluye a quien habla.</div></div><div class="fb-row"><span class="fb-dot">💡</span><div class="fb-text">La otra opción: ’It’ es para cosas y animales, no para grupos de personas. Nosotros = We.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We = grupo que incluye a quien habla</div></div></div><div class="fb fb-bad" id="fbbad-s4e4"><div class="fb-header"><span class="fb-icon">😕</span> No es correcto</div><div class="fb-body"><div class="fb-row"><span class="fb-dot">❌</span><div class="fb-text"><span class="fb-wrong-reason">’It’ es para cosas y animales, no para grupos de personas. Nosotros = We.</span></div></div><div class="fb-row"><span class="fb-dot">✅</span><div class="fb-text">La respuesta correcta es <span class="fb-correct-answer">We</span> — ’We are the same age.’ — We = Nosotros. Grupo que incluye a quien habla.</div></div><div class="fb-example">📝 We are happy → Nosotros estamos felices</div><div class="fb-tip"><strong>💡 Recuerda:</strong> We = grupo que incluye a quien habla</div></div></div></div>
-<div class="score-bar"><div class="num" id="sc-s4">0/5</div><div class="lbl">Puntuación del paso</div></div>
-</div></div>
-</div>
+<div id="voice-status">⏳ Cargando voces del navegador...</div>
+<div class="step-tabs" id="stepTabs"></div>
+<div id="cardArea"></div>
 <div class="summary-final" id="summaryFinal">
-<h3>🎓 Lo que aprendiste — Pronouns</h3>
-<ul>
-<li><b>Sujeto:</b> I, You, He, She, It, We — van ANTES del verbo</li>
-<li><b>Objeto:</b> Him (a él), Her (a ella) — van DESPUÉS del verbo</li>
-<li><b>Posesivo:</b> His (de él), Her (de ella) — van ANTES de un sustantivo</li>
-<li><b>'I'</b> siempre MAYÚSCULA en inglés — nunca 'i'</li>
-<li><b>'You'</b> = Tú (singular) Y Ustedes (plural) — un pronombre para dos</li>
-<li><b>'It'</b> para cosas y animales — nunca para personas</li>
-<li>El sujeto es OBLIGATORIO: 'He is happy' ✅ — 'Is happy' ❌</li>
-</ul>
+<h3>🎓 Lo que aprendiste — Pronombres Personales</h3>
+<ul id="summaryList"></ul>
+<div class="total-score" id="totalScore"></div>
 </div>
 </div>
 <script>
+const ICON_PARTY="🎉";
+const ICON_CHECK="✅";
+const ICON_X="❌";
+const ICON_BULB="💡";
+const ICON_NOTE="📝";
+const ICON_THINK="😕";
+const DASH="—";
+const TEXT_CORRECT="¡Correcto!";
+const TEXT_INCORRECT="No es correcto";
+const TEXT_OTHER_OPT="La otra opción";
+const TEXT_CORRECT_IS="La respuesta correcta es";
+const TEXT_REMEMBER="Recuerda";
+const TEXT_SCORE="Puntuación";
+const TEXT_TOTAL="Total del tema";
+const EX_HEADER="✏️ Ejercicios —";
+const DATA={"summary": ["<b>Sujeto:</b> I, You, He, She, It, We — van ANTES del verbo", "<b>Objeto:</b> Him (a él), Her (a ella) — van DESPUÉS del verbo", "<b>Posesivo:</b> His (de él), Her (de ella) — van ANTES de un sustantivo", "<b>«I»</b> siempre MAYÚSCULA en inglés — nunca «i»", "<b>«You»</b> = Tú (singular) Y Ustedes (plural) — un pronombre para dos", "<b>«It»</b> para cosas y animales — nunca para personas", "El sujeto es OBLIGATORIO: «He is happy» ✅ — «Is happy» ❌"], "steps": [{"icon": "🇪🇸", "title": "Repaso en Español", "html": "<div class=\"section-label\">Paso 1</div><div class=\"section-title\">Paso 1: 🇪🇸 Repaso en Español</div><div class=\"illus\"><span class=\"big\">🧑</span><span class=\"big\">🇪🇸</span></div><div class=\"section-desc\">Los <b>pronombres personales</b> reemplazan el nombre de una persona o cosa para <b>no repetirlo</b>. En vez de decir «Juan... Juan...», decimos «Juan... Él...».</div><div class=\"section-label\">Los pronombres en grande</div><div class=\"art-hero\"><div class=\"art-box\"><div class=\"word\">Él</div><div class=\"role\">Persona masculina</div><div class=\"desc\">Reemplaza el nombre de un hombre: «Juan está feliz» → «Él está feliz».</div></div><div class=\"art-box\"><div class=\"word\">Ella</div><div class=\"role\">Persona femenina</div><div class=\"desc\">Reemplaza el nombre de una mujer: «María es amable» → «Ella es amable».</div></div></div><div class=\"why-box\"><span class=\"wt\">💡 Mi truco personal</span>Si hablo de <b>mí</b> → «Yo». Si hablo <b>contigo</b> → «Tú». Si hablo de <b>otra persona</b> → «Él/Ella». Si hablo de un <b>grupo conmigo</b> → «Nosotros».</div><div class=\"info-illus\"><span class=\"emo\">👦</span><span class=\"txt\"><b>Reemplaza un nombre.</b> «Él/Ella» evitan repetir el nombre de la persona.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👦</span><div class=\"eg-body\"><div class=\"en\">Juan está feliz → <b>Él</b> está feliz.</div><div class=\"es\">«Él» reemplaza «Juan» para no repetirlo.</div></div></div><div class=\"info-illus\"><span class=\"emo\">📚</span><span class=\"txt\"><b>También para cosas.</b> En español «Eso/Aquello» reemplaza a cosas y animales.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🐶</span><div class=\"eg-body\"><div class=\"en\">El perro es amable → <b>Eso</b> es amable.</div><div class=\"es\">«Eso» reemplaza a un animal o cosa.</div></div></div><div class=\"info-illus\"><span class=\"emo\">👨‍👩‍👧</span><span class=\"txt\"><b>Grupos.</b> «Nosotros» agrupa a varias personas, incluyéndote a ti.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👨‍👩‍👧</span><div class=\"eg-body\"><div class=\"en\">María y yo somos amigos → <b>Nosotros</b> somos amigos.</div><div class=\"es\">«Nosotros» = yo + otra persona.</div></div></div><div class=\"why-box\"><span class=\"wt\">💡 ¿Por qué importa?</span>El inglés tiene los mismos pronombres: I, You, He, She, It, We. Solo cambian las palabras, y el sujeto es <b>obligatorio</b> (no se omite como en español).</div>", "exercises": [{"q": "¿Qué pronombre reemplaza a «María» en «María es amable»?", "a": "b", "o": ["Él", "Ella"], "fc": "María es mujer → usamos «Ella».", "fi": "«Él» se usa para hombres. María es mujer → «Ella».", "ex": "María es amable → Ella es amable", "tip": "Él = hombre · Ella = mujer"}, {"q": "«Carlos y yo» se reemplaza por:", "a": "a", "o": ["Nosotros", "Tú"], "fc": "Carlos y yo = dos personas incluyéndome = «Nosotros».", "fi": "«Tú» se refiere a otra persona, no incluye a quien habla.", "ex": "Carlos y yo somos amigos → Nosotros somos amigos", "tip": "Yo + otra persona = Nosotros / We"}, {"q": "¿Qué pronombre usas para hablar de ti mismo?", "a": "b", "o": ["Tú", "Yo"], "fc": "«Yo» siempre habla de uno mismo: «Yo soy Leo».", "fi": "«Tú» es para la persona con quien hablas, no para ti mismo.", "ex": "Yo soy un niño → I am a boy", "tip": "Yo = I · ambos hablan de UNO MISMO"}, {"q": "«El perro está feliz» → ¿qué reemplaza a «el perro»?", "a": "a", "o": ["Eso (cosa/animal)", "Él (hombre)"], "fc": "Animales y cosas se reemplazan con «Eso» (It en inglés).", "fi": "«Él» es solo para personas masculinas. Un perro es animal → «Eso/It».", "ex": "El perro es amable → It is kind", "tip": "Animal o cosa = It en inglés, nunca He o She"}, {"q": "¿Para qué sirven los pronombres personales?", "a": "b", "o": ["Para describir cómo es algo", "Para reemplazar un nombre y no repetirlo"], "fc": "Evitan repetir el nombre: «Ana... Ella...» en vez de «Ana... Ana...».", "fi": "Describir algo es función de adjetivos («amable»), no de pronombres.", "ex": "Ana es amable. Ella tiene siete años.", "tip": "Pronombre = reemplaza un nombre para no repetirlo"}]}, {"icon": "🤝", "title": "Similitudes", "html": "<div class=\"section-label\">Paso 2</div><div class=\"section-title\">Paso 2: 🤝 Similitudes ESP ↔ ENG</div><div class=\"illus\"><span class=\"big\">🇪🇸</span><span class=\"big\">🤝</span><span class=\"big\">🇬🇧</span></div><div class=\"section-desc\">Español e inglés comparten la misma lógica de pronombres personales. A cada pronombre español le corresponde uno en inglés.</div><table class=\"g-table\"><tr><th>Similitud</th><th>🇪🇸 Español</th><th>🇬🇧 English</th></tr><tr><td>1ª persona singular</td><td>Yo</td><td><span class=\"g-subj\">I</span></td></tr><tr><td>2ª persona</td><td>Tú</td><td><span class=\"g-subj\">You</span></td></tr><tr><td>3ª masc. singular</td><td>Él</td><td><span class=\"g-subj\">He</span></td></tr><tr><td>3ª fem. singular</td><td>Ella</td><td><span class=\"g-subj\">She</span></td></tr><tr><td>1ª plural</td><td>Nosotros</td><td><span class=\"g-subj\">We</span></td></tr></table><div class=\"section-label\">Mapa de pronombres sujeto</div><div class=\"viz-grid\"><div class=\"viz-item\"><span class=\"ico\">🧑</span><span class=\"lbl\">I</span><span class=\"es\">Yo</span></div><div class=\"viz-item\"><span class=\"ico\">👉</span><span class=\"lbl\">You</span><span class=\"es\">Tú</span></div><div class=\"viz-item\"><span class=\"ico\">👦</span><span class=\"lbl\">He</span><span class=\"es\">Él</span></div><div class=\"viz-item\"><span class=\"ico\">👧</span><span class=\"lbl\">She</span><span class=\"es\">Ella</span></div><div class=\"viz-item\"><span class=\"ico\">📦</span><span class=\"lbl\">It</span><span class=\"es\">Eso/Animal</span></div><div class=\"viz-item\"><span class=\"ico\">👨‍👩‍👧</span><span class=\"lbl\">We</span><span class=\"es\">Nosotros</span></div></div><div class=\"info-illus\"><span class=\"emo\">🧑</span><span class=\"txt\"><b>I = Yo.</b> Para hablar de uno mismo, igual que en español. (boy = niño)</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🧑</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">I</span> am a boy.</div><div class=\"es\">Yo soy un niño. (I = yo)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">👧</span><span class=\"txt\"><b>She = Ella · He = Él.</b> Para personas, igual que en español. (kind = amable)</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👧</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">She</span> is kind.</div><div class=\"es\">Ella es amable. (she = ella)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'She is kind.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'She is kind.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">👨‍👩‍👧</span><span class=\"txt\"><b>We = Nosotros.</b> Grupo que incluye a quien habla. (happy = feliz)</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👨‍👩‍👧</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">We</span> are happy.</div><div class=\"es\">Nosotros estamos felices. (we = nosotros)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'We are happy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'We are happy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"why-box\"><span class=\"wt\">💡 ¿Por qué importa?</span>Los dos idiomas tienen exactamente la misma cantidad de pronombres sujeto. ¡Solo cambia la palabra!</div>", "exercises": [{"q": "«Yo» en inglés es:", "a": "a", "o": ["I", "You"], "fc": "«I» = «Yo». Siempre en MAYÚSCULA en inglés.", "fi": "«You» = «Tú», no «Yo». Son personas distintas.", "ex": "I am a boy → Yo soy un niño", "tip": "«I» siempre mayúscula — única letra que es su propio pronombre"}, {"q": "«Ella» en inglés es:", "a": "b", "o": ["He", "She"], "fc": "«She» = «Ella» (mujeres). «He» = «Él» (hombres).", "fi": "«He» es para hombres. Para mujeres usamos «She».", "ex": "She is kind → Ella es amable", "tip": "She = Ella · He = Él"}, {"q": "«Nosotros» en inglés es:", "a": "b", "o": ["You", "We"], "fc": "«We» = «Nosotros». Grupo que incluye a quien habla.", "fi": "«You» = «Tú/Ustedes», no incluye a quien habla.", "ex": "We are happy → Nosotros estamos felices", "tip": "We siempre incluye a quien habla + otras personas"}, {"q": "¿Cuál pronombre en inglés sirve para COSAS y ANIMALES?", "a": "a", "o": ["It", "He"], "fc": "«It» reemplaza cosas, animales y conceptos.", "fi": "«He» es solo para personas masculinas, nunca para cosas.", "ex": "The dog is kind → It is kind", "tip": "It = cosa/animal · nunca para personas"}, {"q": "«Él» en inglés es:", "a": "a", "o": ["He", "She"], "fc": "«He» = «Él». Para personas masculinas.", "fi": "«She» = «Ella». Para personas femeninas.", "ex": "He is a boy → Él es un niño", "tip": "He = Él · She = Ella"}]}, {"icon": "⚡", "title": "Diferencias", "html": "<div class=\"section-label\">Paso 3</div><div class=\"section-title\">Paso 3: ⚡ Diferencias Importantes</div><div class=\"illus\"><span class=\"big\">🔠</span><span class=\"big\">↔️</span><span class=\"big\">✋</span></div><div class=\"section-desc\">Hay diferencias clave que debes memorizar para no cometer errores. Compara los dos idiomas lado a lado.</div><div class=\"section-label\">Comparación Español ↔ English</div><div class=\"vs-grid\"><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>«yo» va en <b>minúscula</b>.</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>«<b>I</b>» siempre en <b>MAYÚSCULA</b>, sin excepción.</div></div><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>«Tú» y «Ustedes»: dos palabras.</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>«<b>You</b>»: una sola palabra para singular y plural.</div></div><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>El sujeto puede omitirse: «Está feliz».</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>El <b>sujeto es obligatorio</b>: «<b>He</b> is happy».</div></div></div><div class=\"section-label\">Sujeto · Objeto · Posesivo</div><div class=\"art-hero three\"><div class=\"art-box eng\"><div class=\"word\">He</div><div class=\"role\">Sujeto</div><div class=\"desc\">Va ANTES del verbo: «He is happy».</div></div><div class=\"art-box eng\"><div class=\"word\">Him</div><div class=\"role\">Objeto</div><div class=\"desc\">Va DESPUÉS del verbo: «I see him».</div></div><div class=\"art-box eng\"><div class=\"word\">His</div><div class=\"role\">Posesivo</div><div class=\"desc\">Va ANTES de un sustantivo: «His dad».</div></div></div><div class=\"alert-card\"><div class=\"atitle\">⚠️ El pronombre es OBLIGATORIO en inglés</div><p>En español decimos «Está feliz» sin mencionar quién. En inglés SIEMPRE necesitas el pronombre: «He is happy».</p></div><div class=\"info-illus\"><span class=\"emo\">✅</span><span class=\"txt\"><b>Bien:</b> con sujeto. El inglés siempre dice QUIÉN. (happy = feliz)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">😊</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">He</span> is happy.</div><div class=\"es\">Él está feliz — sujeto obligatorio.</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'He is happy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'He is happy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"eg-card bad\"><span class=\"eg-emo\">🚫</span><div class=\"eg-body\"><div class=\"en\">Is happy.</div><div class=\"es\">¿Quién? Falta el sujeto.</div></div></div><div class=\"info-illus\"><span class=\"emo\">🔠</span><span class=\"txt\"><b>Bien:</b> «I» siempre en mayúscula. (happy = feliz)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">🧑</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">I</span> am happy.</div><div class=\"es\">Yo estoy feliz — «I» siempre mayúscula.</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'I am happy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'I am happy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"eg-card bad\"><span class=\"eg-emo\">🚫</span><div class=\"eg-body\"><div class=\"en\">i am happy.</div><div class=\"es\">«i» en minúscula — siempre debe ser mayúscula.</div></div></div><div class=\"section-label\">Objeto y posesivo</div><div class=\"viz-grid\"><div class=\"viz-item\"><span class=\"ico\">👉</span><span class=\"lbl\">Him</span><span class=\"es\">a él</span></div><div class=\"viz-item\"><span class=\"ico\">👉</span><span class=\"lbl\">Her</span><span class=\"es\">a ella</span></div><div class=\"viz-item\"><span class=\"ico\">🔑</span><span class=\"lbl\">His</span><span class=\"es\">de él</span></div></div>", "exercises": [{"q": "¿Cómo se escribe «yo» en inglés?", "a": "b", "o": ["i", "I"], "fc": "«I» siempre con MAYÚSCULA en inglés. Sin excepción.", "fi": "«i» minúscula es un error muy común. En inglés «I» siempre es mayúscula.", "ex": "I am a boy → Yo soy un niño", "tip": "«I» es la única letra que es su propio pronombre → siempre mayúscula"}, {"q": "«You» en inglés puede significar:", "a": "a", "o": ["Tú Y Ustedes (ambos)", "Solo Tú"], "fc": "«You» sirve para una persona (Tú) y para varias (Ustedes).", "fi": "No es solo «Tú». «You» también reemplaza «Ustedes».", "ex": "You are kind → Tú eres / Ustedes son amables", "tip": "You = Tú + Ustedes = un pronombre 2 en 1"}, {"q": "«I gave it to ___» (a él). ¿Qué va en el espacio?", "a": "b", "o": ["he", "him"], "fc": "Después del verbo usamos «him» (objeto). «He» solo va como sujeto.", "fi": "«He» es el sujeto — va antes del verbo. Después del verbo: «him».", "ex": "I see him → Yo lo veo a él", "tip": "He = sujeto (antes del verbo) · Him = objeto (después del verbo)"}, {"q": "«I call ___» (a ella). ¿Qué va en el espacio?", "a": "a", "o": ["her", "she"], "fc": "«Her» va después del verbo (objeto). «She» solo va como sujeto.", "fi": "«She» es el sujeto. Aquí el sujeto es «I»; ella es objeto → «her».", "ex": "I call her → Yo la llamo a ella", "tip": "She = sujeto · Her = objeto (como He/Him pero femenino)"}, {"q": "En inglés, ¿es correcto decir solo «Is happy» sin pronombre?", "a": "b", "o": ["Sí, igual que en español", "No, falta el pronombre sujeto"], "fc": "En inglés el sujeto es OBLIGATORIO. Siempre debes decir quién: «He is happy».", "fi": "En español omitimos el pronombre a veces, pero en inglés NUNCA se omite.", "ex": "He is happy → Él está feliz (He es obligatorio)", "tip": "Regla de oro: en inglés siempre dices QUIÉN hace la acción"}]}, {"icon": "💡", "title": "Consejos", "html": "<div class=\"section-label\">Paso 4</div><div class=\"section-title\">Paso 4: 💡 Consejos Prácticos</div><div class=\"illus\"><span class=\"big sm\">💡</span><span class=\"big sm\">🧠</span></div><div class=\"section-desc\">Trucos para recordar los pronombres sin confundirte. Cada tip viene seguido de su ejemplo.</div><div class=\"info-illus\"><span class=\"emo\">🔠</span><span class=\"txt\"><b>Tip 1 — La MAYÚSCULA:</b> «I» siempre mayúscula. Imagina que tu pronombre es tan importante que merece mayúscula.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🧑</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">I</span> am a boy.</div><div class=\"es\">Yo soy un niño. (nunca «i» minúscula)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">2️⃣</span><span class=\"txt\"><b>Tip 2 — «You» es 2×1:</b> sirve para «Tú» (singular) y «Ustedes» (plural).</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👉</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">You</span> are kind.</div><div class=\"es\">Tú eres amable / Ustedes son amables.</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'You are kind.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'You are kind.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">↔️</span><span class=\"txt\"><b>Tip 3 — Sujeto vs objeto:</b> He/She van ANTES del verbo. Him/Her van DESPUÉS del verbo.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📞</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">She</span> calls <span class=\"g-obj\">him</span>.</div><div class=\"es\">Ella lo llama a él. (She antes, him después)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'She calls him.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'She calls him.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">📦</span><span class=\"txt\"><b>Tip 4 — «It» para todo lo que no es persona:</b> cosas, animales, el clima, el día.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🐶</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">It</span> is a dog.</div><div class=\"es\">Es un perro. (It = cosa/animal)</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'It is a dog.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'It is a dog.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"note-box\"><span class=\"nt\">⚠️ Error típico del hispanohablante</span>En español omitimos el sujeto: «Está feliz». En inglés es obligatorio: «<b>He</b> is happy» ✅, no «Is happy» ❌.</div><div class=\"formula-box\"><span class=\"g-subj\">Sujeto</span>: I / You / He / She / It / We<br><span class=\"g-obj\">Objeto</span>: Him / Her / It &nbsp;·&nbsp; <span class=\"g-poss\">Posesivo</span>: His (de él)</div>", "exercises": [{"q": "«___ dad is kind.» (Su papá — de él). ¿Qué pronombre usas?", "a": "a", "o": ["His", "Him"], "fc": "«His» es el posesivo masculino: «His dad» = «Su papá de él».", "fi": "«Him» es el pronombre objeto, no posesivo. «His» indica pertenencia.", "ex": "His dad is kind → Su papá (de él) es amable", "tip": "His = de él (posesivo) · Him = a él (objeto)"}, {"q": "«I see ___» (a él). ¿Qué pronombre usas?", "a": "b", "o": ["he", "him"], "fc": "Después del verbo «see» necesitamos el objeto: «him».", "fi": "«He» es sujeto — solo va antes del verbo. Aquí va después → «him».", "ex": "I see him → Yo lo veo a él", "tip": "Después de un verbo → objeto: him (no he)"}, {"q": "«___ is a dog.» ¿Qué pronombre para una cosa/animal?", "a": "a", "o": ["It", "Him"], "fc": "«It» se usa como sujeto para cosas y animales: «It is a dog».", "fi": "«Him» es el objeto masculino, no el sujeto para cosas. → «It».", "ex": "It is a dog → Es un perro", "tip": "It puede ser sujeto u objeto para cosas/animales"}, {"q": "¿Cuál de estas oraciones está bien escrita?", "a": "b", "o": ["i am happy", "I am happy"], "fc": "«I am happy» — «I» siempre mayúscula en inglés.", "fi": "«i am happy» tiene «i» minúscula. En inglés «I» SIEMPRE es mayúscula.", "ex": "I am a boy → Yo soy un niño", "tip": "Nunca escribas «i» minúscula cuando es el pronombre yo"}, {"q": "«I call ___» (a ella). ¿Qué pronombre usas?", "a": "a", "o": ["her", "she"], "fc": "Después del verbo «call» va el objeto: «her».", "fi": "«She» es sujeto, va antes del verbo. «Her» va después como objeto.", "ex": "I call her → Yo la llamo a ella", "tip": "She = sujeto · Her = objeto"}]}, {"icon": "🎯", "title": "Práctica Final", "html": "<div class=\"section-label\">Paso 5</div><div class=\"section-title\">Paso 5: 🎯 Práctica Final — Reto</div><div class=\"illus\"><span class=\"big\">🎯</span><span class=\"big\">🔥</span></div><div class=\"section-desc\">Aplica todo lo que aprendiste: distingue <b>sujeto</b> (I/You/He/She/It/We), <b>objeto</b> (Him/Her/It) y <b>posesivo</b> (His/Her).</div><div class=\"formula-box\"><span class=\"g-subj\">Sujeto</span>: I / You / He / She / It / We<br><span class=\"g-obj\">Objeto</span>: Him / Her / It<br><span class=\"g-poss\">Posesivo</span>: His (de él) · Her (de ella)</div><div class=\"info-illus\"><span class=\"emo\">🧑</span><span class=\"txt\"><b>Sujeto con «I»:</b> antes del verbo, en mayúscula. (boy = niño)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">🧑</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">I</span> <span class=\"g-verb\">am</span> <span class=\"g-comp\">a boy</span>.</div><div class=\"es\">Yo soy un niño.</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'I am a boy.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">📞</span><span class=\"txt\"><b>Objeto con «her»:</b> después del verbo. (call = llamar)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">📞</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-subj\">I</span> <span class=\"g-verb\">call</span> <span class=\"g-obj\">her</span>.</div><div class=\"es\">Yo la llamo (a ella).</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'I call her.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'I call her.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"info-illus\"><span class=\"emo\">🔑</span><span class=\"txt\"><b>Posesivo con «His»:</b> antes de un sustantivo. (dad = papá)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">👨</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-poss\">His</span> <span class=\"g-comp\">dad</span> <span class=\"g-verb\">is</span> <span class=\"g-comp\">kind</span>.</div><div class=\"es\">Su papá (de él) es amable.</div><div class=\"audio-row\"><button class=\"audio-btn\" onclick=\"speak(this,'His dad is kind.','US')\"><span class=\"flag\">🇺🇸</span> US</button><button class=\"audio-btn\" onclick=\"speak(this,'His dad is kind.','UK')\"><span class=\"flag\">🇬🇧</span> UK</button></div></div></div><div class=\"alert-card\"><div class=\"atitle\">⚠️ Los 3 errores más comunes</div><p>❌ «i am happy» → ✅ «<b>I</b> am happy» — I siempre mayúscula<br>❌ «Him is a boy» → ✅ «<b>He</b> is a boy» — Him es objeto, no sujeto<br>❌ «I see she» → ✅ «I see <b>her</b>» — después del verbo usamos Her</p></div>", "exercises": [{"q": "«___ am happy.» (Yo). ¿Cuál es el pronombre correcto?", "a": "a", "o": ["I", "You"], "fc": "«I am happy.» — I = Yo. Siempre mayúscula, siempre con «am».", "fi": "«You» = Tú/Ustedes, no Yo. Para hablar de ti mismo usa «I».", "ex": "I am a boy → Yo soy un niño", "tip": "I + am siempre van juntos"}, {"q": "«___ is a boy.» (Él). ¿Cuál es el pronombre correcto?", "a": "b", "o": ["Him", "He"], "fc": "«He is a boy.» — He es el pronombre sujeto masculino.", "fi": "«Him» es objeto, no sujeto. El sujeto necesita «He».", "ex": "He is a boy → Él es un niño", "tip": "He = sujeto (antes del verbo) · Him = objeto (después)"}, {"q": "«I call ___» (a él). ¿Cuál es el pronombre correcto?", "a": "a", "o": ["him", "his"], "fc": "«I call him.» — «him» es el objeto masculino, después del verbo.", "fi": "«His» es posesivo (de él), no objeto. Después de «call» → «him».", "ex": "I see him → Yo lo veo a él", "tip": "Him = a él (objeto) · His = de él (posesivo)"}, {"q": "«___ family is kind.» (de ella). ¿Cuál es el pronombre correcto?", "a": "a", "o": ["Her", "She"], "fc": "«Her family» — «Her» antes de un sustantivo indica posesión (de ella).", "fi": "«She» es sujeto, no posesivo. Para pertenencia femenina usamos «Her».", "ex": "Her family is kind → Su familia (de ella) es amable", "tip": "Her puede ser objeto Y posesivo"}, {"q": "«___ are the same age.» (Nosotros). ¿Cuál es el pronombre correcto?", "a": "a", "o": ["We", "It"], "fc": "«We are the same age.» — We = Nosotros. Grupo que incluye a quien habla.", "fi": "«It» es para cosas y animales, no para grupos de personas. → We.", "ex": "We are happy → Nosotros estamos felices", "tip": "We = grupo que incluye a quien habla"}]}]};
 
-var curStep = 0;
-var scores = {};
-var answered = {};
-var stepKeys = ["s0","s1","s2","s3","s4"];
 
-function switchStep(idx) {
-  var oldKey = stepKeys[curStep];
-  var newKey = stepKeys[idx];
-  document.getElementById("card-" + oldKey).classList.remove("active");
-  document.getElementById("tab-" + oldKey).classList.remove("active");
-  document.getElementById("card-" + newKey).classList.add("active");
-  document.getElementById("tab-" + newKey).classList.add("active");
-  curStep = idx;
-  document.getElementById("summaryFinal").classList.remove("show");
+/* ============ AUDIO (Web Speech API) ============ */
+var voicesReady=false,usVoice=null,ukVoice=null,curBtn=null;
+function loadVoices(){
+  var voices=speechSynthesis.getVoices();
+  if(!voices.length)return;
+  voicesReady=true;
+  var usP=[
+    function(v){return v.lang==='en-US'&&/samantha|allison|ava|tom|alex|nicky|aaron/i.test(v.name)},
+    function(v){return v.lang==='en-US'&&/female|woman/i.test(v.name)},
+    function(v){return v.lang==='en-US'&&/google us/i.test(v.name)},
+    function(v){return v.lang==='en-US'&&/microsoft.*online/i.test(v.name)},
+    function(v){return v.lang==='en-US'},
+    function(v){return v.lang.indexOf('en')===0&&/us|america/i.test(v.name)}
+  ];
+  var ukP=[
+    function(v){return v.lang==='en-GB'&&/daniel|kate|serena|oliver|martha/i.test(v.name)},
+    function(v){return v.lang==='en-GB'&&/male|man/i.test(v.name)},
+    function(v){return v.lang==='en-GB'&&/google uk/i.test(v.name)},
+    function(v){return v.lang==='en-GB'&&/microsoft.*online/i.test(v.name)},
+    function(v){return v.lang==='en-GB'},
+    function(v){return v.lang.indexOf('en')===0&&/uk|brit/i.test(v.name)}
+  ];
+  for(var i=0;i<usP.length;i++){var m=voices.find(usP[i]);if(m){usVoice=m;break}}
+  for(var j=0;j<ukP.length;j++){var m2=voices.find(function(v){return ukP[j](v)&&v!==usVoice});if(m2){ukVoice=m2;break}}
+  if(!ukVoice){ukVoice=voices.find(function(v){return v.lang==='en-AU'})||voices.find(function(v){return v.lang==='en-IE'})||voices.find(function(v){return v.lang.indexOf('en')===0&&v!==usVoice})}
+  var st=document.getElementById('voice-status');
+  if(usVoice&&ukVoice&&usVoice!==ukVoice){st.style.display='none'}
+  else if(usVoice||ukVoice){st.innerHTML='⚠️ Tu navegador tiene voces limitadas. Para 2 acentos distintos usa <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.';st.style.display='block';st.style.background='#FFF3E0';st.style.borderColor='#FFB74D'}
+}
+speechSynthesis.getVoices();
+if(speechSynthesis.onvoiceschanged!==undefined){speechSynthesis.onvoiceschanged=loadVoices}
+setTimeout(loadVoices,100);setTimeout(loadVoices,500);setTimeout(loadVoices,1500);
+function speak(btn,text,accent){
+  if(curBtn===btn&&speechSynthesis.speaking){speechSynthesis.cancel();btn.classList.remove('playing');curBtn=null;return}
+  if(speechSynthesis.speaking){speechSynthesis.cancel();if(curBtn)curBtn.classList.remove('playing')}
+  if(!voicesReady)loadVoices();
+  var u=new SpeechSynthesisUtterance(text);
+  u.rate=0.82;u.pitch=1;
+  if(accent==='US'){u.lang='en-US';if(usVoice)u.voice=usVoice}else{u.lang='en-GB';if(ukVoice)u.voice=ukVoice}
+  btn.classList.add('playing');curBtn=btn;
+  u.onend=function(){btn.classList.remove('playing');curBtn=null};
+  u.onerror=function(){btn.classList.remove('playing');curBtn=null};
+  speechSynthesis.speak(u);
 }
 
-function chk(eid, sel, correct) {
-  if (answered[eid]) return;
-  answered[eid] = true;
-  var ex = document.getElementById(eid);
-  var btnA = document.getElementById(eid + "ba");
-  var btnB = document.getElementById(eid + "bb");
-  btnA.disabled = true;
-  btnB.disabled = true;
-  var sk = eid.substring(0, 2);
-  if (!scores[sk]) scores[sk] = 0;
-  if (sel === correct) {
-    ex.classList.add("correct");
-    if (sel === "a") { btnA.classList.add("sel-ok"); } else { btnB.classList.add("sel-ok"); }
-    document.getElementById("fbok-" + eid).classList.add("show");
-    scores[sk]++;
-  } else {
-    ex.classList.add("incorrect");
-    if (sel === "a") { btnA.classList.add("sel-bad"); btnB.classList.add("show-ok"); }
-    else { btnB.classList.add("sel-bad"); btnA.classList.add("show-ok"); }
-    document.getElementById("fbbad-" + eid).classList.add("show");
-  }
-  document.getElementById("sc-" + sk).textContent = scores[sk] + "/5";
-  var allDone = true;
-  for (var j = 0; j < 5; j++) {
-    if (!answered[sk + "e" + j]) { allDone = false; break; }
-  }
-  if (allDone && curStep === 4) {
-    setTimeout(function() {
-      var sf = document.getElementById("summaryFinal");
-      sf.classList.add("show");
-      sf.scrollIntoView({ behavior: "smooth" });
-    }, 600);
-  }
-  if (allDone && curStep < 4) {
-    var tab = document.getElementById("tab-" + sk);
-    tab.classList.add("done");
-  }
-}
 
-document.getElementById("s0e0ba").addEventListener("click", function(){ chk("s0e0","a","b"); });
-document.getElementById("s0e0bb").addEventListener("click", function(){ chk("s0e0","b","b"); });
-document.getElementById("s0e1ba").addEventListener("click", function(){ chk("s0e1","a","a"); });
-document.getElementById("s0e1bb").addEventListener("click", function(){ chk("s0e1","b","a"); });
-document.getElementById("s0e2ba").addEventListener("click", function(){ chk("s0e2","a","b"); });
-document.getElementById("s0e2bb").addEventListener("click", function(){ chk("s0e2","b","b"); });
-document.getElementById("s0e3ba").addEventListener("click", function(){ chk("s0e3","a","a"); });
-document.getElementById("s0e3bb").addEventListener("click", function(){ chk("s0e3","b","a"); });
-document.getElementById("s0e4ba").addEventListener("click", function(){ chk("s0e4","a","b"); });
-document.getElementById("s0e4bb").addEventListener("click", function(){ chk("s0e4","b","b"); });
-document.getElementById("s1e0ba").addEventListener("click", function(){ chk("s1e0","a","a"); });
-document.getElementById("s1e0bb").addEventListener("click", function(){ chk("s1e0","b","a"); });
-document.getElementById("s1e1ba").addEventListener("click", function(){ chk("s1e1","a","b"); });
-document.getElementById("s1e1bb").addEventListener("click", function(){ chk("s1e1","b","b"); });
-document.getElementById("s1e2ba").addEventListener("click", function(){ chk("s1e2","a","b"); });
-document.getElementById("s1e2bb").addEventListener("click", function(){ chk("s1e2","b","b"); });
-document.getElementById("s1e3ba").addEventListener("click", function(){ chk("s1e3","a","a"); });
-document.getElementById("s1e3bb").addEventListener("click", function(){ chk("s1e3","b","a"); });
-document.getElementById("s1e4ba").addEventListener("click", function(){ chk("s1e4","a","a"); });
-document.getElementById("s1e4bb").addEventListener("click", function(){ chk("s1e4","b","a"); });
-document.getElementById("s2e0ba").addEventListener("click", function(){ chk("s2e0","a","b"); });
-document.getElementById("s2e0bb").addEventListener("click", function(){ chk("s2e0","b","b"); });
-document.getElementById("s2e1ba").addEventListener("click", function(){ chk("s2e1","a","a"); });
-document.getElementById("s2e1bb").addEventListener("click", function(){ chk("s2e1","b","a"); });
-document.getElementById("s2e2ba").addEventListener("click", function(){ chk("s2e2","a","b"); });
-document.getElementById("s2e2bb").addEventListener("click", function(){ chk("s2e2","b","b"); });
-document.getElementById("s2e3ba").addEventListener("click", function(){ chk("s2e3","a","a"); });
-document.getElementById("s2e3bb").addEventListener("click", function(){ chk("s2e3","b","a"); });
-document.getElementById("s2e4ba").addEventListener("click", function(){ chk("s2e4","a","b"); });
-document.getElementById("s2e4bb").addEventListener("click", function(){ chk("s2e4","b","b"); });
-document.getElementById("s3e0ba").addEventListener("click", function(){ chk("s3e0","a","a"); });
-document.getElementById("s3e0bb").addEventListener("click", function(){ chk("s3e0","b","a"); });
-document.getElementById("s3e1ba").addEventListener("click", function(){ chk("s3e1","a","b"); });
-document.getElementById("s3e1bb").addEventListener("click", function(){ chk("s3e1","b","b"); });
-document.getElementById("s3e2ba").addEventListener("click", function(){ chk("s3e2","a","a"); });
-document.getElementById("s3e2bb").addEventListener("click", function(){ chk("s3e2","b","a"); });
-document.getElementById("s3e3ba").addEventListener("click", function(){ chk("s3e3","a","b"); });
-document.getElementById("s3e3bb").addEventListener("click", function(){ chk("s3e3","b","b"); });
-document.getElementById("s3e4ba").addEventListener("click", function(){ chk("s3e4","a","a"); });
-document.getElementById("s3e4bb").addEventListener("click", function(){ chk("s3e4","b","a"); });
-document.getElementById("s4e0ba").addEventListener("click", function(){ chk("s4e0","a","a"); });
-document.getElementById("s4e0bb").addEventListener("click", function(){ chk("s4e0","b","a"); });
-document.getElementById("s4e1ba").addEventListener("click", function(){ chk("s4e1","a","b"); });
-document.getElementById("s4e1bb").addEventListener("click", function(){ chk("s4e1","b","b"); });
-document.getElementById("s4e2ba").addEventListener("click", function(){ chk("s4e2","a","a"); });
-document.getElementById("s4e2bb").addEventListener("click", function(){ chk("s4e2","b","a"); });
-document.getElementById("s4e3ba").addEventListener("click", function(){ chk("s4e3","a","a"); });
-document.getElementById("s4e3bb").addEventListener("click", function(){ chk("s4e3","b","a"); });
-document.getElementById("s4e4ba").addEventListener("click", function(){ chk("s4e4","a","a"); });
-document.getElementById("s4e4bb").addEventListener("click", function(){ chk("s4e4","b","a"); });
-document.getElementById("tab-s0").addEventListener("click", function(){ switchStep(0); });
-document.getElementById("tab-s1").addEventListener("click", function(){ switchStep(1); });
-document.getElementById("tab-s2").addEventListener("click", function(){ switchStep(2); });
-document.getElementById("tab-s3").addEventListener("click", function(){ switchStep(3); });
-document.getElementById("tab-s4").addEventListener("click", function(){ switchStep(4); });
+let curStep=0;const scores={};const answered={};
+
+function renderStepTabs(){
+var c=document.getElementById("stepTabs");c.innerHTML="";
+DATA.steps.forEach(function(s,i){
+var b=document.createElement("button");
+b.className="step-tab"+(i===curStep?" active":"");
+if(allAnswered(i)&&i!==curStep)b.classList.add("done");
+b.textContent=(i+1)+". "+s.icon+" "+s.title;
+b.addEventListener("click",function(){curStep=i;renderStepTabs();renderCard();document.getElementById("summaryFinal").classList.remove("show")});
+c.appendChild(b);
+});
+}
+function allAnswered(stepIdx){
+for(var i=0;i<5;i++){if(!answered["s"+stepIdx+"e"+i])return false}
+return true;
+}
+function renderCard(){
+var s=DATA.steps[curStep];
+var k="s"+curStep;
+if(scores[k]===undefined)scores[k]=0;
+var area=document.getElementById("cardArea");
+area.innerHTML="";
+var card=document.createElement("div");
+card.className="card active";
+card.innerHTML=s.html;
+var exSec=document.createElement("div");
+exSec.className="ex-section";
+var h3=document.createElement("h3");
+h3.textContent=EX_HEADER+" "+s.title;
+exSec.appendChild(h3);
+s.exercises.forEach(function(e,i){
+var eid=k+"e"+i;
+var div=document.createElement("div");
+div.className="exercise";
+div.id=eid;
+var qDiv=document.createElement("div");
+qDiv.className="exercise-q";
+qDiv.innerHTML=(i+1)+". "+e.q;
+div.appendChild(qDiv);
+var opts=document.createElement("div");
+opts.className="opts";
+var btnA=document.createElement("button");
+btnA.className="opt-btn";
+btnA.textContent="a) "+e.o[0];
+btnA.addEventListener("click",function(){chk(eid,"a",e.a)});
+opts.appendChild(btnA);
+var btnB=document.createElement("button");
+btnB.className="opt-btn";
+btnB.textContent="b) "+e.o[1];
+btnB.addEventListener("click",function(){chk(eid,"b",e.a)});
+opts.appendChild(btnB);
+div.appendChild(opts);
+var fbOk=document.createElement("div");
+fbOk.className="fb fb-ok";
+fbOk.id="fbok-"+eid;
+var correctText=e.o[e.a==="a"?0:1];
+var fbOkParts=[];
+fbOkParts.push("<div class=\"fb-header\"><span class=\"fb-icon\">"+ICON_PARTY+"</span> "+TEXT_CORRECT+"</div>");
+fbOkParts.push("<div class=\"fb-body\">");
+fbOkParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_CHECK+"</span><div class=\"fb-text\"><span class=\"fb-correct-answer\">"+correctText+"</span> "+DASH+" "+e.fc+"</div></div>");
+fbOkParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_BULB+"</span><div class=\"fb-text\">"+TEXT_OTHER_OPT+": "+e.fi+"</div></div>");
+if(e.ex)fbOkParts.push("<div class=\"fb-example\">"+ICON_NOTE+" "+e.ex+"</div>");
+if(e.tip)fbOkParts.push("<div class=\"fb-tip\"><strong>"+ICON_BULB+" "+TEXT_REMEMBER+":</strong> "+e.tip+"</div>");
+fbOkParts.push("</div>");
+fbOk.innerHTML=fbOkParts.join("");
+div.appendChild(fbOk);
+var fbBad=document.createElement("div");
+fbBad.className="fb fb-bad";
+fbBad.id="fbbad-"+eid;
+var fbBadParts=[];
+fbBadParts.push("<div class=\"fb-header\"><span class=\"fb-icon\">"+ICON_THINK+"</span> "+TEXT_INCORRECT+"</div>");
+fbBadParts.push("<div class=\"fb-body\">");
+fbBadParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_X+"</span><div class=\"fb-text\"><span class=\"fb-wrong-reason\">"+e.fi+"</span></div></div>");
+fbBadParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_CHECK+"</span><div class=\"fb-text\">"+TEXT_CORRECT_IS+" <span class=\"fb-correct-answer\">"+correctText+"</span> "+DASH+" "+e.fc+"</div></div>");
+if(e.ex)fbBadParts.push("<div class=\"fb-example\">"+ICON_NOTE+" "+e.ex+"</div>");
+if(e.tip)fbBadParts.push("<div class=\"fb-tip\"><strong>"+ICON_BULB+" "+TEXT_REMEMBER+":</strong> "+e.tip+"</div>");
+fbBadParts.push("</div>");
+fbBad.innerHTML=fbBadParts.join("");
+div.appendChild(fbBad);
+exSec.appendChild(div);
+if(answered[eid]){
+var btns=div.querySelectorAll(".opt-btn");
+btns.forEach(function(b){b.disabled=true});
+var sel=answered[eid].sel;
+var correct=e.a;
+if(sel===correct){
+div.classList.add("correct");
+btns.forEach(function(b){if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-ok")});
+fbOk.classList.add("show");
+}else{
+div.classList.add("incorrect");
+btns.forEach(function(b){
+if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-bad");
+if(b.textContent.indexOf(correct+")")===0)b.classList.add("show-ok");
+});
+fbBad.classList.add("show");
+}
+}
+});
+var sb=document.createElement("div");
+sb.className="score-bar";
+sb.innerHTML="<div class=\"num\" id=\"sc-"+k+"\">"+scores[k]+"/5</div><div class=\"lbl\">"+TEXT_SCORE+"</div>";
+exSec.appendChild(sb);
+card.appendChild(exSec);
+area.appendChild(card);
+}
+function chk(eid,sel,correct){
+if(answered[eid])return;
+answered[eid]={sel:sel};
+var ex=document.getElementById(eid);
+var btns=ex.querySelectorAll(".opt-btn");
+btns.forEach(function(b){b.disabled=true});
+var k=eid.match(/s\d+/)[0];
+if(sel===correct){
+ex.classList.add("correct");
+btns.forEach(function(b){if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-ok")});
+document.getElementById("fbok-"+eid).classList.add("show");
+scores[k]=(scores[k]||0)+1;
+}else{
+ex.classList.add("incorrect");
+btns.forEach(function(b){
+if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-bad");
+if(b.textContent.indexOf(correct+")")===0)b.classList.add("show-ok");
+});
+document.getElementById("fbbad-"+eid).classList.add("show");
+}
+document.getElementById("sc-"+k).textContent=scores[k]+"/5";
+if(allAnswered(curStep)){renderStepTabs();}
+if(curStep===4&&allAnswered(4)){
+setTimeout(function(){
+var sf=document.getElementById("summaryFinal");
+var sl=document.getElementById("summaryList");
+sl.innerHTML=DATA.summary.map(function(s){return "<li>"+s+"</li>"}).join("");
+var total=0;
+for(var i=0;i<5;i++)total+=(scores["s"+i]||0);
+var ts=document.getElementById("totalScore");
+if(ts)ts.innerHTML="<div class=\"big\">"+total+"/25</div><div class=\"small\">"+TEXT_TOTAL+"</div>";
+sf.classList.add("show");
+sf.scrollIntoView({behavior:"smooth"});
+},500);
+}
+}
+renderStepTabs();renderCard();
 
 </script>
 </body>

@@ -1,0 +1,150 @@
+{
+  "module": "Personal Identity",
+  "emoji": "🪪",
+  "level": "pre-a1",
+  "topics": [
+    "Pronouns",
+    "To be",
+    "There is/are"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Personal Identity",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Story_Personal%20Identity.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Personal Identity",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Reading%20Comprehension_Personal%20Identity.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Personal Identity",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Listening_Personal%20Identity.html"
+    },
+    {
+      "id": "sum-pronouns",
+      "type": "summary",
+      "name": "Resumen · Pronouns",
+      "group": "T1 · Pronouns",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_Pronouns.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T1 · Pronouns",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Fill%20in.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T1 · Pronouns",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Identification.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T1 · Pronouns",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Transform.html"
+    },
+    {
+      "id": "sum-tobe-afneg",
+      "type": "summary",
+      "name": "Resumen · To be (Affirmative & Negative)",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Affirmative-Negative).html"
+    },
+    {
+      "id": "sum-tobe-q",
+      "type": "summary",
+      "name": "Resumen · To be (Questions)",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Questions).html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Fill%20in.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Identification.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Transform.html"
+    },
+    {
+      "id": "t2b-fill",
+      "type": "grammar",
+      "name": "Fill in (Parte 2)",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Fill_in_P2.html"
+    },
+    {
+      "id": "t2b-id",
+      "type": "grammar",
+      "name": "Identification (Parte 2)",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Identification_P2.html"
+    },
+    {
+      "id": "t2b-tr",
+      "type": "grammar",
+      "name": "Transform (Parte 2)",
+      "group": "T2 · To be",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Transform_P2.html"
+    },
+    {
+      "id": "sum-thereisare",
+      "type": "summary",
+      "name": "Resumen · There is / There are",
+      "group": "T3 · There is/are",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_There%20is-are.html"
+    },
+    {
+      "id": "t3-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T3 · There is/are",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Fill%20in.html"
+    },
+    {
+      "id": "t3-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T3 · There is/are",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Identification.html"
+    },
+    {
+      "id": "t3-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T3 · There is/are",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Transform.html"
+    },
+    {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Personal Identity"
+    }
+  ]
+}

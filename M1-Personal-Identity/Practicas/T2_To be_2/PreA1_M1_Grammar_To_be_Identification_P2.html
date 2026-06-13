@@ -515,6 +515,7 @@
         document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
         const stars=pct>=90?3:pct>=70?2:1;
         document.getElementById('resultsMessage').textContent=pct>=90?'¡Excelente! Identificas el to be perfectamente. 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪':'Buen esfuerzo. Repasa I→am, he/she/it→is, we/you/they→are. 📚';
@@ -522,5 +523,7 @@
     }
     document.addEventListener('DOMContentLoaded',initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

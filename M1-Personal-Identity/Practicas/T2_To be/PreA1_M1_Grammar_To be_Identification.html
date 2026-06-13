@@ -600,6 +600,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -612,5 +613,7 @@
     }
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

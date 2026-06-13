@@ -652,6 +652,7 @@
         document.getElementById('finalScore').textContent = `${score}/10`;
 
         const pct = score / quizData.length;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct * 100) } })); // JUCUM seguimiento
         const stars = screen.querySelectorAll('.star');
         const msg = document.getElementById('resultsMessage');
 
@@ -670,5 +671,7 @@
 
     init();
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

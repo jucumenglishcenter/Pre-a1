@@ -58,7 +58,14 @@
         .blank { display:inline-block; min-width:90px; padding:0.2rem 0.6rem; background:var(--primary-light); border:2px dashed var(--primary-dark); border-radius:8px; text-align:center; font-weight:700; color:var(--primary-dark); transition:all .3s; }
         .blank.correct { background:var(--success-light); border:2px solid var(--success); color:var(--success-dark); }
         .blank.incorrect { background:var(--error-light); border:2px solid var(--error); color:var(--error-dark); }
-        .translation { color:var(--text-light); font-style:italic; font-size:0.85rem; margin-bottom:1rem; }
+        .translation { color:#1A1A2E; font-weight:600; font-size:0.95rem; margin-bottom:1rem; background:#F3E5F5; border-left:3px solid #7B1FA2; padding:7px 12px; border-radius:0 8px 8px 0; }
+        .aids-row { display:flex; gap:8px; margin:0.5rem 0 0.9rem; flex-wrap:wrap; }
+        .aid-btn { font-family:'Nunito',sans-serif; font-size:0.82rem; font-weight:700; border:1.5px solid var(--primary,#F9A825); background:#fff; color:var(--primary-dark,#E65100); padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .18s; }
+        .aid-btn:hover { background:var(--primary-light,#FFF8E1); transform:translateY(-1px); }
+        .aid-btn.active { background:var(--primary,#F9A825); color:#fff; }
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
+        .fb-analogy-text { font-size:0.92rem; line-height:1.55; color:#4A148C; }
 
         .options-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin-top:0.5rem; }
         .option-btn { padding:0.9rem 0.5rem; border:2.5px solid #E5E7EB; border-radius:12px; background:white; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; transition:all .2s; color:var(--text-dark); }
@@ -452,11 +459,24 @@
         return a;
     }
 
+    const ANALOGIES = {
+        1:"En español «soy/tengo» ya dice que eres tú; en inglés hace falta «I» + «am». «Am» solo existe con «I».",
+        2:"Dos sujetos = plural → «are». En español igual: «Leo y Ana están» (plural), nunca «está».",
+        3:"Con he/she/it siempre «is» — como elegir «es» para «él/ella» en español.",
+        4:"«Hay» no cambia en español; en inglés sí: «there is» (uno) / «there are» (varios). «Six people» es plural → are.",
+        5:"Negar en inglés = verbo + «not»: «are» → «aren't». En español el «no» va suelto antes del verbo: «no están».",
+        6:"«Ravi» = él → «is» → negativo «isn't». Como «no es», pero en inglés el «not» se pega al verbo.",
+        7:"«He is» → «he isn't». El «not» se une al verbo en inglés; en español va aparte: «no es».",
+        8:"En inglés la pregunta INVIERTE: «Are you...?» (verbo primero). En español basta la entonación: «¿Eres...?».",
+        9:"«Everyone» es singular en inglés (como «cada quien») → «Is». En español «todos» suena plural, pero aquí va singular.",
+        10:"Dos hermanos = plural → «Are...?». Y en inglés el verbo abre la pregunta, como «¿Están...?» en español."
+    };
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
         quizData.forEach((q, i) => {
             q.shuffled = shuffle(q.options);
+            if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id];
             container.appendChild(createCard(q, i));
         });
         showQuestion(0);
@@ -484,12 +504,16 @@
                 <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Elige la forma correcta de <em>to be</em>:</span>
                 ${badge}
             </div>
-            <div class="hint-box">
-                <div class="hint-label">💡 Pista</div>
+            <div class="question-text">${sentenceHTML}</div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú hallas la respuesta</div>
                 ${q.hint}
             </div>
-            <div class="question-text">${sentenceHTML}</div>
-            <div class="translation">${q.translation}</div>
+            <div class="translation" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-grid" id="options-${index}">${buttonsHTML}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -527,6 +551,14 @@
         updateProgress();
     }
 
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
+    }
+
     function buildFeedback(qi, selected, isCorrect, q) {
         const el = document.getElementById(`feedback-${qi}`);
         el.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -560,6 +592,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcto?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             const errData = q.feedback[selected] || { errorType: "Respuesta incorrecta", explanation: "Revisa la regla de conjugación de to be.", rule: "I → am · he/she/it → is · you/we/they → are" };
@@ -596,6 +629,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la respuesta correcta es "${q.correct}"?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }

@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-A1 — 🪪 Personal Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Lora:ital,wght@0,400;0,500;1,400&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF6;--card:#FFFFFF;--text:#2A2A2A;--text-soft:#777777;
+  --border:#E8E5DC;--shadow:0 3px 16px rgba(0,0,0,0.06);--radius:14px;
+  --sp-a:#1565C0;--sp-a-bg:#E3F2FD;--sp-b:#C46200;--sp-b-bg:#FFF3E0;
+  --rv-bg:#F3E5F5;--rv-text:#7B1FA2;
+  --level-primary:#F9A825;--level-dark:#E65100;--level-light:#FFF9C4;--level-mid:#FFECB3;
+  --level-gradient:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);
+  --level-glow:rgba(249,168,37,0.15);--level-badge-text:#4E3800;
+  --hl-word:rgba(255,200,0,0.6);
+  /* === TRADUCCIÓN ACCESIBLE (alto contraste / dislexia / proyector) === */
+  --tr-text:#333333;      /* texto oscuro legible, sin destacar */
+  --tr-border:#CFCABF;    /* borde gris sutil, neutro */
+  --tr-accent:#8A8270;    /* etiqueta ES discreta */
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem 6rem;-webkit-font-smoothing:antialiased;}
+.container{max-width:780px;margin:0 auto;}
+.level-header{text-align:center;padding:2.2rem 2rem;border-radius:20px;position:relative;overflow:hidden;margin-bottom:1.5rem;background:var(--level-gradient);}
+.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,0.1);border-radius:50%;}
+.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.9rem;font-weight:600;position:relative;z-index:1;color:#4E3800;}
+.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:500;position:relative;z-index:1;margin-top:0.3rem;color:#5a3e00;}
+.level-header .subtitle{font-size:0.88rem;font-weight:500;position:relative;z-index:1;margin-top:0.2rem;color:#6b4a00;opacity:0.9;}
+.legend{display:flex;flex-wrap:wrap;gap:1rem;padding:0.9rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:10px;font-size:0.82rem;color:var(--text-soft);margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.legend-item{display:inline-flex;align-items:center;gap:6px;}
+#voice-status{display:none;text-align:center;font-size:0.78rem;color:#8B6914;margin-bottom:1rem;padding:0.5rem 1rem;background:#FFF8E1;border-radius:8px;border:1px solid #FFD54F;}
+.speed-control{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;margin-bottom:1rem;padding:0.7rem 1.1rem;background:var(--card);border-radius:10px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.speed-control .speed-label{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:700;color:var(--level-dark);white-space:nowrap;}
+.speed-control input[type="range"]{flex:1;min-width:140px;height:6px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--level-light),var(--level-primary));border-radius:6px;outline:none;cursor:pointer;}
+.speed-control input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,168,37,0.5);cursor:pointer;transition:transform 0.15s;}
+.speed-control input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
+.speed-control input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;cursor:pointer;}
+.speed-value{display:inline-flex;align-items:center;justify-content:center;min-width:54px;font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:600;color:var(--level-dark);background:var(--level-light);border:1.5px solid var(--level-mid);border-radius:8px;padding:3px 10px;}
+.speed-presets{display:flex;gap:4px;}
+.speed-preset{font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;color:var(--text-soft);background:transparent;border:1.5px solid var(--border);padding:3px 9px;border-radius:6px;cursor:pointer;transition:all 0.18s;}
+.speed-preset:hover,.speed-preset.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);}
+.parallel-toggle{display:flex;align-items:center;gap:0.5rem;font-size:0.83rem;color:var(--text-soft);margin-bottom:1rem;padding:0.5rem 1rem;background:var(--card);border-radius:8px;border:1px solid var(--border);}
+.parallel-toggle input,.parallel-toggle label{cursor:pointer;}
+.parallel-toggle label{font-weight:600;}
+.content-tabs{display:flex;gap:0.5rem;margin-bottom:1.2rem;padding:0.4rem;background:var(--card);border-radius:14px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.content-tab{flex:1;text-align:center;padding:0.7rem;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;border:2px solid transparent;background:transparent;font-family:'Nunito',sans-serif;}
+.content-tab:hover{background:#F5F5F0;}
+.content-tab.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);box-shadow:0 2px 8px var(--level-glow);}
+.content-panel{display:none;}
+.content-panel.active{display:block;animation:fadeIn 0.3s ease;}
+.item-tabs{display:flex;gap:0.4rem;margin-bottom:1rem;flex-wrap:wrap;}
+.item-tab{padding:0.4rem 1rem;border-radius:8px;font-size:0.83rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:all 0.2s;font-family:'Nunito',sans-serif;}
+.item-tab:hover{background:var(--level-light);}
+.item-tab.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);}
+.item-panel{display:none;}
+.item-panel.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.story-controls{background:var(--card);border:1.5px solid var(--level-mid);border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1rem;box-shadow:0 2px 10px rgba(249,168,37,0.12);}
+.story-controls .sc-title{display:flex;align-items:center;gap:6px;font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:600;color:var(--level-dark);margin-bottom:0.7rem;}
+.story-controls .sc-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:0.7rem;}
+.story-controls .sc-row:last-child{margin-bottom:0;}
+.story-controls .sc-divider{height:1px;background:var(--border);margin:0.7rem 0;}
+.story-controls .sc-speed{display:flex;align-items:center;gap:0.7rem;flex:1;min-width:200px;flex-wrap:wrap;}
+.story-controls .sc-speed-label{display:inline-flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;color:var(--level-dark);white-space:nowrap;}
+.story-controls input[type="range"].sc-slider{flex:1;min-width:110px;height:6px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--level-light),var(--level-primary));border-radius:6px;outline:none;cursor:pointer;}
+.story-controls input[type="range"].sc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,168,37,0.5);cursor:pointer;}
+.story-controls input[type="range"].sc-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--level-primary);border:2.5px solid #fff;cursor:pointer;}
+.play-all-bar{display:flex;gap:8px;align-items:center;margin-bottom:1rem;flex-wrap:wrap;}
+.play-all-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;background:var(--level-light);color:var(--level-dark);border:1.5px solid var(--level-primary);padding:6px 16px;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.play-all-btn:hover{background:var(--level-mid);}
+.play-all-btn.playing{background:var(--level-primary);color:#4E3800;}
+.play-counter{font-size:0.78rem;color:var(--text-soft);font-style:italic;}
+.accent-selector{display:inline-flex;align-items:center;gap:6px;margin-left:auto;}
+.accent-label{font-size:0.74rem;font-weight:700;color:var(--text-soft);}
+.accent-btn{font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:all 0.18s;}
+.accent-btn.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);}
+.global-translate-bar{display:flex;gap:8px;margin-bottom:1rem;align-items:center;flex-wrap:wrap;}
+.global-translate-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;background:#F3E5F5;color:#7B1FA2;border:1.5px solid #CE93D8;padding:6px 16px;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.global-translate-btn:hover{background:#E1BEE7;}
+.global-translate-btn.active{background:#CE93D8;color:#fff;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border-top:3.5px solid var(--level-primary);}
+.section-label{display:flex;align-items:center;gap:0.6rem;font-size:0.73rem;font-weight:800;text-transform:uppercase;letter-spacing:0.13em;color:var(--level-dark);margin-bottom:0.4rem;}
+.section-label::before{content:'';width:20px;height:3px;background:var(--level-primary);border-radius:2px;}
+.section-title{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:0.15rem;}
+.section-desc{font-size:0.87rem;color:var(--text-soft);margin-bottom:1.2rem;}
+/* === BADGE DEL NIVEL (faltaba en el CSS) === */
+.level-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:0.73rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;background:var(--level-light);color:var(--level-badge-text);padding:5px 14px;border-radius:20px;border:1.5px solid var(--level-mid);margin-bottom:1rem;}
+.reveal-line{margin-top:6px;}
+.reveal-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;background:var(--rv-text);border:none;padding:5px 13px;border-radius:8px;cursor:pointer;transition:all 0.2s;user-select:none;}
+.reveal-btn:hover{background:#6A1B9A;}
+.reveal-btn .arrow{transition:transform 0.25s;font-size:0.7rem;}
+.reveal-btn.open .arrow{transform:rotate(90deg);}
+/* === TRADUCCIÓN: ALTO CONTRASTE, SIN CURSIVA, SANS-SERIF, GRANDE === */
+.reveal-text{display:none;font-family:'Nunito',sans-serif;font-style:normal;font-weight:500;font-size:0.95rem;color:var(--tr-text);margin-top:6px;padding:4px 12px;border-left:3px solid var(--tr-border);animation:fadeSlide 0.25s ease;line-height:1.6;}
+.reveal-text::before{content:'🇪🇸 ';font-weight:700;color:var(--tr-accent);}
+.reveal-text.show{display:block;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.audio-row{display:flex;gap:6px;margin-top:6px;}
+.audio-btn{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;border:1.5px solid #E0E0E0;background:#FAFAFA;color:var(--text);padding:3px 10px;border-radius:8px;cursor:pointer;transition:all 0.2s;user-select:none;}
+.audio-btn:hover{background:#F0F0F0;border-color:#BDBDBD;transform:translateY(-1px);}
+.audio-btn.playing{border-color:var(--level-primary);background:var(--level-glow);color:var(--level-dark);}
+.chat-wrapper{display:flex;flex-direction:column;gap:0.65rem;}
+.chat-msg{max-width:82%;padding:0.8rem 1.1rem;border-radius:18px;font-size:1.02rem;line-height:1.6;position:relative;cursor:pointer;transition:box-shadow 0.2s;}
+.chat-msg:hover{box-shadow:0 2px 12px rgba(0,0,0,0.1);}
+.chat-msg.reading{outline:2.5px solid var(--level-primary);outline-offset:2px;background-color:#fffbf0 !important;}
+.chat-msg .speaker-name{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px;}
+.chat-msg.left{align-self:flex-start;background:var(--sp-a-bg);border-bottom-left-radius:5px;}
+.chat-msg.left .speaker-name{color:var(--sp-a);}
+.chat-msg.right{align-self:flex-end;background:var(--sp-b-bg);border-bottom-right-radius:5px;text-align:right;}
+.chat-msg.right .speaker-name{color:var(--sp-b);}
+.chat-msg.right .audio-row{justify-content:flex-end;}
+.chat-msg.right .reveal-line{text-align:right;}
+.chat-msg.right .reveal-text{text-align:right;border-left:none;border-right:3px solid var(--tr-border);}
+.word-hl{background:var(--hl-word);border-radius:3px;padding:0 2px;}
+/* === NOTAS DE TRADUCCIÓN (palabras añadidas/omitidas) === */
+.tn{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin:0 1px;font-size:0.6rem;font-weight:800;font-style:normal;color:#fff;background:var(--level-primary);border-radius:50%;cursor:pointer;vertical-align:super;line-height:1;transition:transform 0.15s;font-family:'Nunito',sans-serif;}
+.tn:hover{transform:scale(1.2);filter:brightness(1.08);}
+.tn-pop{position:absolute;z-index:1200;max-width:270px;background:#3E2723;color:#fff;font-family:'Nunito',sans-serif;font-size:0.8rem;line-height:1.45;font-weight:500;font-style:normal;padding:9px 12px 10px;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,0.28);animation:fadeSlide 0.18s ease;text-align:left;}
+.tn-pop::before{content:'✏️ Nota de traducción';display:block;font-size:0.62rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;opacity:0.7;margin-bottom:3px;}
+.story-block{margin-bottom:1.1rem;}
+.story-paragraph{font-family:'Lora',serif;font-size:1.08rem;line-height:1.9;padding:0.5rem 0.7rem;border-radius:8px;transition:background 0.2s;cursor:pointer;}
+.story-paragraph:hover{background:var(--level-glow);}
+.story-paragraph.reading{background:var(--level-glow);outline:2px solid var(--level-primary);outline-offset:2px;}
+.parallel-view .reveal-text{display:block !important;}
+.parallel-view .reveal-btn{display:none;}
+.player-bar{position:fixed;bottom:0;left:0;right:0;z-index:900;background:#fff;border-top:2px solid var(--level-mid);box-shadow:0 -4px 20px rgba(0,0,0,0.1);padding:0.7rem 1rem 0.9rem;}
+.player-inner{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:0.4rem;}
+.player-top{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;}
+.player-info{flex:1;min-width:0;}
+.player-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--level-dark);}
+.player-title{font-size:0.82rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-controls{display:flex;gap:6px;align-items:center;flex-shrink:0;}
+.pc-btn{font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;border:1.5px solid var(--border);background:var(--card);color:var(--text);padding:5px 12px;border-radius:8px;cursor:pointer;transition:all 0.18s;display:inline-flex;align-items:center;gap:4px;}
+.pc-btn:hover{background:var(--level-light);border-color:var(--level-primary);}
+.pc-btn.primary{background:var(--level-primary);border-color:var(--level-primary);color:#4E3800;}
+.pc-btn.primary:hover{background:var(--level-mid);}
+.pc-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.player-accent{display:flex;gap:4px;}
+.pa-btn{font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:7px;border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:all 0.18s;font-family:'Nunito',sans-serif;}
+.pa-btn.active{background:var(--level-light);border-color:var(--level-primary);color:var(--level-dark);}
+.player-progress{display:flex;align-items:center;gap:8px;}
+.progress-time{font-size:0.7rem;color:var(--text-soft);min-width:32px;font-family:'Nunito',sans-serif;}
+.progress-bar{flex:1;height:5px;background:var(--level-light);border-radius:4px;cursor:pointer;position:relative;overflow:hidden;}
+.progress-fill{height:100%;background:var(--level-primary);border-radius:4px;transition:width 0.1s linear;width:0%;}
+@media(max-width:600px){
+  .level-header h1{font-size:1.5rem;}
+  .chat-msg{max-width:90%;font-size:0.96rem;}
+  .card{padding:1.2rem;}
+  .player-top{gap:0.4rem;}
+  .pc-btn{font-size:0.7rem;padding:4px 8px;}
+  .reveal-text{font-size:0.92rem;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="level-header">
+    <h1>🟡 Pre-A1 — Pre-Básico</h1>
+    <div class="module-name">🪪 Personal Identity</div>
+    <p class="subtitle">Frases muy básicas · 4–6 palabras · Pronombres y verbo to be</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">🖱️ <strong>Click line/paragraph</strong> → hear it with word highlight</div>
+    <div class="legend-item"><button class="reveal-btn" style="pointer-events:none">🇪🇸 <span class="arrow">›</span></button> traducción</div>
+    <div class="legend-item"><button class="audio-btn" style="pointer-events:none">🔊 US/UK/AU</button> audio</div>
+    <div class="legend-item"><span class="tn" style="pointer-events:none">i</span> nota de traducción</div>
+  </div>
+
+  <div id="voice-status">🎙️ Para escuchar con <strong>voces naturales</strong>, abre este material en <strong>Microsoft&nbsp;Edge</strong> &nbsp;→&nbsp; <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener" style="color:inherit;font-weight:800;text-decoration:underline;">descargar Edge (gratis)</a>. <span style="opacity:0.72;">Las voces vienen del navegador/equipo, no de la página.</span></div>
+
+  <div class="speed-control">
+    <span class="speed-label">🐢 Velocidad</span>
+    <input type="range" id="speedSlider" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this.value)">
+    <span class="speed-value" id="speedValue">0.82×</span>
+    <div class="speed-presets">
+      <button class="speed-preset" onclick="setSpeed(0.6,this)">Lento</button>
+      <button class="speed-preset active" onclick="setSpeed(0.82,this)">Normal</button>
+      <button class="speed-preset" onclick="setSpeed(1.0,this)">Rápido</button>
+    </div>
+  </div>
+
+  <div class="parallel-toggle">
+    <input type="checkbox" id="parallelCheck" onchange="toggleParallel(this.checked)">
+    <label for="parallelCheck">🔄 Show English + Spanish side by side</label>
+  </div>
+
+  <div class="content-tabs">
+    <button class="content-tab active" onclick="switchContent('dialogues',this)">💬 Dialogues (D1–D4)</button>
+    <button class="content-tab" onclick="switchContent('stories',this)">📖 Stories (S1–S4)</button>
+  </div>
+
+  <div class="content-panel active" id="panel-dialogues">
+
+    <div class="item-tabs">
+      <button class="item-tab active" onclick="switchItem('dialogues','d1',this)">D1</button>
+      <button class="item-tab" onclick="switchItem('dialogues','d2',this)">D2</button>
+      <button class="item-tab" onclick="switchItem('dialogues','d3',this)">D3</button>
+      <button class="item-tab" onclick="switchItem('dialogues','d4',this)">D4</button>
+    </div>
+
+    <div class="story-controls">
+      <div class="sc-title">🎧 Audio del Diálogo</div>
+      <div class="sc-row">
+        <button class="play-all-btn" id="play-all-btn-d" onclick="playAllDialogue()">▶ Reproducir Diálogo completo</button>
+        <span class="play-counter" id="play-counter-d"></span>
+        <div class="accent-selector">
+          <span class="accent-label">Acento:</span>
+          <button class="accent-btn active" onclick="setPlayAccent('US',this)">🇺🇸 US</button>
+          <button class="accent-btn" onclick="setPlayAccent('UK',this)">🇬🇧 UK</button>
+          <button class="accent-btn" onclick="setPlayAccent('AU',this)">🇦🇺 AU</button>
+        </div>
+      </div>
+      <div class="sc-divider"></div>
+      <div class="sc-row">
+        <div class="sc-speed">
+          <span class="sc-speed-label">🐢 Velocidad</span>
+          <input type="range" class="sc-slider" id="diaSpeedSlider" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this.value)">
+          <span class="speed-value" id="diaSpeedValue">0.82×</span>
+          <div class="speed-presets">
+            <button class="speed-preset" onclick="setSpeed(0.6,this)">Lento</button>
+            <button class="speed-preset active" onclick="setSpeed(0.82,this)">Normal</button>
+            <button class="speed-preset" onclick="setSpeed(1.0,this)">Rápido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="global-translate-bar">
+      <button class="global-translate-btn" id="gtrans-d" onclick="toggleGlobalTranslate('dialogues')">🇪🇸 Show all translations</button>
+    </div>
+<div class="item-panel active" id="dialogues-d1">
+<div class="card">
+<div class="section-label">Dialogue 1</div>
+<div class="section-title">First Day at School</div>
+<div class="section-desc">Leo and Ana meet for the first time in their classroom.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="chat-wrapper">
+<div class="chat-msg left" onclick="speakMsg(this,'I am Leo. What is your name?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">I am Leo. What is your name?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am Leo. What is your name?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am Leo. What is your name?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am Leo. What is your name?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo soy Leo. ¿Cuál<span class="tn" data-nota="El inglés pregunta «What is your name» (literal: ¿Qué es tu nombre?), pero en español lo natural es «¿Cuál es tu nombre?». No se traduce palabra por palabra.">i</span> es tu nombre?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'My name is Ana. I am seven years old.')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">My name is Ana. I am seven years old.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Ana. I am seven years old.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Ana. I am seven years old.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Ana. I am seven years old.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Mi nombre es Ana. Yo tengo siete años.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'We are in the same class! Are you new here?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">We are in the same class! Are you new here?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'We are in the same class! Are you new here?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'We are in the same class! Are you new here?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'We are in the same class! Are you new here?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Nosotros estamos en la misma clase. ¿Eres nueva aquí?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Yes. I moved here last week. It is my first day.')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">Yes. I moved here last week. It is my first day.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. I moved here last week. It is my first day.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. I moved here last week. It is my first day.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. I moved here last week. It is my first day.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Sí. Me mudé aquí la semana pasada. Es mi primer día.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'The same thing happened to me last year. It was scary at first.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">The same thing happened to me last year. It was scary at first.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The same thing happened to me last year. It was scary at first.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The same thing happened to me last year. It was scary at first.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The same thing happened to me last year. It was scary at first.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Lo mismo me pasó a mí el año pasado. Al principio da miedo.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'A little. But the teacher is really nice.')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">A little. But the teacher is really nice.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'A little. But the teacher is really nice.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'A little. But the teacher is really nice.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'A little. But the teacher is really nice.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Un poco. Pero la maestra es muy simpática.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes! Her name is Miss Rosa. Everyone likes her.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Yes! Her name is Miss Rosa. Everyone likes her.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Miss Rosa. Everyone likes her.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Miss Rosa. Everyone likes her.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Miss Rosa. Everyone likes her.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Sí! Su nombre es Miss Rosa. A todos les gusta.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Good. I was worried. Is everyone here friendly?')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">Good. I was worried. Is everyone here friendly?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Good. I was worried. Is everyone here friendly?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Good. I was worried. Is everyone here friendly?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Good. I was worried. Is everyone here friendly?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Qué bien. Yo estaba preocupada. ¿Todos aquí son amables?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Most people are. There is a boy called Ravi — his brother is in our class too.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Most people are. There is a boy called Ravi — his brother is in our class too.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Most people are. There is a boy called Ravi — his brother is in our class too.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Most people are. There is a boy called Ravi — his brother is in our class too.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Most people are. There is a boy called Ravi — his brother is in our class too.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">La mayoría sí. Hay un niño llamado Ravi — su hermano también está en nuestra clase.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Oh! I see. Is that him over there — the tall boy?')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">Oh! I see. Is that him over there — the tall boy?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh! I see. Is that him over there — the tall boy?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh! I see. Is that him over there — the tall boy?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh! I see. Is that him over there — the tall boy?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Ah, ya veo! ¿Es él el de allá — el niño alto?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'No, that is Dev, his brother. Ravi sits near the window.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">No, that is Dev, his brother. Ravi sits near the window.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No, that is Dev, his brother. Ravi sits near the window.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No, that is Dev, his brother. Ravi sits near the window.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No, that is Dev, his brother. Ravi sits near the window.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">No, ese es Dev, su hermano. Ravi se sienta cerca de la ventana.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I will say hello to him. Do we have class now or is it break?')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">I will say hello to him. Do we have class now or is it break?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will say hello to him. Do we have class now or is it break?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will say hello to him. Do we have class now or is it break?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will say hello to him. Do we have class now or is it break?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Le voy a decir hola. ¿Nosotros tenemos clase ahora o es el recreo?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Class starts in five minutes. There are still some empty seats.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Class starts in five minutes. There are still some empty seats.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Class starts in five minutes. There are still some empty seats.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Class starts in five minutes. There are still some empty seats.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Class starts in five minutes. There are still some empty seats.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">La clase empieza en cinco minutos. Todavía hay algunos asientos vacíos.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I will sit next to you, if that is OK.')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">I will sit next to you, if that is OK.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will sit next to you, if that is OK.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will sit next to you, if that is OK.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will sit next to you, if that is OK.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Yo me sentaré a tu lado, si no te molesta.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Of course! Ravi can sit on the other side.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Of course! Ravi can sit on the other side.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Ravi can sit on the other side.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Ravi can sit on the other side.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Ravi can sit on the other side.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Claro que sí! Él se sentará al otro lado — quiero decir Ravi, no Dev.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Great. I am glad I met you today, Leo.')">
+<div class="speaker-name">Ana</div>
+<div class="msg-text">Great. I am glad I met you today, Leo.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Great. I am glad I met you today, Leo.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Great. I am glad I met you today, Leo.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Great. I am glad I met you today, Leo.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Qué bien. Estoy contenta de haberte conocido hoy, Leo.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Me too, Ana. We are going to be good friends.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Me too, Ana. We are going to be good friends.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Me too, Ana. We are going to be good friends.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Me too, Ana. We are going to be good friends.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Me too, Ana. We are going to be good friends.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo también, Ana. Nosotros vamos a ser buenos amigos.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="dialogues-d2">
+<div class="card">
+<div class="section-label">Dialogue 2</div>
+<div class="section-title">The Family Photo</div>
+<div class="section-desc">Mia shows Sam a photo of her family.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="chat-wrapper">
+<div class="chat-msg left" onclick="speakMsg(this,'Sam, look! This is a photo of my family.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Sam, look! This is a photo of my family.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Sam, look! This is a photo of my family.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Sam, look! This is a photo of my family.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Sam, look! This is a photo of my family.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Sam, ¡mira! Esta es una foto de mi familia.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Oh, nice! Who is that boy next to you?')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">Oh, nice! Who is that boy next to you?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh, nice! Who is that boy next to you?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh, nice! Who is that boy next to you?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Oh, nice! Who is that boy next to you?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Qué linda! ¿Quién es ese niño junto a ti?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'That is my brother Nico. His name means victory.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">That is my brother Nico. His name means victory.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'That is my brother Nico. His name means victory.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'That is my brother Nico. His name means victory.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'That is my brother Nico. His name means victory.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Ese es mi hermano Nico. Su nombre significa "victoria".</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I see. And who is that? Is that your dad?')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">I see. And who is that? Is that your dad?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. And who is that? Is that your dad?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. And who is that? Is that your dad?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. And who is that? Is that your dad?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Ya veo. ¿Y quién es ese? ¿Es tu papá?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes! His name is Carlos. He is very tall.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Yes! His name is Carlos. He is very tall.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! His name is Carlos. He is very tall.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! His name is Carlos. He is very tall.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! His name is Carlos. He is very tall.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Sí! Su nombre es Carlos. Es muy alto.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'And the woman next to him? Is that your mom?')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">And the woman next to him? Is that your mom?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And the woman next to him? Is that your mom?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And the woman next to him? Is that your mom?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And the woman next to him? Is that your mom?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¿Y la señora a su lado? ¿Es tu mamá?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes, that is her. Her name is Rosa. She is funny.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Yes, that is her. Her name is Rosa. She is funny.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, that is her. Her name is Rosa. She is funny.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, that is her. Her name is Rosa. She is funny.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, that is her. Her name is Rosa. She is funny.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Sí, es ella. Se llama Rosa. Es muy graciosa.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Your family looks happy. There are five people in the photo.')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">Your family looks happy. There are five people in the photo.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Your family looks happy. There are five people in the photo.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Your family looks happy. There are five people in the photo.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Your family looks happy. There are five people in the photo.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Tu familia parece feliz. Hay cinco personas en la foto.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes! My dad, my mom, my brother, my grandma, and me.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Yes! My dad, my mom, my brother, my grandma, and me.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! My dad, my mom, my brother, my grandma, and me.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! My dad, my mom, my brother, my grandma, and me.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! My dad, my mom, my brother, my grandma, and me.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Sí! Mi papá, mi mamá, mi hermano, mi abuela y yo.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I only have three people in my family. Mom, dad, and me.')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">I only have three people in my family. Mom, dad, and me.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I only have three people in my family. Mom, dad, and me.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I only have three people in my family. Mom, dad, and me.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I only have three people in my family. Mom, dad, and me.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Yo solo tengo tres personas en mi familia. Mamá, papá y yo.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Three is lovely too. Everyone has a different family.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Three is lovely too. Everyone has a different family.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is lovely too. Everyone has a different family.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is lovely too. Everyone has a different family.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is lovely too. Everyone has a different family.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Todos tienen una familia diferente, y está bien.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'True! Are you and Nico the same age?')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">True! Are you and Nico the same age?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True! Are you and Nico the same age?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True! Are you and Nico the same age?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True! Are you and Nico the same age?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Verdad! ¿Tú y Nico tienen la misma edad?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'No — I am seven and he is nine. He is the big brother.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">No — I am seven and he is nine. He is the big brother.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No — I am seven and he is nine. He is the big brother.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No — I am seven and he is nine. He is the big brother.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No — I am seven and he is nine. He is the big brother.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">No — yo tengo siete y él tiene nueve. Él es el hermano mayor.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I am seven too! Mia, we are the same age.')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">I am seven too! Mia, we are the same age.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am seven too! Mia, we are the same age.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am seven too! Mia, we are the same age.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am seven too! Mia, we are the same age.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Yo también tengo siete. Mia, nosotros tenemos la misma edad.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Really? That is so cool!')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Really? That is so cool!</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really? That is so cool!','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really? That is so cool!','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really? That is so cool!','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¿De verdad? ¡Eres un amigo amable por fijarte!</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Ha! Is that your grandma — the one in the corner?')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">Ha! Is that your grandma — the one in the corner?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! Is that your grandma — the one in the corner?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! Is that your grandma — the one in the corner?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! Is that your grandma — the one in the corner?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Ja! ¿Es esa tu abuela — la que está en el rincón?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Yes! Her name is Norma. She is seventy and still walks to the market every day.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! Her name is Norma. She is seventy and still walks to the market every day.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Sí! Su nombre es Norma. Tiene setenta años y todavía camina al mercado cada día.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Wow. I want to meet her someday.')">
+<div class="speaker-name">Sam</div>
+<div class="msg-text">Wow. I want to meet her someday.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Wow. I want to meet her someday.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Wow. I want to meet her someday.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Wow. I want to meet her someday.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Vaya. Yo quiero conocerla algún día.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Come to my house on Saturday! Everyone is welcome.')">
+<div class="speaker-name">Mia</div>
+<div class="msg-text">Come to my house on Saturday! Everyone is welcome.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Come to my house on Saturday! Everyone is welcome.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Come to my house on Saturday! Everyone is welcome.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Come to my house on Saturday! Everyone is welcome.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Ven a mi casa el sábado! Todos son bienvenidos.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="dialogues-d3">
+<div class="card">
+<div class="section-label">Dialogue 3</div>
+<div class="section-title">Baby Luli</div>
+<div class="section-desc">Nico tells his friend Eva about his new baby sister.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="chat-wrapper">
+<div class="chat-msg left" onclick="speakMsg(this,'I have a new baby sister!')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">I have a new baby sister!</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a new baby sister!','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a new baby sister!','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a new baby sister!','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo tengo una nueva hermanita.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Really?! What is her name?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">Really?! What is her name?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really?! What is her name?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really?! What is her name?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Really?! What is her name?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¿En serio?! ¿Cómo se llama?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Her name is Luli. She is only two days old.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">Her name is Luli. She is only two days old.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Her name is Luli. She is only two days old.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Her name is Luli. She is only two days old.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Her name is Luli. She is only two days old.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Su nombre es Luli. Solo tiene dos días.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Two days! There is a new baby in your house! Are you happy?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">Two days! There is a new baby in your house! Are you happy?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Two days! There is a new baby in your house! Are you happy?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Two days! There is a new baby in your house! Are you happy?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Two days! There is a new baby in your house! Are you happy?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Dos días! Hay una bebé nueva en tu casa. ¿Estás contento?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'I am very happy. But a little tired. She cries at night.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">I am very happy. But a little tired. She cries at night.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am very happy. But a little tired. She cries at night.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am very happy. But a little tired. She cries at night.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am very happy. But a little tired. She cries at night.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo estoy muy feliz. Pero un poco cansado. Ella llora de noche.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Ha! All babies are like that. Is your dad at the hospital?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">Ha! All babies are like that. Is your dad at the hospital?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! All babies are like that. Is your dad at the hospital?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! All babies are like that. Is your dad at the hospital?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ha! All babies are like that. Is your dad at the hospital?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Ja! Todos los bebés son así. ¿Está tu papá en el hospital?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes. His face was so happy when I called him.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">Yes. His face was so happy when I called him.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. His face was so happy when I called him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. His face was so happy when I called him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. His face was so happy when I called him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Sí. Su cara estaba muy feliz cuando lo llamé.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'And your grandma? Is she at home with you?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">And your grandma? Is she at home with you?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandma? Is she at home with you?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandma? Is she at home with you?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandma? Is she at home with you?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¿Y tu abuela? ¿Está ella en casa contigo?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes! She is the best. Everyone loves her.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">Yes! She is the best. Everyone loves her.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! She is the best. Everyone loves her.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! She is the best. Everyone loves her.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! She is the best. Everyone loves her.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Sí! Ella es lo mejor. Todos la quieren.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I want to see Luli. Can I visit this weekend?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">I want to see Luli. Can I visit this weekend?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I want to see Luli. Can I visit this weekend?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I want to see Luli. Can I visit this weekend?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I want to see Luli. Can I visit this weekend?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Yo quiero ver a Luli. ¿Puedo visitar este fin de semana?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Of course! My dad says everyone is welcome. Come Saturday.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">Of course! My dad says everyone is welcome. Come Saturday.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! My dad says everyone is welcome. Come Saturday.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! My dad says everyone is welcome. Come Saturday.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! My dad says everyone is welcome. Come Saturday.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Claro! Mi papá dice que todos son bienvenidos. Ven el sábado.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I will bring something for her.')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">I will bring something for her.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will bring something for her.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will bring something for her.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I will bring something for her.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Le traeré algo a ella.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'You are so kind, Eva. She will love it.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">You are so kind, Eva. She will love it.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'You are so kind, Eva. She will love it.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'You are so kind, Eva. She will love it.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'You are so kind, Eva. She will love it.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Eres tan amable, Eva. A ella le encantará eso.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'It is for Luli! Does she have the same eyes as you?')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">It is for Luli! Does she have the same eyes as you?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'It is for Luli! Does she have the same eyes as you?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'It is for Luli! Does she have the same eyes as you?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'It is for Luli! Does she have the same eyes as you?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Es para Luli! ¿Tiene los mismos ojos que tú?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes, my dad says we have the same eyes — both brown.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">Yes, my dad says we have the same eyes — both brown.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, my dad says we have the same eyes — both brown.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, my dad says we have the same eyes — both brown.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes, my dad says we have the same eyes — both brown.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Sí, mi papá dice que tenemos los mismos ojos — los dos cafés.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'How sweet! See you Saturday then!')">
+<div class="speaker-name">Eva</div>
+<div class="msg-text">How sweet! See you Saturday then!</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'How sweet! See you Saturday then!','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'How sweet! See you Saturday then!','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'How sweet! See you Saturday then!','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Qué tierno! ¡Hasta el sábado entonces!</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'See you Saturday, Eva! I cannot wait.')">
+<div class="speaker-name">Nico</div>
+<div class="msg-text">See you Saturday, Eva! I cannot wait.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'See you Saturday, Eva! I cannot wait.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'See you Saturday, Eva! I cannot wait.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'See you Saturday, Eva! I cannot wait.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Hasta el sábado, Eva! Yo ya no puedo esperar.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="dialogues-d4">
+<div class="card">
+<div class="section-label">Dialogue 4</div>
+<div class="section-title">Who Is in Your Family?</div>
+<div class="section-desc">Leo and Ravi compare their families at the park.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="chat-wrapper">
+<div class="chat-msg left" onclick="speakMsg(this,'Ravi, how many people are in your family?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Ravi, how many people are in your family?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi, how many people are in your family?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi, how many people are in your family?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi, how many people are in your family?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Ravi, ¿cuántas personas hay en tu familia?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">There are six. My mom, my dad, two brothers, my grandpa, and me.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There are six. My mom, my dad, two brothers, my grandpa, and me.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Hay seis. Mi mamá, mi papá, dos hermanos, mi abuelo y yo.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Six! I only have three. Mom, dad, and me.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Six! I only have three. Mom, dad, and me.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Six! I only have three. Mom, dad, and me.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Six! I only have three. Mom, dad, and me.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Six! I only have three. Mom, dad, and me.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Seis! Yo solo tengo tres. Mamá, papá y yo.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Three is nice too. Every family is different.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Three is nice too. Every family is different.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is nice too. Every family is different.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is nice too. Every family is different.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Three is nice too. Every family is different.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Tres también está bien. Cada familia es diferente.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'True. Are your two brothers the same age?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">True. Are your two brothers the same age?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True. Are your two brothers the same age?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True. Are your two brothers the same age?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'True. Are your two brothers the same age?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Verdad. ¿Tus dos hermanos son de la misma edad?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'No! Dev is ten and Arjun is five. Very different.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">No! Dev is ten and Arjun is five. Very different.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No! Dev is ten and Arjun is five. Very different.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No! Dev is ten and Arjun is five. Very different.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'No! Dev is ten and Arjun is five. Very different.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡No! Dev tiene diez y Arjun tiene cinco. Muy diferentes.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Are you in the middle then?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Are you in the middle then?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Are you in the middle then?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Are you in the middle then?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Are you in the middle then?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¿Tú estás en el medio entonces?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'I am eight — yes, in the middle!')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">I am eight — yes, in the middle!</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am eight — yes, in the middle!','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am eight — yes, in the middle!','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am eight — yes, in the middle!','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Tengo ocho — ¡sí, estoy en el medio!</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'I see. Is Dev nice to you?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">I see. Is Dev nice to you?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. Is Dev nice to you?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. Is Dev nice to you?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I see. Is Dev nice to you?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Ya veo. ¿Es Dev amable contigo?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Yes. He is a good big brother. His friends are nice to me too.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Yes. He is a good big brother. His friends are nice to me too.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. He is a good big brother. His friends are nice to me too.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. He is a good big brother. His friends are nice to me too.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. He is a good big brother. His friends are nice to me too.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Sí. Es un buen hermano mayor. Sus amigos también son amables conmigo.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'And little Arjun? Do you play with him?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">And little Arjun? Do you play with him?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And little Arjun? Do you play with him?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And little Arjun? Do you play with him?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And little Arjun? Do you play with him?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¿Y el pequeño Arjun? ¿Juegas con él?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Every day! He is a funny little boy. I love him.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Every day! He is a funny little boy. I love him.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Every day! He is a funny little boy. I love him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Every day! He is a funny little boy. I love him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Every day! He is a funny little boy. I love him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Todos los días! Es un niño gracioso. Yo lo quiero mucho.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'And your grandpa? Is he nice?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">And your grandpa? Is he nice?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandpa? Is he nice?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandpa? Is he nice?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'And your grandpa? Is he nice?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¿Y tu abuelo? ¿Es simpático?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'His name is Babu. He tells a lot of stories. Everyone loves him.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">His name is Babu. He tells a lot of stories. Everyone loves him.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'His name is Babu. He tells a lot of stories. Everyone loves him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'His name is Babu. He tells a lot of stories. Everyone loves him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'His name is Babu. He tells a lot of stories. Everyone loves him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Su nombre es Babu. Cuenta muchos cuentos. Todos lo quieren.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Does he speak Spanish or English?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Does he speak Spanish or English?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Does he speak Spanish or English?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Does he speak Spanish or English?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Does he speak Spanish or English?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¿Habla español o inglés?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Both! He is from India but he lives here now.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Both! He is from India but he lives here now.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Both! He is from India but he lives here now.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Both! He is from India but he lives here now.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Both! He is from India but he lives here now.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Los dos! Es de India pero él vive aquí ahora.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'My grandpa is the same — from another town, but here now.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">My grandpa is the same — from another town, but here now.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa is the same — from another town, but here now.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa is the same — from another town, but here now.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa is the same — from another town, but here now.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi abuelo es igual — de otro pueblo, pero aquí ahora.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Maybe they know each other! Are all your family from this town?')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Maybe they know each other! Are all your family from this town?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Maybe they know each other! Are all your family from this town?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Maybe they know each other! Are all your family from this town?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Maybe they know each other! Are all your family from this town?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Quizás se conocen! ¿Es toda tu familia de aquí?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Yes. My dad and his dad, all from here.')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Yes. My dad and his dad, all from here.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. My dad and his dad, all from here.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. My dad and his dad, all from here.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes. My dad and his dad, all from here.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Sí. Mi papá y su papá, todos de aquí.</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Cool. My family is from many places — India, Lima, here. Everyone is welcome everywhere.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">Qué bueno. Mi familia es de muchos lugares — India, Lima, aquí. Todos son bienvenidos en todas partes.</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'I agree. Hey, is that your dad over there?')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">I agree. Hey, is that your dad over there?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I agree. Hey, is that your dad over there?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I agree. Hey, is that your dad over there?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I agree. Hey, is that your dad over there?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Estoy de acuerdo. Oye, ¿es ese tu papá allá?</div>
+</div>
+</div>
+<div class="chat-msg right" onclick="speakMsg(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?')">
+<div class="speaker-name">Ravi</div>
+<div class="msg-text">Yes! And his friend. They play here every Sunday. Is it OK if we join them?</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Yes! And his friend. They play here every Sunday. Is it OK if we join them?','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text" style="text-align:right;">¡Sí! Y su amigo. Juegan aquí cada domingo. ¿Está bien si nosotros nos unimos?</div>
+</div>
+</div>
+<div class="chat-msg left" onclick="speakMsg(this,'Of course! Come on!')">
+<div class="speaker-name">Leo</div>
+<div class="msg-text">Of course! Come on!</div>
+<div class="audio-row">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Come on!','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Come on!','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Of course! Come on!','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">¡Claro que sí! ¡Vamos!</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+
+  <div class="content-panel" id="panel-stories">
+
+    <div class="item-tabs">
+      <button class="item-tab active" onclick="switchItem('stories','s1',this)">S1</button>
+      <button class="item-tab" onclick="switchItem('stories','s2',this)">S2</button>
+      <button class="item-tab" onclick="switchItem('stories','s3',this)">S3</button>
+      <button class="item-tab" onclick="switchItem('stories','s4',this)">S4</button>
+    </div>
+
+    <div class="story-controls">
+      <div class="sc-title">🎧 Audio de la Story</div>
+      <div class="sc-row">
+        <button class="play-all-btn" id="play-all-btn" onclick="playAllStory()">▶ Reproducir Story completa</button>
+        <span class="play-counter" id="play-counter"></span>
+        <div class="accent-selector">
+          <span class="accent-label">Acento:</span>
+          <button class="accent-btn active" onclick="setPlayAccent('US',this)">🇺🇸 US</button>
+          <button class="accent-btn" onclick="setPlayAccent('UK',this)">🇬🇧 UK</button>
+          <button class="accent-btn" onclick="setPlayAccent('AU',this)">🇦🇺 AU</button>
+        </div>
+      </div>
+      <div class="sc-divider"></div>
+      <div class="sc-row">
+        <div class="sc-speed">
+          <span class="sc-speed-label">🐢 Velocidad</span>
+          <input type="range" class="sc-slider" id="storySpeedSlider" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this.value)">
+          <span class="speed-value" id="storySpeedValue">0.82×</span>
+          <div class="speed-presets">
+            <button class="speed-preset" onclick="setSpeed(0.6,this)">Lento</button>
+            <button class="speed-preset active" onclick="setSpeed(0.82,this)">Normal</button>
+            <button class="speed-preset" onclick="setSpeed(1.0,this)">Rápido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="global-translate-bar">
+      <button class="global-translate-btn" id="gtrans-s" onclick="toggleGlobalTranslate('stories')">🇪🇸 Show all translations</button>
+    </div>
+<div class="item-panel active" id="stories-s1">
+<div class="card">
+<div class="section-label">Story 1</div>
+<div class="section-title">My Name Is Leo</div>
+<div class="section-desc">Leo introduces himself and his small, happy family.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.')">My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Leo. I am seven years old. I live in a small town with my family — my mom, my dad, and my sister Lara. We have a small house near the market.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi nombre es Leo. Yo tengo siete años. Vivo en un pueblo pequeño con mi familia — mi mamá, mi papá y mi hermana Lara. Tenemos una casa pequeña cerca del mercado.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.')">My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is tall and quiet. His name is Marco. He works at the market every morning and comes home at noon. He always brings us something — fruit, bread, or a small sweet.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi papá es alto y tranquilo. Su nombre es Marco. Trabaja en el mercado cada mañana y llega a casa al mediodía. Siempre nos trae algo — fruta, pan o un dulce pequeño.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.')">My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My mom is short and full of energy. Her name is Irma. She sings while she cooks and laughs at her own jokes. My sister Lara looks just like her — same nose, same laugh.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi mamá es bajita y llena de energía. Su nombre es Irma. Canta mientras cocina y se ríe de sus propios chistes. Mi hermana Lara es igualita a ella — misma nariz, misma risa.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.')">Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Lara is five. She and I are not the same age, but we share a room. Sometimes that is hard. But at night, when it is dark, she reaches across and holds my hand.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Lara tiene cinco. Ella y yo no tenemos la misma edad, pero compartimos un cuarto. A veces eso es difícil. Pero de noche, cuando está oscuro, ella me toma de la mano.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.')">There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandpa, Don Beto. He is old but very strong. Every afternoon he sits outside and waves at neighbors. Everyone on our street knows him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">También está mi abuelo, Don Beto. Es mayor pero muy fuerte. Cada tarde se sienta afuera y saluda a los vecinos. Todos en nuestra calle lo conocen.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.')">On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'On Sundays we eat together — all of us at the same table. Dad makes rice, mom makes soup, and grandpa tells a story from when he was young. I always ask for the same one about the big river.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Los domingos comemos juntos — todos en la misma mesa. Papá hace arroz, mamá hace sopa, y el abuelo cuenta un cuento de cuando era joven. Siempre le pido el mismo del río grande.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.')">I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I am happy to be Leo, from this town, from this family. Not every family is the same. But every family has something good in it. That is what Don Beto says, and I believe him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Estoy feliz de ser Leo, de este pueblo, de esta familia. No toda familia es igual. Pero toda familia tiene algo bueno en ella. Eso es lo que dice Don Beto, y yo le creo.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="stories-s2">
+<div class="card">
+<div class="section-label">Story 2</div>
+<div class="section-title">Mia's Family Photo</div>
+<div class="section-desc">Mia describes the people in her favorite family photograph.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.')">I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I have a big photo on my bedroom wall. There are eight people in it, and everyone is smiling. I look at that photo every morning before school.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo tengo una foto grande en la pared de mi cuarto. Hay ocho personas en ella, y todos están sonriendo. La miro cada mañana antes de ir a la escuela.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.')">The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The tallest person is my dad. His name is Carlos. He has a big smile and long arms. When he hugs you, you disappear a little. I love that.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">La persona más alta es mi papá. Su nombre es Carlos. Tiene una gran sonrisa y brazos largos. Cuando te abraza, desapareces un poco. Eso me encanta.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.')">Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Next to him is my mom, Rosa. Her eyes are always laughing even when her mouth is serious. She is a nurse and comes home tired, but she always has time to listen to me.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Junto a él está mi mamá, Rosa. Sus ojos siempre ríen aunque su boca esté seria. Es enfermera y llega a casa cansada, pero siempre tiene tiempo para escucharme.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.')">My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My brother Nico is nine. He is a funny boy — in the photo he is making a silly face. He always makes me laugh, even on bad days. The same face every time.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi hermano Nico tiene nueve años. Es un niño gracioso — en la foto está haciendo una mueca. Siempre me hace reír, hasta en los días malos. La misma cara siempre.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.')">There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my grandma Norma. Her hair is white and her hands are warm. She knows how to make everything better with a cup of tea and a quiet word.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">También está mi abuela Norma. Su cabello es blanco y sus manos son cálidas. Sabe cómo mejorar todo con una taza de té y una palabra tranquila.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.')">My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is next to her. They are the same age — both seventy. He is quiet where she is loud. He listens where she talks. Together they are perfect.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi abuelo Beto está junto a ella. Tienen la misma edad — los dos tienen setenta. Él es callado donde ella es ruidosa. Él escucha donde ella habla. Juntos son perfectos.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.')">The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'The last two people in the photo are my aunt and uncle. Everyone in my family is different. But in that photo, we all look like we belong together. Because we do.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Las últimas dos personas en la foto son mi tía y mi tío. Todos en mi familia son diferentes. Pero en esa foto, todos parecemos pertenecer juntos. Porque así es.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="stories-s3">
+<div class="card">
+<div class="section-label">Story 3</div>
+<div class="section-title">Saturday at the Park</div>
+<div class="section-desc">Leo describes a typical Saturday with his family and friends.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.')">Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Saturday is a special day. We do not go to school or work. There is no rush in the morning. My dad makes eggs and everyone sits at the table together.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">El sábado es un día especial. Nosotros no vamos a la escuela ni al trabajo. No hay prisa por la mañana. Mi papá hace huevos y todos se sientan juntos a la mesa.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.')">After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'After breakfast we walk to the park. My grandpa Don Beto comes with us. His walking stick makes a click-click sound on the sidewalk. I like to walk next to him.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Después del desayuno vamos al parque. Mi abuelo Don Beto viene con nosotros. Su bastón hace un click-click en la acera. A mí me gusta caminar a su lado.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.')">At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At the park I play with my friend Ravi. His little brother Arjun plays with my sister Lara. They are the same age — both five — so they understand each other perfectly.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">En el parque juego con mi amigo Ravi. Su hermano pequeño Arjun juega con mi hermana Lara. Tienen la misma edad — los dos tienen cinco — así que se entienden perfectamente.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.')">Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Ravi is a funny boy. He does voices for all the animals and I cannot stop laughing. His big brother Dev watches us and shakes his head. But he is smiling.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Ravi es un niño gracioso. Hace voces de todos los animales y yo no puedo dejar de reírme. Su hermano mayor Dev nos mira y mueve la cabeza. Pero él está sonriendo.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.')">Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'Everyone at the park knows each other. The moms talk near the fountain. The dads play football. The grandpas sit on a bench and watch it all — like they are watching a film.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Todos en el parque se conocen. Las mamás hablan cerca de la fuente. Los papás juegan fútbol. Los abuelos se sientan en un banco y miran todo — como si estuvieran viendo una película.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.')">When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'When the sun goes down we start walking home. My sister is sleepy and my dad carries her on his back. She is small and her eyes are already closed.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Cuando el sol se pone empezamos a caminar a casa. Mi hermana tiene sueño y mi papá la lleva en la espalda. Ella es pequeña y sus ojos ya están cerrados.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.')">At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At home we drink tea and grandpa tells a story. I sit close to him and listen. It is the best part of Saturday — the quiet end, with my family, all together.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">En casa tomamos té y el abuelo cuenta un cuento. Yo me siento cerca de él y escucho. Es la mejor parte del sábado — el final tranquilo, con mi familia, todos juntos.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item-panel" id="stories-s4">
+<div class="card">
+<div class="section-label">Story 4</div>
+<div class="section-title">Kind People</div>
+<div class="section-desc">Nico notices that the most important people in his life share one thing.</div>
+<div class="level-badge">🟡 Pre-A1</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.')">My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My name is Nico and I am eight years old. I go to school on Avenida del Sol. I have a lot of friends, but I have learned something important: the best people are kind.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi nombre es Nico y yo tengo ocho años. Voy a la escuela en la Avenida del Sol. Tengo muchos amigos, pero he aprendido algo importante: las mejores personas son amables.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.')">My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My dad is the kindest person I know. His name is Carlos. When I come home sad, he does not ask a lot of questions. He just makes tea and sits with me until I feel better.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi papá es la persona más amable que conozco. Su nombre es Carlos. Cuando yo llego a casa triste, no hace muchas preguntas. Simplemente hace té y se sienta conmigo hasta que me siento mejor.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.')">There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'There is also my neighbor Mrs. Ana. She lives alone. Her family is far away. Every morning she waves at me from her window. I wave back. It is a small thing, but it makes her smile so big.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">También está mi vecina, la señora Ana. Vive sola. Su familia está lejos. Cada mañana me saluda desde su ventana. Yo le devuelvo el saludo. Es una cosa pequeña, pero le hace sonreír mucho.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.')">At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'At school my teacher Miss Pilar is kind to everyone. She never shouts. She explains things slowly and says: Try again, you can do it. When I made a mistake on the board last week, she said: Good try, Nico.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">En la escuela mi maestra Miss Pilar es amable con todos. Nunca grita. Explica las cosas despacio y dice: "Intenta de nuevo — tú puedes." Cuando cometí un error en la pizarra la semana pasada, dijo: "Buen intento, Nico."</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.')">My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'My grandpa Beto is also kind. He is old but the same inside as always — patient, slow, and warm. When I visit, he always has a story. And in every story, the kind person wins.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Mi abuelo Beto también es amable. Es mayor pero igual por dentro que siempre — paciente, tranquilo y cálido. Cuando lo visito, siempre tiene un cuento. Y en cada cuento, la persona amable gana.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.')">I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I think being kind is like being strong. It is a choice you make every day. When someone is mean to me, I remember Miss Pilar, my dad, my grandpa. And I choose to be kind.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Creo que ser amable es como ser fuerte. Es una decisión cada día. Cuando alguien es malo conmigo, yo recuerdo a Miss Pilar, a mi papá, a mi abuelo. Y elijo ser amable.</div>
+</div>
+</div>
+<div class="story-block">
+<div class="story-paragraph" onclick="speakStory(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.')">I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.</div>
+<div class="audio-row" style="margin-left:0.7rem">
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.','US')">🇺🇸</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.','UK')">🇬🇧</button>
+<button class="audio-btn" onclick="event.stopPropagation();speak(this,'I do not know everything. I am only eight. But I know that my family is kind, my friends are kind, and that is everyone I need.','AU')">🇦🇺</button>
+</div>
+<div class="reveal-line" style="margin-left:0.7rem">
+<button class="reveal-btn" onclick="event.stopPropagation();toggleReveal(this)">🇪🇸 <span class="arrow">›</span></button>
+<div class="reveal-text">Yo no sé todo. Solo tengo ocho años. Pero sé que mi familia es amable, mis amigos son amables, y eso es todo lo que necesito.</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FIXED PLAYER BAR -->
+<div class="player-bar" id="player-bar" style="display:none">
+  <div class="player-inner">
+    <div class="player-top">
+      <div class="player-info">
+        <div class="player-label" id="player-label">📖 Playing Story</div>
+        <div class="player-title" id="player-title">—</div>
+      </div>
+      <div class="player-accent">
+        <button class="pa-btn active" id="pa-us" onclick="setPlayerAccent('US')">🇺🇸 US</button>
+        <button class="pa-btn" id="pa-uk" onclick="setPlayerAccent('UK')">🇬🇧 UK</button>
+        <button class="pa-btn" id="pa-au" onclick="setPlayerAccent('AU')">🇦🇺 AU</button>
+      </div>
+      <div class="player-controls">
+        <button class="pc-btn" onclick="skipBack()" title="Previous paragraph">⏮</button>
+        <button class="pc-btn primary" id="pc-pause" onclick="pauseResume()">⏸</button>
+        <button class="pc-btn" onclick="skipFwd()" title="Next paragraph">⏭</button>
+        <button class="pc-btn" onclick="closePlayer()">✕</button>
+      </div>
+    </div>
+    <div class="player-progress">
+      <span class="progress-time" id="progress-pos">1</span>
+      <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <span class="progress-time" id="progress-total">5</span>
+    </div>
+  </div>
+</div>
+<script>
+// ════════════════ STATE ════════════════
+let currentSpeed = 0.82;
+let playAccent = 'US';
+let voicesReady = false, usVoice = null, ukVoice = null, auVoice = null;
+let currentAudioBtn = null;
+let currentMsgEl = null;
+let currentStoryEl = null;
+let playAllActive = false, playAllIdx = 0, playAllParas = [];
+let suppressAutoAdvance = false;
+
+// ════════════════ SPEED ════════════════
+function syncSpeedUI(val){
+  const sliders = ['speedSlider','storySpeedSlider','diaSpeedSlider'];
+  sliders.forEach(id=>{ const el=document.getElementById(id); if(el) el.value=val; });
+  const labels = ['speedValue','storySpeedValue','diaSpeedValue'];
+  labels.forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=Number(val).toFixed(2)+'×'; });
+  document.querySelectorAll('.speed-presets').forEach(group=>{
+    const btns = group.querySelectorAll('.speed-preset');
+    btns.forEach(b=>b.classList.remove('active'));
+    if(Math.abs(val-0.6)<0.025 && btns[0]) btns[0].classList.add('active');
+    else if(Math.abs(val-0.82)<0.025 && btns[1]) btns[1].classList.add('active');
+    else if(Math.abs(val-1.0)<0.025 && btns[2]) btns[2].classList.add('active');
+  });
+}
+function updateSpeed(val){
+  currentSpeed = parseFloat(val);
+  syncSpeedUI(currentSpeed);
+  if(playAllActive && !playPaused && speechSynthesis.speaking){
+    suppressAutoAdvance = true;
+    speechSynthesis.cancel();
+    clearAllSegments();
+    playCurrentSegment();
+  }
+}
+function setSpeed(val, btn){
+  currentSpeed = val;
+  syncSpeedUI(val);
+}
+
+// ════════════════ VOICE SETUP ════════════════
+function loadVoices(){
+  const voices = speechSynthesis.getVoices();
+  if(!voices.length) return;
+  voicesReady = true;
+  // Prioridad de naturalidad: Microsoft "(Natural)" neural > Google > voces premium nombradas > cualquiera del idioma
+  const usP = [
+    v=>v.lang==='en-US' && /natural/i.test(v.name),
+    v=>v.lang==='en-US' && /google/i.test(v.name),
+    v=>v.lang==='en-US' && /(samantha|allison|ava|zoe|nicky|aaron|tom|alex|jenny|aria|guy)/i.test(v.name),
+    v=>v.lang==='en-US' && /microsoft.*online/i.test(v.name),
+    v=>v.lang==='en-US'
+  ];
+  const ukP = [
+    v=>v.lang==='en-GB' && /natural/i.test(v.name),
+    v=>v.lang==='en-GB' && /google/i.test(v.name),
+    v=>v.lang==='en-GB' && /(daniel|kate|serena|oliver|martha|libby|sonia|ryan)/i.test(v.name),
+    v=>v.lang==='en-GB' && /microsoft.*online/i.test(v.name),
+    v=>v.lang==='en-GB'
+  ];
+  const auP = [
+    v=>v.lang==='en-AU' && /natural/i.test(v.name),
+    v=>v.lang==='en-AU' && /google/i.test(v.name),
+    v=>v.lang==='en-AU' && /(karen|catherine|nicole|james|lee|russell|william|natasha)/i.test(v.name),
+    v=>v.lang==='en-AU' && /microsoft.*online/i.test(v.name),
+    v=>v.lang==='en-AU'
+  ];
+  for(const p of usP){const m=voices.find(p); if(m){usVoice=m; break;}}
+  for(const p of ukP){const m=voices.find(v=>p(v)&&v!==usVoice); if(m){ukVoice=m; break;}}
+  for(const p of auP){const m=voices.find(v=>p(v)&&v!==usVoice&&v!==ukVoice); if(m){auVoice=m; break;}}
+  if(!ukVoice) ukVoice = voices.find(v=>v.lang==='en-IE') || voices.find(v=>v.lang.startsWith('en')&&v!==usVoice);
+  if(!auVoice) auVoice = voices.find(v=>v.lang==='en-GB'&&v!==ukVoice) || voices.find(v=>v.lang.startsWith('en')&&v!==usVoice&&v!==ukVoice) || ukVoice;
+  const st = document.getElementById('voice-status');
+  const isNice = v => v && /natural|google|online|premium|enhanced/i.test(v.name);
+  if(st && (!usVoice || !ukVoice || (!isNice(usVoice) && !isNice(ukVoice)))) st.style.display='block';
+}
+speechSynthesis.getVoices();
+if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged = loadVoices;
+[100,500,1500].forEach(d=>setTimeout(loadVoices,d));
+
+function getVoice(accent){ return accent==='AU' ? (auVoice||ukVoice) : accent==='UK' ? ukVoice : usVoice; }
+function getLang(accent){ return accent==='AU' ? 'en-AU' : accent==='UK' ? 'en-GB' : 'en-US'; }
+
+// ════════════════ BASIC SPEAK (audio buttons) ════════════════
+function speak(btn, text, accent){
+  if(currentAudioBtn===btn && speechSynthesis.speaking){
+    speechSynthesis.cancel(); btn.classList.remove('playing'); currentAudioBtn=null; return;
+  }
+  stopAll();
+  if(!voicesReady) loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = currentSpeed; u.pitch = 1; u.lang = getLang(accent);
+  const v = getVoice(accent); if(v) u.voice = v;
+  btn.classList.add('playing'); currentAudioBtn = btn;
+  u.onend = ()=>{ btn.classList.remove('playing'); currentAudioBtn=null; };
+  u.onerror = ()=>{ btn.classList.remove('playing'); currentAudioBtn=null; };
+  speechSynthesis.speak(u);
+}
+
+// ════════════════ WORD-HIGHLIGHT HELPERS ════════════════
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function wordLen(plain, idx, charLength){
+  if(charLength) return charLength;
+  const m = plain.substring(idx).match(/^\S+/);
+  return m ? m[0].length : 4;
+}
+function highlightAt(el, plain, charIndex, charLength){
+  const len = wordLen(plain, charIndex, charLength);
+  el.innerHTML = escHtml(plain.substring(0,charIndex))
+    + '<span class="word-hl">' + escHtml(plain.substring(charIndex, charIndex+len)) + '</span>'
+    + escHtml(plain.substring(charIndex+len));
+}
+
+// ════════════════ SPEAK MSG (click bubble — word highlight) ════════════════
+function speakMsg(msgEl, text){
+  if(currentMsgEl && currentMsgEl!==msgEl) clearMsg(currentMsgEl);
+  const willPlay = !msgEl.classList.contains('reading');
+  stopAll();
+  if(!willPlay) return;
+  msgEl.classList.add('reading');
+  currentMsgEl = msgEl;
+  if(!voicesReady) loadVoices();
+  const msgTextEl = msgEl.querySelector('.msg-text');
+  const plain = msgTextEl.textContent;
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = currentSpeed; u.pitch = 1; u.lang = getLang(playAccent);
+  const v = getVoice(playAccent); if(v) u.voice = v;
+  u.onboundary = e=>{ if(e.name==='word') highlightAt(msgTextEl, plain, e.charIndex, e.charLength); };
+  u.onend = ()=>{ msgTextEl.textContent=plain; if(currentMsgEl===msgEl){msgEl.classList.remove('reading'); currentMsgEl=null;} };
+  u.onerror = ()=>{ msgTextEl.textContent=plain; msgEl.classList.remove('reading'); currentMsgEl=null; };
+  speechSynthesis.speak(u);
+}
+function clearMsg(el){
+  el.classList.remove('reading');
+  const mt = el.querySelector('.msg-text');
+  if(mt) mt.textContent = mt.textContent;
+}
+
+// ════════════════ SPEAK STORY (click paragraph — word highlight) ════════════════
+function speakStory(paraEl, text){
+  if(currentStoryEl && currentStoryEl!==paraEl) clearStory(currentStoryEl);
+  const willPlay = !paraEl.classList.contains('reading');
+  stopAll();
+  if(!willPlay) return;
+  paraEl.classList.add('reading');
+  currentStoryEl = paraEl;
+  if(!voicesReady) loadVoices();
+  const plain = paraEl.textContent;
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = currentSpeed; u.pitch = 1; u.lang = getLang(playAccent);
+  const v = getVoice(playAccent); if(v) u.voice = v;
+  u.onboundary = e=>{ if(e.name==='word') highlightAt(paraEl, plain, e.charIndex, e.charLength); };
+  u.onend = ()=>{ paraEl.textContent=plain; if(currentStoryEl===paraEl){paraEl.classList.remove('reading'); currentStoryEl=null;} };
+  u.onerror = ()=>{ paraEl.textContent=plain; paraEl.classList.remove('reading'); currentStoryEl=null; };
+  speechSynthesis.speak(u);
+}
+function clearStory(el){
+  el.classList.remove('reading');
+  el.textContent = el.textContent;
+}
+
+// ════════════════ STOP ALL ════════════════
+function stopAll(){
+  speechSynthesis.cancel();
+  if(currentAudioBtn){ currentAudioBtn.classList.remove('playing'); currentAudioBtn=null; }
+  if(currentMsgEl){ clearMsg(currentMsgEl); currentMsgEl=null; }
+  if(currentStoryEl){ clearStory(currentStoryEl); currentStoryEl=null; }
+}
+
+// ════════════════ UNIFIED PLAYBACK ENGINE (stories + dialogues) ════════════════
+let playMode = null;
+let playPaused = false;
+
+function setPlayAccent(accent, btn){
+  playAccent = accent;
+  const panel = btn.closest('.story-controls');
+  if(panel){
+    panel.querySelectorAll('.accent-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  syncAccentUI();
+}
+function setPlayerAccent(accent){
+  playAccent = accent;
+  syncAccentUI();
+  if(playAllActive && !playPaused){
+    suppressAutoAdvance = true;
+    speechSynthesis.cancel();
+    clearAllSegments();
+    playCurrentSegment();
+  }
+}
+function syncAccentUI(){
+  document.querySelectorAll('.accent-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.indexOf(playAccent)>=0);
+  });
+  const us=document.getElementById('pa-us'), uk=document.getElementById('pa-uk'), au=document.getElementById('pa-au');
+  if(us) us.classList.toggle('active', playAccent==='US');
+  if(uk) uk.classList.toggle('active', playAccent==='UK');
+  if(au) au.classList.toggle('active', playAccent==='AU');
+}
+
+function clearAllSegments(){
+  playAllParas.forEach(seg=>{
+    if(seg.classList.contains('story-paragraph')) clearStory(seg);
+    else clearMsg(seg);
+    seg.classList.remove('reading');
+  });
+}
+function segPlainText(seg){
+  if(seg.classList.contains('story-paragraph')) return seg.textContent;
+  const mt = seg.querySelector('.msg-text');
+  return mt ? mt.textContent : seg.textContent;
+}
+function segHighlightTarget(seg){
+  if(seg.classList.contains('story-paragraph')) return seg;
+  return seg.querySelector('.msg-text');
+}
+
+function playAllStory(){
+  if(playAllActive && playMode==='stories'){ closePlayer(); return; }
+  startPlayback('stories');
+}
+function playAllDialogue(){
+  if(playAllActive && playMode==='dialogues'){ closePlayer(); return; }
+  startPlayback('dialogues');
+}
+
+function startPlayback(mode){
+  stopAll();
+  closePlayerSilent();
+  playMode = mode;
+  const panelSel = mode==='stories' ? '#panel-stories .item-panel.active' : '#panel-dialogues .item-panel.active';
+  const activePanel = document.querySelector(panelSel);
+  if(!activePanel) return;
+  const segSel = mode==='stories' ? '.story-paragraph' : '.chat-msg';
+  playAllParas = Array.from(activePanel.querySelectorAll(segSel));
+  if(!playAllParas.length) return;
+  playAllActive = true; playAllIdx = 0; suppressAutoAdvance = false; playPaused = false;
+  const btnId = mode==='stories' ? 'play-all-btn' : 'play-all-btn-d';
+  const btn = document.getElementById(btnId);
+  btn.classList.add('playing'); btn.innerHTML='⏹ Stop';
+  document.getElementById('player-label').textContent = mode==='stories' ? '📖 Playing Story' : '💬 Playing Dialogue';
+  playerShow();
+  document.getElementById('progress-total').textContent = playAllParas.length;
+  playCurrentSegment();
+}
+
+function getCounterEl(){
+  return document.getElementById(playMode==='stories' ? 'play-counter' : 'play-counter-d');
+}
+function getPlayBtn(){
+  return document.getElementById(playMode==='stories' ? 'play-all-btn' : 'play-all-btn-d');
+}
+
+function playCurrentSegment(){
+  const counter = getCounterEl();
+  const btn = getPlayBtn();
+  if(!playAllActive || playAllIdx>=playAllParas.length){
+    finishPlayback(); return;
+  }
+  clearAllSegments();
+  const seg = playAllParas[playAllIdx];
+  seg.classList.add('reading');
+  seg.scrollIntoView({behavior:'smooth', block:'center'});
+  const total = playAllParas.length;
+  if(counter) counter.textContent = (playAllIdx+1)+' / '+total;
+  const plain = segPlainText(seg);
+  const target = segHighlightTarget(seg);
+  playerUpdateProgress(playAllIdx, total, plain.trim());
+  if(!voicesReady) loadVoices();
+  const u = new SpeechSynthesisUtterance(plain);
+  u.rate = currentSpeed; u.pitch = 1; u.lang = getLang(playAccent);
+  const v = getVoice(playAccent); if(v) u.voice = v;
+  u.onboundary = e=>{ if(e.name==='word' && target) highlightAt(target, plain, e.charIndex, e.charLength); };
+  u.onend = ()=>{
+    restoreSeg(seg, target, plain);
+    if(suppressAutoAdvance){ suppressAutoAdvance=false; return; }
+    playAllIdx++; setTimeout(playCurrentSegment, 350);
+  };
+  u.onerror = ()=>{
+    restoreSeg(seg, target, plain);
+    if(suppressAutoAdvance){ suppressAutoAdvance=false; return; }
+    playAllIdx++; setTimeout(playCurrentSegment, 350);
+  };
+  speechSynthesis.speak(u);
+}
+function restoreSeg(seg, target, plain){
+  if(target) target.textContent = plain;
+  seg.classList.remove('reading');
+}
+function finishPlayback(){
+  playAllActive=false; playPaused=false;
+  const btn = getPlayBtn();
+  if(btn){ btn.classList.remove('playing'); btn.innerHTML = playMode==='stories' ? '▶ Reproducir Story completa' : '▶ Reproducir Diálogo completo'; }
+  const counter = getCounterEl(); if(counter) counter.textContent='';
+  clearAllSegments();
+  playerEnd();
+}
+
+function skipBack(){
+  if(!playAllActive) return;
+  suppressAutoAdvance = true;
+  speechSynthesis.cancel();
+  clearAllSegments();
+  playAllIdx = Math.max(0, playAllIdx-1);
+  playPaused = false;
+  document.getElementById('pc-pause').textContent='⏸';
+  playCurrentSegment();
+}
+function skipFwd(){
+  if(!playAllActive) return;
+  suppressAutoAdvance = true;
+  speechSynthesis.cancel();
+  clearAllSegments();
+  playAllIdx = Math.min(playAllParas.length-1, playAllIdx+1);
+  playPaused = false;
+  document.getElementById('pc-pause').textContent='⏸';
+  playCurrentSegment();
+}
+
+function pauseResume(){
+  if(!playAllActive) return;
+  if(playPaused){
+    playPaused = false;
+    suppressAutoAdvance = false;
+    document.getElementById('pc-pause').textContent='⏸';
+    speechSynthesis.cancel();
+    clearAllSegments();
+    playCurrentSegment();
+  } else {
+    playPaused = true;
+    document.getElementById('pc-pause').textContent='▶';
+    suppressAutoAdvance = true;
+    speechSynthesis.cancel();
+    clearAllSegments();
+    const seg = playAllParas[playAllIdx];
+    if(seg){ seg.classList.add('reading'); seg.scrollIntoView({behavior:'smooth', block:'center'}); }
+  }
+}
+
+function closePlayer(){
+  suppressAutoAdvance = true;
+  closePlayerSilent();
+}
+function closePlayerSilent(){
+  speechSynthesis.cancel();
+  if(currentAudioBtn){ currentAudioBtn.classList.remove('playing'); currentAudioBtn=null; }
+  if(currentMsgEl){ clearMsg(currentMsgEl); currentMsgEl=null; }
+  if(currentStoryEl){ clearStory(currentStoryEl); currentStoryEl=null; }
+  if(playAllParas.length) clearAllSegments();
+  playAllActive=false; playPaused=false;
+  ['play-all-btn','play-all-btn-d'].forEach(id=>{
+    const b=document.getElementById(id);
+    if(b){ b.classList.remove('playing'); b.innerHTML = id==='play-all-btn' ? '▶ Reproducir Story completa' : '▶ Reproducir Diálogo completo'; }
+  });
+  ['play-counter','play-counter-d'].forEach(id=>{ const c=document.getElementById(id); if(c) c.textContent=''; });
+  playerEnd();
+}
+
+// ════════════════ PLAYER BAR ════════════════
+function playerShow(){ document.getElementById('player-bar').style.display='block'; }
+function playerEnd(){ document.getElementById('player-bar').style.display='none'; }
+function playerUpdateProgress(idx, total, label){
+  const pct = total>1 ? Math.round((idx/(total-1))*100) : 100;
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-pos').textContent = (idx+1);
+  document.getElementById('progress-total').textContent = total;
+  const short = label.length>48 ? label.substring(0,48)+'…' : label;
+  document.getElementById('player-title').textContent = short;
+  document.getElementById('pc-pause').textContent = '⏸';
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  const pb = document.getElementById('progress-bar');
+  if(pb){
+    pb.addEventListener('click', function(e){
+      if(!playAllActive || !playAllParas.length) return;
+      const rect = this.getBoundingClientRect();
+      const pct = (e.clientX-rect.left)/rect.width;
+      suppressAutoAdvance = true;
+      speechSynthesis.cancel();
+      clearAllSegments();
+      playAllIdx = Math.round(pct*(playAllParas.length-1));
+      playAllIdx = Math.max(0, Math.min(playAllParas.length-1, playAllIdx));
+      playPaused = false;
+      document.getElementById('pc-pause').textContent='⏸';
+      playCurrentSegment();
+    });
+  }
+});
+
+// ════════════════ REVEAL ════════════════
+function toggleReveal(btn){
+  const t = btn.nextElementSibling;
+  t.classList.toggle('show');
+  btn.classList.toggle('open');
+}
+
+// ════════════════ NOTAS DE TRADUCCIÓN ════════════════
+function closeTransNote(){ const p=document.getElementById('tn-pop'); if(p) p.remove(); }
+document.addEventListener('click', function(e){
+  const m = e.target.closest('.tn');
+  if(m){
+    e.stopPropagation();
+    const open = document.getElementById('tn-pop');
+    closeTransNote();
+    if(open && open.dataset.for === (m.dataset.nota||'')) return; // toggle off
+    const pop = document.createElement('div');
+    pop.id='tn-pop'; pop.className='tn-pop';
+    pop.dataset.for = m.dataset.nota||'';
+    pop.appendChild(document.createTextNode(m.getAttribute('data-nota')||''));
+    document.body.appendChild(pop);
+    const r = m.getBoundingClientRect();
+    let left = r.left + window.scrollX + r.width/2 - pop.offsetWidth/2;
+    left = Math.max(10, Math.min(left, window.innerWidth - pop.offsetWidth - 10));
+    pop.style.left = left+'px';
+    pop.style.top = (r.bottom + window.scrollY + 8)+'px';
+    return;
+  }
+  if(!e.target.closest('#tn-pop')) closeTransNote();
+});
+
+// ════════════════ GLOBAL TRANSLATE ════════════════
+let gTransD=false, gTransS=false;
+function toggleGlobalTranslate(section){
+  const btn = document.getElementById('gtrans-'+(section==='dialogues'?'d':'s'));
+  if(section==='dialogues'){
+    gTransD = !gTransD; btn.classList.toggle('active', gTransD);
+    btn.textContent = gTransD ? '🇪🇸 Hide all translations' : '🇪🇸 Show all translations';
+    document.querySelectorAll('#panel-dialogues .reveal-text').forEach(el=>el.classList.toggle('show', gTransD));
+    document.querySelectorAll('#panel-dialogues .reveal-btn').forEach(el=>el.classList.toggle('open', gTransD));
+  } else {
+    gTransS = !gTransS; btn.classList.toggle('active', gTransS);
+    btn.textContent = gTransS ? '🇪🇸 Hide all translations' : '🇪🇸 Show all translations';
+    document.querySelectorAll('#panel-stories .reveal-text').forEach(el=>el.classList.toggle('show', gTransS));
+    document.querySelectorAll('#panel-stories .reveal-btn').forEach(el=>el.classList.toggle('open', gTransS));
+  }
+}
+
+// ════════════════ CONTENT / ITEM SWITCH ════════════════
+function switchContent(type, btn){
+  closePlayer(); stopAll();
+  document.querySelectorAll('.content-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.content-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+type).classList.add('active');
+  btn.classList.add('active');
+}
+function switchItem(section, id, btn){
+  closePlayer(); stopAll();
+  const panel = document.getElementById('panel-'+section);
+  panel.querySelectorAll('.item-panel').forEach(p=>p.classList.remove('active'));
+  panel.querySelectorAll('.item-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(section+'-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ════════════════ PARALLEL ════════════════
+function toggleParallel(on){
+  document.querySelectorAll('.card,.item-panel').forEach(c=>{
+    if(on) c.classList.add('parallel-view'); else c.classList.remove('parallel-view');
+  });
+}
+
+// ════════════════ OUTSIDE CLICK ════════════════
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.chat-msg') && !e.target.closest('.story-paragraph') && !e.target.closest('.audio-btn') && !playAllActive){
+    if(currentMsgEl){ clearMsg(currentMsgEl); currentMsgEl=null; }
+    if(currentStoryEl){ clearStory(currentStoryEl); currentStoryEl=null; }
+  }
+});
+</script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

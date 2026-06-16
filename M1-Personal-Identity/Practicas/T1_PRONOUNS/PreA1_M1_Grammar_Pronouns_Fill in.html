@@ -61,7 +61,16 @@
         .blank { display:inline-block; min-width:70px; padding:0.2rem 0.6rem; background:var(--primary-light); border:2px dashed var(--primary-dark); border-radius:8px; text-align:center; font-weight:700; color:var(--primary-dark); transition:all .3s; }
         .blank.correct { background:var(--success-light); border:2px solid var(--success); color:var(--success-dark); }
         .blank.incorrect { background:var(--error-light); border:2px solid var(--error); color:var(--error-dark); }
-        .translation { color:var(--text-light); font-style:italic; font-size:0.85rem; margin-bottom:1rem; }
+        .translation { color:#1A1A2E; font-style:normal; font-weight:600; font-size:0.95rem; margin-bottom:1rem; background:#F3E5F5; border-left:3px solid #7B1FA2; padding:7px 12px; border-radius:0 8px 8px 0; }
+        /* ── AYUDAS (pista / traducción a pedido) ── */
+        .aids-row { display:flex; gap:8px; margin:0.5rem 0 0.9rem; flex-wrap:wrap; }
+        .aid-btn { font-family:'Nunito',sans-serif; font-size:0.82rem; font-weight:700; border:1.5px solid var(--primary); background:#fff; color:var(--primary-dark); padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .18s; }
+        .aid-btn:hover { background:var(--primary-light); transform:translateY(-1px); }
+        .aid-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+        /* ── ANALOGÍA CON EL ESPAÑOL ── */
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; border-radius:12px; padding:0.9rem 1rem; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
+        .fb-analogy-text { font-size:0.92rem; line-height:1.55; color:#4A148C; }
 
         /* ── OPTIONS ── */
         .options-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin-top:0.5rem; }
@@ -209,7 +218,7 @@
             id: 1,
             sentence: "_____ am Leo. What is your name?",
             translation: "_____ soy Leo. ¿Cuál es tu nombre?",
-            hint: "El hablante se presenta a sí mismo. ¿Qué pronombre usas cuando TÚ hablas de ti mismo?",
+            hint: "Leo se presenta a sí mismo. Pregúntate: ¿habla de UNA persona o de un grupo (singular o plural)? ¿Y esa persona es quien habla, o alguien más?",
             clue: "am Leo",
             clueExplain: "'Am' siempre va con 'I'. Cuando alguien se presenta ('am Leo'), usa el pronombre de primera persona singular.",
             pronounType: "subject",
@@ -234,7 +243,7 @@
             id: 2,
             sentence: "We are in the same class! Are _____ new here?",
             translation: "¡Estamos en la misma clase! ¿Eres _____ nueva aquí?",
-            hint: "Leo le hace una pregunta directamente a Ana. ¿Qué pronombre usas cuando hablas CON alguien?",
+            hint: "Leo le habla DIRECTAMENTE a Ana. ¿Le habla a una persona o a varias (singular o plural)? ¿Esa persona es con quien conversa, o un tercero del que se habla?",
             clue: "Are _____ new here?",
             clueExplain: "La pregunta está dirigida a Ana directamente. 'Are' combinado con una pregunta directa a la otra persona siempre usa 'you'.",
             pronounType: "subject",
@@ -259,7 +268,7 @@
             id: 3,
             sentence: "That is my brother Nico. _____ name means 'victory.'",
             translation: "Ese es mi hermano Nico. _____ nombre significa 'victoria'.",
-            hint: "Mia habla de su hermano (un chico). ¿Qué pronombre posesivo usas para un hombre?",
+            hint: "Mia habla de su hermano Nico. ¿Nico es hombre o mujer? El nombre le pertenece a él — piensa qué posesivo cambia según ese género.",
             clue: "my brother Nico",
             clueExplain: "Nico es un chico — masculino. El pronombre posesivo para un hombre es 'his'. Indica que el nombre PERTENECE a él.",
             pronounType: "possessive",
@@ -284,7 +293,7 @@
             id: 4,
             sentence: "And the woman next to _____? Is that your mom?",
             translation: "¿Y la mujer junto a _____? ¿Es esa tu mamá?",
-            hint: "Sam señala al papá en la foto y pregunta sobre la mujer que está AL LADO de él. ¿Qué pronombre objeto usas para un hombre?",
+            hint: "Sam usa de referencia al papá. ¿El papá es hombre o mujer? Y ojo: va DESPUÉS de «next to» (una preposición) — ¿pide un pronombre sujeto o uno de objeto?",
             clue: "next to _____ (señala a Carlos, el papá)",
             clueExplain: "El papá (Carlos) fue mencionado antes. Ahora Sam lo señala como referencia — es el OBJETO de la preposición 'next to'. Para un hombre como objeto, se usa 'him'.",
             pronounType: "object",
@@ -309,7 +318,7 @@
             id: 5,
             sentence: "Yes, that is _____. _____ name is Rosa. She is funny.",
             translation: "Sí, esa es _____. _____ nombre es Rosa. Ella es graciosa.",
-            hint: "Mia habla de su mamá (una mujer). Necesitas el pronombre objeto Y el pronombre posesivo para mujer. ¿Son iguales en inglés?",
+            hint: "Mia habla de su mamá. ¿Es hombre o mujer? Hay dos espacios: uno tras «that is» (objeto) y otro antes de «name» (posesivo). Para una mujer, ¿serán la misma palabra o distintas?",
             clue: "that is _____ / _____ name is Rosa",
             clueExplain: "En inglés, 'her' tiene dos usos: pronombre objeto ('that is her' = esa es ella) Y pronombre posesivo ('her name' = su nombre — de ella). Aquí aparecen los dos en la misma oración.",
             pronounType: "object",
@@ -334,7 +343,7 @@
             id: 6,
             sentence: "_____ am seven too! Mia, we are the same age.",
             translation: "_____ también tengo siete años. Mia, ¡somos de la misma edad!",
-            hint: "Sam habla de sí mismo. Acaba de decir que también tiene siete años.",
+            hint: "Sam habla de su propia edad. ¿Es una persona o un grupo (singular o plural)? ¿Es quien habla, o alguien más?",
             clue: "am seven",
             clueExplain: "'Am' solo funciona con 'I'. Sam habla de sí mismo — usa el pronombre de primera persona.",
             pronounType: "subject",
@@ -359,7 +368,7 @@
             id: 7,
             sentence: "_____ face was so happy when I called him.",
             translation: "_____ cara estaba muy feliz cuando lo llamé.",
-            hint: "Nico habla del rostro de su papá. ¿A quién pertenece la cara — a un hombre o a una mujer?",
+            hint: "Nico habla de la cara de su papá. ¿Esa cara pertenece a un hombre o a una mujer? El posesivo en inglés cambia según ese género.",
             clue: "his face (de su papá — masculino)",
             clueExplain: "El papá es un hombre. El pronombre posesivo para un hombre es 'his'. La cara PERTENECE a él.",
             pronounType: "possessive",
@@ -384,7 +393,7 @@
             id: 8,
             sentence: "Yes! She is the best. Everyone loves _____.",
             translation: "¡Sí! Ella es lo mejor. Todos la _____ (quieren a ella).",
-            hint: "Nico habla de su abuela. 'Everyone loves...' — la abuela es el OBJETO del amor. ¿Qué pronombre objeto usas para una mujer?",
+            hint: "Hablan de la abuela. ¿Es hombre o mujer? Y va DESPUÉS de «loves»: ¿ella HACE la acción (sujeto) o la RECIBE (objeto)?",
             clue: "loves _____ (la abuela = objeto del verbo)",
             clueExplain: "'Loves' necesita un objeto — alguien que recibe el amor. La abuela (una mujer) recibe el amor, así que es el objeto. Para una mujer como objeto se usa 'her'.",
             pronounType: "object",
@@ -409,7 +418,7 @@
             id: 9,
             sentence: "Look! This is a photo of my family. _____ are the people I love.",
             translation: "¡Mira! Esta es una foto de mi familia. _____ son las personas que amo.",
-            hint: "Mia habla de su familia como un GRUPO de personas. ¿Qué pronombre usas para un grupo?",
+            hint: "Mia habla de toda su familia. ¿Es una sola persona o un grupo (singular o plural)? ¿Ese grupo la incluye a ella misma?",
             clue: "a photo of my family (varias personas → grupo)",
             clueExplain: "La familia es un grupo de personas — más de una. Para grupos, usamos el pronombre plural 'we' o 'they'. Aquí Mia incluye a su familia junto con ella misma.",
             pronounType: "subject",
@@ -434,7 +443,7 @@
             id: 10,
             sentence: "That is a photo. _____ is very old — my grandpa took it fifty years ago.",
             translation: "Esa es una foto. _____ es muy antigua — mi abuelo la tomó hace cincuenta años.",
-            hint: "Ahora hablamos de una FOTO — un objeto, no una persona. ¿Qué pronombre usas para las cosas?",
+            hint: "Ahora se habla de una FOTO. ¿Es una persona (hombre/mujer) o una cosa? ¿Qué pronombre usan las cosas en inglés, sin importar su género en español?",
             clue: "a photo (cosa → objeto inanimado)",
             clueExplain: "'A photo' es un objeto. En inglés, los objetos y cosas usan el pronombre neutro 'it' — no 'he' ni 'she'.",
             pronounType: "subject",
@@ -473,15 +482,35 @@
         return a;
     }
 
+    const ANALOGIES = {
+        1: "En español decimos «Soy Leo» y soltamos el «yo» — el verbo ya dice quién habla. En inglés el verbo «am» no alcanza solo: SIEMPRE necesitas el pronombre. Por eso es «I am Leo», nunca «Am Leo».",
+        2: "En español «¿Eres nueva?» tampoco muestra el «tú», pero en inglés sí hace falta: «Are you new?». Sin «you» se perdería a quién le hablas.",
+        3: "En español «su nombre» sirve para él, ella o ellos — es ambiguo. El inglés te obliga a elegir: de un hombre → «his», de una mujer → «her».",
+        4: "Después de «to», «with» o «next to», el «he» se vuelve «him». Es igual que en español cuando «yo» se vuelve «mí»: decimos «junto a mí», no «junto a yo».",
+        5: "En inglés «her» hace doble trabajo: «esa es ella» (objeto) y «su nombre» (posesivo). En español usamos dos palabras distintas («ella» / «su»), pero el inglés repite «her».",
+        6: "Como en «Tengo siete años» soltamos el «yo» en español, pero en inglés el «am» obliga a poner «I»: «I am seven». El pronombre nunca se omite.",
+        7: "En español «su cara» no dice de quién es. En inglés el posesivo revela el género del dueño: de un hombre → «his», de una mujer → «her». El inglés te hace elegir.",
+        8: "En español «todos la quieren» ya marca que ella RECIBE la acción. En inglés «she» (ella hace) cambia a «her» (a ella le hacen) — igual que «yo» se vuelve «me».",
+        9: "«Somos una familia» en español no necesita el «nosotros»; en inglés sí: «We are a family». El pronombre plural también es obligatorio.",
+        10: "En español las cosas tienen género: «la foto» es femenina. En inglés NINGUNA cosa tiene género — la foto, la mesa, el libro: todo es «it»."
+    };
     function init() {
         // Randomize options order for each question at load time
-        quizData.forEach(q => { q.shuffled = shuffle(q.options); });
+        quizData.forEach(q => { q.shuffled = shuffle(q.options); if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id]; });
         const container = document.getElementById('questionsContainer');
         quizData.forEach((q, index) => {
             const card = buildCard(q, index);
             container.appendChild(card);
         });
         showQuestion(0);
+    }
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
     }
 
     function buildCard(q, index) {
@@ -503,12 +532,16 @@
                 <div class="question-number">${index + 1}</div>
                 <span class="pronoun-type-badge ${badgeClass}">${badgeText}</span>
             </div>
-            <div class="hint-box">
-                <div class="hint-label">💡 Pista</div>
+            <div class="question-text">${sentenceWithBlank}</div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú hallas la respuesta</div>
                 ${q.hint}
             </div>
-            <div class="question-text">${sentenceWithBlank}</div>
-            <div class="translation">🇪🇸 ${q.translation}</div>
+            <div class="translation" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-grid" id="options-${index}">${optionsBtns}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -573,6 +606,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcto?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             const errData = q.feedback[selected] || { errorType: "Error", explanation: "Revisa el pronombre.", rule: "Usa el pronombre correcto según la función." };
@@ -615,6 +649,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcto?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }

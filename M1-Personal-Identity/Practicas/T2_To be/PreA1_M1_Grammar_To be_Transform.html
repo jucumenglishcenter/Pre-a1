@@ -148,6 +148,18 @@
         .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
         .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
     </style>
+<style id="jec-grammar-aids">
+.aids-row{display:flex;gap:8px;margin:10px 0 8px;flex-wrap:wrap;}
+.aid-btn{font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;border:1.5px solid var(--primary,#F9A825);background:#fff;color:var(--primary-dark,#E65100);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+.aid-btn:hover{background:var(--primary-light,#FFF8E1);transform:translateY(-1px);}
+.aid-btn.active{background:var(--primary,#F9A825);color:#fff;}
+.hint-box{background:#FFFDE7;border-left:4px solid var(--primary,#F9A825);padding:0.7rem 1rem;border-radius:0 10px 10px 0;margin:6px 0 12px;font-size:0.9rem;color:#5D4037;line-height:1.5;}
+.hint-label{font-weight:800;color:var(--primary-dark,#E65100);font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.trans-box{color:#1A1A2E;font-weight:600;font-size:0.95rem;margin:0 0 12px;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+.fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;border-radius:12px;padding:0.9rem 1rem;margin-top:4px;}
+.fb-analogy .fb-block-title{color:#7B1FA2;}
+.fb-analogy-text{font-size:0.92rem;line-height:1.55;color:#4A148C;}
+</style>
 </head>
 <body>
     <header class="header">
@@ -329,6 +341,44 @@
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1:"Vas a negar con «I»: ¿qué se añade después del verbo? ¿«not» va antes o después?",
+        2:"Para preguntar con «she»: ¿qué palabra cambia de lugar y va primero?",
+        3:"Quitas la negación a «isn't»: ¿qué forma queda? El sujeto sigue siendo uno solo.",
+        4:"De negativa a pregunta con «we»: quitas «not» y... ¿qué hace el verbo?",
+        5:"De pregunta a afirmación: ¿qué va primero ahora, el sujeto o el verbo? «You» mantiene su forma.",
+        6:"De pregunta a negativa con «he»: ordenas sujeto + verbo y añades... ¿dónde va «not»?",
+        7:"Niegas «there are» (varias personas): ¿la forma sigue siendo plural? ¿Dónde va «not»?",
+        8:"Para preguntar con «we»: ¿qué palabra se mueve al inicio? La forma plural no cambia.",
+        9:"Quitas la negación a «am not» con «I»: ¿qué forma queda? «I» siempre lleva la misma.",
+        10:"De pregunta a negativa con «there»: ¿qué va primero? Son varios asientos, ¿plural o singular?"
+    };
+    const TRANS = {
+        1:"Tengo siete años.",
+        2:"Ella es graciosa.",
+        3:"Ravi no es el hermano mayor.",
+        4:"No estamos en la misma clase.",
+        5:"¿Eres nuevo aquí?",
+        6:"¿Está él en nuestra clase?",
+        7:"Hay cinco personas en la foto.",
+        8:"Vamos a ser buenos amigos.",
+        9:"No soy nuevo aquí.",
+        10:"¿Hay asientos vacíos?"
+    };
+    const ANALOGIES = {
+        1:"En español el «no» va suelto antes del verbo («no tengo»); en inglés «not» se pega después: «am not». Y con «I» no hay contracción.",
+        2:"En español preguntas solo con el tono («¿Es graciosa?»); en inglés mueves el verbo al frente: «Is she...?».",
+        3:"Quitar la negación en español es soltar el «no»; en inglés «isn't» pierde el «not» y queda «is». La forma no cambia.",
+        4:"En español pasas de «no estamos» a «¿estamos?» solo con el tono; en inglés quitas «not» y mueves el verbo: «Are we...?».",
+        5:"En español «¿Eres nuevo?» y «Eres nuevo» se distinguen por el tono; en inglés cambia el ORDEN: «Are you...?» → «You are...».",
+        6:"En español el «no» va antes del verbo; en inglés se une: «is + not = isn't». Y al afirmar o negar, el sujeto va primero.",
+        7:"En español «hay» no cambia; en inglés «there are» mantiene el plural al negar: «there aren't», con el «not» pegado al verbo.",
+        8:"En español «¿Vamos a ser amigos?» se marca por el tono; en inglés el verbo «are» salta al inicio: «Are we...?».",
+        9:"Quitar el «no» en español («no soy» → «soy»); en inglés «am not» pierde el «not» y queda «am». Con «I» siempre es «am».",
+        10:"En español «¿Hay asientos?» → «No hay asientos» suelta el «no»; en inglés inviertes el orden y pegas el «not»: «There aren't...». Varios → plural."
+    };
+    quizData.forEach(function(q){ if(HINTS[q.id]) q.hint=HINTS[q.id]; if(TRANS[q.id]) q.translation=TRANS[q.id]; if(ANALOGIES[q.id]) q.analogy=ANALOGIES[q.id]; });
+
     function initQuiz(){
         const c=document.getElementById('questionsContainer');
         c.innerHTML='';
@@ -369,6 +419,15 @@
                     <div class="transform-sentence">${q.goal}</div>
                 </div>
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú transformas</div>
+                ${q.hint}
+            </div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-container" id="options-${index}">${opts}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -378,6 +437,14 @@
                 </button>
             </div>`;
         return card;
+    }
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
     }
 
     function selectOption(qi,optIdx){
@@ -436,6 +503,7 @@
                 <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                     <div class="fb-why-text">${q.why}</div>
                 </div>
+                ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
             </div>`;
         } else {
             el.innerHTML=`
@@ -466,6 +534,7 @@
                 <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Cómo debía hacerse la transformación?</div>
                     <div class="fb-why-text">${q.why}</div>
                 </div>
+                ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
             </div>`;
         }
     }

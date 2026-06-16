@@ -163,6 +163,18 @@
         .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
     </style>
+<style id="jec-grammar-aids">
+.aids-row{display:flex;gap:8px;margin:10px 0 8px;flex-wrap:wrap;}
+.aid-btn{font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;border:1.5px solid var(--primary,#F9A825);background:#fff;color:var(--primary-dark,#E65100);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+.aid-btn:hover{background:var(--primary-light,#FFF8E1);transform:translateY(-1px);}
+.aid-btn.active{background:var(--primary,#F9A825);color:#fff;}
+.hint-box{background:#FFFDE7;border-left:4px solid var(--primary,#F9A825);padding:0.7rem 1rem;border-radius:0 10px 10px 0;margin:6px 0 12px;font-size:0.9rem;color:#5D4037;line-height:1.5;}
+.hint-label{font-weight:800;color:var(--primary-dark,#E65100);font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.trans-box{color:#1A1A2E;font-weight:600;font-size:0.95rem;margin:0 0 12px;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+.fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;border-radius:12px;padding:0.9rem 1rem;margin-top:4px;}
+.fb-analogy .fb-block-title{color:#7B1FA2;}
+.fb-analogy-text{font-size:0.92rem;line-height:1.55;color:#4A148C;}
+</style>
 </head>
 <body>
     <header class="header">
@@ -436,6 +448,43 @@
     let currentQuestion = 0, score = 0;
     let answered = new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1:"Leo y Ana: ¿una persona o un grupo? ¿Incluye a quien habla o son terceros?",
+        2:"Lo subrayado pertenece a Mia: ¿hombre o mujer? Elige el posesivo según ese género.",
+        3:"«The boy»: ¿hombre o mujer? ¿Hace la acción (sujeto) o la recibe?",
+        4:"Lo subrayado pertenece a Nico: ¿hombre o mujer? Piensa en el posesivo.",
+        5:"«The baby» sin género dicho: ¿persona con género claro o referencia neutral? ¿Qué pronombre es neutral en inglés?",
+        6:"Ana aparece de nuevo tras «to»: ¿hace o recibe la acción? ¿Hombre o mujer?",
+        7:"Miss Pilar aparece de nuevo como quien hace la acción: ¿sujeto u objeto? ¿Hombre o mujer?",
+        8:"«Sam and I»: ¿el grupo incluye a quien habla? ¿Singular o plural?",
+        9:"Carlos aparece de nuevo tras «to talk to»: ¿sujeto u objeto? ¿Hombre o mujer?",
+        10:"Tu abuelo, quien hace la acción en la 2ª oración: ¿sujeto u objeto? ¿Hombre o mujer?"
+    };
+    const TRANS = {
+        1:"Leo y Ana están en la misma clase.",
+        2:"Mia le muestra a Sam una foto de la familia de Mia.",
+        3:"Sam pregunta por el niño que está junto a Mia.",
+        4:"Nico le habla a Eva sobre la nueva hermanita de Nico.",
+        5:"Eva quiere visitar a Luli. El bebé es tierno.",
+        6:"Leo ve a Ana en el salón. Leo saluda a Ana.",
+        7:"Miss Pilar enseña la clase. Miss Pilar es muy amable.",
+        8:"Sam y yo tenemos siete años. Sam y yo somos de la misma edad.",
+        9:"Leo llama a Carlos. Leo está feliz de hablar con Carlos.",
+        10:"Mi abuelo Beto es amable. Mi abuelo Beto siempre cuenta historias."
+    };
+    const ANALOGIES = {
+        1:"En español «están en la misma clase» no necesita «ellos»; en inglés sí: «They are». Y «they» (otros) ≠ «we» (incluye a quien habla).",
+        2:"«Su familia» no dice de quién es; en inglés «her» marca que es de una mujer. El inglés te obliga a elegir el género.",
+        3:"El mismo «the boy» es «he» cuando hace la acción y «him» cuando la recibe — como «él» vs «a él» en español.",
+        4:"«Su hermanita» sirve para todos en español; en inglés «his» dice que el dueño es hombre. Elige según quién posee.",
+        5:"Sin género especificado, el inglés usa «it» para un bebé u objeto — el español usa el artículo («el/la»).",
+        6:"Tras «to», «she» (ella hace) se vuelve «her» (a ella) — igual que «yo» → «mí» en español.",
+        7:"Miss Pilar HACE la acción: sujeto femenino = «she» (nunca «her», que es objeto). En español «ella» sirve para ambos.",
+        8:"Cualquier grupo que te incluya es «we» — como «nosotros», pero en inglés el pronombre no se puede omitir.",
+        9:"Tras «to talk to», «he» (él hace) → «him» (a él) — como «yo» → «mí»: «hablar con él», no «con yo».",
+        10:"Tu abuelo HACE la acción: sujeto masculino = «he». Recuerda el trío: he (hace) / him (recibe) / his (posee)."
+    };
+    quizData.forEach(function(q){ if(HINTS[q.id]) q.hint=HINTS[q.id]; if(TRANS[q.id]) q.translation=TRANS[q.id]; if(ANALOGIES[q.id]) q.analogy=ANALOGIES[q.id]; });
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
@@ -477,6 +526,15 @@
                     <div class="transform-sentence">${q.goal}</div>
                 </div>
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú transformas</div>
+                ${q.hint}
+            </div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-container" id="options-${index}">
                 ${q.shuffled.map((opt, i) => `
                     <button class="option-btn" onclick="selectOption(${index}, ${i})">
@@ -494,6 +552,14 @@
             </div>
         `;
         return card;
+    }
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
     }
 
     function selectOption(qi, optIdx) {
@@ -567,6 +633,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcto?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             el.innerHTML = `
@@ -606,6 +673,7 @@
                         <div class="fb-block-title">💡 ¿Cómo debía hacerse?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }

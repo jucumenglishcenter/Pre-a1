@@ -154,6 +154,17 @@
         .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
     </style>
+<style id="jec-grammar-aids">
+.aids-row{display:flex;gap:8px;margin:10px 0 6px;flex-wrap:wrap;}
+.aid-btn{font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;border:1.5px solid var(--primary,#F9A825);background:#fff;color:var(--primary-dark,#E65100);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+.aid-btn:hover{background:var(--primary-light,#FFF8E1);transform:translateY(-1px);}
+.aid-btn.active{background:var(--primary,#F9A825);color:#fff;}
+.hint-box{background:#FFFDE7;border-left:4px solid var(--primary,#F9A825);padding:0.7rem 1rem;border-radius:0 10px 10px 0;margin:6px 0 12px;font-size:0.9rem;color:#5D4037;line-height:1.5;}
+.hint-label{font-weight:800;color:var(--primary-dark,#E65100);font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;border-radius:12px;padding:0.9rem 1rem;margin-top:4px;}
+.fb-analogy .fb-block-title{color:#7B1FA2;}
+.fb-analogy-text{font-size:0.92rem;line-height:1.55;color:#4A148C;}
+</style>
 </head>
 <body>
     <header class="header">
@@ -405,11 +416,37 @@
     let currentQuestion = 0, score = 0;
     let answered = new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1: "Ana se presenta a sí misma. ¿Habla de una persona o de un grupo? ¿Es quien habla o alguien más?",
+        2: "Leo y Ana juntos: ¿una persona o un grupo (singular o plural)? ¿El grupo incluye a quien habla?",
+        3: "La familia es de Mia. ¿De quién es? Piensa en el posesivo de la persona que habla.",
+        4: "Va después de «next to» (preposición): ¿pide sujeto u objeto? ¿A quién se refiere?",
+        5: "Luli: ¿es niño o niña? Elige el posesivo según ese género.",
+        6: "El papá recibe la llamada: ¿hace la acción (sujeto) o la recibe (objeto)? ¿Hombre o mujer?",
+        7: "Habla de su propia edad: ¿una persona o varias? ¿Es quien habla u otro?",
+        8: "La abuela: ¿hombre o mujer? Después de «loves», ¿ella hace o recibe la acción?",
+        9: "Miss Pilar: ¿hombre o mujer? ¿Hace ella la acción (sujeto) o la recibe (objeto)?",
+        10: "Una foto: ¿es persona (hombre/mujer) o una cosa? ¿Qué pronombre usan las cosas en inglés?"
+    };
+    const ANALOGIES = {
+        1: "En español «Soy Ana» suelta el «yo»; en inglés el «am» obliga a «I»: «I am». Nunca «Me am» ni «She am».",
+        2: "«Somos amigos» no necesita «nosotros» en español; en inglés sí: «We are». El pronombre plural es obligatorio.",
+        3: "«Mi familia» y «my family» coinciden — pero ojo: «my» no cambia por género como «his/her».",
+        4: "Tras «to/with/next to» el pronombre cambia, como en español «yo» se vuelve «mí»: «junto a mí», no «junto a yo».",
+        5: "En español «su» no dice de quién es; en inglés «her» marca que es de una mujer/niña. El inglés te hace elegir el género.",
+        6: "El papá RECIBE la llamada: «he» (él hace) se vuelve «him» (a él) — igual que «yo» → «me» en español.",
+        7: "Como en «Tengo ocho años» soltamos el «yo», en inglés el «am» exige «I»: «I am eight».",
+        8: "«Todos la quieren» marca que ella recibe; en inglés «she» (hace) → «her» (recibe), como «yo» → «me».",
+        9: "Miss Pilar HACE la acción: el sujeto femenino en inglés es «she» (nunca «her», que es objeto). En español «ella» sirve para ambos.",
+        10: "En español la foto es femenina («la foto»); en inglés las cosas no tienen género: siempre «it»."
+    };
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
         quizData.forEach((q, i) => {
             q.shuffled = [...q.options].sort(() => Math.random() - 0.5);
+            if (HINTS[q.id]) q.hint = HINTS[q.id];
+            if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id];
             container.appendChild(createCard(q, i));
         });
         showQuestion(0);
@@ -432,6 +469,13 @@
                 <span class="q-label">Elige la oración con el pronombre correcto:</span>
                 ${badge}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú eliges</div>
+                ${q.hint}
+            </div>
             <div class="sentence-options" id="options-${index}">
                 ${q.shuffled.map((opt, i) => `
                     <button class="sent-option" onclick="selectOption(${index}, ${i})">
@@ -450,6 +494,14 @@
             </div>
         `;
         return card;
+    }
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
     }
 
     function selectOption(qi, optIdx) {
@@ -527,6 +579,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             el.innerHTML = `
@@ -573,6 +626,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }

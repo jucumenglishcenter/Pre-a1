@@ -149,6 +149,17 @@
         .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
     </style>
+<style id="jec-grammar-aids">
+.aids-row{display:flex;gap:8px;margin:10px 0 6px;flex-wrap:wrap;}
+.aid-btn{font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;border:1.5px solid var(--primary,#F9A825);background:#fff;color:var(--primary-dark,#E65100);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+.aid-btn:hover{background:var(--primary-light,#FFF8E1);transform:translateY(-1px);}
+.aid-btn.active{background:var(--primary,#F9A825);color:#fff;}
+.hint-box{background:#FFFDE7;border-left:4px solid var(--primary,#F9A825);padding:0.7rem 1rem;border-radius:0 10px 10px 0;margin:6px 0 12px;font-size:0.9rem;color:#5D4037;line-height:1.5;}
+.hint-label{font-weight:800;color:var(--primary-dark,#E65100);font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;border-radius:12px;padding:0.9rem 1rem;margin-top:4px;}
+.fb-analogy .fb-block-title{color:#7B1FA2;}
+.fb-analogy-text{font-size:0.92rem;line-height:1.55;color:#4A148C;}
+</style>
 </head>
 <body>
     <header class="header">
@@ -414,11 +425,38 @@
     let currentQuestion = 0, score = 0;
     let answered = new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1: "Fíjate quién habla: ¿se refiere a sí mismo o a otra persona? ¿Una persona o un grupo?",
+        2: "«The teacher» es una persona: ¿una sola o varias? Eso decide la forma del verbo.",
+        3: "Mira lo que viene después: «a boy» ¿es uno solo o varios? La forma cambia según eso.",
+        4: "«We» ¿habla de una persona o de un grupo que te incluye? ¿Singular o plural?",
+        5: "«She and I» son dos personas juntas: ¿eso es singular o plural? Y recuerda dónde va el «not».",
+        6: "Ravi es una sola persona: ¿singular o plural? Piensa en la negativa de esa forma.",
+        7: "«It» se refiere a una cosa o situación: ¿singular o plural? Y revisa el orden del «not».",
+        8: "«Everyone» suena a muchos, pero ¿en inglés cuenta como uno o como varios? Y en pregunta, ¿dónde va el verbo?",
+        9: "«You and Nico» son dos personas: ¿singular o plural? Y en pregunta, ¿qué palabra va primero?",
+        10: "Quien pregunta habla de sí mismo: ¿qué forma del verbo exige ese sujeto? Y en pregunta, ¿dónde se coloca?"
+    };
+    const ANALOGIES = {
+        1: "En español «Tengo siete años» suelta el «yo»; en inglés el verbo obliga al pronombre y solo «I» acepta «am»: «I am». Nunca «I is» ni «I are».",
+        2: "En español el verbo cambia mucho («es/son») y a veces se omite el sujeto; en inglés una sola persona siempre lleva «is», con su pronombre.",
+        3: "En español «hay» es una sola palabra para uno o muchos; en inglés cambia: «there is» (uno) / «there are» (varios). Aquí hay un solo chico → «is».",
+        4: "En español «Vamos a ser amigos» omite el «nosotros»; en inglés el pronombre es obligatorio y plural → «We are».",
+        5: "En español el «no» va suelto antes del verbo («no somos»); en inglés se pega al verbo: «are not / aren't». Y dos personas = plural.",
+        6: "En español el «no» va antes del verbo; en inglés se une: «is not → isn't». Una persona → «is», nunca «aren't».",
+        7: "En español «el día» tiene género; en inglés una cosa o situación es siempre «it», y su negativa es «isn't».",
+        8: "«Todos» suena a plural en español, pero «everyone» en inglés funciona como uno solo → «is». Y la pregunta invierte el orden: el verbo va primero.",
+        9: "En español preguntas solo con el tono («¿Tienen la misma edad?»); en inglés debes mover el verbo al inicio: «Are you...?». Dos personas → plural.",
+        10: "En español «¿Estoy en la clase correcta?» omite el «yo»; en inglés «I» exige «am» y la pregunta lo pone primero: «Am I...?». Nunca «Is I» ni «Are I»."
+    };
+
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
         quizData.forEach((q, i) => {
             q.shuffled = [...q.options].sort(() => Math.random() - 0.5);
+            if (HINTS[q.id]) q.hint = HINTS[q.id];
+            if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id];
             container.appendChild(createCard(q, i));
         });
         showQuestion(0);
@@ -440,6 +478,13 @@
                 <span class="q-label">Elige la oración gramaticalmente correcta:</span>
                 <span class="form-badge ${badgeClass}">${badgeText}</span>
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú eliges</div>
+                ${q.hint}
+            </div>
             <div class="sentence-options" id="options-${index}">
                 ${q.shuffled.map((opt, i) => `
                     <button class="sent-option" onclick="selectOption(${index}, ${i})">
@@ -458,6 +503,14 @@
             </div>
         `;
         return card;
+    }
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId);
+        const btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
     }
 
     function selectOption(qi, optIdx) {
@@ -535,6 +588,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             el.innerHTML = `
@@ -581,6 +635,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-analogy-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }

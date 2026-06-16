@@ -115,6 +115,13 @@
         .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
         .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
         .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--bg-gradient-start);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .trans-box{color:var(--text-dark);font-weight:600;font-size:.92rem;margin:0 0 1rem;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
     </style>
 </head>
 <body>
@@ -317,8 +324,29 @@
         }
     ];
 
+    const ANALOGIES={
+        1:"En español 'es' sirve para él y para ella; en inglés una sola persona (he/she/it) siempre lleva 'is', y el sujeto nunca se omite.",
+        2:"En español 'están' ya marca el plural; en inglés el plural también cambia el verbo a 'are', y dos sujetos unidos por 'and' cuentan como varios.",
+        3:"En español 'Estoy' suelta el 'yo'; en inglés 'I' es obligatorio y solo acepta 'am': 'I am'. Nunca 'I is' ni 'I are'.",
+        4:"En español la bebé es 'ella'; en inglés 'she' (una sola persona) siempre lleva 'is'.",
+        5:"En español el 'no' va suelto antes del verbo ('no es'); en inglés se pega: 'is + not = isn't'. Una persona → isn't.",
+        6:"En español 'no estamos' lleva el 'no' delante; en inglés 'are not' se contrae en 'aren't', con el 'not' después del verbo. Plural → aren't.",
+        7:"En español 'no es fácil' pone el 'no' delante; en inglés 'it is not = isn't'. Una cosa o situación → it isn't.",
+        8:"En español preguntas solo con el tono ('¿Está...?'); en inglés mueves el verbo al frente: 'Is + sujeto...?'. Una persona → Is.",
+        9:"En español '¿Están...?' se marca por el tono; en inglés el verbo salta al inicio: 'Are + sujeto...?'. Dos personas → Are.",
+        10:"En español '¿Estoy...?' omite el 'yo'; en inglés 'I' exige 'am' y la pregunta lo pone primero: 'Am I...?'. Nunca 'Is I' ni 'Are I'."
+    };
+    quizData.forEach(q=>{if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
 
     function shuffle(arr){
         // Fisher-Yates
@@ -353,9 +381,13 @@
                 <span style="font-size:.88rem;color:var(--text-medium);font-weight:600;flex:1;">Elige la forma correcta:</span>
                 ${badge}
             </div>
-            <div class="hint-box"><div class="hint-label">💡 Pista</div>${q.hint}</div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú eliges</div>${q.hint}</div>
             <div class="question-text">${sentHtml}</div>
-            <div class="translation">${q.translation}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-grid" id="options-${index}">${opts}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -420,6 +452,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             const fb=q.feedback[chosen]||{errorType:'Error',explanation:'Revisa la regla.',rule:'I→am · he/she/it→is · we/you/they→are'};
@@ -453,6 +486,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta la otra opción?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

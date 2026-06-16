@@ -128,6 +128,15 @@
         .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
         .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
         .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--bg-gradient-start);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:.7rem 1rem;border-radius:0 10px 10px 0;margin:0 0 1rem;font-size:.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:800;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+        .trans-box{color:var(--text-dark);font-weight:600;font-size:.92rem;margin:0 0 1rem;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
     </style>
 </head>
 <body>
@@ -360,8 +369,53 @@
         }
     ];
 
+    const HINTS={
+        1:"Vas de afirmativo a negativo: ¿dónde se coloca el 'not' con el verbo to be?",
+        2:"De afirmativo a pregunta: ¿qué palabra debe moverse al inicio?",
+        3:"De negativo a afirmativo: ¿qué le quitas al verbo? Mira el número del sujeto.",
+        4:"De negativo a pregunta: quitas el 'not' y... ¿qué hace el verbo?",
+        5:"De pregunta a afirmativo: ¿qué va primero ahora, el sujeto o el verbo?",
+        6:"De pregunta a negativo: ordenas sujeto+verbo y añades el 'not' ¿dónde?",
+        7:"Afirmativo a negativo con 'I': recuerda que esa negativa no se contrae.",
+        8:"De afirmativo a pregunta con una persona: ¿qué palabra va primero?",
+        9:"De negativo a afirmativo con dos personas: ¿singular o plural al quitar el 'not'?",
+        10:"De pregunta a negativo con 'I': ¿qué orden y qué forma del verbo?"
+    };
+    const TRANS={
+        1:"Don Beto es el hombre más amable de nuestra calle.",
+        2:"Nico y Eva están en la misma escuela.",
+        3:"La abuela de Mia no está en la foto.",
+        4:"No estamos atrasados para la clase.",
+        5:"¿Es la señorita Rosa tu maestra?",
+        6:"¿Tienen Ravi y Dev la misma edad?",
+        7:"Estoy listo para el examen.",
+        8:"El papá de Nico es muy paciente.",
+        9:"Mamá y la abuela todavía no están en la cocina.",
+        10:"¿Estoy en el salón equivocado?"
+    };
+    const ANALOGIES={
+        1:"En español el 'no' va suelto antes del verbo ('no es'); en inglés se pega después: 'is not = isn't'.",
+        2:"En español preguntas solo con el tono; en inglés debes mover el verbo al frente: 'Are + sujeto...?'.",
+        3:"Quitar la negación en español es soltar el 'no'; en inglés 'isn't' pierde el 'not' y queda 'is'.",
+        4:"En español pasas de 'no estamos' a '¿estamos?' con el tono; en inglés quitas 'not' y mueves el verbo: 'Are we...?'.",
+        5:"En español '¿Es...?' y 'Es...' se distinguen por el tono; en inglés cambia el ORDEN: 'Is she...?' → 'She is...'.",
+        6:"En español el 'no' va antes del verbo; en inglés el sujeto va primero y 'not' se pega: 'aren't'.",
+        7:"En español dices 'no estoy'; en inglés con 'I' la negativa es 'am not' y no se contrae.",
+        8:"En español '¿Es...?' va por el tono; en inglés el verbo 'is' salta al inicio: 'Is he...?'.",
+        9:"Quitar el 'no' en español ('no están' → 'están'); en inglés 'aren't' pierde el 'not' y queda 'are'. Dos personas → are.",
+        10:"En español '¿Estoy...?' → 'No estoy' suelta el 'yo'; en inglés inviertes a 'I' primero y usas 'am not': 'I am not...'."
+    };
+    quizData.forEach(q=>{if(HINTS[q.id])q.hint=HINTS[q.id];if(TRANS[q.id])q.translation=TRANS[q.id];if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
     function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
     function initQuiz(){
@@ -393,6 +447,12 @@
                 <span style="font-size:.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
                 ${badge}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú transformas</div>${q.hint}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation} <span style="opacity:.7">(oración original)</span></div>
             <div class="transform-visual">
                 <div class="transform-box base">
                     <span class="transform-label">🔶 Oración original</span>
@@ -468,6 +528,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             el.innerHTML=`
@@ -499,6 +560,7 @@
                     <div class="fb-block-title">💡 ¿Cómo debía hacerse?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

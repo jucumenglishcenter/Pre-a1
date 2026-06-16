@@ -119,6 +119,14 @@
         .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
         .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
         .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--bg-gradient-start);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:.7rem 1rem;border-radius:0 10px 10px 0;margin:0 0 1rem;font-size:.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:800;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
     </style>
 </head>
 <body>
@@ -361,8 +369,41 @@
         }
     ];
 
+    const HINTS={
+        1:"Fíjate en el sujeto: ¿es una sola persona o varias? Eso decide is/are.",
+        2:"¿Cuántas personas nombra el sujeto? Cuenta antes de elegir.",
+        3:"El sujeto es una sola persona: piensa qué forma le toca.",
+        4:"¿Quién habla? El pronombre 'I' tiene una sola forma posible.",
+        5:"Es una negativa: revisa el número (uno/varios) y dónde va el 'not'.",
+        6:"Negativa con una cosa o situación: ¿singular o plural? ¿y el orden del 'not'?",
+        7:"Negativa con 'I': recuerda que esa forma no se contrae.",
+        8:"Es pregunta: ¿qué palabra debe ir primero, y en qué número?",
+        9:"Pregunta con dos personas: revisa el verbo y su posición.",
+        10:"Pregunta con 'I': solo una forma del verbo es posible al inicio."
+    };
+    const ANALOGIES={
+        1:"En español 'es' vale para él y ella; en inglés una sola persona siempre lleva 'is', con el sujeto presente.",
+        2:"En español 'son' marca el plural; en inglés dos sujetos unidos por 'and' piden 'are'.",
+        3:"En español omites el 'él' ('es amable'); en inglés el sujeto va siempre, y una persona → 'is'.",
+        4:"En español 'Me alegro' suelta el 'yo'; en inglés 'I' es obligatorio y solo acepta 'am'.",
+        5:"En español el 'no' va antes del verbo; en inglés se pega después: 'are not = aren't'. Plural → aren't.",
+        6:"En español 'no es fácil' pone el 'no' delante; en inglés 'it is not = isn't', con el 'not' después del verbo.",
+        7:"En español dices 'no soy'; en inglés con 'I' la negativa es 'am not' y NO se contrae (no existe 'amn't').",
+        8:"En español preguntas con el tono; en inglés mueves el verbo al frente: 'Is + sujeto...?'.",
+        9:"En español '¿Son...?' va por el tono; en inglés el verbo salta al inicio: 'Are + sujeto...?'. Plural → Are.",
+        10:"En español '¿Estoy...?' omite el 'yo'; en inglés 'I' exige 'Am' primero: 'Am I...?'. Nunca 'Is I' ni 'Are I'."
+    };
+    quizData.forEach(q=>{if(HINTS[q.id])q.hint=HINTS[q.id];if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
 
     function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
@@ -392,6 +433,10 @@
                 <span class="q-label">Elige la oración correcta:</span>
                 ${badge}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú eliges</div>${q.hint}</div>
             <div class="sentence-options" id="options-${index}">${opts}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -460,6 +505,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             el.innerHTML=`
@@ -503,6 +549,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta la otra?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

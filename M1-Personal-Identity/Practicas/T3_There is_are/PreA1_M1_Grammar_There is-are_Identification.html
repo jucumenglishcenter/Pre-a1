@@ -108,6 +108,14 @@
         .fb-why .fb-block-title{color:var(--success-dark);}
         .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
         .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--bg-gradient-start);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:.7rem 1rem;border-radius:0 10px 10px 0;margin:0 0 1rem;font-size:.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:800;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
         .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
         .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
         .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
@@ -379,6 +387,39 @@
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
 
+    const HINTS={
+        1:"¿Ves el artículo 'a' antes del sustantivo? Eso decide singular o plural.",
+        2:"Hay un número en la oración: ¿es uno o más de uno?",
+        3:"Fija la vista en 'a': ¿qué forma pide el artículo? Y ¿es presente o pasado?",
+        4:"Mira la terminación del sustantivo: la -s final delata el número.",
+        5:"Hay un número: cuéntalo. ¿Mayor que uno?",
+        6:"¿Cuántas personas se mencionan? Y ¿dónde debe ir 'There is/are' en la oración?",
+        7:"Hay un número grande: ¿singular o plural?",
+        8:"'Rush' no se puede contar: ¿qué forma usan los sustantivos incontables?",
+        9:"Una vecina = ¿cuántas personas? Y ¿la situación es de ahora o del pasado?",
+        10:"Busca el artículo 'a' y revisa el orden: ¿qué va primero?"
+    };
+    const ANALOGIES={
+        1:"En español 'hay' no cambia (hay un niño / hay niños); en inglés 'a boy' lleva 'a' → singular → 'There is'. Y 'There be' no existe.",
+        2:"En español 'hay cinco personas' usa una sola palabra; en inglés el número 'five' obliga al plural → 'There are'. 'There have' no existe.",
+        3:"En español 'hay un bebé' no marca tiempo en el verbo 'hay'; en inglés 'a' → singular y la noticia es presente → 'There is', no 'There was'.",
+        4:"En español 'hay asientos' usa 'hay'; en inglés la -s de 'seats' marca plural → 'There are'.",
+        5:"En español 'hay seis' no cambia el verbo; en inglés 'six' → plural → 'There are'.",
+        6:"En español puedes decir 'mi abuelo, hay'; en inglés el orden es fijo: 'There is' va primero. Una persona → 'is'.",
+        7:"En español 'hay ocho personas' usa 'hay'; en inglés 'eight' → plural → 'There are'. 'There be' no existe.",
+        8:"En español 'no hay apuro' usa 'hay'; en inglés 'rush' es incontable y sigue al singular → 'There is no rush'.",
+        9:"En español 'hay una vecina' usa 'hay'; en inglés una persona en presente → 'There is', no 'There was'.",
+        10:"En español 'una persona amable hay' suena raro pero posible; en inglés el orden es fijo: 'There is a kind person'. El 'a' marca singular."
+    };
+    quizData.forEach(q=>{if(HINTS[q.id])q.hint=HINTS[q.id];if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
+
     function initQuiz(){
         const c=document.getElementById('questionsContainer');
         c.innerHTML='';
@@ -409,6 +450,10 @@
                 <span class="q-label">Elige la oración correcta:</span>
                 ${badge}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú eliges</div>${q.hint}</div>
             <div class="sentence-options" id="options-${index}">${opts}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -479,6 +524,7 @@
                     <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             el.innerHTML=`
@@ -522,6 +568,7 @@
                     <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

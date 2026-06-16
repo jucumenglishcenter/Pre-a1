@@ -94,6 +94,13 @@
         .fb-why .fb-block-title{color:var(--success-dark);}
         .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
         .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--primary-light);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .trans-box{color:var(--text-dark);font-weight:600;font-size:.9rem;margin:0 0 1rem;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
         .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
         .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
         .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
@@ -409,8 +416,29 @@
         }
     ];
 
+    const ANALOGIES={
+        1:"En español 'hay' no cambia (hay un niño / hay niños); en inglés sí: 'a boy' es uno → 'There is'. El artículo 'a' delata el singular.",
+        2:"En español 'hay' sirve para todo; en inglés la -s de 'seats' marca plural → 'There are'. Esa -s final es la señal.",
+        3:"En español 'hay cinco personas' usa una sola palabra; en inglés el número 'five' obliga al plural → 'There are'.",
+        4:"En español 'hay un bebé' y 'hay bebés' comparten 'hay'; en inglés 'a new baby' lleva 'a' → singular → 'There is'.",
+        5:"En español 'hay seis personas' no cambia el verbo; en inglés 'six' → plural → 'There are'.",
+        6:"En español 'hay mi abuelo' suena raro pero 'hay' no cambia; en inglés una persona → 'There is'.",
+        7:"En español 'hay ocho personas' usa 'hay'; en inglés 'eight' → plural → 'There are'.",
+        8:"En español 'no hay apuro' usa 'hay'; en inglés 'rush' es incontable y sigue al singular → 'There is no rush'.",
+        9:"En español 'hay una vecina' usa 'hay'; en inglés una sola persona → 'There is'.",
+        10:"En español 'hay una persona amable' usa 'hay'; en inglés 'a kind person' lleva 'a' → singular → 'There is'."
+    };
+    quizData.forEach(q=>{if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
 
     function initQuiz(){
         const c=document.getElementById('questionsContainer');
@@ -438,12 +466,16 @@
                 <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Elige la forma correcta:</span>
                 ${badge}
             </div>
-            <div class="hint-box">
-                <div class="hint-label">💡 Pista</div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú eliges</div>
                 ${q.hint}
             </div>
             <div class="question-text" id="sentence-${index}">${q.sentence.replace('_____','<span class="blank" id="blank-${index}">_____</span>')}</div>
-            <div class="translation">${q.translation}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation}</div>
             <div class="options-grid" id="options-${index}">${opts}</div>
             <div class="feedback" id="feedback-${index}"></div>
             <div class="nav-buttons">
@@ -511,6 +543,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             const fb=q.feedback[chosen]||{errorType:'Error',explanation:'Revisa la regla.',rule:'There is + singular / There are + plural'};
@@ -544,6 +577,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta la otra opción?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

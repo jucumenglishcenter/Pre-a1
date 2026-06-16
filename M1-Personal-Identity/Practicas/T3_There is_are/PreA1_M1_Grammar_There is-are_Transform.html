@@ -116,6 +116,15 @@
         .fb-why .fb-block-title{color:var(--success-dark);}
         .fb-why-text{font-size:0.92rem;color:var(--text-dark);line-height:1.55;}
         .nav-buttons{display:flex;gap:0.75rem;margin-top:1.25rem;}
+        .aids-row{display:flex;gap:8px;margin:0 0 1rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--orange-light);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:.7rem 1rem;border-radius:0 10px 10px 0;margin:0 0 1rem;font-size:.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:800;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+        .trans-box{color:var(--text-dark);font-weight:600;font-size:.9rem;margin:0 0 1rem;background:#F3E5F5;border-left:3px solid #7B1FA2;padding:7px 12px;border-radius:0 8px 8px 0;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
         .nav-btn{padding:0.8rem 1.2rem;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all .2s;}
         .nav-btn.next{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;flex:1;}
         .nav-btn.prev{background:#F1F5F9;color:var(--text-dark);}
@@ -393,6 +402,51 @@
         }
     ];
 
+    const HINTS={
+        1:"El sujeto pasa de un niño a dos: ¿qué número es ahora, y qué forma del verbo le toca?",
+        2:"De cinco personas a una sola: ¿singular o plural? Eso cambia el verbo.",
+        3:"De un bebé a dos: el sujeto se vuelve plural. ¿Qué pasa con 'is'?",
+        4:"De varios asientos a uno solo: ¿qué forma pide un único asiento?",
+        5:"De seis personas a una: reduces a singular. ¿Qué verbo corresponde?",
+        6:"De una persona a dos (abuelo y abuela): el sujeto se vuelve plural.",
+        7:"De ocho personas a una sola: ¿singular o plural ahora?",
+        8:"De 'no rush' (incontable) a 'dos cosas': el sujeto pasa a plural contable.",
+        9:"De una vecina a dos: el sujeto se vuelve plural. ¿Qué forma del verbo?",
+        10:"De muchas historias a una sola: reduces a singular. ¿Qué verbo va?"
+    };
+    const TRANS={
+        1:"Hay un niño llamado Ravi en nuestra clase.",
+        2:"Hay cinco personas en la foto.",
+        3:"Hay un bebé nuevo en la casa de Nico.",
+        4:"Todavía hay algunos asientos vacíos.",
+        5:"Hay seis personas en la familia de Ravi.",
+        6:"También está mi abuelo, Don Beto.",
+        7:"Hay ocho personas en la foto de la pared de Mia.",
+        8:"No hay apuro el sábado por la mañana.",
+        9:"También está mi vecina, la señora Ana.",
+        10:"Hay muchas historias en la memoria del abuelo."
+    };
+    const ANALOGIES={
+        1:"En español 'hay' no cambia (hay un niño / hay dos niños); en inglés sí: al pasar a plural 'is' se vuelve 'are'.",
+        2:"En español 'hay' sirve igual para cinco o para una; en inglés al reducir a una persona 'are' se vuelve 'is'.",
+        3:"En español 'hay un bebé' y 'hay dos bebés' comparten 'hay'; en inglés el plural obliga 'is → are'.",
+        4:"En español 'hay asientos' → 'hay un asiento' no cambia el verbo; en inglés 'are → is' al quedar uno solo.",
+        5:"En español 'hay seis' → 'hay una' usa siempre 'hay'; en inglés 'are → is' al pasar a singular.",
+        6:"En español 'está mi abuelo' → 'están mi abuelo y mi abuela' cambia el verbo; en inglés 'is → are' al sumar a la abuela.",
+        7:"En español 'hay ocho' → 'hay una' no cambia 'hay'; en inglés 'are → is' al quedar una sola.",
+        8:"En español 'no hay apuro' → 'hay dos cosas' usa 'hay'; en inglés 'rush' (incontable, is) pasa a 'things' (plural, are).",
+        9:"En español 'está mi vecina' → 'están dos vecinas' cambia el verbo; en inglés 'is → are' al sumar otra.",
+        10:"En español 'hay muchas historias' → 'hay una historia' no cambia 'hay'; en inglés 'are → is' al quedar una."
+    };
+    quizData.forEach(q=>{if(HINTS[q.id])q.hint=HINTS[q.id];if(TRANS[q.id])q.translation=TRANS[q.id];if(ANALOGIES[q.id])q.analogy=ANALOGIES[q.id];});
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
+
     let currentQuestion=0, score=0;
     let answered=new Array(quizData.length).fill(false);
 
@@ -426,6 +480,12 @@
                 <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
                 ${badge}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú transformas</div>${q.hint}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation} <span style="opacity:.7">(oración original)</span></div>
             <div class="transform-visual">
                 <div class="transform-box base">
                     <span class="transform-label">🔶 Oración original</span>
@@ -507,6 +567,7 @@
                     <div class="fb-block-title">💡 ¿Por qué es correcta la transformación?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         } else {
             el.innerHTML=`
@@ -543,6 +604,7 @@
                     <div class="fb-block-title">💡 ¿Cómo debía hacerse la transformación?</div>
                     <div class="fb-why-text">${q.correctReason}</div>
                 </div>
+                ${q.analogy?`<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>`:''}
             </div>`;
         }
     }

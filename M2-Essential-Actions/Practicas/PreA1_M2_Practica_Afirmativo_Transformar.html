@@ -132,6 +132,15 @@
         .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
         .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .aids-row { display:flex; gap:8px; margin:0 0 1rem; flex-wrap:wrap; }
+        .aid-btn { font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:700; border:1.5px solid var(--primary); background:#fff; color:var(--primary-dark); padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .18s; }
+        .aid-btn:hover { background:var(--bg-gradient-start); transform:translateY(-1px); }
+        .aid-btn.active { background:var(--primary); color:#fff; }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:.7rem 1rem; border-radius:0 10px 10px 0; margin:0 0 1rem; font-size:.88rem; color:#78350F; line-height:1.5; }
+        .hint-label { font-weight:800; color:var(--primary-dark); font-size:.72rem; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+        .trans-box { color:var(--text-dark); font-weight:600; font-size:.9rem; margin:0 0 1rem; background:#F3E5F5; border-left:3px solid #7B1FA2; padding:7px 12px; border-radius:0 8px 8px 0; }
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
     </style>
 </head>
 <body>
@@ -301,6 +310,51 @@
     let currentQuestion = 0, score = 0;
     let answered = new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1:"Cambias 'I' por 'Marco' (él). ¿Qué le pasa al verbo con él/ella?",
+        2:"Cambias 'Marco' (él) por 'I'. ¿El verbo mantiene la -s con 'I'?",
+        3:"Cambias a 'Marco' (él) y el verbo acaba en -sh. ¿-s o -es?",
+        4:"Cambias a un sujeto plural (ellos). ¿El verbo conserva la -s?",
+        5:"Cambias a 'I'. ¿Qué pasa con 'does' al volver a la forma base?",
+        6:"Cambias a plural (ellos). ¿'goes' conserva la -es?",
+        7:"Cambias a 'Marco' (él). ¿El verbo gana -s?",
+        8:"Cambias a 'I'. ¿El verbo conserva la -s?",
+        9:"Cambias a plural (ellos). ¿'gives' conserva la -s?",
+        10:"Cambias a 'Marco' (él). Ojo: hay DOS verbos en la oración."
+    };
+    const TRANS = {
+        1:"Me levanto temprano.",
+        2:"Marco hace café.",
+        3:"Me lavo la cara.",
+        4:"Rosa prepara buena comida.",
+        5:"Rosa hace sus quehaceres.",
+        6:"Ben va al mercado.",
+        7:"Barro el piso.",
+        8:"Marco mantiene su cuarto limpio.",
+        9:"Ben le da fruta a Rosa.",
+        10:"Me siento y como."
+    };
+    const ANALOGIES = {
+        1:"En español 'me levanto'→'Marco se levanta' cambia la terminación; en inglés solo aparece la -s con él: 'gets'.",
+        2:"En español 'Marco hace'→'yo hago' cambia; en inglés al pasar a 'I' se quita la -s: 'make'.",
+        3:"En español 'me lavo'→'Marco se lava'; en inglés él añade -es por terminar en -sh: 'washes'.",
+        4:"En español 'Rosa prepara'→'ellos preparan'; en inglés el plural quita la -s: 'make'.",
+        5:"En español 'Rosa hace'→'yo hago'; en inglés 'does' vuelve a 'do' con 'I'.",
+        6:"En español 'Ben va'→'ellos van'; en inglés 'goes' pierde la -es en plural: 'go'.",
+        7:"En español 'barro'→'Marco barre'; en inglés él gana -s: 'sweeps'.",
+        8:"En español 'Marco mantiene'→'yo mantengo'; en inglés al pasar a 'I' se quita la -s: 'keep'.",
+        9:"En español 'Ben da'→'ellos dan'; en inglés el plural quita la -s: 'give'.",
+        10:"En español ambos verbos cambian con la persona; en inglés con 'Marco' (él) los DOS llevan -s: 'sits and eats'."
+    };
+    quizData.forEach(q => { if (HINTS[q.id]) q.hint = HINTS[q.id]; if (TRANS[q.id]) q.translation = TRANS[q.id]; if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id]; });
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId), btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
+    }
+
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
@@ -322,6 +376,12 @@
                 <div class="question-number">${index + 1}</div>
                 <span style="font-size:0.82rem;color:var(--text-medium);font-weight:600;">Cambia el sujeto</span>
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú transformas</div>${q.hint}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation} <span style="opacity:.7">(oración original)</span></div>
             <div class="transform-visual">
                 <div class="transform-box base">
                     <span class="transform-label">🔶 Oración original</span>
@@ -394,6 +454,7 @@
                     <div class="fb-block fb-transform"><div class="fb-block-title">🔄 Cambio realizado</div>${flowHTML}</div>
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             el.innerHTML = `
@@ -406,6 +467,7 @@
                     </div>
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Cómo debía hacerse?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }
@@ -424,6 +486,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         const stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -434,5 +497,7 @@
     }
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

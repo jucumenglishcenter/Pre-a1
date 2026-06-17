@@ -128,6 +128,15 @@
         .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
         .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .aids-row { display:flex; gap:8px; margin:0 0 1rem; flex-wrap:wrap; }
+        .aid-btn { font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:700; border:1.5px solid var(--primary); background:#fff; color:var(--primary-dark); padding:6px 14px; border-radius:20px; cursor:pointer; transition:all .18s; }
+        .aid-btn:hover { background:var(--bg-gradient-start); transform:translateY(-1px); }
+        .aid-btn.active { background:var(--primary); color:#fff; }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:.7rem 1rem; border-radius:0 10px 10px 0; margin:0 0 1rem; font-size:.88rem; color:#78350F; line-height:1.5; }
+        .hint-label { font-weight:800; color:var(--primary-dark); font-size:.72rem; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+        .trans-box { color:var(--text-dark); font-weight:600; font-size:.9rem; margin:0 0 1rem; background:#F3E5F5; border-left:3px solid #7B1FA2; padding:7px 12px; border-radius:0 8px 8px 0; }
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
     </style>
 </head>
 <body>
@@ -288,6 +297,51 @@
     let currentQuestion = 0, score = 0;
     let answered = new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1:"Conviertes en pregunta con 'you'. ¿Qué auxiliar antepones?",
+        2:"Pregunta con Marco (él). ¿Do o Does? Y 'makes', ¿pierde la -s tras el auxiliar?",
+        3:"Pregunta con un sujeto plural. ¿Do o Does?",
+        4:"Pregunta con Rosa (ella). 'sweeps' tras el auxiliar, ¿pierde la -s?",
+        5:"Pregunta con 'you'. Tras el auxiliar, ¿el verbo lleva -s?",
+        6:"Pregunta con Ben (él). 'gives' tras el auxiliar, ¿pierde la -s?",
+        7:"Pregunta con 'we'. ¿Do o Does?",
+        8:"Pregunta con Sara (ella). 'brushes' tras el auxiliar, ¿pierde la -es?",
+        9:"Pregunta con Marco (él). 'washes' tras el auxiliar, ¿pierde la -es?",
+        10:"Pregunta con 'you'. Tras 'Do', ¿el verbo lleva -s?"
+    };
+    const TRANS = {
+        1:"Te levantas temprano.",
+        2:"Marco hace café.",
+        3:"Ellos comen cada mañana.",
+        4:"Rosa barre el piso.",
+        5:"Tomas el autobús.",
+        6:"Ben le da fruta a Rosa.",
+        7:"Mantenemos el cuarto limpio.",
+        8:"Sara se cepilla los dientes.",
+        9:"Marco se lava la cara.",
+        10:"Te gusta el pan."
+    };
+    const ANALOGIES = {
+        1:"En español 'te levantas'→'¿te levantas?' solo cambia el tono; en inglés antepones 'Do': 'Do you get up?'.",
+        2:"En español 'Marco hace'→'¿Marco hace?'; en inglés 'Does Marco make...?' — el verbo vuelve a base.",
+        3:"En español 'comen'→'¿comen?'; en inglés el plural antepone 'Do': 'Do they eat?'.",
+        4:"En español 'Rosa barre'→'¿Rosa barre?'; en inglés 'Does Rosa sweep?' — el verbo pierde la -s.",
+        5:"En español 'tomas'→'¿tomas?'; en inglés 'Do you take...?' — el auxiliar es obligatorio.",
+        6:"En español 'Ben da'→'¿Ben da?'; en inglés 'Does Ben give?' — el verbo vuelve a base.",
+        7:"En español 'mantenemos'→'¿mantenemos?'; en inglés 'Do we keep...?'.",
+        8:"En español 'Sara se cepilla'→'¿Sara se cepilla?'; en inglés 'Does Sara brush?' — el verbo pierde la -es.",
+        9:"En español 'Marco se lava'→'¿Marco se lava?'; en inglés 'Does Marco wash?' — el verbo pierde la -es.",
+        10:"En español 'te gusta'→'¿te gusta?'; en inglés 'Do you like...?' — el verbo sin -s."
+    };
+    quizData.forEach(q => { if (HINTS[q.id]) q.hint = HINTS[q.id]; if (TRANS[q.id]) q.translation = TRANS[q.id]; if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id]; });
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel) {
+        const box = document.getElementById(boxId), btn = document.getElementById(btnId);
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) { btn.textContent = open ? showLabel : hideLabel; btn.classList.toggle('active', !open); }
+    }
+
     function initQuiz() {
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
@@ -308,6 +362,12 @@
                 <div class="question-number">${index + 1}</div>
                 <span style="font-size:0.82rem;color:var(--text-medium);font-weight:600;">Afirmativo → Pregunta</span>
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+                <button class="aid-btn" type="button" id="transbtn-${index}" onclick="toggleAid('trans-${index}','transbtn-${index}','🇵🇪 Ver traducción','🇵🇪 Ocultar traducción')">🇵🇪 Ver traducción</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú transformas</div>${q.hint}</div>
+            <div class="trans-box" id="trans-${index}" style="display:none">🇵🇪 ${q.translation} <span style="opacity:.7">(oración afirmativa)</span></div>
             <div class="transform-visual">
                 <div class="transform-box base">
                     <span class="transform-label">🔶 Oración afirmativa</span>
@@ -377,6 +437,7 @@
                     <div class="fb-block fb-transform"><div class="fb-block-title">🔄 Transformación realizada</div>${flowHTML}</div>
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         } else {
             el.innerHTML = `
@@ -389,6 +450,7 @@
                     </div>
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Cómo debía transformarse?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }
@@ -407,6 +469,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         const stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -417,5 +480,7 @@
     }
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

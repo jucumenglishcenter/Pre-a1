@@ -110,6 +110,14 @@
         .result-btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:white;}
         .result-btn.secondary{background:#F1F5F9;color:var(--text-dark);}
         .result-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
+        .aids-row{display:flex;gap:8px;margin:0 0 .9rem;flex-wrap:wrap;}
+        .aid-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;border:1.5px solid var(--primary);background:#fff;color:var(--primary-dark);padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+        .aid-btn:hover{background:var(--bg-gradient-start);transform:translateY(-1px);}
+        .aid-btn.active{background:var(--primary);color:#fff;}
+        .hint-box{background:#FFFDE7;border-left:4px solid var(--primary);padding:.7rem 1rem;border-radius:0 10px 10px 0;margin:0 0 .9rem;font-size:.88rem;color:#78350F;line-height:1.5;}
+        .hint-label{font-weight:800;color:var(--primary-dark);font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+        .fb-analogy{background:#F3E5F5;border:1px solid #E1BEE7;}
+        .fb-analogy .fb-block-title{color:#7B1FA2;}
     </style>
 </head>
 <body>
@@ -261,6 +269,39 @@
     let currentQuestion=0,score=0;
     let answered=new Array(quizData.length).fill(false);
 
+    const HINTS = {
+        1:"La traducción pregunta por una cosa/acción. ¿Qué Wh-? Y tras 'does', ¿el verbo lleva -s?",
+        2:"Pregunta por un lugar. ¿Qué Wh-? Y con Sara (ella), ¿Do o Does?",
+        3:"Pregunta por un momento. ¿Qué Wh-? Y con un sujeto plural, ¿Do o Does?",
+        4:"Pregunta por una persona. ¿Qué Wh-? Tras 'does', ¿el verbo lleva -s?",
+        5:"Pregunta por una acción. ¿Qué Wh-? Con Marco (él), ¿Do o Does?",
+        6:"Pregunta por un lugar. ¿Qué Wh-? Tras 'does', ¿el verbo lleva -s?",
+        7:"Pregunta por un momento. ¿Qué Wh-? Con Marco (él), ¿Do o Does?",
+        8:"Pregunta por una persona. ¿Qué Wh-? Tras 'does', ¿el verbo lleva -s?",
+        9:"Pregunta por una cosa. ¿Qué Wh-? Con 'they' (ellos), ¿Do o Does?",
+        10:"Pregunta por un lugar. ¿Qué Wh-? Con Rosa (ella), ¿Do o Does?"
+    };
+    const ANALOGIES = {
+        1:"En español 'qué'='What': '¿Qué come?' → 'What does Marco eat?'. Tras 'does', el verbo va en base.",
+        2:"En español '¿A dónde?'='Where': 'Where does Sara go?'. Con ella, 'does'.",
+        3:"En español 'cuándo'='When': 'When do Ben and Rosa go?'. Plural → 'do'.",
+        4:"En español '¿A quién?'='Who': 'Who does Sara help?'. Tras 'does', verbo en base.",
+        5:"En español 'qué'='What', también para acciones: 'What does Marco do?'. Con él, 'does'.",
+        6:"En español 'dónde'='Where': 'Where does Sara eat?'. Tras 'does', verbo en base.",
+        7:"En español 'cuándo'='When': 'When does Marco sweep?'. Con él, 'does'.",
+        8:"En español '¿A quién?'='Who'; el 'to' va al final: 'Who does Ben give fruit to?'.",
+        9:"En español 'qué'='What': 'What do they have?'. Plural → 'do'.",
+        10:"En español 'dónde'='Where': 'Where does Rosa live?'. Con ella, 'does'."
+    };
+    quizData.forEach(q => { if (HINTS[q.id]) q.hint = HINTS[q.id]; if (ANALOGIES[q.id]) q.analogy = ANALOGIES[q.id]; });
+
+    function toggleAid(boxId, btnId, showLabel, hideLabel){
+        const box=document.getElementById(boxId), btn=document.getElementById(btnId);
+        const open=box.style.display!=='none';
+        box.style.display=open?'none':'block';
+        if(btn){btn.textContent=open?showLabel:hideLabel;btn.classList.toggle('active',!open);}
+    }
+
     function initQuiz(){
         const container=document.getElementById('questionsContainer');
         container.innerHTML='';
@@ -282,6 +323,10 @@
                 <div class="context-label">🌐 Traducción</div>
                 ${q.translation}
             </div>
+            <div class="aids-row">
+                <button class="aid-btn" type="button" id="hintbtn-${index}" onclick="toggleAid('hint-${index}','hintbtn-${index}','💡 Ver pista','💡 Ocultar pista')">💡 Ver pista</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none"><div class="hint-label">💡 Pista — te orienta, tú eliges</div>${q.hint}</div>
             <div class="sentence-options" id="options-${index}">
                 ${q.shuffled.map((opt,i)=>`
                     <button class="sent-option" onclick="selectOption(${index},${i})">
@@ -329,6 +374,7 @@
                 <div class="fb-body">
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 Regla aplicada</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }else{
             el.innerHTML=`
@@ -344,6 +390,7 @@
                     </div>
                     <div class="fb-block fb-rule"><div class="fb-block-title">📐 La regla correcta</div><div class="rule-formula">${q.rule}</div><div class="rule-examples">${ruleExamples}</div></div>
                     <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-why-text">${q.correctReason}</div></div>
+                    ${q.analogy ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${q.analogy}</div></div>` : ''}
                 </div>`;
         }
     }
@@ -360,6 +407,7 @@
         document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent=`${score}/${quizData.length}`;
         const stars=pct>=90?3:pct>=70?2:1;
         document.getElementById('resultsMessage').textContent=pct>=90?'¡Excelente! Identificas preguntas Wh- perfectamente. 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪':'Buen esfuerzo. Repasa las reglas e inténtalo de nuevo. 📚';
@@ -367,5 +415,7 @@
     }
     document.addEventListener('DOMContentLoaded',initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

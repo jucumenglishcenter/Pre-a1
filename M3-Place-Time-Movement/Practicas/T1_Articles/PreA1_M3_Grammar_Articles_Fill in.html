@@ -110,6 +110,9 @@
         .rule-ex .arrow { color:#94A3B8; }
         .rule-ex .past { color:var(--success-dark); font-weight:700; }
 
+        .aids-row { display:flex; gap:8px; margin:0.6rem 0; flex-wrap:wrap; }
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; border-radius:12px; padding:0.9rem 1rem; margin-top:0.6rem; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
         .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:0.9rem 1rem; }
         .fb-why .fb-block-title { color:var(--success-dark); }
         .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
@@ -184,6 +187,18 @@
     </main>
 
     <script>
+    const ANALOGIES = {
+        1:"En español 'el escritorio' ya señala uno concreto; en inglés 'the' hace lo mismo — apunta a algo específico, sin importar el género.",
+        2:"En español dirías 'una naranja' por el género; en inglés eliges 'an' por el SONIDO vocal de 'orange', no por género.",
+        3:"En español 'la escuela' (la de Mia); en inglés 'the' marca la escuela ya identificada por el contexto.",
+        4:"En español 'el mismo árbol'; en inglés 'the' señala algo ya conocido por todos.",
+        5:"En español 'una manzana'; en inglés 'an' se elige por el sonido vocal de 'apple', no por género.",
+        6:"En español 'un perro... el perro'; en inglés es el mismo patrón: primera vez 'a', luego 'the'.",
+        7:"En español 'un huevo'; en inglés 'an' por el sonido vocal de 'egg'.",
+        8:"En español 'el sol' (solo hay uno); en inglés las cosas únicas siempre llevan 'the'.",
+        9:"En español 'la cama' (la del cuarto); en inglés 'the' marca algo específico en el contexto.",
+        10:"En español 'un dibujo'; en inglés 'a' por el sonido consonante de 'picture' y por ser primera mención."
+    };
     const quizData = [
     {
         "id": 1,
@@ -530,15 +545,16 @@
                 <div class="question-number">${index + 1}</div>
                 <span class="topic-badge">${TOPIC_BADGE.icon} ${TOPIC_BADGE.label}</span>
             </div>
-            <div class="hint-box">
-                <div class="hint-label">💡 Pista</div>
+            <p class="question-text">${q.sentence.replace('_____', `<span class="blank" id="blank-${index}">?</span>`)}</p>
+            <div class="aids-row">
+                <button class="translate-btn" id="hint-btn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú eliges</div>
                 ${q.hint}
             </div>
-            <p class="question-text">${q.sentence.replace('_____', `<span class="blank" id="blank-${index}">?</span>`)}</p>
-            <div class="translate-wrap">
-                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
-                <div class="translation-es" id="translation-${index}">${q.translation}</div>
-            </div>
+            <div class="translation-es" id="translation-${index}">${q.translation}</div>
             <div class="options-grid" id="options-${index}">
                 ${shuffled.map((opt, i) => `
                     <button class="option-btn" data-idx="${i}" data-opt="${opt}" onclick="selectAnswer(${index}, this)">${opt}</button>
@@ -611,6 +627,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         } else {
@@ -654,6 +671,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcta la respuesta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         }
@@ -682,6 +700,7 @@
         const rs = document.getElementById('resultsScreen');
         rs.classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -702,7 +721,18 @@
         if (btn) btn.innerHTML = isShown ? '🙈 Ocultar traducción' : '🌐 Ver en español';
     }
 
+    function toggleHint(i) {
+        const box = document.getElementById('hint-' + i);
+        const btn = document.getElementById('hint-btn-' + i);
+        if (!box) return;
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) btn.innerHTML = open ? '💡 Ver pista' : '💡 Ocultar pista';
+    }
+
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

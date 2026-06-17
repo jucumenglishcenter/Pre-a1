@@ -108,6 +108,8 @@
         .rule-ex .arrow { color:#94A3B8; }
         .rule-ex .past { color:var(--success-dark); font-weight:700; }
 
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
         .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
         .fb-why .fb-block-title { color:var(--success-dark); }
         .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
@@ -182,6 +184,18 @@
     </main>
 
     <script>
+    const ANALOGIES = {
+        1:"En español 'su perro' no marca de quién; en inglés, de él (Tom) → his.",
+        2:"En español 'su mamá'; en inglés, de ella (Mia) → her.",
+        3:"En español 'nuestra maestra'; en inglés we → our.",
+        4:"En español 'mi libro'; en inglés I → my.",
+        5:"En español 'sus bicis'; en inglés they (Mia and Ana) → their.",
+        6:"En español 'tu libro'; en inglés you → your ('YOU left it').",
+        7:"En español 'su caja'; en inglés un animal sin género (it) → its (sin apóstrofe; it's = it is).",
+        8:"En español 'su bici'; en inglés, de él (my brother) → his.",
+        9:"En español 'nuestra tarea'; en inglés we → our.",
+        10:"En español 'sus muñecas'; en inglés they (Mia y su hermana) → their."
+    };
     const quizData = [
     {
         "id": 1,
@@ -664,6 +678,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         } else {
@@ -705,6 +720,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         }
@@ -725,6 +741,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -746,5 +763,7 @@
 
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

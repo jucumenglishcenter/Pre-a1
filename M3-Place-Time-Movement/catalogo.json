@@ -1,0 +1,117 @@
+{
+  "module": "Place, Time & Movement",
+  "emoji": "🧭",
+  "level": "pre-a1",
+  "topics": [
+    "Articles",
+    "Plurals",
+    "Possessives"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Place, Time & Movement",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/PreA1_M3_Story_Place%20Time%20Movement.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Place, Time & Movement",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/PreA1_M3_Reading%20Comprehension_Place%20Time%20Movement.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Place, Time & Movement",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/PreA1_M3_Listening_Place%20Time%20Movement.html"
+    },
+    {
+      "id": "sum-articles",
+      "type": "summary",
+      "name": "Resumen · Articles (a/an/the)",
+      "group": "T1 · Articles",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Resumen%20de%20Gram%C3%A1tica/PreA1_M3_Grammar%20Summary_Articles.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T1_Articles/PreA1_M3_Grammar_Articles_Fill%20in.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T1_Articles/PreA1_M3_Grammar_Articles_Identification.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T1_Articles/PreA1_M3_Grammar_Articles_Transform.html"
+    },
+    {
+      "id": "sum-plurals",
+      "type": "summary",
+      "name": "Resumen · Plurals",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Resumen%20de%20Gram%C3%A1tica/PreA1_M3_Grammar%20Summary_Plurals.html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T2_Plurals/PreA1_M3_Grammar_Plurals_Fill%20in.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T2_Plurals/PreA1_M3_Grammar_Plurals_Identification.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T2_Plurals/PreA1_M3_Grammar_Plurals_Transform.html"
+    },
+    {
+      "id": "sum-possessives",
+      "type": "summary",
+      "name": "Resumen · Possessives",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Resumen%20de%20Gram%C3%A1tica/PreA1_M3_Grammar%20Summary_Possessives.html"
+    },
+    {
+      "id": "t3-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T3_Possessives/PreA1_M3_Grammar_Possessives_Fill%20in.html"
+    },
+    {
+      "id": "t3-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T3_Possessives/PreA1_M3_Grammar_Possessives_Identification.html"
+    },
+    {
+      "id": "t3-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/Practicas/T3_Possessives/PreA1_M3_Grammar_Possessives_Transform.html"
+    }
+  ]
+}

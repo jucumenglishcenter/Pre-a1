@@ -138,6 +138,9 @@
         .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
     
         /* ---- Botón Ver en español (traducción oculta) ---- */
+        .aids-row { display:flex; gap:8px; margin:0.6rem 0; flex-wrap:wrap; }
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; border-radius:12px; padding:0.9rem 1rem; margin-top:0.6rem; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
         .translate-wrap { margin-top:0.6rem; }
         .translate-btn { display:inline-flex; align-items:center; gap:0.4rem; background:var(--bg-gradient-end); color:var(--primary-dark); border:1.5px solid var(--primary-light); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
         .translate-btn:hover { background:var(--primary-light); color:var(--text-dark); }
@@ -184,6 +187,18 @@
     </main>
 
     <script>
+    const ANALOGIES = {
+        1:"En español 'lápiz→lápices'; en inglés la regla general es más simple: solo +s → pencils.",
+        2:"En español 'clase→clases'; en inglés, si termina en -ss/-s/-x/-ch/-sh se añade -es → classes.",
+        3:"En español 'año→años'; en inglés, vocal antes de -y → solo +s → years.",
+        4:"En español 'bebé→bebés'; en inglés, consonante antes de -y → cambia y por i +es → babies.",
+        5:"En español 'caja→cajas'; en inglés, si termina en -x se añade -es → boxes.",
+        6:"En español 'cuento→cuentos'; en inglés, consonante + y → -ies → stories.",
+        7:"En español 'día→días'; en inglés, vocal + y → solo +s → days.",
+        8:"En español 'plato→platos'; en inglés, si termina en -sh se añade -es → dishes.",
+        9:"En español 'almuerzo→almuerzos'; en inglés, si termina en -ch se añade -es → lunches.",
+        10:"En español 'llave→llaves'; en inglés, vocal + y → solo +s → keys."
+    };
     const quizData = [
     {
         "id": 1,
@@ -530,15 +545,16 @@
                 <div class="question-number">${index + 1}</div>
                 <span class="topic-badge">${TOPIC_BADGE.icon} ${TOPIC_BADGE.label}</span>
             </div>
-            <div class="hint-box">
-                <div class="hint-label">💡 Pista</div>
+            <p class="question-text">${q.sentence.replace('_____', `<span class="blank" id="blank-${index}">?</span>`)}</p>
+            <div class="aids-row">
+                <button class="translate-btn" id="hint-btn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}" style="display:none">
+                <div class="hint-label">💡 Pista — te orienta, tú eliges</div>
                 ${q.hint}
             </div>
-            <p class="question-text">${q.sentence.replace('_____', `<span class="blank" id="blank-${index}">?</span>`)}</p>
-            <div class="translate-wrap">
-                <button class="translate-btn" id="translate-btn-${index}" onclick="toggleTranslation(${index})">🌐 Ver en español</button>
-                <div class="translation-es" id="translation-${index}">${q.translation}</div>
-            </div>
+            <div class="translation-es" id="translation-${index}">${q.translation}</div>
             <div class="options-grid" id="options-${index}">
                 ${shuffled.map((opt, i) => `
                     <button class="option-btn" data-idx="${i}" data-opt="${opt}" onclick="selectAnswer(${index}, this)">${opt}</button>
@@ -611,6 +627,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         } else {
@@ -654,6 +671,7 @@
                         <div class="fb-block-title">💡 ¿Por qué es correcta la respuesta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         }
@@ -682,6 +700,7 @@
         const rs = document.getElementById('resultsScreen');
         rs.classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -702,7 +721,18 @@
         if (btn) btn.innerHTML = isShown ? '🙈 Ocultar traducción' : '🌐 Ver en español';
     }
 
+    function toggleHint(i) {
+        const box = document.getElementById('hint-' + i);
+        const btn = document.getElementById('hint-btn-' + i);
+        if (!box) return;
+        const open = box.style.display !== 'none';
+        box.style.display = open ? 'none' : 'block';
+        if (btn) btn.innerHTML = open ? '💡 Ver pista' : '💡 Ocultar pista';
+    }
+
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

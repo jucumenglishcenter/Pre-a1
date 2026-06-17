@@ -108,6 +108,8 @@
         .rule-ex .arrow { color:#94A3B8; }
         .rule-ex .past { color:var(--success-dark); font-weight:700; }
 
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
         .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
         .fb-why .fb-block-title { color:var(--success-dark); }
         .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
@@ -182,6 +184,18 @@
     </main>
 
     <script>
+    const ANALOGIES = {
+        1:"En español 'libro→libros' (solo -s); en inglés la regla general también es solo +s → books.",
+        2:"En español 'caja→cajas'; en inglés, si termina en -x se añade -es → boxes.",
+        3:"En español 'bebé→bebés'; en inglés, consonante + y → cambia y por i +es → babies.",
+        4:"En español 'día→días'; en inglés, vocal + y → solo +s → days.",
+        5:"En español 'plato→platos'; en inglés, si termina en -sh → -es → dishes.",
+        6:"En español 'cuento→cuentos'; en inglés, consonante + y → -ies → stories.",
+        7:"En español 'clase→clases'; en inglés, si termina en -ss → -es → classes.",
+        8:"En español 'llave→llaves'; en inglés, vocal + y → solo +s → keys.",
+        9:"En español 'almuerzo→almuerzos'; en inglés, si termina en -ch → -es → lunches.",
+        10:"En español 'año→años'; en inglés, vocal + y → solo +s → years."
+    };
     const quizData = [
     {
         "id": 1,
@@ -664,6 +678,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         } else {
@@ -705,6 +720,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         }
@@ -725,6 +741,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -746,5 +763,7 @@
 
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

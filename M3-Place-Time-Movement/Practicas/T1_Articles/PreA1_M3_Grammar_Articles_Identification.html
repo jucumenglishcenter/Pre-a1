@@ -108,6 +108,8 @@
         .rule-ex .arrow { color:#94A3B8; }
         .rule-ex .past { color:var(--success-dark); font-weight:700; }
 
+        .fb-analogy { background:#F3E5F5; border:1px solid #E1BEE7; }
+        .fb-analogy .fb-block-title { color:#7B1FA2; }
         .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
         .fb-why .fb-block-title { color:var(--success-dark); }
         .fb-why-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
@@ -182,6 +184,18 @@
     </main>
 
     <script>
+    const ANALOGIES = {
+        1:"En español 'la escuela' ya señala una concreta; en inglés 'the' marca lo específico/conocido.",
+        2:"En español 'el sol' (solo hay uno); en inglés las cosas únicas siempre llevan 'the'.",
+        3:"En español 'un árbol' (uno cualquiera); primera mención + consonante → 'a tree'.",
+        4:"En español 'una naranja'; en inglés 'an' por el SONIDO vocal de 'orange', no por género.",
+        5:"En español 'un perro... el perro'; en inglés igual: primera vez 'a', luego 'the'.",
+        6:"En español 'la luna' (única) → 'the moon'.",
+        7:"En español 'un huevo' (vocal → an) y 'la puerta' (específica → the).",
+        8:"En español 'el parque' (el de siempre, conocido) → 'the park'.",
+        9:"En español 'un dibujo'; primera mención + consonante → 'a picture'.",
+        10:"En español 'el cielo' (único) → 'the sky'."
+    };
     const quizData = [
     {
         "id": 1,
@@ -664,6 +678,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         } else {
@@ -705,6 +720,7 @@
                         <div class="fb-block-title">💡 ¿Por qué la oración correcta ES correcta?</div>
                         <div class="fb-why-text">${q.correctReason}</div>
                     </div>
+                    ${ANALOGIES[q.id] ? `<div class="fb-block fb-analogy"><div class="fb-block-title">🇵🇪 Piénsalo como en español</div><div class="fb-why-text">${ANALOGIES[q.id]}</div></div>` : ''}
                 </div>
             `;
         }
@@ -725,6 +741,7 @@
         document.querySelectorAll('.question-card').forEach(c => c.classList.add('hidden'));
         document.getElementById('resultsScreen').classList.add('show');
         const pct = score / quizData.length * 100;
+        window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: Math.round(pct) } })); // JUCUM seguimiento
         document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
         let stars = pct >= 90 ? 3 : pct >= 70 ? 2 : 1;
         document.getElementById('resultsMessage').textContent = pct >= 90
@@ -746,5 +763,7 @@
 
     document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

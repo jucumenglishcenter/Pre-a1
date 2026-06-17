@@ -139,6 +139,46 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 .progress-time{font-size:0.7rem;color:var(--text-soft);min-width:32px;font-family:'Nunito',sans-serif;}
 .progress-bar{flex:1;height:5px;background:var(--level-light);border-radius:4px;cursor:pointer;position:relative;overflow:hidden;}
 .progress-fill{height:100%;background:var(--level-primary);border-radius:4px;transition:width 0.1s linear;width:0%;}
+/* ===== CHAT AVATARS ===== */
+.chat-row{display:flex;align-items:flex-end;gap:8px;}
+.chat-row.left{justify-content:flex-start;}
+.chat-row.right{justify-content:flex-end;}
+.chat-avatar{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--sp-a-bg);border:2px solid var(--sp-a);box-shadow:0 1px 5px rgba(0,0,0,0.12);user-select:none;}
+.chat-row.right .chat-avatar{background:var(--sp-b-bg);border-color:var(--sp-b);}
+.chat-row .chat-msg{max-width:calc(82% - 50px);}
+/* ===== STUDY METHOD ===== */
+.study-method{background:var(--card);border:1px solid var(--border);border-top:3.5px solid var(--level-primary);border-radius:14px;box-shadow:var(--shadow);margin-bottom:1.5rem;overflow:hidden;}
+.sm-toggle{width:100%;display:flex;align-items:center;gap:0.7rem;padding:0.95rem 1.2rem;background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;text-align:left;}
+.sm-toggle-main{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:var(--level-dark);}
+.sm-toggle-sub{font-size:0.74rem;font-weight:700;color:#fff;background:var(--level-primary);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.sm-arrow{margin-left:auto;font-size:1.1rem;color:var(--level-dark);transition:transform 0.25s;}
+.study-method.open .sm-arrow{transform:rotate(90deg);}
+.sm-body{display:none;padding:0 1.2rem 1.2rem;}
+.study-method.open .sm-body{display:block;}
+.sm-intro{font-size:0.9rem;color:var(--text-soft);line-height:1.55;margin:0 0 0.9rem;}
+.sm-timer-row{display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap;}
+.sm-timer{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:var(--level-dark);background:var(--level-glow);padding:3px 12px;border-radius:20px;}
+.sm-progress-label{font-size:0.82rem;font-weight:700;color:var(--text-soft);}
+.sm-progress{height:8px;background:var(--level-light);border-radius:5px;overflow:hidden;margin-bottom:1rem;}
+.sm-progress-fill{height:100%;width:0%;background:var(--level-primary);border-radius:5px;transition:width 0.3s;}
+.sm-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.6rem;}
+.sm-step{display:flex;gap:0.7rem;align-items:flex-start;padding:0.7rem 0.85rem;border:1.5px solid var(--border);border-radius:10px;transition:all 0.2s;cursor:pointer;}
+.sm-step:hover{border-color:var(--level-mid);background:var(--level-glow);}
+.sm-step.checked{border-color:var(--level-primary);background:var(--level-glow);}
+.sm-check{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--level-mid);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;background:#fff;transition:all 0.2s;margin-top:1px;}
+.sm-step.checked .sm-check{background:var(--level-primary);border-color:var(--level-primary);}
+.sm-step-body{flex:1;min-width:0;}
+.sm-step-title{font-weight:700;font-size:0.95rem;color:var(--text);display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;}
+.sm-step-min{font-size:0.72rem;font-weight:700;color:var(--text-soft);background:var(--level-light);padding:1px 8px;border-radius:12px;}
+.sm-step-hint{font-size:0.83rem;color:var(--text-soft);margin-top:2px;line-height:1.45;}
+.sm-step-time{font-size:0.74rem;font-weight:700;color:var(--level-dark);margin-top:3px;display:none;}
+.sm-step.checked .sm-step-time{display:inline-block;}
+.sm-action{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-family:'Nunito',sans-serif;font-size:0.76rem;font-weight:700;color:var(--level-dark);background:var(--level-light);border:1.5px solid var(--level-mid);padding:3px 11px;border-radius:8px;cursor:pointer;}
+.sm-action:hover{background:var(--level-mid);}
+.sm-done-banner{display:none;margin-top:1rem;padding:0.8rem 1rem;background:var(--level-glow);border:1.5px solid var(--level-primary);border-radius:10px;font-weight:700;color:var(--level-dark);font-size:0.92rem;}
+.study-method.done .sm-done-banner{display:block;}
+.sm-reset{margin-top:0.8rem;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-soft);background:none;border:none;cursor:pointer;text-decoration:underline;}
+@media(max-width:600px){.chat-avatar{width:32px;height:32px;font-size:1rem;}.chat-row .chat-msg{max-width:calc(90% - 42px);}}
 @media(max-width:600px){
   .level-header h1{font-size:1.5rem;}
   .chat-msg{max-width:90%;font-size:0.96rem;}
@@ -162,6 +202,25 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
     <div class="legend-item">🖱️ <strong>Click line/paragraph</strong> → hear it with word highlight</div>
     <div class="legend-item"><button class="reveal-btn" style="pointer-events:none">🇪🇸 <span class="arrow">›</span></button> traducción</div>
     <div class="legend-item"><button class="audio-btn" style="pointer-events:none">🔊 US / UK</button> audio</div>
+  </div>
+
+  <div class="study-method" id="studyMethod">
+    <button class="sm-toggle" type="button" onclick="toggleStudyMethod()">
+      <span class="sm-toggle-main">📋 Cómo estudiar esta lectura</span>
+      <span class="sm-toggle-sub">5 pasos · ~10 min</span>
+      <span class="sm-arrow">›</span>
+    </button>
+    <div class="sm-body">
+      <p class="sm-intro">Haz la lectura en <strong>5 pasos</strong>. Marca cada uno cuando lo termines — guardamos tu avance y el tiempo. 💪</p>
+      <div class="sm-timer-row">
+        <span class="sm-timer" id="smTimer">⏱️ 00:00</span>
+        <span class="sm-progress-label" id="smProgressLabel">0 / 5 pasos</span>
+      </div>
+      <div class="sm-progress"><div class="sm-progress-fill" id="smProgressFill"></div></div>
+      <ul class="sm-steps" id="smSteps"></ul>
+      <div class="sm-done-banner">🎉 ¡Completaste el proceso de lectura! Tiempo total: <span id="smDoneTime">—</span>. ¡Buen trabajo!</div>
+      <button class="sm-reset" type="button" onclick="resetStudyMethod()">↺ Reiniciar</button>
+    </div>
   </div>
 
   <div id="voice-status">⚠️ Tu navegador tiene voces limitadas. Para mejor experiencia usa <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.</div>
@@ -2266,5 +2325,93 @@ document.addEventListener('click', e=>{
   }
 });
 </script>
+<script>
+/* ===== CHAT AVATARS (inyectados) ===== */
+(function(){
+  const MAP={sam:'👦',lily:'👧',ben:'🧑',rosa:'👩',tomas:'🧑',tom:'👦',neighbor:'🧓',mom:'👩',dad:'👨',leo:'👦',teacher:'👩‍🏫',narrator:'📖'};
+  const FACES=['🧑','👩','👨','🧒','👧','👦','🧓','👴','👵'];
+  function emojiFor(n){const k=(n||'').trim().toLowerCase();if(MAP[k])return MAP[k];let h=0;for(const c of k)h=(h+c.charCodeAt(0))%FACES.length;return FACES[h]||'🧑';}
+  function inject(){
+    document.querySelectorAll('.chat-msg').forEach(function(msg){
+      if(msg.parentNode&&msg.parentNode.classList&&msg.parentNode.classList.contains('chat-row'))return;
+      const nm=msg.querySelector('.speaker-name');const name=nm?nm.textContent:'';
+      const av=document.createElement('div');av.className='chat-avatar';av.textContent=emojiFor(name);av.title=name;
+      const row=document.createElement('div');row.className='chat-row '+(msg.classList.contains('right')?'right':'left');
+      msg.parentNode.insertBefore(row,msg);
+      if(msg.classList.contains('right')){row.appendChild(msg);row.appendChild(av);}
+      else{row.appendChild(av);row.appendChild(msg);}
+    });
+  }
+  if(document.readyState!=='loading')inject();else document.addEventListener('DOMContentLoaded',inject);
+})();
+
+/* ===== STUDY METHOD (proceso de lectura del Teaching Plan) ===== */
+(function(){
+  const STEPS=[
+    {id:1,emoji:'📖',title:'Leer todo en español',min:'~2 min',hint:'Lee la historia completa en español para entender de qué trata.',action:{label:'🇪🇸 Mostrar todo en español',fn:'smShowSpanish'}},
+    {id:2,emoji:'🎧',title:'Escuchar el audio',min:'~2 min',hint:'Pulsa “▶ Reproducir” y solo escucha el inglés, sin leer.',action:{label:'▶ Ir al audio',fn:'smGoAudio'}},
+    {id:3,emoji:'👂',title:'Escuchar y seguir la lectura',min:'~2,5 min',hint:'Escucha otra vez y sigue cada palabra con la vista en inglés.'},
+    {id:4,emoji:'🔍',title:'Identificar lo que entiendes',min:'~1,5 min',hint:'Señala las palabras y frases que ya entiendes sin traducción.'},
+    {id:5,emoji:'🗣️',title:'Escuchar / leer en voz alta',min:'~2 min',hint:'Escucha y repite, o lee tú en voz alta para practicar la pronunciación.'}
+  ];
+  const KEY='jucum_sm_'+(location.pathname.split('/').pop()||'story');
+  let state=load();let tick=null;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{checks:{},start:0,done:false,doneMs:0};}catch(e){return{checks:{},start:0,done:false,doneMs:0};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  function fmt(ms){ms=Math.max(0,ms|0);var s=Math.floor(ms/1000);var m=Math.floor(s/60);return (m<10?'0':'')+m+':'+((s%60)<10?'0':'')+(s%60);}
+  function scrollToEl(el){var r=el.getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-120,behavior:'smooth'});}
+  function render(){
+    var ul=document.getElementById('smSteps');if(!ul)return;
+    ul.innerHTML='';
+    STEPS.forEach(function(st){
+      var done=!!state.checks[st.id];
+      var li=document.createElement('li');
+      li.className='sm-step'+(done?' checked':'');
+      li.onclick=function(e){if(e.target.classList.contains('sm-action'))return;toggle(st.id);};
+      var rel=done&&state.start?fmt(state.checks[st.id]-state.start):'';
+      li.innerHTML='<div class="sm-check">'+(done?'✓':'')+'</div>'+
+        '<div class="sm-step-body"><div class="sm-step-title">'+st.emoji+' '+st.title+' <span class="sm-step-min">'+st.min+'</span></div>'+
+        '<div class="sm-step-hint">'+st.hint+'</div>'+
+        (st.action?'<button type="button" class="sm-action" onclick="'+st.action.fn+'(event)">'+st.action.label+'</button>':'')+
+        '<div class="sm-step-time">✓ marcado a los '+rel+'</div></div>';
+      ul.appendChild(li);
+    });
+    var n=Object.keys(state.checks).length;
+    var pl=document.getElementById('smProgressLabel');if(pl)pl.textContent=n+' / 5 pasos';
+    var pf=document.getElementById('smProgressFill');if(pf)pf.style.width=(n/5*100)+'%';
+    var sm=document.getElementById('studyMethod');if(sm)sm.classList.toggle('done',state.done);
+    var dt=document.getElementById('smDoneTime');if(dt&&state.done)dt.textContent=fmt(state.doneMs);
+    updTimer();
+  }
+  function updTimer(){
+    var el=document.getElementById('smTimer');if(!el)return;
+    if(state.done){el.textContent='⏱️ '+fmt(state.doneMs);return;}
+    if(state.start){el.textContent='⏱️ '+fmt(Date.now()-state.start);}else{el.textContent='⏱️ 00:00';}
+  }
+  function startTick(){if(tick)return;tick=setInterval(function(){if(state.done||!state.start)return;updTimer();},1000);}
+  function toggle(id){
+    if(state.done&&state.checks[id])return;
+    if(state.checks[id]){delete state.checks[id];}
+    else{if(!state.start)state.start=Date.now();state.checks[id]=Date.now();}
+    var all=STEPS.every(function(s){return state.checks[s.id];});
+    if(all&&!state.done){
+      state.done=true;var last=0;STEPS.forEach(function(s){last=Math.max(last,state.checks[s.id]);});
+      state.doneMs=last-state.start;save();render();
+      try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:100,timeMin:Math.round(state.doneMs/60000)}}));}catch(e){}
+      return;
+    }
+    if(!all)state.done=false;
+    save();render();
+  }
+  window.toggleStudyMethod=function(){var sm=document.getElementById('studyMethod');if(sm)sm.classList.toggle('open');};
+  window.resetStudyMethod=function(){state={checks:{},start:0,done:false,doneMs:0};save();render();};
+  window.smShowSpanish=function(e){if(e)e.stopPropagation();try{var cb=document.getElementById('parallelCheck');if(cb)cb.checked=true;if(typeof toggleParallel==='function')toggleParallel(true);}catch(_){}};
+  window.smGoAudio=function(e){if(e)e.stopPropagation();var btns=Array.prototype.slice.call(document.querySelectorAll('.play-all-btn'));var vis=btns.filter(function(b){return b.offsetParent!==null;})[0]||btns[0];if(vis)scrollToEl(vis);};
+  function init(){render();startTick();var sm=document.getElementById('studyMethod');if(sm&&Object.keys(state.checks).length)sm.classList.add('open');}
+  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

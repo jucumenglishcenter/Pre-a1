@@ -1,0 +1,117 @@
+{
+  "module": "Home, School & Objects",
+  "emoji": "🏫",
+  "level": "pre-a1",
+  "topics": [
+    "Prepositions (place & time)",
+    "Present Continuous (affirmative)",
+    "Present Continuous (negative & questions)"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Home, School & Objects",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/PreA1_M4_Story_Home%20School%20Objects.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Home, School & Objects",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/PreA1_M4_Reading%20Comprehension_Home%20School%20Objects.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Home, School & Objects",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/PreA1_M4_Listening_Home%20School%20Objects.html"
+    },
+    {
+      "id": "sum-prep",
+      "type": "summary",
+      "name": "Resumen · Prepositions (place & time)",
+      "group": "T1 · Prepositions",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Resumen%20de%20Gramatica/PreA1_M4_Grammar%20Summary_Prepositions.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Fill%20in.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Identification.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Transform.html"
+    },
+    {
+      "id": "sum-pc-aff",
+      "type": "summary",
+      "name": "Resumen · Present Continuous (afirmativo)",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Resumen%20de%20Gramatica/PreA1_M4_Grammar%20Summary_Present%20Continuous%20Affirmative.html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T2_Present%20Continuous%20Affirmative/PreA1_M4_Grammar_Present%20Continuous%20Affirmative_Fill%20in.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T2_Present%20Continuous%20Affirmative/PreA1_M4_Grammar_Present%20Continuous%20Affirmative_Identification.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T2_Present%20Continuous%20Affirmative/PreA1_M4_Grammar_Present%20Continuous%20Affirmative_Transform.html"
+    },
+    {
+      "id": "sum-pc-neg",
+      "type": "summary",
+      "name": "Resumen · Present Continuous (negativo y preguntas)",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Resumen%20de%20Gramatica/PreA1_M4_Grammar%20Summary_Present%20Continuous%20Negative%20Questions.html"
+    },
+    {
+      "id": "t3-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T3_Present%20Continuous%20Negative%20Questions/PreA1_M4_Grammar_Present%20Continuous%20Negative%20Questions_Fill%20in.html"
+    },
+    {
+      "id": "t3-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T3_Present%20Continuous%20Negative%20Questions/PreA1_M4_Grammar_Present%20Continuous%20Negative%20Questions_Identification.html"
+    },
+    {
+      "id": "t3-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/Practicas/T3_Present%20Continuous%20Negative%20Questions/PreA1_M4_Grammar_Present%20Continuous%20Negative%20Questions_Transform.html"
+    }
+  ]
+}

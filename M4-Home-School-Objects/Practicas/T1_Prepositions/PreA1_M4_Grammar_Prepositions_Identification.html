@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identification - Pre-A1 M4 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --orange-light: #FFEDD5; --orange-dark: #C2410C;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+}
+
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#FEF3C7; color:var(--text-medium); margin-left:auto; }
+        /* toggle buttons */
+        .toggle-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+        .toggle-btn { border:2px solid var(--primary-light); background:#FFFBEB; color:var(--text-medium); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .toggle-btn:hover { background:var(--primary-light); }
+        .toggle-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; display:none; }
+        .hint-box.show { display:block; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.88rem; margin:0.5rem 0 1rem; padding:0.6rem 0.9rem; background:#FFFBEB; border-radius:10px; display:none; }
+        .translation.show { display:block; }
+        /* feedback (shared) */
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border:1px solid #FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .fb-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.8rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        .q-label { font-size:0.88rem; color:var(--text-medium); font-weight:600; }
+        .sentence-options { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:0.5rem; }
+        .sent-option { border:2.5px solid #E5E7EB; border-radius:14px; padding:1rem 1.1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:flex-start; width:100%; }
+        .sent-option:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .sent-option.disabled { cursor:default; }
+        .sent-option.correct { border-color:var(--success); background:var(--success-light); }
+        .sent-option.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .sent-option.correct .option-letter { background:var(--success); color:white; }
+        .sent-option.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); line-height:1.5; font-weight:600; flex:1; }
+        .option-status { font-size:1.1rem; flex-shrink:0; display:none; }
+        .sent-option.disabled .option-status { display:block; }
+        .error-highlight { color:var(--error); font-weight:800; text-decoration:underline wavy; }
+        .correct-highlight { color:var(--success-dark); font-weight:800; }
+    </style>
+</head><body>
+    <header class="header">
+        <a href="panel-prea1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔍 Identification</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 4 · Prepositions: place &amp; time</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/15</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">Identifica la oración correcta</div>
+                <div class="instructions-text">Lee las tres oraciones y elige la que esté gramaticalmente correcta. Usa los botones para una pista o la traducción si las necesitas.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore"></div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="panel-prea1.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The book is on the table.",
+        "correct": true,
+        "es": "El libro está sobre la mesa."
+      },
+      {
+        "text": "The book is in the table.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica estar dentro de un espacio. La mesa es una superficie.",
+        "es": "El libro está dentro de la mesa."
+      },
+      {
+        "text": "The book is under the table.",
+        "correct": false,
+        "errorWord": "under",
+        "correctWord": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; aquí el libro descansa encima.",
+        "es": "El libro está debajo de la mesa."
+      }
+    ],
+    "clue": "encima de la mesa",
+    "clueExplain": "describe algo apoyado sobre una superficie.",
+    "correctReason": "La oración correcta usa la preposición de contacto sobre una superficie."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The key is on my bag.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto encima; la llave está dentro del bolso.",
+        "es": "La llave está sobre mi bolso."
+      },
+      {
+        "text": "The key is in my bag.",
+        "correct": true,
+        "es": "La llave está dentro de mi bolso."
+      },
+      {
+        "text": "The key is under my bag.",
+        "correct": false,
+        "errorWord": "under",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; la llave está adentro.",
+        "es": "La llave está debajo de mi bolso."
+      }
+    ],
+    "clue": "dentro del bolso",
+    "clueExplain": "describe algo contenido en un espacio cerrado.",
+    "correctReason": "La oración correcta usa la preposición de contenido dentro de un espacio."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The game is on the bed.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "under",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica encima; aquí el contexto pide la posición debajo.",
+        "es": "El juego está sobre la cama."
+      },
+      {
+        "text": "The game is in the bed.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "under",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro; aquí se pide la posición debajo.",
+        "es": "El juego está dentro de la cama."
+      },
+      {
+        "text": "The game is under the bed.",
+        "correct": true,
+        "es": "El juego está debajo de la cama."
+      }
+    ],
+    "clue": "debajo de la cama",
+    "clueExplain": "describe algo en un nivel más bajo.",
+    "correctReason": "La oración correcta usa la preposición de posición debajo."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "Ana lives near the school.",
+        "correct": true,
+        "es": "Ana vive cerca de la escuela."
+      },
+      {
+        "text": "Ana lives in the school.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica vivir dentro del edificio; el contexto pide proximidad.",
+        "es": "Ana vive dentro de la escuela."
+      },
+      {
+        "text": "Ana lives on the school.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto sobre algo; aquí se pide cercanía.",
+        "es": "Ana vive sobre la escuela."
+      }
+    ],
+    "clue": "cerca de la escuela",
+    "clueExplain": "describe una distancia corta sin contacto.",
+    "correctReason": "La oración correcta usa la preposición de cercanía."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "Tom is on the house now.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto encima; estar adentro pide otra preposición.",
+        "es": "Tom está sobre la casa ahora."
+      },
+      {
+        "text": "Tom is in the house now.",
+        "correct": true,
+        "es": "Tom está dentro de la casa ahora."
+      },
+      {
+        "text": "Tom is under the house now.",
+        "correct": false,
+        "errorWord": "under",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; aquí Tom está dentro del edificio.",
+        "es": "Tom está debajo de la casa ahora."
+      }
+    ],
+    "clue": "dentro de la casa",
+    "clueExplain": "describe a una persona dentro de un edificio.",
+    "correctReason": "La oración correcta usa la preposición de contenido en un espacio."
+  },
+  {
+    "badge": "🕒 tiempo",
+    "options": [
+      {
+        "text": "We have school on the morning.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días específicos, no para partes del día.",
+        "es": "Tenemos escuela 'on' la mañana (incorrecto)."
+      },
+      {
+        "text": "We have school at the morning.",
+        "correct": false,
+        "errorWord": "at",
+        "correctWord": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para 'the morning'.",
+        "es": "Tenemos escuela 'at' la mañana (incorrecto)."
+      },
+      {
+        "text": "We have school in the morning.",
+        "correct": true,
+        "es": "Tenemos escuela en la mañana."
+      }
+    ],
+    "clue": "in the morning",
+    "clueExplain": "describe una parte general del día.",
+    "correctReason": "La oración correcta usa la preposición de tiempo para partes del día."
+  },
+  {
+    "badge": "🕒 tiempo",
+    "options": [
+      {
+        "text": "The game is on Monday.",
+        "correct": true,
+        "es": "El juego es el lunes."
+      },
+      {
+        "text": "The game is in Monday.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "on",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para meses o partes del día, no para días de la semana.",
+        "es": "El juego es 'in' lunes (incorrecto)."
+      },
+      {
+        "text": "The game is at Monday.",
+        "correct": false,
+        "errorWord": "at",
+        "correctWord": "on",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para días de la semana.",
+        "es": "El juego es 'at' lunes (incorrecto)."
+      }
+    ],
+    "clue": "on Monday",
+    "clueExplain": "describe un día específico de la semana.",
+    "correctReason": "La oración correcta usa la preposición de tiempo para días de la semana."
+  },
+  {
+    "badge": "🕒 tiempo",
+    "options": [
+      {
+        "text": "The class starts in 8 o'clock.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para partes del día o meses, no para horas exactas.",
+        "es": "La clase empieza 'in' las 8 (incorrecto)."
+      },
+      {
+        "text": "The class starts at 8 o'clock.",
+        "correct": true,
+        "es": "La clase empieza a las 8 en punto."
+      },
+      {
+        "text": "The class starts on 8 o'clock.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días, no para horas exactas.",
+        "es": "La clase empieza 'on' las 8 (incorrecto)."
+      }
+    ],
+    "clue": "at 8 o'clock",
+    "clueExplain": "describe una hora exacta del reloj.",
+    "correctReason": "La oración correcta usa la preposición de tiempo para horas exactas."
+  },
+  {
+    "badge": "🕒 tiempo (orden)",
+    "options": [
+      {
+        "text": "I read my email after lunch.",
+        "correct": false,
+        "errorWord": "after",
+        "correctWord": "before",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica posterioridad; el contexto pide que ocurra primero.",
+        "es": "Leo mi correo después del almuerzo."
+      },
+      {
+        "text": "I read my email at lunch.",
+        "correct": false,
+        "errorWord": "at",
+        "correctWord": "before",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para indicar orden.",
+        "es": "Leo mi correo 'at' el almuerzo (incorrecto)."
+      },
+      {
+        "text": "I read my email before lunch.",
+        "correct": true,
+        "es": "Leo mi correo antes del almuerzo."
+      }
+    ],
+    "clue": "before lunch",
+    "clueExplain": "describe una acción que ocurre primero.",
+    "correctReason": "La oración correcta usa la preposición de orden anterior."
+  },
+  {
+    "badge": "🕒 tiempo (orden)",
+    "options": [
+      {
+        "text": "We play a game after school.",
+        "correct": true,
+        "es": "Jugamos un juego después de la escuela."
+      },
+      {
+        "text": "We play a game before school.",
+        "correct": false,
+        "errorWord": "before",
+        "correctWord": "after",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica que algo ocurre primero; el contexto pide posterioridad.",
+        "es": "Jugamos un juego antes de la escuela."
+      },
+      {
+        "text": "We play a game on school.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "after",
+        "errorType": "Preposición incorrecta",
+        "explanation": "Esa preposición no indica orden de tiempo entre acciones.",
+        "es": "Jugamos un juego 'on' la escuela (incorrecto)."
+      }
+    ],
+    "clue": "after school",
+    "clueExplain": "describe una acción que ocurre más tarde.",
+    "correctReason": "La oración correcta usa la preposición de orden posterior."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The marker is on the box.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica encima; el marcador está dentro de la caja.",
+        "es": "El marcador está sobre la caja."
+      },
+      {
+        "text": "The marker is in the box.",
+        "correct": true,
+        "es": "El marcador está dentro de la caja."
+      },
+      {
+        "text": "The marker is near the box.",
+        "correct": false,
+        "errorWord": "near",
+        "correctWord": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica cercanía; aquí el marcador está adentro.",
+        "es": "El marcador está cerca de la caja."
+      }
+    ],
+    "clue": "in the box",
+    "clueExplain": "describe algo contenido en un espacio cerrado.",
+    "correctReason": "La oración correcta usa la preposición de contenido dentro de un espacio."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The group sits in the window.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro; el contexto pide proximidad.",
+        "es": "El grupo se sienta dentro de la ventana."
+      },
+      {
+        "text": "The group sits under the window.",
+        "correct": false,
+        "errorWord": "under",
+        "correctWord": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; aquí se describe cercanía.",
+        "es": "El grupo se sienta debajo de la ventana."
+      },
+      {
+        "text": "The group sits near the window.",
+        "correct": true,
+        "es": "El grupo se sienta cerca de la ventana."
+      }
+    ],
+    "clue": "near the window",
+    "clueExplain": "describe una distancia corta sin contacto.",
+    "correctReason": "La oración correcta usa la preposición de cercanía."
+  },
+  {
+    "badge": "🕒 tiempo",
+    "options": [
+      {
+        "text": "Sara studies in the afternoon.",
+        "correct": true,
+        "es": "Sara estudia en la tarde."
+      },
+      {
+        "text": "Sara studies at the afternoon.",
+        "correct": false,
+        "errorWord": "at",
+        "correctWord": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para partes del día.",
+        "es": "Sara estudia 'at' la tarde (incorrecto)."
+      },
+      {
+        "text": "Sara studies on the afternoon.",
+        "correct": false,
+        "errorWord": "on",
+        "correctWord": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días específicos, no para 'the afternoon'.",
+        "es": "Sara estudia 'on' la tarde (incorrecto)."
+      }
+    ],
+    "clue": "in the afternoon",
+    "clueExplain": "describe una parte general del día.",
+    "correctReason": "La oración correcta usa la preposición de tiempo para partes del día."
+  },
+  {
+    "badge": "🕒 tiempo (orden)",
+    "options": [
+      {
+        "text": "I wash my face after breakfast.",
+        "correct": false,
+        "errorWord": "after",
+        "correctWord": "before",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica posterioridad; el contexto pide que ocurra primero.",
+        "es": "Me lavo la cara después del desayuno."
+      },
+      {
+        "text": "I wash my face before breakfast.",
+        "correct": true,
+        "es": "Me lavo la cara antes del desayuno."
+      },
+      {
+        "text": "I wash my face at breakfast.",
+        "correct": false,
+        "errorWord": "at",
+        "correctWord": "before",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para indicar orden.",
+        "es": "Me lavo la cara 'at' el desayuno (incorrecto)."
+      }
+    ],
+    "clue": "before breakfast",
+    "clueExplain": "describe una acción que ocurre primero.",
+    "correctReason": "La oración correcta usa la preposición de orden anterior."
+  },
+  {
+    "badge": "📍 lugar",
+    "options": [
+      {
+        "text": "The paint is under the wall.",
+        "correct": false,
+        "errorWord": "under",
+        "correctWord": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; la pintura está en contacto con la pared.",
+        "es": "La pintura está debajo de la pared."
+      },
+      {
+        "text": "The paint is in the wall.",
+        "correct": false,
+        "errorWord": "in",
+        "correctWord": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro de un espacio cerrado, no sobre la pared.",
+        "es": "La pintura está dentro de la pared."
+      },
+      {
+        "text": "The paint is on the wall.",
+        "correct": true,
+        "es": "La pintura está sobre la pared."
+      }
+    ],
+    "clue": "on the wall",
+    "clueExplain": "describe algo en contacto con una superficie.",
+    "correctReason": "La oración correcta usa la preposición de contacto sobre una superficie."
+  }
+];
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer'); c.innerHTML='';
+        quizData.forEach((q,i)=>{ q.shuffled=shuffle(q.options); c.appendChild(card(q,i)); });
+        showQuestion(0); updateProgress();
+    }
+    function card(q,index){
+        const d=document.createElement('div'); const L=['A','B','C'];
+        d.className='question-card'+(index!==0?' hidden':''); d.id='question-'+index;
+        const opts=q.shuffled.map((opt,oi)=>`
+            <button class="sent-option" data-idx="${oi}" onclick="selectOption(${index},${oi})">
+                <div class="option-letter">${L[oi]}</div>
+                <div class="option-text" id="opttext-${index}-${oi}">${opt.text}</div>
+                <div class="option-status"></div>
+            </button>`).join('');
+        const transRows=q.shuffled.map((opt,oi)=>`<div style="margin-bottom:0.3rem;"><strong>${L[oi]}.</strong> ${opt.es||''}</div>`).join('');
+        d.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span class="q-label">Elige la oración correcta:</span>
+                <span class="topic-badge">${q.badge}</span>
+            </div>
+            <div class="toggle-row">
+                <button class="toggle-btn" id="hintbtn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="toggle-btn" id="transbtn-${index}" onclick="toggleTrans(${index})">Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}"><div class="hint-label">💡 Pista</div>Observa el sujeto y cómo se forma el verbo o la posesión en cada oración.</div>
+            <div class="translation" id="trans-${index}">🇪🇸 Compara el sentido de cada opción:<br>${transRows||'(traducción no disponible)'}</div>
+            <div class="sentence-options" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}</button>
+            </div>`;
+        return d;
+    }
+    function selectOption(qi,oi){
+        if(answered[qi])return; answered[qi]=true;
+        const q=quizData[qi]; const sel=q.shuffled[oi]; const ok=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct); if(ok)score++;
+        document.querySelectorAll('#options-'+qi+' .sent-option').forEach((b,i)=>{
+            b.classList.add('disabled'); const o=q.shuffled[i];
+            const st=b.querySelector('.option-status');
+            if(o.correct){ b.classList.add('correct'); st.textContent='✅';
+                if(o.correctWord===undefined && !o.correct===false){} }
+            else if(i===oi){ b.classList.add('incorrect'); st.textContent='❌'; }
+            else { st.textContent=''; }
+            // highlight error/correct words
+            const tx=document.getElementById('opttext-'+qi+'-'+i);
+            if(o.correct){ tx.innerHTML=o.text; }
+            else { tx.innerHTML=o.text.replace(new RegExp('\b'+o.errorWord+'\b'),'<span class="error-highlight">'+o.errorWord+'</span>'); }
+        });
+        feedback(qi,sel,ok,correctOpt,q);
+        document.getElementById('next-'+qi).disabled=false; updateProgress();
+    }
+    function feedback(qi,sel,ok,correctOpt,q){
+        const el=document.getElementById('feedback-'+qi);
+        el.className='feedback show '+(ok?'correct':'incorrect');
+        const errs=q.shuffled.filter(o=>!o.correct);
+        const errBlocks=errs.map(e=>`
+            <div class="fb-block fb-error"><div class="fb-block-title">⚠️ Error: <span class="error-badge">${e.errorType}</span></div>
+                <div class="word-swap"><span class="ws-box ws-wrong">${e.errorWord}</span><span class="ws-arrow">→</span><span class="ws-box ws-right">${e.correctWord}</span></div>
+                <div class="error-text">${e.explanation}</div></div>`).join('');
+        if(ok){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto!</div><div class="fb-subtitle">Veamos por qué las otras estaban mal</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag">${q.clue}</span> ${q.clueExplain}</div></div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        } else {
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Revisemos juntos</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag red">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare"><div class="fb-block-title" style="color:#64748B;">🔄 Tu elección vs. la correcta</div>
+                        <div class="fb-compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text"><span class="word-wrong">${sel.text}</span></span></div>
+                        <div class="fb-compare-row"><span class="compare-label right">Correcta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div>
+                    </div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta la oración correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){ if(i<quizData.length-1) showQuestion(i+1); else showResults(); }
+    function prevQuestion(){ if(currentQuestion>0) showQuestion(currentQuestion-1); }
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function toggleHint(i){
+        const b=document.getElementById('hint-'+i), btn=document.getElementById('hintbtn-'+i);
+        b.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=b.classList.contains('show')?'💡 Ocultar pista':'💡 Ver pista';
+    }
+    function toggleTrans(i){
+        const t=document.getElementById('trans-'+i), btn=document.getElementById('transbtn-'+i);
+        t.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=t.classList.contains('show')?'Ocultar español':'Ver en español';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(pct)}}));
+        document.getElementById('finalScore').textContent=score+'/'+quizData.length;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente trabajo! 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪'
+            :'Buen esfuerzo. Repasa e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{ if(i<stars) setTimeout(()=>s.classList.add('earned'),i*300); });
+    }
+    // Fisher-Yates shuffle (no V8 bias)
+    function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprensión Auditiva | Pre-A1 — Home, School & Objects</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #F9A825;
+  --gold-dark: #E65100;
+  --gold-light: #FFF9C4;
+  --gold-mid: #FFECB3;
+  --gold-glow: rgba(249,168,37,0.18);
+  --bg: #FFFDF4;
+  --card: #FFFFFF;
+  --border: #EDE8D5;
+  --text: #2A2A2A;
+  --text-soft: #777;
+  --shadow: 0 3px 20px rgba(0,0,0,0.07);
+  --radius: 16px;
+  --green: #43A047;
+  --green-bg: #E8F5E9;
+  --red: #E53935;
+  --red-bg: #FFEBEE;
+  --pts-easy: #43A047;
+  --pts-med: #FB8C00;
+  --pts-hard: #E53935;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
+
+/* ── HEADER ── */
+.page-header{background:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);padding:1.8rem 1.5rem 1.4rem;text-align:center;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:rgba(255,255,255,0.08);border-radius:50%;}
+.page-header::after{content:'';position:absolute;bottom:-30%;left:-8%;width:220px;height:220px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.page-header h1{font-family:'Fredoka',sans-serif;font-size:1.9rem;font-weight:700;color:#4E3800;position:relative;z-index:1;}
+.page-header .sub{font-size:0.88rem;color:#5a3e00;opacity:0.9;margin-top:0.35rem;position:relative;z-index:1;font-weight:600;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;color:#4E3800;background:rgba(255,255,255,0.35);border:1.5px solid rgba(255,255,255,0.5);padding:6px 16px;border-radius:20px;text-decoration:none;margin-bottom:1rem;transition:all 0.2s;position:relative;z-index:1;}
+.back-link:hover{background:rgba(255,255,255,0.55);}
+
+/* ── INSTRUCCIONES ── */
+.instructions-box{background:#fff;border:1.5px solid var(--gold-mid);border-left:4px solid var(--gold);border-radius:12px;padding:1.2rem 1.4rem;margin:1rem 1rem 0;box-shadow:0 2px 10px var(--gold-glow);}
+.instructions-box summary{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold-dark);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;}
+.instructions-box summary::-webkit-details-marker{display:none;}
+.instructions-box summary::after{content:'▼';font-size:0.7rem;margin-left:auto;transition:transform 0.2s;}
+.instructions-box[open] summary::after{transform:rotate(180deg);}
+.inst-body{margin-top:0.9rem;}
+.inst-body ol{padding-left:1.4rem;color:#555;}
+.inst-body li{margin:0.45rem 0;font-size:0.88rem;line-height:1.6;}
+.inst-body .inst-tip{display:flex;align-items:flex-start;gap:8px;background:var(--gold-light);border-radius:8px;padding:0.6rem 0.9rem;margin-top:0.8rem;font-size:0.84rem;color:#5a3e00;}
+.pts-legend{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:0.8rem;}
+.pts-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:700;}
+.pts-badge.e{background:#E8F5E9;color:#2E7D32;}
+.pts-badge.m{background:#FFF3E0;color:#BF360C;}
+.pts-badge.h{background:#FFEBEE;color:#B71C1C;}
+
+/* ── ACCENT SELECTOR ── */
+.accent-bar{display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1rem;margin:0.8rem 1rem 0;background:var(--card);border:1.5px solid var(--border);border-radius:12px;flex-wrap:wrap;}
+.accent-bar label{font-size:0.82rem;font-weight:800;color:var(--gold-dark);}
+.accent-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border:2px solid var(--border);background:var(--bg);border-radius:20px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;color:var(--text-soft);}
+.accent-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+.accent-btn.active{background:var(--gold-mid);border-color:var(--gold);color:var(--gold-dark);}
+
+/* ── TOTAL SCORE DISPLAY ── */
+.total-score-bar{display:flex;align-items:center;justify-content:center;gap:1.2rem;padding:0.9rem 1rem;margin:0.8rem 1rem 0;background:linear-gradient(135deg,#4E3800 0%,#6B4800 100%);border-radius:12px;color:#FFF9C4;flex-wrap:wrap;}
+.total-score-bar .ts-label{font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;}
+.total-score-bar .ts-pts{font-family:'Fredoka',sans-serif;font-size:1.9rem;font-weight:700;color:var(--gold);}
+.total-score-bar .ts-name{font-size:0.78rem;opacity:0.7;}
+.xp-float{position:fixed;font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;pointer-events:none;z-index:9999;animation:floatUp 1.1s ease forwards;}
+@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1);}60%{opacity:1;transform:translateY(-50px) scale(1.2);}100%{opacity:0;transform:translateY(-90px) scale(0.9);}}
+
+/* ── STORY TABS ── */
+.story-nav{display:flex;gap:0;border-bottom:2px solid var(--border);background:var(--card);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow-x:auto;}
+.story-tab{flex:1;min-width:90px;padding:0.9rem 0.5rem;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-soft);background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s;white-space:nowrap;}
+.story-tab.active{color:var(--gold-dark);border-bottom-color:var(--gold);}
+.story-tab:hover:not(.active){color:var(--text);background:var(--gold-light);}
+
+/* ── STORY PANEL ── */
+.story-panel{display:none;padding:1.5rem;max-width:780px;margin:0 auto;}
+.story-panel.active{display:block;animation:fadeUp 0.3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.story-intro{background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold-mid) 100%);border:1.5px solid var(--gold);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:1rem;}
+.story-icon{font-size:2rem;line-height:1;}
+.story-intro h2{font-family:'Fredoka',sans-serif;font-size:1.2rem;color:var(--gold-dark);}
+.story-intro p{font-size:0.83rem;color:#5a3e00;margin-top:0.15rem;}
+
+/* ── SCORE BAR ── */
+.score-bar{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:0.7rem 1.1rem;margin-bottom:1.2rem;box-shadow:var(--shadow);}
+.score-stat{text-align:center;flex:1;min-width:60px;}
+.score-stat .lbl{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-soft);}
+.score-stat .val{font-size:1.35rem;font-weight:800;color:var(--gold-dark);}
+.score-stat .val.c{color:var(--green);}
+.score-stat .val.w{color:var(--red);}
+.score-stat .val.pts{color:#F9A825;font-family:'Fredoka',sans-serif;font-size:1.5rem;}
+.score-divider{width:1px;height:36px;background:var(--border);}
+
+/* ── DIFF HEADERS ── */
+.diff-header{display:flex;align-items:center;gap:10px;padding:0.7rem 1rem;border-radius:12px;margin-bottom:0.9rem;font-weight:800;font-size:0.88rem;}
+.diff-header.easy{background:#E8F5E9;color:#2E7D32;border-left:4px solid #43A047;}
+.diff-header.medium{background:#FFF3E0;color:#BF360C;border-left:4px solid #FB8C00;}
+.diff-header.hard{background:#FFEBEE;color:#B71C1C;border-left:4px solid #E53935;}
+.diff-pts{margin-left:auto;font-size:0.75rem;background:rgba(0,0,0,0.07);padding:2px 10px;border-radius:10px;font-weight:700;}
+
+/* ── QUESTION CARD ── */
+.q-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);margin-bottom:1.1rem;box-shadow:var(--shadow);overflow:hidden;}
+.q-card.easy{border-top:3px solid #43A047;}
+.q-card.medium{border-top:3px solid #FB8C00;}
+.q-card.hard{border-top:3px solid #E53935;}
+.q-card.answered-correct{box-shadow:0 0 0 2px #43A047,0 3px 20px rgba(67,160,71,0.12);}
+.q-card.answered-wrong{box-shadow:0 0 0 2px #E53935,0 3px 20px rgba(229,57,53,0.08);}
+
+/* ── AUDIO SECTION ── */
+.q-audio{padding:1.1rem 1.2rem;background:#FFFDF4;border-bottom:1px solid var(--border);}
+.q-num-row{display:flex;align-items:center;gap:8px;margin-bottom:0.9rem;}
+.q-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:#fff;flex-shrink:0;}
+.q-num.easy{background:#43A047;} .q-num.medium{background:#FB8C00;} .q-num.hard{background:#E53935;}
+.q-label{font-size:0.78rem;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.07em;}
+.pts-chip{margin-left:auto;font-size:0.72rem;font-weight:800;padding:2px 9px;border-radius:10px;}
+.pts-chip.easy{background:#E8F5E9;color:#2E7D32;}
+.pts-chip.medium{background:#FFF3E0;color:#BF360C;}
+.pts-chip.hard{background:#FFEBEE;color:#B71C1C;}
+
+/* ── AUDIO CONTROLS ── */
+.audio-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.play-main{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.play-main:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(249,168,37,0.4);}
+.play-main.playing{background:linear-gradient(135deg,#E53935 0%,#B71C1C 100%);}
+.pause-btn{display:inline-flex;align-items:center;gap:4px;background:#fff;border:2px solid var(--border);color:var(--text-soft);border-radius:10px;padding:8px 13px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.pause-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+.pause-btn.active{border-color:#E91E63;color:#E91E63;background:#FCE4EC;}
+
+/* ── SPEED PILL ── */
+.speed-wrap{display:flex;align-items:center;gap:7px;background:var(--gold-light);border:1.5px solid var(--gold-mid);border-radius:20px;padding:5px 13px;margin-top:4px;}
+.speed-wrap label{font-size:0.72rem;font-weight:700;color:var(--gold-dark);white-space:nowrap;}
+.speed-wrap input[type=range]{width:90px;accent-color:var(--gold-dark);cursor:pointer;height:4px;}
+.speed-wrap .sv{font-size:0.73rem;font-weight:800;color:var(--gold-dark);min-width:30px;}
+.speed-ticks{display:flex;gap:4px;margin-left:2px;}
+.speed-tick{font-size:0.68rem;font-weight:700;color:var(--gold-dark);background:rgba(249,168,37,0.2);border-radius:6px;padding:2px 6px;cursor:pointer;border:1px solid transparent;transition:all 0.15s;}
+.speed-tick:hover{background:rgba(249,168,37,0.4);}
+.speed-tick.on{background:var(--gold);color:#fff;border-color:var(--gold-dark);}
+
+/* ── TEXT TOGGLES ── */
+.text-toggles{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.text-toggle{font-family:'Nunito',sans-serif;font-size:0.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--bg);color:var(--text-soft);padding:4px 12px;border-radius:8px;cursor:pointer;transition:all 0.2s;}
+.text-toggle:hover{border-color:var(--gold);color:var(--gold-dark);}
+.text-toggle.on{background:var(--gold-mid);border-color:var(--gold);color:var(--gold-dark);}
+.audio-text-box{display:none;margin-top:8px;padding:10px 13px;background:rgba(255,255,255,0.9);border-left:3px solid var(--gold);border-radius:8px;font-size:0.87rem;line-height:1.7;color:#333;}
+.audio-text-box.show{display:block;animation:fadeUp 0.2s ease;}
+.audio-text-box.es{border-left-color:#FB8C00;background:#FFF8E1;color:#5D4037;}
+
+/* ── QUESTION BODY ── */
+.q-body{padding:1.1rem 1.2rem;}
+.show-q-btn{width:100%;padding:0.82rem;border:2px dashed #AB47BC;background:linear-gradient(135deg,#F3E5F5 0%,#E8D0F0 100%);color:#7B1FA2;border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s;}
+.show-q-btn:hover{background:linear-gradient(135deg,#E1BEE7 0%,#CE93D8 100%);transform:translateY(-1px);}
+.show-q-btn.open{background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;border-style:solid;}
+
+.q-question-area{display:none;margin-top:1rem;}
+.q-question-area.show{display:block;animation:fadeUp 0.2s ease;}
+.q-text{background:#F5F5F5;border-radius:10px;padding:0.85rem 1.1rem;font-size:0.94rem;color:#333;margin-bottom:0.9rem;line-height:1.6;}
+
+/* ── OPTIONS ── */
+.options{display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:center;gap:11px;padding:0.82rem 1rem;background:#FAFAFA;border:2px solid #E0E0E0;border-radius:10px;cursor:pointer;transition:all 0.18s;-webkit-tap-highlight-color:transparent;}
+.opt:hover:not(.locked){border-color:var(--gold);background:var(--gold-light);transform:translateX(3px);}
+.opt.correct{border-color:var(--green);background:var(--green-bg);}
+.opt.wrong{border-color:var(--red);background:var(--red-bg);}
+.opt.show-ans{border-color:var(--green);background:var(--green-bg);}
+.opt.locked{pointer-events:none;}
+.opt-letter{width:30px;height:30px;border-radius:50%;background:#E0E0E0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:#666;flex-shrink:0;}
+.opt.correct .opt-letter,.opt.show-ans .opt-letter{background:var(--green);color:#fff;}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;}
+.opt-text{flex:1;font-size:0.9rem;color:#333;}
+
+/* ── FEEDBACK ── */
+.q-feedback{display:none;margin-top:10px;padding:10px 13px;border-radius:8px;font-size:0.85rem;line-height:1.5;}
+.q-feedback.show{display:block;animation:fadeUp 0.2s ease;}
+.q-feedback.correct{background:var(--green-bg);border:1px solid #A5D6A7;color:#2E7D32;}
+.q-feedback.wrong{background:var(--red-bg);border:1px solid #EF9A9A;color:#C62828;}
+.pts-earned{display:inline-block;background:var(--gold);color:#4E3800;font-weight:800;border-radius:8px;padding:1px 9px;font-size:0.82rem;margin-left:6px;}
+
+/* ── RESULTS PANEL ── */
+.results-panel{display:none;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);border-radius:var(--radius);padding:2rem;text-align:center;color:#4E3800;margin-top:1.5rem;box-shadow:0 8px 30px rgba(249,168,37,0.35);}
+.results-panel.show{display:block;animation:fadeUp 0.4s ease;}
+.trophy{font-size:4rem;margin-bottom:0.6rem;}
+.results-panel h2{font-family:'Fredoka',sans-serif;font-size:2rem;margin-bottom:0.3rem;}
+.big-score{font-size:3.2rem;font-weight:800;margin:0.4rem 0;}
+.big-pts{font-family:'Fredoka',sans-serif;font-size:1.4rem;background:rgba(255,255,255,0.3);display:inline-block;border-radius:12px;padding:4px 20px;margin-bottom:0.8rem;}
+.breakdown{display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;margin:0.8rem 0;}
+.bk-item{background:rgba(255,255,255,0.3);border-radius:12px;padding:0.7rem 1.2rem;backdrop-filter:blur(10px);}
+.bk-item .bn{font-size:0.73rem;font-weight:700;opacity:0.85;}
+.bk-item .bv{font-size:1.3rem;font-weight:800;}
+.results-msg{font-size:0.93rem;opacity:0.9;margin-top:0.4rem;font-weight:600;}
+.retry-btn{margin-top:1.1rem;padding:0.85rem 2.4rem;background:#fff;color:var(--gold-dark);border:none;border-radius:30px;font-family:'Nunito',sans-serif;font-size:0.94rem;font-weight:800;cursor:pointer;transition:all 0.2s;}
+.retry-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(0,0,0,0.15);}
+.gif-celebrate{font-size:2rem;margin-top:0.5rem;display:block;}
+
+/* ── STAR ANIMATION ── */
+.star-pop{position:fixed;pointer-events:none;z-index:9998;animation:starAnim 0.7s ease forwards;}
+@keyframes starAnim{0%{opacity:1;transform:scale(0.5);}50%{opacity:1;transform:scale(1.4);}100%{opacity:0;transform:scale(1) translateY(-30px);}}
+
+/* ── STORY READER ── */
+.story-reader{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);margin-bottom:1.4rem;box-shadow:var(--shadow);overflow:hidden;}
+.story-reader-header{display:flex;align-items:center;gap:10px;padding:0.9rem 1.2rem;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold-mid) 100%);border-bottom:1.5px solid var(--gold);}
+.story-reader-header .sr-icon{font-size:1.5rem;}
+.story-reader-header h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold-dark);flex:1;}
+.story-reader-header .sr-badge{font-size:0.72rem;font-weight:800;background:rgba(249,168,37,0.3);color:#5a3e00;padding:3px 10px;border-radius:10px;}
+
+.story-paragraphs{padding:1.2rem 1.3rem 0;}
+.sp-item{margin-bottom:0.9rem;transition:opacity 0.4s;}
+.sp-item.hidden{display:none;}
+.sp-text{font-size:0.97rem;line-height:1.85;color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;cursor:pointer;transition:background 0.18s;border-left:3px solid transparent;}
+.sp-text:hover{background:var(--gold-glow);border-left-color:var(--gold);}
+.sp-text.playing-para{background:var(--gold-glow);border-left-color:var(--gold-dark);outline:1.5px solid var(--gold);}
+.sp-num{display:inline-block;font-size:0.68rem;font-weight:800;color:var(--text-soft);margin-right:4px;vertical-align:middle;opacity:0.5;}
+.sp-es{display:none;font-size:0.84rem;font-style:italic;color:#777;margin-top:3px;padding:4px 10px;border-left:2px solid #CE93D8;background:#F9F3FF;border-radius:0 6px 6px 0;}
+.sp-es.show{display:block;animation:fadeUp 0.2s ease;}
+.sp-controls{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;}
+.sp-btn{font-family:'Nunito',sans-serif;font-size:0.7rem;font-weight:700;border:1.5px solid var(--border);background:var(--bg);color:var(--text-soft);padding:3px 9px;border-radius:7px;cursor:pointer;transition:all 0.15s;}
+.sp-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+.sp-btn.playing{border-color:var(--red);color:var(--red);background:#FFEBEE;}
+
+.story-slider-wrap{padding:1rem 1.3rem 1.2rem;border-top:1px solid var(--border);margin-top:0.5rem;}
+.story-slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;}
+.story-slider-label span{font-size:0.78rem;font-weight:700;color:var(--gold-dark);}
+.story-slider-label .sr-count{font-size:0.75rem;color:var(--text-soft);}
+.story-range{width:100%;accent-color:var(--gold-dark);cursor:pointer;height:6px;}
+.slider-ticks{display:flex;justify-content:space-between;margin-top:5px;}
+.slider-ticks span{font-size:0.65rem;color:var(--text-soft);}
+.story-reader-btns{display:flex;gap:8px;padding:0 1.3rem 1.2rem;flex-wrap:wrap;}
+.sr-action-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;border:1.5px solid var(--border);background:var(--bg);color:var(--text-soft);padding:5px 13px;border-radius:8px;cursor:pointer;transition:all 0.2s;}
+.sr-action-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+.sr-action-btn.all-visible{border-color:var(--green);color:var(--green);background:var(--green-bg);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .page-header h1{font-size:1.5rem;}
+  .story-panel{padding:1rem;}
+  .speed-wrap input[type=range]{width:65px;}
+  .breakdown{flex-direction:column;}
+  .accent-bar{gap:0.5rem;}
+  .total-score-bar{gap:0.8rem;}
+}
+</style>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="page-header">
+  <a href="https://jucumenglishcenter.github.io/Pre-a1/panel-pre-a1.html" class="back-link">🏠 Volver al Panel</a>
+  <h1>🎧 Comprensión Auditiva</h1>
+  <div class="sub">💛 Pre-A1 · Home, School &amp; Objects · 4 Stories · 40 preguntas</div>
+</div>
+
+<!-- ══════════ INSTRUCCIONES ══════════ -->
+<details class="instructions-box" style="margin:0.9rem 1rem 0;" open>
+  <summary>📋 ¿Cómo funciona esta actividad?</summary>
+  <div class="inst-body">
+    <ol>
+      <li><strong>Selecciona tu acento</strong> con los botones de abajo: 🇺🇸 Americano o 🇬🇧 Británico. Puedes cambiarlo en cualquier momento.</li>
+      <li>Cada pregunta tiene un <strong>botón ▶ Escuchar</strong>. Presiona para escuchar el audio. Puedes escucharlo tantas veces como necesites.</li>
+      <li>Usa el botón <strong>⏸ Pausar</strong> para detener el audio en cualquier momento si quieres destacar o repetir una parte.</li>
+      <li>Ajusta la <strong>velocidad 🎚️</strong> con el slider de cada pregunta. Empieza despacio y sube al ritmo normal poco a poco.</li>
+      <li>Si necesitas ayuda, presiona <strong>🔤 Ver en inglés</strong> o <strong>🇪🇸 Ver en español</strong> para leer el texto del audio.</li>
+      <li>Cuando estés listo, presiona <strong>❓ Mostrar Pregunta</strong> y elige la respuesta correcta.</li>
+      <li><strong>¡Gana puntos!</strong> Cada respuesta correcta suma puntos según la dificultad:</li>
+    </ol>
+    <div class="pts-legend">
+      <span class="pts-badge e">🟢 Fácil → +10 pts</span>
+      <span class="pts-badge m">🟡 Intermedio → +20 pts</span>
+      <span class="pts-badge h">🔴 Difícil → +30 pts</span>
+    </div>
+    <div class="inst-tip">💡 <span>La respuesta correcta <strong>siempre se dice en el audio</strong>. ¡Escucha con atención y busca las palabras clave!</span></div>
+  </div>
+</details>
+
+<!-- ══════════ ACCENT SELECTOR ══════════ -->
+<div class="accent-bar">
+  <label>🌍 Acento:</label>
+  <button class="accent-btn active" id="acc-us" onclick="setAccent('us')">🇺🇸 Americano</button>
+  <button class="accent-btn" id="acc-gb" onclick="setAccent('gb')">🇬🇧 Británico</button>
+</div>
+
+<!-- ══════════ TOTAL POINTS ══════════ -->
+<div class="total-score-bar">
+  <div>
+    <div class="ts-label">Puntos totales</div>
+    <div class="ts-pts" id="total-pts">0</div>
+  </div>
+  <div style="width:1px;height:40px;background:rgba(255,255,255,0.15);"></div>
+  <div>
+    <div class="ts-label">Máximo posible</div>
+    <div style="color:#FFECB3;font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;">800</div>
+  </div>
+  <div style="width:1px;height:40px;background:rgba(255,255,255,0.15);"></div>
+  <div>
+    <div class="ts-label">🏆 Ranking</div>
+    <div class="ts-pts" id="rank-label" style="font-size:1.1rem;">—</div>
+  </div>
+</div>
+
+<!-- ══════════ STORY TABS ══════════ -->
+<div class="story-nav">
+  <button class="story-tab active" onclick="showStory('s1')">🏫 S1 · My School</button>
+  <button class="story-tab" onclick="showStory('s2')">🏠 S2 · At Home</button>
+  <button class="story-tab" onclick="showStory('s3')">🎨 S3 · What Is Everyone Doing?</button>
+  <button class="story-tab" onclick="showStory('s4')">❓ S4 · A Good Question</button>
+</div>
+<!-- ══════════ STORY 1 ══════════ -->
+<div class="story-panel active" id="panel-s1">
+  <div class="story-intro"><div class="story-icon">🏫</div><div><h2>Story 1: My School</h2><p>A boy describes his school, his classroom, and his things.</p></div></div>
+  <div class="story-reader" id="sr-s1">
+    <div class="story-reader-header"><span class="sr-icon">📖</span><h3>Lee la historia antes de responder</h3><span class="sr-badge">5 párrafos</span></div>
+    <div class="story-paragraphs" id="sr-s1-paras">
+      <div class="sp-item" data-idx="0">
+        <div class="sp-text" onclick="speakPara(this,'My name is Pablo. I go to a nice school. The school is big and bright. I like it a lot. I go there every day.','s1',0)"><span class="sp-num">1.</span>My name is Pablo. I go to a nice school. The school is big and bright. I like it a lot. I go there every day.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'My name is Pablo. I go to a nice school. The school is big and bright. I like it a lot. I go there every day.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'My name is Pablo. I go to a nice school. The school is big and bright. I like it a lot. I go there every day.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Me llamo Pablo. Voy a una escuela linda. La escuela es grande y luminosa. Me gusta mucho. Voy ahí todos los días.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="1">
+        <div class="sp-text" onclick="speakPara(this,'My classroom is on the first floor. There are many tables and chairs. My book is on my desk. My marker is next to it. My bag is under my chair.','s1',1)"><span class="sp-num">2.</span>My classroom is on the first floor. There are many tables and chairs. My book is on my desk. My marker is next to it. My bag is under my chair.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'My classroom is on the first floor. There are many tables and chairs. My book is on my desk. My marker is next to it. My bag is under my chair.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'My classroom is on the first floor. There are many tables and chairs. My book is on my desk. My marker is next to it. My bag is under my chair.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Mi salón está en el primer piso. Hay muchas mesas y sillas. Mi libro está sobre mi escritorio. Mi marcador está al lado. Mi mochila está bajo mi silla.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="2">
+        <div class="sp-text" onclick="speakPara(this,'Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.','s1',2)"><span class="sp-num">3.</span>Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Ahora mismo, mi profesora está hablando. Está escribiendo en la pizarra. La estamos escuchando. Todos están callados. Estoy tomando notas en mi libro.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="3">
+        <div class="sp-text" onclick="speakPara(this,'After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.','s1',3)"><span class="sp-num">4.</span>After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Después de clase, limpio mi escritorio. Pongo mi libro en mi mochila. Estoy feliz en la escuela. Mis amigos también están aquí. Hablamos y reímos juntos.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="4">
+        <div class="sp-text" onclick="speakPara(this,'At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.','s1',4)"><span class="sp-num">5.</span>At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Al final del día, camino a casa. Mi casa está cerca de la escuela. Estoy un poco cansado, pero fue un buen día. Mañana, vuelvo otra vez.</div>
+      </div>
+    </div>
+    <div class="story-slider-wrap">
+      <div class="story-slider-label"><span>📖 Descubre la historia párrafo a párrafo</span><span class="sr-count" id="sr-s1-count">1 / 5</span></div>
+      <input type="range" class="story-range" id="sr-s1-range" min="1" max="5" value="1" oninput="updateStorySlider('s1',this.value,5)">
+      <div class="slider-ticks"><span>Párrafo 1</span><span>3</span><span>5 (completo)</span></div>
+    </div>
+    <div class="story-reader-btns">
+      <button class="sr-action-btn" onclick="revealAllParas('s1',5)" id="sr-s1-showall">👁 Ver historia completa</button>
+      <button class="sr-action-btn" onclick="hideAllParas('s1')">🔒 Ocultar de nuevo</button>
+    </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-stat"><div class="lbl">Respondidas</div><div class="val" id="s1-ans">0/10</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Correctas</div><div class="val c" id="s1-cor">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Incorrectas</div><div class="val w" id="s1-inc">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">⭐ Puntos</div><div class="val pts" id="s1-pts">0</div></div>
+  </div>
+  <div class="diff-header easy">🟢 Nivel Fácil · Preguntas 1–4 <span class="diff-pts">+10 pts c/u</span></div>
+  <div id="s1-cards"></div>
+  <div class="diff-header medium">🟡 Nivel Intermedio · Preguntas 5–7 <span class="diff-pts">+20 pts c/u</span></div>
+  <div id="s1-cards-m"></div>
+  <div class="diff-header hard">🔴 Nivel Difícil · Preguntas 8–10 <span class="diff-pts">+30 pts c/u</span></div>
+  <div id="s1-cards-h"></div>
+  <div class="results-panel" id="s1-results">
+    <div class="trophy" id="s1-trophy">🏆</div>
+    <h2 id="s1-rtitle">¡Excelente!</h2>
+    <div class="big-score" id="s1-score">0/10</div>
+    <div class="big-pts" id="s1-bpts">⭐ 0 puntos</div>
+    <div class="breakdown">
+      <div class="bk-item"><div class="bn">🟢 Fácil</div><div class="bv" id="s1-easy">0/4</div></div>
+      <div class="bk-item"><div class="bn">🟡 Intermedio</div><div class="bv" id="s1-med">0/3</div></div>
+      <div class="bk-item"><div class="bn">🔴 Difícil</div><div class="bv" id="s1-hard">0/3</div></div>
+    </div>
+    <div class="results-msg" id="s1-rmsg"></div>
+    <span class="gif-celebrate" id="s1-gif"></span>
+    <br><button class="retry-btn" onclick="retryStory('s1')">🔄 Intentar de nuevo</button>
+  </div>
+</div>
+<!-- ══════════ STORY 2 ══════════ -->
+<div class="story-panel" id="panel-s2">
+  <div class="story-intro"><div class="story-icon">🏠</div><div><h2>Story 2: At Home</h2><p>A girl talks about the objects she uses at home.</p></div></div>
+  <div class="story-reader" id="sr-s2">
+    <div class="story-reader-header"><span class="sr-icon">📖</span><h3>Lee la historia antes de responder</h3><span class="sr-badge">5 párrafos</span></div>
+    <div class="story-paragraphs" id="sr-s2-paras">
+      <div class="sp-item" data-idx="0">
+        <div class="sp-text" onclick="speakPara(this,'I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.','s2',0)"><span class="sp-num">1.</span>I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Estoy en casa ahora. Mi casa es pequeña pero cálida. Estoy en mi cuarto. Es mi lugar favorito. Me siento feliz aquí.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="1">
+        <div class="sp-text" onclick="speakPara(this,'There are many objects in my room. My key is on the table. My book is on the bed. My game is on the floor. My marker is by the window.','s2',1)"><span class="sp-num">2.</span>There are many objects in my room. My key is on the table. My book is on the bed. My game is on the floor. My marker is by the window.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'There are many objects in my room. My key is on the table. My book is on the bed. My game is on the floor. My marker is by the window.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'There are many objects in my room. My key is on the table. My book is on the bed. My game is on the floor. My marker is by the window.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Hay muchos objetos en mi cuarto. Mi llave está sobre la mesa. Mi libro está sobre la cama. Mi juego está en el piso. Mi marcador está junto a la ventana.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="2">
+        <div class="sp-text" onclick="speakPara(this,'Right now, I am painting a picture. I am using green paint. The paint is on my hands. It is a little messy. But I am having fun.','s2',2)"><span class="sp-num">3.</span>Right now, I am painting a picture. I am using green paint. The paint is on my hands. It is a little messy. But I am having fun.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'Right now, I am painting a picture. I am using green paint. The paint is on my hands. It is a little messy. But I am having fun.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'Right now, I am painting a picture. I am using green paint. The paint is on my hands. It is a little messy. But I am having fun.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Ahora mismo, estoy pintando un cuadro. Estoy usando pintura verde. La pintura está en mis manos. Está un poco sucio. Pero me estoy divirtiendo.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="3">
+        <div class="sp-text" onclick="speakPara(this,'Later, I am writing an email to my friend. I am telling her about my day. She is far away. I miss her. I hope she writes back.','s2',3)"><span class="sp-num">4.</span>Later, I am writing an email to my friend. I am telling her about my day. She is far away. I miss her. I hope she writes back.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'Later, I am writing an email to my friend. I am telling her about my day. She is far away. I miss her. I hope she writes back.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'Later, I am writing an email to my friend. I am telling her about my day. She is far away. I miss her. I hope she writes back.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Más tarde, escribo un correo a mi amiga. Le cuento sobre mi día. Ella está lejos. La extraño. Espero que me responda.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="4">
+        <div class="sp-text" onclick="speakPara(this,'At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.','s2',4)"><span class="sp-num">5.</span>At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Por la noche, guardo mis cosas. Mi llave va junto a la puerta. Mi libro va en el estante. Luego descanso. Es un buen día en casa.</div>
+      </div>
+    </div>
+    <div class="story-slider-wrap">
+      <div class="story-slider-label"><span>📖 Descubre la historia párrafo a párrafo</span><span class="sr-count" id="sr-s2-count">1 / 5</span></div>
+      <input type="range" class="story-range" id="sr-s2-range" min="1" max="5" value="1" oninput="updateStorySlider('s2',this.value,5)">
+      <div class="slider-ticks"><span>Párrafo 1</span><span>3</span><span>5 (completo)</span></div>
+    </div>
+    <div class="story-reader-btns">
+      <button class="sr-action-btn" onclick="revealAllParas('s2',5)" id="sr-s2-showall">👁 Ver historia completa</button>
+      <button class="sr-action-btn" onclick="hideAllParas('s2')">🔒 Ocultar de nuevo</button>
+    </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-stat"><div class="lbl">Respondidas</div><div class="val" id="s2-ans">0/10</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Correctas</div><div class="val c" id="s2-cor">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Incorrectas</div><div class="val w" id="s2-inc">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">⭐ Puntos</div><div class="val pts" id="s2-pts">0</div></div>
+  </div>
+  <div class="diff-header easy">🟢 Nivel Fácil · Preguntas 1–4 <span class="diff-pts">+10 pts c/u</span></div>
+  <div id="s2-cards"></div>
+  <div class="diff-header medium">🟡 Nivel Intermedio · Preguntas 5–7 <span class="diff-pts">+20 pts c/u</span></div>
+  <div id="s2-cards-m"></div>
+  <div class="diff-header hard">🔴 Nivel Difícil · Preguntas 8–10 <span class="diff-pts">+30 pts c/u</span></div>
+  <div id="s2-cards-h"></div>
+  <div class="results-panel" id="s2-results">
+    <div class="trophy" id="s2-trophy">🏆</div>
+    <h2 id="s2-rtitle">¡Excelente!</h2>
+    <div class="big-score" id="s2-score">0/10</div>
+    <div class="big-pts" id="s2-bpts">⭐ 0 puntos</div>
+    <div class="breakdown">
+      <div class="bk-item"><div class="bn">🟢 Fácil</div><div class="bv" id="s2-easy">0/4</div></div>
+      <div class="bk-item"><div class="bn">🟡 Intermedio</div><div class="bv" id="s2-med">0/3</div></div>
+      <div class="bk-item"><div class="bn">🔴 Difícil</div><div class="bv" id="s2-hard">0/3</div></div>
+    </div>
+    <div class="results-msg" id="s2-rmsg"></div>
+    <span class="gif-celebrate" id="s2-gif"></span>
+    <br><button class="retry-btn" onclick="retryStory('s2')">🔄 Intentar de nuevo</button>
+  </div>
+</div>
+<!-- ══════════ STORY 3 ══════════ -->
+<div class="story-panel" id="panel-s3">
+  <div class="story-intro"><div class="story-icon">🎨</div><div><h2>Story 3: What Is Everyone Doing?</h2><p>Actions in progress: a busy afternoon with a group of friends.</p></div></div>
+  <div class="story-reader" id="sr-s3">
+    <div class="story-reader-header"><span class="sr-icon">📖</span><h3>Lee la historia antes de responder</h3><span class="sr-badge">5 párrafos</span></div>
+    <div class="story-paragraphs" id="sr-s3-paras">
+      <div class="sp-item" data-idx="0">
+        <div class="sp-text" onclick="speakPara(this,'It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.','s3',0)"><span class="sp-num">1.</span>It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Es la tarde en la escuela. Mi grupo de amigos está en el salón de arte. No estamos quietos. Todos estamos ocupados. Cada uno está haciendo algo.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="1">
+        <div class="sp-text" onclick="speakPara(this,'Ana is painting a big face. She is using bright paint. Tom is drawing with a marker. He is making a game. They are working hard.','s3',1)"><span class="sp-num">2.</span>Ana is painting a big face. She is using bright paint. Tom is drawing with a marker. He is making a game. They are working hard.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'Ana is painting a big face. She is using bright paint. Tom is drawing with a marker. He is making a game. They are working hard.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'Ana is painting a big face. She is using bright paint. Tom is drawing with a marker. He is making a game. They are working hard.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Ana está pintando una cara grande. Está usando pintura brillante. Tom está dibujando con un marcador. Está haciendo un juego. Están trabajando duro.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="2">
+        <div class="sp-text" onclick="speakPara(this,'I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.','s3',2)"><span class="sp-num">3.</span>I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Hoy no estoy pintando. Estoy leyendo mi libro. Es una buena historia. Estoy aprendiendo palabras nuevas. El libro trata de una escuela.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="3">
+        <div class="sp-text" onclick="speakPara(this,'The teacher is walking around the room. She is helping the group. She is asking us questions. We are answering her. She likes our work.','s3',3)"><span class="sp-num">4.</span>The teacher is walking around the room. She is helping the group. She is asking us questions. We are answering her. She likes our work.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'The teacher is walking around the room. She is helping the group. She is asking us questions. We are answering her. She likes our work.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'The teacher is walking around the room. She is helping the group. She is asking us questions. We are answering her. She likes our work.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">La profesora está caminando por el salón. Está ayudando al grupo. Nos está haciendo preguntas. Le estamos respondiendo. Le gusta nuestro trabajo.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="4">
+        <div class="sp-text" onclick="speakPara(this,'At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.','s3',4)"><span class="sp-num">5.</span>At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Al final, limpiamos el salón. Guardamos la pintura y los marcadores. Luego vamos a casa. Estamos cansados pero felices. Fue un día ocupado.</div>
+      </div>
+    </div>
+    <div class="story-slider-wrap">
+      <div class="story-slider-label"><span>📖 Descubre la historia párrafo a párrafo</span><span class="sr-count" id="sr-s3-count">1 / 5</span></div>
+      <input type="range" class="story-range" id="sr-s3-range" min="1" max="5" value="1" oninput="updateStorySlider('s3',this.value,5)">
+      <div class="slider-ticks"><span>Párrafo 1</span><span>3</span><span>5 (completo)</span></div>
+    </div>
+    <div class="story-reader-btns">
+      <button class="sr-action-btn" onclick="revealAllParas('s3',5)" id="sr-s3-showall">👁 Ver historia completa</button>
+      <button class="sr-action-btn" onclick="hideAllParas('s3')">🔒 Ocultar de nuevo</button>
+    </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-stat"><div class="lbl">Respondidas</div><div class="val" id="s3-ans">0/10</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Correctas</div><div class="val c" id="s3-cor">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Incorrectas</div><div class="val w" id="s3-inc">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">⭐ Puntos</div><div class="val pts" id="s3-pts">0</div></div>
+  </div>
+  <div class="diff-header easy">🟢 Nivel Fácil · Preguntas 1–4 <span class="diff-pts">+10 pts c/u</span></div>
+  <div id="s3-cards"></div>
+  <div class="diff-header medium">🟡 Nivel Intermedio · Preguntas 5–7 <span class="diff-pts">+20 pts c/u</span></div>
+  <div id="s3-cards-m"></div>
+  <div class="diff-header hard">🔴 Nivel Difícil · Preguntas 8–10 <span class="diff-pts">+30 pts c/u</span></div>
+  <div id="s3-cards-h"></div>
+  <div class="results-panel" id="s3-results">
+    <div class="trophy" id="s3-trophy">🏆</div>
+    <h2 id="s3-rtitle">¡Excelente!</h2>
+    <div class="big-score" id="s3-score">0/10</div>
+    <div class="big-pts" id="s3-bpts">⭐ 0 puntos</div>
+    <div class="breakdown">
+      <div class="bk-item"><div class="bn">🟢 Fácil</div><div class="bv" id="s3-easy">0/4</div></div>
+      <div class="bk-item"><div class="bn">🟡 Intermedio</div><div class="bv" id="s3-med">0/3</div></div>
+      <div class="bk-item"><div class="bn">🔴 Difícil</div><div class="bv" id="s3-hard">0/3</div></div>
+    </div>
+    <div class="results-msg" id="s3-rmsg"></div>
+    <span class="gif-celebrate" id="s3-gif"></span>
+    <br><button class="retry-btn" onclick="retryStory('s3')">🔄 Intentar de nuevo</button>
+  </div>
+</div>
+<!-- ══════════ STORY 4 ══════════ -->
+<div class="story-panel" id="panel-s4">
+  <div class="story-intro"><div class="story-icon">❓</div><div><h2>Story 4: A Good Question</h2><p>A simple story about school, work, and the reason we learn.</p></div></div>
+  <div class="story-reader" id="sr-s4">
+    <div class="story-reader-header"><span class="sr-icon">📖</span><h3>Lee la historia antes de responder</h3><span class="sr-badge">5 párrafos</span></div>
+    <div class="story-paragraphs" id="sr-s4-paras">
+      <div class="sp-item" data-idx="0">
+        <div class="sp-text" onclick="speakPara(this,'My sister has a question. She asks me about school. &quot;Why do we go to school?&quot; she says. It is a good question. I want to help her.','s4',0)"><span class="sp-num">1.</span>My sister has a question. She asks me about school. "Why do we go to school?" she says. It is a good question. I want to help her.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'My sister has a question. She asks me about school. &quot;Why do we go to school?&quot; she says. It is a good question. I want to help her.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'My sister has a question. She asks me about school. &quot;Why do we go to school?&quot; she says. It is a good question. I want to help her.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Mi hermana tiene una pregunta. Me pregunta sobre la escuela. "¿Por qué vamos a la escuela?", dice. Es una buena pregunta. Quiero ayudarla.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="1">
+        <div class="sp-text" onclick="speakPara(this,'I think about the reason. School is part of our education. We read books. We learn many things every day. Each day, we know more.','s4',1)"><span class="sp-num">2.</span>I think about the reason. School is part of our education. We read books. We learn many things every day. Each day, we know more.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'I think about the reason. School is part of our education. We read books. We learn many things every day. Each day, we know more.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'I think about the reason. School is part of our education. We read books. We learn many things every day. Each day, we know more.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Pienso en la razón. La escuela es parte de nuestra educación. Leemos libros. Aprendemos muchas cosas cada día. Cada día sabemos más.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="2">
+        <div class="sp-text" onclick="speakPara(this,'&quot;At school, you learn for your future,&quot; I say. &quot;One day, you will have a job. Your education will help you. It opens many doors.&quot;','s4',2)"><span class="sp-num">3.</span>"At school, you learn for your future," I say. "One day, you will have a job. Your education will help you. It opens many doors."</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'&quot;At school, you learn for your future,&quot; I say. &quot;One day, you will have a job. Your education will help you. It opens many doors.&quot;')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'&quot;At school, you learn for your future,&quot; I say. &quot;One day, you will have a job. Your education will help you. It opens many doors.&quot;','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">"En la escuela, aprendes para tu futuro", digo. "Un día, tendrás un trabajo. Tu educación te ayudará. Te abre muchas puertas."</div>
+      </div>
+      <div class="sp-item hidden" data-idx="3">
+        <div class="sp-text" onclick="speakPara(this,'My sister is listening to me. She is thinking about my words. Now she is smiling. She likes the answer. She nods her head.','s4',3)"><span class="sp-num">4.</span>My sister is listening to me. She is thinking about my words. Now she is smiling. She likes the answer. She nods her head.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'My sister is listening to me. She is thinking about my words. Now she is smiling. She likes the answer. She nods her head.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'My sister is listening to me. She is thinking about my words. Now she is smiling. She likes the answer. She nods her head.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">Mi hermana me está escuchando. Está pensando en mis palabras. Ahora está sonriendo. Le gusta la respuesta. Asiente con la cabeza.</div>
+      </div>
+      <div class="sp-item hidden" data-idx="4">
+        <div class="sp-text" onclick="speakPara(this,'&quot;School is good,&quot; she says. &quot;I like to learn.&quot; That is the best reason of all. I am proud of her. We hug and go home.','s4',4)"><span class="sp-num">5.</span>"School is good," she says. "I like to learn." That is the best reason of all. I am proud of her. We hug and go home.</div>
+        <div class="sp-controls">
+          <button class="sp-btn" onclick="speakParaBtn(this,'&quot;School is good,&quot; she says. &quot;I like to learn.&quot; That is the best reason of all. I am proud of her. We hug and go home.')">🇺🇸 US</button>
+          <button class="sp-btn" onclick="speakParaBtn(this,'&quot;School is good,&quot; she says. &quot;I like to learn.&quot; That is the best reason of all. I am proud of her. We hug and go home.','gb')">🇬🇧 UK</button>
+          <button class="sp-btn" onclick="toggleSpEs(this)">🇪🇸 traducción</button>
+        </div>
+        <div class="sp-es">"La escuela es buena", dice. "Me gusta aprender." Esa es la mejor razón de todas. Estoy orgulloso de ella. Nos abrazamos y vamos a casa.</div>
+      </div>
+    </div>
+    <div class="story-slider-wrap">
+      <div class="story-slider-label"><span>📖 Descubre la historia párrafo a párrafo</span><span class="sr-count" id="sr-s4-count">1 / 5</span></div>
+      <input type="range" class="story-range" id="sr-s4-range" min="1" max="5" value="1" oninput="updateStorySlider('s4',this.value,5)">
+      <div class="slider-ticks"><span>Párrafo 1</span><span>3</span><span>5 (completo)</span></div>
+    </div>
+    <div class="story-reader-btns">
+      <button class="sr-action-btn" onclick="revealAllParas('s4',5)" id="sr-s4-showall">👁 Ver historia completa</button>
+      <button class="sr-action-btn" onclick="hideAllParas('s4')">🔒 Ocultar de nuevo</button>
+    </div>
+  </div>
+  <div class="score-bar">
+    <div class="score-stat"><div class="lbl">Respondidas</div><div class="val" id="s4-ans">0/10</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Correctas</div><div class="val c" id="s4-cor">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">Incorrectas</div><div class="val w" id="s4-inc">0</div></div>
+    <div class="score-divider"></div>
+    <div class="score-stat"><div class="lbl">⭐ Puntos</div><div class="val pts" id="s4-pts">0</div></div>
+  </div>
+  <div class="diff-header easy">🟢 Nivel Fácil · Preguntas 1–4 <span class="diff-pts">+10 pts c/u</span></div>
+  <div id="s4-cards"></div>
+  <div class="diff-header medium">🟡 Nivel Intermedio · Preguntas 5–7 <span class="diff-pts">+20 pts c/u</span></div>
+  <div id="s4-cards-m"></div>
+  <div class="diff-header hard">🔴 Nivel Difícil · Preguntas 8–10 <span class="diff-pts">+30 pts c/u</span></div>
+  <div id="s4-cards-h"></div>
+  <div class="results-panel" id="s4-results">
+    <div class="trophy" id="s4-trophy">🏆</div>
+    <h2 id="s4-rtitle">¡Excelente!</h2>
+    <div class="big-score" id="s4-score">0/10</div>
+    <div class="big-pts" id="s4-bpts">⭐ 0 puntos</div>
+    <div class="breakdown">
+      <div class="bk-item"><div class="bn">🟢 Fácil</div><div class="bv" id="s4-easy">0/4</div></div>
+      <div class="bk-item"><div class="bn">🟡 Intermedio</div><div class="bv" id="s4-med">0/3</div></div>
+      <div class="bk-item"><div class="bn">🔴 Difícil</div><div class="bv" id="s4-hard">0/3</div></div>
+    </div>
+    <div class="results-msg" id="s4-rmsg"></div>
+    <span class="gif-celebrate" id="s4-gif"></span>
+    <br><button class="retry-btn" onclick="retryStory('s4')">🔄 Intentar de nuevo</button>
+  </div>
+</div><script>
+// ══════════════════════════════════════════════════
+//  QUESTION DATA — Pre-A1 · Home, School & Objects (stories actualizadas)
+//  La respuesta correcta SIEMPRE se dice literal en el audio.
+// ══════════════════════════════════════════════════
+const DATA = {
+  s1:[
+    {lvl:"easy", num:1,
+     audio:"I go to a nice school.",
+     enTxt:"I go to a nice school.",
+     esTxt:"Voy a una escuela linda.",
+     q:"¿Adónde va Pablo?",
+     opts:["A una escuela","A una tienda","A un parque"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I go to a nice school.\"</em>",
+     fno:"✗ La respuesta es \"A una escuela\". El audio dice <em>\"I go to a nice school.\"</em>"},
+    {lvl:"easy", num:2,
+     audio:"My book is on my desk.",
+     enTxt:"My book is on my desk.",
+     esTxt:"Mi libro está sobre mi escritorio.",
+     q:"¿Dónde está el libro de Pablo?",
+     opts:["En su mochila","En la pizarra","Sobre su escritorio"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My book is on my desk.\"</em>",
+     fno:"✗ La respuesta es \"Sobre su escritorio\". El audio dice <em>\"My book is on my desk.\"</em>"},
+    {lvl:"easy", num:3,
+     audio:"My bag is under my chair.",
+     enTxt:"My bag is under my chair.",
+     esTxt:"Mi mochila está bajo mi silla.",
+     q:"¿Dónde está la mochila?",
+     opts:["Sobre la mesa","Bajo la silla","En la pizarra"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My bag is under my chair.\"</em>",
+     fno:"✗ La respuesta es \"Bajo la silla\". El audio dice <em>\"My bag is under my chair.\"</em>"},
+    {lvl:"easy", num:4,
+     audio:"My house is near the school.",
+     enTxt:"My house is near the school.",
+     esTxt:"Mi casa está cerca de la escuela.",
+     q:"¿Dónde está la casa de Pablo?",
+     opts:["Cerca de la escuela","Lejos de la escuela","Al lado del parque"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My house is near the school.\"</em>",
+     fno:"✗ La respuesta es \"Cerca de la escuela\". El audio dice <em>\"My house is near the school.\"</em>"},
+    {lvl:"medium", num:5,
+     audio:"My classroom is on the first floor. There are many tables and chairs.",
+     enTxt:"My classroom is on the first floor. There are many tables and chairs.",
+     esTxt:"Mi salón está en el primer piso. Hay muchas mesas y sillas.",
+     q:"¿En qué piso está el salón y qué hay en él?",
+     opts:["En el segundo piso; hay camas","En el primer piso; hay mesas y sillas","En la planta baja; hay computadoras"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"on the first floor\"</em> y <em>\"many tables and chairs.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"on the first floor\"</em> y <em>\"many tables and chairs.\"</em>"},
+    {lvl:"medium", num:6,
+     audio:"Right now, my teacher is talking. She is writing on the board.",
+     enTxt:"Right now, my teacher is talking. She is writing on the board.",
+     esTxt:"Ahora mismo, mi profesora está hablando. Está escribiendo en la pizarra.",
+     q:"¿Qué hace la profesora en este momento?",
+     opts:["Está leyendo un libro","Está limpiando el salón","Está hablando y escribiendo en la pizarra"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"my teacher is talking. She is writing on the board.\"</em>",
+     fno:"✗ La respuesta es que habla y escribe en la pizarra. <em>\"is talking. She is writing on the board.\"</em>"},
+    {lvl:"medium", num:7,
+     audio:"After class, I clean my desk. I put my book in my bag.",
+     enTxt:"After class, I clean my desk. I put my book in my bag.",
+     esTxt:"Después de clase, limpio mi escritorio. Pongo mi libro en mi mochila.",
+     q:"¿Qué hace Pablo después de clase?",
+     opts:["Limpia su escritorio y guarda su libro","Sale corriendo a casa","Habla con la profesora"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I clean my desk. I put my book in my bag.\"</em>",
+     fno:"✗ La respuesta es \"Limpia su escritorio y guarda su libro\". El audio dice <em>\"I clean my desk. I put my book in my bag.\"</em>"},
+    {lvl:"hard", num:8,
+     audio:"Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.",
+     enTxt:"Right now, my teacher is talking. She is writing on the board. We are listening to her. Everyone is quiet. I am taking notes in my book.",
+     esTxt:"Ahora mismo, mi profesora está hablando. Está escribiendo en la pizarra. La estamos escuchando. Todos están callados. Estoy tomando notas en mi libro.",
+     q:"Mientras la profesora habla, ¿qué hace Pablo y cómo está la clase?",
+     opts:["Está jugando; la clase hace ruido","Está tomando notas; todos están callados","Está saliendo; la clase está vacía"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am taking notes in my book\"</em> y <em>\"Everyone is quiet.\"</em>",
+     fno:"✗ La respuesta combina dos datos del final: <em>\"Everyone is quiet\"</em> y <em>\"I am taking notes in my book.\"</em>"},
+    {lvl:"hard", num:9,
+     audio:"After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.",
+     enTxt:"After class, I clean my desk. I put my book in my bag. I am happy at school. My friends are here too. We talk and laugh together.",
+     esTxt:"Después de clase, limpio mi escritorio. Pongo mi libro en mi mochila. Estoy feliz en la escuela. Mis amigos también están aquí. Hablamos y reímos juntos.",
+     q:"¿Por qué está feliz Pablo y qué hace con sus amigos?",
+     opts:["No hay nadie; está solo","Sus amigos están ahí; hablan y ríen juntos","Está cansado; se va a dormir"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My friends are here too. We talk and laugh together.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"My friends are here too\"</em> y <em>\"We talk and laugh together.\"</em>"},
+    {lvl:"hard", num:10,
+     audio:"At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.",
+     enTxt:"At the end of the day, I walk home. My house is near the school. I am a little tired, but it was a good day. Tomorrow, I am coming back.",
+     esTxt:"Al final del día, camino a casa. Mi casa está cerca de la escuela. Estoy un poco cansado, pero fue un buen día. Mañana, vuelvo otra vez.",
+     q:"Al final del día, ¿cómo se siente Pablo y qué hará mañana?",
+     opts:["Muy enojado; no volverá","Asustado; se quedará en casa","Un poco cansado pero contento; vuelve mañana"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"a little tired, but it was a good day\"</em> y <em>\"Tomorrow, I am coming back.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"a little tired, but it was a good day\"</em> y <em>\"Tomorrow, I am coming back.\"</em>"},
+
+  ],
+  s2:[
+    {lvl:"easy", num:1,
+     audio:"I am in my room. It is my favorite place.",
+     enTxt:"I am in my room. It is my favorite place.",
+     esTxt:"Estoy en mi cuarto. Es mi lugar favorito.",
+     q:"¿Cuál es el lugar favorito de la niña?",
+     opts:["La escuela","Su cuarto","La cocina"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am in my room. It is my favorite place.\"</em>",
+     fno:"✗ La respuesta es \"Su cuarto\". El audio dice <em>\"I am in my room. It is my favorite place.\"</em>"},
+    {lvl:"easy", num:2,
+     audio:"My key is on the table.",
+     enTxt:"My key is on the table.",
+     esTxt:"Mi llave está sobre la mesa.",
+     q:"¿Dónde está la llave?",
+     opts:["Sobre la mesa","En la cama","En el piso"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My key is on the table.\"</em>",
+     fno:"✗ La respuesta es \"Sobre la mesa\". El audio dice <em>\"My key is on the table.\"</em>"},
+    {lvl:"easy", num:3,
+     audio:"My marker is by the window.",
+     enTxt:"My marker is by the window.",
+     esTxt:"Mi marcador está junto a la ventana.",
+     q:"¿Dónde está el marcador?",
+     opts:["Sobre la cama","En el piso","Junto a la ventana"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My marker is by the window.\"</em>",
+     fno:"✗ La respuesta es \"Junto a la ventana\". El audio dice <em>\"My marker is by the window.\"</em>"},
+    {lvl:"easy", num:4,
+     audio:"I am using green paint.",
+     enTxt:"I am using green paint.",
+     esTxt:"Estoy usando pintura verde.",
+     q:"¿De qué color es la pintura?",
+     opts:["Roja","Verde","Azul"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am using green paint.\"</em>",
+     fno:"✗ La respuesta es \"Verde\". El audio dice <em>\"I am using green paint.\"</em>"},
+    {lvl:"medium", num:5,
+     audio:"My key is on the table. My book is on the bed. My game is on the floor.",
+     enTxt:"My key is on the table. My book is on the bed. My game is on the floor.",
+     esTxt:"Mi llave está sobre la mesa. Mi libro está sobre la cama. Mi juego está en el piso.",
+     q:"¿Dónde están el libro y el juego?",
+     opts:["El libro en la mesa; el juego en la cama","Los dos junto a la ventana","El libro en la cama; el juego en el piso"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My book is on the bed. My game is on the floor.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"book … on the bed\"</em> y <em>\"game … on the floor.\"</em>"},
+    {lvl:"medium", num:6,
+     audio:"Right now, I am painting a picture. The paint is on my hands. It is a little messy.",
+     enTxt:"Right now, I am painting a picture. The paint is on my hands. It is a little messy.",
+     esTxt:"Ahora mismo, estoy pintando un cuadro. La pintura está en mis manos. Está un poco sucio.",
+     q:"¿Qué hace la niña y cómo están sus manos?",
+     opts:["Pinta un cuadro; tiene pintura en las manos","Lee un libro; tiene las manos limpias","Escribe; tiene las manos vacías"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am painting a picture. The paint is on my hands.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"painting a picture\"</em> y <em>\"The paint is on my hands.\"</em>"},
+    {lvl:"medium", num:7,
+     audio:"Later, I am writing an email to my friend. I am telling her about my day.",
+     enTxt:"Later, I am writing an email to my friend. I am telling her about my day.",
+     esTxt:"Más tarde, escribo un correo a mi amiga. Le cuento sobre mi día.",
+     q:"¿A quién le escribe y sobre qué?",
+     opts:["A su profesora; sobre la tarea","A su amiga; sobre su día","A su mamá; sobre la comida"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"an email to my friend. I am telling her about my day.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"email to my friend\"</em> y <em>\"about my day.\"</em>"},
+    {lvl:"hard", num:8,
+     audio:"At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.",
+     enTxt:"At night, I put my things away. My key goes by the door. My book goes on the shelf. Then I rest. It is a good day at home.",
+     esTxt:"Por la noche, guardo mis cosas. Mi llave va junto a la puerta. Mi libro va en el estante. Luego descanso. Es un buen día en casa.",
+     q:"Por la noche, ¿dónde van la llave y el libro?",
+     opts:["La llave en la cama; el libro en el piso","Los dos sobre la mesa","La llave junto a la puerta; el libro en el estante"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My key goes by the door. My book goes on the shelf.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"key … by the door\"</em> y <em>\"book … on the shelf.\"</em>"},
+    {lvl:"hard", num:9,
+     audio:"Later, I am writing an email to my friend. She is far away. I miss her. I hope she writes back.",
+     enTxt:"Later, I am writing an email to my friend. She is far away. I miss her. I hope she writes back.",
+     esTxt:"Más tarde, escribo un correo a mi amiga. Ella está lejos. La extraño. Espero que me responda.",
+     q:"¿Por qué le escribe a su amiga y qué espera?",
+     opts:["Porque está lejos y la extraña; espera que le responda","Porque vive al lado; espera verla hoy","Porque está enojada; espera no verla"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"She is far away. I miss her. I hope she writes back.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"She is far away. I miss her\"</em> y <em>\"I hope she writes back.\"</em>"},
+    {lvl:"hard", num:10,
+     audio:"I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.",
+     enTxt:"I am at home now. My house is small but warm. I am in my room. It is my favorite place. I feel happy here.",
+     esTxt:"Estoy en casa ahora. Mi casa es pequeña pero cálida. Estoy en mi cuarto. Es mi lugar favorito. Me siento feliz aquí.",
+     q:"¿Cómo es la casa y cómo se siente la niña en su cuarto?",
+     opts:["Pequeña pero cálida; se siente feliz","Grande y fría; se siente triste","Vieja y oscura; se siente sola"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My house is small but warm\"</em> y <em>\"I feel happy here.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"small but warm\"</em> y <em>\"I feel happy here.\"</em>"},
+
+  ],
+  s3:[
+    {lvl:"easy", num:1,
+     audio:"My group of friends is in the art room.",
+     enTxt:"My group of friends is in the art room.",
+     esTxt:"Mi grupo de amigos está en el salón de arte.",
+     q:"¿Dónde está el grupo de amigos?",
+     opts:["En la cocina","En el patio","En el salón de arte"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My group of friends is in the art room.\"</em>",
+     fno:"✗ La respuesta es \"En el salón de arte\". El audio dice <em>\"My group of friends is in the art room.\"</em>"},
+    {lvl:"easy", num:2,
+     audio:"Ana is painting a big face.",
+     enTxt:"Ana is painting a big face.",
+     esTxt:"Ana está pintando una cara grande.",
+     q:"¿Qué está pintando Ana?",
+     opts:["Una casa","Una cara grande","Un árbol"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"Ana is painting a big face.\"</em>",
+     fno:"✗ La respuesta es \"Una cara grande\". El audio dice <em>\"Ana is painting a big face.\"</em>"},
+    {lvl:"easy", num:3,
+     audio:"Tom is drawing with a marker.",
+     enTxt:"Tom is drawing with a marker.",
+     esTxt:"Tom está dibujando con un marcador.",
+     q:"¿Con qué dibuja Tom?",
+     opts:["Con un marcador","Con pintura","Con un lápiz"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"Tom is drawing with a marker.\"</em>",
+     fno:"✗ La respuesta es \"Con un marcador\". El audio dice <em>\"Tom is drawing with a marker.\"</em>"},
+    {lvl:"easy", num:4,
+     audio:"I am reading my book.",
+     enTxt:"I am reading my book.",
+     esTxt:"Estoy leyendo mi libro.",
+     q:"¿Qué hace el narrador hoy?",
+     opts:["Está pintando","Está leyendo su libro","Está durmiendo"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am reading my book.\"</em>",
+     fno:"✗ La respuesta es \"Está leyendo su libro\". El audio dice <em>\"I am reading my book.\"</em>"},
+    {lvl:"medium", num:5,
+     audio:"Ana is painting a big face. Tom is drawing with a marker. He is making a game.",
+     enTxt:"Ana is painting a big face. Tom is drawing with a marker. He is making a game.",
+     esTxt:"Ana está pintando una cara grande. Tom está dibujando con un marcador. Está haciendo un juego.",
+     q:"¿Qué hacen Ana y Tom?",
+     opts:["Ana pinta una cara; Tom hace un juego","Ana lee; Tom pinta","Ana duerme; Tom canta"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"Ana is painting a big face\"</em> y <em>\"Tom … He is making a game.\"</em>",
+     fno:"✗ La respuesta combina dos datos: Ana pinta una cara y Tom hace un juego. <em>\"painting a big face … making a game.\"</em>"},
+    {lvl:"medium", num:6,
+     audio:"I am not painting today. I am reading my book. I am learning new words.",
+     enTxt:"I am not painting today. I am reading my book. I am learning new words.",
+     esTxt:"Hoy no estoy pintando. Estoy leyendo mi libro. Estoy aprendiendo palabras nuevas.",
+     q:"¿Qué NO hace el narrador y qué SÍ hace?",
+     opts:["No lee; está pintando","No canta; está durmiendo","No pinta; está leyendo y aprendiendo palabras"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am not painting today. I am reading my book.\"</em>",
+     fno:"✗ La respuesta es \"No pinta; está leyendo\". El audio dice <em>\"I am not painting today. I am reading my book.\"</em>"},
+    {lvl:"medium", num:7,
+     audio:"The teacher is walking around the room. She is asking us questions. We are answering her.",
+     enTxt:"The teacher is walking around the room. She is asking us questions. We are answering her.",
+     esTxt:"La profesora está caminando por el salón. Nos está haciendo preguntas. Le estamos respondiendo.",
+     q:"¿Qué hace la profesora y qué hacen los estudiantes?",
+     opts:["Ella duerme; ellos juegan","Ella hace preguntas; ellos responden","Ella pinta; ellos miran"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"She is asking us questions. We are answering her.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"asking us questions\"</em> y <em>\"We are answering her.\"</em>"},
+    {lvl:"hard", num:8,
+     audio:"It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.",
+     enTxt:"It is afternoon at school. My group of friends is in the art room. We are not sitting still. We are all busy. Everyone is making something.",
+     esTxt:"Es la tarde en la escuela. Mi grupo de amigos está en el salón de arte. No estamos quietos. Todos estamos ocupados. Cada uno está haciendo algo.",
+     q:"¿Cómo está el grupo en el salón de arte?",
+     opts:["No están quietos; todos hacen algo","Están sentados y aburridos","Están dormidos"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"We are not sitting still\"</em> y <em>\"Everyone is making something.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"not sitting still\"</em> y <em>\"Everyone is making something.\"</em>"},
+    {lvl:"hard", num:9,
+     audio:"I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.",
+     enTxt:"I am not painting today. I am reading my book. It is a good story. I am learning new words. The book is about a school.",
+     esTxt:"Hoy no estoy pintando. Estoy leyendo mi libro. Es una buena historia. Estoy aprendiendo palabras nuevas. El libro trata de una escuela.",
+     q:"Mientras lee, ¿qué aprende el narrador y de qué trata el libro?",
+     opts:["No aprende nada; el libro es de animales","Aprende a pintar; el libro es de arte","Aprende palabras nuevas; el libro trata de una escuela"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I am learning new words. The book is about a school.\"</em>",
+     fno:"✗ La respuesta combina dos datos del final: <em>\"learning new words\"</em> y <em>\"The book is about a school.\"</em>"},
+    {lvl:"hard", num:10,
+     audio:"At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.",
+     enTxt:"At the end, we clean the room. We put the paint and the markers away. Then we go home. We are tired but happy. It was a busy day.",
+     esTxt:"Al final, limpiamos el salón. Guardamos la pintura y los marcadores. Luego vamos a casa. Estamos cansados pero felices. Fue un día ocupado.",
+     q:"Al final, ¿qué guardan y cómo se sienten?",
+     opts:["Guardan los libros; muy enojados","Guardan la pintura y los marcadores; cansados pero felices","No guardan nada; aburridos"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"the paint and the markers away\"</em> y <em>\"tired but happy.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"the paint and the markers away\"</em> y <em>\"tired but happy.\"</em>"},
+
+  ],
+  s4:[
+    {lvl:"easy", num:1,
+     audio:"My sister has a question. She asks me about school.",
+     enTxt:"My sister has a question. She asks me about school.",
+     esTxt:"Mi hermana tiene una pregunta. Me pregunta sobre la escuela.",
+     q:"¿Quién tiene una pregunta?",
+     opts:["Su hermana","Su amigo","La profesora"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My sister has a question.\"</em>",
+     fno:"✗ La respuesta es \"Su hermana\". El audio dice <em>\"My sister has a question.\"</em>"},
+    {lvl:"easy", num:2,
+     audio:"School is part of our education.",
+     enTxt:"School is part of our education.",
+     esTxt:"La escuela es parte de nuestra educación.",
+     q:"Según el audio, ¿de qué es parte la escuela?",
+     opts:["De un juego","De nuestra educación","De la casa"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"School is part of our education.\"</em>",
+     fno:"✗ La respuesta es \"De nuestra educación\". El audio dice <em>\"School is part of our education.\"</em>"},
+    {lvl:"easy", num:3,
+     audio:"One day, you will have a job.",
+     enTxt:"One day, you will have a job.",
+     esTxt:"Un día, tendrás un trabajo.",
+     q:"¿Qué tendrás un día, según Pablo?",
+     opts:["Una casa","Una pregunta","Un trabajo"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"One day, you will have a job.\"</em>",
+     fno:"✗ La respuesta es \"Un trabajo\". El audio dice <em>\"One day, you will have a job.\"</em>"},
+    {lvl:"easy", num:4,
+     audio:"Now she is smiling. She likes the answer.",
+     enTxt:"Now she is smiling. She likes the answer.",
+     esTxt:"Ahora está sonriendo. Le gusta la respuesta.",
+     q:"¿Cómo reacciona la hermana?",
+     opts:["Está sonriendo; le gusta la respuesta","Está llorando","Está enojada"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"Now she is smiling. She likes the answer.\"</em>",
+     fno:"✗ La respuesta es \"Está sonriendo; le gusta la respuesta\". El audio dice <em>\"she is smiling. She likes the answer.\"</em>"},
+    {lvl:"medium", num:5,
+     audio:"I think about the reason. We read books. We learn many things every day.",
+     enTxt:"I think about the reason. We read books. We learn many things every day.",
+     esTxt:"Pienso en la razón. Leemos libros. Aprendemos muchas cosas cada día.",
+     q:"¿Qué hacen en la escuela cada día?",
+     opts:["Duermen y comen","Leen libros y aprenden muchas cosas","Solo juegan"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"We read books. We learn many things every day.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"We read books\"</em> y <em>\"learn many things every day.\"</em>"},
+    {lvl:"medium", num:6,
+     audio:"My sister is listening to me. She is thinking about my words.",
+     enTxt:"My sister is listening to me. She is thinking about my words.",
+     esTxt:"Mi hermana me está escuchando. Está pensando en mis palabras.",
+     q:"¿Qué hace la hermana mientras Pablo habla?",
+     opts:["Está jugando","Está saliendo","Está escuchando y pensando en sus palabras"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"My sister is listening to me. She is thinking about my words.\"</em>",
+     fno:"✗ La respuesta es \"Está escuchando y pensando\". El audio dice <em>\"is listening to me. She is thinking about my words.\"</em>"},
+    {lvl:"medium", num:7,
+     audio:"\"At school, you learn for your future,\" I say. \"Your education will help you. It opens many doors.\"",
+     enTxt:"\"At school, you learn for your future,\" I say. \"Your education will help you. It opens many doors.\"",
+     esTxt:"\"En la escuela, aprendes para tu futuro\", digo. \"Tu educación te ayudará. Te abre muchas puertas.\"",
+     q:"Según Pablo, ¿para qué aprendes y qué hace tu educación?",
+     opts:["Aprendes para tu futuro; tu educación te abre muchas puertas","Aprendes para hoy; tu casa te ayuda","Aprendes para jugar; tu amigo te ayuda"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"you learn for your future\"</em> y <em>\"Your education will help you. It opens many doors.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"learn for your future\"</em> y <em>\"It opens many doors.\"</em>"},
+    {lvl:"hard", num:8,
+     audio:"My sister has a question. She asks me about school. \"Why do we go to school?\" she says. It is a good question. I want to help her.",
+     enTxt:"My sister has a question. She asks me about school. \"Why do we go to school?\" she says. It is a good question. I want to help her.",
+     esTxt:"Mi hermana tiene una pregunta. Me pregunta sobre la escuela. \"¿Por qué vamos a la escuela?\", dice. Es una buena pregunta. Quiero ayudarla.",
+     q:"¿Cuál es la pregunta de la hermana y qué quiere hacer Pablo?",
+     opts:["¿Dónde está la escuela?; quiere irse","¿Cuándo comemos?; quiere jugar","¿Por qué vamos a la escuela?; quiere ayudarla"], correct:2,
+     fok:"✔ ¡Correcto! El audio dice <em>\"Why do we go to school?\"</em> y <em>\"I want to help her.\"</em>",
+     fno:"✗ La respuesta combina dos datos: la pregunta <em>\"Why do we go to school?\"</em> y <em>\"I want to help her.\"</em>"},
+    {lvl:"hard", num:9,
+     audio:"I think about the reason. School is part of our education. We learn many things every day. Each day, we know more.",
+     enTxt:"I think about the reason. School is part of our education. We learn many things every day. Each day, we know more.",
+     esTxt:"Pienso en la razón. La escuela es parte de nuestra educación. Aprendemos muchas cosas cada día. Cada día sabemos más.",
+     q:"Según Pablo, ¿qué pasa cada día en la escuela?",
+     opts:["Cada día saben menos","Cada día aprenden y saben más","Cada día olvidan todo"], correct:1,
+     fok:"✔ ¡Correcto! El audio dice <em>\"We learn many things every day. Each day, we know more.\"</em>",
+     fno:"✗ La respuesta es \"Cada día aprenden y saben más\". El audio dice <em>\"Each day, we know more.\"</em>"},
+    {lvl:"hard", num:10,
+     audio:"\"School is good,\" she says. \"I like to learn.\" That is the best reason of all. I am proud of her. We hug and go home.",
+     enTxt:"\"School is good,\" she says. \"I like to learn.\" That is the best reason of all. I am proud of her. We hug and go home.",
+     esTxt:"\"La escuela es buena\", dice. \"Me gusta aprender.\" Esa es la mejor razón de todas. Estoy orgulloso de ella. Nos abrazamos y vamos a casa.",
+     q:"¿Qué dice la hermana y qué hacen al final?",
+     opts:["Dice \"me gusta aprender\"; se abrazan y van a casa","Dice que no le gusta; se enojan","Dice que es difícil; se quedan"], correct:0,
+     fok:"✔ ¡Correcto! El audio dice <em>\"I like to learn\"</em> y <em>\"We hug and go home.\"</em>",
+     fno:"✗ La respuesta combina dos datos: <em>\"I like to learn\"</em> y <em>\"We hug and go home.\"</em>"},
+
+  ],
+};
+// ══════════════════════════════════════════════════
+//  POINTS CONFIG
+// ══════════════════════════════════════════════════
+const PTS = {easy:10, medium:20, hard:30};
+
+// ══════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════
+window._spd = {};
+const state = {};
+['s1','s2','s3','s4'].forEach(s => {
+  state[s] = {ans:0,cor:0,inc:0,easy:0,med:0,hard:0,pts:0,done:{}};
+});
+let totalPts = 0;
+
+// ══════════════════════════════════════════════════
+//  ACCENT
+// ══════════════════════════════════════════════════
+let currentAccent = 'us'; // 'us' | 'gb'
+let usVoice = null, gbVoice = null, voicesReady = false;
+
+function loadVoices() {
+  const v = speechSynthesis.getVoices();
+  if (!v.length) return;
+  voicesReady = true;
+  // US voice
+  const usPrefs = [
+    x => x.lang === 'en-US' && /samantha|allison|ava|nicky|aaron/i.test(x.name),
+    x => x.lang === 'en-US' && /google us/i.test(x.name),
+    x => x.lang === 'en-US' && /microsoft.*online/i.test(x.name),
+    x => x.lang === 'en-US',
+    x => x.lang.startsWith('en') && /us|america/i.test(x.name),
+  ];
+  for (const p of usPrefs) { const m = v.find(p); if (m) { usVoice = m; break; } }
+  // GB voice
+  const gbPrefs = [
+    x => x.lang === 'en-GB' && /google uk/i.test(x.name),
+    x => x.lang === 'en-GB' && /microsoft.*online/i.test(x.name),
+    x => x.lang === 'en-GB' && /daniel|hazel|serena/i.test(x.name),
+    x => x.lang === 'en-GB',
+    x => x.lang.startsWith('en') && /uk|brit|english/i.test(x.name),
+  ];
+  for (const p of gbPrefs) { const m = v.find(p); if (m) { gbVoice = m; break; } }
+}
+speechSynthesis.getVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+setTimeout(loadVoices, 100); setTimeout(loadVoices, 600); setTimeout(loadVoices, 1500);
+
+function setAccent(a) {
+  currentAccent = a;
+  document.getElementById('acc-us').classList.toggle('active', a === 'us');
+  document.getElementById('acc-gb').classList.toggle('active', a === 'gb');
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; currentBtn = null; }
+    if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; pauseBtn = null; }
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  FISHER-YATES
+// ══════════════════════════════════════════════════
+function shuffleIdx(len) {
+  const idx = Array.from({length: len}, (_, i) => i);
+  for (let i = idx.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [idx[i], idx[j]] = [idx[j], idx[i]];
+  }
+  return idx;
+}
+
+// ══════════════════════════════════════════════════
+//  BUILD ALL CARDS
+// ══════════════════════════════════════════════════
+function buildAll() {
+  Object.entries(DATA).forEach(([story, qs]) => {
+    const containers = {easy: story+'-cards', medium: story+'-cards-m', hard: story+'-cards-h'};
+    qs.forEach((q, qi) => {
+      const id = story + 'q' + (qi + 1);
+      const card = document.createElement('div');
+      card.className = 'q-card ' + q.lvl;
+      card.id = story + '-q' + (qi + 1);
+      card.innerHTML = buildCardHTML(q, id, story, qi);
+      document.getElementById(containers[q.lvl]).appendChild(card);
+      renderOpts(story, qi, q, id);
+      // init speed
+      window._spd[id] = 0.82;
+    });
+  });
+}
+
+function buildCardHTML(q, id, story, qi) {
+  const lvlLabel = {easy:'Fácil', medium:'Intermedio', hard:'Difícil'}[q.lvl];
+  const pts = PTS[q.lvl];
+  return `
+  <div class="q-audio">
+    <div class="q-num-row">
+      <div class="q-num ${q.lvl}">${q.num}</div>
+      <div class="q-label">${lvlLabel} · Escucha y responde</div>
+      <span class="pts-chip ${q.lvl}">+${pts} pts</span>
+    </div>
+    <div class="audio-controls">
+      <button class="play-main" onclick="playAudio(this,'${q.audio.replace(/'/g,"\\'").replace(/"/g,'&quot;')}','${id}')">▶ Escuchar</button>
+      <button class="pause-btn" id="${id}-pause" onclick="pauseAudio(this,'${id}')">⏸ Pausar</button>
+    </div>
+    <div class="speed-wrap">
+      <label>🎚️ Velocidad:</label>
+      <input type="range" min="0.4" max="1.1" step="0.05" value="0.82"
+        oninput="updateSpeed(this,'${id}')">
+      <span class="sv" id="${id}-sv">0.82×</span>
+      <div class="speed-ticks">
+        <span class="speed-tick" onclick="setSpeedTick('${id}',0.5)">0.5×</span>
+        <span class="speed-tick on" onclick="setSpeedTick('${id}',0.82)">0.8×</span>
+        <span class="speed-tick" onclick="setSpeedTick('${id}',1.0)">1×</span>
+      </div>
+    </div>
+    <div class="text-toggles">
+      <button class="text-toggle" onclick="toggleTxt(this,'${id}-en')">🔤 Ver en inglés</button>
+      <button class="text-toggle" onclick="toggleTxt(this,'${id}-es')">🇪🇸 Ver en español</button>
+    </div>
+    <div class="audio-text-box" id="${id}-en">${q.enTxt}</div>
+    <div class="audio-text-box es" id="${id}-es">${q.esTxt}</div>
+  </div>
+  <div class="q-body">
+    <button class="show-q-btn" onclick="toggleQ(this,'${id}-qa')">❓ Mostrar Pregunta</button>
+    <div class="q-question-area" id="${id}-qa">
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="${id}-opts"></div>
+      <div class="q-feedback" id="${id}-fb"></div>
+    </div>
+  </div>`;
+}
+
+function renderOpts(story, qi, q, id) {
+  const container = document.getElementById(id + '-opts');
+  if (!container) return;
+  container.innerHTML = '';
+  const letters = ['A', 'B', 'C'];
+  const sIdx = shuffleIdx(q.opts.length);
+  sIdx.forEach((origIdx, pos) => {
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.innerHTML = `<span class="opt-letter">${letters[pos]}</span><span class="opt-text">${q.opts[origIdx]}</span>`;
+    const isCorrect = (origIdx === q.correct);
+    div.onclick = () => selectAnswer(story, qi, div, isCorrect, q, id);
+    container.appendChild(div);
+  });
+}
+
+// ══════════════════════════════════════════════════
+//  SELECT ANSWER
+// ══════════════════════════════════════════════════
+function selectAnswer(story, qi, clickedDiv, isCorrect, q, id) {
+  const s = state[story];
+  if (s.done[qi]) return;
+  s.done[qi] = true;
+  const container = clickedDiv.parentElement;
+  container.querySelectorAll('.opt').forEach(o => {
+    o.classList.add('locked');
+    if (o.querySelector('.opt-text').textContent === q.opts[q.correct]) o.classList.add('show-ans');
+  });
+  const card = document.getElementById(story + '-q' + (qi + 1));
+  const pts = PTS[q.lvl];
+  if (isCorrect) {
+    clickedDiv.classList.add('correct');
+    card.classList.add('answered-correct');
+    s.cor++;
+    s.pts += pts;
+    totalPts += pts;
+    if (qi < 4) s.easy++;
+    else if (qi < 7) s.med++;
+    else s.hard++;
+    spawnXP(clickedDiv, '+' + pts + ' ⭐');
+    spawnStars(clickedDiv);
+  } else {
+    clickedDiv.classList.add('wrong');
+    card.classList.add('answered-wrong');
+    s.inc++;
+  }
+  s.ans++;
+  const fb = document.getElementById(id + '-fb');
+  const ptsBadge = isCorrect ? ` <span class="pts-earned">+${pts} pts</span>` : '';
+  fb.innerHTML = (isCorrect ? q.fok : q.fno) + ptsBadge;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+  updateScore(story);
+  updateTotalPts();
+  if (s.ans === 10) setTimeout(() => showResults(story), 900);
+}
+
+// ══════════════════════════════════════════════════
+//  XP FLOAT ANIMATION
+// ══════════════════════════════════════════════════
+function spawnXP(el, text) {
+  const rect = el.getBoundingClientRect();
+  const div = document.createElement('div');
+  div.className = 'xp-float';
+  div.textContent = text;
+  div.style.cssText = `left:${rect.left + rect.width/2}px;top:${rect.top + window.scrollY - 10}px;color:#F9A825;font-family:'Fredoka',sans-serif;`;
+  document.body.appendChild(div);
+  setTimeout(() => div.remove(), 1200);
+}
+
+function spawnStars(el) {
+  const rect = el.getBoundingClientRect();
+  const emojis = ['⭐','✨','🌟'];
+  emojis.forEach((e, i) => {
+    const div = document.createElement('div');
+    div.className = 'star-pop';
+    div.textContent = e;
+    div.style.cssText = `left:${rect.left + rect.width/2 + (i-1)*30}px;top:${rect.top + window.scrollY - 20}px;font-size:1.4rem;`;
+    document.body.appendChild(div);
+    setTimeout(() => div.remove(), 800);
+  });
+}
+
+// ══════════════════════════════════════════════════
+//  SCORE / RESULTS
+// ══════════════════════════════════════════════════
+function updateScore(s) {
+  const st = state[s];
+  document.getElementById(s+'-ans').textContent = st.ans + '/10';
+  document.getElementById(s+'-cor').textContent = st.cor;
+  document.getElementById(s+'-inc').textContent = st.inc;
+  document.getElementById(s+'-pts').textContent = st.pts;
+}
+
+function updateTotalPts() {
+  document.getElementById('total-pts').textContent = totalPts;
+  const maxPts = 800;
+  const pct = (totalPts / maxPts) * 100;
+  let rank = '—';
+  if (totalPts >= 720) rank = '🏆 Maestro';
+  else if (totalPts >= 560) rank = '🥇 Experto';
+  else if (totalPts >= 400) rank = '🥈 Intermedio';
+  else if (totalPts >= 200) rank = '🥉 Aprendiz';
+  else if (totalPts > 0) rank = '📚 Inicio';
+  document.getElementById('rank-label').textContent = rank;
+}
+
+function showResults(s) {
+  const st = state[s];
+  const pct = (st.cor / 10) * 100;
+  let trophy = '📚', title = 'Sigue practicando', msg = 'Escucha los audios de nuevo. ¡Tú puedes! 💪', gif = '🙏';
+  if (pct >= 90) { trophy = '🏆'; title = '¡Excelente!'; msg = '¡Comprendes muy bien los audios! ¡Sigue así!'; gif = '🎉🎊🌟'; }
+  else if (pct >= 70) { trophy = '🥇'; title = '¡Muy bien!'; msg = 'Buen progreso. ¡Sigue practicando!'; gif = '🌟⭐✨'; }
+  else if (pct >= 50) { trophy = '🥈'; title = '¡Buen intento!'; msg = '¡Vas por buen camino! Inténtalo otra vez.'; gif = '💪🎯'; }
+  document.getElementById(s+'-trophy').textContent = trophy;
+  document.getElementById(s+'-rtitle').textContent = title;
+  document.getElementById(s+'-rmsg').textContent = msg;
+  document.getElementById(s+'-gif').textContent = gif;
+  document.getElementById(s+'-score').textContent = st.cor + '/10';
+  document.getElementById(s+'-bpts').textContent = '⭐ ' + st.pts + ' puntos';
+  document.getElementById(s+'-easy').textContent = st.easy + '/4';
+  document.getElementById(s+'-med').textContent = st.med + '/3';
+  document.getElementById(s+'-hard').textContent = st.hard + '/3';
+  const panel = document.getElementById(s + '-results');
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  try{if(['s1','s2','s3','s4'].every(function(k){return state[k]&&state[k].ans===10;})){window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(totalPts/800*100)}}));}}catch(e){}
+}
+
+// ══════════════════════════════════════════════════
+//  RETRY
+// ══════════════════════════════════════════════════
+function retryStory(s) {
+  const prevPts = state[s].pts;
+  totalPts -= prevPts;
+  state[s] = {ans:0, cor:0, inc:0, easy:0, med:0, hard:0, pts:0, done:{}};
+  updateScore(s);
+  updateTotalPts();
+  document.getElementById(s + '-results').classList.remove('show');
+  const panel = document.getElementById('panel-' + s);
+  panel.querySelectorAll('.q-feedback').forEach(f => { f.className = 'q-feedback'; f.innerHTML = ''; });
+  panel.querySelectorAll('.q-question-area').forEach(a => a.classList.remove('show'));
+  panel.querySelectorAll('.show-q-btn').forEach(b => { b.classList.remove('open'); b.textContent = '❓ Mostrar Pregunta'; });
+  panel.querySelectorAll('.q-card').forEach(c => { c.classList.remove('answered-correct','answered-wrong'); });
+  DATA[s].forEach((q, qi) => {
+    const id = s + 'q' + (qi + 1);
+    renderOpts(s, qi, q, id);
+  });
+}
+
+// ══════════════════════════════════════════════════
+//  STORY TABS
+// ══════════════════════════════════════════════════
+function showStory(id) {
+  document.querySelectorAll('.story-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.story-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  const map = {s1:0, s2:1, s3:2, s4:3};
+  document.querySelectorAll('.story-tab')[map[id]].classList.add('active');
+  speechSynthesis.cancel();
+  if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; currentBtn = null; }
+  if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; pauseBtn = null; }
+}
+
+// ══════════════════════════════════════════════════
+//  UI HELPERS
+// ══════════════════════════════════════════════════
+function toggleTxt(btn, id) {
+  const box = document.getElementById(id);
+  box.classList.toggle('show');
+  btn.classList.toggle('on');
+  const isEn = id.endsWith('-en');
+  btn.textContent = box.classList.contains('show')
+    ? (isEn ? '🔤 Ocultar inglés' : '🇪🇸 Ocultar español')
+    : (isEn ? '🔤 Ver en inglés'  : '🇪🇸 Ver en español');
+}
+function toggleQ(btn, id) {
+  const a = document.getElementById(id);
+  a.classList.toggle('show');
+  btn.classList.toggle('open');
+  btn.textContent = a.classList.contains('show') ? '❓ Ocultar Pregunta' : '❓ Mostrar Pregunta';
+}
+function updateSpeed(input, id) {
+  const val = parseFloat(input.value);
+  window._spd[id] = val;
+  document.getElementById(id + '-sv').textContent = val.toFixed(2) + '×';
+  // update speed tick highlights
+  const wrap = input.closest('.speed-wrap');
+  wrap.querySelectorAll('.speed-tick').forEach(t => {
+    t.classList.toggle('on', Math.abs(parseFloat(t.textContent) - val) < 0.05);
+  });
+}
+function setSpeedTick(id, val) {
+  const card = document.getElementById(id.replace(/q\d+/,'') + '-q' + id.match(/q(\d+)/)[1]);
+  if (!card) return;
+  const input = card.querySelector('input[type=range]');
+  if (!input) return;
+  input.value = val;
+  window._spd[id] = val;
+  document.getElementById(id + '-sv').textContent = val.toFixed(2) + '×';
+  card.querySelectorAll('.speed-tick').forEach(t => {
+    t.classList.toggle('on', Math.abs(parseFloat(t.textContent) - val) < 0.05);
+  });
+}
+
+// ══════════════════════════════════════════════════
+//  SPEECH SYNTHESIS
+// ══════════════════════════════════════════════════
+let currentBtn = null, pauseBtn = null;
+let currentUtterance = null;
+let isPaused = false;
+
+function playAudio(btn, text, qid) {
+  // If this button is already playing → stop
+  if (currentBtn === btn && speechSynthesis.speaking && !isPaused) {
+    speechSynthesis.cancel();
+    btn.classList.remove('playing');
+    btn.textContent = '▶ Escuchar';
+    if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; }
+    currentBtn = null; pauseBtn = null; isPaused = false;
+    return;
+  }
+  // Cancel any current audio
+  if (speechSynthesis.speaking || isPaused) {
+    speechSynthesis.cancel();
+    isPaused = false;
+    if (currentBtn && currentBtn !== btn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; }
+    if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; pauseBtn = null; }
+  }
+  if (!voicesReady) loadVoices();
+  const rate = window._spd[qid] || 0.82;
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = rate; u.pitch = 1;
+  u.lang = currentAccent === 'gb' ? 'en-GB' : 'en-US';
+  const voice = currentAccent === 'gb' ? gbVoice : usVoice;
+  if (voice) u.voice = voice;
+  currentBtn = btn;
+  currentUtterance = u;
+  btn.classList.add('playing'); btn.textContent = '⏹ Detener';
+  // Link pause button
+  const card = btn.closest('.q-card') || btn.closest('.q-audio');
+  const pBtn = card ? card.querySelector('.pause-btn') : null;
+  pauseBtn = pBtn;
+  u.onend = () => {
+    btn.classList.remove('playing'); btn.textContent = '▶ Escuchar';
+    if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; }
+    if (currentBtn === btn) currentBtn = null; pauseBtn = null; isPaused = false;
+  };
+  u.onerror = () => {
+    btn.classList.remove('playing'); btn.textContent = '▶ Escuchar';
+    if (pauseBtn) { pauseBtn.classList.remove('active'); pauseBtn.textContent = '⏸ Pausar'; }
+    currentBtn = null; pauseBtn = null; isPaused = false;
+  };
+  speechSynthesis.speak(u);
+}
+
+function pauseAudio(btn, qid) {
+  if (!speechSynthesis.speaking && !isPaused) return; // nothing playing
+  if (isPaused) {
+    // resume
+    speechSynthesis.resume();
+    isPaused = false;
+    btn.classList.remove('active');
+    btn.textContent = '⏸ Pausar';
+    if (currentBtn) { currentBtn.classList.add('playing'); currentBtn.textContent = '⏹ Detener'; }
+  } else {
+    // pause
+    speechSynthesis.pause();
+    isPaused = true;
+    btn.classList.add('active');
+    btn.textContent = '▶ Continuar';
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; }
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  STORY READER — SLIDER & PARAGRAPH REVEAL
+// ══════════════════════════════════════════════════
+function updateStorySlider(story, val, total) {
+  const n = parseInt(val);
+  document.getElementById('sr-'+story+'-count').textContent = n + ' / ' + total;
+  const container = document.getElementById('sr-'+story+'-paras');
+  container.querySelectorAll('.sp-item').forEach((item, idx) => {
+    if (idx < n) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+  // update "ver completa" button state
+  const btn = document.getElementById('sr-'+story+'-showall');
+  if (btn) btn.classList.toggle('all-visible', n === total);
+}
+
+function revealAllParas(story, total) {
+  const range = document.getElementById('sr-'+story+'-range');
+  if (range) { range.value = total; updateStorySlider(story, total, total); }
+}
+
+function hideAllParas(story) {
+  const range = document.getElementById('sr-'+story+'-range');
+  const total = parseInt(range ? range.max : 8);
+  if (range) { range.value = 1; updateStorySlider(story, 1, total); }
+  // cancel any playing audio
+  speechSynthesis.cancel();
+  if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; currentBtn = null; }
+  document.querySelectorAll('.sp-text.playing-para').forEach(el => el.classList.remove('playing-para'));
+  document.querySelectorAll('.sp-btn.playing').forEach(el => el.classList.remove('playing'));
+}
+
+function toggleSpEs(btn) {
+  const item = btn.closest('.sp-item');
+  const es = item.querySelector('.sp-es');
+  if (!es) return;
+  es.classList.toggle('show');
+  btn.textContent = es.classList.contains('show') ? '🇪🇸 ocultar' : '🇪🇸 traducción';
+}
+
+let currentParaEl = null, currentParaBtn = null;
+
+function speakPara(el, text, story, idx) {
+  // toggle
+  if (currentParaEl === el && speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    el.classList.remove('playing-para');
+    currentParaEl = null;
+    return;
+  }
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; currentBtn = null; }
+    if (currentParaBtn) { currentParaBtn.classList.remove('playing'); currentParaBtn = null; }
+    if (currentParaEl) { currentParaEl.classList.remove('playing-para'); }
+  }
+  if (!voicesReady) loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.85; u.pitch = 1;
+  u.lang = currentAccent === 'gb' ? 'en-GB' : 'en-US';
+  const voice = currentAccent === 'gb' ? gbVoice : usVoice;
+  if (voice) u.voice = voice;
+  currentParaEl = el;
+  el.classList.add('playing-para');
+  u.onend = () => { el.classList.remove('playing-para'); if (currentParaEl === el) currentParaEl = null; };
+  u.onerror = () => { el.classList.remove('playing-para'); currentParaEl = null; };
+  speechSynthesis.speak(u);
+}
+
+function speakParaBtn(btn, text, accent) {
+  const accentToUse = accent || (currentAccent === 'gb' ? 'gb' : 'us');
+  if (currentParaBtn === btn && speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    btn.classList.remove('playing');
+    currentParaBtn = null;
+    return;
+  }
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.textContent = '▶ Escuchar'; currentBtn = null; }
+    if (currentParaBtn) { currentParaBtn.classList.remove('playing'); }
+    if (currentParaEl) { currentParaEl.classList.remove('playing-para'); currentParaEl = null; }
+  }
+  if (!voicesReady) loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.85; u.pitch = 1;
+  u.lang = accentToUse === 'gb' ? 'en-GB' : 'en-US';
+  const voice = accentToUse === 'gb' ? gbVoice : usVoice;
+  if (voice) u.voice = voice;
+  currentParaBtn = btn;
+  btn.classList.add('playing');
+  u.onend = () => { btn.classList.remove('playing'); if (currentParaBtn === btn) currentParaBtn = null; };
+  u.onerror = () => { btn.classList.remove('playing'); currentParaBtn = null; };
+  speechSynthesis.speak(u);
+}
+
+// ══════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════
+buildAll();
+</script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

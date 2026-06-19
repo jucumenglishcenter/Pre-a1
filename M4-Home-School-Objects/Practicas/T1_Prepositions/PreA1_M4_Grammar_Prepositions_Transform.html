@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform - Pre-A1 M4 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --orange-light: #FFEDD5; --orange-dark: #C2410C;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+}
+
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#FEF3C7; color:var(--text-medium); margin-left:auto; }
+        /* toggle buttons */
+        .toggle-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+        .toggle-btn { border:2px solid var(--primary-light); background:#FFFBEB; color:var(--text-medium); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .toggle-btn:hover { background:var(--primary-light); }
+        .toggle-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; display:none; }
+        .hint-box.show { display:block; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.88rem; margin:0.5rem 0 1rem; padding:0.6rem 0.9rem; background:#FFFBEB; border-radius:10px; display:none; }
+        .translation.show { display:block; }
+        /* feedback (shared) */
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border:1px solid #FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .fb-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.8rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        .transform-visual { background:var(--bg-gradient-start); border:1px solid var(--primary-light); border-radius:14px; padding:1rem; margin-bottom:1rem; }
+        .transform-box { padding:0.7rem 0.9rem; border-radius:10px; }
+        .transform-box.base { background:var(--orange-light); border:1px solid #FED7AA; margin-bottom:0.5rem; }
+        .transform-box.goal { background:#F0F9FF; border:1px solid #BAE6FD; }
+        .transform-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; display:block; margin-bottom:0.3rem; }
+        .transform-box.base .transform-label { color:var(--orange-dark); }
+        .transform-box.goal .transform-label { color:var(--info-dark); }
+        .transform-sentence { font-size:0.98rem; font-weight:600; color:var(--text-dark); line-height:1.5; }
+        .verb-present { color:var(--orange-dark); font-weight:800; background:#FED7AA; padding:0 3px; border-radius:3px; }
+        .transform-arrow { text-align:center; font-size:1rem; color:var(--text-light); margin:0.2rem 0; }
+        .options-container { display:flex; flex-direction:column; gap:0.65rem; margin-bottom:0.5rem; }
+        .option-btn { border:2.5px solid #E5E7EB; border-radius:13px; padding:0.85rem 1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:center; width:100%; }
+        .option-btn:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .option-btn.disabled { cursor:default; }
+        .option-btn.correct { border-color:var(--success); background:var(--success-light); }
+        .option-btn.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .option-btn.correct .option-letter { background:var(--success); color:white; }
+        .option-btn.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); line-height:1.5; font-weight:600; flex:1; }
+
+        .error-sentence { font-size:0.95rem; color:var(--error-dark); background:#FFF1F2; border-radius:8px; padding:0.5rem 0.7rem; margin-bottom:0.5rem; line-height:1.5; }
+        .good-sentence { font-size:0.97rem; color:var(--success-dark); background:#F0FDF4; border-radius:8px; padding:0.5rem 0.7rem; line-height:1.5; font-weight:600; }
+        .fb-good { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-good .fb-block-title { color:var(--success-dark); }
+        .fb-divider { text-align:center; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px; color:#94A3B8; margin:0.3rem 0 0.1rem; }
+    </style>
+</head><body>
+    <header class="header">
+        <a href="panel-prea1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔄 Transform</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 4 · Prepositions: place &amp; time</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/15</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔄</div>
+            <div>
+                <div class="instructions-title">Transforma la oración</div>
+                <div class="instructions-text">Lee el contexto y el objetivo. Elige la oración con la preposición correcta. Usa los botones para una pista o la traducción si las necesitas.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore"></div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="panel-prea1.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [
+  {
+    "base": "The book / the table (encima)",
+    "presentVerb": "encima",
+    "goal": "Lugar (contacto con una superficie)",
+    "badge": "📍 lugar",
+    "clue": "encima",
+    "clueExplain": "El objetivo pide ubicar algo sobre una superficie.",
+    "options": [
+      {
+        "text": "The book is on the table.",
+        "correct": true,
+        "pastVerb": "on"
+      },
+      {
+        "text": "The book is in the table.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro de un espacio; la mesa es una superficie."
+      },
+      {
+        "text": "The book is under the table.",
+        "correct": false,
+        "pastVerb": "under",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo; aquí el libro va encima."
+      }
+    ],
+    "correctReason": "Algo apoyado sobre una superficie usa la preposición de contacto.",
+    "baseEs": "El libro / la mesa (encima)"
+  },
+  {
+    "base": "The key / my bag (dentro)",
+    "presentVerb": "dentro",
+    "goal": "Lugar (dentro de un espacio)",
+    "badge": "📍 lugar",
+    "clue": "dentro",
+    "clueExplain": "El objetivo pide ubicar algo dentro de un espacio cerrado.",
+    "options": [
+      {
+        "text": "The key is on my bag.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica encima; la llave está adentro."
+      },
+      {
+        "text": "The key is in my bag.",
+        "correct": true,
+        "pastVerb": "in"
+      },
+      {
+        "text": "The key is near my bag.",
+        "correct": false,
+        "pastVerb": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica cercanía, no contenido."
+      }
+    ],
+    "correctReason": "Algo contenido en un espacio cerrado usa la preposición de contenido.",
+    "baseEs": "La llave / mi bolso (dentro)"
+  },
+  {
+    "base": "The game / the bed (debajo)",
+    "presentVerb": "debajo",
+    "goal": "Lugar (posición inferior)",
+    "badge": "📍 lugar",
+    "clue": "debajo",
+    "clueExplain": "El objetivo pide ubicar algo en un nivel más bajo.",
+    "options": [
+      {
+        "text": "The game is on the bed.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica encima; aquí va debajo."
+      },
+      {
+        "text": "The game is in the bed.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro; aquí va debajo."
+      },
+      {
+        "text": "The game is under the bed.",
+        "correct": true,
+        "pastVerb": "under"
+      }
+    ],
+    "correctReason": "Algo en un nivel inferior usa la preposición de posición debajo.",
+    "baseEs": "El juego / la cama (debajo)"
+  },
+  {
+    "base": "Ana / the school (cerca)",
+    "presentVerb": "cerca",
+    "goal": "Lugar (proximidad)",
+    "badge": "📍 lugar",
+    "clue": "cerca",
+    "clueExplain": "El objetivo pide indicar una distancia corta.",
+    "options": [
+      {
+        "text": "Ana lives near the school.",
+        "correct": true,
+        "pastVerb": "near"
+      },
+      {
+        "text": "Ana lives in the school.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro del edificio, no cercanía."
+      },
+      {
+        "text": "Ana lives on the school.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto encima, no cercanía."
+      }
+    ],
+    "correctReason": "Una distancia corta sin contacto usa la preposición de cercanía.",
+    "baseEs": "Ana / la escuela (cerca)"
+  },
+  {
+    "base": "We / school (mañana)",
+    "presentVerb": "mañana",
+    "goal": "Tiempo (parte del día)",
+    "badge": "🕒 tiempo",
+    "clue": "parte del día",
+    "clueExplain": "El objetivo pide una parte general del día.",
+    "options": [
+      {
+        "text": "We have school on the morning.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días específicos, no partes del día."
+      },
+      {
+        "text": "We have school in the morning.",
+        "correct": true,
+        "pastVerb": "in"
+      },
+      {
+        "text": "We have school at the morning.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para 'the morning'."
+      }
+    ],
+    "correctReason": "Una parte general del día usa la preposición de tiempo correspondiente.",
+    "baseEs": "Nosotros / escuela (en la mañana)"
+  },
+  {
+    "base": "The game / Monday (día)",
+    "presentVerb": "día",
+    "goal": "Tiempo (día de la semana)",
+    "badge": "🕒 tiempo",
+    "clue": "día de la semana",
+    "clueExplain": "El objetivo pide un día específico de la semana.",
+    "options": [
+      {
+        "text": "The game is in Monday.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para meses o partes del día, no días."
+      },
+      {
+        "text": "The game is at Monday.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no días."
+      },
+      {
+        "text": "The game is on Monday.",
+        "correct": true,
+        "pastVerb": "on"
+      }
+    ],
+    "correctReason": "Un día específico de la semana usa la preposición de tiempo correspondiente.",
+    "baseEs": "El juego / lunes (día)"
+  },
+  {
+    "base": "The class / 8 o'clock (hora)",
+    "presentVerb": "hora",
+    "goal": "Tiempo (hora exacta)",
+    "badge": "🕒 tiempo",
+    "clue": "hora exacta",
+    "clueExplain": "El objetivo pide una hora precisa del reloj.",
+    "options": [
+      {
+        "text": "The class starts at 8 o'clock.",
+        "correct": true,
+        "pastVerb": "at"
+      },
+      {
+        "text": "The class starts in 8 o'clock.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para partes del día o meses, no horas."
+      },
+      {
+        "text": "The class starts on 8 o'clock.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días, no para horas exactas."
+      }
+    ],
+    "correctReason": "Una hora exacta del reloj usa la preposición de tiempo correspondiente.",
+    "baseEs": "La clase / las 8 (hora)"
+  },
+  {
+    "base": "I read my email / lunch (antes)",
+    "presentVerb": "antes",
+    "goal": "Tiempo (orden: primero)",
+    "badge": "🕒 tiempo (orden)",
+    "clue": "primero",
+    "clueExplain": "El objetivo pide indicar que algo ocurre antes.",
+    "options": [
+      {
+        "text": "I read my email after lunch.",
+        "correct": false,
+        "pastVerb": "after",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica posterioridad; aquí va primero."
+      },
+      {
+        "text": "I read my email before lunch.",
+        "correct": true,
+        "pastVerb": "before"
+      },
+      {
+        "text": "I read my email at lunch.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para indicar orden."
+      }
+    ],
+    "correctReason": "Una acción que ocurre primero usa la preposición de orden anterior.",
+    "baseEs": "Leo mi correo / almuerzo (antes)"
+  },
+  {
+    "base": "We play a game / school (después)",
+    "presentVerb": "después",
+    "goal": "Tiempo (orden: más tarde)",
+    "badge": "🕒 tiempo (orden)",
+    "clue": "más tarde",
+    "clueExplain": "El objetivo pide indicar que algo ocurre después.",
+    "options": [
+      {
+        "text": "We play a game before school.",
+        "correct": false,
+        "pastVerb": "before",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica que algo va primero; aquí va después."
+      },
+      {
+        "text": "We play a game at school.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para indicar orden."
+      },
+      {
+        "text": "We play a game after school.",
+        "correct": true,
+        "pastVerb": "after"
+      }
+    ],
+    "correctReason": "Una acción que ocurre más tarde usa la preposición de orden posterior.",
+    "baseEs": "Jugamos un juego / escuela (después)"
+  },
+  {
+    "base": "The marker / the box (dentro)",
+    "presentVerb": "dentro",
+    "goal": "Lugar (dentro de un espacio)",
+    "badge": "📍 lugar",
+    "clue": "dentro",
+    "clueExplain": "El objetivo pide ubicar algo dentro de un espacio cerrado.",
+    "options": [
+      {
+        "text": "The marker is in the box.",
+        "correct": true,
+        "pastVerb": "in"
+      },
+      {
+        "text": "The marker is on the box.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica encima; el marcador está adentro."
+      },
+      {
+        "text": "The marker is near the box.",
+        "correct": false,
+        "pastVerb": "near",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica cercanía, no contenido."
+      }
+    ],
+    "correctReason": "Algo contenido en un espacio cerrado usa la preposición de contenido.",
+    "baseEs": "El marcador / la caja (dentro)"
+  },
+  {
+    "base": "Tom / the house (dentro)",
+    "presentVerb": "dentro",
+    "goal": "Lugar (dentro de un edificio)",
+    "badge": "📍 lugar",
+    "clue": "dentro",
+    "clueExplain": "El objetivo pide ubicar a alguien dentro de un edificio.",
+    "options": [
+      {
+        "text": "Tom is on the house.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto encima, no estar dentro."
+      },
+      {
+        "text": "Tom is in the house.",
+        "correct": true,
+        "pastVerb": "in"
+      },
+      {
+        "text": "Tom is under the house.",
+        "correct": false,
+        "pastVerb": "under",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo, no dentro del edificio."
+      }
+    ],
+    "correctReason": "Una persona dentro de un edificio usa la preposición de contenido en un espacio.",
+    "baseEs": "Tom / la casa (dentro)"
+  },
+  {
+    "base": "Sara / the afternoon (tarde)",
+    "presentVerb": "tarde",
+    "goal": "Tiempo (parte del día)",
+    "badge": "🕒 tiempo",
+    "clue": "parte del día",
+    "clueExplain": "El objetivo pide una parte general del día.",
+    "options": [
+      {
+        "text": "Sara studies on the afternoon.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para días, no partes del día."
+      },
+      {
+        "text": "Sara studies at the afternoon.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para 'the afternoon'."
+      },
+      {
+        "text": "Sara studies in the afternoon.",
+        "correct": true,
+        "pastVerb": "in"
+      }
+    ],
+    "correctReason": "Una parte general del día usa la preposición de tiempo correspondiente.",
+    "baseEs": "Sara / la tarde (parte del día)"
+  },
+  {
+    "base": "I wash my face / breakfast (antes)",
+    "presentVerb": "antes",
+    "goal": "Tiempo (orden: primero)",
+    "badge": "🕒 tiempo (orden)",
+    "clue": "primero",
+    "clueExplain": "El objetivo pide indicar que algo ocurre antes.",
+    "options": [
+      {
+        "text": "I wash my face before breakfast.",
+        "correct": true,
+        "pastVerb": "before"
+      },
+      {
+        "text": "I wash my face after breakfast.",
+        "correct": false,
+        "pastVerb": "after",
+        "errorType": "Orden de tiempo incorrecto",
+        "explanation": "Esa preposición indica posterioridad; aquí va primero."
+      },
+      {
+        "text": "I wash my face at breakfast.",
+        "correct": false,
+        "pastVerb": "at",
+        "errorType": "Preposición de tiempo incorrecta",
+        "explanation": "Esa preposición es para horas exactas, no para indicar orden."
+      }
+    ],
+    "correctReason": "Una acción que ocurre primero usa la preposición de orden anterior.",
+    "baseEs": "Me lavo la cara / desayuno (antes)"
+  },
+  {
+    "base": "The paint / the wall (encima)",
+    "presentVerb": "encima",
+    "goal": "Lugar (contacto con una superficie)",
+    "badge": "📍 lugar",
+    "clue": "encima",
+    "clueExplain": "El objetivo pide indicar contacto con una superficie.",
+    "options": [
+      {
+        "text": "The paint is in the wall.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro de un espacio, no sobre la pared."
+      },
+      {
+        "text": "The paint is on the wall.",
+        "correct": true,
+        "pastVerb": "on"
+      },
+      {
+        "text": "The paint is under the wall.",
+        "correct": false,
+        "pastVerb": "under",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica debajo, no en contacto con la pared."
+      }
+    ],
+    "correctReason": "Algo en contacto con una superficie usa la preposición de contacto.",
+    "baseEs": "La pintura / la pared (encima)"
+  },
+  {
+    "base": "The group / the window (cerca)",
+    "presentVerb": "cerca",
+    "goal": "Lugar (proximidad)",
+    "badge": "📍 lugar",
+    "clue": "cerca",
+    "clueExplain": "El objetivo pide indicar una distancia corta.",
+    "options": [
+      {
+        "text": "The group sits in the window.",
+        "correct": false,
+        "pastVerb": "in",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica dentro, no proximidad."
+      },
+      {
+        "text": "The group sits on the window.",
+        "correct": false,
+        "pastVerb": "on",
+        "errorType": "Preposición de lugar incorrecta",
+        "explanation": "Esa preposición indica contacto encima, no cercanía."
+      },
+      {
+        "text": "The group sits near the window.",
+        "correct": true,
+        "pastVerb": "near"
+      }
+    ],
+    "correctReason": "Una distancia corta sin contacto usa la preposición de cercanía.",
+    "baseEs": "El grupo / la ventana (cerca)"
+  }
+];
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer'); c.innerHTML='';
+        quizData.forEach((q,i)=>{ q.shuffled=shuffle(q.options); c.appendChild(card(q,i)); });
+        showQuestion(0); updateProgress();
+    }
+    function card(q,index){
+        const d=document.createElement('div'); const L=['A','B','C'];
+        d.className='question-card'+(index!==0?' hidden':''); d.id='question-'+index;
+        const baseHi=q.base;
+        const opts=q.shuffled.map((opt,oi)=>`
+            <button class="option-btn" data-idx="${oi}" onclick="selectOption(${index},${oi})">
+                <div class="option-letter">${L[oi]}</div>
+                <div class="option-text">${opt.text}</div>
+            </button>`).join('');
+        d.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
+                <span class="topic-badge">${q.badge}</span>
+            </div>
+            <div class="toggle-row">
+                <button class="toggle-btn" id="hintbtn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="toggle-btn" id="transbtn-${index}" onclick="toggleTrans(${index})">Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}"><div class="hint-label">💡 Pista</div>Fíjate en el sujeto y en el objetivo indicado para decidir la forma correcta.</div>
+            <div class="transform-visual">
+                <div class="transform-box base"><span class="transform-label">🔶 Contexto</span><div class="transform-sentence">${baseHi}</div></div>
+                <div class="transform-arrow">⬇ Elige según...</div>
+                <div class="transform-box goal"><span class="transform-label">🎯 Objetivo</span><div class="transform-sentence">${q.goal}</div></div>
+            </div>
+            <div class="translation" id="trans-${index}">🇪🇸 Contexto: ${q.baseEs||''}</div>
+            <div class="options-container" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}</button>
+            </div>`;
+        return d;
+    }
+    function selectOption(qi,oi){
+        if(answered[qi])return; answered[qi]=true;
+        const q=quizData[qi]; const sel=q.shuffled[oi]; const ok=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct); if(ok)score++;
+        document.querySelectorAll('#options-'+qi+' .option-btn').forEach((b,i)=>{
+            b.classList.add('disabled'); const o=q.shuffled[i];
+            if(o.correct)b.classList.add('correct'); else if(i===oi)b.classList.add('incorrect');
+        });
+        feedback(qi,sel,ok,correctOpt,q);
+        document.getElementById('next-'+qi).disabled=false; updateProgress();
+    }
+    function feedback(qi,sel,ok,correctOpt,q){
+        const el=document.getElementById('feedback-'+qi);
+        el.className='feedback show '+(ok?'correct':'incorrect');
+        const hlErr=(t,w)=>w?t.replace(new RegExp('\b'+w+'\b'),'<span class="word-wrong">'+w+'</span>'):('<span class="word-wrong">'+t+'</span>');
+        const errs=q.shuffled.filter(o=>!o.correct);
+        const errBlocks=errs.map(e=>`
+            <div class="fb-block fb-error">
+                <div class="fb-block-title">⚠️ Esta opción estaba mal: <span class="error-badge">${e.errorType}</span></div>
+                <div class="error-sentence">"${e.text}"</div>
+                <div class="error-text">${e.explanation}</div>
+            </div>`).join('');
+        const ctxRow=`<div class="fb-compare-row"><span class="compare-label" style="background:var(--orange-light);color:var(--orange-dark);">Contexto</span><span class="compare-text">${q.base}</span></div>`;
+        const correctBlock=`<div class="fb-block fb-good"><div class="fb-block-title">✅ La oración correcta</div><div class="good-sentence">"${correctOpt.text}"</div></div>`;
+        if(ok){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto! Elegiste bien</div><div class="fb-subtitle">Hiciste la transformación adecuada</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare">${ctxRow}<div class="fb-compare-row"><span class="compare-label right">Tu respuesta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué tu respuesta es correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                    <div class="fb-divider">Las otras opciones (para comparar)</div>
+                    ${errBlocks}
+                </div>`;
+        } else {
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Tu opción tenía un error</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag red">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare">${ctxRow}<div class="fb-compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text">${hlErr(sel.text,sel.pastVerb)}</span></div><div class="fb-compare-row"><span class="compare-label right">Correcta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div></div>
+                    <div class="fb-block fb-error"><div class="fb-block-title">⚠️ El error en tu opción: <span class="error-badge">${sel.errorType}</span></div><div class="error-text">${sel.explanation}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué esa es la correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){ if(i<quizData.length-1) showQuestion(i+1); else showResults(); }
+    function prevQuestion(){ if(currentQuestion>0) showQuestion(currentQuestion-1); }
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function toggleHint(i){
+        const b=document.getElementById('hint-'+i), btn=document.getElementById('hintbtn-'+i);
+        b.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=b.classList.contains('show')?'💡 Ocultar pista':'💡 Ver pista';
+    }
+    function toggleTrans(i){
+        const t=document.getElementById('trans-'+i), btn=document.getElementById('transbtn-'+i);
+        t.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=t.classList.contains('show')?'Ocultar español':'Ver en español';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(pct)}}));
+        document.getElementById('finalScore').textContent=score+'/'+quizData.length;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente trabajo! 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪'
+            :'Buen esfuerzo. Repasa e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{ if(i<stars) setTimeout(()=>s.classList.add('earned'),i*300); });
+    }
+    // Fisher-Yates shuffle (no V8 bias)
+    function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

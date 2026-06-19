@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Comprehension | Module 4 | Pre-A1 | JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#fff9e6 0%,#fff3cd 100%);min-height:100vh;padding:15px 12px 40px}
+.container{max-width:620px;margin:0 auto}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);border-radius:20px;padding:26px 20px;text-align:center;margin-bottom:18px;box-shadow:0 8px 28px rgba(249,168,37,0.4);position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-40%;right:-10%;width:220px;height:220px;background:rgba(255,255,255,0.1);border-radius:50%}
+.header h1{font-family:'Fredoka',sans-serif;color:#4E3800;font-size:1.75rem;margin-bottom:6px;position:relative}
+.header .subtitle{color:#5a3e00;font-size:0.95rem;font-weight:600;margin-bottom:10px;position:relative}
+.level-badge{display:inline-block;background:rgba(255,255,255,0.35);padding:5px 16px;border-radius:20px;font-size:0.82rem;color:#4E3800;font-weight:800;letter-spacing:.05em}
+
+/* KRASHEN BOX — always blue */
+.krashen-box{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border-radius:14px;padding:16px 18px;margin-bottom:18px;border-left:5px solid #2196f3}
+.krashen-box .icon-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.krashen-box h4{color:#1565c0;font-size:0.95rem}
+.krashen-box p{color:#555;font-size:0.83rem;line-height:1.65}
+
+/* STORY SELECTOR GRID */
+.story-selector{background:white;border-radius:15px;padding:18px;margin-bottom:16px;box-shadow:0 4px 15px rgba(0,0,0,0.07)}
+.story-selector h3{text-align:center;color:#d48806;font-size:0.92rem;margin-bottom:14px;font-weight:700}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.story-tab{padding:14px 10px;border:2.5px solid #e0e0e0;border-radius:14px;background:white;cursor:pointer;transition:all .25s;text-align:center;position:relative}
+.story-tab:hover{border-color:#F9A825;background:#fffbf0;transform:translateY(-2px)}
+.story-tab.active{border-color:#F9A825;background:linear-gradient(135deg,#fff9e6,#fff3cd);box-shadow:0 4px 14px rgba(249,168,37,0.25)}
+.story-tab .st-emoji{font-size:1.6rem;display:block;margin-bottom:5px}
+.story-tab .st-title{font-size:0.82rem;font-weight:700;color:#d48806}
+.story-tab .st-sub{font-size:0.72rem;color:#999;margin-top:2px}
+.story-tab .done-badge{position:absolute;top:7px;right:9px;font-size:0.85rem}
+
+/* STORY PANEL */
+.story-panel{background:white;border-radius:15px;margin-bottom:16px;box-shadow:0 4px 15px rgba(0,0,0,0.07);overflow:hidden}
+.story-panel-header{background:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.story-panel-header h3{color:#4E3800;font-size:0.97rem;font-weight:700;display:flex;align-items:center;gap:9px}
+.story-toggle-icon{color:#4E3800;font-size:1.1rem;transition:transform .3s}
+.story-toggle-icon.open{transform:rotate(180deg)}
+.story-content{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.story-content.open{max-height:1000px}
+
+/* AUDIO CONTROLS BAR */
+.audio-controls{padding:12px 14px;border-bottom:1px solid #f0e8cc;background:#fffdf5}
+.audio-row1{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.ctrl-btn{font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:800;border:none;color:#4E3800;background:linear-gradient(135deg,#F9A825,#FF8F00);padding:9px 18px;border-radius:22px;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 3px 10px rgba(249,168,37,.35)}
+.ctrl-btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(249,168,37,.45)}
+.ctrl-btn.is-playing{background:linear-gradient(135deg,#FFB74D,#FF8F00)}
+.accent-toggle{display:flex;gap:4px}
+.accent-btn{font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;border:1.5px solid #e0e0e0;background:#fafafa;color:#555;padding:5px 11px;border-radius:8px;cursor:pointer;transition:all .2s}
+.accent-btn:hover{background:#f0f0f0;border-color:#bdbdbd}
+.accent-btn.active{border-color:#F9A825;background:rgba(249,168,37,.2);color:#d48806}
+.audio-row1{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+.audio-row2{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.audio-hint{font-size:0.74rem;color:#999;margin-top:9px;line-height:1.5}
+.audio-hint strong{color:#d48806}
+.ctrl-btn{font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;border:1.5px solid #F9A825;background:#fff9e6;color:#d48806;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ctrl-btn:hover{background:#fff3cd}
+.ctrl-btn:disabled{opacity:.4;cursor:not-allowed}
+.ctrl-btn.playing{background:#F9A825;color:#4E3800}
+.ctrl-btn.pause-btn{background:#FFE0B2;border-color:#FF8F00;color:#E65100}
+.ctrl-btn.pause-btn:hover{background:#FFCC80}
+.para-counter{font-size:0.74rem;color:#aaa;font-style:italic;min-width:50px}
+.accent-toggle{display:flex;gap:4px}
+.accent-btn{font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:700;border:1.5px solid #e0e0e0;background:#fafafa;color:#555;padding:4px 10px;border-radius:7px;cursor:pointer;transition:all .2s}
+.accent-btn:hover{background:#f0f0f0;border-color:#bdbdbd}
+.accent-btn.active{border-color:#F9A825;background:rgba(249,168,37,.2);color:#d48806}
+.speed-label{font-size:0.73rem;color:#888;font-weight:600;white-space:nowrap}
+.speed-slider{-webkit-appearance:none;appearance:none;width:90px;height:5px;border-radius:3px;background:#e0e0e0;outline:none;cursor:pointer}
+.speed-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:#F9A825;cursor:pointer;border:2px solid #FF8F00}
+.speed-val{font-size:0.73rem;font-weight:700;color:#d48806;min-width:28px}
+.show-all-btn{font-family:'Nunito',sans-serif;font-size:0.73rem;font-weight:600;color:#7B1FA2;background:#F3E5F5;border:1px solid #CE93D8;padding:4px 11px;border-radius:8px;cursor:pointer;transition:all .2s}
+.show-all-btn:hover{background:#E1BEE7}
+.show-all-btn.active{background:#CE93D8;color:#fff}
+
+
+/* STORY INNER — natural scroll, read freely with or without audio */
+.story-inner{max-height:420px;overflow-y:auto;padding:12px 14px;scroll-behavior:smooth}
+.story-inner::-webkit-scrollbar{width:8px}
+.story-inner::-webkit-scrollbar-track{background:#fdf6e0;border-radius:4px}
+.story-inner::-webkit-scrollbar-thumb{background:#F9A825;border-radius:4px}
+.story-inner::-webkit-scrollbar-thumb:hover{background:#FF8F00}
+.story-block{margin-bottom:12px;padding:11px 13px;background:#fffbf0;border-radius:10px;border-left:4px solid #F9A825;transition:background .3s,box-shadow .3s,border-color .3s}
+.story-block.active-para{border-left-color:#FF8F00;background:#fff3cc;box-shadow:0 2px 10px rgba(249,168,37,.25)}
+.story-en{font-family:'Lora',serif;color:#333;font-size:0.92rem;line-height:1.7;margin-bottom:5px}
+.story-en .vocab{color:#d48806;font-weight:700}
+.story-en .gram{color:#1565c0;font-style:italic}
+.story-es{color:#888;font-size:0.81rem;font-style:italic;margin-top:5px;display:none}
+.story-es.show{display:block}
+.story-audio-row{display:flex;gap:5px;margin-top:6px;align-items:center;flex-wrap:wrap}
+.s-audio-btn{font-family:'Nunito',sans-serif;font-size:0.69rem;font-weight:700;border:1.5px solid #e0e0e0;background:#fafafa;color:#555;padding:3px 8px;border-radius:6px;cursor:pointer;transition:all .2s}
+.s-audio-btn:hover{background:#f0f0f0;border-color:#bdbdbd}
+.s-audio-btn.playing{border-color:#F9A825;background:rgba(249,168,37,.15);color:#d48806}
+.reveal-btn{font-family:'Nunito',sans-serif;font-size:0.69rem;font-weight:600;color:#7B1FA2;background:#F3E5F5;border:none;padding:3px 8px;border-radius:6px;cursor:pointer;transition:all .2s}
+.reveal-btn:hover{background:#E1BEE7}
+
+/* MODE SELECTOR */
+.mode-section{background:white;border-radius:15px;padding:18px;margin-bottom:16px;box-shadow:0 4px 15px rgba(0,0,0,0.07)}
+.mode-section h3{text-align:center;color:#666;font-size:0.9rem;margin-bottom:12px}
+.mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-btn{padding:16px 12px;border:2.5px solid #F9A825;border-radius:14px;background:white;cursor:pointer;transition:all .25s;text-align:center}
+.mode-btn:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(249,168,37,.25)}
+.mode-btn.active{background:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);border-color:#FF8F00}
+.mode-btn .flags{font-size:1.4rem;margin-bottom:6px}
+.mode-btn .mode-title{font-weight:700;color:#d48806;font-size:0.87rem;margin-bottom:3px}
+.mode-btn.active .mode-title,.mode-btn.active .mode-desc{color:white}
+.mode-btn .mode-desc{font-size:0.73rem;color:#888}
+
+/* ACHIEVEMENTS */
+.achievements-section{background:white;border-radius:15px;padding:18px;margin-bottom:16px;box-shadow:0 4px 15px rgba(0,0,0,0.07)}
+.achievements-section h3{text-align:center;color:#d48806;font-size:0.95rem;margin-bottom:4px}
+.achievements-section .a-sub{text-align:center;color:#888;font-size:0.77rem;margin-bottom:14px}
+.achievements-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.achievement{text-align:center;padding:11px 6px;border-radius:12px;background:#f5f5f5;transition:all .3s;opacity:.4}
+.achievement.unlocked{background:linear-gradient(135deg,#fff9e6,#fff3cd);opacity:1;box-shadow:0 3px 10px rgba(249,168,37,.25)}
+.achievement .ach-icon{font-size:1.4rem;margin-bottom:4px}
+.achievement .ach-name{font-size:0.63rem;color:#666;line-height:1.3}
+.achievement.unlocked .ach-name{color:#d48806;font-weight:700}
+
+/* QUIZ SECTION */
+.quiz-section{background:white;border-radius:15px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.07)}
+.quiz-header{text-align:center;margin-bottom:18px}
+.quiz-header h3{color:#d48806;font-size:1.05rem;margin-bottom:4px}
+.quiz-header .mode-indicator{color:#888;font-size:0.82rem}
+.progress-container{margin-bottom:18px}
+.progress-bar{height:10px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(135deg,#F9A825,#FF8F00);border-radius:5px;transition:width .5s ease;width:0%}
+.progress-text{text-align:center;font-size:0.78rem;color:#888;margin-top:7px}
+
+/* QUESTION CARD */
+.question-card{background:#fafafa;border-radius:14px;padding:18px;margin-bottom:14px;border:2px solid #e0e0e0;transition:all .3s}
+.question-card.correct{border-color:#4caf50;background:linear-gradient(135deg,#e8f5e9,#c8e6c9)}
+.question-card.incorrect{border-color:#f44336;background:linear-gradient(135deg,#ffebee,#ffcdd2)}
+.question-badge{display:inline-block;background:linear-gradient(135deg,#F9A825,#FF8F00);color:#4E3800;padding:4px 12px;border-radius:14px;font-size:0.73rem;font-weight:700;margin-bottom:11px}
+.question-text{font-size:0.97rem;color:#333;margin-bottom:14px;line-height:1.5}
+.options-grid{display:flex;flex-direction:column;gap:9px}
+.option-btn{padding:13px 16px;border:2px solid #e0e0e0;border-radius:11px;background:white;color:#555;font-size:0.88rem;cursor:pointer;transition:all .2s;text-align:left;font-family:'Nunito',sans-serif}
+.option-btn:hover:not(:disabled){border-color:#F9A825;background:#fffbf0;transform:translateX(4px)}
+.option-btn:disabled{cursor:not-allowed}
+.option-btn.sel-correct{background:linear-gradient(135deg,#4caf50,#66bb6a);color:white;border-color:#4caf50}
+.option-btn.sel-wrong{background:linear-gradient(135deg,#f44336,#ef5350);color:white;border-color:#f44336}
+.option-btn.show-correct{background:linear-gradient(135deg,#4caf50,#66bb6a);color:white;border-color:#4caf50}
+
+/* FEEDBACK */
+.feedback{margin-top:14px;padding:14px;border-radius:11px;display:none;animation:fadeIn .3s ease}
+.feedback.show{display:block}
+.feedback.correct-fb{background:#e8f5e9;border:2px solid #a5d6a7}
+.feedback.incorrect-fb{background:#ffebee;border:2px solid #ef9a9a}
+.feedback-title{font-weight:700;font-size:0.95rem;margin-bottom:6px}
+.feedback.correct-fb .feedback-title{color:#2e7d32}
+.feedback.incorrect-fb .feedback-title{color:#c62828}
+.feedback-text{color:#555;font-size:0.83rem;line-height:1.55}
+
+/* SUBMIT & COMPLETION */
+.submit-section{display:none;text-align:center;margin-top:20px;padding:18px 0}
+.submit-btn{background:linear-gradient(135deg,#F9A825,#FF8F00);color:#4E3800;border:none;padding:15px 42px;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif;box-shadow:0 5px 18px rgba(249,168,37,.4)}
+.submit-btn:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(249,168,37,.5)}
+.completion-card{display:none;background:linear-gradient(135deg,#F9A825,#FF8F00);border-radius:20px;padding:28px;text-align:center;margin-top:18px;box-shadow:0 8px 28px rgba(249,168,37,.4);animation:bounceIn .5s ease}
+.completion-card.show{display:block}
+.completion-icon{font-size:3.8rem;margin-bottom:13px}
+.completion-title{color:#4E3800;font-size:1.4rem;font-weight:700;margin-bottom:9px}
+.completion-score{font-size:2.8rem;font-weight:800;color:#4E3800;text-shadow:1px 1px 3px rgba(0,0,0,.15)}
+.completion-message{color:#5a3e00;font-size:0.97rem;margin:13px 0}
+.stats-row{display:flex;gap:10px;margin:14px 0;justify-content:center;flex-wrap:wrap}
+.stat-chip{background:rgba(255,255,255,.3);border-radius:12px;padding:9px 16px;font-size:0.82rem;color:#4E3800;font-weight:700;text-align:center}
+.stat-chip .s-num{font-size:1.3rem;font-weight:800;display:block}
+.completion-krashen{background:rgba(255,255,255,.2);border-radius:12px;padding:14px;margin:18px 0;color:#4E3800}
+.completion-krashen h4{font-size:0.87rem;margin-bottom:7px}
+.completion-krashen p{font-size:0.8rem;line-height:1.55;color:#5a3e00}
+.reset-btn{background:white;color:#d48806;border:none;padding:13px 38px;border-radius:28px;font-size:0.97rem;font-weight:700;cursor:pointer;transition:all .3s;margin-top:8px;font-family:'Nunito',sans-serif}
+.reset-btn:hover{transform:scale(1.05);box-shadow:0 5px 18px rgba(0,0,0,.18)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal-content{background:white;border-radius:20px;padding:28px;text-align:center;max-width:300px;margin:18px;animation:bounceIn .4s ease}
+.modal-icon{font-size:3.8rem;margin-bottom:13px}
+.modal-title{color:#d48806;font-size:1.2rem;font-weight:700;margin-bottom:9px}
+.modal-text{color:#666;font-size:0.88rem;margin-bottom:18px;line-height:1.5}
+.modal-btn{background:linear-gradient(135deg,#F9A825,#FF8F00);color:#4E3800;border:none;padding:11px 32px;border-radius:24px;font-size:0.97rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounceIn{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.hidden{display:none!important}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:24px;color:#aaa;font-size:0.75rem;line-height:1.8}
+</style>
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <h1>📚 Reading Comprehension</h1>
+  <div class="subtitle">Home, School &amp; Objects</div>
+  <div class="level-badge">💛 Pre-A1 | Básico</div>
+</header>
+
+<!-- KRASHEN BOX -->
+<div class="krashen-box">
+  <div class="icon-title"><span style="font-size:1.4rem">🧠</span><h4>Input Comprensible (Krashen)</h4></div>
+  <p>Según Stephen Krashen, adquirimos un idioma cuando entendemos mensajes ligeramente por encima de nuestro nivel. Lee cada historia con calma — tu cerebro absorbe el presente continuo (<em>I am reading, she is writing</em>) y las preposiciones de lugar y tiempo (<em>in, on, at, under, near</em>) de manera natural. ¡Disfruta la lectura!</p>
+</div>
+
+<!-- STORY SELECTOR -->
+<div class="story-selector">
+  <h3>📖 Selecciona una historia para leer y practicar</h3>
+  <div class="story-grid">
+    <button class="story-tab active" onclick="switchStory(1)" id="stab-1">
+      <span class="st-emoji">🏫</span>
+      <div class="st-title">My School</div>
+      <div class="st-sub">Pablo en la escuela</div>
+      <span class="done-badge" id="done-1"></span>
+    </button>
+    <button class="story-tab" onclick="switchStory(2)" id="stab-2">
+      <span class="st-emoji">🏠</span>
+      <div class="st-title">At Home</div>
+      <div class="st-sub">Objetos en casa</div>
+      <span class="done-badge" id="done-2"></span>
+    </button>
+    <button class="story-tab" onclick="switchStory(3)" id="stab-3">
+      <span class="st-emoji">🎨</span>
+      <div class="st-title">What Is Everyone Doing?</div>
+      <div class="st-sub">El grupo en arte</div>
+      <span class="done-badge" id="done-3"></span>
+    </button>
+    <button class="story-tab" onclick="switchStory(4)" id="stab-4">
+      <span class="st-emoji">💭</span>
+      <div class="st-title">A Good Question</div>
+      <div class="st-sub">¿Por qué la escuela?</div>
+      <span class="done-badge" id="done-4"></span>
+    </button>
+  </div>
+</div>
+
+<!-- STORY PANEL -->
+<div class="story-panel" id="story-panel">
+  <div class="story-panel-header" onclick="toggleStory()">
+    <h3 id="story-panel-title">📖 My School</h3>
+    <span class="story-toggle-icon open" id="story-toggle-icon">▼</span>
+  </div>
+  <div class="story-content open" id="story-content">
+
+    <!-- AUDIO CONTROLS -->
+    <div class="audio-controls">
+      <div class="audio-row1">
+        <button class="ctrl-btn play-btn" id="play-all-btn" onclick="togglePlayAll()">▶ Escuchar toda la historia</button>
+        <div class="accent-toggle">
+          <button class="accent-btn active" id="acc-us" onclick="setAccent('US')">🇺🇸 US</button>
+          <button class="accent-btn" id="acc-uk" onclick="setAccent('UK')">🇬🇧 UK</button>
+        </div>
+      </div>
+      <div class="audio-row2">
+        <span class="speed-label">🐢 Velocidad:</span>
+        <input type="range" class="speed-slider" id="speed-slider" min="0.5" max="1.4" step="0.1" value="0.8" oninput="updateSpeed(this.value)">
+        <span class="speed-val" id="speed-val">0.8×</span>
+        <button class="show-all-btn" id="show-all-btn" onclick="toggleAllTranslations()">🇪🇸 Traducciones</button>
+      </div>
+      <div class="audio-hint">🔊 Pulsa <strong>Escuchar toda la historia</strong> para que se lea sola con seguimiento, o toca <strong>🇺🇸/🇬🇧</strong> en un párrafo.</div>
+    </div>
+
+    <!-- STORY TEXT — scroll natural -->
+    <div class="story-inner" id="story-inner"></div>
+
+  </div>
+</div>
+
+<!-- MODE SELECTOR -->
+<div class="mode-section">
+  <h3>Selecciona el modo de práctica</h3>
+  <div class="mode-buttons">
+    <button class="mode-btn active" id="mbtn-eses" onclick="setMode('es-es')">
+      <div class="flags">🇪🇸➡️🇪🇸</div>
+      <div class="mode-title">Español → Español</div>
+      <div class="mode-desc">Comprensión total</div>
+    </button>
+    <button class="mode-btn" id="mbtn-esen" onclick="setMode('es-en')">
+      <div class="flags">🇪🇸➡️🇬🇧</div>
+      <div class="mode-title">Español → English</div>
+      <div class="mode-desc">Desafío bilingüe</div>
+    </button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="achievements-section">
+  <h3>🏆 Logros por Desbloquear</h3>
+  <p class="a-sub">Responde correctamente para ganar insignias</p>
+  <div class="achievements-grid">
+    <div class="achievement" id="ach-first"><div class="ach-icon">🌱</div><div class="ach-name">Primera Respuesta</div></div>
+    <div class="achievement" id="ach-streak"><div class="ach-icon">🔥</div><div class="ach-name">3 Correctas Seguidas</div></div>
+    <div class="achievement" id="ach-literal"><div class="ach-icon">📖</div><div class="ach-name">Comprensión Literal</div></div>
+    <div class="achievement" id="ach-inferential"><div class="ach-icon">🔍</div><div class="ach-name">Comprensión Inferencial</div></div>
+    <div class="achievement" id="ach-critical"><div class="ach-icon">🎓</div><div class="ach-name">Pensamiento Crítico</div></div>
+    <div class="achievement" id="ach-perfect"><div class="ach-icon">⭐</div><div class="ach-name">Perfección</div></div>
+    <div class="achievement" id="ach-explorer"><div class="ach-icon">🎒</div><div class="ach-name">Aprendiz</div></div>
+    <div class="achievement" id="ach-stories"><div class="ach-icon">📚</div><div class="ach-name">4 Historias</div></div>
+  </div>
+</div>
+
+<!-- QUIZ SECTION -->
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3>✏️ Preguntas de Comprensión</h3>
+    <div class="mode-indicator" id="mode-display">Modo: Español → Español</div>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text">0 de 7 preguntas</div>
+  </div>
+  <div id="quiz-container"></div>
+  <div class="submit-section" id="submit-section">
+    <button class="submit-btn" onclick="showCompletion()">📊 Ver Resultados</button>
+  </div>
+  <div class="completion-card" id="completion-card"></div>
+</div>
+
+<footer class="footer">
+  <p>📚 Home, School &amp; Objects · Pre-A1 · JUCUM English Center</p>
+  <p>Comprensión Lectora Interactiva</p>
+</footer>
+</div>
+
+<!-- ACHIEVEMENT MODAL -->
+<div class="modal-overlay" id="achievement-modal">
+  <div class="modal-content">
+    <div class="modal-icon" id="modal-icon">🏆</div>
+    <h3 class="modal-title">¡Logro Desbloqueado!</h3>
+    <p class="modal-text" id="modal-text">Has completado algo increíble</p>
+    <button class="modal-btn" onclick="closeModal()">¡Genial!</button>
+  </div>
+</div>
+
+<script>
+const STORIES={"1": {"title": "My School", "emoji": "🏫", "sub": "Pablo en la escuela", "paragraphs": [{"en": "<span class='gram'>My</span> name is Pablo. I go to a nice <span class='vocab'>school.</span> The <span class='vocab'>school</span> is big and bright. I like it a lot. I go there every day.", "es": "Me llamo Pablo. Voy a una escuela linda. La escuela es grande y luminosa. Me gusta mucho. Voy ahí todos los días."}, {"en": "<span class='gram'>My</span> classroom is on the first floor. There are many tables and chairs. <span class='gram'>My</span> <span class='vocab'>book</span> is on <span class='gram'>my</span> desk. <span class='gram'>My</span> <span class='vocab'>marker</span> is next to it. <span class='gram'>My</span> bag is under <span class='gram'>my</span> chair.", "es": "Mi salón está en el primer piso. Hay muchas mesas y sillas. Mi libro está sobre mi escritorio. Mi marcador está al lado. Mi mochila está bajo mi silla."}, {"en": "Right now, <span class='gram'>my</span> teacher <span class='gram'>is talking</span>. She <span class='gram'>is writing</span> on the board. We <span class='gram'>are listening</span> to <span class='gram'>her</span>. Everyone is quiet. I <span class='gram'>am taking</span> notes in <span class='gram'>my</span> <span class='vocab'>book.</span>", "es": "Ahora mismo, mi profesora está hablando. Está escribiendo en la pizarra. La estamos escuchando. Todos están callados. Estoy tomando notas en mi libro."}, {"en": "After class, I clean <span class='gram'>my</span> desk. I put <span class='gram'>my</span> <span class='vocab'>book</span> in <span class='gram'>my</span> bag. I am happy at <span class='vocab'>school.</span> <span class='gram'>My</span> friends are here too. We talk and laugh together.", "es": "Después de clase, limpio mi escritorio. Pongo mi libro en mi mochila. Estoy feliz en la escuela. Mis amigos también están aquí. Hablamos y reímos juntos."}, {"en": "At the end of the day, I walk home. <span class='gram'>My</span> <span class='vocab'>house</span> is near the <span class='vocab'>school.</span> I am a little tired, but it was a good day. Tomorrow, I <span class='gram'>am coming</span> back.", "es": "Al final del día, camino a casa. Mi casa está cerca de la escuela. Estoy un poco cansado, pero fue un buen día. Mañana, vuelvo otra vez."}]}, "2": {"title": "At Home", "emoji": "🏠", "sub": "Objetos en casa", "paragraphs": [{"en": "I am at home now. <span class='gram'>My</span> <span class='vocab'>house</span> is small but warm. I am in <span class='gram'>my</span> room. It is <span class='gram'>my</span> favorite place. I feel happy here.", "es": "Estoy en casa ahora. Mi casa es pequeña pero cálida. Estoy en mi cuarto. Es mi lugar favorito. Me siento feliz aquí."}, {"en": "There are many <span class='vocab'>objects</span> in <span class='gram'>my</span> room. <span class='gram'>My</span> <span class='vocab'>key</span> is on the table. <span class='gram'>My</span> <span class='vocab'>book</span> is on the bed. <span class='gram'>My</span> <span class='vocab'>game</span> is on the floor. <span class='gram'>My</span> <span class='vocab'>marker</span> is by the window.", "es": "Hay muchos objetos en mi cuarto. Mi llave está sobre la mesa. Mi libro está sobre la cama. Mi juego está en el piso. Mi marcador está junto a la ventana."}, {"en": "Right now, I <span class='gram'>am painting</span> a picture. I <span class='gram'>am using</span> green <span class='vocab'>paint.</span> The <span class='vocab'>paint</span> is on <span class='gram'>my</span> hands. It is a little messy. But I <span class='gram'>am having</span> fun.", "es": "Ahora mismo, estoy pintando un cuadro. Estoy usando pintura verde. La pintura está en mis manos. Está un poco sucio. Pero me estoy divirtiendo."}, {"en": "Later, I <span class='gram'>am writing</span> an <span class='vocab'>email</span> to <span class='gram'>my</span> friend. I <span class='gram'>am telling</span> <span class='gram'>her</span> about <span class='gram'>my</span> day. She is far away. I miss <span class='gram'>her</span>. I hope she writes back.", "es": "Más tarde, escribo un correo a mi amiga. Le cuento sobre mi día. Ella está lejos. La extraño. Espero que me responda."}, {"en": "At night, I put <span class='gram'>my</span> things away. <span class='gram'>My</span> <span class='vocab'>key</span> goes by the door. <span class='gram'>My</span> <span class='vocab'>book</span> goes on the shelf. Then I rest. It is a good day at home.", "es": "Por la noche, guardo mis cosas. Mi llave va junto a la puerta. Mi libro va en el estante. Luego descanso. Es un buen día en casa."}]}, "3": {"title": "What Is Everyone Doing?", "emoji": "🎨", "sub": "El grupo en arte", "paragraphs": [{"en": "It is afternoon at <span class='vocab'>school.</span> <span class='gram'>My</span> <span class='vocab'>group</span> of friends is in the art room. We <span class='gram'>are not sitting</span> still. We are all busy. Everyone <span class='gram'>is making</span> something.", "es": "Es la tarde en la escuela. Mi grupo de amigos está en el salón de arte. No estamos quietos. Todos estamos ocupados. Cada uno está haciendo algo."}, {"en": "Ana <span class='gram'>is painting</span> a big <span class='vocab'>face.</span> She <span class='gram'>is using</span> bright <span class='vocab'>paint.</span> Tom <span class='gram'>is drawing</span> with a <span class='vocab'>marker.</span> He <span class='gram'>is making</span> a <span class='vocab'>game.</span> They <span class='gram'>are working</span> hard.", "es": "Ana está pintando una cara grande. Está usando pintura brillante. Tom está dibujando con un marcador. Está haciendo un juego. Están trabajando duro."}, {"en": "I <span class='gram'>am not painting</span> today. I <span class='gram'>am reading</span> <span class='gram'>my</span> <span class='vocab'>book.</span> It is a good story. I <span class='gram'>am learning</span> new words. The <span class='vocab'>book</span> is about a <span class='vocab'>school.</span>", "es": "Hoy no estoy pintando. Estoy leyendo mi libro. Es una buena historia. Estoy aprendiendo palabras nuevas. El libro trata de una escuela."}, {"en": "The teacher <span class='gram'>is walking</span> around the room. She <span class='gram'>is helping</span> the <span class='vocab'>group.</span> She <span class='gram'>is asking</span> us questions. We <span class='gram'>are answering</span> <span class='gram'>her</span>. She likes <span class='gram'>our</span> work.", "es": "La profesora está caminando por el salón. Está ayudando al grupo. Nos está haciendo preguntas. Le estamos respondiendo. Le gusta nuestro trabajo."}, {"en": "At the end, we clean the room. We put the <span class='vocab'>paint</span> and the markers away. Then we go home. We are tired but happy. It was a busy day.", "es": "Al final, limpiamos el salón. Guardamos la pintura y los marcadores. Luego vamos a casa. Estamos cansados pero felices. Fue un día ocupado."}]}, "4": {"title": "A Good Question", "emoji": "💭", "sub": "¿Por qué la escuela?", "paragraphs": [{"en": "<span class='gram'>My</span> sister has a <span class='vocab'>question.</span> She asks me about <span class='vocab'>school.</span> \"Why do we go to <span class='vocab'>school?\"</span> she says. It is a good <span class='vocab'>question.</span> I want to help <span class='gram'>her</span>.", "es": "Mi hermana tiene una pregunta. Me pregunta sobre la escuela. \"¿Por qué vamos a la escuela?\", dice. Es una buena pregunta. Quiero ayudarla."}, {"en": "I think about the <span class='vocab'>reason.</span> <span class='vocab'>School</span> is part of <span class='gram'>our</span> <span class='vocab'>education.</span> We read books. We learn many things every day. Each day, we know more.", "es": "Pienso en la razón. La escuela es parte de nuestra educación. Leemos libros. Aprendemos muchas cosas cada día. Cada día sabemos más."}, {"en": "\"At <span class='vocab'>school,</span> you learn for <span class='gram'>your</span> future,\" I say. \"One day, you will have a <span class='vocab'>job.</span> <span class='gram'>Your</span> <span class='vocab'>education</span> will help you. It opens many doors.\"", "es": "\"En la escuela, aprendes para tu futuro\", digo. \"Un día, tendrás un trabajo. Tu educación te ayudará. Te abre muchas puertas.\""}, {"en": "<span class='gram'>My</span> sister <span class='gram'>is listening</span> to me. She <span class='gram'>is thinking</span> about <span class='gram'>my</span> words. Now she <span class='gram'>is smiling</span>. She likes the answer. She nods <span class='gram'>her</span> head.", "es": "Mi hermana me está escuchando. Está pensando en mis palabras. Ahora está sonriendo. Le gusta la respuesta. Asiente con la cabeza."}, {"en": "<span class='vocab'>\"School</span> is good,\" she says. \"I like to learn.\" That is the best <span class='vocab'>reason</span> of all. I am proud of <span class='gram'>her</span>. We hug and go home.", "es": "\"La escuela es buena\", dice. \"Me gusta aprender.\" Esa es la mejor razón de todas. Estoy orgulloso de ella. Nos abrazamos y vamos a casa."}]}};
+const QUESTIONS={"1": {"es-es": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Cómo se llama el narrador de esta historia?", "opts": ["Pedro", "Tom", "Pablo", "Ana"], "ci": 2, "type": "literal", "fb_ok": "La historia dice: \"My name is <strong>Pablo</strong>.\"", "fb_no": "La respuesta correcta es 'Pablo'. \"My name is Pablo.\""}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Cómo describe el narrador su escuela?", "opts": ["Pequeña y oscura", "Grande y luminosa", "Vieja y fría", "Muy lejana"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"The school is <strong>big and bright</strong>.\" Big = grande, bright = luminosa.", "fb_no": "La respuesta correcta es 'Grande y luminosa'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Dónde está la casa del narrador?", "opts": ["Lejos del pueblo", "Cerca de la escuela", "Junto al parque", "En otra ciudad"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"My house is <strong>near</strong> the school.\" Near = cerca.", "fb_no": "La respuesta correcta es 'Cerca de la escuela'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Qué está haciendo la profesora en ese momento?", "opts": ["Está comiendo", "Está hablando y escribiendo en la pizarra", "Está durmiendo", "Camina a casa"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"My teacher <strong>is talking</strong>. She <strong>is writing</strong> on the board.\"", "fb_no": "La respuesta correcta es 'Está hablando y escribiendo en la pizarra'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Por qué el narrador se siente feliz en la escuela?", "opts": ["Porque no hay clases", "Porque sus amigos también están ahí", "Porque la escuela es pequeña", "Porque está solo"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"I am happy at school. <strong>My friends are here too</strong>.\"", "fb_no": "La respuesta correcta es 'Porque sus amigos también están ahí'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Cómo se siente al final del día?", "opts": ["Enojado", "Un poco cansado, pero contento", "Asustado", "Aburrido"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"I am a <strong>little tired, but it was a good day</strong>.\"", "fb_no": "La respuesta correcta es 'Un poco cansado, pero contento'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es la idea principal de esta historia?", "opts": ["La escuela es un lugar feo", "La escuela es un buen lugar para aprender y estar con amigos", "Es mejor quedarse en casa", "Los libros no sirven"], "ci": 1, "type": "critical", "fb_ok": "Pablo disfruta su escuela, su salón, su profesora y sus amigos: la escuela es parte de la educación. 💛", "fb_no": "La respuesta correcta es 'La escuela es un buen lugar para aprender y estar con amigos'."}], "es-en": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Cómo se llama el narrador de esta historia?", "opts": ["Pedro", "Tom", "Pablo", "Ana"], "ci": 2, "type": "literal", "fb_ok": "The story says: \"My name is <strong>Pablo</strong>.\"", "fb_no": "The correct answer is 'Pablo'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Cómo describe el narrador su escuela?", "opts": ["Small and dark", "Big and bright", "Old and cold", "Very far away"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"The school is <strong>big and bright</strong>.\"", "fb_no": "The correct answer is 'Big and bright'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Dónde está la casa del narrador?", "opts": ["Far from town", "Near the school", "By the park", "In another city"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"My house is <strong>near</strong> the school.\"", "fb_no": "The correct answer is 'Near the school'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Qué está haciendo la profesora en ese momento?", "opts": ["She is eating", "She is talking and writing on the board", "She is sleeping", "She is walking home"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"My teacher <strong>is talking</strong>. She <strong>is writing</strong> on the board.\"", "fb_no": "The correct answer is 'She is talking and writing on the board'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Por qué el narrador se siente feliz en la escuela?", "opts": ["Because there are no classes", "Because his friends are there too", "Because the school is small", "Because he is alone"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"I am happy at school. <strong>My friends are here too</strong>.\"", "fb_no": "The correct answer is 'Because his friends are there too'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Cómo se siente al final del día?", "opts": ["Angry", "A little tired, but happy", "Scared", "Bored"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"I am a <strong>little tired, but it was a good day</strong>.\"", "fb_no": "The correct answer is 'A little tired, but happy'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es la idea principal de esta historia?", "opts": ["School is an ugly place", "School is a good place to learn and be with friends", "It is better to stay home", "Books are useless"], "ci": 1, "type": "critical", "fb_ok": "Pablo enjoys his school, classroom, teacher and friends: school is part of education. 💛", "fb_no": "The correct answer is 'School is a good place to learn and be with friends'."}]}, "2": {"es-es": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Cómo es la casa del narrador?", "opts": ["Grande y fría", "Pequeña pero cálida", "Vieja y vacía", "Lejos del pueblo"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"My house is <strong>small but warm</strong>.\"", "fb_no": "La respuesta correcta es 'Pequeña pero cálida'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Dónde está la llave del narrador?", "opts": ["Sobre la mesa", "En la cama", "En el piso", "En la mochila"], "ci": 0, "type": "literal", "fb_ok": "La historia dice: \"My <strong>key</strong> is on the table.\" Key = llave.", "fb_no": "La respuesta correcta es 'Sobre la mesa'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Qué color de pintura está usando?", "opts": ["Roja", "Azul", "Verde", "Amarilla"], "ci": 2, "type": "literal", "fb_ok": "La historia dice: \"I am using <strong>green paint</strong>.\" Green = verde.", "fb_no": "La respuesta correcta es 'Verde'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿A quién le escribe un correo?", "opts": ["A su profesora", "A su amiga que está lejos", "A su jefe", "A su hermano"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"I am writing an <strong>email</strong> to my friend... She is far away.\"", "fb_no": "La respuesta correcta es 'A su amiga que está lejos'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Por qué la pintura está en sus manos?", "opts": ["Porque está limpiando", "Porque está pintando un cuadro", "Porque cocina", "Porque escribe"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"I am painting a picture... The paint is on my hands.\"", "fb_no": "La respuesta correcta es 'Porque está pintando un cuadro'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Qué hace con sus objetos por la noche?", "opts": ["Los tira", "Los guarda en su lugar", "Los regala", "Los pierde"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"At night, I <strong>put my things away</strong>. My key goes by the door.\"", "fb_no": "La respuesta correcta es 'Los guarda en su lugar'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Qué nos enseña esta historia sobre el hogar?", "opts": ["Una casa debe ser grande", "El hogar es un lugar cálido donde cada objeto tiene su lugar", "Es malo tener objetos", "No hay que descansar"], "ci": 1, "type": "critical", "fb_ok": "La casa es pequeña pero cálida; el narrador ordena cada objeto y descansa: un buen día en casa. 💛", "fb_no": "La respuesta correcta es 'El hogar es un lugar cálido donde cada objeto tiene su lugar'."}], "es-en": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Cómo es la casa del narrador?", "opts": ["Big and cold", "Small but warm", "Old and empty", "Far from town"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"My house is <strong>small but warm</strong>.\"", "fb_no": "The correct answer is 'Small but warm'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Dónde está la llave del narrador?", "opts": ["On the table", "On the bed", "On the floor", "In the bag"], "ci": 0, "type": "literal", "fb_ok": "The story says: \"My <strong>key</strong> is on the table.\"", "fb_no": "The correct answer is 'On the table'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Qué color de pintura está usando?", "opts": ["Red", "Blue", "Green", "Yellow"], "ci": 2, "type": "literal", "fb_ok": "The story says: \"I am using <strong>green paint</strong>.\"", "fb_no": "The correct answer is 'Green'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿A quién le escribe un correo?", "opts": ["His teacher", "His friend who is far away", "His boss", "His brother"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"I am writing an <strong>email</strong> to my friend... She is far away.\"", "fb_no": "The correct answer is 'His friend who is far away'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Por qué la pintura está en sus manos?", "opts": ["Because he is cleaning", "Because he is painting a picture", "Because he is cooking", "Because he is writing"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"I am painting a picture... The paint is on my hands.\"", "fb_no": "The correct answer is 'Because he is painting a picture'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Qué hace con sus objetos por la noche?", "opts": ["He throws them away", "He puts them away in their place", "He gives them away", "He loses them"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"At night, I <strong>put my things away</strong>. My key goes by the door.\"", "fb_no": "The correct answer is 'He puts them away in their place'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Qué nos enseña esta historia sobre el hogar?", "opts": ["A house must be big", "Home is a warm place where each object has its place", "Having objects is bad", "One should not rest"], "ci": 1, "type": "critical", "fb_ok": "The house is small but warm; the narrator tidies each object and rests: a good day at home. 💛", "fb_no": "The correct answer is 'Home is a warm place where each object has its place'."}]}, "3": {"es-es": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Dónde está el grupo de amigos?", "opts": ["En la cocina", "En el salón de arte", "En el parque", "En la casa"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"My <strong>group</strong> of friends is in the art room.\" Group = grupo.", "fb_no": "La respuesta correcta es 'En el salón de arte'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Qué está pintando Ana?", "opts": ["Una cara grande", "Un árbol", "Una casa", "Un libro"], "ci": 0, "type": "literal", "fb_ok": "La historia dice: \"Ana is painting a big <strong>face</strong>.\" Face = cara.", "fb_no": "La respuesta correcta es 'Una cara grande'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Qué está haciendo el narrador hoy?", "opts": ["Está pintando", "Está leyendo su libro", "Está durmiendo", "Está cocinando"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"I am not painting today. I am <strong>reading my book</strong>.\"", "fb_no": "La respuesta correcta es 'Está leyendo su libro'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Qué hace Tom con el marcador?", "opts": ["Está dibujando y haciendo un juego", "Está limpiando", "Está comiendo", "Está leyendo"], "ci": 0, "type": "inferential", "fb_ok": "La historia dice: \"Tom is drawing with a <strong>marker</strong>. He is making a <strong>game</strong>.\"", "fb_no": "La respuesta correcta es 'Está dibujando y haciendo un juego'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Cómo ayuda la profesora al grupo?", "opts": ["Les da dinero", "Les hace preguntas y los ayuda", "Los manda a casa", "No hace nada"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"She is helping the group. She is asking us questions.\"", "fb_no": "La respuesta correcta es 'Les hace preguntas y los ayuda'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Cómo terminan los amigos al final?", "opts": ["Enojados", "Cansados pero felices", "Tristes", "Asustados"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"We are <strong>tired but happy</strong>.\"", "fb_no": "La respuesta correcta es 'Cansados pero felices'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es el mensaje principal de esta historia?", "opts": ["Es malo trabajar en grupo", "Aprender y crear juntos en grupo es valioso", "Pintar es aburrido", "Hay que estar solo"], "ci": 1, "type": "critical", "fb_ok": "El grupo trabaja unido —pinta, dibuja, lee y aprende palabras nuevas— como parte de su educación. 💛", "fb_no": "La respuesta correcta es 'Aprender y crear juntos en grupo es valioso'."}], "es-en": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Dónde está el grupo de amigos?", "opts": ["In the kitchen", "In the art room", "In the park", "At home"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"My <strong>group</strong> of friends is in the art room.\"", "fb_no": "The correct answer is 'In the art room'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Qué está pintando Ana?", "opts": ["A big face", "A tree", "A house", "A book"], "ci": 0, "type": "literal", "fb_ok": "The story says: \"Ana is painting a big <strong>face</strong>.\"", "fb_no": "The correct answer is 'A big face'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "¿Qué está haciendo el narrador hoy?", "opts": ["Painting", "Reading his book", "Sleeping", "Cooking"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"I am not painting today. I am <strong>reading my book</strong>.\"", "fb_no": "The correct answer is 'Reading his book'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Qué hace Tom con el marcador?", "opts": ["Drawing and making a game", "Cleaning", "Eating", "Reading"], "ci": 0, "type": "inferential", "fb_ok": "The story says: \"Tom is drawing with a <strong>marker</strong>. He is making a <strong>game</strong>.\"", "fb_no": "The correct answer is 'Drawing and making a game'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Cómo ayuda la profesora al grupo?", "opts": ["She gives them money", "She asks them questions and helps them", "She sends them home", "She does nothing"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"She is helping the group. She is asking us questions.\"", "fb_no": "The correct answer is 'She asks them questions and helps them'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "¿Cómo terminan los amigos al final?", "opts": ["Angry", "Tired but happy", "Sad", "Scared"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"We are <strong>tired but happy</strong>.\"", "fb_no": "The correct answer is 'Tired but happy'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es el mensaje principal de esta historia?", "opts": ["Group work is bad", "Learning and creating together as a group is valuable", "Painting is boring", "One should be alone"], "ci": 1, "type": "critical", "fb_ok": "The group works together —painting, drawing, reading, learning— as part of their education. 💛", "fb_no": "The correct answer is 'Learning and creating together as a group is valuable'."}]}, "4": {"es-es": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Quién hace la pregunta al inicio?", "opts": ["La profesora", "La hermana del narrador", "El jefe", "El amigo"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"My sister has a <strong>question</strong>. She asks me about school.\"", "fb_no": "La respuesta correcta es 'La hermana del narrador'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Qué pregunta hace ella?", "opts": ["¿Por qué vamos a la escuela?", "¿Dónde está mi libro?", "¿Qué hora es?", "¿Cómo te llamas?"], "ci": 0, "type": "literal", "fb_ok": "La historia dice: \"<strong>Why do we go to school?</strong> she says.\"", "fb_no": "La respuesta correcta es '¿Por qué vamos a la escuela?'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "Según el narrador, ¿qué tendrás un día gracias a la educación?", "opts": ["Una casa nueva", "Un trabajo", "Un juego", "Un marcador"], "ci": 1, "type": "literal", "fb_ok": "La historia dice: \"One day, you will have a <strong>job</strong>. Your education will help you.\" Job = trabajo.", "fb_no": "La respuesta correcta es 'Un trabajo'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Por qué el narrador dice que la escuela es importante?", "opts": ["Porque es divertida", "Porque es parte de la educación y ayuda en el futuro", "Porque está cerca", "Porque es grande"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"School is part of our <strong>education</strong>... you learn for your future.\"", "fb_no": "La respuesta correcta es 'Porque es parte de la educación y ayuda en el futuro'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Cómo reacciona la hermana al escuchar la respuesta?", "opts": ["Llora", "Sonríe y le gusta la respuesta", "Se enoja", "Se va"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"Now she is <strong>smiling</strong>. She likes the answer.\"", "fb_no": "La respuesta correcta es 'Sonríe y le gusta la respuesta'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "Según la hermana, ¿cuál es la mejor razón para ir a la escuela?", "opts": ["Porque tiene amigos", "Porque le gusta aprender", "Porque está cerca", "Porque hay juegos"], "ci": 1, "type": "inferential", "fb_ok": "La historia dice: \"I like to learn. That is the best <strong>reason</strong> of all.\"", "fb_no": "La respuesta correcta es 'Porque le gusta aprender'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es el mensaje principal de esta historia?", "opts": ["La escuela no sirve", "El verdadero valor de la educación es aprender y querer aprender", "Solo importa el trabajo", "Las preguntas son malas"], "ci": 1, "type": "critical", "fb_ok": "La educación prepara para el futuro, pero la mejor razón es el amor por aprender. 💛", "fb_no": "La respuesta correcta es 'El verdadero valor de la educación es aprender y querer aprender'."}], "es-en": [{"badge": "Pregunta 1/7 • Literal 📖", "q": "¿Quién hace la pregunta al inicio?", "opts": ["The teacher", "The narrator's sister", "The boss", "The friend"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"My sister has a <strong>question</strong>. She asks me about school.\"", "fb_no": "The correct answer is 'The narrator's sister'."}, {"badge": "Pregunta 2/7 • Literal 📖", "q": "¿Qué pregunta hace ella?", "opts": ["Why do we go to school?", "Where is my book?", "What time is it?", "What is your name?"], "ci": 0, "type": "literal", "fb_ok": "The story says: \"<strong>Why do we go to school?</strong> she says.\"", "fb_no": "The correct answer is 'Why do we go to school?'."}, {"badge": "Pregunta 3/7 • Literal 📖", "q": "Según el narrador, ¿qué tendrás un día gracias a la educación?", "opts": ["A new house", "A job", "A game", "A marker"], "ci": 1, "type": "literal", "fb_ok": "The story says: \"One day, you will have a <strong>job</strong>. Your education will help you.\"", "fb_no": "The correct answer is 'A job'."}, {"badge": "Pregunta 4/7 • Inferencial 🔍", "q": "¿Por qué el narrador dice que la escuela es importante?", "opts": ["Because it is fun", "Because it is part of education and helps the future", "Because it is near", "Because it is big"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"School is part of our <strong>education</strong>... you learn for your future.\"", "fb_no": "The correct answer is 'Because it is part of education and helps the future'."}, {"badge": "Pregunta 5/7 • Inferencial 🔍", "q": "¿Cómo reacciona la hermana al escuchar la respuesta?", "opts": ["She cries", "She smiles and likes the answer", "She gets angry", "She leaves"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"Now she is <strong>smiling</strong>. She likes the answer.\"", "fb_no": "The correct answer is 'She smiles and likes the answer'."}, {"badge": "Pregunta 6/7 • Inferencial 🔍", "q": "Según la hermana, ¿cuál es la mejor razón para ir a la escuela?", "opts": ["Because she has friends", "Because she likes to learn", "Because it is near", "Because there are games"], "ci": 1, "type": "inferential", "fb_ok": "The story says: \"I like to learn. That is the best <strong>reason</strong> of all.\"", "fb_no": "The correct answer is 'Because she likes to learn'."}, {"badge": "Pregunta 7/7 • Pensamiento Crítico 🎓", "q": "¿Cuál es el mensaje principal de esta historia?", "opts": ["School is useless", "The true value of education is learning and wanting to learn", "Only the job matters", "Questions are bad"], "ci": 1, "type": "critical", "fb_ok": "Education prepares for the future, but the best reason is the love of learning. 💛", "fb_no": "The correct answer is 'The true value of education is learning and wanting to learn'."}]}};
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let currentStory = 1;
+let currentMode = 'es-es';
+let score = 0;
+let answered = new Set();
+let streak = 0;
+let literalCorrect = 0;
+let inferentialCorrect = 0;
+let criticalCorrect = false;
+const totalQ = 7;
+let completedStories = new Set();
+let showAllTrans = false;
+let speechSpeed = 0.8;
+let voicesReady = false;
+let usVoice = null;
+let ukVoice = null;
+let modalQueue = [];
+let modalShowing = false;
+let keepAliveTimer = null;
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllAccent = 'US';
+
+// ═══════════════════════════════════════════════
+// VOICE SETUP
+// ═══════════════════════════════════════════════
+function loadVoices() {
+  const voices = speechSynthesis.getVoices();
+  if (!voices.length) return;
+  voicesReady = true;
+  const usP = [
+    v => v.lang==='en-US' && /samantha|allison|ava|tom|alex|nicky|aaron/i.test(v.name),
+    v => v.lang==='en-US' && /google us/i.test(v.name),
+    v => v.lang==='en-US' && /microsoft.*online/i.test(v.name),
+    v => v.lang==='en-US',
+    v => v.lang.startsWith('en')
+  ];
+  const ukP = [
+    v => v.lang==='en-GB' && /daniel|kate|serena|oliver|martha/i.test(v.name),
+    v => v.lang==='en-GB' && /google uk/i.test(v.name),
+    v => v.lang==='en-GB' && /microsoft.*online/i.test(v.name),
+    v => v.lang==='en-GB',
+    v => v.lang==='en-AU',
+    v => v.lang.startsWith('en')
+  ];
+  for (const p of usP) { const m = voices.find(p); if (m) { usVoice = m; break; } }
+  for (const p of ukP) { const m = voices.find(v => p(v) && v !== usVoice); if (m) { ukVoice = m; break; } }
+  if (!ukVoice) ukVoice = usVoice;
+}
+speechSynthesis.getVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+setTimeout(loadVoices, 200); setTimeout(loadVoices, 800);
+
+// ═══════════════════════════════════════════════
+// SPEAK — per paragraph (the 🇺🇸 / 🇬🇧 buttons).
+// Includes a keep-alive nudge so long paragraphs (and the
+// last one) are not cut off by the browser's speech timeout.
+// ═══════════════════════════════════════════════
+function speakPara(btn, text, accent) {
+  if (playAllActive) stopPlayAll();
+  speechSynthesis.cancel();
+  clearKeepAlive();
+  if (!voicesReady) loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = speechSpeed;
+  u.pitch = 1;
+  if (accent === 'UK') { u.lang = 'en-GB'; if (ukVoice) u.voice = ukVoice; }
+  else { u.lang = 'en-US'; if (usVoice) u.voice = usVoice; }
+
+  document.querySelectorAll('.s-audio-btn.playing').forEach(b => b.classList.remove('playing'));
+  if (btn) btn.classList.add('playing');
+
+  const done = () => { if (btn) btn.classList.remove('playing'); clearKeepAlive(); };
+  u.onend = done;
+  u.onerror = done;
+
+  speechSynthesis.speak(u);
+  startKeepAlive();
+}
+
+// Chrome pauses speech after ~15s of activity; periodically nudging
+// pause+resume keeps it going so the full text (incl. last sentence) plays.
+function startKeepAlive() {
+  clearKeepAlive();
+  keepAliveTimer = setInterval(() => {
+    if (speechSynthesis.speaking && !speechSynthesis.paused) {
+      speechSynthesis.pause();
+      speechSynthesis.resume();
+    } else {
+      clearKeepAlive();
+    }
+  }, 9000);
+}
+function clearKeepAlive() {
+  if (keepAliveTimer) { clearInterval(keepAliveTimer); keepAliveTimer = null; }
+}
+
+function updateSpeed(val) {
+  speechSpeed = parseFloat(val);
+  document.getElementById('speed-val').textContent = val + '×';
+}
+
+// ═══════════════════════════════════════════════
+// ACCENT for full-story playback (US / UK)
+// ═══════════════════════════════════════════════
+function setAccent(accent) {
+  playAllAccent = accent;
+  document.getElementById('acc-us').classList.toggle('active', accent === 'US');
+  document.getElementById('acc-uk').classList.toggle('active', accent === 'UK');
+  // If currently playing, restart current paragraph in the new accent
+  if (playAllActive) {
+    speechSynthesis.cancel();
+    playFrom(playAllIndex);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// PLAY ALL — reads the whole story with follow-along.
+// One button toggles play/stop. Highlights the active
+// paragraph and gently scrolls it into view INSIDE the
+// story box (the page itself never jumps). The reader can
+// still scroll freely; this only nudges on each new line.
+// ═══════════════════════════════════════════════
+function getParaBlocks() {
+  return Array.from(document.querySelectorAll('#story-inner .story-block'));
+}
+
+function togglePlayAll() {
+  if (playAllActive) { stopPlayAll(); return; }
+  if (!voicesReady) loadVoices();
+  speechSynthesis.cancel();
+  clearKeepAlive();
+  // clear any single-paragraph button highlight
+  document.querySelectorAll('.s-audio-btn.playing').forEach(b => b.classList.remove('playing'));
+  playAllActive = true;
+  setPlayButton(true);
+  playFrom(0);
+}
+
+function playFrom(index) {
+  const blocks = getParaBlocks();
+  if (!playAllActive) return;
+  if (index < 0) index = 0;
+  if (index >= blocks.length) { stopPlayAll(); return; }
+  playAllIndex = index;
+
+  // highlight + follow
+  blocks.forEach((b, i) => b.classList.toggle('active-para', i === index));
+  focusBlockInBox(blocks[index]);
+
+  const text = blocks[index].querySelector('.story-en')?.textContent.trim() || '';
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = speechSpeed;
+  u.pitch = 1;
+  if (playAllAccent === 'UK') { u.lang = 'en-GB'; if (ukVoice) u.voice = ukVoice; }
+  else { u.lang = 'en-US'; if (usVoice) u.voice = usVoice; }
+
+  u.onend = () => {
+    if (!playAllActive) return;
+    clearKeepAlive();
+    if (index < blocks.length - 1) {
+      setTimeout(() => { if (playAllActive) playFrom(index + 1); }, 280);
+    } else {
+      stopPlayAll();   // finished the last paragraph
+    }
+  };
+  u.onerror = () => {
+    if (!playAllActive) return;
+    clearKeepAlive();
+    if (index < blocks.length - 1) {
+      setTimeout(() => { if (playAllActive) playFrom(index + 1); }, 280);
+    } else {
+      stopPlayAll();
+    }
+  };
+
+  speechSynthesis.speak(u);
+  startKeepAlive();   // prevents the browser cutting off long / last lines
+}
+
+function stopPlayAll() {
+  playAllActive = false;
+  speechSynthesis.cancel();
+  clearKeepAlive();
+  setPlayButton(false);
+  // keep the highlight where we stopped so the reader keeps their place
+}
+
+function setPlayButton(playing) {
+  const btn = document.getElementById('play-all-btn');
+  if (!btn) return;
+  btn.classList.toggle('is-playing', playing);
+  btn.textContent = playing ? '⏸ Detener' : '▶ Escuchar toda la historia';
+}
+
+// Scroll the STORY BOX (not the page) so the given block is visible.
+function focusBlockInBox(blk) {
+  const box = document.getElementById('story-inner');
+  if (!box || !blk) return;
+  const top = blk.offsetTop - box.offsetTop - 8;
+  box.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════
+// TRANSLATIONS TOGGLE
+// ═══════════════════════════════════════════════
+function toggleAllTranslations() {
+  showAllTrans = !showAllTrans;
+  const btn = document.getElementById('show-all-btn');
+  btn.classList.toggle('active', showAllTrans);
+  btn.textContent = showAllTrans ? '🇪🇸 Ocultar' : '🇪🇸 Traducciones';
+  document.querySelectorAll('.story-es').forEach(el => el.classList.toggle('show', showAllTrans));
+}
+function toggleTranslation(btn) {
+  const esEl = btn.closest('.story-block').querySelector('.story-es');
+  esEl.classList.toggle('show');
+  btn.textContent = esEl.classList.contains('show') ? '🇪🇸 Ocultar' : '🇪🇸 Traducción';
+}
+
+// ═══════════════════════════════════════════════
+// STORY PANEL TOGGLE
+// ═══════════════════════════════════════════════
+function toggleStory() {
+  const content = document.getElementById('story-content');
+  const icon = document.getElementById('story-toggle-icon');
+  content.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════
+// SWITCH STORY
+// ═══════════════════════════════════════════════
+function switchStory(n) {
+  stopPlayAll();
+  speechSynthesis.cancel();
+  clearKeepAlive();
+  playAllIndex = 0;
+  showAllTrans = false;
+  const sBtn = document.getElementById('show-all-btn');
+  if (sBtn) { sBtn.classList.remove('active'); sBtn.textContent = '🇪🇸 Traducciones'; }
+
+  currentStory = n;
+  document.querySelectorAll('.story-tab').forEach((t, i) => t.classList.toggle('active', i + 1 === n));
+  const story = STORIES[n];
+  document.getElementById('story-panel-title').textContent = `📖 ${story.title}`;
+
+  const inner = document.getElementById('story-inner');
+  inner.innerHTML = story.paragraphs.map((p, i) => `
+    <div class="story-block" id="sb-${i}">
+      <div class="story-en">${p.en}</div>
+      <div class="story-audio-row">
+        <button class="s-audio-btn" onclick="speakPara(this, this.closest('.story-block').querySelector('.story-en').textContent.trim(), 'US')">🇺🇸 US</button>
+        <button class="s-audio-btn" onclick="speakPara(this, this.closest('.story-block').querySelector('.story-en').textContent.trim(), 'UK')">🇬🇧 UK</button>
+        <button class="reveal-btn" onclick="toggleTranslation(this)">🇪🇸 Traducción</button>
+      </div>
+      <div class="story-es">${p.es}</div>
+    </div>
+  `).join('');
+  inner.scrollTop = 0;
+
+  resetQuiz();
+}
+
+// ═══════════════════════════════════════════════
+// MODE SWITCH
+// ═══════════════════════════════════════════════
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('mbtn-eses').classList.toggle('active', mode === 'es-es');
+  document.getElementById('mbtn-esen').classList.toggle('active', mode === 'es-en');
+  document.getElementById('mode-display').textContent = mode === 'es-es' ? 'Modo: Español → Español' : 'Modo: Español → English';
+  resetQuiz();
+}
+
+// ═══════════════════════════════════════════════
+// FISHER-YATES SHUFFLE + answer tracking
+// ═══════════════════════════════════════════════
+function shuffleOptions(q) {
+  const opts = q.opts.map((text, i) => ({ text, isCorrect: i === q.ci }));
+  for (let i = opts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [opts[i], opts[j]] = [opts[j], opts[i]];
+  }
+  const newCorrect = opts.findIndex(o => o.isCorrect);
+  return { shuffled: opts.map(o => o.text), newCi: newCorrect };
+}
+
+// ═══════════════════════════════════════════════
+// RENDER QUIZ
+// ═══════════════════════════════════════════════
+let renderedQuizData = [];
+
+function renderQuiz() {
+  const qs = QUESTIONS[currentStory][currentMode];
+  renderedQuizData = [];
+  const container = document.getElementById('quiz-container');
+  const letters = ['a','b','c','d'];
+  container.innerHTML = qs.map((q, qi) => {
+    const { shuffled, newCi } = shuffleOptions(q);
+    renderedQuizData[qi] = { correctIndex: newCi, type: q.type, fb_ok: q.fb_ok, fb_no: q.fb_no };
+    return `
+      <div class="question-card" id="qcard-${qi}">
+        <span class="question-badge">${q.badge}</span>
+        <div class="question-text">${q.q}</div>
+        <div class="options-grid">
+          ${shuffled.map((opt, oi) => `
+            <button class="option-btn" onclick="checkAnswer(${qi}, ${oi})">
+              ${letters[oi]}) ${opt}
+            </button>
+          `).join('')}
+        </div>
+        <div class="feedback correct-fb" id="fb-${qi}-ok"><div class="feedback-title">✅ ¡Correcto!</div><div class="feedback-text" id="fbt-${qi}-ok"></div></div>
+        <div class="feedback incorrect-fb" id="fb-${qi}-no"><div class="feedback-title">❌ Incorrecto</div><div class="feedback-text" id="fbt-${qi}-no"></div></div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════
+// CHECK ANSWER
+// ═══════════════════════════════════════════════
+function checkAnswer(qi, selected) {
+  if (answered.has(qi)) return;
+  answered.add(qi);
+  const { correctIndex, type, fb_ok, fb_no } = renderedQuizData[qi];
+  const card = document.getElementById(`qcard-${qi}`);
+  const btns = card.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+  const isCorrect = selected === correctIndex;
+  btns[selected].classList.add(isCorrect ? 'sel-correct' : 'sel-wrong');
+  if (!isCorrect) btns[correctIndex].classList.add('show-correct');
+  if (isCorrect) {
+    card.classList.add('correct');
+    document.getElementById(`fbt-${qi}-ok`).innerHTML = fb_ok;
+    document.getElementById(`fb-${qi}-ok`).classList.add('show');
+    score++;
+    streak++;
+    if (type === 'literal') literalCorrect++;
+    if (type === 'inferential') inferentialCorrect++;
+    if (type === 'critical') criticalCorrect = true;
+  } else {
+    card.classList.add('incorrect');
+    document.getElementById(`fbt-${qi}-no`).innerHTML = fb_no;
+    document.getElementById(`fb-${qi}-no`).classList.add('show');
+    streak = 0;
+  }
+  checkAchievements();
+  updateProgress();
+  if (answered.size === totalQ) {
+    setTimeout(() => {
+      document.getElementById('submit-section').style.display = 'block';
+      document.getElementById('submit-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 600);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════
+function updateProgress() {
+  const pct = (answered.size / totalQ) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${answered.size} de ${totalQ} preguntas`;
+}
+
+// ═══════════════════════════════════════════════
+// ACHIEVEMENTS
+// ═══════════════════════════════════════════════
+function checkAchievements() {
+  if (answered.size === 1 && score === 1) unlockAch('ach-first','🌱','¡Primera Respuesta Correcta! Tu viaje comienza.');
+  if (streak === 3) unlockAch('ach-streak','🔥','¡3 Respuestas Correctas Seguidas! ¡En llamas!');
+  if (literalCorrect >= 3) unlockAch('ach-literal','📖','¡Comprensión Literal Dominada! Lees con atención.');
+  if (inferentialCorrect >= 2) unlockAch('ach-inferential','🔍','¡Comprensión Inferencial! Conectas ideas como detective.');
+  if (criticalCorrect) unlockAch('ach-critical','🎓','¡Pensamiento Crítico Activado! Vas más allá del texto.');
+  if (answered.size === totalQ && score >= 6) unlockAch('ach-explorer','🎒','¡Aprendiz! Navegas el idioma con confianza.');
+}
+
+function unlockAch(id, icon, text) {
+  const el = document.getElementById(id);
+  if (el && !el.classList.contains('unlocked')) {
+    el.classList.add('unlocked');
+    queueModal(icon, text);
+  }
+}
+function queueModal(icon, text) {
+  modalQueue.push({ icon, text });
+  if (!modalShowing) showNextModal();
+}
+function showNextModal() {
+  if (!modalQueue.length) { modalShowing = false; return; }
+  modalShowing = true;
+  const { icon, text } = modalQueue.shift();
+  document.getElementById('modal-icon').textContent = icon;
+  document.getElementById('modal-text').textContent = text;
+  document.getElementById('achievement-modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('achievement-modal').classList.remove('show');
+  setTimeout(showNextModal, 300);
+}
+
+// ═══════════════════════════════════════════════
+// COMPLETION
+// ═══════════════════════════════════════════════
+function showCompletion() {
+  document.getElementById('submit-section').style.display = 'none';
+  completedStories.add(currentStory);
+  document.getElementById(`done-${currentStory}`).textContent = '✅';
+  if (completedStories.size >= 4) unlockAch('ach-stories','📚','¡4 Historias Completadas! Eres un verdadero lector.');
+  if (score === totalQ) unlockAch('ach-perfect','⭐','¡Perfección Total! 7/7 — ¡Increíble!');
+
+  const literalDone = QUESTIONS[currentStory][currentMode].filter(q => q.type === 'literal').length;
+  const inferDone = QUESTIONS[currentStory][currentMode].filter(q => q.type === 'inferential').length;
+  let msg = '';
+  if (score === 7) msg = '¡Excelente comprensión lectora! 🌟';
+  else if (score >= 5) msg = '¡Muy bien! Tienes buena comprensión. 👍';
+  else if (score >= 3) msg = 'Buen intento. Lee la historia otra vez. 📖';
+  else msg = '¡Sigue practicando, tú puedes! 💪';
+
+  document.getElementById('completion-card').innerHTML = `
+    <div class="completion-icon">🏆</div>
+    <div class="completion-title">¡Completado!</div>
+    <div class="completion-score">${score}/${totalQ}</div>
+    <div class="completion-message">${msg}</div>
+    <div class="stats-row">
+      <div class="stat-chip"><span class="s-num">${literalCorrect}/${literalDone}</span>Literal</div>
+      <div class="stat-chip"><span class="s-num">${inferentialCorrect}/${inferDone}</span>Inferencial</div>
+      <div class="stat-chip"><span class="s-num">${criticalCorrect ? '1/1' : '0/1'}</span>Crítico</div>
+    </div>
+    <div class="completion-krashen">
+      <h4>🧠 ¿Sabías que...?</h4>
+      <p>Al completar esta historia, tu cerebro procesó el presente continuo y las preposiciones en contexto real. Según Krashen, <strong>la adquisición ocurre inconscientemente</strong> cuando entendemos mensajes — ¡acabas de absorber <em>I am reading, she is writing, in the bag, on the table</em> de forma natural!</p>
+    </div>
+    <button class="reset-btn" onclick="resetQuiz()">🔄 Intentar de Nuevo</button>
+  `;
+  try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(score/totalQ*100)}}));}catch(e){}
+  document.getElementById('completion-card').classList.add('show');
+  document.getElementById('completion-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ═══════════════════════════════════════════════
+// RESET QUIZ
+// ═══════════════════════════════════════════════
+function resetQuiz() {
+  score = 0;
+  answered.clear();
+  streak = 0;
+  literalCorrect = 0;
+  inferentialCorrect = 0;
+  criticalCorrect = false;
+  document.getElementById('submit-section').style.display = 'none';
+  document.getElementById('completion-card').classList.remove('show');
+  document.getElementById('completion-card').innerHTML = '';
+  renderQuiz();
+  updateProgress();
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+switchStory(1);
+
+</script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transform - Pre-A1 M4 | JUCUM English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --orange-light: #FFEDD5; --orange-dark: #C2410C;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+}
+
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .back-btn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.3); border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; text-decoration:none; color:var(--text-dark); transition:all .2s; flex-shrink:0; }
+        .back-btn:hover { background:rgba(255,255,255,0.5); transform:scale(1.1); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#FEF3C7; color:var(--text-medium); margin-left:auto; }
+        /* toggle buttons */
+        .toggle-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+        .toggle-btn { border:2px solid var(--primary-light); background:#FFFBEB; color:var(--text-medium); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .toggle-btn:hover { background:var(--primary-light); }
+        .toggle-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; display:none; }
+        .hint-box.show { display:block; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.88rem; margin:0.5rem 0 1rem; padding:0.6rem 0.9rem; background:#FFFBEB; border-radius:10px; display:none; }
+        .translation.show { display:block; }
+        /* feedback (shared) */
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border:1px solid #FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .fb-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.8rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn.secondary { background:#F1F5F9; color:var(--text-dark); }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+
+        .transform-visual { background:var(--bg-gradient-start); border:1px solid var(--primary-light); border-radius:14px; padding:1rem; margin-bottom:1rem; }
+        .transform-box { padding:0.7rem 0.9rem; border-radius:10px; }
+        .transform-box.base { background:var(--orange-light); border:1px solid #FED7AA; margin-bottom:0.5rem; }
+        .transform-box.goal { background:#F0F9FF; border:1px solid #BAE6FD; }
+        .transform-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; display:block; margin-bottom:0.3rem; }
+        .transform-box.base .transform-label { color:var(--orange-dark); }
+        .transform-box.goal .transform-label { color:var(--info-dark); }
+        .transform-sentence { font-size:0.98rem; font-weight:600; color:var(--text-dark); line-height:1.5; }
+        .verb-present { color:var(--orange-dark); font-weight:800; background:#FED7AA; padding:0 3px; border-radius:3px; }
+        .transform-arrow { text-align:center; font-size:1rem; color:var(--text-light); margin:0.2rem 0; }
+        .options-container { display:flex; flex-direction:column; gap:0.65rem; margin-bottom:0.5rem; }
+        .option-btn { border:2.5px solid #E5E7EB; border-radius:13px; padding:0.85rem 1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:center; width:100%; }
+        .option-btn:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .option-btn.disabled { cursor:default; }
+        .option-btn.correct { border-color:var(--success); background:var(--success-light); }
+        .option-btn.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .option-btn.correct .option-letter { background:var(--success); color:white; }
+        .option-btn.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); line-height:1.5; font-weight:600; flex:1; }
+
+        .error-sentence { font-size:0.95rem; color:var(--error-dark); background:#FFF1F2; border-radius:8px; padding:0.5rem 0.7rem; margin-bottom:0.5rem; line-height:1.5; }
+        .good-sentence { font-size:0.97rem; color:var(--success-dark); background:#F0FDF4; border-radius:8px; padding:0.5rem 0.7rem; line-height:1.5; font-weight:600; }
+        .fb-good { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-good .fb-block-title { color:var(--success-dark); }
+        .fb-divider { text-align:center; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px; color:#94A3B8; margin:0.3rem 0 0.1rem; }
+    </style>
+</head><body>
+    <header class="header">
+        <a href="panel-prea1.html" class="back-btn">←</a>
+        <div class="header-info">
+            <div class="header-title">🔄 Transform</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 4 · Present Continuous (negativo y preguntas)</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/15</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔄</div>
+            <div>
+                <div class="instructions-title">Transforma la oración</div>
+                <div class="instructions-text">Lee la oración original y el objetivo. Elige la versión correcta. Usa los botones para una pista o la traducción si las necesitas.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore"></div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+                <a href="panel-prea1.html" class="result-btn secondary">← Volver al Módulo</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [
+  {
+    "base": "Tom is reading a book.",
+    "presentVerb": "is reading",
+    "goal": "Negativa (acción en este momento)",
+    "badge": "🚫 negativa singular",
+    "clue": "negativa",
+    "clueExplain": "El objetivo pide expresar la idea en forma negativa.",
+    "options": [
+      {
+        "text": "Tom is not reading a book.",
+        "correct": true,
+        "pastVerb": "is not reading"
+      },
+      {
+        "text": "Tom not reading a book.",
+        "correct": false,
+        "pastVerb": "not reading",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "Tom no reading a book.",
+        "correct": false,
+        "pastVerb": "no reading",
+        "errorType": "Palabra negativa incorrecta",
+        "explanation": "Esa palabra no se usa así; la negación correcta va tras el auxiliar."
+      }
+    ],
+    "correctReason": "La negativa coloca la negación entre el auxiliar y el verbo en '-ing'.",
+    "baseEs": "Tom está leyendo un libro."
+  },
+  {
+    "base": "I am writing an email.",
+    "presentVerb": "am writing",
+    "goal": "Negativa (sujeto 'I')",
+    "badge": "🚫 negativa (I)",
+    "clue": "negativa + I",
+    "clueExplain": "El sujeto 'I' usa su auxiliar y luego la negación.",
+    "options": [
+      {
+        "text": "I not writing an email.",
+        "correct": false,
+        "pastVerb": "not writing",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "I am not writing an email.",
+        "correct": true,
+        "pastVerb": "am not writing"
+      },
+      {
+        "text": "I is not writing an email.",
+        "correct": false,
+        "pastVerb": "is not writing",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "El sujeto 'I' no usa ese auxiliar."
+      }
+    ],
+    "correctReason": "El sujeto 'I' usa su auxiliar propio más la negación y el verbo en '-ing'.",
+    "baseEs": "Yo estoy escribiendo un correo."
+  },
+  {
+    "base": "We are using the markers.",
+    "presentVerb": "are using",
+    "goal": "Negativa (sujeto plural)",
+    "badge": "🚫 negativa plural",
+    "clue": "negativa + we",
+    "clueExplain": "Sujeto plural con idea negativa.",
+    "options": [
+      {
+        "text": "We is not using the markers.",
+        "correct": false,
+        "pastVerb": "is not using",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "El sujeto 'we' no usa ese auxiliar."
+      },
+      {
+        "text": "We not using the markers.",
+        "correct": false,
+        "pastVerb": "not using",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "We are not using the markers.",
+        "correct": true,
+        "pastVerb": "are not using"
+      }
+    ],
+    "correctReason": "La negativa plural coloca la negación entre el auxiliar plural y el verbo en '-ing'.",
+    "baseEs": "Nosotros estamos usando los marcadores."
+  },
+  {
+    "base": "You are painting the house.",
+    "presentVerb": "are painting",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta (you)",
+    "clue": "pregunta",
+    "clueExplain": "El objetivo pide convertir la oración en pregunta.",
+    "options": [
+      {
+        "text": "Are you painting the house?",
+        "correct": true,
+        "pastVerb": "Are ... painting"
+      },
+      {
+        "text": "You are painting the house?",
+        "correct": false,
+        "pastVerb": "You are painting",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      },
+      {
+        "text": "Is you painting the house?",
+        "correct": false,
+        "pastVerb": "Is you painting",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Ese auxiliar es para he/she/it, no para 'you'."
+      }
+    ],
+    "correctReason": "La pregunta empieza con el auxiliar, luego el sujeto y el verbo en '-ing'.",
+    "baseEs": "Tú estás pintando la casa."
+  },
+  {
+    "base": "Sara is studying for the question.",
+    "presentVerb": "is studying",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta singular",
+    "clue": "pregunta + Sara",
+    "clueExplain": "Pregunta con sujeto singular.",
+    "options": [
+      {
+        "text": "Are Sara studying for the question?",
+        "correct": false,
+        "pastVerb": "Are ... studying",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Sara es una sola; ese auxiliar es para plural."
+      },
+      {
+        "text": "Is Sara studying for the question?",
+        "correct": true,
+        "pastVerb": "Is ... studying"
+      },
+      {
+        "text": "Sara is studying for the question?",
+        "correct": false,
+        "pastVerb": "Sara is studying",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      }
+    ],
+    "correctReason": "La pregunta singular empieza con el auxiliar singular antes del sujeto.",
+    "baseEs": "Sara está estudiando para la pregunta."
+  },
+  {
+    "base": "Tom and Ben are using the markers.",
+    "presentVerb": "are using",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta plural",
+    "clue": "pregunta + plural",
+    "clueExplain": "Pregunta con sujeto plural.",
+    "options": [
+      {
+        "text": "Is Tom and Ben using the markers?",
+        "correct": false,
+        "pastVerb": "Is ... using",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Hay dos personas; ese auxiliar es para singular."
+      },
+      {
+        "text": "Tom and Ben are using the markers?",
+        "correct": false,
+        "pastVerb": "Tom and Ben are using",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      },
+      {
+        "text": "Are Tom and Ben using the markers?",
+        "correct": true,
+        "pastVerb": "Are ... using"
+      }
+    ],
+    "correctReason": "La pregunta plural empieza con el auxiliar plural antes del sujeto.",
+    "baseEs": "Tom y Ben están usando los marcadores."
+  },
+  {
+    "base": "Ana is opening the door.",
+    "presentVerb": "is opening",
+    "goal": "Negativa (acción en este momento)",
+    "badge": "🚫 negativa singular",
+    "clue": "negativa",
+    "clueExplain": "El objetivo pide la idea en forma negativa.",
+    "options": [
+      {
+        "text": "Ana is not opening the door.",
+        "correct": true,
+        "pastVerb": "is not opening"
+      },
+      {
+        "text": "Ana not opening the door.",
+        "correct": false,
+        "pastVerb": "not opening",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "Ana is not open the door.",
+        "correct": false,
+        "pastVerb": "is not open",
+        "errorType": "Verbo en forma base",
+        "explanation": "Tras la negación, el verbo va en su forma '-ing'."
+      }
+    ],
+    "correctReason": "La negativa singular coloca la negación entre el auxiliar y el verbo en '-ing'.",
+    "baseEs": "Ana está abriendo la puerta."
+  },
+  {
+    "base": "The students are reading their books.",
+    "presentVerb": "are reading",
+    "goal": "Negativa (sujeto plural)",
+    "badge": "🚫 negativa plural",
+    "clue": "negativa + plural",
+    "clueExplain": "Sujeto plural con idea negativa.",
+    "options": [
+      {
+        "text": "The students is not reading their books.",
+        "correct": false,
+        "pastVerb": "is not reading",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Hay varios; ese auxiliar es para singular."
+      },
+      {
+        "text": "The students are not reading their books.",
+        "correct": true,
+        "pastVerb": "are not reading"
+      },
+      {
+        "text": "The students not reading their books.",
+        "correct": false,
+        "pastVerb": "not reading",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      }
+    ],
+    "correctReason": "La negativa plural coloca la negación entre el auxiliar plural y el verbo en '-ing'.",
+    "baseEs": "Los estudiantes están leyendo sus libros."
+  },
+  {
+    "base": "I am holding the key.",
+    "presentVerb": "am holding",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta (I)",
+    "clue": "pregunta + I",
+    "clueExplain": "Pregunta con el sujeto 'I'.",
+    "options": [
+      {
+        "text": "Is I holding the key?",
+        "correct": false,
+        "pastVerb": "Is I holding",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "El sujeto 'I' no usa ese auxiliar."
+      },
+      {
+        "text": "I am holding the key?",
+        "correct": false,
+        "pastVerb": "I am holding",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      },
+      {
+        "text": "Am I holding the key?",
+        "correct": true,
+        "pastVerb": "Am I holding"
+      }
+    ],
+    "correctReason": "La pregunta con 'I' empieza con su auxiliar propio antes del sujeto.",
+    "baseEs": "Yo estoy sosteniendo la llave."
+  },
+  {
+    "base": "You are playing a game.",
+    "presentVerb": "are playing",
+    "goal": "Negativa (sujeto 'you')",
+    "badge": "🚫 negativa (you)",
+    "clue": "negativa + you",
+    "clueExplain": "Sujeto 'you' con idea negativa.",
+    "options": [
+      {
+        "text": "You are not playing a game.",
+        "correct": true,
+        "pastVerb": "are not playing"
+      },
+      {
+        "text": "You is not playing a game.",
+        "correct": false,
+        "pastVerb": "is not playing",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "El sujeto 'you' no usa ese auxiliar."
+      },
+      {
+        "text": "You not playing a game.",
+        "correct": false,
+        "pastVerb": "not playing",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      }
+    ],
+    "correctReason": "El sujeto 'you' usa el auxiliar plural más la negación y el verbo en '-ing'.",
+    "baseEs": "Tú estás jugando un juego."
+  },
+  {
+    "base": "Rosa is writing an email.",
+    "presentVerb": "is writing",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta singular",
+    "clue": "pregunta + Rosa",
+    "clueExplain": "Pregunta con sujeto singular.",
+    "options": [
+      {
+        "text": "Are Rosa writing an email?",
+        "correct": false,
+        "pastVerb": "Are ... writing",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Rosa es una sola; ese auxiliar es para plural."
+      },
+      {
+        "text": "Is Rosa writing an email?",
+        "correct": true,
+        "pastVerb": "Is ... writing"
+      },
+      {
+        "text": "Rosa is writing an email?",
+        "correct": false,
+        "pastVerb": "Rosa is writing",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      }
+    ],
+    "correctReason": "La pregunta singular empieza con el auxiliar singular antes del sujeto.",
+    "baseEs": "Rosa está escribiendo un correo."
+  },
+  {
+    "base": "Marco is doing his job.",
+    "presentVerb": "is doing",
+    "goal": "Negativa (acción en este momento)",
+    "badge": "🚫 negativa singular",
+    "clue": "negativa",
+    "clueExplain": "El objetivo pide la idea en forma negativa.",
+    "options": [
+      {
+        "text": "Marco is not do his job.",
+        "correct": false,
+        "pastVerb": "is not do",
+        "errorType": "Verbo en forma base",
+        "explanation": "Tras la negación, el verbo va en su forma '-ing'."
+      },
+      {
+        "text": "Marco not doing his job.",
+        "correct": false,
+        "pastVerb": "not doing",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "Marco is not doing his job.",
+        "correct": true,
+        "pastVerb": "is not doing"
+      }
+    ],
+    "correctReason": "La negativa singular coloca la negación entre el auxiliar y el verbo en '-ing'.",
+    "baseEs": "Marco está haciendo su trabajo."
+  },
+  {
+    "base": "You are washing your face.",
+    "presentVerb": "are washing",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta (you)",
+    "clue": "pregunta + you",
+    "clueExplain": "Pregunta con el sujeto 'you'.",
+    "options": [
+      {
+        "text": "Are you washing your face?",
+        "correct": true,
+        "pastVerb": "Are ... washing"
+      },
+      {
+        "text": "Is you washing your face?",
+        "correct": false,
+        "pastVerb": "Is you washing",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Ese auxiliar es para he/she/it, no para 'you'."
+      },
+      {
+        "text": "You are washing your face?",
+        "correct": false,
+        "pastVerb": "You are washing",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      }
+    ],
+    "correctReason": "La pregunta empieza con el auxiliar para 'you' antes del sujeto.",
+    "baseEs": "Tú te estás lavando la cara."
+  },
+  {
+    "base": "We are walking near the school.",
+    "presentVerb": "are walking",
+    "goal": "Negativa (sujeto plural)",
+    "badge": "🚫 negativa plural",
+    "clue": "negativa + we",
+    "clueExplain": "Sujeto plural con idea negativa.",
+    "options": [
+      {
+        "text": "We not walking near the school.",
+        "correct": false,
+        "pastVerb": "not walking",
+        "errorType": "Falta el auxiliar",
+        "explanation": "La negación necesita el auxiliar delante."
+      },
+      {
+        "text": "We are not walking near the school.",
+        "correct": true,
+        "pastVerb": "are not walking"
+      },
+      {
+        "text": "We is not walking near the school.",
+        "correct": false,
+        "pastVerb": "is not walking",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "El sujeto 'we' no usa ese auxiliar."
+      }
+    ],
+    "correctReason": "La negativa plural coloca la negación entre el auxiliar plural y el verbo en '-ing'.",
+    "baseEs": "Nosotros estamos caminando cerca de la escuela."
+  },
+  {
+    "base": "The students are playing a game.",
+    "presentVerb": "are playing",
+    "goal": "Pregunta (sí/no)",
+    "badge": "❓ pregunta plural",
+    "clue": "pregunta + plural",
+    "clueExplain": "Pregunta con sujeto plural.",
+    "options": [
+      {
+        "text": "Is the students playing a game?",
+        "correct": false,
+        "pastVerb": "Is ... playing",
+        "errorType": "Auxiliar que no concuerda",
+        "explanation": "Hay varios; ese auxiliar es para singular."
+      },
+      {
+        "text": "The students are playing a game?",
+        "correct": false,
+        "pastVerb": "The students are playing",
+        "errorType": "Orden incorrecto",
+        "explanation": "El auxiliar debe ir antes del sujeto."
+      },
+      {
+        "text": "Are the students playing a game?",
+        "correct": true,
+        "pastVerb": "Are ... playing"
+      }
+    ],
+    "correctReason": "La pregunta plural empieza con el auxiliar plural antes del sujeto.",
+    "baseEs": "Los estudiantes están jugando un juego."
+  }
+];
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer'); c.innerHTML='';
+        quizData.forEach((q,i)=>{ q.shuffled=shuffle(q.options); c.appendChild(card(q,i)); });
+        showQuestion(0); updateProgress();
+    }
+    function card(q,index){
+        const d=document.createElement('div'); const L=['A','B','C'];
+        d.className='question-card'+(index!==0?' hidden':''); d.id='question-'+index;
+        const baseHi=q.base.replace(q.presentVerb,'<span class="verb-present">'+q.presentVerb+'</span>');
+        const opts=q.shuffled.map((opt,oi)=>`
+            <button class="option-btn" data-idx="${oi}" onclick="selectOption(${index},${oi})">
+                <div class="option-letter">${L[oi]}</div>
+                <div class="option-text">${opt.text}</div>
+            </button>`).join('');
+        d.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span style="font-size:0.88rem;color:var(--text-medium);font-weight:600;flex:1;">Transforma la oración:</span>
+                <span class="topic-badge">${q.badge}</span>
+            </div>
+            <div class="toggle-row">
+                <button class="toggle-btn" id="hintbtn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="toggle-btn" id="transbtn-${index}" onclick="toggleTrans(${index})">Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}"><div class="hint-label">💡 Pista</div>Fíjate en el sujeto y en el objetivo indicado para decidir la forma correcta.</div>
+            <div class="transform-visual">
+                <div class="transform-box base"><span class="transform-label">🔶 Oración original</span><div class="transform-sentence">${baseHi}</div></div>
+                <div class="transform-arrow">⬇ Transforma según...</div>
+                <div class="transform-box goal"><span class="transform-label">🎯 Objetivo</span><div class="transform-sentence">${q.goal}</div></div>
+            </div>
+            <div class="translation" id="trans-${index}">🇪🇸 Oración original: ${q.baseEs||''}</div>
+            <div class="options-container" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}</button>
+            </div>`;
+        return d;
+    }
+    function selectOption(qi,oi){
+        if(answered[qi])return; answered[qi]=true;
+        const q=quizData[qi]; const sel=q.shuffled[oi]; const ok=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct); if(ok)score++;
+        document.querySelectorAll('#options-'+qi+' .option-btn').forEach((b,i)=>{
+            b.classList.add('disabled'); const o=q.shuffled[i];
+            if(o.correct)b.classList.add('correct'); else if(i===oi)b.classList.add('incorrect');
+        });
+        feedback(qi,sel,ok,correctOpt,q);
+        document.getElementById('next-'+qi).disabled=false; updateProgress();
+    }
+    function feedback(qi,sel,ok,correctOpt,q){
+        const el=document.getElementById('feedback-'+qi);
+        el.className='feedback show '+(ok?'correct':'incorrect');
+        const hlErr=(t,w)=>w?t.replace(new RegExp('\b'+w+'\b'),'<span class="word-wrong">'+w+'</span>'):('<span class="word-wrong">'+t+'</span>');
+        const errs=q.shuffled.filter(o=>!o.correct);
+        const errBlocks=errs.map(e=>`
+            <div class="fb-block fb-error">
+                <div class="fb-block-title">⚠️ Esta opción estaba mal: <span class="error-badge">${e.errorType}</span></div>
+                <div class="error-sentence">"${e.text}"</div>
+                <div class="error-text">${e.explanation}</div>
+            </div>`).join('');
+        const ctxRow=`<div class="fb-compare-row"><span class="compare-label" style="background:var(--orange-light);color:var(--orange-dark);">Contexto</span><span class="compare-text">${q.base}</span></div>`;
+        const correctBlock=`<div class="fb-block fb-good"><div class="fb-block-title">✅ La oración correcta</div><div class="good-sentence">"${correctOpt.text}"</div></div>`;
+        if(ok){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto! Elegiste bien</div><div class="fb-subtitle">Hiciste la transformación adecuada</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare">${ctxRow}<div class="fb-compare-row"><span class="compare-label right">Tu respuesta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué tu respuesta es correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                    <div class="fb-divider">Las otras opciones (para comparar)</div>
+                    ${errBlocks}
+                </div>`;
+        } else {
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Tu opción tenía un error</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag red">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare">${ctxRow}<div class="fb-compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text">${hlErr(sel.text,sel.pastVerb)}</span></div><div class="fb-compare-row"><span class="compare-label right">Correcta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div></div>
+                    <div class="fb-block fb-error"><div class="fb-block-title">⚠️ El error en tu opción: <span class="error-badge">${sel.errorType}</span></div><div class="error-text">${sel.explanation}</div></div>
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué esa es la correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){ if(i<quizData.length-1) showQuestion(i+1); else showResults(); }
+    function prevQuestion(){ if(currentQuestion>0) showQuestion(currentQuestion-1); }
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function toggleHint(i){
+        const b=document.getElementById('hint-'+i), btn=document.getElementById('hintbtn-'+i);
+        b.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=b.classList.contains('show')?'💡 Ocultar pista':'💡 Ver pista';
+    }
+    function toggleTrans(i){
+        const t=document.getElementById('trans-'+i), btn=document.getElementById('transbtn-'+i);
+        t.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=t.classList.contains('show')?'Ocultar español':'Ver en español';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(pct)}}));
+        document.getElementById('finalScore').textContent=score+'/'+quizData.length;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente trabajo! 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪'
+            :'Buen esfuerzo. Repasa e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{ if(i<stars) setTimeout(()=>s.classList.add('earned'),i*300); });
+    }
+    // Fisher-Yates shuffle (no V8 bias)
+    function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

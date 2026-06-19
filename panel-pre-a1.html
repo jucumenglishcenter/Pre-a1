@@ -345,6 +345,12 @@ const QZ3 = {
   ordenar:  'https://quizlet.com/pe/1183687770/prea1-escritura-ordenar-flash-cards/?i=b8u51&x=1jqt',
   traducir: 'https://quizlet.com/pe/1183687943/prea1-escritura-traducir-flash-cards/?i=b8u51&x=1jqt',
 };
+// ── QUIZLET M4 (Home, School & Objects)
+const QZ4 = {
+  esp_ing:  'https://quizlet.com/pe/1190576873/prea1-vocabulario-eng-es-flash-cards/?new',
+  ordenar:  'https://quizlet.com/pe/1190576634/prea1-escritura-ordenar-flash-cards/?funnelUUID=07c7979e-00bc-4b05-8937-281e14f21ff4',
+  traducir: 'https://quizlet.com/pe/1190576761/prea1-escritura-traducir-flash-cards/',
+};
 // ── DATA ──────────────────────────────────────────────────────────────────────
 const DATA = [
   {
@@ -479,7 +485,44 @@ const DATA = [
     story:    `${BASE}/M3-Place-Time-Movement/PreA1_M3_Story_Place%20Time%20Movement.html`,
     quizlet: QZ3,
   },
-  { id:4, name:'Time & Routines',         ok:false, img:'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
+  {
+    id:4, name:'Home, School & Objects', ok:true,
+    img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',
+    tags:['Prepositions','Present Continuous'],
+    topics:[
+      {
+        label:'Prepositions: in, on, under, next to…',
+        fillin:        `${BASE}/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Fill_in.html`,
+        identification:`${BASE}/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Identification.html`,
+        transform:     `${BASE}/M4-Home-School-Objects/Practicas/T1_Prepositions/PreA1_M4_Grammar_Prepositions_Transform.html`,
+        summaries:[
+          { label:'📄 Prepositions', url:`${BASE}/M4-Home-School-Objects/Resumen_de_Gramatica/PreA1_M4_Grammar_Summary_Prepositions.html` },
+        ],
+      },
+      {
+        label:'Present Continuous: Afirmativo',
+        fillin:        `${BASE}/M4-Home-School-Objects/Practicas/T2_Present_Continuous_Affirmative/PreA1_M4_Grammar_Present_Continuous_Affirmative_Fill_in.html`,
+        identification:`${BASE}/M4-Home-School-Objects/Practicas/T2_Present_Continuous_Affirmative/PreA1_M4_Grammar_Present_Continuous_Affirmative_Identification.html`,
+        transform:     `${BASE}/M4-Home-School-Objects/Practicas/T2_Present_Continuous_Affirmative/PreA1_M4_Grammar_Present_Continuous_Affirmative_Transform.html`,
+        summaries:[
+          { label:'📄 Present Continuous: Afirmativo', url:`${BASE}/M4-Home-School-Objects/Resumen_de_Gramatica/PreA1_M4_Grammar_Summary_Present_Continuous_Affirmative.html` },
+        ],
+      },
+      {
+        label:'Present Continuous: Negativo & Preguntas',
+        fillin:        `${BASE}/M4-Home-School-Objects/Practicas/T3_Present_Continuous_Negative_Questions/PreA1_M4_Grammar_Present_Continuous_Negative_Questions_Fill_in.html`,
+        identification:`${BASE}/M4-Home-School-Objects/Practicas/T3_Present_Continuous_Negative_Questions/PreA1_M4_Grammar_Present_Continuous_Negative_Questions_Identification.html`,
+        transform:     `${BASE}/M4-Home-School-Objects/Practicas/T3_Present_Continuous_Negative_Questions/PreA1_M4_Grammar_Present_Continuous_Negative_Questions_Transform.html`,
+        summaries:[
+          { label:'📄 Present Continuous: Negativo & Preguntas', url:`${BASE}/M4-Home-School-Objects/Resumen_de_Gramatica/PreA1_M4_Grammar_Summary_Present_Continuous_Negative_Questions.html` },
+        ],
+      },
+    ],
+    reading:  `${BASE}/M4-Home-School-Objects/PreA1_M4_Reading_Comprehension_Home_School_Objects.html`,
+    listening:`${BASE}/M4-Home-School-Objects/PreA1_M4_Listening_Home_School_Objects.html`,
+    story:    `${BASE}/M4-Home-School-Objects/PreA1_M4_Story_Home_School_Objects.html`,
+    quizlet: QZ4,
+  },
   { id:5, name:'Food & Health',           ok:false, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
   { id:6, name:'Feelings & Descriptions', ok:false, img:'https://images.unsplash.com/photo-1531747696488-a2ce4aa0c6eb?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },
   { id:7, name:'World Around Us',         ok:false, img:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80', tags:[], topics:[], reading:'#', listening:'#', story:'#', quizlet: QZ },

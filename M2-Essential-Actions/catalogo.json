@@ -1,145 +1,146 @@
 {
-  "module": "Personal Identity",
-  "emoji": "🪪",
+  "module": "Essential Actions",
+  "emoji": "🏃",
   "level": "pre-a1",
   "topics": [
-    "Pronouns",
-    "To be",
-    "There is/are"
+    "Present Simple Afirmativo",
+    "Present Simple Negativo",
+    "Yes/No Questions",
+    "WH Questions"
   ],
   "activities": [
     {
       "id": "story",
       "type": "story",
-      "name": "Stories y Diálogos · Personal Identity",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Story_Personal%20Identity.html"
+      "name": "Stories y Diálogos · Essential Actions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/PreA1_M2_Story_Essential%20Actions.html"
     },
     {
       "id": "reading",
       "type": "reading",
-      "name": "Comprensión lectora · Personal Identity",
+      "name": "Comprensión lectora · Essential Actions",
       "open": true,
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Reading%20Comprehension_Personal%20Identity.html"
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/PreA1_M2_Reading%20Comprehension_Essential%20Actions.html"
     },
     {
       "id": "listening",
       "type": "listening",
-      "name": "Comprensión auditiva · Personal Identity",
+      "name": "Comprensión auditiva · Essential Actions",
       "open": true,
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/PreA1_M1_Listening_Personal%20Identity.html"
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/PreA1_M2_Listening_Essential%20Actions.html"
     },
     {
-      "id": "sum-pronouns",
+      "id": "sum-afirmativo",
       "type": "summary",
-      "name": "Resumen · Pronouns",
-      "group": "T1 · Pronouns",
+      "name": "Resumen · Present Simple Afirmativo",
+      "group": "T1 · Afirmativo",
       "open": true,
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_Pronouns.html"
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Afirmativo.html"
     },
     {
       "id": "t1-fill",
       "type": "grammar",
-      "name": "Fill in",
-      "group": "T1 · Pronouns",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Fill%20in.html"
+      "name": "Fill in (Completar)",
+      "group": "T1 · Afirmativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Completar.html"
     },
     {
       "id": "t1-id",
       "type": "grammar",
-      "name": "Identification",
-      "group": "T1 · Pronouns",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Identification.html"
+      "name": "Identification (Identificar)",
+      "group": "T1 · Afirmativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Identificar.html"
     },
     {
       "id": "t1-tr",
       "type": "grammar",
-      "name": "Transform",
-      "group": "T1 · Pronouns",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T1_PRONOUNS/PreA1_M1_Grammar_Pronouns_Transform.html"
+      "name": "Transform (Transformar)",
+      "group": "T1 · Afirmativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Afirmativo_Transformar.html"
     },
     {
-      "id": "sum-tobe-afneg",
+      "id": "sum-negativo",
       "type": "summary",
-      "name": "Resumen · To be (Affirmative & Negative)",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Affirmative-Negative).html"
-    },
-    {
-      "id": "sum-tobe-q",
-      "type": "summary",
-      "name": "Resumen · To be (Questions)",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_To%20be%20(Questions).html"
+      "name": "Resumen · Present Simple Negativo",
+      "group": "T2 · Negativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Negativo.html"
     },
     {
       "id": "t2-fill",
       "type": "grammar",
-      "name": "Fill in",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Fill%20in.html"
+      "name": "Fill in (Completar)",
+      "group": "T2 · Negativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Completar.html"
     },
     {
       "id": "t2-id",
       "type": "grammar",
-      "name": "Identification",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Identification.html"
+      "name": "Identification (Identificar)",
+      "group": "T2 · Negativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Identificar.html"
     },
     {
       "id": "t2-tr",
       "type": "grammar",
-      "name": "Transform",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be/PreA1_M1_Grammar_To%20be_Transform.html"
+      "name": "Transform (Transformar)",
+      "group": "T2 · Negativo",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_Negativo_Transformar.html"
     },
     {
-      "id": "t2b-fill",
-      "type": "grammar",
-      "name": "Fill in (Parte 2)",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Fill_in_P2.html"
-    },
-    {
-      "id": "t2b-id",
-      "type": "grammar",
-      "name": "Identification (Parte 2)",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Identification_P2.html"
-    },
-    {
-      "id": "t2b-tr",
-      "type": "grammar",
-      "name": "Transform (Parte 2)",
-      "group": "T2 · To be",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T2_To%20be_2/PreA1_M1_Grammar_To_be_Transform_P2.html"
-    },
-    {
-      "id": "sum-thereisare",
+      "id": "sum-preguntas",
       "type": "summary",
-      "name": "Resumen · There is / There are",
-      "group": "T3 · There is/are",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Resumen%20de%20Gram%C3%A1tica/PreA1_M1_Grammar%20Summary_There%20is-are.html"
+      "name": "Resumen · Present Simple Preguntas (Yes/No)",
+      "group": "T3 · Yes/No",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20Preguntas.html"
     },
     {
       "id": "t3-fill",
       "type": "grammar",
-      "name": "Fill in",
-      "group": "T3 · There is/are",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Fill%20in.html"
+      "name": "Fill in (Completar)",
+      "group": "T3 · Yes/No",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Completar.html"
     },
     {
       "id": "t3-id",
       "type": "grammar",
-      "name": "Identification",
-      "group": "T3 · There is/are",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Identification.html"
+      "name": "Identification (Identificar)",
+      "group": "T3 · Yes/No",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Identificar.html"
     },
     {
       "id": "t3-tr",
       "type": "grammar",
-      "name": "Transform",
-      "group": "T3 · There is/are",
-      "url": "https://jucumenglishcenter.github.io/Pre-a1/M1-Personal-Identity/Practicas/T3_There%20is_are/PreA1_M1_Grammar_There%20is-are_Transform.html"
+      "name": "Transform (Transformar)",
+      "group": "T3 · Yes/No",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_YesNo_Transformar.html"
+    },
+    {
+      "id": "sum-wh",
+      "type": "summary",
+      "name": "Resumen · Present Simple WH",
+      "group": "T4 · WH Questions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Resumen%20de%20Gram%C3%A1tica/PreA1_M2_Gramatica_Present%20Simple%20WH.html"
+    },
+    {
+      "id": "t4-fill",
+      "type": "grammar",
+      "name": "Fill in (Completar)",
+      "group": "T4 · WH Questions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Completar.html"
+    },
+    {
+      "id": "t4-id",
+      "type": "grammar",
+      "name": "Identification (Identificar)",
+      "group": "T4 · WH Questions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Identificar.html"
+    },
+    {
+      "id": "t4-tr",
+      "type": "grammar",
+      "name": "Transform (Transformar)",
+      "group": "T4 · WH Questions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/Practicas/PreA1_M2_Practica_WH_Transformar.html"
     }
   ]
 }

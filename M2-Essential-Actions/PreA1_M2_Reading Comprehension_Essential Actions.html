@@ -1101,5 +1101,22 @@ renderStory(1);
 renderQuiz();
 updateModeDisplay();
 </script>
+<!-- JUCUM English Center · seguimiento de progreso (no modifica el ejercicio) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+<script>
+(function () {
+  if (typeof showCompletion !== 'function') return;
+  var _orig = showCompletion, _scores = {};
+  showCompletion = function () {
+    _orig.apply(this, arguments);
+    try {
+      _scores[currentStory] = Math.round((score / 7) * 100);
+      var vals = Object.keys(_scores).map(function (k) { return _scores[k]; });
+      var avg = Math.round(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length);
+      window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: avg } }));
+    } catch (e) {}
+  };
+})();
+</script>
 </body>
 </html>

@@ -164,6 +164,15 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 
 .challenge-badge{display:inline-block;background:linear-gradient(135deg,#7B1FA2,#9C27B0);color:#fff;font-family:'Fredoka',sans-serif;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-left:.5rem;vertical-align:middle}
 
+/* AUDIO */
+#voice-status{display:none;text-align:center;font-size:.76rem;color:var(--text-soft);margin:0 0 1rem;padding:.5rem .7rem;background:#FFF3E0;border:1px solid #FFB74D;border-radius:8px}
+.audio-row{display:flex;gap:6px;margin-top:.5rem;flex-wrap:wrap}
+.audio-btn{display:inline-flex;align-items:center;gap:4px;font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;border:1.5px solid #90CAF9;background:#fff;color:#0D47A1;padding:3px 11px;border-radius:8px;cursor:pointer;transition:all .2s;user-select:none}
+.audio-btn:hover{background:#E3F2FD;border-color:#42A5F5;transform:translateY(-1px)}
+.audio-btn.playing{border-color:var(--lp);background:var(--lglow);color:var(--ld)}
+.ex-right .audio-btn{border-color:#81C784;color:#1B5E20}
+.ex-right .audio-btn:hover{background:#E8F5E9;border-color:#66BB6A}
+
 @media(max-width:600px){
 .level-header h1{font-size:1.4rem}
 .card{padding:1.1rem}
@@ -185,6 +194,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 </div>
 
 <div class="step-tabs" id="stepTabs"></div>
+<div id="voice-status">⏳ Cargando voces del navegador…</div>
 <div id="cardArea"></div>
 
 <div class="summary-final" id="summaryFinal">
@@ -651,6 +661,8 @@ function chk(eid,sel,correct,k){
       var sf=document.getElementById('summaryFinal');
       document.getElementById('summaryList').innerHTML=summaryPoints.map(function(s){return '<li>'+s+'</li>';}).join('');
       sf.classList.add('show');
+      var _t=0;for(var _i=0;_i<5;_i++)_t+=(scores['s'+_i]||0);
+      window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(_t/25*100)}})); // JUCUM seguimiento
       sf.scrollIntoView({behavior:'smooth'});
     },700);
   }
@@ -659,5 +671,56 @@ function chk(eid,sel,correct,k){
 renderStepTabs();
 renderCard();
 </script>
+<!-- AUDIO US/UK (Web Speech API) -->
+<script>
+(function(){
+  let usVoice=null,ukVoice=null,voicesReady=false,curAudioBtn=null;
+  const RATE=0.82;
+  function loadVoices(){
+    const voices=speechSynthesis.getVoices();
+    if(!voices.length)return;
+    voicesReady=true;
+    const usPat=[v=>v.lang==='en-US'&&/samantha|allison|ava|tom|alex|nicky|aaron/i.test(v.name),v=>v.lang==='en-US'&&/google us/i.test(v.name),v=>v.lang==='en-US'&&/microsoft.*online/i.test(v.name),v=>v.lang==='en-US'];
+    const ukPat=[v=>v.lang==='en-GB'&&/daniel|kate|serena|oliver|martha/i.test(v.name),v=>v.lang==='en-GB'&&/google uk/i.test(v.name),v=>v.lang==='en-GB'&&/microsoft.*online/i.test(v.name),v=>v.lang==='en-GB',v=>v.lang==='en-AU',v=>v.lang.startsWith('en')];
+    for(const p of usPat){const m=voices.find(p);if(m){usVoice=m;break;}}
+    for(const p of ukPat){const m=voices.find(v=>p(v)&&v!==usVoice);if(m){ukVoice=m;break;}}
+    const st=document.getElementById('voice-status');
+    if(st){if(!usVoice&&!ukVoice){st.innerHTML='⚠️ No se encontraron voces en inglés. Usa <strong>Chrome</strong> o <strong>Edge</strong> para escuchar el audio.';st.style.display='block';}else{st.style.display='none';}}
+  }
+  speechSynthesis.getVoices();
+  if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;
+  setTimeout(loadVoices,100);setTimeout(loadVoices,600);setTimeout(loadVoices,1600);
+  function stopAudio(){speechSynthesis.cancel();if(curAudioBtn){curAudioBtn.classList.remove('playing');curAudioBtn=null;}}
+  function speakAudio(btn,text,accent){
+    if(curAudioBtn===btn&&speechSynthesis.speaking){stopAudio();return;}
+    stopAudio();if(!voicesReady)loadVoices();
+    const u=new SpeechSynthesisUtterance(text);u.rate=RATE;
+    if(accent==='US'){u.lang='en-US';if(usVoice)u.voice=usVoice;}else{u.lang='en-GB';if(ukVoice)u.voice=ukVoice;}
+    btn.classList.add('playing');curAudioBtn=btn;
+    u.onend=()=>{btn.classList.remove('playing');curAudioBtn=null;};
+    u.onerror=()=>{btn.classList.remove('playing');curAudioBtn=null;};
+    speechSynthesis.speak(u);
+  }
+  function injectAudio(){
+    document.querySelectorAll('#cardArea .ex-row.ex-right .en').forEach(en=>{
+      const holder=en.parentNode;
+      if(holder.querySelector('.audio-row'))return;
+      const txt=en.textContent.replace(/\s+/g,' ').trim();
+      if(!txt)return;
+      const row=document.createElement('div');row.className='audio-row';
+      const bUS=document.createElement('button');bUS.className='audio-btn';bUS.type='button';bUS.innerHTML='🇺🇸 US';bUS.addEventListener('click',()=>speakAudio(bUS,txt,'US'));
+      const bUK=document.createElement('button');bUK.className='audio-btn';bUK.type='button';bUK.innerHTML='🇬🇧 UK';bUK.addEventListener('click',()=>speakAudio(bUK,txt,'UK'));
+      row.appendChild(bUS);row.appendChild(bUK);holder.appendChild(row);
+    });
+  }
+  if(typeof renderCard==='function'){
+    const _orig=renderCard;
+    renderCard=function(){_orig.apply(this,arguments);injectAudio();};
+  }
+  injectAudio();
+})();
+</script>
+<!-- JUCUM English Center · seguimiento de progreso -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

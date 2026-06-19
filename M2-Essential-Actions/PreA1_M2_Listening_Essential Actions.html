@@ -1639,5 +1639,23 @@ function switchStory(num, btn) {
 ════════════════════════════════════════════ */
 ['s1','s2','s3','s4'].forEach(renderStory);
 </script>
+<!-- JUCUM English Center · seguimiento de progreso (no modifica el ejercicio) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+<script>
+(function () {
+  if (typeof showResults !== 'function') return;
+  var _orig = showResults, _scores = {};
+  showResults = function () {
+    _orig.apply(this, arguments);
+    try {
+      var st = state[currentStory];
+      _scores[currentStory] = Math.round((st.correct / 10) * 100);
+      var vals = Object.keys(_scores).map(function (k) { return _scores[k]; });
+      var avg = Math.round(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length);
+      window.dispatchEvent(new CustomEvent('jucum:done', { detail: { score: avg } }));
+    } catch (e) {}
+  };
+})();
+</script>
 </body>
 </html>

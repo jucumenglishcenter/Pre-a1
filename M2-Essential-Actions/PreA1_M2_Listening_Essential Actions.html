@@ -1506,6 +1506,12 @@ function selectAnswer(uid, selected, correctLetter, level) {
   if (st.done[uid]) return; // already answered
   st.done[uid] = true;
 
+  // FIX: el onclick envía la letra en MAYÚSCULA (A/B/C) y correctLetter viene
+  // en minúscula (a/b/c). Sin normalizar, 'A' === 'a' es false y TODA respuesta
+  // se marcaba incorrecta (la correcta salía verde pero contada mal).
+  selected      = String(selected).toLowerCase();
+  correctLetter = String(correctLetter).toLowerCase();
+
   const isCorrect = selected === correctLetter;
   const letters   = ['a', 'b', 'c'];
 

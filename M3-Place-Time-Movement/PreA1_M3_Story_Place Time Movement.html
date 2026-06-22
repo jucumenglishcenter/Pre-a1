@@ -225,17 +225,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 
   <div id="voice-status">⚠️ Tu navegador tiene voces limitadas. Para mejor experiencia usa <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.</div>
 
-  <div class="speed-control">
-    <span class="speed-label">🐢 Velocidad</span>
-    <input type="range" id="speedSlider" min="0.5" max="1.2" step="0.05" value="0.82" oninput="updateSpeed(this.value)">
-    <span class="speed-value" id="speedValue">0.82×</span>
-    <div class="speed-presets">
-      <button class="speed-preset" onclick="setSpeed(0.6,this)">Lento</button>
-      <button class="speed-preset active" onclick="setSpeed(0.82,this)">Normal</button>
-      <button class="speed-preset" onclick="setSpeed(1.0,this)">Rápido</button>
-    </div>
-  </div>
-
   <div class="parallel-toggle">
     <input type="checkbox" id="parallelCheck" onchange="toggleParallel(this.checked)">
     <label for="parallelCheck">🔄 Show English + Spanish side by side</label>
@@ -2356,7 +2345,7 @@ document.addEventListener('click', e=>{
   ];
   const KEY='jucum_sm_'+(location.pathname.split('/').pop()||'story');
   let state=load();let tick=null;
-  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{checks:{},start:0,done:false,doneMs:0};}catch(e){return{checks:{},start:0,done:false,doneMs:0};}}
+  function load(){var d={checks:{},start:0,done:false,doneMs:0,activeMs:0};try{var s=JSON.parse(localStorage.getItem(KEY))||d;if(typeof s.activeMs!=='number'){s.activeMs=s.done?Math.min(s.doneMs||0,1800000):0;}if(s.done)s.doneMs=Math.min(s.doneMs||s.activeMs||0,1800000);if(typeof s.checks!=='object'||!s.checks)s.checks={};return s;}catch(e){return d;}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   function fmt(ms){ms=Math.max(0,ms|0);var s=Math.floor(ms/1000);var m=Math.floor(s/60);return (m<10?'0':'')+m+':'+((s%60)<10?'0':'')+(s%60);}
   function scrollToEl(el){var r=el.getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-120,behavior:'smooth'});}
@@ -2364,11 +2353,11 @@ document.addEventListener('click', e=>{
     var ul=document.getElementById('smSteps');if(!ul)return;
     ul.innerHTML='';
     STEPS.forEach(function(st){
-      var done=!!state.checks[st.id];
+      var done=state.checks[st.id]!=null;
       var li=document.createElement('li');
       li.className='sm-step'+(done?' checked':'');
       li.onclick=function(e){if(e.target.classList.contains('sm-action'))return;toggle(st.id);};
-      var rel=done&&state.start?fmt(state.checks[st.id]-state.start):'';
+      var rel=done?fmt(state.checks[st.id]):'';
       li.innerHTML='<div class="sm-check">'+(done?'✓':'')+'</div>'+
         '<div class="sm-step-body"><div class="sm-step-title">'+st.emoji+' '+st.title+' <span class="sm-step-min">'+st.min+'</span></div>'+
         '<div class="sm-step-hint">'+st.hint+'</div>'+
@@ -2386,17 +2375,16 @@ document.addEventListener('click', e=>{
   function updTimer(){
     var el=document.getElementById('smTimer');if(!el)return;
     if(state.done){el.textContent='⏱️ '+fmt(state.doneMs);return;}
-    if(state.start){el.textContent='⏱️ '+fmt(Date.now()-state.start);}else{el.textContent='⏱️ 00:00';}
+    if(state.start){el.textContent='⏱️ '+fmt(state.activeMs);}else{el.textContent='⏱️ 00:00';}
   }
-  function startTick(){if(tick)return;tick=setInterval(function(){if(state.done||!state.start)return;updTimer();},1000);}
+  var _lastTs=Date.now();function startTick(){if(tick)return;_lastTs=Date.now();tick=setInterval(function(){var now=Date.now();var d=now-_lastTs;_lastTs=now;if(!state.done&&state.start&&document.visibilityState!=='hidden'&&d>0&&d<5000){state.activeMs+=d;save();}updTimer();},1000);}document.addEventListener('visibilitychange',function(){_lastTs=Date.now();});
   function toggle(id){
-    if(state.done&&state.checks[id])return;
-    if(state.checks[id]){delete state.checks[id];}
-    else{if(!state.start)state.start=Date.now();state.checks[id]=Date.now();}
-    var all=STEPS.every(function(s){return state.checks[s.id];});
+    if(state.done&&state.checks[id]!=null)return;
+    if(state.checks[id]!=null){delete state.checks[id];}
+    else{if(!state.start)state.start=Date.now();state.checks[id]=state.activeMs;}
+    var all=STEPS.every(function(s){return state.checks[s.id]!=null;});
     if(all&&!state.done){
-      state.done=true;var last=0;STEPS.forEach(function(s){last=Math.max(last,state.checks[s.id]);});
-      state.doneMs=last-state.start;save();render();
+      state.done=true;state.doneMs=state.activeMs;save();render();
       try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:100,timeMin:Math.round(state.doneMs/60000)}}));}catch(e){}
       return;
     }
@@ -2404,7 +2392,7 @@ document.addEventListener('click', e=>{
     save();render();
   }
   window.toggleStudyMethod=function(){var sm=document.getElementById('studyMethod');if(sm)sm.classList.toggle('open');};
-  window.resetStudyMethod=function(){state={checks:{},start:0,done:false,doneMs:0};save();render();};
+  window.resetStudyMethod=function(){state={checks:{},start:0,done:false,doneMs:0,activeMs:0};save();render();};
   window.smShowSpanish=function(e){if(e)e.stopPropagation();try{var cb=document.getElementById('parallelCheck');if(cb)cb.checked=true;if(typeof toggleParallel==='function')toggleParallel(true);}catch(_){}};
   window.smGoAudio=function(e){if(e)e.stopPropagation();var btns=Array.prototype.slice.call(document.querySelectorAll('.play-all-btn'));var vis=btns.filter(function(b){return b.offsetParent!==null;})[0]||btns[0];if(vis)scrollToEl(vis);};
   function init(){render();startTick();var sm=document.getElementById('studyMethod');if(sm&&Object.keys(state.checks).length)sm.classList.add('open');}

@@ -29,6 +29,16 @@
       "url": "https://jucumenglishcenter.github.io/Pre-a1/M3-Place-Time-Movement/PreA1_M3_Listening_Place%20Time%20Movement.html"
     },
     {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Place, Time & Movement",
+      "open": true,
+      "quizVocabulario": "",
+      "quizVocabulario2": "",
+      "quizTraducir": "",
+      "quizOrdenar": ""
+    },
+    {
       "id": "sum-articles",
       "type": "summary",
       "name": "Resumen · Articles (a/an/the)",

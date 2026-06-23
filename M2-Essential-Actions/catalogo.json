@@ -30,6 +30,16 @@
       "url": "https://jucumenglishcenter.github.io/Pre-a1/M2-Essential-Actions/PreA1_M2_Listening_Essential%20Actions.html"
     },
     {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Essential Actions",
+      "open": true,
+      "quizVocabulario": "",
+      "quizVocabulario2": "",
+      "quizTraducir": "",
+      "quizOrdenar": ""
+    },
+    {
       "id": "sum-afirmativo",
       "type": "summary",
       "name": "Resumen · Present Simple Afirmativo",

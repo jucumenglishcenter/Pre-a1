@@ -29,6 +29,16 @@
       "url": "https://jucumenglishcenter.github.io/Pre-a1/M4-Home-School-Objects/PreA1_M4_Listening_Home%20School%20Objects.html"
     },
     {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Home, School & Objects",
+      "open": true,
+      "quizVocabulario": "",
+      "quizVocabulario2": "",
+      "quizTraducir": "",
+      "quizOrdenar": ""
+    },
+    {
       "id": "sum-prep",
       "type": "summary",
       "name": "Resumen · Prepositions (place & time)",

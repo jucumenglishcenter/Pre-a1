@@ -1,0 +1,128 @@
+{
+  "module": "Place, Time & Movement",
+  "emoji": "🧭",
+  "level": "pre-a1",
+  "topics": [
+    "Articles",
+    "Plurals",
+    "Possessives"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Place, Time & Movement",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/story.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Place, Time & Movement",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/reading.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Place, Time & Movement",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/listening.html"
+    },
+    {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Place, Time & Movement",
+      "open": true,
+      "quizVocabulario": "https://quizlet.com/pe/1183687664/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=c8e050f7-7333-4565-a052-f7c19b2a76bf",
+      "quizVocabulario2": "",
+      "quizTraducir": "https://quizlet.com/pe/1183687943/prea1-escritura-traducir-flash-cards/?funnelUUID=41d5d1a2-764a-4e3d-b4f5-e3cadfe7c954",
+      "quizOrdenar": "https://quizlet.com/pe/1183687770/prea1-escritura-ordenar-flash-cards/?funnelUUID=44c956a6-c2d6-43bb-9f15-2834c1b3652e"
+    },
+    {
+      "id": "sum-articles",
+      "type": "summary",
+      "name": "Resumen · Articles (a/an/the)",
+      "group": "T1 · Articles",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/gramatica/t1-articles.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t1-articles/fill.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t1-articles/identify.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T1 · Articles",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t1-articles/transform.html"
+    },
+    {
+      "id": "sum-plurals",
+      "type": "summary",
+      "name": "Resumen · Plurals",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/gramatica/t2-plurals.html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t2-plurals/fill.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t2-plurals/identify.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T2 · Plurals",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t2-plurals/transform.html"
+    },
+    {
+      "id": "sum-possessives",
+      "type": "summary",
+      "name": "Resumen · Possessives",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/gramatica/t3-possessives.html"
+    },
+    {
+      "id": "t3-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t3-possessives/fill.html"
+    },
+    {
+      "id": "t3-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t3-possessives/identify.html"
+    },
+    {
+      "id": "t3-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T3 · Possessives",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m3/practicas/t3-possessives/transform.html"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "module": "Home, School & Objects",
+  "emoji": "🏫",
+  "level": "pre-a1",
+  "topics": [
+    "Prepositions (place & time)",
+    "Present Continuous (affirmative)",
+    "Present Continuous (negative & questions)"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Home, School & Objects",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/story.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Home, School & Objects",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/reading.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Home, School & Objects",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/listening.html"
+    },
+    {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Home, School & Objects",
+      "open": true,
+      "quizVocabulario": "https://quizlet.com/pe/1190576873/prea1-vocabulario-eng-es-flash-cards/?funnelUUID=2ba3c305-2ba3-4211-9021-ac70e1e3f59e",
+      "quizVocabulario2": "",
+      "quizTraducir": "https://quizlet.com/pe/1190576761/prea1-escritura-traducir-flash-cards/?funnelUUID=15c78351-138d-4f97-b2a5-c7d2d1ddbe54",
+      "quizOrdenar": "https://quizlet.com/pe/1190576634/prea1-escritura-ordenar-flash-cards/?funnelUUID=04f12ad0-fe3c-4355-9aea-5aa47431fd99"
+    },
+    {
+      "id": "sum-prep",
+      "type": "summary",
+      "name": "Resumen · Prepositions (place & time)",
+      "group": "T1 · Prepositions",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/gramatica/t1-prepositions.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t1-prepositions/fill.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t1-prepositions/identify.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T1 · Prepositions",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t1-prepositions/transform.html"
+    },
+    {
+      "id": "sum-pc-aff",
+      "type": "summary",
+      "name": "Resumen · Present Continuous (afirmativo)",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/gramatica/t2-present-continuous-affirmative.html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t2-present-continuous-affirmative/fill.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t2-present-continuous-affirmative/identify.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T2 · Present Continuous (afirmativo)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t2-present-continuous-affirmative/transform.html"
+    },
+    {
+      "id": "sum-pc-neg",
+      "type": "summary",
+      "name": "Resumen · Present Continuous (negativo y preguntas)",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/gramatica/t3-present-continuous-negative.html"
+    },
+    {
+      "id": "t3-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t3-present-continuous-negative/fill.html"
+    },
+    {
+      "id": "t3-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t3-present-continuous-negative/identify.html"
+    },
+    {
+      "id": "t3-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T3 · Present Continuous (neg/preg)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m4/practicas/t3-present-continuous-negative/transform.html"
+    }
+  ]
+}

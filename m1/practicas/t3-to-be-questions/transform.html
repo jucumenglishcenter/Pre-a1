@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- ═══════════════════════════════════════════════════════════════════════
+     PLANTILLA · TRANSFORM (reconstruir con fichas) — JUCUM English Center
+     Mecánica: el alumno RECONSTRUYE con fichas la oración transformada
+     (afirmación→pregunta, singular→plural). Sin errores como input.
+     Nota = % correctas · umbral 75%. Ver "Especificaciones - Transform.html".
+     ═══════════════════════════════════════════════════════════════════════ -->
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transform · Pronombres · JUCUM English Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
+    --fd:'Fredoka','Nunito',system-ui,sans-serif; --fb:'Nunito',system-ui,sans-serif; --fs:'Atkinson Hyperlegible',system-ui,sans-serif;
+    --correct:#2E7D32; --correct-bg:#E8F5E9; --correct-bd:#A5D6A7; --wrong:#C62828; --wrong-bg:#FFEBEE; --wrong-bd:#EF9A9A;
+    --rv-bg:#F3E5F5; --rv-text:#7B1FA2; --rv-bd:#CE93D8; --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14); --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09); }
+  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lg:linear-gradient(135deg,#F9A825,#FF8F00); --tint:#FAF7EE; }
+  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lg:linear-gradient(135deg,#1565C0,#2196F3 60%,#64B5F6); --tint:#F1F7FE; }
+  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lg:linear-gradient(135deg,#43C062,#1F7A33); --tint:#F0F8F2; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--tint);color:var(--text);font-family:var(--fb);min-height:100vh;}
+  .mat{max-width:640px;margin:0 auto;min-height:100vh;}
+  .mhead{background:var(--lg);padding:16px 18px;display:flex;align-items:center;gap:11px;color:#fff;position:sticky;top:0;z-index:20;}
+  .mback{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:19px;cursor:pointer;flex-shrink:0;}
+  .mbadge{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);} .mbadge img{width:26px;height:26px;object-fit:contain;}
+  .mh-info{flex:1;min-width:0;} .mh-info b{font-family:var(--fd);font-weight:600;font-size:16px;display:block;} .mh-info span{font-size:11px;opacity:.9;font-weight:700;}
+  .mh-count{background:rgba(255,255,255,.25);padding:5px 12px;border-radius:14px;font-weight:800;font-size:13px;}
+  .pbar{height:5px;background:rgba(0,0,0,.06);position:sticky;top:68px;z-index:20;} .pfill{height:100%;background:var(--lp);width:0;transition:width .5s;}
+  .mbody{padding:16px 16px 40px;}
+  .langsw{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;}
+  .lsw-lab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);}
+  .lsw{display:flex;background:#fff;border:1.5px solid var(--lm);border-radius:11px;padding:3px;gap:2px;box-shadow:var(--shadow-sm);}
+  .lsw button{border:none;background:transparent;font-family:var(--fb);font-weight:800;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;color:var(--text-soft);} .lsw button.on{background:var(--lg);color:#fff;}
+  .instr{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:var(--shadow-sm);border-left:4px solid var(--lp);display:flex;gap:10px;margin-bottom:14px;}
+  .instr .em{font-size:21px;} .instr b{font-family:var(--fd);font-weight:600;font-size:14.5px;display:block;} .instr p{margin:1px 0 0;font-size:12.5px;color:var(--text-soft);line-height:1.45;}
+  .qcard{background:#fff;border-radius:18px;box-shadow:var(--shadow-sm);padding:16px;margin-bottom:13px;} .qcard.hidden{display:none;}
+  .qtop{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+  .qnum{width:31px;height:31px;border-radius:50%;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:14px;flex-shrink:0;}
+  .qlabel{font-size:12.5px;font-weight:800;color:var(--text-soft);}
+  .qreport{margin-left:auto;font-size:11px;font-weight:800;color:#B9742B;background:#FCF1E3;border:1px solid #F2D9B8;padding:4px 10px;border-radius:9px;cursor:pointer;}
+  .consigna{background:var(--ll);border:1px solid var(--lm);border-radius:11px;padding:10px 13px;font-size:14px;font-weight:800;color:var(--ld);margin-bottom:12px;}
+  .tprompt{background:var(--tint);border:1px dashed var(--lm);border-radius:11px;padding:10px 13px;font-size:12px;margin-bottom:12px;color:var(--text-soft);font-weight:700;} .tprompt .src{font-family:var(--fb);font-weight:800;color:var(--text);font-size:15.5px;display:block;margin-top:3px;}
+  .support{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+  .sbtn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;border-radius:9px;padding:7px 13px;cursor:pointer;border:1.5px solid;} .sbtn.hint{background:var(--tint);color:var(--ld);border-color:var(--lm);} .sbtn.tr{background:var(--rv-bg);color:var(--rv-text);border-color:var(--rv-bd);} .sbtn.used{opacity:.55;}
+  .reveal{display:none;border-radius:0 11px 11px 0;padding:10px 13px;font-size:13px;line-height:1.55;margin-bottom:12px;} .reveal.show{display:block;}
+  .reveal.hintbox{background:var(--tint);border-left:3px solid var(--lp);} .reveal.trbox{background:var(--rv-bg);border-left:3px solid var(--rv-text);font-family:var(--fs);font-style:italic;color:#5A2A66;}
+  .reveal .lab{display:block;font-style:normal;font-family:var(--fb);font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.8;}
+  .tray{min-height:54px;background:#FAFAF7;border:2px dashed var(--lm);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;align-content:flex-start;}
+  .tray:empty::before{content:attr(data-ph);color:#BBB;font-size:12.5px;font-weight:700;font-style:italic;}
+  .bank{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+  .tile{font-family:var(--fb);font-weight:800;font-size:14px;padding:9px 14px;border-radius:10px;border:2px solid var(--lm);background:#fff;color:var(--text);cursor:pointer;transition:.12s;box-shadow:var(--shadow-sm);}
+  .tile:hover{border-color:var(--lp);transform:translateY(-1px);} .tile.placed{opacity:.28;pointer-events:none;} .tray .tile{border-color:var(--lp);background:var(--ll);color:var(--ld);touch-action:none;cursor:grab;}
+  .tray .tile.dragging{opacity:.7;transform:scale(1.07);box-shadow:var(--shadow);cursor:grabbing;z-index:5;}
+  .tray .tile::before{content:'⠿';opacity:.4;margin-right:5px;font-size:11px;letter-spacing:-1px;}
+  .tcheck{width:100%;margin-top:4px;padding:12px;border:none;border-radius:11px;background:var(--lg);color:#fff;font-family:var(--fb);font-weight:800;font-size:14px;cursor:pointer;} .tcheck:disabled{opacity:.4;cursor:default;}
+  .fb{margin-top:14px;border-radius:14px;overflow:hidden;display:none;} .fb.show{display:block;}
+  .fbh{padding:10px 14px;display:flex;align-items:center;gap:8px;color:#fff;} .fb.ok .fbh{background:linear-gradient(135deg,var(--correct),#1B5E20);} .fb.no .fbh{background:linear-gradient(135deg,var(--wrong),#922);} .fbh b{font-family:var(--fd);font-weight:600;font-size:15px;}
+  .fbb{background:#fff;border:2px solid;border-top:none;border-radius:0 0 14px 14px;padding:13px;display:flex;flex-direction:column;gap:10px;} .fb.ok .fbb{border-color:var(--correct-bd);} .fb.no .fbb{border-color:var(--wrong-bd);}
+  .fblk{border-radius:11px;padding:10px 12px;font-size:13px;line-height:1.5;} .fblk b{font-weight:800;} .fblk>b:first-child{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:5px;margin-bottom:3px;}
+  .fblk.answer{background:var(--correct-bg);border:1px solid var(--correct-bd);} .fblk.answer .answer-line{font-weight:800;color:var(--correct);font-size:15px;}
+  .fblk.sig{background:var(--tint);border:1px solid var(--lm);} .fblk.form{background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;} .formula{display:block;background:#fff;border:1px solid #BBF7D0;border-radius:7px;padding:5px 9px;font-weight:800;font-size:12.5px;margin-top:3px;}
+  .fblk.rule{background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;} .fblk.es{background:#FDF2F8;border:1px solid #F9C6E0;color:#9D2463;} .fblk.lit{background:#F5F3FF;border:1px solid #DDD6FE;color:#5B21B6;}
+  .exrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;} .exchip{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#fff;border:1px solid #BFDBFE;border-radius:6px;padding:2px 7px;color:#1D4ED8;font-weight:700;} .exw{font-weight:800;}
+  .nav{display:flex;gap:9px;margin-top:14px;} .nb{padding:12px 15px;border:none;border-radius:11px;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .nb.next{background:var(--lg);color:#fff;flex:1;} .nb.prev{background:#F1F0EA;color:var(--text);} .nb:disabled{opacity:.4;cursor:default;}
+  .rform{margin-top:12px;background:#FCF7EF;border:1.5px solid #F0D9B8;border-radius:13px;padding:13px;display:none;} .rform.show{display:block;}
+  .rform h4{margin:0 0 9px;font-family:var(--fd);font-weight:600;font-size:13.5px;color:#92510F;}
+  .rform select,.rform textarea{width:100%;font-family:var(--fb);font-size:13px;border:1.5px solid #E7D3B4;border-radius:9px;padding:9px 11px;margin-bottom:9px;background:#fff;resize:vertical;} .rform textarea{min-height:54px;}
+  .rrow{display:flex;gap:9px;} .rsend{background:#C77D2E;color:#fff;border:none;border-radius:9px;padding:10px 17px;font-weight:800;font-size:13px;cursor:pointer;flex:1;} .rcancel{background:#F1E7D6;color:#92510F;border:none;border-radius:9px;padding:10px 15px;font-weight:800;font-size:13px;cursor:pointer;}
+  .rdone{background:#EAF7EC;border:1.5px solid var(--correct-bd);border-radius:13px;padding:13px;margin-top:12px;display:none;} .rdone.show{display:block;}
+  .rcode{font-family:'Nunito',monospace;font-size:11.5px;background:#fff;border:1px dashed var(--correct-bd);border-radius:8px;padding:9px;margin-top:7px;color:#1B5E20;word-break:break-all;cursor:copy;}
+  .results{display:none;padding:20px 16px 40px;text-align:center;} .results.show{display:block;}
+  .unlock{border-radius:13px;padding:11px;display:flex;align-items:center;gap:9px;justify-content:center;font-weight:800;font-size:14px;margin-bottom:15px;}
+  .unlock.pass{background:var(--correct-bg);border:1.5px solid var(--correct-bd);color:var(--correct);} .unlock.fail{background:#FFF7E8;border:1.5px solid #F0C66B;color:#92510F;}
+  .hero{background:var(--lg);border-radius:20px;padding:24px 20px;color:#fff;box-shadow:var(--shadow-sm);} .hero .em{font-size:50px;line-height:1;}
+  .stars{display:flex;justify-content:center;gap:7px;margin:9px 0;} .star{font-size:28px;opacity:.32;} .star.on{opacity:1;}
+  .score{font-family:var(--fd);font-weight:600;font-size:46px;line-height:1;} .score small{font-size:20px;opacity:.8;} .phrase{font-size:14px;line-height:1.5;margin-top:9px;font-weight:700;opacity:.96;}
+  .strip{display:flex;gap:10px;margin:15px 0 6px;} .stat{flex:1;background:#fff;border:1px solid var(--border);border-radius:13px;padding:12px 9px;box-shadow:var(--shadow-sm);}
+  .stat b{font-family:var(--fd);font-weight:600;font-size:22px;display:block;color:var(--ld);} .stat span{font-size:11px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.04em;} .stat .note{display:block;font-size:9px;color:#A99;font-weight:700;text-transform:none;letter-spacing:0;margin-top:1px;}
+  .support-note{font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:14px;}
+  .action{background:#fff;border:1.5px solid var(--lm);border-left:4px solid var(--lp);border-radius:13px;padding:13px 15px;text-align:left;font-size:13px;line-height:1.5;font-weight:700;color:var(--text);margin-bottom:15px;box-shadow:var(--shadow-sm);}
+  .reinf{background:#FFF7E8;border:1.5px solid #F0C66B;border-radius:13px;padding:13px;text-align:left;margin-bottom:15px;} .reinf b{font-size:12px;color:#92510F;display:flex;gap:6px;align-items:center;text-transform:uppercase;letter-spacing:.04em;margin-bottom:9px;}
+  .rchips{display:flex;flex-wrap:wrap;gap:7px;} .rchip{background:#fff;border:1.5px solid #F0C66B;color:#92510F;border-radius:9px;padding:6px 11px;font-size:12.5px;font-weight:800;}
+  .surprise{background:linear-gradient(135deg,#FFF3D6,#FFFBF0);border:1.5px dashed var(--lp);border-radius:13px;padding:12px;display:flex;align-items:center;gap:11px;text-align:left;margin-bottom:15px;} .surprise .em{font-size:28px;} .surprise b{font-size:13px;color:var(--ld);} .surprise p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);font-weight:700;}
+  .rbtns{display:flex;flex-direction:column;gap:10px;} .rbtn{padding:14px;border:none;border-radius:13px;font-family:var(--fb);font-weight:800;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;} .rbtn.back{background:var(--lg);color:#fff;} .rbtn.retry{background:#F1F0EA;color:var(--text);}
+  .mfoot{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10.5px;color:#B0A99A;padding:16px;font-weight:700;} .mfoot img{height:20px;opacity:.5;}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:12px 22px;border-radius:24px;font-weight:800;font-size:13.5px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;} .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}  .helpfab{position:fixed;right:16px;bottom:16px;z-index:120;width:44px;height:44px;border-radius:50%;background:var(--lg);color:#fff;border:none;font-size:22px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);}
+  .helpov{position:fixed;inset:0;z-index:130;background:rgba(20,20,25,.5);display:none;align-items:center;justify-content:center;padding:18px;} .helpov.show{display:flex;}
+  .helpcard{background:#fff;border-radius:18px;max-width:380px;width:100%;max-height:86%;overflow-y:auto;box-shadow:var(--shadow);padding:18px 20px;position:relative;} .helpcard h3{font-family:var(--fd);font-weight:600;font-size:17px;color:var(--ld);margin:0 0 8px;} .helpcard .hx{position:absolute;top:11px;right:13px;border:none;background:none;font-size:20px;color:#bbb;cursor:pointer;}
+  .helptip{display:flex;gap:6px;font-size:12.5px;color:#555;padding:4px 0;line-height:1.45;} .helptip b{color:var(--ld);}
+  .chip{position:fixed;left:16px;bottom:16px;z-index:120;display:flex;align-items:center;gap:7px;background:var(--ld);color:#fff;padding:8px 14px;border-radius:22px;font-weight:800;font-size:12.5px;box-shadow:var(--shadow-sm);} .chip small{font-weight:700;opacity:.8;font-size:9px;} .chip #ct{font-variant-numeric:tabular-nums;}
+</style>
+</head>
+<!-- ▼ NIVEL: pre-a1 | a1 | a2 ▼ -->
+<body data-level="pre-a1">
+  <div class="mat">
+    <div class="mhead"><button class="mback" onclick="exitGuard()">‹</button>
+      <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+      <div class="mh-info"><b id="mhtitle">Transform</b><span id="mhsub"></span></div>
+      <div class="mh-count"><span id="cq">1</span>/<span id="tot">0</span></div></div>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="mbody" id="mbody">
+      <div class="langsw"><span class="lsw-lab">🌐 <span id="lswLab"></span></span>
+        <div class="lsw"><button id="lswEs" class="on" onclick="setLang('es')">Español</button><button id="lswEn" onclick="setLang('en')">English</button></div></div>
+      <div class="instr"><div class="em">🔧</div><div><b id="insT"></b><p id="insP"></p></div></div>
+      <div id="qbox"></div>
+    </div>
+    <div class="results" id="results">
+      <div class="unlock" id="unlockMsg"></div>
+      <div class="hero"><div class="em" id="heroEm">🎉</div><div class="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div><div class="score"><span id="fscore">0</span><small>%</small></div><div class="phrase" id="fphrase"></div></div>
+      <div class="strip"><div class="stat"><b id="fhits">0/0</b><span id="lHits"></span></div><div class="stat"><b id="ftime">0:00</b><span id="lTime"></span></div><div class="stat"><b id="fxp">+0</b><span id="lXpEarned"></span></div></div>
+      <div class="support-note" id="supportNote"></div>
+      <div class="action" id="actionMsg"></div>
+      <div class="reinf" id="reinf"><b id="lReinf"></b><div class="rchips" id="rchips"></div></div>
+      <div class="surprise" id="surprise"><div class="em">🎁</div><div><b id="lXp"></b><p id="lXpSub"></p></div></div>
+      <div class="rbtns"><button class="rbtn back" id="lBack" onclick="volver()"></button><button class="rbtn retry" id="lRetry" onclick="restart()"></button></div>
+    </div>
+    <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido © JUCUM English Center</div>
+  </div>
+  <div class="chip"><span>⏱</span><span id="ct">0:00</span><small id="chipNote">no afecta tu nota</small></div>
+  <button class="helpfab" onclick="openHelp()" title="?">?</button>
+  <div class="helpov" id="helpov"><div class="helpcard"><button class="hx" onclick="closeHelp()">✕</button><h3>🧭 <span id="helpT"></span></h3><div id="helpTips"></div></div></div>
+  <div class="helpov" id="exitov"><div class="helpcard"><h3 id="exitT" style="font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 8px"></h3><p id="exitP" style="font-size:13px;color:#555;line-height:1.5;margin:0 0 14px"></p><div style="display:flex;flex-direction:column;gap:8px"><button id="exitStay" onclick="closeExit()" style="padding:12px;border:none;border-radius:12px;background:var(--lg);color:#fff;font-weight:800;font-size:13.5px;cursor:pointer"></button><button id="exitLeave" onclick="leaveNow()" style="padding:12px;border:none;border-radius:12px;background:#F1F0EA;color:#C62828;font-weight:800;font-size:13px;cursor:pointer"></button></div></div></div>
+  <div class="toast" id="toast"></div>
+<script>
+/* ════ EDITA AQUÍ · METADATOS ════ */
+const MAT = { title:'Transform', subtitle:'Pre-A1 · M1 · To be (Parte 2)', langDefault:'es', reportId:'PreA1_M1_t2b-tr' };
+const PASS = 75;
+const QS = [
+ {
+  "reinf": {
+   "es": "Negativo · is → isn’t",
+   "en": "Negative · is → isn’t"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>negativa</b>.",
+   "en": "Change the sentence to <b>negative</b>."
+  },
+  "src": "Don Beto is the youngest.",
+  "answer": [
+   "Don",
+   "Beto",
+   "isn't",
+   "the",
+   "youngest",
+   "."
+  ],
+  "tr": "Don Beto es el más joven.",
+  "hint": {
+   "es": "Une is + not en «isn't».",
+   "en": "Merge is + not into «isn't»."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>is → isn't</b> (is + not).",
+   "en": "<b>is → isn't</b> (is + not)."
+  },
+  "formula": {
+   "es": "Sujeto + isn’t + …",
+   "en": "Subject + isn’t + …"
+  },
+  "rule": {
+   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
+   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
+  },
+  "examples": {
+   "es": [
+    "is → isn't"
+   ],
+   "en": [
+    "is → isn't"
+   ]
+  },
+  "es": {
+   "es": "El «no» se pega al verbo: <b>isn't</b>.",
+   "en": "The «not» attaches to the verb: <b>isn't</b>."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Pregunta · plural → Are",
+   "en": "Question · plural → Are"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>pregunta</b>.",
+   "en": "Change the sentence to a <b>question</b>."
+  },
+  "src": "My mom and grandma are here.",
+  "answer": [
+   "Are",
+   "my",
+   "mom",
+   "and",
+   "grandma",
+   "here",
+   "?"
+  ],
+  "tr": "Mi mamá y mi abuela están aquí.",
+  "hint": {
+   "es": "El verbo to be salta al inicio.",
+   "en": "The to-be verb jumps to the front."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>are</b> al inicio: <b>Are my mom and grandma…?</b>",
+   "en": "<b>are</b> to the front: <b>Are my mom and grandma…?</b>"
+  },
+  "formula": {
+   "es": "Are + sujeto plural + …?",
+   "en": "Are + plural subject + …?"
+  },
+  "rule": {
+   "es": "Pregunta: to be + sujeto + …?",
+   "en": "Question: to be + subject + …?"
+  },
+  "examples": {
+   "es": [
+    "They are → Are they?"
+   ],
+   "en": [
+    "They are → Are they?"
+   ]
+  },
+  "es": {
+   "es": "Plural en pregunta → <b>Are</b> al inicio.",
+   "en": "Plural in a question → <b>Are</b> first."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Negativo · am not",
+   "en": "Negative · am not"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>negativa</b>.",
+   "en": "Change the sentence to <b>negative</b>."
+  },
+  "src": "I am in Room 5.",
+  "answer": [
+   "I",
+   "am",
+   "not",
+   "in",
+   "Room",
+   "5",
+   "."
+  ],
+  "tr": "Estoy en el Salón 5.",
+  "hint": {
+   "es": "Con «I» el negativo es «am not» (no «amn't»).",
+   "en": "With «I» the negative is «am not» (not «amn't»)."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>am → am not</b>. «amn't» no existe.",
+   "en": "<b>am → am not</b>. «amn't» doesn't exist."
+  },
+  "formula": {
+   "es": "I + am + not + …",
+   "en": "I + am + not + …"
+  },
+  "rule": {
+   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
+   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
+  },
+  "examples": {
+   "es": [
+    "I am not here"
+   ],
+   "en": [
+    "I am not here"
+   ]
+  },
+  "es": {
+   "es": "Único sin contracción del verbo: <b>am not</b>.",
+   "en": "The one with no verb contraction: <b>am not</b>."
+  },
+  "lit": {
+   "es": "<span class=\"nat\">no estoy</span> = <b>I am not</b>.",
+   "en": "«no estoy» = <b>I am not</b>."
+  }
+ },
+ {
+  "reinf": {
+   "es": "Negativo · is → isn’t",
+   "en": "Negative · is → isn’t"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>negativa</b>.",
+   "en": "Change the sentence to <b>negative</b>."
+  },
+  "src": "Dev is the older brother.",
+  "answer": [
+   "Dev",
+   "isn't",
+   "the",
+   "older",
+   "brother",
+   "."
+  ],
+  "tr": "Dev es el hermano mayor.",
+  "hint": {
+   "es": "Une is + not.",
+   "en": "Merge is + not."
+  },
+  "story": {
+   "q": "\"Dev isn't Ravi's older brother — he is the younger one.\"",
+   "es": "\"Dev no es el hermano mayor de Ravi.\""
+  },
+  "change": {
+   "es": "<b>is → isn't</b>.",
+   "en": "<b>is → isn't</b>."
+  },
+  "formula": {
+   "es": "Sujeto + isn’t + …",
+   "en": "Subject + isn’t + …"
+  },
+  "rule": {
+   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
+   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
+  },
+  "examples": {
+   "es": [
+    "Dev isn't the older brother"
+   ],
+   "en": [
+    "Dev isn't the older brother"
+   ]
+  },
+  "es": {
+   "es": "«no es» → <b>isn't</b>.",
+   "en": "«no es» → <b>isn't</b>."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Pregunta · plural → Are",
+   "en": "Question · plural → Are"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>pregunta</b>.",
+   "en": "Change the sentence to a <b>question</b>."
+  },
+  "src": "You and Nico are friends.",
+  "answer": [
+   "Are",
+   "you",
+   "and",
+   "Nico",
+   "friends",
+   "?"
+  ],
+  "tr": "Tú y Nico son amigos.",
+  "hint": {
+   "es": "El verbo to be encabeza la pregunta.",
+   "en": "The to-be verb leads the question."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>are</b> al inicio: <b>Are you and Nico…?</b>",
+   "en": "<b>are</b> to the front: <b>Are you and Nico…?</b>"
+  },
+  "formula": {
+   "es": "Are + sujeto plural + …?",
+   "en": "Are + plural subject + …?"
+  },
+  "rule": {
+   "es": "Pregunta: to be + sujeto + …?",
+   "en": "Question: to be + subject + …?"
+  },
+  "examples": {
+   "es": [
+    "Are you and Nico…?"
+   ],
+   "en": [
+    "Are you and Nico…?"
+   ]
+  },
+  "es": {
+   "es": "Plural en pregunta → <b>Are</b>.",
+   "en": "Plural in a question → <b>Are</b>."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Negativo · it → isn’t",
+   "en": "Negative · it → isn’t"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>negativa</b>.",
+   "en": "Change the sentence to <b>negative</b>."
+  },
+  "src": "It is easy to share a room.",
+  "answer": [
+   "It",
+   "isn't",
+   "easy",
+   "to",
+   "share",
+   "a",
+   "room",
+   "."
+  ],
+  "tr": "Es fácil compartir un cuarto.",
+  "hint": {
+   "es": "El inglés mantiene el sujeto «It».",
+   "en": "English keeps the subject «It»."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>is → isn't</b>; el sujeto «It» se mantiene.",
+   "en": "<b>is → isn't</b>; the subject «It» stays."
+  },
+  "formula": {
+   "es": "It + isn’t + …",
+   "en": "It + isn’t + …"
+  },
+  "rule": {
+   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
+   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
+  },
+  "examples": {
+   "es": [
+    "It isn't easy"
+   ],
+   "en": [
+    "It isn't easy"
+   ]
+  },
+  "es": {
+   "es": "El español omite «it» («No es fácil»); el inglés lo exige.",
+   "en": "Spanish drops «it» («No es fácil»); English requires it."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Pregunta · he → Is",
+   "en": "Question · he → Is"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>pregunta</b>.",
+   "en": "Change the sentence to a <b>question</b>."
+  },
+  "src": "Mia's brother is in your class.",
+  "answer": [
+   "Is",
+   "Mia's",
+   "brother",
+   "in",
+   "your",
+   "class",
+   "?"
+  ],
+  "tr": "El hermano de Mia está en tu clase.",
+  "hint": {
+   "es": "Pasa «is» al inicio y agrega «?».",
+   "en": "Move «is» to the front and add «?»."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>is</b> al inicio: <b>Is Mia's brother…?</b>",
+   "en": "<b>is</b> to the front: <b>Is Mia's brother…?</b>"
+  },
+  "formula": {
+   "es": "Is + sujeto + …?",
+   "en": "Is + subject + …?"
+  },
+  "rule": {
+   "es": "Pregunta: to be + sujeto + …?",
+   "en": "Question: to be + subject + …?"
+  },
+  "examples": {
+   "es": [
+    "Is he…?"
+   ],
+   "en": [
+    "Is he…?"
+   ]
+  },
+  "es": {
+   "es": "Singular he/she/it en pregunta → <b>Is</b> al inicio.",
+   "en": "Singular he/she/it in a question → <b>Is</b> first."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "reinf": {
+   "es": "Pregunta · I → Am",
+   "en": "Question · I → Am"
+  },
+  "task": {
+   "es": "Cambia la oración a <b>pregunta</b>.",
+   "en": "Change the sentence to a <b>question</b>."
+  },
+  "src": "I am in the right seat.",
+  "answer": [
+   "Am",
+   "I",
+   "in",
+   "the",
+   "right",
+   "seat",
+   "?"
+  ],
+  "tr": "Estoy en el asiento correcto.",
+  "hint": {
+   "es": "Pregunta con «I» → «Am I…?».",
+   "en": "A question with «I» → «Am I…?»."
+  },
+  "story": null,
+  "change": {
+   "es": "<b>am</b> al inicio: <b>Am I…?</b>",
+   "en": "<b>am</b> to the front: <b>Am I…?</b>"
+  },
+  "formula": {
+   "es": "Am + I + …?",
+   "en": "Am + I + …?"
+  },
+  "rule": {
+   "es": "Pregunta: to be + sujeto + …?",
+   "en": "Question: to be + subject + …?"
+  },
+  "examples": {
+   "es": [
+    "Am I…?"
+   ],
+   "en": [
+    "Am I…?"
+   ]
+  },
+  "es": {
+   "es": "Am I? es la única pregunta con primera persona singular.",
+   "en": "Am I? is the only first-person-singular question."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ }
+,
+
+ { reinf:{es:"Negativo · he → isn't",en:"Negative · he → isn't"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
+   src:"Nico is funny.", answer:["Nico","isn't","funny","."], tr:"Nico es gracioso.",
+   hint:{es:"Singular (he) → is; su negativo es isn't.",en:"Singular (he) → is; its negative is isn't."},
+   story:{q:'"The boy is very funny."',es:'"El niño es muy gracioso."'},
+   change:{es:"Añade «not» a «is»: is → isn't.",en:"Add «not» to «is»: is → isn't."},
+   formula:{es:"sujeto + isn't + …",en:"subject + isn't + …"}, rule:{es:"is + not → isn't",en:"is + not → isn't"},
+   examples:{es:["is → isn't"],en:["is → isn't"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
+ { reinf:{es:"Pregunta · he → Is",en:"Question · he → Is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
+   src:"Carlos is tall.", answer:["Is","Carlos","tall","?"], tr:"Carlos es alto.",
+   hint:{es:"Mueve «is» al inicio para preguntar.",en:"Move «is» to the front to ask."},
+   story:{q:'"Who is that tall man? That is my dad, Carlos."',es:'"¿Quién es ese hombre alto? Ese es mi papá, Carlos."'},
+   change:{es:"«Carlos is» → «Is Carlos…?».",en:"«Carlos is» → «Is Carlos…?»."},
+   formula:{es:"Is + sujeto + …?",en:"Is + subject + …?"}, rule:{es:"Pregunta: to be al inicio",en:"Question: to be goes first"},
+   examples:{es:["Carlos is → Is Carlos?"],en:["Carlos is → Is Carlos?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
+ { reinf:{es:"Negativo · plural → aren't",en:"Negative · plural → aren't"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
+   src:"The people are sad.", answer:["The","people","aren't","sad","."], tr:"Las personas están tristes.",
+   hint:{es:"Plural → are; su negativo es aren't.",en:"Plural → are; its negative is aren't."},
+   story:{q:'"Everyone is always smiling."',es:'"Todos están siempre sonriendo."'},
+   change:{es:"Añade «not» a «are»: are → aren't.",en:"Add «not» to «are»: are → aren't."},
+   formula:{es:"sujeto + aren't + …",en:"subject + aren't + …"}, rule:{es:"are + not → aren't",en:"are + not → aren't"},
+   examples:{es:["are → aren't"],en:["are → aren't"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
+ { reinf:{es:"Pregunta · There is",en:"Question · There is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
+   src:"There is a dog in the photo.", answer:["Is","there","a","dog","in","the","photo","?"], tr:"Hay un perro en la foto.",
+   hint:{es:"Mueve «is» antes de «there».",en:"Move «is» before «there»."},
+   story:{q:'"Our dog is in the photo."',es:'"Nuestro perro está en la foto."'},
+   change:{es:"«There is» → «Is there…?».",en:"«There is» → «Is there…?»."},
+   formula:{es:"Is there + …?",en:"Is there + …?"}, rule:{es:"There is → Is there…?",en:"There is → Is there…?"},
+   examples:{es:["There is → Is there?"],en:["There is → Is there?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
+ { reinf:{es:"Pregunta · she → Is",en:"Question · she → Is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
+   src:"Grandma is in the photo.", answer:["Is","grandma","in","the","photo","?"], tr:"La abuela está en la foto.",
+   hint:{es:"«Grandma» es singular. La forma de to be va primero.",en:"«Grandma» is singular. to be goes first."},
+   story:{q:'"My grandma Norma is there."',es:'"Mi abuela Norma está ahí."'},
+   change:{es:"«Grandma is» → «Is grandma…?».",en:"«Grandma is» → «Is grandma…?»."},
+   formula:{es:"Is + sujeto + …?",en:"Is + subject + …?"}, rule:{es:"Pregunta: to be al inicio",en:"Question: to be goes first"},
+   examples:{es:["Grandma is → Is grandma?"],en:["Grandma is → Is grandma?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
+ { reinf:{es:"Negativo · I → am not",en:"Negative · I → am not"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
+   src:"I am in the front.", answer:["I","am","not","in","the","front","."], tr:"Estoy adelante.",
+   hint:{es:"Con «I» el negativo es am not.",en:"With «I» the negative is am not."},
+   story:{q:'"I stand in the front."',es:'"Estoy parada adelante."'},
+   change:{es:"Añade «not» a «am»: am → am not.",en:"Add «not» to «am»: am → am not."},
+   formula:{es:"I + am not + …",en:"I + am not + …"}, rule:{es:"I → am not (I'm not)",en:"I → am not (I'm not)"},
+   examples:{es:["am → am not"],en:["am → am not"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
+,
+
+ { reinf:{es:"Pregunta · There are",en:"Question · There are"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
+   src:"There are eight people.", answer:["Are","there","eight","people","?"], tr:"Hay ocho personas.",
+   hint:{es:"Plural → are; muévelo antes de «there».",en:"Plural → are; move it before «there»."},
+   story:{q:'"Eight people are in it."',es:'"Hay ocho personas en ella."'},
+   change:{es:"«There are» → «Are there…?».",en:"«There are» → «Are there…?»."},
+   formula:{es:"Are there + …?",en:"Are there + …?"}, rule:{es:"There are → Are there…?",en:"There are → Are there…?"},
+   examples:{es:["There are → Are there?"],en:["There are → Are there?"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
+];
+
+/* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
+const T = {
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+    qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
+    fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
+    prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
+    pass:'🔓 ¡Aprobado! Desbloqueaste la siguiente actividad', fail:'🔁 Necesitas '+PASS+'% para aprobar. ¡Inténtalo de nuevo!',
+    hits:'Aciertos', time:'Tiempo', timeNote:'no afecta tu nota', reinf:'📌 A reforzar', xp:'+15 XP por aprobar', xpSub:'Sumaste a tu Liga Semanal. Mantén la racha.', back:'↩ Volver a la plataforma', retry:'🔁 Intentar de nuevo',
+    ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
+    supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
+    rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+    qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
+    fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
+    prev:'← Back', next:'Next →', seeRes:'See results 🎉',
+    pass:'🔓 Passed! You unlocked the next activity', fail:'🔁 You need '+PASS+'% to pass. Try again!',
+    hits:'Correct', time:'Time', timeNote:'does not affect your grade', reinf:'📌 To review', xp:'+15 XP for passing', xpSub:'Added to your Weekly League. Keep your streak.', back:'↩ Back to the platform', retry:'🔁 Try again',
+    ph:['Excellent! You\'ve got it. 🌟','Great job, passed! Review the few slips. 💪','Almost — review and come back to top '+PASS+'%. 🌱'],
+    supp:n=>n+' answered with translation help (doesn\'t lower your grade; your teacher will see it).',
+    rFormH:'⚠ Report a problem', rOpts:['The correct form looks wrong','Typo / spelling error','The translation doesn\'t match','The task is confusing','Missing or extra tiles','Other'], rPlace:'Tell us what you saw (optional)...', rSend:'Send to support', rCancel:'Cancel', rDone:'✓ Report sent to support', rCodeLab:'Code (copy it if your teacher asks):', xpEarned:'XP earned', exitT:'Are you sure you want to leave? 🚪', exitP:x=>'If you leave now, <b>you\'ll lose the '+x+' XP</b> you\'ve earned and your progress here. Finish it to claim them. 💪', exitStay:'Keep practicing', exitLeave:'Leave and lose my XP', helpT:'How do I use this material?', tipsT:'What each button is for:', tips:['<b>How to solve it:</b> tap the tiles in order to build the sentence.','<b>🌐 Español/English:</b> language of instructions and explanations (the exercise stays in English).','<b>💡 Hint:</b> a context clue, below the sentence.','<b>🔤 Translation:</b> the sentence in Spanish (help, doesn\'t lower your grade).','<b>⚠ Report:</b> tell us if something is wrong in the question.','<b>At the end:</b> you\'ll see your grade, hits, time and topics to review.','<b>≥75% passes</b> and unlocks the next activity.'] }
+};
+let lang=MAT.langDefault, cur=0, score=0, locked=[], picked=[], usedTr=0, wrongTags=[], sec=0, timer=null; const trState={};
+let xpTotal=0; const XPQ=2;
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+function startTimer(){ if(!timer) timer=setInterval(()=>{sec++; var c=document.getElementById('ct'); if(c)c.textContent=fmt(sec);},1000); }
+function render(){ cur=0;score=0;xpTotal=0;usedTr=0;wrongTags=[];sec=0;clearInterval(timer);timer=null;
+  locked=new Array(QS.length).fill(false); picked=new Array(QS.length).fill(null); QS.forEach(q=>delete q._tr);
+  document.getElementById('tot').textContent=QS.length; document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='block';
+  document.getElementById('pfill').style.width='0'; var _ct=document.getElementById('ct'); if(_ct)_ct.textContent='0:00'; document.querySelectorAll('.star').forEach(s=>s.classList.remove('on'));
+  document.getElementById('qbox').innerHTML=QS.map(buildTr).join(''); QS.forEach((it,i)=>initTr(i)); applyUiLang(); show(0); }
+function buildTr(it,i){ const t=T[lang];
+  return `<div class="qcard${i!==0?' hidden':''}" id="q${i}">
+    <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
+    <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
+    <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
+    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
+    <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
+    <div class="bank" id="bank${i}"></div>
+    <button class="tcheck" id="chk${i}" onclick="checkTr(${i})" disabled>${t.check}</button>
+    <div class="fb" id="fb${i}"></div>
+    <div class="rform" id="rf${i}"><h4 id="rfh${i}">${t.rFormH}</h4><select id="rt${i}">${t.rOpts.map(o=>`<option>${o}</option>`).join('')}</select><textarea id="rn${i}" placeholder="${t.rPlace}"></textarea><div class="rrow"><button class="rsend" onclick="sendReport(${i})">${t.rSend}</button><button class="rcancel" onclick="toggleReport(${i})">${t.rCancel}</button></div></div>
+    <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
+    <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
+}
+function initTr(i){ const it=QS[i]; trState[i]={order:[]};
+  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  renderBank(i); renderTray(i); }
+function renderBank(i){ const it=QS[i], st=trState[i];
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
+function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
+function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
+  const tray=document.getElementById('tray'+i); el.setPointerCapture(e.pointerId); el.classList.add('dragging'); let moved=false;
+  const move=ev=>{ moved=true; const others=[...tray.querySelectorAll('.tile')].filter(t=>t!==el); let ref=null;
+    for(const t of others){ const r=t.getBoundingClientRect();
+      if(ev.clientY < r.top + r.height/2 || (ev.clientY < r.bottom && ev.clientX < r.left + r.width/2)){ ref=t; break; } }
+    if(ref) tray.insertBefore(el,ref); else tray.appendChild(el); };
+  const up=ev=>{ try{el.releasePointerCapture(e.pointerId);}catch(_){} el.classList.remove('dragging');
+    tray.removeEventListener('pointermove',move); document.removeEventListener('pointerup',up);
+    trState[i].order=[...tray.querySelectorAll('.tile')].map(t=>+t.dataset.idx);
+    if(!moved){ removeTile(i,+el.dataset.idx); } };
+  tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
+function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
+  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
+  document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
+  renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
+function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('fb'+i); el.className='fb show '+(ok?'ok':'no'); let b='';
+  if(!ok) b+=`<div class="fblk answer"><b>${t.bAnswer}</b><span class="answer-line">${it.answer.join(' ')}</span></div>`;
+  if(it.story) b+=`<div class="fblk sig" style="background:#FFF8E1;border:1px solid #FFE082;color:#6B4E00"><b>📖</b><span style="font-family:var(--fs);font-style:italic">${it.story.q}</span><br><span style="font-family:var(--fs);color:#8a6f3a;font-size:11.5px">${it.story.es}</span></div>`;
+  b+=`<div class="fblk sig"><b>${t.bChange}</b>${it.change[lang]}</div>`;
+  if(it.formula&&it.formula[lang]) b+=`<div class="fblk form"><b>${t.bForm}</b><span class="formula">${it.formula[lang]}</span></div>`;
+  let ex=''; if(it.examples&&it.examples[lang]) ex=`<div class="exrow">${it.examples[lang].map(e=>{const p=e.split(' → ');return `<span class="exchip"><span class="exw">${p[0]}</span>→<span>${p[1]}</span></span>`;}).join('')}</div>`;
+  b+=`<div class="fblk rule"><b>${t.bRule}</b>${it.rule[lang]}${ex}</div>`;
+  if(it.es&&it.es[lang]) b+=`<div class="fblk es"><b>${t.bEs}</b>${it.es[lang]}</div>`;
+  if(it.lit&&it.lit[lang]) b+=`<div class="fblk lit"><b>${t.bLit}</b>${it.lit[lang]}</div>`;
+  const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
+  el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
+function reveal(i,which){ startTimer(); const it=QS[i];
+  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
+function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
+function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }
+function nav(i,d){ if(d<0){ if(i>0) show(i-1); return; } if(i<QS.length-1) show(i+1); else results(); }
+function results(){ const t=T[lang]; document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
+  const pct=Math.round(score/QS.length*100), passed=pct>=PASS;
+  const um=document.getElementById('unlockMsg'); um.className='unlock '+(passed?'pass':'fail'); um.textContent=passed?t.pass:t.fail;
+  document.getElementById('heroEm').textContent = passed?'🎉':'💪';
+  document.getElementById('fscore').textContent=pct; document.getElementById('fhits').textContent=score+'/'+QS.length; document.getElementById('ftime').textContent=fmt(sec); document.getElementById('fxp').textContent='+'+(passed?xpTotal:0);
+  const stars=pct>=90?3:pct>=PASS?2:1; document.querySelectorAll('.star').forEach((s,x)=>{ if(x<stars) setTimeout(()=>s.classList.add('on'),x*220); });
+  document.getElementById('fphrase').textContent = pct>=90?t.ph[0]:pct>=PASS?t.ph[1]:t.ph[2];
+  document.getElementById('supportNote').textContent = usedTr>0 ? t.supp(usedTr) : '';
+  const reinf=document.getElementById('reinf'), chips=document.getElementById('rchips'), uniq=[...new Set(wrongTags)];
+  if(uniq.length){ reinf.style.display='block'; chips.innerHTML=uniq.map(x=>`<span class="rchip">${x}</span>`).join(''); } else reinf.style.display='none';
+  const act=document.getElementById('actionMsg'); if(act){ const u=[...new Set(wrongTags)];
+    if(pct>=90) act.textContent = lang==='es'?'Dominas este tema. Continúa con la siguiente actividad en la plataforma.':'You\'ve mastered this. Move on to the next activity in the platform.';
+    else if(passed) act.innerHTML = lang==='es'?('Aprobaste. Antes de seguir, repasa: <b>'+u.join(', ')+'</b>.'):('You passed. Before moving on, review: <b>'+u.join(', ')+'</b>.');
+    else act.innerHTML = lang==='es'?('Te faltó poco. Enfócate en <b>'+(u.slice(0,2).join(' y ')||'el tema')+'</b>, abre el resumen y vuelve a intentarlo.'):('Almost there. Focus on <b>'+(u.slice(0,2).join(' and ')||'the topic')+'</b>, check the summary and try again.'); }
+  document.getElementById('surprise').style.display = passed ? 'flex' : 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  window.JUCUM_OWN_PANEL=true; window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:pct,xp:passed?xpTotal:0,finished:passed}}));
+}
+function restart(){ render(); }
+function toggleReport(i){ document.getElementById('rf'+i).classList.toggle('show'); }
+function sendReport(i){ const type=document.getElementById('rt'+i).value, note=document.getElementById('rn'+i).value.trim();
+  document.getElementById('rf'+i).classList.remove('show'); const payload={mat:MAT.reportId,q:i+1,issue:type,note:note||'-'};
+  document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify(payload); document.getElementById('rd'+i).classList.add('show');
+  try{ window.dispatchEvent(new CustomEvent('jucum:report',{detail:payload})); }catch(e){}
+  toast(lang==='es'?'✓ Reporte enviado a soporte':'✓ Report sent to support'); }
+function copyCode(i){ const x=document.getElementById('rc'+i).textContent; navigator.clipboard&&navigator.clipboard.writeText(x); toast(lang==='es'?'Código copiado':'Code copied'); }
+function applyUiLang(){ const t=T[lang]; var _cn=document.getElementById('chipNote'); if(_cn)_cn.textContent=t.timeNote;
+  document.getElementById('lswLab').textContent=t.lswLab; document.getElementById('insT').textContent=t.insT; document.getElementById('insP').innerHTML=t.insP;
+  document.getElementById('mhtitle').textContent=MAT.title; document.getElementById('mhsub').textContent=MAT.subtitle;
+  document.getElementById('lHits').textContent=t.hits; document.getElementById('lTime').innerHTML=t.time+'<span class="note">'+t.timeNote+'</span>';
+  document.getElementById('lReinf').textContent=t.reinf; document.getElementById('lXp').textContent=t.xp; document.getElementById('lXpSub').textContent=t.xpSub;
+  document.getElementById('lBack').textContent=t.back; document.getElementById('lRetry').textContent=t.retry; document.getElementById('lXpEarned').textContent=t.xpEarned;
+  document.getElementById('helpT').textContent=t.helpT; document.getElementById('helpTips').innerHTML='<div style="font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:6px">'+t.tipsT+'</div>'+t.tips.map(x=>'<div class="helptip">• <span>'+x+'</span></div>').join('');
+  QS.forEach((it,i)=>{ const e=id=>document.getElementById(id+i);
+    if(e('ql'))e('ql').textContent=t.qlabel+' '+(i+1); if(e('qr'))e('qr').textContent=t.report; if(e('cn'))e('cn').innerHTML='👉 '+it.task[lang];
+    const po=document.querySelector('#q'+i+' .po'); if(po)po.textContent=t.original;
+    const hb=document.querySelector('#hb'+i+' .sh'); if(hb)hb.textContent=t.hint; const tb=document.querySelector('#tb'+i+' .st'); if(tb)tb.textContent=t.tr;
+    const hl=document.querySelector('#hr'+i+' .hl'); if(hl)hl.textContent=t.hintLab; const hv=document.querySelector('#hr'+i+' .hv'); if(hv)hv.innerHTML=it.hint[lang];
+    const tl=document.querySelector('#trb'+i+' .tl'); if(tl)tl.textContent=t.trLab;
+    const chk=e('chk'); if(chk&&chk.style.display!=='none')chk.textContent=t.check; const tray=e('tray'); if(tray)tray.setAttribute('data-ph',t.trayPh);
+    if(e('nx'))e('nx').textContent=(i===QS.length-1?t.seeRes:t.next); const pv=document.querySelector('#q'+i+' .prev'); if(pv)pv.textContent=t.prev;
+    if(e('rfh'))e('rfh').textContent=t.rFormH; if(e('rcl'))e('rcl').textContent=t.rCodeLab;
+    if(picked[i]!==null) renderFb(i,picked[i],it); });
+  wrongTags=[]; QS.forEach((it,i)=>{ if(picked[i]===false) wrongTags.push(it.reinf[lang]); }); }
+function setLang(l){ lang=l; document.getElementById('lswEs').classList.toggle('on',l==='es'); document.getElementById('lswEn').classList.toggle('on',l==='en'); applyUiLang(); if(document.getElementById('results').classList.contains('show')) results(); }
+function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}
+function exitGuard(){ if(!document.getElementById('results').classList.contains('show') && (sec>0 || locked.some(Boolean))){ openExit(); } else { volver(); } }
+function openExit(){ const t=T[lang]; document.getElementById('exitT').textContent=t.exitT; document.getElementById('exitP').innerHTML=t.exitP(xpTotal); document.getElementById('exitStay').textContent=t.exitStay; document.getElementById('exitLeave').textContent=t.exitLeave; document.getElementById('exitov').classList.add('show'); }
+function closeExit(){ document.getElementById('exitov').classList.remove('show'); }
+function leaveNow(){ document.getElementById('exitov').classList.remove('show'); xpTotal=0; volver(); }
+function volver(){ if(document.referrer){ location.href=document.referrer; } else if(history.length>1){ history.back(); } else { toast(lang==='es'?'Vuelve a tu práctica en la plataforma':'Go back to your practice'); } }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400); }
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('.mat')){ e.preventDefault(); toast(lang==='es'?'Material protegido © JUCUM EC':'Protected material © JUCUM EC'); }});
+render();
+</script>
+<!-- JUCUM English Center · seguimiento de progreso (NO QUITAR) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Visual v4 · Práctica de Gramática (Fill in) — JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECEAE3; --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
+    --font-display:'Fredoka','Nunito',system-ui,sans-serif;
+    --font-body:'Nunito',system-ui,sans-serif;
+    --font-serif:'Atkinson Hyperlegible',system-ui,sans-serif;
+    --correct:#2E7D32; --correct-bg:#E8F5E9; --correct-bd:#A5D6A7;
+    --wrong:#C62828; --wrong-bg:#FFEBEE; --wrong-bd:#EF9A9A;
+    --rv-bg:#F3E5F5; --rv-text:#7B1FA2; --rv-bd:#CE93D8;
+    --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09);
+  }
+  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lbt:#4E3800;
+    --lg:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%); --tint:#FAF7EE; }
+  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lbt:#0A3470;
+    --lg:linear-gradient(135deg,#1565C0 0%,#2196F3 60%,#64B5F6 100%); --tint:#F1F7FE; }
+  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lbt:#0E4B16;
+    --lg:linear-gradient(135deg,#43C062 0%,#1F7A33 100%); --tint:#F0F8F2; }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;}
+
+  .bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);padding:11px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .bar-brand{display:flex;align-items:center;gap:9px;}
+  .bar-brand img{width:38px;height:38px;object-fit:contain;}
+  .bar-brand b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;line-height:1.05;}
+  .bar-brand span{font-size:10.5px;color:var(--text-soft);font-weight:700;}
+  .bar-title{flex:1;min-width:180px;}
+  .bar-title h1{font-family:var(--font-display);font-weight:600;font-size:16px;margin:0;}
+  .bar-title p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);font-weight:700;}
+  .levsel{display:flex;align-items:center;gap:8px;}
+  .levsel>span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--text-soft);}
+  .seg{display:flex;background:#F0EDE4;border:1px solid var(--border);border-radius:11px;padding:3px;gap:2px;}
+  .seg button{border:none;background:transparent;font-family:var(--font-body);font-weight:800;font-size:12px;
+    padding:6px 13px;border-radius:8px;cursor:pointer;color:var(--text-soft);transition:.15s;white-space:nowrap;}
+  .seg button.on{color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18);}
+  #segPre.on{background:linear-gradient(135deg,#F9A825,#FF8F00);}
+  #segA1.on{background:linear-gradient(135deg,#1565C0,#2196F3);}
+  #segA2.on{background:linear-gradient(135deg,#43C062,#1F7A33);}
+
+  .stage{max-width:1200px;margin:0 auto;padding:26px 20px 60px;display:grid;
+    grid-template-columns:minmax(0,430px) minmax(0,1fr);gap:30px;align-items:start;}
+  @media(max-width:900px){.stage{grid-template-columns:1fr;}}
+
+  .phone-wrap{position:sticky;top:78px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .phone-cap{font-size:11.5px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:7px;}
+  .phone-cap b{padding:3px 10px;border-radius:20px;color:#fff;font-size:10.5px;background:var(--lp);}
+  .phone{width:410px;max-width:93vw;background:#1c1c22;border-radius:42px;padding:11px;box-shadow:var(--shadow);}
+  .screen{background:var(--tint);border-radius:32px;overflow:hidden;position:relative;height:768px;display:flex;flex-direction:column;}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:130px;height:24px;background:#1c1c22;border-radius:0 0 16px 16px;z-index:30;}
+  .wm{position:absolute;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='170'%3E%3Ctext x='12' y='105' transform='rotate(-27 150 85)' font-family='Fredoka,sans-serif' font-size='15' font-weight='700' letter-spacing='2' fill='%23000' fill-opacity='0.035'%3EJUCUM · ENGLISH CENTER%3C/text%3E%3C/svg%3E");}
+  .scroll{position:relative;z-index:2;flex:1;overflow-y:auto;overflow-x:hidden;}
+  .scroll::-webkit-scrollbar{width:0;}
+
+  .mhead{background:var(--lg);padding:30px 15px 14px;display:flex;align-items:center;gap:10px;color:#fff;}
+  .mback{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .mbadge{width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+  .mbadge img{width:24px;height:24px;object-fit:contain;}
+  .mh-info{flex:1;min-width:0;}
+  .mh-info b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;}
+  .mh-info span{font-size:10.5px;opacity:.9;font-weight:700;}
+  .mh-count{background:rgba(255,255,255,.25);padding:4px 11px;border-radius:14px;font-weight:800;font-size:12.5px;}
+  .pbar{height:5px;background:rgba(0,0,0,.06);}
+  .pfill{height:100%;background:var(--lp);width:0;transition:width .5s;}
+
+  .chip{position:absolute;bottom:14px;right:14px;z-index:20;display:flex;align-items:center;gap:7px;background:var(--ld);color:#fff;padding:7px 13px;border-radius:22px;font-weight:800;font-size:12px;box-shadow:var(--shadow-sm);}
+  .chip small{font-weight:700;opacity:.85;font-size:9px;}
+  .chip #ct{font-variant-numeric:tabular-nums;}
+
+  .mbody{padding:15px 15px 26px;}
+  .langsw{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;}
+  .lsw-lab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);display:flex;align-items:center;gap:5px;}
+  .lsw{display:flex;background:#fff;border:1.5px solid var(--lm);border-radius:11px;padding:3px;gap:2px;box-shadow:var(--shadow-sm);}
+  .lsw button{border:none;background:transparent;font-family:var(--font-body);font-weight:800;font-size:11.5px;padding:6px 13px;border-radius:8px;cursor:pointer;color:var(--text-soft);transition:.15s;}
+  .lsw button.on{background:var(--lg);color:#fff;}
+
+  .instr{background:#fff;border-radius:14px;padding:11px 13px;box-shadow:var(--shadow-sm);border-left:4px solid var(--lp);display:flex;gap:9px;margin-bottom:13px;}
+  .instr .em{font-size:20px;}
+  .instr b{font-family:var(--font-display);font-weight:600;font-size:13.5px;display:block;}
+  .instr p{margin:1px 0 0;font-size:12px;color:var(--text-soft);line-height:1.45;}
+
+  .qcard{background:#fff;border-radius:18px;box-shadow:var(--shadow-sm);padding:15px;margin-bottom:12px;}
+  .qcard.hidden{display:none;}
+  .qtop{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+  .qnum{width:30px;height:30px;border-radius:50%;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:14px;flex-shrink:0;}
+  .qlabel{font-size:12px;font-weight:800;color:var(--text-soft);}
+  .qreport{margin-left:auto;font-size:11px;font-weight:800;color:#B9742B;background:#FCF1E3;border:1px solid #F2D9B8;padding:4px 9px;border-radius:9px;cursor:pointer;}
+  .qreport:hover{background:#F8E6CC;}
+
+  .qtext{font-size:15.5px;line-height:1.65;font-weight:700;margin:0 0 11px;}
+  .blank{display:inline-block;min-width:74px;padding:1px 8px;background:var(--ll);border:2px dashed var(--lp);border-radius:7px;text-align:center;font-weight:800;color:var(--ld);}
+  .blank.ok{background:var(--correct-bg);border-color:var(--correct);color:var(--correct);}
+  .blank.no{background:var(--wrong-bg);border-color:var(--wrong);color:var(--wrong);}
+
+  /* support row — DEBAJO de la oración */
+  .support{display:flex;gap:7px;margin-bottom:11px;flex-wrap:wrap;}
+  .sbtn{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;border-radius:9px;padding:6px 12px;cursor:pointer;border:1.5px solid;transition:.15s;}
+  .sbtn.hint{background:var(--tint);color:var(--ld);border-color:var(--lm);}
+  .sbtn.hint:hover{background:var(--ll);}
+  .sbtn.tr{background:var(--rv-bg);color:var(--rv-text);border-color:var(--rv-bd);}
+  .sbtn.tr:hover{filter:brightness(.97);}
+  .sbtn.used{opacity:.55;}
+  .reveal{display:none;border-radius:0 11px 11px 0;padding:9px 12px;font-size:12.5px;line-height:1.55;margin-bottom:11px;}
+  .reveal.show{display:block;animation:up .25s ease;}
+  .reveal.hintbox{background:var(--tint);border-left:3px solid var(--lp);}
+  .reveal.trbox{background:var(--rv-bg);border-left:3px solid var(--rv-text);font-family:var(--font-serif);font-style:italic;color:#5A2A66;}
+  .reveal .lab{display:block;font-style:normal;font-family:var(--font-body);font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.8;}
+
+  .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .opt{padding:11px 5px;border:2px solid #E5E7EB;border-radius:11px;background:#fff;font-family:var(--font-body);font-weight:800;font-size:13px;cursor:pointer;color:var(--text);transition:.15s;}
+  .opt:hover:not(:disabled){border-color:var(--lp);background:var(--tint);transform:translateY(-1px);}
+  .opt:disabled{cursor:default;}
+  .opt.ok{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);}
+  .opt.no{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+
+  .fb{margin-top:13px;border-radius:14px;overflow:hidden;display:none;}
+  .fb.show{display:block;animation:up .3s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .fbh{padding:9px 13px;display:flex;align-items:center;gap:8px;color:#fff;}
+  .fb.ok .fbh{background:linear-gradient(135deg,var(--correct),#1B5E20);}
+  .fb.no .fbh{background:linear-gradient(135deg,var(--wrong),#922);}
+  .fbh b{font-family:var(--font-display);font-weight:600;font-size:14px;}
+  .fbb{background:#fff;border:2px solid;border-top:none;border-radius:0 0 14px 14px;padding:12px;display:flex;flex-direction:column;gap:9px;}
+  .fb.ok .fbb{border-color:var(--correct-bd);} .fb.no .fbb{border-color:var(--wrong-bd);}
+  .fblk{border-radius:11px;padding:9px 11px;font-size:12.5px;line-height:1.52;}
+  .fblk b{font-weight:800;} .fblk>b:first-child{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:5px;margin-bottom:3px;}
+  .fblk.story{background:#FFF8E1;border:1px solid #FFE082;color:#6B4E00;}
+  .fblk.sig{background:var(--tint);border:1px solid var(--lm);}
+  .fblk.rule{background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;}
+  .fblk.es{background:#FDF2F8;border:1px solid #F9C6E0;color:#9D2463;}
+  .fblk.lit{background:#F5F3FF;border:1px solid #DDD6FE;color:#5B21B6;}
+  .tag{display:inline-block;background:var(--lp);color:#fff;border-radius:5px;padding:0 6px;font-weight:800;}
+  .qquote{font-family:var(--font-serif);font-style:italic;}
+  .nat{color:var(--correct);font-weight:800;} .xlit{color:var(--wrong);font-weight:800;}
+
+  .nav{display:flex;gap:8px;margin-top:13px;}
+  .nb{padding:11px 14px;border:none;border-radius:11px;font-family:var(--font-body);font-weight:800;font-size:13px;cursor:pointer;transition:.15s;}
+  .nb.next{background:var(--lg);color:#fff;flex:1;}
+  .nb.prev{background:#F1F0EA;color:var(--text);}
+  .nb:disabled{opacity:.4;cursor:default;}
+
+  .rform{margin-top:11px;background:#FCF7EF;border:1.5px solid #F0D9B8;border-radius:13px;padding:12px;display:none;}
+  .rform.show{display:block;animation:up .25s ease;}
+  .rform h4{margin:0 0 8px;font-family:var(--font-display);font-weight:600;font-size:13px;color:#92510F;}
+  .rform select,.rform textarea{width:100%;font-family:var(--font-body);font-size:12.5px;border:1.5px solid #E7D3B4;border-radius:9px;padding:8px 10px;margin-bottom:8px;background:#fff;resize:vertical;}
+  .rform textarea{min-height:50px;}
+  .rrow{display:flex;gap:8px;}
+  .rsend{background:#C77D2E;color:#fff;border:none;border-radius:9px;padding:9px 16px;font-weight:800;font-size:12.5px;cursor:pointer;flex:1;}
+  .rcancel{background:#F1E7D6;color:#92510F;border:none;border-radius:9px;padding:9px 14px;font-weight:800;font-size:12.5px;cursor:pointer;}
+  .rdone{background:#EAF7EC;border:1.5px solid var(--correct-bd);border-radius:13px;padding:12px;margin-top:11px;display:none;}
+  .rdone.show{display:block;}
+  .rcode{font-family:'Nunito',monospace;font-size:11px;background:#fff;border:1px dashed var(--correct-bd);border-radius:8px;padding:8px;margin-top:7px;color:#1B5E20;word-break:break-all;cursor:copy;}
+
+  .results{display:none;padding:18px 16px 26px;text-align:center;}
+  .results.show{display:block;animation:up .45s ease;}
+  .unlock{background:var(--correct-bg);border:1.5px solid var(--correct-bd);border-radius:13px;padding:10px;display:flex;align-items:center;gap:9px;justify-content:center;font-weight:800;font-size:13px;color:var(--correct);margin-bottom:14px;}
+  .hero{background:var(--lg);border-radius:20px;padding:22px 18px;color:#fff;box-shadow:var(--shadow-sm);}
+  .hero .em{font-size:46px;line-height:1;}
+  .stars{display:flex;justify-content:center;gap:6px;margin:8px 0;}
+  .star{font-size:26px;opacity:.32;} .star.on{opacity:1;animation:pop .5s ease;}
+  @keyframes pop{0%{transform:scale(0);}55%{transform:scale(1.3);}100%{transform:scale(1);}}
+  .score{font-family:var(--font-display);font-weight:600;font-size:42px;line-height:1;}
+  .score small{font-size:18px;opacity:.8;}
+  .phrase{font-size:13.5px;line-height:1.5;margin-top:8px;font-weight:700;opacity:.96;}
+  .strip{display:flex;gap:9px;margin:13px 0 6px;}
+  .stat{flex:1;background:#fff;border:1px solid var(--border);border-radius:13px;padding:11px 8px;box-shadow:var(--shadow-sm);}
+  .stat b{font-family:var(--font-display);font-weight:600;font-size:20px;display:block;color:var(--ld);}
+  .stat span{font-size:10.5px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.04em;}
+  .stat .note{display:block;font-size:9px;color:#A99;font-weight:700;text-transform:none;letter-spacing:0;margin-top:1px;}
+  .support-note{font-size:11px;color:var(--text-soft);font-weight:700;margin-bottom:13px;}
+  .action{background:#fff;border:1.5px solid var(--lm);border-left:4px solid var(--lp);border-radius:13px;padding:13px 15px;text-align:left;font-size:13px;line-height:1.5;font-weight:700;color:var(--text);margin-bottom:14px;box-shadow:var(--shadow-sm);}
+  .reinf{background:#FFF7E8;border:1.5px solid #F0C66B;border-radius:13px;padding:12px;text-align:left;margin-bottom:14px;}
+  .reinf b{font-size:11.5px;color:#92510F;display:flex;gap:6px;align-items:center;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+  .rchips{display:flex;flex-wrap:wrap;gap:6px;}
+  .rchip{background:#fff;border:1.5px solid #F0C66B;color:#92510F;border-radius:9px;padding:5px 10px;font-size:12px;font-weight:800;}
+  .surprise{background:linear-gradient(135deg,#FFF3D6,#FFFBF0);border:1.5px dashed var(--lp);border-radius:13px;padding:11px;display:flex;align-items:center;gap:10px;text-align:left;margin-bottom:14px;}
+  .surprise .em{font-size:26px;}
+  .surprise b{font-size:12.5px;color:var(--ld);} .surprise p{margin:1px 0 0;font-size:11px;color:var(--text-soft);font-weight:700;line-height:1.4;}
+  .rbtns{display:flex;flex-direction:column;gap:9px;}
+  .rbtn{padding:13px;border:none;border-radius:13px;font-family:var(--font-body);font-weight:800;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;}
+  .rbtn.back{background:var(--lg);color:#fff;} .rbtn.retry{background:#F1F0EA;color:var(--text);}
+  .mfoot{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:#B0A99A;padding:12px;font-weight:700;}
+  .mfoot img{height:18px;opacity:.5;}
+
+  .notes h2{font-family:var(--font-display);font-weight:600;font-size:18px;margin:0 0 4px;}
+  .notes .lead{font-size:13px;color:var(--text-soft);margin:0 0 18px;line-height:1.5;}
+  .note{background:#fff;border:1px solid var(--border);border-radius:15px;padding:15px 16px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+  .note-h{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+  .note-n{width:26px;height:26px;border-radius:8px;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:13px;flex-shrink:0;}
+  .note-h b{font-family:var(--font-display);font-weight:600;font-size:14.5px;}
+  .note p{margin:0;font-size:12.5px;color:#555;line-height:1.55;} .note p + p{margin-top:6px;}
+  .note .try{margin-top:9px;background:var(--ll);color:var(--ld);border:1px solid var(--lm);border-radius:9px;padding:7px 13px;font-weight:800;font-size:12px;cursor:pointer;}
+  .note .try:hover{background:var(--lm);}
+  .cmpgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:18px;}
+  .cmp{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .cmp.best{border:2px solid var(--lp);}
+  .cmp-h{padding:9px 13px;font-weight:800;font-size:12.5px;background:#F3F1EA;color:#555;display:flex;align-items:center;gap:7px;}
+  .cmp.best .cmp-h{background:var(--ll);color:var(--ld);}
+  .cmp-badge{margin-left:auto;font-size:10px;font-weight:800;background:var(--lp);color:#fff;padding:2px 9px;border-radius:10px;}
+  .cmp-body{padding:12px 13px;}
+  .cmp-note{font-size:11.5px;color:#777;margin:9px 0 0;line-height:1.45;}
+  .story-mock{background:var(--tint);border:1px solid var(--lm);border-radius:10px;padding:10px;}
+  .sm-en{font-weight:700;font-size:12.5px;margin:0;}
+  .sm-es{font-family:var(--font-serif);font-style:italic;color:#6b6258;font-size:12px;margin:2px 0 0;}
+  .sm-data{margin-top:8px;background:#FFF8E1;border:1px solid #FFE082;border-radius:8px;padding:7px 9px;font-size:11.5px;color:#6B4E00;font-weight:700;}
+  .ask{background:#FFFDF5;border:1.5px solid #F0D98B;border-radius:13px;padding:14px 16px;margin-top:6px;}
+  .ask b{font-family:var(--font-display);font-weight:600;font-size:14px;color:#8A5A00;}
+  .ask p{font-size:12.5px;color:#6B5A33;margin:6px 0 0;line-height:1.55;}
+
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 20px;border-radius:24px;font-weight:800;font-size:13px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;max-width:90vw;text-align:center;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ===== PRODUCCIÓN JUCUM: pantalla completa (no tocar) ===== */
+  .bar{display:none!important}
+  .phone-cap{display:none!important}
+  .notch{display:none!important}
+  .stage{display:block!important;max-width:560px;margin:0 auto;padding:0!important;grid-template-columns:1fr!important;}
+  .phone-wrap{position:static!important;display:block!important;top:auto!important}
+  .phone{width:100%!important;max-width:none!important;background:none!important;border-radius:0!important;padding:0!important;box-shadow:none!important;overflow:visible!important}
+  .screen{height:auto!important;min-height:100vh;border-radius:0!important;overflow:visible!important;display:block!important}
+  .scroll{overflow:visible!important;height:auto!important;flex:none!important}
+  /* cabecera (volver + progreso) fija a la mano mientras responden */
+  .mhead{position:sticky!important;top:0;z-index:40}
+  .pbar{position:sticky!important;top:62px;z-index:39}
+  .helpfab{position:fixed!important;right:16px;bottom:16px}
+  /* Escritorio cómodo, no solo móvil */
+  @media(min-width:760px){
+    .stage{max-width:720px}
+    .mbody{padding:22px 30px 40px}
+    .qline,.sent,.idsent{font-size:19px!important;line-height:1.9!important}
+    .mhead{padding-left:30px;padding-right:30px}
+  }
+
+</style>
+</head>
+<body>
+  <div class="bar">
+    <div class="bar-brand"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'">
+      <div><b>JUCUM</b><span>English Center</span></div></div>
+    <div class="bar-title">
+      <h1>Propuesta visual v4 · Práctica de Gramática <span style="opacity:.6">(Fill in)</span></h1>
+      <p>Switch de idioma para instrucciones + feedback · ejercicio siempre en inglés</p></div>
+    <div class="levsel"><span>Vista de nivel</span>
+      <div class="seg">
+        <button id="segPre" class="on" onclick="setLevel('pre-a1')">Pre-A1</button>
+        <button id="segA1" onclick="setLevel('a1')">A1</button>
+        <button id="segA2" onclick="setLevel('a2')">A2</button>
+      </div></div>
+  </div>
+
+  <div class="stage">
+    <div class="phone-wrap">
+      <div class="phone-cap">Vista del alumno · <b id="lvlcap">Pre-A1</b></div>
+      <div class="phone">
+        <div class="screen" id="screen" data-level="pre-a1">
+          <div class="notch"></div>
+          <div class="wm"></div>
+          <div class="scroll" id="scroll">
+            <div class="mhead">
+              <button class="mback" title="Volver a la práctica" onclick="goBack()">‹</button>
+              <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+              <div class="mh-info"><b id="mhtitle">Fill in the Blanks</b><span id="mhsub">Pre-A1 · M1 · El verbo To be</span></div>
+              <div class="mh-count"><span id="cq">1</span>/10</div>
+            </div>
+            <div class="pbar"><div class="pfill" id="pfill"></div></div>
+            <div class="mbody" id="mbody">
+              <div class="langsw">
+                <span class="lsw-lab">🌐 <span id="lswLab">Instrucciones y ayuda</span></span>
+                <div class="lsw">
+                  <button id="lswEs" class="on" onclick="setLang('es')">Español</button>
+                  <button id="lswEn" onclick="setLang('en')">English</button>
+                </div>
+              </div>
+              <div class="instr"><div class="em">📚</div>
+                <div><b id="instrT">Completa el espacio en blanco</b><p id="instrP"></p></div></div>
+              <div id="qbox"></div>
+            </div>
+            <div class="results" id="results">
+              <div class="unlock" id="unlockMsg">🔓 ¡Desbloqueaste la siguiente actividad!</div>
+              <div class="hero"><div class="em">🎉</div>
+                <div class="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+                <div class="score"><span id="fscore">0</span><small>%</small></div>
+                <div class="phrase" id="fphrase"></div></div>
+              <div class="strip">
+                <div class="stat"><b id="fhits">0/4</b><span id="lHits">Aciertos</span></div>
+                <div class="stat"><b id="ftime">0:00</b><span id="lTime">Tiempo<span class="note" id="lTimeNote">no afecta tu nota</span></span></div></div>
+              <div class="support-note" id="supportNote"></div>
+      <div class="action" id="actionMsg"></div>
+              <div class="reinf" id="reinf"><b id="lReinf">📌 A reforzar</b><div class="rchips" id="rchips"></div></div>
+              <div class="surprise"><div class="em">🎁</div>
+                <div><b id="lXp">+15 XP por terminar</b><p id="lXpSub">Sumaste a tu Liga Semanal. Mantén la racha y sube de nivel.</p></div></div>
+              <div class="rbtns">
+                <button class="rbtn back" id="lBack" onclick="goBack()">↩ Volver a la plataforma</button>
+                <button class="rbtn retry" id="lRetry" onclick="restart()">🔁 Intentar de nuevo</button></div>
+            </div>
+            <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido</div>
+          </div>
+          <div class="chip"><span>⏱</span><span id="ct">0:00</span><small id="chipNote">no afecta tu nota</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>Capa funcional — tus correcciones aplicadas</h2>
+      <p class="lead">Toca <b>“Ver”</b> y el teléfono te lo muestra en vivo.</p>
+
+      <div class="note"><div class="note-h"><div class="note-n">1</div><b>El switch afecta instrucciones + feedback</b></div>
+        <p>El <b>ejercicio (oración + opciones) queda siempre en inglés</b> — es lo que se aprende. El switch <b>🌐</b> solo cambia el idioma de las <b>instrucciones y la retroalimentación</b> (Español / English). Así un alumno de A2 puede vivir el feedback en inglés (inmersión) sin perder el ejercicio.</p>
+        <div style="display:flex;gap:7px;flex-wrap:wrap"><button class="try" onclick="setLang('es')">Feedback en Español</button><button class="try" onclick="setLang('en')">Feedback in English</button></div></div>
+
+      <div class="note"><div class="note-h"><div class="note-n">2</div><b>Pista y Traducción, debajo de la oración</b></div>
+        <p>Son herramientas <b>propias del ejercicio</b>, no dependen del switch. Van <b>debajo de la oración</b> para no saturar el inicio. La <b>pista</b> da contexto; la <b>traducción</b> muestra esa oración en español. Usar apoyo <b>no baja la nota</b> (se marca “con apoyo” para el teacher).</p>
+        <button class="try" onclick="tour('support')">Ver pista + traducción →</button></div>
+
+      <div class="note"><div class="note-h"><div class="note-n">3</div><b>Sin badge que delate la respuesta</b></div>
+        <p>Quité la etiqueta “Contable / Incontable” del encabezado de cada pregunta — adelantaba la respuesta. El alumno ahora <b>decide</b> el tipo a partir del contexto de la oración.</p></div>
+
+      <div class="note"><div class="note-h"><div class="note-n">4</div><b>Anclado a la historia + notas ES↔EN</b></div>
+        <p>Al responder aparece <b>📖 En la historia</b> con la frase real que resuelve la pregunta, la regla, y donde aplica la nota de español (equipment, time) y traducción literal vs natural.</p>
+        <button class="try" onclick="tour('es')">Ver feedback completo →</button></div>
+
+      <div class="note"><div class="note-h"><div class="note-n">5</div><b>Reportar error · panel final · volver</b></div>
+        <p>Se mantienen: reporte con código de soporte, panel final por capas y botón volver a la práctica. Orden de opciones barajado (sin patrón).</p>
+        <button class="try" onclick="tour('results')">Ver panel final →</button></div>
+
+      <div style="margin-top:4px">
+        <div class="note-h" style="margin-bottom:2px"><b style="font-family:var(--font-display);font-weight:600;font-size:16px">Decisión (b) ✅ Híbrido — elegido</b></div>
+        <p class="lead" style="margin:4px 0 14px">Dónde vive la nota de traducción literal. Elegiste el híbrido (③).</p>
+        <div class="cmpgrid">
+          <div class="cmp"><div class="cmp-h">① Solo en la práctica</div>
+            <div class="cmp-body"><div class="fblk lit" style="margin:0"><b>🔤 Literal vs natural</b><span class="nat">“mucho equipo”</span> ✅. “muchos equipos” → <span class="xlit">“many equipments”</span>, no existe.</div>
+              <p class="cmp-note">Completo, pero si se repite mucho puede recargar.</p></div></div>
+          <div class="cmp"><div class="cmp-h">② Solo en la story</div>
+            <div class="cmp-body"><div class="story-mock"><p class="sm-en">“…they set up their equipment in the courtyard.”</p><p class="sm-es">“…instalaron su equipo en el patio.”</p><div class="sm-data">💡 Dato: “equipment” nunca lleva -s.</div></div>
+              <p class="cmp-note">Ligero, pero depende de que haya leído la story.</p></div></div>
+          <div class="cmp best"><div class="cmp-h">③ Híbrido <span class="cmp-badge">✅ Elegido</span></div>
+            <div class="cmp-body"><div class="story-mock" style="margin-bottom:9px"><p class="sm-en" style="font-size:11.5px;color:#777">En la story → dato general:</p><div class="sm-data">💡 No todo se traduce palabra por palabra.</div></div>
+              <div class="fblk lit" style="margin:0"><b>🔤 En el feedback, solo donde engaña</b>Queda únicamente la nota que evita un error real (equipment, time).</div>
+              <p class="cmp-note">Refuerza en dos momentos sin saturar.</p></div></div>
+        </div>
+      </div>
+
+      <div class="ask">
+        <b>Todo aplicado ✓</b>
+        <p>Switch para instrucciones+feedback · sin badge · pista/traducción debajo · sin banderas · híbrido · sin penalizar.</p>
+        <p style="margin-top:8px">Si le das el OK, replico este sistema a Story, Reading, Listening, Resumen y Quizlet, y generamos los documentos para GitHub.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+window.JUCUM_OWN_PANEL = true;
+/* Ejercicios anclados a la story M1 "My Name Is Leo" (Leo, Ana, Miss Rosa, familia).
+   El EJERCICIO (sentence, opts, tr, hint) es siempre inglés + su traducción propia.
+   storyWhy / rule / es / lit traen versión es y en (las controla el switch). */
+const QS = [
+ {
+  "clue": "am",
+  "opts": [
+   "am",
+   "is",
+   "are"
+  ],
+  "correct": "am",
+  "reinf": {
+   "es": "To be · I → am",
+   "en": "To be · I → am"
+  },
+  "sentence": "I _____ seven years old.",
+  "tr": "Tengo siete años.",
+  "hint": "",
+  "story": "\"My name is Leo. I am seven years old.\"",
+  "storyWhy": {
+   "es": "Con el sujeto <b>I</b> el verbo to be es siempre am (nunca is/are).",
+   "en": "With the subject <b>I</b>, to be is always am (never is/are)."
+  },
+  "rule": {
+   "es": "I → am",
+   "en": "I → am"
+  },
+  "es": {
+   "es": "<b>I am</b> traduce «soy», «estoy» y «tengo (años)».",
+   "en": "<b>I am</b> covers Spanish soy/estoy/tengo."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "is",
+  "opts": [
+   "is",
+   "am",
+   "are"
+  ],
+  "correct": "is",
+  "reinf": {
+   "es": "To be · he/she/it → is",
+   "en": "To be · he/she/it → is"
+  },
+  "sentence": "My dad _____ tall and kind.",
+  "tr": "Mi papá es alto y amable.",
+  "hint": "",
+  "story": "\"My dad is tall and kind.\"",
+  "storyWhy": {
+   "es": "«My dad» = una persona (he) → el verbo to be es is.",
+   "en": "«My dad» = one person (he) → to be is is."
+  },
+  "rule": {
+   "es": "he / she / it → is",
+   "en": "he / she / it → is"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "are",
+  "opts": [
+   "are",
+   "is",
+   "am"
+  ],
+  "correct": "are",
+  "reinf": {
+   "es": "To be · plural → are",
+   "en": "To be · plural → are"
+  },
+  "sentence": "We _____ in the same class.",
+  "tr": "Estamos en la misma clase.",
+  "hint": "",
+  "story": "\"Great! We are in the same class.\"",
+  "storyWhy": {
+   "es": "<b>We</b> es plural → el verbo to be es are.",
+   "en": "<b>We</b> is plural → to be is are."
+  },
+  "rule": {
+   "es": "we / you / they → are",
+   "en": "we / you / they → are"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "is",
+  "opts": [
+   "is",
+   "are",
+   "am"
+  ],
+  "correct": "is",
+  "reinf": {
+   "es": "To be · he/she/it → is",
+   "en": "To be · he/she/it → is"
+  },
+  "sentence": "She _____ a kind nurse.",
+  "tr": "Ella es una enfermera amable.",
+  "hint": "",
+  "story": "\"She is a kind nurse.\"",
+  "storyWhy": {
+   "es": "<b>She</b> es 3ª persona singular → to be es is.",
+   "en": "<b>She</b> is 3rd person singular → to be is is."
+  },
+  "rule": {
+   "es": "he / she / it → is",
+   "en": "he / she / it → is"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "are",
+  "opts": [
+   "are",
+   "is",
+   "am"
+  ],
+  "correct": "are",
+  "reinf": {
+   "es": "To be · you → are",
+   "en": "To be · you → are"
+  },
+  "sentence": "You _____ new here, right?",
+  "tr": "Eres nueva aquí, ¿verdad?",
+  "hint": "",
+  "story": "\"Nice to meet you. Are you new here?\"",
+  "storyWhy": {
+   "es": "Con el sujeto <b>you</b> el verbo to be es are (singular y plural).",
+   "en": "With the subject <b>you</b>, to be is are (singular and plural)."
+  },
+  "rule": {
+   "es": "you → are",
+   "en": "you → are"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "is",
+  "opts": [
+   "is",
+   "are",
+   "am"
+  ],
+  "correct": "is",
+  "reinf": {
+   "es": "There is · singular",
+   "en": "There is · singular"
+  },
+  "sentence": "There _____ a free seat near me.",
+  "tr": "Hay un asiento libre junto a mí.",
+  "hint": "",
+  "story": "\"There is a free seat near me.\"",
+  "storyWhy": {
+   "es": "«A free seat» es una sola cosa → there is.",
+   "en": "«A free seat» is one thing → there is."
+  },
+  "rule": {
+   "es": "Una cosa → There is",
+   "en": "One thing → There is"
+  },
+  "es": {
+   "es": "<b>There is</b> = «hay» (una cosa).",
+   "en": "<b>There is</b> = Spanish «hay» (one thing)."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "are",
+  "opts": [
+   "are",
+   "is",
+   "am"
+  ],
+  "correct": "are",
+  "reinf": {
+   "es": "There are · plural",
+   "en": "There are · plural"
+  },
+  "sentence": "There _____ many friends here.",
+  "tr": "Hay muchos amigos aquí.",
+  "hint": "",
+  "story": "\"It is. There are many friends here.\"",
+  "storyWhy": {
+   "es": "«Many friends» es plural → there are.",
+   "en": "«Many friends» is plural → there are."
+  },
+  "rule": {
+   "es": "Varias cosas → There are",
+   "en": "Several things → There are"
+  },
+  "es": {
+   "es": "<b>There are</b> = «hay» (varias cosas).",
+   "en": "<b>There are</b> = Spanish «hay» (several)."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "isn't",
+  "opts": [
+   "isn't",
+   "aren't",
+   "am not"
+  ],
+  "correct": "isn't",
+  "reinf": {
+   "es": "Negativo · he/she/it → isn't",
+   "en": "Negative · he/she/it → isn't"
+  },
+  "sentence": "My family _____ perfect, but we love each other.",
+  "tr": "Mi familia no es perfecta, pero nos amamos.",
+  "hint": "",
+  "story": "\"My family is not perfect. But we love each other.\"",
+  "storyWhy": {
+   "es": "Singular → is; su negativo es isn't (is + not).",
+   "en": "Singular → is; its negative is isn't (is + not)."
+  },
+  "rule": {
+   "es": "is + not → isn't",
+   "en": "is + not → isn't"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "am not",
+  "opts": [
+   "am not",
+   "is not",
+   "are not"
+  ],
+  "correct": "am not",
+  "reinf": {
+   "es": "Negativo · I → am not",
+   "en": "Negative · I → am not"
+  },
+  "sentence": "I _____ very tall, but I run fast.",
+  "tr": "No soy muy alto, pero corro rápido.",
+  "hint": "",
+  "story": "\"I am not very tall. But I run very fast.\"",
+  "storyWhy": {
+   "es": "Con <b>I</b> el negativo es am not (no «isn't»).",
+   "en": "With <b>I</b> the negative is am not (not «isn't»)."
+  },
+  "rule": {
+   "es": "I → am not (I'm not)",
+   "en": "I → am not (I'm not)"
+  },
+  "es": {
+   "es": "En el habla: «I'm not» = I am not.",
+   "en": "In speech: «I'm not» = I am not."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "aren't",
+  "opts": [
+   "aren't",
+   "isn't",
+   "am not"
+  ],
+  "correct": "aren't",
+  "reinf": {
+   "es": "Negativo · plural → aren't",
+   "en": "Negative · plural → aren't"
+  },
+  "sentence": "Lara and I _____ the same age.",
+  "tr": "Lara y yo no tenemos la misma edad.",
+  "hint": "",
+  "story": "\"I am seven too. The same age!\"",
+  "storyWhy": {
+   "es": "Sujeto plural → are; su negativo es aren't.",
+   "en": "Plural subject → are; its negative is aren't."
+  },
+  "rule": {
+   "es": "are + not → aren't",
+   "en": "are + not → aren't"
+  },
+  "es": {
+   "es": "La edad usa to be: «aren't the same age», no «don't have».",
+   "en": "Age uses to be: «aren't the same age», not «don't have»."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "Are",
+  "opts": [
+   "Are",
+   "Is",
+   "Am"
+  ],
+  "correct": "Are",
+  "reinf": {
+   "es": "Pregunta · you → Are",
+   "en": "Question · you → Are"
+  },
+  "sentence": "_____ you new here?",
+  "tr": "¿Eres nueva aquí?",
+  "hint": "",
+  "story": "\"Nice to meet you. Are you new here?\"",
+  "storyWhy": {
+   "es": "Con <b>you</b> la pregunta empieza con Are: «Are you…?».",
+   "en": "With <b>you</b> the question starts with Are: «Are you…?»."
+  },
+  "rule": {
+   "es": "Pregunta: Are + you…?",
+   "en": "Question: Are + you…?"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "Is",
+  "opts": [
+   "Is",
+   "Are",
+   "Am"
+  ],
+  "correct": "Is",
+  "reinf": {
+   "es": "Pregunta · he/she/it → Is",
+   "en": "Question · he/she/it → Is"
+  },
+  "sentence": "_____ the teacher nice here?",
+  "tr": "¿La maestra es amable aquí?",
+  "hint": "",
+  "story": "\"Is the teacher nice here?\"",
+  "storyWhy": {
+   "es": "Sujeto singular → la pregunta empieza con Is: «Is the teacher…?».",
+   "en": "Singular subject → the question starts with Is: «Is the teacher…?»."
+  },
+  "rule": {
+   "es": "Pregunta: Is + sujeto singular…?",
+   "en": "Question: Is + singular subject…?"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "Are",
+  "opts": [
+   "Are",
+   "Is",
+   "Am"
+  ],
+  "correct": "Are",
+  "reinf": {
+   "es": "Pregunta · plural → Are",
+   "en": "Question · plural → Are"
+  },
+  "sentence": "_____ we in the same class?",
+  "tr": "¿Estamos en la misma clase?",
+  "hint": "",
+  "story": "\"Great! We are in the same class.\"",
+  "storyWhy": {
+   "es": "Sujeto plural (we) → la pregunta empieza con Are.",
+   "en": "Plural subject (we) → the question starts with Are."
+  },
+  "rule": {
+   "es": "Pregunta: Are + sujeto plural…?",
+   "en": "Question: Are + plural subject…?"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "Is",
+  "opts": [
+   "Is",
+   "Are",
+   "Am"
+  ],
+  "correct": "Is",
+  "reinf": {
+   "es": "Pregunta · everyone → Is",
+   "en": "Question · everyone → Is"
+  },
+  "sentence": "_____ everyone friendly at this school?",
+  "tr": "¿Todos son amables en esta escuela?",
+  "hint": "",
+  "story": "\"Do not worry. Everyone is friendly.\"",
+  "storyWhy": {
+   "es": "<b>Everyone</b> es singular en inglés → Is: «Is everyone…?».",
+   "en": "<b>Everyone</b> is singular in English → Is: «Is everyone…?»."
+  },
+  "rule": {
+   "es": "everyone → Is (singular)",
+   "en": "everyone → Is (singular)"
+  },
+  "es": {
+   "es": "«Everyone is» aunque en español sea «todos son».",
+   "en": "«Everyone is» even though Spanish says «todos son»."
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ },
+ {
+  "clue": "Am",
+  "opts": [
+   "Am",
+   "Is",
+   "Are"
+  ],
+  "correct": "Am",
+  "reinf": {
+   "es": "Pregunta · I → Am",
+   "en": "Question · I → Am"
+  },
+  "sentence": "_____ I in your class too?",
+  "tr": "¿Estoy yo también en tu clase?",
+  "hint": "",
+  "story": "\"Great! We are in the same class.\"",
+  "storyWhy": {
+   "es": "Con <b>I</b> la pregunta empieza con Am: «Am I…?».",
+   "en": "With <b>I</b> the question starts with Am: «Am I…?»."
+  },
+  "rule": {
+   "es": "Pregunta: Am + I…?",
+   "en": "Question: Am + I…?"
+  },
+  "es": {
+   "es": "",
+   "en": ""
+  },
+  "lit": {
+   "es": "",
+   "en": ""
+  }
+ }
+];
+
+/* Diccionario de UI por idioma (solo instrucciones + feedback + panel) */
+const T = {
+  es:{ instrT:'Completa el espacio en blanco',
+       instrP:'Lee la oración en inglés. ¿Necesitas ayuda? Toca <b>Traducción</b> debajo de la oración. Cada respuesta te explica el porqué.',
+       lswLab:'Instrucciones y ayuda', qlabel:'Pregunta', hint:'Pista', tr:'Traducción',
+       hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo',
+       fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bStory:'📖 En la historia', bSig:'🔍 La señal', bRule:'📐 Regla',
+       bEs:'Español ↔ Inglés', bLit:'🔤 Traducción: literal vs natural', sigTxt:'te indica el pronombre.',
+       prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
+       unlock:'🔓 ¡Desbloqueaste la siguiente actividad!', hits:'Aciertos', time:'Tiempo', timeNote:'no afecta tu nota',
+       chipNote:'no afecta tu nota', reinf:'📌 A reforzar', xp:'+15 XP por terminar', xpSub:'Sumaste a tu Liga Semanal. Mantén la racha y sube de nivel.',
+       back:'↩ Volver a la plataforma', retry:'🔁 Intentar de nuevo', mhtitle:'Fill in the Blanks',
+       ph:[ '¡Excelente! Dominas el verbo to be. 🌟','¡Muy bien! Repasa los pocos errores y serás imparable. 💪','Buen intento — cada error te acerca. Repasa y vuelve. 🌱'],
+       supp:n=>n+' pregunta'+(n>1?'s':'')+' con apoyo de traducción (no baja tu nota; tu teacher lo verá).',
+       rFormH:'⚠ Reportar un error en esta pregunta', rOpts:['La respuesta correcta parece equivocada','Hay un error de tipeo / ortografía','La traducción no coincide','La pista confunde','La oración no concuerda con la historia','Otro'],
+       rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):' },
+  en:{ instrT:'Fill in the blank',
+       instrP:'Read the English sentence. Need help? Tap <b>Translation</b> below the sentence. Each answer explains why.',
+       lswLab:'Instructions & help', qlabel:'Question', hint:'Hint', tr:'Translation',
+       hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help',
+       fbOk:'Correct!', fbNo:'Almost — let\'s review', bStory:'📖 In the story', bSig:'🔍 The clue', bRule:'📐 Rule',
+       bEs:'Spanish ↔ English', bLit:'🔤 Translation: literal vs natural', sigTxt:'tells you which quantifier to use.',
+       prev:'← Back', next:'Next →', seeRes:'See results 🎉',
+       unlock:'🔓 You unlocked the next activity!', hits:'Correct', time:'Time', timeNote:'does not affect your grade',
+       chipNote:'doesn\'t affect your grade', reinf:'📌 To review', xp:'+15 XP for finishing', xpSub:'Added to your Weekly League. Keep your streak and level up.',
+       back:'↩ Back to the platform', retry:'🔁 Try again', mhtitle:'Fill in the Blanks',
+       ph:[ 'Excellent! You\'ve got personal pronouns. 🌟','Great job! Review the few slips and you\'re unstoppable. 💪','Good try — every mistake helps. Review and come back. 🌱'],
+       supp:n=>n+' question'+(n>1?'s':'')+' answered with translation help (doesn\'t lower your grade; your teacher will see it).',
+       rFormH:'⚠ Report a problem in this question', rOpts:['The correct answer looks wrong','There\'s a typo / spelling error','The translation doesn\'t match','The hint is confusing','The sentence doesn\'t match the story','Other'],
+       rPlace:'Tell us what you saw (optional)...', rSend:'Send to support', rCancel:'Cancel', rDone:'✓ Report sent to support', rCodeLab:'Code (copy it if your teacher asks):' }
+};
+
+let lang='es', cur=0, score=0, ans=new Array(QS.length).fill(false), picked=new Array(QS.length).fill(null), wrongTags=[], usedTr=0;
+let sec=0, timer=null;
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+function startTimer(){ if(!timer) timer=setInterval(()=>{ sec++; document.getElementById('ct').textContent=fmt(sec); },1000); }
+function fyShuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function buildQ(q,i){
+  const t=T[lang];
+  const shuf=fyShuffle(q.opts);
+  const sentence=q.sentence.replace('_____','<span class="blank" id="bl'+i+'">?</span>');
+  return `<div class="qcard${i!==0?' hidden':''}" id="q${i}">
+    <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span>
+      <button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
+    <p class="qtext">${sentence}</p>
+    <div class="support">
+      ${q.hint?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span>${t.hint}</span></button>`:''}
+      <button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span>${t.tr}</span></button>
+    </div>
+    ${q.hint?`<div class="reveal hintbox" id="hr${i}"><span class="lab">${t.hintLab}</span>${q.hint}</div>`:''}
+    <div class="reveal trbox" id="trb${i}"><span class="lab">${t.trLab}</span>${q.tr}</div>
+    <div class="opts" id="op${i}">${shuf.map(o=>`<button class="opt" onclick="pick(${i},this)">${o}</button>`).join('')}</div>
+    <div class="fb" id="fb${i}"></div>
+    <div class="rform" id="rf${i}"><h4 id="rfh${i}">${t.rFormH}</h4>
+      <select id="rt${i}">${t.rOpts.map(o=>`<option>${o}</option>`).join('')}</select>
+      <textarea id="rn${i}" placeholder="${t.rPlace}"></textarea>
+      <div class="rrow"><button class="rsend" onclick="sendReport(${i})">${t.rSend}</button><button class="rcancel" onclick="toggleReport(${i})">${t.rCancel}</button></div></div>
+    <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;" id="rdt${i}">${t.rDone}</div>
+      <div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div>
+      <div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
+    <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button>
+      <button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div>
+  </div>`;
+}
+function render(){ document.getElementById('qbox').innerHTML=QS.map(buildQ).join(''); }
+
+function reveal(i,which){
+  startTimer();
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i);
+    if(!b.classList.contains('used')){ b.classList.add('used'); QS[i]._tr=true; } }
+}
+
+function feedbackHTML(i){
+  const q=QS[i], t=T[lang], ok=picked[i]===q.correct;
+  let b=`<div class="fblk story"><b>${t.bStory}</b><span class="qquote">${q.story}</span><br>${q.storyWhy[lang]}</div>`;
+  b+=`<div class="fblk sig"><b>${t.bSig}</b><span class="tag">${q.clue}</span> ${q.reinf?q.reinf[lang]:''}</div>`;
+  b+=`<div class="fblk rule"><b>${t.bRule}</b>${q.rule[lang]}</div>`;
+  if(q.es[lang]) b+=`<div class="fblk es"><b>${t.bEs}</b>${q.es[lang]}</div>`;
+  if(q.lit[lang]) b+=`<div class="fblk lit"><b>${t.bLit}</b>${q.lit[lang]}</div>`;
+  const sup=q._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
+  return `<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`;
+}
+function pick(i,btn){
+  if(ans[i]) return; ans[i]=true; startTimer();
+  const q=QS[i], sel=btn.textContent.trim(), ok=sel===q.correct;
+  picked[i]=sel;
+  if(ok) score++; else wrongTags.push(q.reinf[lang]);
+  if(q._tr) usedTr++;
+  const bl=document.getElementById('bl'+i); bl.textContent=sel; bl.className='blank '+(ok?'ok':'no');
+  document.querySelectorAll('#op'+i+' .opt').forEach(b=>{ b.disabled=true; const tx=b.textContent.trim();
+    if(tx===q.correct)b.classList.add('ok'); else if(tx===sel)b.classList.add('no'); });
+  const fb=document.getElementById('fb'+i); fb.className='fb show '+(ok?'ok':'no'); fb.innerHTML=feedbackHTML(i);
+  document.getElementById('nx'+i).disabled=false; progress();
+}
+function refreshFeedback(){ // al cambiar idioma, reconstruye lo ya respondido
+  ans.forEach((a,i)=>{ if(a){ const fb=document.getElementById('fb'+i); if(fb){ fb.innerHTML=feedbackHTML(i); } } });
+  // wrongTags dependía del idioma → recalcular
+  wrongTags=[]; ans.forEach((a,i)=>{ if(a && picked[i]!==QS[i].correct) wrongTags.push(QS[i].reinf[lang]); });
+}
+function progress(){ document.getElementById('pfill').style.width=(ans.filter(Boolean).length/QS.length*100)+'%'; }
+function show(i){ document.querySelectorAll('.qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i));
+  document.getElementById('cq').textContent=i+1; cur=i; document.getElementById('scroll').scrollTop=0; }
+function nav(i,d){ if(d<0){ if(i>0) show(i-1); return; } if(i<QS.length-1) show(i+1); else results(); }
+
+function results(){
+  const t=T[lang];
+  document.getElementById('mbody').style.display='none';
+  document.getElementById('results').classList.add('show');
+  const pct=Math.round(score/QS.length*100);
+  const pass = pct>=75; const earnedXp = pass?15:0;
+  (function(){ var um=document.getElementById('unlockMsg'); var sp=document.querySelector('.surprise');
+    if(pass){ um.style.display='block'; um.textContent=(lang==='es'?'🔓 ¡Desbloqueaste la siguiente actividad!':'🔓 You unlocked the next activity!'); if(sp) sp.style.display='flex'; }
+    else { um.style.display='block'; um.style.background='#FFF3E0'; um.style.color='#9A3412';
+      um.textContent=(lang==='es'?'🔁 Necesitas 75% para desbloquear. ¡Inténtalo otra vez para ganar tus XP!':'🔁 You need 75% to unlock. Try again to earn your XP!'); if(sp) sp.style.display='none'; }
+    try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:pct, xp:earnedXp, finished:pass, mat:'PreA1_M1_t2-fill', topic:'to-be', withHelp:usedTr}})); }catch(e){}
+  })();
+  document.getElementById('fscore').textContent=pct;
+  document.getElementById('fhits').textContent=score+'/'+QS.length;
+  document.getElementById('ftime').textContent=fmt(sec);
+  const stars=pct>=90?3:pct>=60?2:1;
+  document.querySelectorAll('.star').forEach((s,x)=>{ if(x<stars) setTimeout(()=>s.classList.add('on'),x*250); });
+  document.getElementById('fphrase').textContent = pct>=90?t.ph[0] : pct>=60?t.ph[1] : t.ph[2];
+  document.getElementById('supportNote').textContent = usedTr>0 ? t.supp(usedTr) : '';
+  const reinf=document.getElementById('reinf'), chips=document.getElementById('rchips');
+  const uniq=[...new Set(wrongTags)];
+  if(uniq.length){ reinf.style.display='block'; chips.innerHTML=uniq.map(x=>`<span class="rchip">${x}</span>`).join(''); }
+  else reinf.style.display='none';
+  (function(){ var act=document.getElementById('actionMsg'); if(act){ var u=[...new Set(wrongTags)];
+    if(pct>=90) act.textContent = lang==='es'?'Dominas este tema. Continúa con la siguiente actividad en la plataforma.':'You\'ve mastered this. Move on to the next activity in the platform.';
+    else if(pass) act.innerHTML = lang==='es'?('Aprobaste. Antes de seguir, repasa: <b>'+u.join(', ')+'</b>.'):('You passed. Before moving on, review: <b>'+u.join(', ')+'</b>.');
+    else act.innerHTML = lang==='es'?('Te faltó poco. Enfócate en <b>'+(u.slice(0,2).join(' y ')||'el tema')+'</b>, abre el resumen y vuelve a intentarlo.'):('Almost there. Focus on <b>'+(u.slice(0,2).join(' and ')||'the topic')+'</b>, check the summary and try again.'); } })();
+  document.getElementById('scroll').scrollTop=0;
+}
+function restart(){ cur=0;score=0;ans.fill(false);picked.fill(null);wrongTags=[];usedTr=0;sec=0; clearInterval(timer);timer=null;
+  QS.forEach(q=>{delete q._tr;});
+  document.getElementById('ct').textContent='0:00'; document.getElementById('pfill').style.width='0';
+  document.querySelectorAll('.star').forEach(s=>s.classList.remove('on'));
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('mbody').style.display='block'; render(); show(0); }
+
+function toggleReport(i){ document.getElementById('rf'+i).classList.toggle('show'); }
+function sendReport(i){
+  const type=document.getElementById('rt'+i).value, note=document.getElementById('rn'+i).value.trim();
+  document.getElementById('rf'+i).classList.remove('show');
+  document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify({mat:'PreA1_M1_t2-fill',q:i+1,issue:type,note:note||'-'});
+  document.getElementById('rd'+i).classList.add('show');
+  toast(lang==='es'?'✓ Reporte enviado a soporte':'✓ Report sent to support');
+}
+function copyCode(i){ const x=document.getElementById('rc'+i).textContent; navigator.clipboard&&navigator.clipboard.writeText(x); toast(lang==='es'?'Código copiado':'Code copied'); }
+
+function applyUiLang(){
+  const t=T[lang];
+  document.getElementById('lswLab').textContent=t.lswLab;
+  document.getElementById('instrT').textContent=t.instrT;
+  document.getElementById('instrP').innerHTML=t.instrP;
+  document.getElementById('mhtitle').textContent=t.mhtitle;
+  document.getElementById('unlockMsg').textContent=t.unlock;
+  document.getElementById('lHits').textContent=t.hits;
+  document.getElementById('lTime').innerHTML=t.time+'<span class="note">'+t.timeNote+'</span>';
+  document.getElementById('chipNote').textContent=t.chipNote;
+  document.getElementById('lReinf').textContent=t.reinf;
+  document.getElementById('lXp').textContent=t.xp;
+  document.getElementById('lXpSub').textContent=t.xpSub;
+  document.getElementById('lBack').textContent=t.back;
+  document.getElementById('lRetry').textContent=t.retry;
+  // re-etiquetar piezas dentro de cada pregunta sin perder estado
+  QS.forEach((q,i)=>{ const ql=document.getElementById('ql'+i); if(ql)ql.textContent=t.qlabel+' '+(i+1);
+    const qr=document.getElementById('qr'+i); if(qr)qr.textContent=t.report;
+    const hb=document.getElementById('hb'+i); if(hb)hb.querySelector('span').textContent=t.hint;
+    const tb=document.getElementById('tb'+i); if(tb)tb.querySelector('span').textContent=t.tr;
+    const hl=document.querySelector('#hr'+i+' .lab'); if(hl)hl.textContent=t.hintLab;
+    const tl=document.querySelector('#trb'+i+' .lab'); if(tl)tl.textContent=t.trLab;
+    const nx=document.getElementById('nx'+i); if(nx)nx.textContent=(i===QS.length-1?t.seeRes:t.next);
+    const pv=document.querySelector('#q'+i+' .prev'); if(pv)pv.textContent=t.prev;
+    const rfh=document.getElementById('rfh'+i); if(rfh)rfh.textContent=t.rFormH; });
+}
+function setLang(l){
+  lang=l;
+  document.getElementById('lswEs').classList.toggle('on',l==='es');
+  document.getElementById('lswEn').classList.toggle('on',l==='en');
+  applyUiLang();
+  refreshFeedback();
+  if(document.getElementById('results').classList.contains('show')) results();
+}
+function setLevel(lv){
+  document.getElementById('screen').setAttribute('data-level',lv);
+  const names={'pre-a1':'Pre-A1','a1':'A1','a2':'A2'};
+  document.getElementById('lvlcap').textContent=names[lv];
+  document.getElementById('mhsub').textContent='Pre-A1 · M1 · El verbo To be';
+  ['segPre','segA1','segA2'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  document.getElementById(lv==='pre-a1'?'segPre':lv==='a1'?'segA1':'segA2').classList.add('on');
+  // sugerencia de idioma de scaffolding por nivel (el alumno puede cambiarlo)
+  setLang(lv==='a2'?'en':'es');
+}
+
+function tour(what){
+  if(what==='support'||what==='es'){
+    if(document.getElementById('results').classList.contains('show')) restart();
+    const i = what==='es'?2:0; show(i);
+    setTimeout(()=>{ if(what==='support'){ if(!document.getElementById('hr'+i).classList.contains('show')) reveal(i,'hint');
+        if(!document.getElementById('trb'+i).classList.contains('show')) reveal(i,'tr'); }
+      else if(!ans[i]){ const btns=[...document.querySelectorAll('#op'+i+' .opt')]; const cb=btns.find(b=>b.textContent.trim()===QS[i].correct); pick(i,cb||btns[0]); }
+      setTimeout(()=>document.getElementById('scroll').scrollTo({top:(what==='support'?document.getElementById('hr'+i):document.getElementById('fb'+i)).offsetTop-140,behavior:'smooth'}),120);
+    },50);
+  }
+  if(what==='results'){ restart(); QS.forEach((q,i)=>{ ans[i]=true; picked[i]=i===2?'many':q.correct; }); score=3; wrongTags=[QS[2].reinf[lang]]; usedTr=1; results(); }
+}
+function goBack(){ if(document.referrer){history.back();} else {try{window.dispatchEvent(new CustomEvent("jucum:back"));}catch(e){}} }
+function goBack_OLD(){ toast(lang==='es'?'↩ En la plataforma: regresa a la plataforma del módulo':'↩ In the platform: back to the module practice'); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600); }
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('.screen')){ e.preventDefault(); toast(lang==='es'?'Material protegido © JUCUM EC':'Protected material © JUCUM EC'); }});
+
+render(); applyUiLang(); show(0);
+</script>
+<!-- JUCUM English Center · seguimiento (NO QUITAR) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

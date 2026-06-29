@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen de Gramática · JUCUM English Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{ --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
+    --fd:'Fredoka','Nunito',system-ui,sans-serif; --fb:'Nunito',system-ui,sans-serif; --fs:'Atkinson Hyperlegible',Georgia,serif;
+    --subj:#1565C0; --subj-bg:#E3F2FD; --verb:#E53935; --verb-bg:#FFEBEE; --comp:#00897B; --comp-bg:#E0F2F1; --obj:#6D4C41; --obj-bg:#EFEBE9; --poss:#7B1FA2; --poss-bg:#F3E5F5;
+    --correct:#2E7D32; --correct-bg:#E8F5E9; --correct-bd:#A5D6A7; --wrong:#C62828; --wrong-bg:#FFEBEE; --wrong-bd:#EF9A9A;
+    --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14); --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09); }
+  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lg:linear-gradient(135deg,#F9A825,#FF8F00); --tint:#FAF7EE; }
+  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lg:linear-gradient(135deg,#1565C0,#2196F3 60%,#64B5F6); --tint:#F1F7FE; }
+  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lg:linear-gradient(135deg,#43C062,#1F7A33); --tint:#F0F8F2; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--tint);color:var(--text);font-family:var(--fb);}
+  .mat{max-width:680px;margin:0 auto;min-height:100vh;position:relative;}
+  .mhead{background:var(--lg);padding:16px 16px 13px;display:flex;align-items:center;gap:10px;color:#fff;position:sticky;top:0;z-index:20;}
+  .mback{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .mbadge{width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);} .mbadge img{width:24px;height:24px;object-fit:contain;}
+  .mh-info{flex:1;min-width:0;} .mh-info b{font-family:var(--fd);font-weight:600;font-size:15px;display:block;} .mh-info span{font-size:10.5px;opacity:.9;font-weight:700;}
+  .langsw{display:flex;background:rgba(255,255,255,.2);border-radius:9px;padding:2px;gap:2px;} .langsw button{border:none;background:transparent;color:#fff;font-weight:800;font-size:10.5px;padding:4px 9px;border-radius:6px;cursor:pointer;opacity:.7;} .langsw button.on{background:#fff;color:var(--ld);opacity:1;}
+  .pbar{height:5px;background:rgba(0,0,0,.06);} .pfill{height:100%;background:var(--lp);width:0;transition:width .5s;}
+  .mbody{padding:14px 15px 26px;}
+  .unlocknote{background:#fff;border:1px solid var(--lm);border-left:4px solid var(--correct);border-radius:12px;padding:10px 12px;margin-bottom:13px;display:flex;gap:8px;} .unlocknote .em{font-size:18px;} .unlocknote b{font-family:var(--fd);font-weight:600;font-size:12.5px;color:var(--correct);display:block;} .unlocknote p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);line-height:1.4;}
+  .steptabs{display:flex;gap:5px;margin-bottom:13px;flex-wrap:wrap;}
+  .stab{font-size:11px;font-weight:800;padding:7px 9px;border-radius:9px;background:#fff;border:1.5px solid var(--border);color:var(--text-soft);cursor:pointer;display:flex;align-items:center;gap:4px;}
+  .stab.on{background:var(--lg);color:#fff;border-color:transparent;} .stab.done{border-color:var(--correct-bd);color:var(--correct);}
+  .gcard{background:#fff;border-radius:16px;box-shadow:var(--shadow-sm);padding:15px;margin-bottom:12px;border-top:3px solid var(--lp);}
+  .sec-label{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--ld);display:flex;align-items:center;gap:7px;margin:11px 0 4px;} .sec-label:first-child{margin-top:0;} .sec-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px;}
+  .gdesc{font-size:13px;color:var(--text-soft);margin:0 0 6px;line-height:1.6;} .gdesc b{color:var(--text);}
+  .tag{display:inline-block;border-radius:5px;padding:1px 7px;font-weight:800;border-bottom:2px solid;} .tag.s{background:var(--subj-bg);color:var(--subj);border-color:var(--subj);} .tag.o{background:var(--obj-bg);color:var(--obj);border-color:var(--obj);} .tag.p{background:var(--poss-bg);color:var(--poss);border-color:var(--poss);}
+  .info-illus{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:9px 11px;margin:7px 0;} .info-illus .emo{font-size:26px;line-height:1;flex-shrink:0;} .info-illus .txt{font-size:12.5px;line-height:1.5;} .info-illus .txt b{color:var(--ld);}
+  .eg-card{position:relative;display:flex;align-items:center;gap:10px;background:var(--subj-bg);border:2px solid #90CAF9;border-radius:13px;padding:15px 11px 11px;margin:6px 0 14px;} .eg-card .emo{font-size:26px;flex-shrink:0;} .eg-card .en{font-weight:800;color:#0D47A1;font-size:14.5px;line-height:1.4;} .eg-card .es{font-family:var(--fs);font-style:italic;color:#1565C0;font-size:12px;margin-top:2px;} .eg-card::before{content:attr(data-lab);position:absolute;top:-10px;left:13px;background:#1565C0;color:#fff;font-family:var(--fd);font-weight:600;font-size:9px;letter-spacing:.05em;padding:2px 9px;border-radius:20px;}
+  .eg-card.ok{background:var(--correct-bg);border-color:#81C784;} .eg-card.ok .en{color:#1B5E20;} .eg-card.ok::before{background:#2E7D32;}
+  .eg-card.bad{background:var(--wrong-bg);border-color:#EF9A9A;} .eg-card.bad .en{color:#B71C1C;text-decoration:line-through;text-decoration-color:rgba(183,28,28,.4);} .eg-card.bad::before{background:#C62828;}
+  .audio-row{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;} .audio-btn{display:inline-flex;align-items:center;gap:4px;font-family:var(--fb);font-size:10.5px;font-weight:800;border:1.5px solid #90CAF9;background:#fff;color:#0D47A1;padding:3px 11px;border-radius:8px;cursor:pointer;} .eg-card.ok .audio-btn{border-color:#81C784;color:#1B5E20;}
+  .art-hero{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:9px 0;} .art-hero.three{grid-template-columns:1fr 1fr 1fr;} .art-box{background:#fff;border:2px solid var(--lm);border-radius:14px;padding:11px 8px;text-align:center;} .art-box .word{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--ld);line-height:1;background:var(--ll);border-radius:10px;padding:7px 0;margin-bottom:6px;} .art-box.eng .word{background:var(--subj-bg);color:#0D47A1;} .art-box .role{font-family:var(--fd);font-size:10px;color:var(--lp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;} .art-box.eng .role{color:#1976D2;} .art-box .desc{font-size:10.5px;color:var(--text-soft);line-height:1.45;}
+  .viz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:9px 0;} .viz-item{padding:8px 4px;border-radius:10px;text-align:center;background:#fff;border:1.5px solid var(--lm);font-size:11px;} .viz-item .ico{font-size:22px;display:block;margin-bottom:2px;} .viz-item .lbl{font-family:var(--fd);color:var(--ld);font-size:13px;font-weight:600;display:block;} .viz-item .es{font-style:italic;color:var(--text-soft);font-size:10px;display:block;}
+  .vs-grid{margin:9px 0;} .vs-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:6px;margin:6px 0;} .vs-side{border-radius:11px;padding:9px 10px;font-size:11.5px;line-height:1.4;} .vs-side .flag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px;opacity:.85;} .vs-side.es{background:var(--ll);border:1.5px solid var(--lm);} .vs-side.es .flag{color:var(--ld);} .vs-side.en{background:var(--subj-bg);border:1.5px solid #90CAF9;} .vs-side.en .flag{color:#1565C0;} .vs-mid{display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--lp);}
+  .alert-card{background:var(--wrong-bg);border:2px solid #EF5350;border-radius:11px;padding:10px 12px;margin:9px 0;} .alert-card .atitle{font-family:var(--fd);font-weight:600;color:var(--wrong);font-size:12px;margin-bottom:3px;} .alert-card p{font-size:11.5px;color:#555;line-height:1.7;}
+  .gnote{background:var(--ll);border:1px solid var(--lm);border-left:3px solid var(--lp);border-radius:10px;padding:9px 11px;font-size:12px;color:var(--ld);margin:9px 0;line-height:1.55;} .gnote.life{background:#FFFDE7;border-color:#FBC02D;color:#6D4C00;} .gnote b{color:var(--ld);}
+  .cboxes{display:flex;flex-direction:column;gap:7px;margin:9px 0;} .cbox{border:1.5px solid;border-radius:11px;padding:9px 12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;} .cbox .cl{font-family:var(--fd);font-weight:600;font-size:11.5px;flex-shrink:0;border-radius:7px;padding:3px 10px;color:#fff;} .cbox .cv{font-weight:800;font-size:13px;} .cbox.s{border-color:#90CAF9;background:var(--subj-bg);} .cbox.s .cl{background:var(--subj);} .cbox.s .cv{color:var(--subj);} .cbox.o{border-color:#BCAAA4;background:var(--obj-bg);} .cbox.o .cl{background:var(--obj);} .cbox.o .cv{color:var(--obj);} .cbox.p{border-color:#CE93D8;background:var(--poss-bg);} .cbox.p .cl{background:var(--poss);} .cbox.p .cv{color:var(--poss);}
+  .builder{background:var(--tint);border:1.5px dashed var(--lm);border-radius:14px;padding:13px;margin:10px 0;}
+  .bh{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--ld);margin-bottom:3px;display:flex;align-items:center;gap:6px;} .bsub{font-size:11px;color:var(--text-soft);font-weight:700;margin-bottom:10px;}
+  .tray{min-height:46px;background:#fff;border:2px dashed var(--lm);border-radius:11px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;} .tray:empty::before{content:attr(data-ph);color:#BBB;font-size:12px;font-style:italic;font-weight:700;}
+  .bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;} .tile{font-family:var(--fb);font-weight:800;font-size:14px;padding:8px 13px;border-radius:10px;border:2px solid var(--lm);background:#fff;cursor:pointer;box-shadow:var(--shadow-sm);} .tile.s{color:var(--subj);border-color:#90CAF9;background:var(--subj-bg);} .tile.v{color:var(--verb);border-color:#EF9A9A;background:var(--verb-bg);} .tile.c{color:var(--comp);border-color:#80CBC4;background:var(--comp-bg);} .tile.placed{opacity:.25;pointer-events:none;}
+  .bcheck{width:100%;padding:11px;border:none;border-radius:11px;background:var(--lg);color:#fff;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .bcheck:disabled{opacity:.4;cursor:default;}
+  .bres{margin-top:9px;border-radius:11px;padding:10px 12px;font-size:12.5px;display:none;} .bres.show{display:block;} .bres.ok{background:var(--correct-bg);border:1.5px solid var(--correct-bd);color:var(--correct);} .bres.no{background:var(--wrong-bg);border:1.5px solid var(--wrong-bd);color:var(--wrong);}
+  .bex{display:flex;align-items:center;gap:8px;margin-top:8px;background:#fff;border:1px solid var(--lm);border-radius:10px;padding:8px 10px;} .bex .tr{flex:1;font-family:var(--fs);font-style:italic;color:var(--text-soft);font-size:12px;}
+  .check{background:#FBFBF8;border:1.5px dashed var(--lm);border-radius:14px;padding:13px;margin-bottom:12px;}
+  .check-h{display:flex;align-items:center;gap:7px;font-family:var(--fd);font-weight:600;font-size:13px;color:var(--ld);} .check-sub{font-size:11px;color:var(--text-soft);font-weight:700;margin:1px 0 11px;} .cprog{font-size:10.5px;font-weight:800;color:var(--lp);margin-left:auto;}
+  .citem{background:#fff;border:1px solid var(--border);border-radius:11px;padding:11px;margin-bottom:9px;} .citem:last-child{margin-bottom:0;}
+  .cq{font-size:13px;font-weight:700;line-height:1.45;margin:0 0 7px;} .cq .n{color:var(--lp);}
+  .ctransbtn{margin:0 0 8px;font-size:10.5px;font-weight:800;border:1.5px solid var(--lm);background:var(--ll);color:var(--ld);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;} .ctrans{display:none;margin:0 0 9px;font-family:var(--fs);font-style:italic;color:#5A2A66;font-size:11.5px;background:#F3E5F5;border:1px solid #CE93D8;border-radius:8px;padding:6px 9px;line-height:1.45;} .ctrans.show{display:block;}
+  .copts{display:flex;flex-wrap:wrap;gap:6px;} .copt{padding:8px 12px;border:2px solid #E5E7EB;border-radius:9px;background:#fff;font-family:var(--fb);font-weight:800;font-size:12.5px;cursor:pointer;color:var(--text);} .copt:hover:not(:disabled){border-color:var(--lp);background:var(--tint);} .copt:disabled{cursor:default;}
+  .copt.ok{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);} .copt.no{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .cfb{margin-top:9px;border-radius:11px;overflow:hidden;display:none;} .cfb.show{display:block;}
+  .cfbh{padding:7px 11px;color:#fff;font-weight:800;font-size:12px;display:flex;gap:6px;align-items:center;} .cfb.ok .cfbh{background:linear-gradient(135deg,var(--correct),#1B5E20);} .cfb.no .cfbh{background:linear-gradient(135deg,var(--wrong),#922);}
+  .cfbb{background:#fff;border:1.5px solid;border-top:none;border-radius:0 0 11px 11px;padding:10px;display:flex;flex-direction:column;gap:7px;} .cfb.ok .cfbb{border-color:var(--correct-bd);} .cfb.no .cfbb{border-color:var(--wrong-bd);}
+  .fblk{font-size:11.5px;line-height:1.5;border-radius:8px;padding:7px 9px;} .fblk b{font-size:10px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:4px;margin-bottom:2px;}
+  .fblk.ans{background:var(--correct-bg);border:1px solid var(--correct-bd);color:#1B5E20;} .fblk.ans .a{font-weight:800;}
+  .fblk.why{background:var(--tint);border:1px solid var(--lm);color:#444;} .fblk.contrast{background:var(--wrong-bg);border:1px solid var(--wrong-bd);color:#922;} .fblk.tip{background:#FFFDE7;border:1px solid #FBC02D;color:#6D4C00;} .fblk.ex{background:#fff;border:1px dashed var(--lm);color:var(--ld);font-weight:800;}
+  .stepnav{display:flex;gap:8px;} .snb{padding:11px 14px;border:none;border-radius:11px;font-family:var(--fb);font-weight:800;font-size:13px;cursor:pointer;} .snb.next{background:var(--lg);color:#fff;flex:1;} .snb.prev{background:#F1F0EA;color:var(--text);} .snb:disabled{opacity:.4;cursor:default;}
+  .msbanner{background:var(--correct-bg);border:1.5px solid var(--correct-bd);border-radius:12px;padding:10px 12px;font-size:12px;font-weight:800;color:var(--correct);margin-bottom:11px;line-height:1.4;}
+  .results{display:none;padding:18px 16px 40px;text-align:center;} .results.show{display:block;animation:up .45s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .donebar{background:var(--correct-bg);border:1.5px solid var(--correct-bd);border-radius:13px;padding:10px;font-weight:800;font-size:13px;color:var(--correct);margin-bottom:14px;} .donebar.fail{background:#FFF7E8;border-color:#F0C66B;color:#92510F;}
+  .hero{background:var(--lg);border-radius:20px;padding:20px 18px;color:#fff;box-shadow:var(--shadow-sm);} .hero .em{font-size:42px;line-height:1;} .hero .score{font-family:var(--fd);font-weight:600;font-size:38px;line-height:1;margin-top:4px;} .hero .score small{font-size:16px;opacity:.8;} .hero .phrase{font-size:13px;font-weight:700;margin-top:6px;opacity:.96;}
+  .keypts{background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 15px;text-align:left;margin:13px 0;box-shadow:var(--shadow-sm);} .keypts b{font-size:11px;color:var(--ld);text-transform:uppercase;letter-spacing:.05em;display:flex;gap:6px;align-items:center;margin-bottom:8px;}
+  .keypts li{list-style:none;padding:5px 0 5px 22px;position:relative;font-size:12.5px;color:#444;border-bottom:1px solid var(--ll);line-height:1.45;} .keypts li:last-child{border-bottom:none;} .keypts li::before{content:'✓';position:absolute;left:0;color:var(--lp);font-weight:800;}
+  .surprise{background:linear-gradient(135deg,#FFF3D6,#FFFBF0);border:1.5px dashed var(--lp);border-radius:16px;padding:16px;text-align:center;margin-bottom:13px;}
+  .medal{width:74px;height:74px;border-radius:50%;margin:0 auto 8px;background:var(--lg);display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 4px 14px rgba(0,0,0,.18);border:3px solid #fff;animation:pop .6s ease;}
+  @keyframes pop{0%{transform:scale(0) rotate(-20deg);}60%{transform:scale(1.15);}100%{transform:scale(1);}}
+  .surprise h4{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 2px;} .surprise .bn{font-size:12.5px;font-weight:800;color:var(--lp);margin-bottom:6px;} .surprise p{font-size:11.5px;color:var(--text-soft);font-weight:700;margin:0;line-height:1.4;}
+  .xpwin{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--lm);border-radius:20px;padding:5px 13px;font-weight:800;font-size:13px;color:var(--ld);margin-top:9px;}
+  .rbtns{display:flex;flex-direction:column;gap:9px;} .rbtn{padding:13px;border:none;border-radius:13px;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .rbtn.back{background:var(--lg);color:#fff;} .rbtn.retry{background:#F1F0EA;color:var(--text);}
+  .mfoot{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:#B0A99A;padding:14px;font-weight:700;} .mfoot img{height:18px;opacity:.5;}
+  .helpfab{position:fixed;right:16px;bottom:16px;z-index:40;width:44px;height:44px;border-radius:50%;background:var(--lg);color:#fff;border:none;font-size:22px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);}
+  .helpov{position:fixed;inset:0;z-index:70;background:rgba(20,20,25,.5);display:none;align-items:center;justify-content:center;padding:18px;} .helpov.show{display:flex;}
+  .helpcard{background:#fff;border-radius:18px;max-width:360px;width:100%;max-height:86%;overflow-y:auto;box-shadow:var(--shadow);padding:16px 18px;position:relative;} .helpcard h3{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 8px;} .helpcard .hx{position:absolute;top:10px;right:12px;border:none;background:none;font-size:19px;color:#bbb;cursor:pointer;}
+  .helptip{display:flex;gap:6px;font-size:12px;color:#555;padding:4px 0;line-height:1.45;} .helptip b{color:var(--ld);}
+  .simlist{list-style:none;padding:0;margin:9px 0;display:flex;flex-direction:column;gap:6px;} .simlist li{background:var(--ll);border:1px solid var(--lm);border-radius:9px;padding:7px 10px;font-size:12px;color:var(--ld);line-height:1.5;display:flex;gap:7px;} .simlist li::before{content:'✔';color:var(--correct);font-weight:800;flex-shrink:0;}
+  .dtab{width:100%;border-collapse:collapse;margin:9px 0;font-size:11.5px;} .dtab th{background:var(--lg);color:#fff;font-family:var(--fd);font-weight:600;padding:6px 8px;text-align:left;} .dtab td{border:1px solid var(--lm);padding:6px 8px;vertical-align:top;line-height:1.45;} .dtab td.en{font-weight:800;color:var(--ld);}
+  .fbox{background:#fff;border:2px solid var(--lp);border-radius:13px;padding:11px;margin:10px 0;text-align:center;} .fbox .frm{font-family:var(--fd);font-weight:600;font-size:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;} .fbox .pill{padding:3px 9px;border-radius:8px;font-size:12.5px;color:#fff;} .fbox .pill.s{background:#2E7D32;} .fbox .pill.v{background:#1565C0;} .fbox .pill.o{background:#C62828;} .fbox .pill.p{background:#7B1FA2;} .fbox .plus{color:var(--text-soft);font-weight:800;} .fbox .fex{margin-top:8px;font-size:13px;color:#444;} .fbox .fex .s{color:#2E7D32;font-weight:800;} .fbox .fex .v{color:#1565C0;font-weight:800;} .fbox .fex .o{color:#C62828;font-weight:800;} .fbox .fex .p{color:#7B1FA2;font-weight:800;}
+  .toast{position:fixed;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 20px;border-radius:24px;font-weight:800;font-size:13px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;max-width:90vw;text-align:center;} .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<!-- ═══ PLANTILLA RESUMEN DE GRAMÁTICA (con nota · repaso) — JUCUM English Center ═══
+     1) Nivel en <div id="screen" data-level="pre-a1|a1|a2"> (A2 arranca en inglés).
+     2) Edita MAT + el bloque CONTENIDO (STEPS / BUILD / SUMMARY / BADGE). Todo es BILINGÜE {es,en}.
+        · El botón ES/EN cambia TODO el material (explicación + indicaciones + auto-chequeos).
+        · REGLA «el español se queda en español»: cuando el texto MENCIONA una palabra española o da un
+          EJEMPLO en español (p. ej. el paso 1 «Repaso en Español»: «Él», «Ella», «Nosotros», «Juan… Él…»),
+          en el lado en:'' repite esas palabras/ejemplos TAL CUAL en español; solo traduce la prosa que los rodea.
+        · 'tr' (botón 🌐 traducción por pregunta): ponlo SOLO en auto-chequeos donde una oración en inglés
+          tenga vocabulario que pueda frenar al alumno Y la traducción NO delate la respuesta. En drills de
+          pronombres la pista ya está en la pregunta y se infiere por el verbo be → NO lleva 'tr' (por eso aquí
+          no hay ninguno). Sí aplica en temas como To be / There is_are con frases más largas. Sintaxis:
+          { q:{...}, opts:{...}, correct:0, fb:{...}, tr:{es:'significado en español',en:'meaning in English'} }
+     3) Deja el conector antes de </body>. catalogo.json → type:"summary".
+     El motor (debajo de "FIN DEL MOTOR") no se toca. ═══ -->
+<body>
+  <div class="mat screen" id="screen" data-level="pre-a1">
+    <div class="mhead"><button class="mback" onclick="volver()">‹</button>
+      <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+      <div class="mh-info"><b id="mhtitle"></b><span id="mhsub"></span></div>
+      <div class="langsw"><button id="lsEs" onclick="setInfo('es')">ES</button><button id="lsEn" onclick="setInfo('en')">EN</button></div></div>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="mbody" id="mbody">
+      <div class="unlocknote"><div class="em">📚</div><div><b id="unT"></b><p id="unP"></p></div></div>
+      <div class="steptabs" id="steptabs"></div>
+      <div id="stepArea"></div>
+      <div class="msbanner" id="msbanner" style="display:none"></div>
+      <div class="stepnav"><button class="snb prev" id="navPrev" onclick="navStep(-1)"></button><button class="snb next" id="navNext" onclick="navStep(1)"></button></div>
+    </div>
+    <div class="results" id="results">
+      <div class="donebar" id="doneBar"></div>
+      <div class="hero"><div class="em">📚</div><div class="score"><span id="fscore">0</span><small>%</small></div><div class="phrase" id="fphrase"></div></div>
+      <div class="keypts" id="keypts"><b id="kpT"></b><ul id="kpList"></ul></div>
+      <div class="surprise" id="surprise"><div class="medal" id="medalEm">🏅</div><h4 id="surT"></h4><div class="bn" id="surBadge"></div><p id="surP"></p><div class="xpwin" id="xpWin"></div></div>
+      <div class="rbtns"><button class="rbtn back" id="lBack" onclick="volver()"></button><button class="rbtn retry" id="lRetry" onclick="restart()"></button></div>
+    </div>
+    <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido © JUCUM English Center</div>
+  </div>
+  <button class="helpfab" onclick="openHelp()" title="?">?</button>
+  <div class="helpov" id="helpov"><div class="helpcard"><button class="hx" onclick="closeHelp()">✕</button><h3>🧭 <span id="helpT"></span></h3><div id="helpTips"></div></div></div>
+  <div class="toast" id="toast"></div>
+<script>
+/* ═══ METADATOS ═══ */
+const MAT = { title:{es:'Resumen de Gramática',en:'Grammar Summary'}, subtitle:{es:'Pronombres Personales',en:'Personal Pronouns'}, reportId:'sum-pronouns' };
+const PASS = 75; // % de aciertos para APROBAR el repaso y reclamar la sorpresa
+/* helpers de contenido (bilingües por separado) */
+function eg(en,gloss,lab){ const t=en.replace(/<[^>]+>/g,'').replace(/"/g,''); return `<div class="eg-card${lab?' '+lab:''}" data-lab="${lab==='ok'?'✅ BIEN':lab==='bad'?'❌ MAL':'📝 '+(typeof curLab!=='undefined'?curLab:'')}"><span class="emo">💬</span><div><div class="en">${en}</div><div class="es">${gloss}</div><div class="audio-row"><button class="audio-btn" onclick="say('${t}','US')">🇺🇸 US</button><button class="audio-btn" onclick="say('${t}','UK')">🇬🇧 UK</button></div></div></div>`; }
+function ii(emo,txt){ return `<div class="info-illus"><span class="emo">${emo}</span><span class="txt">${txt}</span></div>`; }
+/* ═══ CONTENIDO EDITABLE · 5 pasos · todo {es,en} ═══ */
+const STEPS = [
+  { icon:'🇪🇸', title:{es:'Repaso en Español',en:'Spanish Recap'},
+    html:{
+      es:`<div class="gdesc">Los <b>pronombres</b> reemplazan el nombre para <b>no repetirlo</b>: «Juan… <b>Él</b>…».</div>
+        <div class="art-hero"><div class="art-box"><div class="word">Él</div><div class="role">Hombre</div><div class="desc">«Juan está feliz» → «Él está feliz».</div></div><div class="art-box"><div class="word">Ella</div><div class="role">Mujer</div><div class="desc">«María es amable» → «Ella es amable».</div></div></div>
+        ${ii('👨‍👩‍👧','<b>Grupos:</b> «Nosotros» = yo + otra persona.')}
+        <div class="gnote life">🌎 <b>De tu vida:</b> al contar algo de un amigo no repites su nombre — dices «él» o «ella». En inglés es igual.</div>`,
+      en:`<div class="gdesc"><b>Pronouns</b> replace a name so you <b>don't repeat it</b>: «Juan… <b>Él</b>…».</div>
+        <div class="art-hero"><div class="art-box"><div class="word">Él</div><div class="role">Man</div><div class="desc">«Juan está feliz» → «Él está feliz».</div></div><div class="art-box"><div class="word">Ella</div><div class="role">Woman</div><div class="desc">«María es amable» → «Ella es amable».</div></div></div>
+        ${ii('👨‍👩‍👧','<b>Groups:</b> «Nosotros» = me + another person.')}
+        <div class="gnote life">🌎 <b>From your life:</b> when you tell a friend\'s story you don\'t repeat their name — you say «él» or «ella». Same in English.</div>`
+    },
+    checks:[
+      { q:{es:'¿Qué pronombre reemplaza a «María» en «María es amable»?',en:'Which pronoun replaces «María» in «María es amable»?'}, opts:{es:['Él','Ella'],en:['Él','Ella']}, correct:1, fb:{ why:{es:'María es mujer → «Ella».',en:'María is a woman → «Ella».'}, ex:{es:'Ella es amable',en:'Ella es amable'}, tip:{es:'Él = hombre · Ella = mujer',en:'Él = man · Ella = woman'}} },
+      { q:{es:'«Carlos y yo» se reemplaza por:',en:'«Carlos y yo» is replaced by:'}, opts:{es:['Nosotros','Tú'],en:['Nosotros','Tú']}, correct:0, fb:{ why:{es:'Incluye a quien habla → «Nosotros».',en:'Includes the speaker → «Nosotros».'}, ex:{es:'Nosotros somos amigos',en:'Nosotros somos amigos'}, tip:{es:'Yo + otra persona = We',en:'Yo + another = We'}} },
+      { q:{es:'¿Para hablar de ti mismo usas…?',en:'To talk about yourself you use…?'}, opts:{es:['Tú','Yo'],en:['Tú','Yo']}, correct:1, fb:{ why:{es:'«Yo» siempre habla de uno mismo.',en:'«Yo» always refers to yourself.'}, ex:{es:'Yo soy un niño',en:'Yo soy un niño'}, tip:{es:'Yo = I',en:'Yo = I'}} },
+      { q:{es:'«El perro está feliz» → ¿qué reemplaza a «el perro»?',en:'«El perro está feliz» → what replaces «el perro»?'}, opts:{es:['Eso (It)','Él'],en:['Eso (It)','Él']}, correct:0, fb:{ why:{es:'Animales/cosas → «It».',en:'Animals/things → «It».'}, ex:{es:'It is kind',en:'It is kind'}, tip:{es:'Animal/cosa = It',en:'Animal/thing = It'}} },
+      { q:{es:'¿Para qué sirven los pronombres?',en:'What are pronouns for?'}, opts:{es:['Describir algo','Reemplazar un nombre'],en:['To describe something','To replace a name']}, correct:1, fb:{ why:{es:'Evitan repetir el nombre.',en:'They avoid repeating the name.'}, ex:{es:'Ana es amable. Ella tiene 7 años.',en:'Ana es amable. Ella tiene 7 años.'}, tip:{es:'Pronombre = reemplaza un nombre',en:'Pronoun = replaces a name'}} }
+    ] },
+  { icon:'🤝', title:{es:'Similitudes',en:'Similarities'},
+    html:{
+      es:`<div class="gdesc">A cada pronombre español le corresponde uno en inglés.</div>
+        <div class="viz-grid"><div class="viz-item"><span class="ico">🧑</span><span class="lbl">I</span><span class="es">Yo</span></div><div class="viz-item"><span class="ico">👉</span><span class="lbl">You</span><span class="es">Tú·Ustedes</span></div><div class="viz-item"><span class="ico">👦</span><span class="lbl">He</span><span class="es">Él</span></div><div class="viz-item"><span class="ico">👧</span><span class="lbl">She</span><span class="es">Ella</span></div><div class="viz-item"><span class="ico">📦</span><span class="lbl">It</span><span class="es">Eso</span></div><div class="viz-item"><span class="ico">👨‍👩‍👧</span><span class="lbl">We</span><span class="es">Nosotros</span></div><div class="viz-item"><span class="ico">🧑‍🤝‍🧑</span><span class="lbl">They</span><span class="es">Ellos·Ellas</span></div></div>
+        ${eg('<span class="tag s">She</span> is kind.','Ella es amable. (she = ella)','ok')}
+        <div class="sec-label">5 cosas iguales en ambos idiomas</div>
+        <ul class="simlist"><li>Los dos idiomas tienen un pronombre para cada persona: <b>yo→I, tú→you, él→he, ellos→they…</b></li><li>El pronombre va en el lugar del sujeto, casi siempre <b>antes del verbo</b>.</li><li>Hay pronombres distintos para <b>hombre y mujer</b> (él/ella → he/she).</li><li>Existe un pronombre de grupo que <b>te incluye a ti</b> (nosotros → we).</li><li>El pronombre <b>reemplaza un nombre</b> ya dicho para no repetirlo (Ana… ella).</li></ul>
+        <div class="gnote">👍 Si ya sabes los pronombres en español, <b>ya tienes el mapa</b>.</div>`,
+      en:`<div class="gdesc">Each Spanish pronoun matches one in English.</div>
+        <div class="viz-grid"><div class="viz-item"><span class="ico">🧑</span><span class="lbl">I</span><span class="es">Yo</span></div><div class="viz-item"><span class="ico">👉</span><span class="lbl">You</span><span class="es">Tú·Ustedes</span></div><div class="viz-item"><span class="ico">👦</span><span class="lbl">He</span><span class="es">Él</span></div><div class="viz-item"><span class="ico">👧</span><span class="lbl">She</span><span class="es">Ella</span></div><div class="viz-item"><span class="ico">📦</span><span class="lbl">It</span><span class="es">Eso</span></div><div class="viz-item"><span class="ico">👨‍👩‍👧</span><span class="lbl">We</span><span class="es">Nosotros</span></div><div class="viz-item"><span class="ico">🧑‍🤝‍🧑</span><span class="lbl">They</span><span class="es">Ellos·Ellas</span></div></div>
+        ${eg('<span class="tag s">She</span> is kind.','She is kind. (she = ella)','ok')}
+        <div class="sec-label">5 things that are the same in both languages</div>
+        <ul class="simlist"><li>Both languages have a pronoun for each person: <b>yo→I, tú→you, él→he, ellos→they…</b></li><li>The pronoun takes the subject's place, almost always <b>before the verb</b>.</li><li>There are different pronouns for <b>man and woman</b> (él/ella → he/she).</li><li>There is a group pronoun that <b>includes you</b> (nosotros → we).</li><li>The pronoun <b>replaces a name</b> already said, to avoid repeating it (Ana… she).</li></ul>
+        <div class="gnote">👍 If you know the Spanish pronouns, <b>you already have the map</b>.</div>`
+    },
+    checks:[
+      { q:{es:'«Yo» en inglés es:',en:'"Yo" in English is:'}, opts:{es:['I','You'],en:['I','You']}, correct:0, fb:{ why:{es:'«I» = «Yo», siempre mayúscula.',en:'"I" = "Yo", always uppercase.'}, ex:{es:'I am a boy',en:'I am a boy'}, tip:{es:'«I» siempre mayúscula',en:'"I" always uppercase'}} },
+      { q:{es:'«Ella» en inglés es:',en:'"Ella" in English is:'}, opts:{es:['He','She'],en:['He','She']}, correct:1, fb:{ why:{es:'«She» = «Ella».',en:'"She" = "Ella".'}, ex:{es:'She is kind',en:'She is kind'}, tip:{es:'She = Ella · He = Él',en:'She = Ella · He = Él'}} },
+      { q:{es:'«Nosotros» en inglés es:',en:'"Nosotros" in English is:'}, opts:{es:['You','We'],en:['You','We']}, correct:1, fb:{ why:{es:'«We» incluye a quien habla.',en:'"We" includes the speaker.'}, ex:{es:'We are happy',en:'We are happy'}, tip:{es:'We = grupo contigo',en:'We = group with you'}} },
+      { q:{es:'¿Cuál sirve para COSAS y ANIMALES?',en:'Which one is for THINGS and ANIMALS?'}, opts:{es:['It','He'],en:['It','He']}, correct:0, fb:{ why:{es:'«It» = cosas/animales.',en:'"It" = things/animals.'}, ex:{es:'It is a dog',en:'It is a dog'}, tip:{es:'It nunca para personas',en:'It never for people'}} },
+      { q:{es:'«Él» en inglés es:',en:'"Él" in English is:'}, opts:{es:['He','She'],en:['He','She']}, correct:0, fb:{ why:{es:'«He» = «Él».',en:'"He" = "Él".'}, ex:{es:'He is a boy',en:'He is a boy'}, tip:{es:'He = Él · She = Ella',en:'He = Él · She = Ella'}} }
+    ] },
+  { icon:'⚡', title:{es:'Diferencias',en:'Differences'},
+    html:{
+      es:`<div class="gdesc">Las diferencias clave que debes recordar:</div>
+        <table class="dtab"><tr><th>🇪🇸 Español</th><th>🇬🇧 English</th><th>Explicación</th></tr>
+          <tr><td>«yo» en minúscula</td><td class="en">I (mayúscula)</td><td>«I» se escribe SIEMPRE con mayúscula.</td></tr>
+          <tr><td>«Tú» / «Ustedes»</td><td class="en">You</td><td>«You» sirve para singular y plural.</td></tr>
+          <tr><td>Puedes omitir el sujeto</td><td class="en">Subject required</td><td>En inglés siempre dices QUIÉN.</td></tr>
+          <tr><td>Él lo ve (mismo «él»)</td><td class="en">He → him</td><td>El pronombre cambia: sujeto «he», objeto «him».</td></tr>
+        </table>
+        <div class="sec-label">El sistema completo: Sujeto · Objeto · Posesivo</div>
+        <table class="dtab"><tr><th>Para…</th><th>Sujeto</th><th>Objeto</th><th>Posesivo</th></tr>
+          <tr><td>él</td><td class="en">He</td><td class="en">Him</td><td class="en">His</td></tr>
+          <tr><td>ella</td><td class="en">She</td><td class="en">Her</td><td class="en">Her</td></tr>
+          <tr><td>cosa / animal</td><td class="en">It</td><td class="en">It</td><td class="en">Its</td></tr>
+        </table>
+        <div class="gnote">📍 <b>Sujeto</b> antes del verbo · <b>Objeto</b> después del verbo · <b>Posesivo</b> antes de un sustantivo. Nota: <b>Her</b> sirve para objeto Y posesivo.</div>
+        ${eg('<span class="tag s">He</span> is happy.','Él está feliz — sujeto obligatorio.','ok')}
+        ${eg('Is happy.','¿Quién? Falta el sujeto.','bad')}`,
+      en:`<div class="gdesc">The key differences to remember:</div>
+        <table class="dtab"><tr><th>🇪🇸 Español</th><th>🇬🇧 English</th><th>Explicación</th></tr>
+          <tr><td>«yo» en minúscula</td><td class="en">I (uppercase)</td><td>«I» is ALWAYS written uppercase.</td></tr>
+          <tr><td>«Tú» / «Ustedes»</td><td class="en">You</td><td>«You» works for singular and plural.</td></tr>
+          <tr><td>Puedes omitir el sujeto</td><td class="en">Subject required</td><td>In English you always say WHO.</td></tr>
+          <tr><td>Él lo ve (same «él»)</td><td class="en">He → him</td><td>The pronoun changes: subject «he», object «him».</td></tr>
+        </table>
+        <div class="sec-label">The full system: Subject · Object · Possessive</div>
+        <table class="dtab"><tr><th>For…</th><th>Subject</th><th>Object</th><th>Possessive</th></tr>
+          <tr><td>a man (él)</td><td class="en">He</td><td class="en">Him</td><td class="en">His</td></tr>
+          <tr><td>a woman (ella)</td><td class="en">She</td><td class="en">Her</td><td class="en">Her</td></tr>
+          <tr><td>a thing (cosa)</td><td class="en">It</td><td class="en">It</td><td class="en">Its</td></tr>
+        </table>
+        <div class="gnote">📍 <b>Subject</b> before the verb · <b>Object</b> after the verb · <b>Possessive</b> before a noun. Note: <b>Her</b> works for object AND possessive.</div>
+        ${eg('<span class="tag s">He</span> is happy.','He is happy — subject is mandatory.','ok')}
+        ${eg('Is happy.','Who? The subject is missing.','bad')}`
+    },
+    checks:[
+      { q:{es:'¿Cómo se escribe «yo» en inglés?',en:'How do you write "yo" in English?'}, opts:{es:['i','I'],en:['i','I']}, correct:1, fb:{ why:{es:'«I» siempre MAYÚSCULA.',en:'"I" is always uppercase.'}, contrast:{es:'«i» minúscula = error común.',en:'lowercase "i" = common mistake.'}, ex:{es:'I am a boy',en:'I am a boy'}, tip:{es:'Nunca «i» minúscula',en:'Never lowercase "i"'}} },
+      { q:{es:'«You» puede significar:',en:'"You" can mean:'}, opts:{es:['Tú Y Ustedes','Solo Tú'],en:['You (sing. & plural)','Only one person']}, correct:0, fb:{ why:{es:'«You» = singular y plural.',en:'"You" = singular and plural.'}, ex:{es:'You are kind → Tú/Ustedes',en:'You are kind (one or many)'}, tip:{es:'You = 2 en 1',en:'You = 2 in 1'}} },
+      { q:{es:'«I see ___» (a él):',en:'"I see ___" (him):'}, opts:{es:['he','him'],en:['he','him']}, correct:1, fb:{ why:{es:'Después del verbo → «him» (objeto).',en:'After the verb → "him" (object).'}, contrast:{es:'«he» es sujeto, va antes del verbo.',en:'"he" is subject, before the verb.'}, ex:{es:'I see him → Yo lo veo a él',en:'I see him'}, tip:{es:'He = sujeto · Him = objeto',en:'He = subject · Him = object'}} },
+      { q:{es:'«I call ___» (a ella):',en:'"I call ___" (her):'}, opts:{es:['her','she'],en:['her','she']}, correct:0, fb:{ why:{es:'Después del verbo → «her».',en:'After the verb → "her".'}, ex:{es:'I call her → Yo la llamo',en:'I call her'}, tip:{es:'She = sujeto · Her = objeto',en:'She = subject · Her = object'}} },
+      { q:{es:'¿Es correcto «Is happy» sin pronombre?',en:'Is "Is happy" correct without a pronoun?'}, opts:{es:['Sí','No, falta el sujeto'],en:['Yes','No, the subject is missing']}, correct:1, fb:{ why:{es:'En inglés el sujeto es obligatorio.',en:'In English the subject is mandatory.'}, ex:{es:'He is happy → Él está feliz',en:'He is happy'}, tip:{es:'Siempre di QUIÉN',en:'Always say WHO'}} }
+    ] },
+  { icon:'💡', title:{es:'Tips Prácticos',en:'Practical Tips'},
+    html:{
+      es:`<div class="gdesc">La estructura básica, y los trucos para no equivocarte:</div>
+        <div class="fbox"><div class="frm"><span class="pill s">Sujeto</span><span class="plus">+</span><span class="pill v">verbo</span><span class="plus">+</span><span class="pill o">complemento</span></div><div class="fex"><span class="s">She</span> <span class="v">calls</span> <span class="o">him</span>. — Ella lo llama a él.</div></div>
+        ${ii('🔠','<b>Tip 1 — «I» MAYÚSCULA</b> siempre.')}
+        ${eg('<span class="tag s">I</span> am a boy.','Yo soy un niño. (nunca «i»)','ok')}
+        ${eg('Me am a boy.','«Me» es objeto, no sujeto → «I».','bad')}
+        ${ii('↔️','<b>Tip 2 — Sujeto vs objeto:</b> He/She ANTES; Him/Her DESPUÉS del verbo.')}
+        ${eg('<span class="tag s">She</span> calls <span class="tag o">him</span>.','Ella lo llama a él.','ok')}
+        ${ii('🔑','<b>Tip 3 — Posesivo:</b> His/Her van ANTES de un sustantivo (His dad, Her family).')}
+        ${ii('📦','<b>Tip 4 — «It»</b> para cosas y animales, nunca para personas.')}
+        <div class="alert-card"><div class="atitle">⚠️ Error típico</div><p>En inglés el sujeto es obligatorio: «<b>He</b> is happy» ✅, no «Is happy» ❌.</p></div>`,
+      en:`<div class="gdesc">The basic structure, and the tricks to avoid mistakes:</div>
+        <div class="fbox"><div class="frm"><span class="pill s">Subject</span><span class="plus">+</span><span class="pill v">verb</span><span class="plus">+</span><span class="pill o">complement</span></div><div class="fex"><span class="s">She</span> <span class="v">calls</span> <span class="o">him</span>. — Ella lo llama a él.</div></div>
+        ${ii('🔠','<b>Tip 1 — "I" UPPERCASE</b> always.')}
+        ${eg('<span class="tag s">I</span> am a boy.','I am a boy. (never "i")','ok')}
+        ${eg('Me am a boy.','"Me" is object, not subject → "I".','bad')}
+        ${ii('↔️','<b>Tip 2 — Subject vs object:</b> He/She BEFORE; Him/Her AFTER the verb.')}
+        ${eg('<span class="tag s">She</span> calls <span class="tag o">him</span>.','She calls him.','ok')}
+        ${ii('🔑','<b>Tip 3 — Possessive:</b> His/Her go BEFORE a noun (His dad, Her family).')}
+        ${ii('📦','<b>Tip 4 — "It"</b> for things and animals, never for people.')}
+        <div class="alert-card"><div class="atitle">⚠️ Common mistake</div><p>In English the subject is mandatory: "<b>He</b> is happy" ✅, not "Is happy" ❌.</p></div>`
+    },
+    checks:[
+      { q:{es:'¿Cuál está BIEN?',en:'Which one is RIGHT?'}, opts:{es:['I am a boy','Me am a boy'],en:['I am a boy','Me am a boy']}, correct:0, fb:{ why:{es:'«I» es el sujeto correcto.',en:'"I" is the correct subject.'}, ex:{es:'I am a boy',en:'I am a boy'}, tip:{es:'I + am van juntos',en:'I + am go together'}} },
+      { q:{es:'«___ dad is kind» (de él):',en:'"___ dad is kind" (his):'}, opts:{es:['His','Him'],en:['His','Him']}, correct:0, fb:{ why:{es:'«His» = posesivo (de él).',en:'"His" = possessive.'}, contrast:{es:'«Him» es objeto (a él).',en:'"Him" is object.'}, ex:{es:'His dad is kind',en:'His dad is kind'}, tip:{es:'His = de él · Him = a él',en:'His = his · Him = him'}} },
+      { q:{es:'«I see ___» (a él):',en:'"I see ___" (him):'}, opts:{es:['he','him'],en:['he','him']}, correct:1, fb:{ why:{es:'Después del verbo → «him».',en:'After the verb → "him".'}, ex:{es:'I see him',en:'I see him'}, tip:{es:'Después de un verbo → objeto',en:'After a verb → object'}} },
+      { q:{es:'¿Cuál está bien escrita?',en:'Which is written correctly?'}, opts:{es:['i am happy','I am happy'],en:['i am happy','I am happy']}, correct:1, fb:{ why:{es:'«I» siempre mayúscula.',en:'"I" is always uppercase.'}, ex:{es:'I am happy',en:'I am happy'}, tip:{es:'Nunca «i» minúscula',en:'Never lowercase "i"'}} },
+      { q:{es:'«___ is a dog» (cosa/animal):',en:'"___ is a dog" (thing/animal):'}, opts:{es:['It','Him'],en:['It','Him']}, correct:0, fb:{ why:{es:'«It» para cosas/animales.',en:'"It" for things/animals.'}, ex:{es:'It is a dog',en:'It is a dog'}, tip:{es:'It = cosa/animal',en:'It = thing/animal'}} }
+    ] },
+  { icon:'✨', title:{es:'Práctica Final',en:'Final Practice'}, builder:true,
+    html:{
+      es:`<div class="gdesc">Arma la oración tocando las fichas y escúchala. Cada tipo va en su recuadro:</div>
+        <div class="cboxes"><div class="cbox s"><span class="cl">Sujeto</span><span class="cv">I · You · He · She · It · We · They</span></div><div class="cbox o"><span class="cl">Objeto</span><span class="cv">Him · Her · It</span></div><div class="cbox p"><span class="cl">Posesivo</span><span class="cv">His · Her · Its</span></div></div>
+        <div class="fbox"><div class="frm"><span class="pill s">Sujeto</span><span class="plus">+</span><span class="pill v">verbo</span><span class="plus">+</span><span class="pill o">objeto</span> <span class="plus">/</span> <span class="pill p">posesivo</span></div><div class="fex"><span class="s">He</span> <span class="v">loves</span> <span class="p">his</span> family. — Él ama a su familia.</div></div>
+        <div class="sec-label">Las 3 formas en contexto</div>
+        ${eg('<span class="tag s">We</span> are friends.','Nosotros somos amigos. (sujeto)','ok')}
+        ${eg('She calls <span class="tag o">her</span>.','Ella la llama a ella. (objeto)','ok')}
+        ${eg('<b style="color:#7B1FA2">His</b> family is kind.','Su familia es amable. (posesivo)','ok')}
+        <div class="alert-card"><div class="atitle">⚠️ Los 3 errores más comunes</div><p>❌ «i am happy» → ✅ «<b>I</b> am happy»<br>❌ «Him is a boy» → ✅ «<b>He</b> is a boy»<br>❌ «I see she» → ✅ «I see <b>her</b>»</p></div>`,
+      en:`<div class="gdesc">Build the sentence by tapping the tiles and listen to it. Each type has its own box:</div>
+        <div class="cboxes"><div class="cbox s"><span class="cl">Subject</span><span class="cv">I · You · He · She · It · We · They</span></div><div class="cbox o"><span class="cl">Object</span><span class="cv">Him · Her · It</span></div><div class="cbox p"><span class="cl">Possessive</span><span class="cv">His · Her · Its</span></div></div>
+        <div class="fbox"><div class="frm"><span class="pill s">Subject</span><span class="plus">+</span><span class="pill v">verb</span><span class="plus">+</span><span class="pill o">object</span> <span class="plus">/</span> <span class="pill p">possessive</span></div><div class="fex"><span class="s">He</span> <span class="v">loves</span> <span class="p">his</span> family. — Él ama a su familia.</div></div>
+        <div class="sec-label">The 3 forms in context</div>
+        ${eg('<span class="tag s">We</span> are friends.','Nosotros somos amigos. (subject)','ok')}
+        ${eg('She calls <span class="tag o">her</span>.','Ella la llama a ella. (object)','ok')}
+        ${eg('<b style="color:#7B1FA2">His</b> family is kind.','Su familia es amable. (possessive)','ok')}
+        <div class="alert-card"><div class="atitle">⚠️ The 3 most common mistakes</div><p>❌ "i am happy" → ✅ "<b>I</b> am happy"<br>❌ "Him is a boy" → ✅ "<b>He</b> is a boy"<br>❌ "I see she" → ✅ "I see <b>her</b>"</p></div>`
+    },
+    checks:[
+      { q:{es:'«___ am happy» (Yo):',en:'"___ am happy" (I):'}, opts:{es:['I','You'],en:['I','You']}, correct:0, fb:{ why:{es:'I = Yo, con «am».',en:'I, with "am".'}, ex:{es:'I am happy',en:'I am happy'}, tip:{es:'I + am juntos',en:'I + am together'}} },
+      { q:{es:'«___ is a boy» (Él):',en:'"___ is a boy" (He):'}, opts:{es:['Him','He'],en:['Him','He']}, correct:1, fb:{ why:{es:'He = sujeto.',en:'He = subject.'}, contrast:{es:'Him es objeto.',en:'Him is object.'}, ex:{es:'He is a boy',en:'He is a boy'}, tip:{es:'He = sujeto · Him = objeto',en:'He = subject · Him = object'}} },
+      { q:{es:'«I call ___» (a él):',en:'"I call ___" (him):'}, opts:{es:['him','his'],en:['him','his']}, correct:0, fb:{ why:{es:'him = objeto.',en:'him = object.'}, ex:{es:'I call him',en:'I call him'}, tip:{es:'Him = a él · His = de él',en:'Him = him · His = his'}} },
+      { q:{es:'«___ family is kind» (de ella):',en:'"___ family is kind" (her):'}, opts:{es:['Her','She'],en:['Her','She']}, correct:0, fb:{ why:{es:'Her = posesivo.',en:'Her = possessive.'}, ex:{es:'Her family is kind',en:'Her family is kind'}, tip:{es:'Her = objeto Y posesivo',en:'Her = object AND possessive'}} },
+      { q:{es:'«___ are friends» (Nosotros):',en:'"___ are friends" (We):'}, opts:{es:['We','It'],en:['We','It']}, correct:0, fb:{ why:{es:'We = Nosotros.',en:'We = Nosotros.'}, ex:{es:'We are friends',en:'We are friends'}, tip:{es:'We = grupo contigo',en:'We = group with you'}} }
+    ] }
+];
+const BUILD = { answer:[{w:'I',c:'s'},{w:'am',c:'v'},{w:'a boy',c:'c'}], say:'I am a boy' };
+const SUMMARY = {
+  es:['<b>Sujeto:</b> I, You, He, She, It, We, They — antes del verbo','<b>Objeto:</b> Him, Her, It — después del verbo','<b>Posesivo:</b> His, Her, Its — antes de un sustantivo','<b>«I»</b> siempre MAYÚSCULA','El sujeto es OBLIGATORIO: «He is happy» ✅'],
+  en:['<b>Subject:</b> I, You, He, She, It, We, They — before the verb','<b>Object:</b> Him, Her, It — after the verb','<b>Possessive:</b> His, Her, Its — before a noun','<b>"I"</b> always UPPERCASE','Subject is MANDATORY: "He is happy" ✅']
+};
+const BADGE = { emoji:'🧍', name:{es:'Maestro de Pronombres',en:'Pronoun Master'}, xp:20 };
+/* ═══ FIN DEL CONTENIDO EDITABLE ═══ */
+/*SHUFFLE-V1*/(function(){try{if(typeof STEPS==='undefined')return;for(var si=0;si<STEPS.length;si++){var s=STEPS[si];if(!s.checks)continue;for(var ci=0;ci<s.checks.length;ci++){var c=s.checks[ci];if(!c.opts||!c.opts.es)continue;var n=c.opts.es.length;if(n<2)continue;var idx=[];for(var i=0;i<n;i++)idx.push(i);for(var i=n-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=idx[i];idx[i]=idx[j];idx[j]=tmp;}var nes=idx.map(function(k){return c.opts.es[k];});var nen=c.opts.en?idx.map(function(k){return c.opts.en[k];}):null;c.opts.es=nes;if(nen)c.opts.en=nen;c.correct=idx.indexOf(c.correct);}}}catch(e){console.warn('shuffle skipped',e);}})();
+
+const T = {
+  es:{ unT:'Repaso del tema — opcional 📚', unP:'El desbloqueo lo dan tus prácticas (P1·P2·P3). Completa este repaso para reforzar y llévate una sorpresa 🎁',
+       checkH:'Auto-chequeo', checkSub:'Para ti · cuentan como ✓ sin nota mínima', seeTr:'Ver traducción', finishNeed:'Completa los auto-chequeos de cada paso para reclamar tu sorpresa 🎁',
+       prev:'← Anterior', next:'Siguiente →', finish:'Terminar y reclamar sorpresa 🎁', bH:'Arma la estructura', bSub:'Toca: Sujeto + Verbo + Complemento', trayPh:'Toca las fichas en orden…', bcheck:'Comprobar', bOk:'¡Perfecto! Así se arma.', bNo:'Casi — Sujeto + Verbo + Complemento.',
+       fWhy:'Por qué', fNo:'Ojo', fEx:'Ejemplo', fTip:'Recuerda', cOk:'¡Correcto!', cBad:'Revisemos',
+       msCore:'✅ ¡Completaste lo principal (pasos 1-3)! Sigue hasta el final y reclama tu sorpresa 🎁', msToast:'✅ Pasos 1-3 completados · ¡sigue por tu sorpresa! 🎁',
+       done:'📚 ¡Resumen aprobado!', phrase:'Buen repaso. Tu gramática se fortalece con cada vuelta. 💪', failBar:'🔁 Necesitas '+PASS+'% para reclamar la sorpresa. ¡Inténtalo de nuevo!', phraseFail:'Casi. Repasa los pasos y vuelve para superar el '+PASS+'%. 🌱', kpT:'📝 Patrón maestro — cópialo en tu cuaderno',
+       surT:'¡Sorpresa desbloqueada!', surBadge:b=>'🏅 Insignia: '+b, surP:'Se suma a tu colección de la Liga Semanal. ¡Reúnelas todas!', xp:n=>'⭐ +'+n+' XP de repaso', back:'↩ Volver a la plataforma', retry:'🔁 Repasar de nuevo',
+       helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada parte:', tips:['<b>🔓 Aviso:</b> las prácticas desbloquean; esto es repaso.','<b>ES/EN:</b> cambia TODO el material de idioma.','<b>🌐 Ver traducción:</b> debajo de un auto-chequeo con oración en inglés (no cambia el resto).','<b>🔊 US/UK:</b> escucha los ejemplos.','<b>Armar:</b> en Práctica Final construyes la oración.','<b>🎁 Sorpresa:</b> responde bien al menos el 75% de los auto-chequeos y gana insignia + XP.'] },
+  en:{ unT:'Topic review — optional 📚', unP:'Unlocking comes from your practices (P1·P2·P3). Finish this review to reinforce and get a surprise 🎁',
+       checkH:'Self-check', checkSub:'For you · counts as ✓ with no minimum grade', seeTr:'See translation', finishNeed:'Answer the self-checks in every step to claim your surprise 🎁',
+       prev:'← Back', next:'Next →', finish:'Finish and claim surprise 🎁', bH:'Build the structure', bSub:'Tap: Subject + Verb + Complement', trayPh:'Tap the tiles in order…', bcheck:'Check', bOk:'Perfect! That\'s how it\'s built.', bNo:'Almost — Subject + Verb + Complement.',
+       fWhy:'Why', fNo:'Careful', fEx:'Example', fTip:'Remember', cOk:'Correct!', cBad:'Let\'s review',
+       msCore:'✅ You finished the core (steps 1-3)! Keep going to the end and claim your surprise 🎁', msToast:'✅ Steps 1-3 done · keep going for your surprise! 🎁',
+       done:'📚 Summary passed!', phrase:'Great review. Your grammar gets stronger each pass. 💪', failBar:'🔁 You need '+PASS+'% to claim the surprise. Try again!', phraseFail:'Almost. Review the steps and come back to pass '+PASS+'%. 🌱', kpT:'📝 Master pattern — copy it in your notebook',
+       surT:'Surprise unlocked!', surBadge:b=>'🏅 Badge: '+b, surP:'Added to your Weekly League collection. Collect them all!', xp:n=>'⭐ +'+n+' review XP', back:'↩ Back to the platform', retry:'🔁 Review again',
+       helpT:'How do I use this material?', tipsT:'What each part is for:', tips:['<b>🔓 Notice:</b> practices unlock; this is review.','<b>ES/EN:</b> switches the WHOLE material\'s language.','<b>🌐 See translation:</b> under a self-check with an English sentence (doesn\'t change the rest).','<b>🔊 US/UK:</b> hear the examples.','<b>Build:</b> in Final Practice you build the sentence.','<b>🎁 Surprise:</b> score at least 75% of the self-checks to earn a badge + XP.'] }
+};
+let info='es', cur=0, doneSteps=[], answers=[], coreDone=false, bState={order:[],locked:false}, curLab='';
+function L(){ return T[info]; }
+function say(text,acc){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=.82; const vs=speechSynthesis.getVoices()||[]; const want=acc==='US'?'en-US':'en-GB'; const v=vs.find(x=>x.lang===want)||vs.find(x=>x.lang&&x.lang.indexOf('en')===0); if(v){u.voice=v;u.lang=v.lang;}else u.lang=want; speechSynthesis.speak(u); }catch(e){} }
+function render(){ cur=0; coreDone=false; doneSteps=new Array(STEPS.length).fill(false); answers=STEPS.map(s=>new Array(s.checks.length).fill(null)); bState={order:[],locked:false};
+  document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='block'; document.getElementById('msbanner').style.display='none';
+  renderTabs(); applyLang(); showStep(0); }
+function renderTabs(){ document.getElementById('steptabs').innerHTML=STEPS.map((s,i)=>`<button class="stab${i===0?' on':''}${doneSteps[i]?' done':''}" id="stab${i}" onclick="goStep(${i})">${s.icon} ${i+1}</button>`).join(''); }
+function applyLang(){ const t=L();
+  document.getElementById('lsEs').classList.toggle('on',info==='es'); document.getElementById('lsEn').classList.toggle('on',info==='en');
+  document.getElementById('mhtitle').textContent=MAT.title[info]; document.getElementById('mhsub').textContent=document.getElementById('screen').getAttribute('data-level').toUpperCase().replace('-',' · ')+' · '+MAT.subtitle[info];
+  document.getElementById('unT').textContent=t.unT; document.getElementById('unP').textContent=t.unP;
+  document.getElementById('helpT').textContent=t.helpT; document.getElementById('helpTips').innerHTML='<div style="font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:6px">'+t.tipsT+'</div>'+t.tips.map(x=>'<div class="helptip">• <span>'+x+'</span></div>').join('');
+  document.getElementById('kpT').textContent=t.kpT; document.getElementById('lBack').textContent=t.back; document.getElementById('lRetry').textContent=t.retry;
+  updateMilestone(); renderStep(); }
+function renderStep(){ const t=L(), s=STEPS[cur]; curLab= info==='es'?'EJEMPLO':'EXAMPLE';
+  let html=`<div class="gcard"><div class="sec-label">${cur+1}. ${s.icon} ${s.title[info]}</div>${s.html[info]}`;
+  if(s.builder) html+=builderHtml(); html+=`</div>`;
+  const ansd=answers[cur].filter(x=>x!==null).length;
+  html+=`<div class="check"><div class="check-h">🧠 ${t.checkH}<span class="cprog">${ansd}/${s.checks.length}</span></div><div class="check-sub">${t.checkSub}</div>`;
+  s.checks.forEach((c,ci)=>{ const sel=answers[cur][ci]; const done=sel!==null; const ok=sel===c.correct;
+    let fb='';
+    if(done){ const f=c.fb; fb=`<div class="cfb show ${ok?'ok':'no'}"><div class="cfbh">${ok?'✅ '+t.cOk:'❌ '+t.cBad}</div><div class="cfbb">`+
+      `<div class="fblk why"><b>🔍 ${t.fWhy}</b>${f.why[info]}</div>`+
+      (f.contrast?`<div class="fblk contrast"><b>⚠ ${t.fNo}</b>${f.contrast[info]}</div>`:'')+
+      (f.ex?`<div class="fblk ex"><b>📝 ${t.fEx}</b>${f.ex[info]}</div>`:'')+
+      (f.tip?`<div class="fblk tip"><b>💡 ${t.fTip}</b>${f.tip[info]}</div>`:'')+`</div></div>`; }
+    const trBtn = (c.tr && info==='es') ? `<button class="ctransbtn" onclick="this.nextElementSibling.classList.toggle('show')">🌐 ${t.seeTr}</button><div class="ctrans">${c.tr.es}</div>` : '';
+    html+=`<div class="citem"><p class="cq"><span class="n">${ci+1}.</span> ${c.q[info]}</p>${trBtn}<div class="copts">`+
+      c.opts[info].map((o,k)=>{ let cl='copt'; if(done){ if(k===c.correct)cl+=' ok'; else if(k===sel)cl+=' no'; } return `<button class="${cl}" ${done?'disabled':''} onclick="checkAns(${ci},${k})">${o}</button>`; }).join('')+
+      `</div>${fb}</div>`;
+  });
+  html+=`</div>`;
+  document.getElementById('stepArea').innerHTML=html;
+  if(s.builder) initBuilder();
+  document.getElementById('navPrev').textContent=t.prev; document.getElementById('navPrev').disabled=cur===0;
+  document.getElementById('navNext').textContent= cur===STEPS.length-1? t.finish : t.next;
+  document.getElementById('pfill').style.width=(doneSteps.filter(Boolean).length/STEPS.length*100)+'%';
+}
+function checkAns(ci,k){ if(answers[cur][ci]!==null) return; answers[cur][ci]=k;
+  if(answers[cur].every(x=>x!==null)){ doneSteps[cur]=true; document.getElementById('stab'+cur).classList.add('done'); }
+  if([0,1,2].every(i=>doneSteps[i]) && !coreDone){ coreDone=true; try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{type:'summary', core:true, mat:MAT.reportId}})); }catch(e){} toast(L().msToast); }
+  updateMilestone(); renderStep(); }
+function updateMilestone(){ const b=document.getElementById('msbanner'); if([0,1,2].every(i=>doneSteps[i])){ b.style.display='block'; b.textContent=L().msCore; } else b.style.display='none'; }
+function builderHtml(){ const t=L(); return `<div class="builder"><div class="bh">🧩 ${t.bH}</div><div class="bsub">${t.bSub}</div><div class="tray" id="tray" data-ph="${t.trayPh}"></div><div class="bank" id="bank"></div><button class="bcheck" id="bchk" onclick="checkBuild()" disabled>${t.bcheck}</button><div class="bres" id="bres"></div></div>`; }
+function initBuilder(){ bState={order:[],locked:false}; const sh=[...BUILD.answer.keys()].sort(()=>Math.random()-.5);
+  document.getElementById('bank').innerHTML=sh.map(idx=>`<button class="tile ${BUILD.answer[idx].c}" id="tile${idx}" onclick="placeTile(${idx})">${BUILD.answer[idx].w}</button>`).join(''); document.getElementById('tray').innerHTML=''; }
+function placeTile(idx){ if(bState.locked)return; bState.order.push(idx); document.getElementById('tile'+idx).classList.add('placed'); const tr=document.getElementById('tray'); const b=document.createElement('button'); b.className='tile '+BUILD.answer[idx].c; b.textContent=BUILD.answer[idx].w; b.onclick=()=>removeTile(idx,b); tr.appendChild(b); document.getElementById('bchk').disabled=bState.order.length!==BUILD.answer.length; }
+function removeTile(idx,el){ if(bState.locked)return; bState.order=bState.order.filter(x=>x!==idx); el.remove(); document.getElementById('tile'+idx).classList.remove('placed'); document.getElementById('bchk').disabled=bState.order.length!==BUILD.answer.length; }
+function checkBuild(){ const t=L(); bState.locked=true; const ok=bState.order.join(',')===BUILD.answer.map((_,i)=>i).join(','); document.querySelectorAll('#tray .tile').forEach(x=>x.style.pointerEvents='none');
+  const r=document.getElementById('bres'); r.className='bres show '+(ok?'ok':'no'); r.innerHTML=(ok?'✅ '+t.bOk:'❌ '+t.bNo)+`<div class="bex"><div class="tr">${BUILD.answer.map(a=>a.w).join(' ')} — <i>${BUILD.tr[info]}</i></div><button class="audio-btn" onclick="say('${BUILD.say}','US')">🇺🇸 US</button><button class="audio-btn" onclick="say('${BUILD.say}','UK')">🇬🇧 UK</button></div>`; }
+function showStep(i){ cur=i; document.querySelectorAll('.stab').forEach((b,x)=>b.classList.toggle('on',x===i)); renderStep(); window.scrollTo({top:0,behavior:'smooth'}); }
+function goStep(i){ showStep(i); }
+function navStep(d){ if(d<0){ if(cur>0) showStep(cur-1); return; } if(cur<STEPS.length-1){ showStep(cur+1); return; } const inc=answers.findIndex(a=>a.some(x=>x===null)); if(inc>=0){ toast(L().finishNeed); showStep(inc); } else finish(); }
+function finish(){ const t=L(); document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
+  let tot=0,corr=0; answers.forEach((arr,si)=>arr.forEach((k,ci)=>{ if(k!==null){tot++; if(k===STEPS[si].checks[ci].correct)corr++;} })); const pct=tot?Math.round(corr/tot*100):0; const pass=pct>=PASS;
+  const db=document.getElementById('doneBar'); db.classList.toggle('fail',!pass); db.textContent= pass? t.done : t.failBar; document.getElementById('fscore').textContent=pct; document.getElementById('fphrase').textContent= pass? t.phrase : t.phraseFail;
+  document.getElementById('kpList').innerHTML=SUMMARY[info].map(s=>`<li>${s}</li>`).join('');
+  document.getElementById('surprise').style.display= pass? 'block':'none';
+  if(pass){ document.getElementById('medalEm').textContent=BADGE.emoji; document.getElementById('surT').textContent=t.surT; document.getElementById('surBadge').textContent=t.surBadge(BADGE.name[info]); document.getElementById('surP').textContent=t.surP; document.getElementById('xpWin').textContent=t.xp(BADGE.xp); }
+  try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:pct, pass:pass, type:'summary', badge:BADGE.name.en, xp:BADGE.xp, mat:MAT.reportId, final:true}})); }catch(e){}
+  window.scrollTo({top:0,behavior:'smooth'}); }
+function restart(){ render(); }
+function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}
+function setInfo(l){ info=l; applyLang(); }
+function setLevel(lv){ document.getElementById('screen').setAttribute('data-level',lv); info= lv==='a2'?'en':'es'; render(); }
+function volver(){ if(document.referrer){ location.href=document.referrer; } else if(history.length>1){ history.back(); } else { toast(info==='es'?'Vuelve a tu práctica en la plataforma':'Go back to your practice'); } }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600); }
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('.mat')){ e.preventDefault(); toast(info==='es'?'Material protegido © JUCUM EC':'Protected material © JUCUM EC'); }});
+try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch(e){}
+/* FIN DEL MOTOR */
+setLevel(document.getElementById('screen').getAttribute('data-level')||'pre-a1');
+</script>
+<!-- JUCUM English Center · seguimiento (NO QUITAR) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

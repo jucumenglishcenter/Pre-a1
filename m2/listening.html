@@ -461,5 +461,9 @@ setLevel(document.getElementById('screen').getAttribute('data-level')||'pre-a1')
 </script>
 <!-- JUCUM English Center · seguimiento (NO QUITAR) -->
 <script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+<script>
+/* JUCUM_SEED_UNLOCK_v1 · Cross-device: restaura el desbloqueo secuencial desde la nube al abrir (NO cambia el ejercicio). */
+(function seed(t){var C=window.JUCUM_CONNECT;if(C&&C.getCompletedParts){C.getCompletedParts(function(cloud){if(!cloud||!cloud.length)return;var p=loadProg(),ch=false;cloud.forEach(function(c){if(c.part&&p.indexOf(c.part)<0){p.push(c.part);ch=true;}});if(ch){saveProg(p);if(typeof renderPicker==='function')renderPicker();}});}else if((t||0)<25){setTimeout(function(){seed((t||0)+1);},300);}})(0);
+</script>
 </body>
 </html>

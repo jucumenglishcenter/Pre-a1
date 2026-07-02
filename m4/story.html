@@ -190,7 +190,7 @@ function renderStPick(){ const es=info!=='en'; document.getElementById('spkH').t
   document.getElementById('spkList').innerHTML=[1,2,3,4].map(n=>{ const has=true; const t=ST_TITLES[n][es?'es':'en']; return `<div class="stcard ${has?'':'lock'}" onclick="${has?`pickStory(${n})`:`toast('${es?'Demo: usa la Story 1':'Demo: use Story 1'}')`}"><div class="nx">${has?'📖':'🔒'}</div><div class="si"><b>Story ${n} · Diálogo ${n}</b><span>${t}</span></div><div class="go">${has?'›':'🔒'}</div></div>`; }).join(''); }
 function backToPicker(){ try{pausePlay();}catch(e){} document.getElementById('stpick').style.display='block'; window.scrollTo(0,0); }
 function updateTitles(){ const d=STORYDATA[storyId], es=info!=='en'; document.getElementById('stitle').textContent= curView==='dlg'?(es?d.dTitleEs:d.dTitle):(es?d.sTitleEs:d.sTitle); document.getElementById('ssub').textContent=(curView==='dlg'?(es?'Diálogo ':'Dialogue '):'Story ')+storyId; }
-function pickStory(n){ storyId=n; const d=STORYDATA[n];
+function pickStory(n){ storyId=n; try{window.JUCUM_CONNECT&&window.JUCUM_CONNECT.setActivePart&&window.JUCUM_CONNECT.setActivePart(n);}catch(e){} const d=STORYDATA[n];
   PARAS = d.paras.map((p,i)=>({pairs:p.map(x=>({en:x[0],es:x[1]})), dato:(d.datos&&d.datos[i])||null}));
   DLG = d.dlg.map(t=>({sp:t[0], pairs:[{en:t[1],es:t[2]}]}));
   curView='story'; VIEW=PARAS;

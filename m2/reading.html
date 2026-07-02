@@ -500,12 +500,12 @@ function openHelp(){document.getElementById('helpov').classList.add('show');} fu
 function inProgress(){ return S && !document.getElementById('results').classList.contains('show') && (sec>0 || ans.some(x=>x!==null)); }
 function openExit(){ const t=L(); document.getElementById('exitT').textContent=t.exitT; document.getElementById('exitP').innerHTML=t.exitP(xpTotal); document.getElementById('exitStay').textContent=t.exitStay; document.getElementById('exitLeave').textContent=t.exitLeave; document.getElementById('exitov').classList.add('show'); }
 function closeExit(){ document.getElementById('exitov').classList.remove('show'); }
-function leaveNow(){ closeExit(); xpTotal=0; toast(info==='es'?'↩ Saliste · XP no reclamados':'↩ You left · XP not claimed'); }
+function leaveNow(){ closeExit(); xpTotal=0; toast(info==='es'?'↩ Saliste · XP no reclamados':'↩ You left · XP not claimed'); setTimeout(function(){ try{ if(history.length>1){ history.back(); } else { location.href='https://jucum-english-center.netlify.app/'; } }catch(e){ location.href='https://jucum-english-center.netlify.app/'; } },700); }
 function setLevel(lv){ stopPlay(); document.getElementById('screen').setAttribute('data-level',lv); const n={'pre-a1':'Pre-A1','a1':'A1','a2':'A2'}; document.getElementById('capLvl').textContent=n[lv]; document.getElementById('mhsub').textContent='Pre-A1 · M2 · Essential Actions';
   ['segPre','segA1','segA2'].forEach(id=>document.getElementById(id).classList.remove('on')); document.getElementById(lv==='pre-a1'?'segPre':lv==='a1'?'segA1':'segA2').classList.add('on');
   info= lv==='pre-a1'?'es':'en'; setText(lv==='pre-a1'?'both':'en');
   if(S){ if(document.getElementById('results').classList.contains('show')) restart(); else applyLang(); } renderPicker(); }
-function goBack(){ if(inProgress()){ openExit(); return; } toast(info==='es'?'↩ En la plataforma: regresa a la plataforma':'↩ Back to the platform'); }
+function goBack(){ if(inProgress()){ openExit(); return; } (function(){ try{ if(history.length>1){ history.back(); setTimeout(function(){ try{ location.href='https://jucum-english-center.netlify.app/'; }catch(e){} },900); } else { location.href='https://jucum-english-center.netlify.app/'; } }catch(e){ location.href='https://jucum-english-center.netlify.app/'; } })(); }
 function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400); }
 0&&document.addEventListener('contextmenu',e=>{ if(e.target.closest('.screen')){ e.preventDefault(); toast('Material protegido © JUCUM EC'); }});
 try{ speechSynthesis.onvoiceschanged=()=>pickVoice(); }catch(e){}

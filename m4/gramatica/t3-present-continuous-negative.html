@@ -1,356 +1,378 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grammar Summary — Present Continuous (Negativo y Preguntas) | Pre-A1 | JUCUM</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumen de Gramática · JUCUM English Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root{
---bg:#FAFAF6;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
---shadow:0 3px 16px rgba(0,0,0,.06);--radius:14px;
---lp:#F9A825;--ld:#E65100;--ll:#FFF9C4;--lm:#FFECB3;
---lg:linear-gradient(135deg,#F9A825,#FF8F00);--lglow:rgba(249,168,37,.15);
---badge-text:#4E3800;
---subj:#1565C0;--subj-bg:#E3F2FD;
---verb:#E53935;--verb-bg:#FFEBEE;
---comp:#00897B;--comp-bg:#E0F2F1;
---neg:#AD1457;--neg-bg:#FCE4EC;
---quest:#7B1FA2;--quest-bg:#F3E5F5;
---ok:#2E7D32;--ok-bg:#E8F5E9;
---err:#C62828;--err-bg:#FFEBEE;
---note-bg:#FFFDE7;--note-border:#FBC02D;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:1.5rem 1rem;-webkit-font-smoothing:antialiased}
-.container{max-width:780px;margin:0 auto}
-.level-header{text-align:center;padding:2rem;border-radius:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:1.2rem;background:var(--lg)}
-.level-header::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:rgba(255,255,255,.1);border-radius:50%}
-.level-header h1{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:600;position:relative;z-index:1}
-.level-header .module-name{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:500;opacity:.95;position:relative;z-index:1;margin-top:.2rem}
-.level-header .subtitle{opacity:.8;font-size:.85rem;position:relative;z-index:1;margin-top:.15rem}
-.level-badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--ll);color:var(--badge-text);padding:4px 12px;border-radius:20px;border:1.5px solid var(--lm);margin-bottom:.8rem;position:relative;z-index:1}
-.step-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
-.step-tab{padding:.45rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);transition:.2s;font-family:'Nunito',sans-serif}
-.step-tab:hover{background:var(--ll)}
-.step-tab.active{background:var(--ll);border-color:var(--lp);color:var(--ld)}
-.step-tab.done{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-bottom:1.2rem;box-shadow:var(--shadow);border-top:3.5px solid var(--lp);display:none}
-.card.active{display:block;animation:fadeIn .3s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.section-label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--ld);margin-bottom:.3rem}
-.section-label::before{content:"";width:20px;height:3px;background:var(--lp);border-radius:2px}
-.section-title{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:.1rem}
-.section-desc{font-size:.85rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.6}
-.g-subj,.g-verb,.g-comp,.g-neg,.g-quest,.g-prep,.g-time,.g-art{display:inline-block;padding:1px 7px;border-radius:4px;font-weight:700;margin:0 1px;line-height:1.5}
-.g-subj{background:var(--subj-bg);color:var(--subj);border-bottom:2.5px solid var(--subj)}
-.g-verb{background:var(--verb-bg);color:var(--verb);border-bottom:2.5px solid var(--verb)}
-.g-comp{background:var(--comp-bg);color:var(--comp);border-bottom:2.5px solid var(--comp)}
-.g-neg{background:var(--neg-bg);color:var(--neg);border-bottom:2.5px solid var(--neg)}
-.g-quest{background:var(--quest-bg);color:var(--quest);border-bottom:2.5px solid var(--quest)}
-.g-prep{background:#FFE0B2;color:#E65100;border-bottom:2.5px solid #FB8C00}
-.g-time{background:#F8BBD0;color:#AD1457;border-bottom:2.5px solid #C2185B}
-.g-art{background:#FFF59D;color:#F57F17;border-bottom:2.5px solid #FBC02D}
-.g-table{width:100%;border-collapse:separate;border-spacing:0;margin:.8rem 0;border-radius:10px;overflow:hidden;font-size:.83rem;border:1px solid var(--border)}
-.g-table th{background:var(--lg);color:#fff;padding:.65rem .6rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.g-table td{padding:.6rem;border-bottom:1px solid #f0f0f0;vertical-align:middle;line-height:1.65}
-.g-table tr:nth-child(even) td{background:var(--ll)}
-.g-table tr:last-child td{border-bottom:none}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.8rem 0}
-.compare-card{padding:1rem;border-radius:12px;text-align:center}
-.compare-card.esp{background:var(--ll);border:2px solid var(--lm)}
-.compare-card.eng{background:var(--subj-bg);border:2px solid #90CAF9}
-.compare-card h4{font-family:'Fredoka',sans-serif;font-size:.85rem;margin-bottom:.5rem}
-.compare-card.esp h4{color:var(--ld)}
-.compare-card.eng h4{color:var(--subj)}
-.compare-card ul{list-style:none;font-size:.82rem;color:var(--text-soft)}
-.compare-card li{padding:3px 0;line-height:1.5}
-.formula-box{background:var(--note-bg);border:2px solid var(--note-border);border-radius:12px;padding:1rem;margin:.8rem 0;text-align:center;font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--ld);line-height:2.1}
-.tip-card{background:var(--ll);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;border-left:3px solid var(--lp);line-height:1.65}
-.tip-card strong{color:var(--ld)}
-.alert-card{background:var(--err-bg);border:2px solid #EF5350;border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}
-.alert-card .atitle{font-family:'Fredoka',sans-serif;color:var(--err);font-size:.82rem;margin-bottom:.3rem}
-.alert-card p{font-size:.82rem;color:var(--text-soft);line-height:1.65}
-.viz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin:.8rem 0}
-.viz-item{padding:.7rem .5rem;border-radius:10px;text-align:center;background:var(--card);border:1.5px solid var(--lm);font-size:.82rem}
-.viz-item .ico{font-size:1.6rem;display:block;margin-bottom:.3rem}
-.viz-item .lbl{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.95rem;display:block}
-.viz-item .es{font-style:italic;color:var(--text-soft);font-size:.74rem;display:block;margin-top:2px}
-.rule-grid{display:grid;grid-template-columns:1fr;gap:.5rem;margin:.8rem 0}
-.rule-item{padding:.7rem 1rem;border-radius:10px;background:var(--card);border:1.5px solid var(--lm);display:flex;align-items:flex-start;gap:.7rem}
-.rule-item .num{font-family:'Fredoka',sans-serif;background:var(--lp);color:#fff;min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
-.rule-item .info{flex:1;font-size:.85rem;line-height:1.6}
-.rule-item .info strong{color:var(--ld);display:block;margin-bottom:2px}
-.timeline{display:flex;align-items:center;justify-content:space-between;margin:1rem 0;padding:.8rem;background:var(--ll);border-radius:12px;border:1.5px solid var(--lm);gap:.4rem;flex-wrap:wrap}
-.tl-point{flex:1;min-width:75px;text-align:center;padding:.5rem .3rem;background:#fff;border-radius:8px;border:2px solid var(--lm)}
-.tl-point .ico{font-size:1.3rem;display:block}
-.tl-point .lbl{font-family:'Fredoka',sans-serif;font-size:.78rem;color:var(--ld);margin-top:2px;display:block}
-.tl-arrow{color:var(--lp);font-size:1.2rem;font-weight:700}
-.ex-row{display:flex;align-items:flex-start;gap:.6rem;padding:.6rem .8rem;border-radius:10px;margin:.4rem 0;font-size:.88rem;transition:background .2s}
-.ex-row:hover{background:var(--lglow)}
-.ex-row .icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
-.ex-row .body{flex:1;min-width:0}
-.ex-row .en{font-weight:700;color:var(--text);line-height:1.7;word-spacing:1px}
-.ex-row .es{font-family:'Lora',serif;font-style:italic;font-size:.82rem;color:var(--text-soft);margin-top:3px;line-height:1.5}
-.ex-right{border-left:3px solid var(--ok);background:var(--ok-bg)}
-.ex-wrong{border-left:3px solid var(--err);background:var(--err-bg)}
-.ex-section{margin-top:1.2rem;padding-top:1rem;border-top:2px dashed var(--lm)}
-.ex-section h3{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.95rem;margin-bottom:.8rem}
-.exercise{background:#fafafa;border-radius:12px;padding:1rem;margin-bottom:.7rem;border:2px solid #eee;transition:.2s}
-.exercise.correct{border-color:var(--ok);background:var(--ok-bg)}
-.exercise.incorrect{border-color:var(--err);background:var(--err-bg)}
-.exercise-q{font-size:.9rem;margin-bottom:.7rem;line-height:1.55;font-weight:600}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-.opt-btn{padding:.7rem .55rem;border:2px solid #e0e0e0;border-radius:10px;background:var(--card);color:var(--text);font-size:.85rem;font-weight:600;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif;text-align:center;line-height:1.35}
-.opt-btn:hover:not(:disabled){border-color:var(--lp);background:var(--ll)}
-.opt-btn:disabled{cursor:not-allowed;opacity:.7}
-.opt-btn.sel-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
-.opt-btn.sel-bad{background:var(--err);color:#fff;border-color:var(--err)}
-.opt-btn.show-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
-.fb{margin-top:.7rem;padding:0;border-radius:12px;font-size:.82rem;display:none;line-height:1.6;overflow:hidden}
-.fb.show{display:block;animation:fbSlide .35s ease}
-@keyframes fbSlide{from{opacity:0;max-height:0;transform:translateY(-8px)}to{opacity:1;max-height:600px;transform:translateY(0)}}
-.fb-header{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600}
-.fb.fb-ok .fb-header{background:#C8E6C9;color:var(--ok)}
-.fb.fb-bad .fb-header{background:#FFCDD2;color:var(--err)}
-.fb-header .fb-icon{font-size:1.2rem}
-.fb-body{padding:.8rem 1rem}
-.fb.fb-ok .fb-body{background:var(--ok-bg)}
-.fb.fb-bad .fb-body{background:var(--err-bg)}
-.fb-row{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem}
-.fb-row:last-child{margin-bottom:0}
-.fb-row .fb-dot{font-size:.95rem;flex-shrink:0;margin-top:1px}
-.fb-row .fb-text{flex:1;line-height:1.55}
-.fb-row .fb-text strong{color:var(--text)}
-.fb-correct-answer{color:var(--ok);font-weight:700}
-.fb-wrong-reason{color:var(--err);font-weight:600}
-.fb-example{display:inline-block;margin-top:.5rem;padding:5px 12px;border-radius:6px;font-size:.79rem;font-weight:700}
-.fb.fb-ok .fb-example{background:#A5D6A7;color:#1B5E20}
-.fb.fb-bad .fb-example{background:#EF9A9A;color:#B71C1C}
-.fb-tip{margin-top:.5rem;padding:.5rem .75rem;border-radius:8px;background:var(--note-bg);border:1px solid var(--note-border);font-size:.78rem;color:#6D4C00;line-height:1.5}
-.fb-tip strong{color:var(--ld)}
-.score-bar{text-align:center;padding:.8rem;background:var(--ll);border-radius:10px;margin-top:.8rem;border:1px solid var(--lm)}
-.score-bar .num{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--ld)}
-.score-bar .lbl{font-size:.7rem;color:var(--lp);font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.summary-final{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;margin-top:1rem;box-shadow:var(--shadow);border-top:3.5px solid var(--ok);display:none}
-.summary-final.show{display:block;animation:fadeIn .4s ease}
-.summary-final h3{font-family:'Fredoka',sans-serif;color:var(--ok);margin-bottom:.6rem;font-size:1.15rem}
-.summary-final ul{list-style:none}
-.summary-final li{padding:5px 0 5px 22px;position:relative;font-size:.85rem;color:var(--text-soft);line-height:1.6}
-.summary-final li:before{content:"\2713";position:absolute;left:0;color:var(--lp);font-weight:700;font-size:1rem}
-.summary-final .total-score{margin-top:1rem;padding:.8rem;background:var(--ll);border-radius:10px;text-align:center;font-family:'Fredoka',sans-serif}
-.summary-final .total-score .big{font-size:1.6rem;color:var(--ld)}
-.summary-final .total-score .small{font-size:.8rem;color:var(--text-soft);font-weight:600}
-@media(max-width:600px){
-.level-header h1{font-size:1.4rem}
-.card{padding:1.2rem}
-.compare-grid,.viz-grid{grid-template-columns:1fr 1fr}
-.timeline{flex-direction:column}
-.tl-arrow{transform:rotate(90deg)}
-.opts{grid-template-columns:1fr}
-}
-.why-box{background:#EDF7ED;border:1.5px solid #A5D6A7;border-left:4px solid var(--ok);border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;font-size:.83rem;line-height:1.6}.why-box .wt{font-family:'Fredoka',sans-serif;color:var(--ok);font-size:.8rem;display:block;margin-bottom:.2rem}.note-box{background:var(--note-bg);border:1.5px solid var(--note-border);border-left:4px solid var(--lp);border-radius:10px;padding:.7rem .9rem;margin:.7rem 0;font-size:.83rem;line-height:1.6}.note-box .nt{font-family:'Fredoka',sans-serif;color:var(--ld);font-size:.8rem;display:block;margin-bottom:.2rem}.illus{display:flex;justify-content:center;align-items:center;gap:.5rem;margin:.4rem 0 1rem;background:linear-gradient(135deg,#FFF9C4,#FFECB3);border:2px dashed var(--lm);border-radius:16px;padding:1rem}.illus .big{font-size:3.2rem;line-height:1}.illus .big.sm{font-size:2.4rem}.info-illus{display:flex;align-items:center;gap:.8rem;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin:.6rem 0}.info-illus .emo{font-size:2.4rem;line-height:1;flex-shrink:0}.info-illus .txt{font-size:.85rem;line-height:1.55}.info-illus .txt b{color:var(--ld)}.eg-card{position:relative;display:flex;align-items:center;gap:.7rem;background:#E3F2FD;border:2px solid #64B5F6;border-radius:12px;padding:1rem .9rem .9rem;margin:.4rem 0 1.1rem}.eg-card .eg-emo{font-size:2.3rem;line-height:1;flex-shrink:0}.eg-card .eg-body .en{font-weight:800;color:#0D47A1;font-size:.95rem;line-height:1.4}.eg-card .eg-body .es{font-family:'Lora',serif;font-style:italic;color:#1565C0;font-size:.82rem;margin-top:3px}.eg-card::before{content:'\1F4DD EJEMPLO';position:absolute;top:-11px;left:14px;background:#1565C0;color:#fff;font-family:'Fredoka',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.06em;padding:2px 9px;border-radius:20px}.eg-card.ok{background:#E8F5E9;border-color:#81C784}.eg-card.ok .en{color:#1B5E20}.eg-card.ok .es{color:#2E7D32}.eg-card.ok::before{content:'\2705 BIEN';background:#2E7D32}.eg-card.bad{background:#FFEBEE;border-color:#EF9A9A}.eg-card.bad .en{color:#B71C1C}.eg-card.bad .es{color:#C62828}.eg-card.bad::before{content:'\274C MAL';background:#C62828}
-.art-hero{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.8rem 0}.art-hero.three{grid-template-columns:1fr 1fr 1fr}.art-box{background:#fff;border:2px solid var(--lm);border-radius:16px;padding:1rem .9rem;text-align:center;box-shadow:0 2px 10px rgba(249,168,37,.10)}.art-box .word{font-family:'Fredoka',sans-serif;font-size:2.6rem;font-weight:700;color:var(--ld);line-height:1;background:linear-gradient(135deg,#FFF9C4,#FFE082);border-radius:12px;padding:.5rem 0;margin-bottom:.5rem}.art-box.eng .word{background:linear-gradient(135deg,#E3F2FD,#90CAF9);color:#0D47A1}.art-box .role{font-family:'Fredoka',sans-serif;font-size:.78rem;color:var(--lp);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}.art-box.eng .role{color:#1976D2}.art-box .desc{font-size:.8rem;color:var(--text-soft);line-height:1.5}.vs-grid{margin:.8rem 0}.vs-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:.5rem;margin:.55rem 0}.vs-side{border-radius:12px;padding:.7rem .8rem;font-size:.84rem;line-height:1.45}.vs-side .flag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:.2rem;opacity:.85}.vs-side.es{background:var(--ll);border:1.5px solid var(--lm)}.vs-side.es .flag{color:var(--ld)}.vs-side.en{background:#E3F2FD;border:1.5px solid #90CAF9}.vs-side.en .flag{color:#1565C0}.vs-mid{display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--lp)}@media(max-width:600px){.art-hero,.art-hero.three{grid-template-columns:1fr}.vs-row{grid-template-columns:1fr;gap:.3rem}.vs-mid{transform:rotate(90deg);padding:.1rem 0}}</style>
+  :root{ --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
+    --fd:'Fredoka','Nunito',system-ui,sans-serif; --fb:'Nunito',system-ui,sans-serif; --fs:'Atkinson Hyperlegible',Georgia,serif;
+    --subj:#1565C0; --subj-bg:#E3F2FD; --verb:#E53935; --verb-bg:#FFEBEE; --comp:#00897B; --comp-bg:#E0F2F1; --obj:#6D4C41; --obj-bg:#EFEBE9; --poss:#7B1FA2; --poss-bg:#F3E5F5;
+    --correct:#2E7D32; --correct-bg:#E8F5E9; --correct-bd:#A5D6A7; --wrong:#C62828; --wrong-bg:#FFEBEE; --wrong-bd:#EF9A9A;
+    --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14); --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09); }
+  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lg:linear-gradient(135deg,#F9A825,#FF8F00); --tint:#FAF7EE; }
+  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lg:linear-gradient(135deg,#1565C0,#2196F3 60%,#64B5F6); --tint:#F1F7FE; }
+  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lg:linear-gradient(135deg,#43C062,#1F7A33); --tint:#F0F8F2; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--tint);color:var(--text);font-family:var(--fb);}
+  .mat{max-width:680px;margin:0 auto;min-height:100vh;position:relative;}
+  .mhead{background:var(--lg);padding:16px 16px 13px;display:flex;align-items:center;gap:10px;color:#fff;position:sticky;top:0;z-index:20;}
+  .mback{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .mbadge{width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);} .mbadge img{width:24px;height:24px;object-fit:contain;}
+  .mh-info{flex:1;min-width:0;} .mh-info b{font-family:var(--fd);font-weight:600;font-size:15px;display:block;} .mh-info span{font-size:10.5px;opacity:.9;font-weight:700;}
+  .langsw{display:flex;background:rgba(255,255,255,.2);border-radius:9px;padding:2px;gap:2px;} .langsw button{border:none;background:transparent;color:#fff;font-weight:800;font-size:10.5px;padding:4px 9px;border-radius:6px;cursor:pointer;opacity:.7;} .langsw button.on{background:#fff;color:var(--ld);opacity:1;}
+  .pbar{height:5px;background:rgba(0,0,0,.06);} .pfill{height:100%;background:var(--lp);width:0;transition:width .5s;}
+  .mbody{padding:14px 15px 26px;}
+  .unlocknote{background:#fff;border:1px solid var(--lm);border-left:4px solid var(--correct);border-radius:12px;padding:10px 12px;margin-bottom:13px;display:flex;gap:8px;} .unlocknote .em{font-size:18px;} .unlocknote b{font-family:var(--fd);font-weight:600;font-size:12.5px;color:var(--correct);display:block;} .unlocknote p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);line-height:1.4;}
+  .steptabs{display:flex;gap:5px;margin-bottom:13px;flex-wrap:wrap;}
+  .stab{font-size:11px;font-weight:800;padding:7px 9px;border-radius:9px;background:#fff;border:1.5px solid var(--border);color:var(--text-soft);cursor:pointer;display:flex;align-items:center;gap:4px;}
+  .stab.on{background:var(--lg);color:#fff;border-color:transparent;} .stab.done{border-color:var(--correct-bd);color:var(--correct);}
+  .gcard{background:#fff;border-radius:16px;box-shadow:var(--shadow-sm);padding:15px;margin-bottom:12px;border-top:3px solid var(--lp);}
+  .sec-label{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--ld);display:flex;align-items:center;gap:7px;margin:11px 0 4px;} .sec-label:first-child{margin-top:0;} .sec-label::before{content:'';width:18px;height:3px;background:var(--lp);border-radius:2px;}
+  .gdesc{font-size:13px;color:var(--text-soft);margin:0 0 6px;line-height:1.6;} .gdesc b{color:var(--text);}
+  .tag{display:inline-block;border-radius:5px;padding:1px 7px;font-weight:800;border-bottom:2px solid;} .tag.s{background:var(--subj-bg);color:var(--subj);border-color:var(--subj);} .tag.o{background:var(--obj-bg);color:var(--obj);border-color:var(--obj);} .tag.p{background:var(--poss-bg);color:var(--poss);border-color:var(--poss);}
+  .info-illus{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:9px 11px;margin:7px 0;} .info-illus .emo{font-size:26px;line-height:1;flex-shrink:0;} .info-illus .txt{font-size:12.5px;line-height:1.5;} .info-illus .txt b{color:var(--ld);}
+  .eg-card{position:relative;display:flex;align-items:center;gap:10px;background:var(--subj-bg);border:2px solid #90CAF9;border-radius:13px;padding:15px 11px 11px;margin:6px 0 14px;} .eg-card .emo{font-size:26px;flex-shrink:0;} .eg-card .en{font-weight:800;color:#0D47A1;font-size:14.5px;line-height:1.4;} .eg-card .es{font-family:var(--fs);font-style:italic;color:#1565C0;font-size:12px;margin-top:2px;} .eg-card::before{content:attr(data-lab);position:absolute;top:-10px;left:13px;background:#1565C0;color:#fff;font-family:var(--fd);font-weight:600;font-size:9px;letter-spacing:.05em;padding:2px 9px;border-radius:20px;}
+  .eg-card.ok{background:var(--correct-bg);border-color:#81C784;} .eg-card.ok .en{color:#1B5E20;} .eg-card.ok::before{background:#2E7D32;}
+  .eg-card.bad{background:var(--wrong-bg);border-color:#EF9A9A;} .eg-card.bad .en{color:#B71C1C;text-decoration:line-through;text-decoration-color:rgba(183,28,28,.4);} .eg-card.bad::before{background:#C62828;}
+  .audio-row{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;} .audio-btn{display:inline-flex;align-items:center;gap:4px;font-family:var(--fb);font-size:10.5px;font-weight:800;border:1.5px solid #90CAF9;background:#fff;color:#0D47A1;padding:3px 11px;border-radius:8px;cursor:pointer;} .eg-card.ok .audio-btn{border-color:#81C784;color:#1B5E20;}
+  .art-hero{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:9px 0;} .art-hero.three{grid-template-columns:1fr 1fr 1fr;} .art-box{background:#fff;border:2px solid var(--lm);border-radius:14px;padding:11px 8px;text-align:center;} .art-box .word{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--ld);line-height:1;background:var(--ll);border-radius:10px;padding:7px 0;margin-bottom:6px;} .art-box.eng .word{background:var(--subj-bg);color:#0D47A1;} .art-box .role{font-family:var(--fd);font-size:10px;color:var(--lp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;} .art-box.eng .role{color:#1976D2;} .art-box .desc{font-size:10.5px;color:var(--text-soft);line-height:1.45;}
+  .viz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:9px 0;} .viz-item{padding:8px 4px;border-radius:10px;text-align:center;background:#fff;border:1.5px solid var(--lm);font-size:11px;} .viz-item .ico{font-size:22px;display:block;margin-bottom:2px;} .viz-item .lbl{font-family:var(--fd);color:var(--ld);font-size:13px;font-weight:600;display:block;} .viz-item .es{font-style:italic;color:var(--text-soft);font-size:10px;display:block;}
+  .vs-grid{margin:9px 0;} .vs-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:6px;margin:6px 0;} .vs-side{border-radius:11px;padding:9px 10px;font-size:11.5px;line-height:1.4;} .vs-side .flag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px;opacity:.85;} .vs-side.es{background:var(--ll);border:1.5px solid var(--lm);} .vs-side.es .flag{color:var(--ld);} .vs-side.en{background:var(--subj-bg);border:1.5px solid #90CAF9;} .vs-side.en .flag{color:#1565C0;} .vs-mid{display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--lp);}
+  .alert-card{background:var(--wrong-bg);border:2px solid #EF5350;border-radius:11px;padding:10px 12px;margin:9px 0;} .alert-card .atitle{font-family:var(--fd);font-weight:600;color:var(--wrong);font-size:12px;margin-bottom:3px;} .alert-card p{font-size:11.5px;color:#555;line-height:1.7;}
+  .gnote{background:var(--ll);border:1px solid var(--lm);border-left:3px solid var(--lp);border-radius:10px;padding:9px 11px;font-size:12px;color:var(--ld);margin:9px 0;line-height:1.55;} .gnote.life{background:#FFFDE7;border-color:#FBC02D;color:#6D4C00;} .gnote b{color:var(--ld);}
+  .cboxes{display:flex;flex-direction:column;gap:7px;margin:9px 0;} .cbox{border:1.5px solid;border-radius:11px;padding:9px 12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;} .cbox .cl{font-family:var(--fd);font-weight:600;font-size:11.5px;flex-shrink:0;border-radius:7px;padding:3px 10px;color:#fff;} .cbox .cv{font-weight:800;font-size:13px;} .cbox.s{border-color:#90CAF9;background:var(--subj-bg);} .cbox.s .cl{background:var(--subj);} .cbox.s .cv{color:var(--subj);} .cbox.o{border-color:#BCAAA4;background:var(--obj-bg);} .cbox.o .cl{background:var(--obj);} .cbox.o .cv{color:var(--obj);} .cbox.p{border-color:#CE93D8;background:var(--poss-bg);} .cbox.p .cl{background:var(--poss);} .cbox.p .cv{color:var(--poss);}
+  .builder{background:var(--tint);border:1.5px dashed var(--lm);border-radius:14px;padding:13px;margin:10px 0;}
+  .bh{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--ld);margin-bottom:3px;display:flex;align-items:center;gap:6px;} .bsub{font-size:11px;color:var(--text-soft);font-weight:700;margin-bottom:10px;}
+  .tray{min-height:46px;background:#fff;border:2px dashed var(--lm);border-radius:11px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;} .tray:empty::before{content:attr(data-ph);color:#BBB;font-size:12px;font-style:italic;font-weight:700;}
+  .bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;} .tile{font-family:var(--fb);font-weight:800;font-size:14px;padding:8px 13px;border-radius:10px;border:2px solid var(--lm);background:#fff;cursor:pointer;box-shadow:var(--shadow-sm);} .tile.s{color:var(--subj);border-color:#90CAF9;background:var(--subj-bg);} .tile.v{color:var(--verb);border-color:#EF9A9A;background:var(--verb-bg);} .tile.c{color:var(--comp);border-color:#80CBC4;background:var(--comp-bg);} .tile.placed{opacity:.25;pointer-events:none;}
+  .bcheck{width:100%;padding:11px;border:none;border-radius:11px;background:var(--lg);color:#fff;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .bcheck:disabled{opacity:.4;cursor:default;}
+  .bres{margin-top:9px;border-radius:11px;padding:10px 12px;font-size:12.5px;display:none;} .bres.show{display:block;} .bres.ok{background:var(--correct-bg);border:1.5px solid var(--correct-bd);color:var(--correct);} .bres.no{background:var(--wrong-bg);border:1.5px solid var(--wrong-bd);color:var(--wrong);}
+  .bex{display:flex;align-items:center;gap:8px;margin-top:8px;background:#fff;border:1px solid var(--lm);border-radius:10px;padding:8px 10px;} .bex .tr{flex:1;font-family:var(--fs);font-style:italic;color:var(--text-soft);font-size:12px;}
+  .check{background:#FBFBF8;border:1.5px dashed var(--lm);border-radius:14px;padding:13px;margin-bottom:12px;}
+  .check-h{display:flex;align-items:center;gap:7px;font-family:var(--fd);font-weight:600;font-size:13px;color:var(--ld);} .check-sub{font-size:11px;color:var(--text-soft);font-weight:700;margin:1px 0 11px;} .cprog{font-size:10.5px;font-weight:800;color:var(--lp);margin-left:auto;}
+  .citem{background:#fff;border:1px solid var(--border);border-radius:11px;padding:11px;margin-bottom:9px;} .citem:last-child{margin-bottom:0;}
+  .cq{font-size:13px;font-weight:700;line-height:1.45;margin:0 0 7px;} .cq .n{color:var(--lp);}
+  .ctransbtn{margin:0 0 8px;font-size:10.5px;font-weight:800;border:1.5px solid var(--lm);background:var(--ll);color:var(--ld);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;} .ctrans{display:none;margin:0 0 9px;font-family:var(--fs);font-style:italic;color:#5A2A66;font-size:11.5px;background:#F3E5F5;border:1px solid #CE93D8;border-radius:8px;padding:6px 9px;line-height:1.45;} .ctrans.show{display:block;}
+  .copts{display:flex;flex-wrap:wrap;gap:6px;} .copt{padding:8px 12px;border:2px solid #E5E7EB;border-radius:9px;background:#fff;font-family:var(--fb);font-weight:800;font-size:12.5px;cursor:pointer;color:var(--text);} .copt:hover:not(:disabled){border-color:var(--lp);background:var(--tint);} .copt:disabled{cursor:default;}
+  .copt.ok{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);} .copt.no{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .cfb{margin-top:9px;border-radius:11px;overflow:hidden;display:none;} .cfb.show{display:block;}
+  .cfbh{padding:7px 11px;color:#fff;font-weight:800;font-size:12px;display:flex;gap:6px;align-items:center;} .cfb.ok .cfbh{background:linear-gradient(135deg,var(--correct),#1B5E20);} .cfb.no .cfbh{background:linear-gradient(135deg,var(--wrong),#922);}
+  .cfbb{background:#fff;border:1.5px solid;border-top:none;border-radius:0 0 11px 11px;padding:10px;display:flex;flex-direction:column;gap:7px;} .cfb.ok .cfbb{border-color:var(--correct-bd);} .cfb.no .cfbb{border-color:var(--wrong-bd);}
+  .fblk{font-size:11.5px;line-height:1.5;border-radius:8px;padding:7px 9px;} .fblk b{font-size:10px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:4px;margin-bottom:2px;}
+  .fblk.ans{background:var(--correct-bg);border:1px solid var(--correct-bd);color:#1B5E20;} .fblk.ans .a{font-weight:800;}
+  .fblk.why{background:var(--tint);border:1px solid var(--lm);color:#444;} .fblk.contrast{background:var(--wrong-bg);border:1px solid var(--wrong-bd);color:#922;} .fblk.tip{background:#FFFDE7;border:1px solid #FBC02D;color:#6D4C00;} .fblk.ex{background:#fff;border:1px dashed var(--lm);color:var(--ld);font-weight:800;}
+  .stepnav{display:flex;gap:8px;} .snb{padding:11px 14px;border:none;border-radius:11px;font-family:var(--fb);font-weight:800;font-size:13px;cursor:pointer;} .snb.next{background:var(--lg);color:#fff;flex:1;} .snb.prev{background:#F1F0EA;color:var(--text);} .snb:disabled{opacity:.4;cursor:default;}
+  .msbanner{background:var(--correct-bg);border:1.5px solid var(--correct-bd);border-radius:12px;padding:10px 12px;font-size:12px;font-weight:800;color:var(--correct);margin-bottom:11px;line-height:1.4;}
+  .results{display:none;padding:18px 16px 40px;text-align:center;} .results.show{display:block;animation:up .45s ease;}
+  @keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .donebar{background:var(--correct-bg);border:1.5px solid var(--correct-bd);border-radius:13px;padding:10px;font-weight:800;font-size:13px;color:var(--correct);margin-bottom:14px;} .donebar.fail{background:#FFF7E8;border-color:#F0C66B;color:#92510F;}
+  .hero{background:var(--lg);border-radius:20px;padding:20px 18px;color:#fff;box-shadow:var(--shadow-sm);} .hero .em{font-size:42px;line-height:1;} .hero .score{font-family:var(--fd);font-weight:600;font-size:38px;line-height:1;margin-top:4px;} .hero .score small{font-size:16px;opacity:.8;} .hero .phrase{font-size:13px;font-weight:700;margin-top:6px;opacity:.96;}
+  .keypts{background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 15px;text-align:left;margin:13px 0;box-shadow:var(--shadow-sm);} .keypts b{font-size:11px;color:var(--ld);text-transform:uppercase;letter-spacing:.05em;display:flex;gap:6px;align-items:center;margin-bottom:8px;}
+  .keypts li{list-style:none;padding:5px 0 5px 22px;position:relative;font-size:12.5px;color:#444;border-bottom:1px solid var(--ll);line-height:1.45;} .keypts li:last-child{border-bottom:none;} .keypts li::before{content:'✓';position:absolute;left:0;color:var(--lp);font-weight:800;}
+  .surprise{background:linear-gradient(135deg,#FFF3D6,#FFFBF0);border:1.5px dashed var(--lp);border-radius:16px;padding:16px;text-align:center;margin-bottom:13px;}
+  .medal{width:74px;height:74px;border-radius:50%;margin:0 auto 8px;background:var(--lg);display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 4px 14px rgba(0,0,0,.18);border:3px solid #fff;animation:pop .6s ease;}
+  @keyframes pop{0%{transform:scale(0) rotate(-20deg);}60%{transform:scale(1.15);}100%{transform:scale(1);}}
+  .surprise h4{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 2px;} .surprise .bn{font-size:12.5px;font-weight:800;color:var(--lp);margin-bottom:6px;} .surprise p{font-size:11.5px;color:var(--text-soft);font-weight:700;margin:0;line-height:1.4;}
+  .xpwin{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--lm);border-radius:20px;padding:5px 13px;font-weight:800;font-size:13px;color:var(--ld);margin-top:9px;}
+  .rbtns{display:flex;flex-direction:column;gap:9px;} .rbtn{padding:13px;border:none;border-radius:13px;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .rbtn.back{background:var(--lg);color:#fff;} .rbtn.retry{background:#F1F0EA;color:var(--text);}
+  .mfoot{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:#B0A99A;padding:14px;font-weight:700;} .mfoot img{height:18px;opacity:.5;}
+  .helpfab{position:fixed;right:16px;bottom:16px;z-index:40;width:44px;height:44px;border-radius:50%;background:var(--lg);color:#fff;border:none;font-size:22px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);}
+  .helpov{position:fixed;inset:0;z-index:70;background:rgba(20,20,25,.5);display:none;align-items:center;justify-content:center;padding:18px;} .helpov.show{display:flex;}
+  .helpcard{background:#fff;border-radius:18px;max-width:360px;width:100%;max-height:86%;overflow-y:auto;box-shadow:var(--shadow);padding:16px 18px;position:relative;} .helpcard h3{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 8px;} .helpcard .hx{position:absolute;top:10px;right:12px;border:none;background:none;font-size:19px;color:#bbb;cursor:pointer;}
+  .helptip{display:flex;gap:6px;font-size:12px;color:#555;padding:4px 0;line-height:1.45;} .helptip b{color:var(--ld);}
+  .simlist{list-style:none;padding:0;margin:9px 0;display:flex;flex-direction:column;gap:6px;} .simlist li{background:var(--ll);border:1px solid var(--lm);border-radius:9px;padding:7px 10px;font-size:12px;color:var(--ld);line-height:1.5;display:flex;gap:7px;} .simlist li::before{content:'✔';color:var(--correct);font-weight:800;flex-shrink:0;}
+  .dtab{width:100%;border-collapse:collapse;margin:9px 0;font-size:11.5px;} .dtab th{background:var(--lg);color:#fff;font-family:var(--fd);font-weight:600;padding:6px 8px;text-align:left;} .dtab td{border:1px solid var(--lm);padding:6px 8px;vertical-align:top;line-height:1.45;} .dtab td.en{font-weight:800;color:var(--ld);}
+  .fbox{background:#fff;border:2px solid var(--lp);border-radius:13px;padding:11px;margin:10px 0;text-align:center;} .fbox .frm{font-family:var(--fd);font-weight:600;font-size:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;} .fbox .pill{padding:3px 9px;border-radius:8px;font-size:12.5px;color:#fff;} .fbox .pill.s{background:#2E7D32;} .fbox .pill.v{background:#1565C0;} .fbox .pill.o{background:#C62828;} .fbox .pill.p{background:#7B1FA2;} .fbox .plus{color:var(--text-soft);font-weight:800;} .fbox .fex{margin-top:8px;font-size:13px;color:#444;} .fbox .fex .s{color:#2E7D32;font-weight:800;} .fbox .fex .v{color:#1565C0;font-weight:800;} .fbox .fex .o{color:#C62828;font-weight:800;} .fbox .fex .p{color:#7B1FA2;font-weight:800;}
+  .toast{position:fixed;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 20px;border-radius:24px;font-weight:800;font-size:13px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;max-width:90vw;text-align:center;} .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
 </head>
+<!-- ═══ PLANTILLA RESUMEN DE GRAMÁTICA (con nota · repaso) — JUCUM English Center ═══
+     1) Nivel en <div id="screen" data-level="pre-a1|a1|a2"> (A2 arranca en inglés).
+     2) Edita MAT + el bloque CONTENIDO (STEPS / BUILD / SUMMARY / BADGE). Todo es BILINGÜE {es,en}.
+        · El botón ES/EN cambia TODO el material (explicación + indicaciones + auto-chequeos).
+        · REGLA «el español se queda en español»: cuando el texto MENCIONA una palabra española o da un
+          EJEMPLO en español (p. ej. el paso 1 «Repaso en Español»: «Él», «Ella», «Nosotros», «Juan… Él…»),
+          en el lado en:'' repite esas palabras/ejemplos TAL CUAL en español; solo traduce la prosa que los rodea.
+        · 'tr' (botón 🌐 traducción por pregunta): ponlo SOLO en auto-chequeos donde una oración en inglés
+          tenga vocabulario que pueda frenar al alumno Y la traducción NO delate la respuesta. En drills de
+          pronombres la pista ya está en la pregunta y se infiere por el verbo be → NO lleva 'tr' (por eso aquí
+          no hay ninguno). Sí aplica en temas como To be / There is_are con frases más largas. Sintaxis:
+          { q:{...}, opts:{...}, correct:0, fb:{...}, tr:{es:'significado en español',en:'meaning in English'} }
+     3) Deja el conector antes de </body>. catalogo.json → type:"summary".
+     El motor (debajo de "FIN DEL MOTOR") no se toca. ═══ -->
 <body>
-<div class="container">
-<div class="level-header">
-<div class="level-badge">Pre-A1 · Nivel Básico</div>
-<h1>Grammar Summary</h1>
-<div class="module-name">📰 Present Continuous — Negativo y Preguntas</div>
-<p class="subtitle">Negar y preguntar: I'm not... / Are you...? · 5 pasos × 5 ejercicios</p>
-</div>
-<div class="step-tabs" id="stepTabs"></div>
-<div id="cardArea"></div>
-<div class="summary-final" id="summaryFinal">
-<h3>🎓 Resumen del Tema</h3>
-<ul id="summaryList"></ul>
-<div class="total-score" id="totalScore"></div>
-</div>
-</div>
+  <div class="mat screen" id="screen" data-level="pre-a1">
+    <div class="mhead"><button class="mback" onclick="volver()">‹</button>
+      <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+      <div class="mh-info"><b id="mhtitle"></b><span id="mhsub"></span></div>
+      <div class="langsw"><button id="lsEs" onclick="setInfo('es')">ES</button><button id="lsEn" onclick="setInfo('en')">EN</button></div></div>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="mbody" id="mbody">
+      <div class="unlocknote"><div class="em">📚</div><div><b id="unT"></b><p id="unP"></p></div></div>
+      <div class="steptabs" id="steptabs"></div>
+      <div id="stepArea"></div>
+      <div class="msbanner" id="msbanner" style="display:none"></div>
+      <div class="stepnav"><button class="snb prev" id="navPrev" onclick="navStep(-1)"></button><button class="snb next" id="navNext" onclick="navStep(1)"></button></div>
+    </div>
+    <div class="results" id="results">
+      <div class="donebar" id="doneBar"></div>
+      <div class="hero"><div class="em">📚</div><div class="score"><span id="fscore">0</span><small>%</small></div><div class="phrase" id="fphrase"></div></div>
+      <div class="keypts" id="keypts"><b id="kpT"></b><ul id="kpList"></ul></div>
+      <div class="surprise" id="surprise"><div class="medal" id="medalEm">🏅</div><h4 id="surT"></h4><div class="bn" id="surBadge"></div><p id="surP"></p><div class="xpwin" id="xpWin"></div></div>
+      <div class="rbtns"><button class="rbtn back" id="lBack" onclick="volver()"></button><button class="rbtn retry" id="lRetry" onclick="restart()"></button></div>
+    </div>
+    <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido © JUCUM English Center</div>
+  </div>
+  <button class="helpfab" onclick="openHelp()" title="?">?</button>
+  <div class="helpov" id="helpov"><div class="helpcard"><button class="hx" onclick="closeHelp()">✕</button><h3>🧭 <span id="helpT"></span></h3><div id="helpTips"></div></div></div>
+  <div class="toast" id="toast"></div>
 <script>
-const ICON_PARTY="🎉";
-const ICON_CHECK="✅";
-const ICON_X="❌";
-const ICON_BULB="💡";
-const ICON_NOTE="📝";
-const ICON_THINK="😕";
-const DASH="—";
-const TEXT_CORRECT="¡Correcto!";
-const TEXT_INCORRECT="No es correcto";
-const TEXT_OTHER_OPT="La otra opción";
-const TEXT_CORRECT_IS="La respuesta correcta es";
-const TEXT_REMEMBER="Recuerda";
-const TEXT_SCORE="Puntuación";
-const TEXT_TOTAL="Total del tema";
-const EX_HEADER="✏️ Ejercicios —";
+/* ═══ METADATOS ═══ */
+const MAT = { title:{es:'Resumen de Gramática',en:'Grammar Summary'}, subtitle:{es:'Present Continuous — Negativo y Preguntas',en:'Present Continuous — Negative & Questions'}, reportId:'sum-pc-neg-q' };
+const PASS = 75;
+const STEPS = [
+  { icon:'🇪🇸', title:{es:'Repaso en Español',en:'Spanish Recap'},
+    html:{
+      es:`<div class="gdesc">Ya sabes decir lo que pasa <b>ahora</b>: «estoy comiendo». Para <b>negar</b> pones «no» y para <b>preguntar</b> subes el tono.</div>
+        <div class="art-hero three"><div class="art-box"><div class="word">está comiendo</div><div class="role">Afirma</div><div class="desc">«Ella está comiendo.»</div></div><div class="art-box"><div class="word">no está comiendo</div><div class="role">Niega</div><div class="desc">«No está comiendo.»</div></div><div class="art-box"><div class="word">¿está comiendo?</div><div class="role">Pregunta</div><div class="desc">«¿Está comiendo?»</div></div></div>
+        ${ii('🚫','Negar: pones «no» antes: «No está durmiendo».')}
+        ${ii('❓','Preguntar: el verbo «estar» va al frente o subes la voz: «¿Estás trabajando?».')}
+        <div class="gnote life">🌎 <b>De tu vida:</b> «No estoy mirando el teléfono» o «¿Qué estás haciendo?». En inglés se usa el verbo «be» (am/is/are) para negar y preguntar.</div>`,
+      en:`<div class="gdesc">You already know how to say what\'s happening <b>now</b>: «estoy comiendo». To <b>negate</b> you add «no», and to <b>ask</b> you raise your tone.</div>
+        <div class="art-hero three"><div class="art-box"><div class="word">está comiendo</div><div class="role">Affirm</div><div class="desc">«Ella está comiendo.»</div></div><div class="art-box"><div class="word">no está comiendo</div><div class="role">Negate</div><div class="desc">«No está comiendo.»</div></div><div class="art-box"><div class="word">¿está comiendo?</div><div class="role">Ask</div><div class="desc">«¿Está comiendo?»</div></div></div>
+        ${ii('🚫','Negate: put «no» before: «No está durmiendo».')}
+        ${ii('❓','Ask: the verb «estar» goes to the front or you raise your voice: «¿Estás trabajando?».')}
+        <div class="gnote life">🌎 <b>From your life:</b> «No estoy mirando el teléfono» or «¿Qué estás haciendo?». In English you use the verb «be» (am/is/are) to negate and ask.</div>`
+    },
+    checks:[
+      { q:{es:'Para negar «está comiendo» pones:',en:'To negate «está comiendo» you put:'}, opts:{es:['«no» antes','«no» al final'],en:['«no» before','«no» at the end']}, correct:0, fb:{ why:{es:'No está comiendo.',en:'No está comiendo.'}, tip:{es:'no + verbo',en:'no + verb'}} },
+      { q:{es:'«¿Está comiendo?» es:',en:'«¿Está comiendo?» is:'}, opts:{es:['Pregunta','Afirmación'],en:['Question','Affirmation']}, correct:0, fb:{ why:{es:'Pregunta lo que pasa ahora.',en:'Asks what\'s happening now.'}, tip:{es:'¿…?',en:'¿…?'}} },
+      { q:{es:'Estas frases hablan de algo:',en:'These sentences talk about something:'}, opts:{es:['Que pasa ahora','Del pasado'],en:['Happening now','In the past']}, correct:0, fb:{ why:{es:'Es el presente en proceso.',en:'It\'s the present in progress.'}, tip:{es:'ahora',en:'now'}} },
+      { q:{es:'«No está durmiendo» — ¿qué hace el «no»?',en:'«No está durmiendo» — what does «no» do?'}, opts:{es:['Niega la acción','La confirma'],en:['Negates the action','Confirms it']}, correct:0, fb:{ why:{es:'Niega.',en:'It negates.'}, tip:{es:'negar',en:'negate'}} },
+      { q:{es:'«¿Qué estás haciendo?» pide:',en:'«¿Qué estás haciendo?» asks for:'}, opts:{es:['Lo que pasa ahora','Lo que pasará'],en:['What\'s happening now','What will happen']}, correct:0, fb:{ why:{es:'Acción actual.',en:'Current action.'}, tip:{es:'ahora',en:'now'}} }
+    ] },
+  { icon:'🤝', title:{es:'Similitudes',en:'Similarities'},
+    html:{
+      es:`<div class="gdesc">El inglés usa el mismo verbo «be» (am/is/are) + verbo-ing. Para negar agrega «not»; para preguntar, «be» va al frente.</div>
+        <div class="vs-grid">
+          <div class="vs-row"><div class="vs-side es"><span class="flag">afirma</span>Está comiendo</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">+</span>She <b>is eating</b></div></div>
+          <div class="vs-row"><div class="vs-side es"><span class="flag">niega</span>No está comiendo</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">−</span>She <b>isn't eating</b></div></div>
+          <div class="vs-row"><div class="vs-side es"><span class="flag">pregunta</span>¿Está comiendo?</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">?</span><b>Is</b> she eating?</div></div>
+        </div>
+        ${eg('They <span class="tag s">aren\'t playing</span>.','No están jugando.','ok')}
+        ${eg('<span class="tag s">Are</span> you working?','¿Estás trabajando?','ok')}
+        <div class="sec-label">Lo igual en los dos idiomas</div>
+        <ul class="simlist"><li>Los dos usan «estar/be + verbo-ing» para el ahora.</li><li>Los dos niegan con una palabra (no → not).</li><li>Los dos preguntan poniendo el verbo «be» al frente o cambiando el tono.</li></ul>
+        <div class="gnote">👍 isn\'t/aren\'t eating (negar) · Is/Are…eating? (preguntar). Lo nuevo: el orden exacto (siguiente paso).</div>`,
+      en:`<div class="gdesc">English uses the same verb «be» (am/is/are) + verb-ing. To negate it adds «not»; to ask, «be» goes to the front.</div>
+        <div class="vs-grid">
+          <div class="vs-row"><div class="vs-side es"><span class="flag">affirm</span>Está comiendo</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">+</span>She <b>is eating</b></div></div>
+          <div class="vs-row"><div class="vs-side es"><span class="flag">negate</span>No está comiendo</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">−</span>She <b>isn't eating</b></div></div>
+          <div class="vs-row"><div class="vs-side es"><span class="flag">ask</span>¿Está comiendo?</div><div class="vs-mid">=</div><div class="vs-side en"><span class="flag">?</span><b>Is</b> she eating?</div></div>
+        </div>
+        ${eg('They <span class="tag s">aren\'t playing</span>.','They aren\'t playing.','ok')}
+        ${eg('<span class="tag s">Are</span> you working?','Are you working?','ok')}
+        <div class="sec-label">What is the same in both languages</div>
+        <ul class="simlist"><li>Both use «estar/be + verb-ing» for the now.</li><li>Both negate with one word (no → not).</li><li>Both ask by putting «be» at the front or changing the tone.</li></ul>
+        <div class="gnote">👍 isn\'t/aren\'t eating (negate) · Is/Are…eating? (ask). The new part: the exact order (next step).</div>`
+    },
+    checks:[
+      { q:{es:'«No está comiendo» en inglés:',en:'«No está comiendo» in English:'}, opts:{es:['She isn\'t eating','She not eating'],en:['She isn\'t eating','She not eating']}, correct:0, fb:{ why:{es:'is + not = isn\'t.',en:'is + not = isn\'t.'}, ex:{es:'She isn\'t eating → No está comiendo',en:'She isn\'t eating'}, tip:{es:'isn\'t + -ing',en:'isn\'t + -ing'}}, tr:{es:'Ella no está comiendo.',en:'She isn\'t eating.'} },
+      { q:{es:'«¿Estás trabajando?» en inglés:',en:'«¿Estás trabajando?» in English:'}, opts:{es:['Are you working?','You are working?'],en:['Are you working?','You are working?']}, correct:0, fb:{ why:{es:'Are va al frente.',en:'Are goes to the front.'}, ex:{es:'Are you working? → ¿Estás trabajando?',en:'Are you working?'}, tip:{es:'Are + sujeto + -ing',en:'Are + subject + -ing'}}, tr:{es:'¿Estás trabajando?',en:'Are you working?'} },
+      { q:{es:'Para negar se agrega:',en:'To negate you add:'}, opts:{es:['not','do'],en:['not','do']}, correct:0, fb:{ why:{es:'be + not (isn\'t/aren\'t).',en:'be + not (isn\'t/aren\'t).'}, tip:{es:'not',en:'not'}} },
+      { q:{es:'Para preguntar, ¿qué va al frente?',en:'To ask, what goes to the front?'}, opts:{es:['El verbo be (am/is/are)','El verbo-ing'],en:['The verb be (am/is/are)','The verb-ing']}, correct:0, fb:{ why:{es:'Is she eating?',en:'Is she eating?'}, tip:{es:'be al frente',en:'be to the front'}} },
+      { q:{es:'«They aren\'t playing» significa:',en:'«They aren\'t playing» means:'}, opts:{es:['No están jugando','Están jugando'],en:['They aren\'t playing','They are playing']}, correct:0, fb:{ why:{es:'aren\'t = no están.',en:'aren\'t = no están.'}, tip:{es:'aren\'t = no están',en:'aren\'t = no están'}} }
+    ] },
+  { icon:'⚡', title:{es:'Diferencias',en:'Differences'},
+    html:{
+      es:`<div class="gdesc">El orden exacto: para negar va <b>be + not + verbo-ing</b>; para preguntar, <b>be + sujeto + verbo-ing</b>.</div>
+        <table class="dtab"><tr><th>Tipo</th><th>Orden</th><th>Ejemplo</th></tr>
+          <tr><td>afirmativo</td><td class="en">sujeto + be + -ing</td><td>She is eating.</td></tr>
+          <tr><td>negativo</td><td class="en">sujeto + be + not + -ing</td><td>She isn't eating.</td></tr>
+          <tr><td>pregunta</td><td class="en">be + sujeto + -ing?</td><td>Is she eating?</td></tr>
+        </table>
+        <div class="sec-label">⚠️ El verbo «be» es la clave</div>
+        ${ii('🚫','Negar: solo agrega «not» a am/is/are → I\'m not, isn\'t, aren\'t. El verbo-ing no cambia.')}
+        ${ii('❓','Preguntar: mueve am/is/are al frente: «Are they coming?». Respuesta corta: «Yes, they are».')}
+        ${eg('<span class="tag s">Is</span> he <span class="tag s">sleeping</span>?','¿Está durmiendo? (Is al frente)','ok')}
+        ${eg('Does she eating?','Con continuous se usa «be», no «do»: «Is she eating?».','bad')}
+        <div class="gnote">📍 Negar: be + not + -ing · Preguntar: be + sujeto + -ing. ¡Nunca uses «do/does» aquí!</div>`,
+      en:`<div class="gdesc">The exact order: to negate it\'s <b>be + not + verb-ing</b>; to ask, <b>be + subject + verb-ing</b>.</div>
+        <table class="dtab"><tr><th>Type</th><th>Order</th><th>Example</th></tr>
+          <tr><td>affirmative</td><td class="en">subject + be + -ing</td><td>She is eating.</td></tr>
+          <tr><td>negative</td><td class="en">subject + be + not + -ing</td><td>She isn't eating.</td></tr>
+          <tr><td>question</td><td class="en">be + subject + -ing?</td><td>Is she eating?</td></tr>
+        </table>
+        <div class="sec-label">⚠️ The verb «be» is the key</div>
+        ${ii('🚫','Negate: just add «not» to am/is/are → I\'m not, isn\'t, aren\'t. The verb-ing doesn\'t change.')}
+        ${ii('❓','Ask: move am/is/are to the front: «Are they coming?». Short answer: «Yes, they are».')}
+        ${eg('<span class="tag s">Is</span> he <span class="tag s">sleeping</span>?','Is he sleeping? (Is at the front)','ok')}
+        ${eg('Does she eating?','With the continuous you use «be», not «do»: «Is she eating?».','bad')}
+        <div class="gnote">📍 Negate: be + not + -ing · Ask: be + subject + -ing. Never use «do/does» here!</div>`
+    },
+    checks:[
+      { q:{es:'Negativo: «I ___ working now.» (no estoy):',en:'Negative: «I ___ working now.» (I\'m not):'}, opts:{es:['\'m not','don\'t'],en:['\'m not','don\'t']}, correct:0, fb:{ why:{es:'I am not = I\'m not.',en:'I am not = I\'m not.'}, ex:{es:'I\'m not working → No estoy trabajando',en:'I\'m not working'}, tip:{es:'be + not',en:'be + not'}}, tr:{es:'No estoy trabajando ahora.',en:'I\'m not working now.'} },
+      { q:{es:'Pregunta: «___ they coming?»',en:'Question: «___ they coming?»'}, opts:{es:['Are','Do'],en:['Are','Do']}, correct:0, fb:{ why:{es:'be al frente → Are.',en:'be to the front → Are.'}, ex:{es:'Are they coming? → ¿Están viniendo?',en:'Are they coming?'}, tip:{es:'Are + sujeto + -ing',en:'Are + subject + -ing'}}, tr:{es:'¿Están viniendo?',en:'Are they coming?'} },
+      { q:{es:'¿Cuál está bien?',en:'Which one is right?'}, opts:{es:['Is she eating?','Does she eating?'],en:['Is she eating?','Does she eating?']}, correct:0, fb:{ why:{es:'Con continuous se usa «be», no «do».',en:'With the continuous you use «be», not «do».'}, ex:{es:'Is she eating? → ¿Está comiendo?',en:'Is she eating?'}, tip:{es:'be, no do',en:'be, not do'}} },
+      { q:{es:'Negativo: «He ___ listening.» (no está):',en:'Negative: «He ___ listening.» (isn\'t):'}, opts:{es:['isn\'t','doesn\'t'],en:['isn\'t','doesn\'t']}, correct:0, fb:{ why:{es:'he → isn\'t + -ing.',en:'he → isn\'t + -ing.'}, ex:{es:'He isn\'t listening → No está escuchando',en:'He isn\'t listening'}, tip:{es:'isn\'t + -ing',en:'isn\'t + -ing'}}, tr:{es:'Él no está escuchando.',en:'He isn\'t listening.'} },
+      { q:{es:'Respuesta a «Are you studying?» (sí):',en:'Answer to «Are you studying?» (yes):'}, opts:{es:['Yes, I am.','Yes, I do.'],en:['Yes, I am.','Yes, I do.']}, correct:0, fb:{ why:{es:'Con be → Yes, I am.',en:'With be → Yes, I am.'}, ex:{es:'Yes, I am → Sí',en:'Yes, I am'}, tip:{es:'be → am/is/are',en:'be → am/is/are'}} }
+    ] },
+  { icon:'💡', title:{es:'Tips Prácticos',en:'Practical Tips'},
+    html:{
+      es:`<div class="gdesc">Las tres formas, lado a lado:</div>
+        <div class="fbox"><div class="frm"><span class="pill s">+ S + be + -ing</span><span class="plus">·</span><span class="pill v">− S + be + not + -ing</span><span class="plus">·</span><span class="pill o">? be + S + -ing</span></div><div class="fex"><span class="s">She is eating</span> · <span class="v">isn't eating</span> · <span class="o">Is she eating?</span></div></div>
+        ${ii('🚫','<b>Tip 1 — Negar:</b> agrega «not» a be: I\'m not, you/we/they aren\'t, he/she/it isn\'t. El -ing no cambia.')}
+        ${ii('❓','<b>Tip 2 — Preguntar:</b> mueve be al frente: «Are you…?». Con WH: «What are you doing?».')}
+        ${ii('⚠️','<b>Tip 3 — Nunca «do/does»:</b> el continuous solo usa «be». «Is he working?», no «Does he working?».')}
+        <div class="alert-card"><div class="atitle">⚠️ Error típico</div><p>❌ «Does she eating?» → ✅ «<b>Is</b> she eating?»<br>❌ «He not working» → ✅ «He <b>isn\'t</b> working».</p></div>
+        ${ii('⚡','not va después de to be: «She is not sleeping»; en pregunta, invierte: «Is she sleeping?».')}`,
+      en:`<div class="gdesc">The three forms, side by side:</div>
+        <div class="fbox"><div class="frm"><span class="pill s">+ S + be + -ing</span><span class="plus">·</span><span class="pill v">− S + be + not + -ing</span><span class="plus">·</span><span class="pill o">? be + S + -ing</span></div><div class="fex"><span class="s">She is eating</span> · <span class="v">isn't eating</span> · <span class="o">Is she eating?</span></div></div>
+        ${ii('🚫','<b>Tip 1 — Negate:</b> add «not» to be: I\'m not, you/we/they aren\'t, he/she/it isn\'t. The -ing doesn\'t change.')}
+        ${ii('❓','<b>Tip 2 — Ask:</b> move be to the front: «Are you…?». With WH: «What are you doing?».')}
+        ${ii('⚠️','<b>Tip 3 — Never «do/does»:</b> the continuous only uses «be». «Is he working?», not «Does he working?».')}
+        <div class="alert-card"><div class="atitle">⚠️ Common mistake</div><p>❌ «Does she eating?» → ✅ «<b>Is</b> she eating?»<br>❌ «He not working» → ✅ «He <b>isn\'t</b> working».</p></div>
+        ${ii('⚡','not goes after to be: «She is not sleeping»; in questions, invert: «Is she sleeping?».')}`
+    },
+    checks:[
+      { q:{es:'«We ___ watching TV.» (no estamos):',en:'«We ___ watching TV.» (aren\'t):'}, opts:{es:['aren\'t','don\'t'],en:['aren\'t','don\'t']}, correct:0, fb:{ why:{es:'we → aren\'t + -ing.',en:'we → aren\'t + -ing.'}, ex:{es:'We aren\'t watching → No estamos viendo',en:'We aren\'t watching'}, tip:{es:'aren\'t + -ing',en:'aren\'t + -ing'}}, tr:{es:'No estamos viendo tele.',en:'We aren\'t watching TV.'} },
+      { q:{es:'«What ___ you doing?» (qué estás haciendo):',en:'«What ___ you doing?» (what are you doing):'}, opts:{es:['are','do'],en:['are','do']}, correct:0, fb:{ why:{es:'WH + be + sujeto + -ing.',en:'WH + be + subject + -ing.'}, ex:{es:'What are you doing? → ¿Qué estás haciendo?',en:'What are you doing?'}, tip:{es:'be, no do',en:'be, not do'}}, tr:{es:'¿Qué estás haciendo?',en:'What are you doing?'} },
+      { q:{es:'¿Cuál está bien?',en:'Which one is right?'}, opts:{es:['Are they sleeping?','Do they sleeping?'],en:['Are they sleeping?','Do they sleeping?']}, correct:0, fb:{ why:{es:'Continuous → be.',en:'Continuous → be.'}, ex:{es:'Are they sleeping? → ¿Están durmiendo?',en:'Are they sleeping?'}, tip:{es:'be, no do',en:'be, not do'}} },
+      { q:{es:'«She ___ studying right now.» (no está):',en:'«She ___ studying right now.» (isn\'t):'}, opts:{es:['isn\'t','doesn\'t'],en:['isn\'t','doesn\'t']}, correct:0, fb:{ why:{es:'she → isn\'t + -ing.',en:'she → isn\'t + -ing.'}, ex:{es:'She isn\'t studying → No está estudiando',en:'She isn\'t studying'}, tip:{es:'isn\'t + -ing',en:'isn\'t + -ing'}}, tr:{es:'Ella no está estudiando ahora.',en:'She isn\'t studying right now.'} },
+      { q:{es:'Respuesta a «Is it raining?» (no):',en:'Answer to «Is it raining?» (no):'}, opts:{es:['No, it isn\'t.','No, it doesn\'t.'],en:['No, it isn\'t.','No, it doesn\'t.']}, correct:0, fb:{ why:{es:'Con be → it isn\'t.',en:'With be → it isn\'t.'}, ex:{es:'No, it isn\'t → No',en:'No, it isn\'t'}, tip:{es:'be → isn\'t',en:'be → isn\'t'}} }
+    ] },
+  { icon:'✨', title:{es:'Práctica Final',en:'Final Practice'}, builder:true,
+    html:{
+      es:`<div class="gdesc">Junta todo: negar con be + not + -ing; preguntar con be + sujeto + -ing. Arma la oración.</div>
+        <div class="cboxes"><div class="cbox s"><span class="cl">Negativo</span><span class="cv">'m not · isn't · aren't + -ing</span></div><div class="cbox o"><span class="cl">Pregunta</span><span class="cv">Am/Is/Are + sujeto + -ing?</span></div><div class="cbox p"><span class="cl">Regla</span><span class="cv">solo «be», nunca «do/does»</span></div></div>
+        <div class="sec-label">Las reglas en una oración</div>
+        ${eg('She <span class="tag s">isn\'t</span> sleeping.','Ella no está durmiendo.','ok')}
+        ${eg('<span class="tag s">Are</span> you listening?','¿Estás escuchando?','ok')}
+        ${eg('What <b style="color:#7B1FA2">is</b> he doing?','¿Qué está haciendo él?','ok')}
+        <div class="alert-card"><div class="atitle">⚠️ Los 3 errores más comunes</div><p>❌ «Does she eating?» → ✅ «<b>Is</b> she eating?»<br>❌ «He not working» → ✅ «He <b>isn\'t</b> working»<br>❌ «Do you studying?» → ✅ «<b>Are</b> you studying?»</p></div>`,
+      en:`<div class="gdesc">Put it together: negate with be + not + -ing; ask with be + subject + -ing. Build the sentence.</div>
+        <div class="cboxes"><div class="cbox s"><span class="cl">Negative</span><span class="cv">'m not · isn't · aren't + -ing</span></div><div class="cbox o"><span class="cl">Question</span><span class="cv">Am/Is/Are + subject + -ing?</span></div><div class="cbox p"><span class="cl">Rule</span><span class="cv">only «be», never «do/does»</span></div></div>
+        <div class="sec-label">The rules in one sentence</div>
+        ${eg('She <span class="tag s">isn\'t</span> sleeping.','She isn\'t sleeping.','ok')}
+        ${eg('<span class="tag s">Are</span> you listening?','Are you listening?','ok')}
+        ${eg('What <b style="color:#7B1FA2">is</b> he doing?','What is he doing?','ok')}
+        <div class="alert-card"><div class="atitle">⚠️ The 3 most common mistakes</div><p>❌ «Does she eating?» → ✅ «<b>Is</b> she eating?»<br>❌ «He not working» → ✅ «He <b>isn\'t</b> working»<br>❌ «Do you studying?» → ✅ «<b>Are</b> you studying?»</p></div>`
+    },
+    checks:[
+      { q:{es:'«The baby ___ crying.» (no está):',en:'«The baby ___ crying.» (isn\'t):'}, opts:{es:['isn\'t','doesn\'t'],en:['isn\'t','doesn\'t']}, correct:0, fb:{ why:{es:'it → isn\'t + -ing.',en:'it → isn\'t + -ing.'}, ex:{es:'The baby isn\'t crying → El bebé no está llorando',en:'The baby isn\'t crying'}, tip:{es:'isn\'t + -ing',en:'isn\'t + -ing'}}, tr:{es:'El bebé no está llorando.',en:'The baby isn\'t crying.'} },
+      { q:{es:'«___ they having lunch?»',en:'«___ they having lunch?»'}, opts:{es:['Are','Do'],en:['Are','Do']}, correct:0, fb:{ why:{es:'be al frente → Are.',en:'be to the front → Are.'}, ex:{es:'Are they having lunch? → ¿Están almorzando?',en:'Are they having lunch?'}, tip:{es:'Are + sujeto + -ing',en:'Are + subject + -ing'}}, tr:{es:'¿Están almorzando?',en:'Are they having lunch?'} },
+      { q:{es:'«I ___ joking.» (no estoy bromeando):',en:'«I ___ joking.» (I\'m not joking):'}, opts:{es:['\'m not','don\'t'],en:['\'m not','don\'t']}, correct:0, fb:{ why:{es:'I am not = I\'m not.',en:'I am not = I\'m not.'}, ex:{es:'I\'m not joking → No estoy bromeando',en:'I\'m not joking'}, tip:{es:'\'m not + -ing',en:'\'m not + -ing'}}, tr:{es:'No estoy bromeando.',en:'I\'m not joking.'} },
+      { q:{es:'«Where ___ she going?» (a dónde va):',en:'«Where ___ she going?» (where is she going):'}, opts:{es:['is','does'],en:['is','does']}, correct:0, fb:{ why:{es:'WH + be + sujeto + -ing.',en:'WH + be + subject + -ing.'}, ex:{es:'Where is she going? → ¿A dónde va?',en:'Where is she going?'}, tip:{es:'be, no does',en:'be, not does'}}, tr:{es:'¿A dónde está yendo ella?',en:'Where is she going?'} },
+      { q:{es:'¿Cuál está bien?',en:'Which one is right?'}, opts:{es:['We aren\'t studying','We don\'t studying'],en:['We aren\'t studying','We don\'t studying']}, correct:0, fb:{ why:{es:'Continuous negativo → be + not.',en:'Negative continuous → be + not.'}, ex:{es:'We aren\'t studying → No estamos estudiando',en:'We aren\'t studying'}, tip:{es:'aren\'t + -ing',en:'aren\'t + -ing'}} }
+    ] }
+];
+const BUILD = { answer:[{w:'Is she',c:'s'},{w:'eating',c:'v'},{w:'now',c:'c'}], say:'Is she eating now', tr:{es:'¿Está comiendo ahora?',en:'Is she eating now?'} };
+const SUMMARY = {
+  es:['Negativo: <b>sujeto + be + not + verbo-ing</b> (She isn\'t eating)','Pregunta: <b>be + sujeto + verbo-ing</b> (Is she eating?)','Negaciones: I\'m not · he/she/it isn\'t · you/we/they aren\'t','Respuestas cortas: «Yes, I am» / «No, she isn\'t»','NUNCA uses «do/does» con el continuous: solo «be»'],
+  en:['Negative: <b>subject + be + not + verb-ing</b> (She isn\'t eating)','Question: <b>be + subject + verb-ing</b> (Is she eating?)','Negatives: I\'m not · he/she/it isn\'t · you/we/they aren\'t','Short answers: «Yes, I am» / «No, she isn\'t»','NEVER use «do/does» with the continuous: only «be»']
+};
+const BADGE = { emoji:'🎬', name:{es:'Maestro del Ahora (neg/preg)',en:'Now Master (neg/q)'}, xp:20 };
 
-const DATA={"summary": ["<b>Negativo:</b> sujeto + be + <b>not</b> + verbo-ing → He is not reading", "<b>Pregunta:</b> <b>be</b> + sujeto + verbo-ing + ? → Are you reading?", "El <b>not</b> va <b>después</b> del be (no antes): is not ✅, \"not is\" ❌", "Contracciones: <b>isn't, aren't, I'm not</b> (no existe \"amn't\")", "El <b>sujeto es obligatorio</b> también en preguntas: Are <b>you</b> reading?", "Respuestas cortas repiten el be: <b>Yes, I am · No, they aren't</b>"], "steps": [{"icon": "🇪🇸", "title": "Repaso en Español", "html": "<div class=\"section-label\">Paso 1</div><div class=\"section-title\">Paso 1: 🇪🇸 Repaso en Español</div><div class=\"illus\"><span class=\"big\">🚫</span><span class=\"big\">❓</span></div><div class=\"section-desc\">Ya sabes el continuo afirmativo (estoy leyendo). Ahora veremos cómo decir que algo <b>NO</b> ocurre y cómo <b>preguntar</b> si ocurre.</div><div class=\"section-label\">Negar y preguntar en español</div><div class=\"art-hero\"><div class=\"art-box\"><div class=\"word\">No</div><div class=\"role\">Negación</div><div class=\"desc\">Ponemos \"no\" antes del verbo estar: \"No estoy leyendo\". Así negamos la acción.</div></div><div class=\"art-box\"><div class=\"word\">¿…?</div><div class=\"role\">Pregunta</div><div class=\"desc\">Subimos el tono o cambiamos el orden: \"¿Estás leyendo?\". Pedimos información.</div></div></div><div class=\"info-illus\"><span class=\"emo\">🚫</span><span class=\"txt\"><b>Negativo.</b> En español el \"no\" va justo antes del verbo: \"No estoy jugando\".</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🎮</span><div class=\"eg-body\"><div class=\"en\">Yo <b>no</b> estoy jugando.</div><div class=\"es\">El \"no\" niega la acción de ahora.</div></div></div><div class=\"info-illus\"><span class=\"emo\">❓</span><span class=\"txt\"><b>Pregunta.</b> En español muchas veces solo cambia la entonación: \"¿Estás leyendo?\".</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📖</span><div class=\"eg-body\"><div class=\"en\">¿<b>Estás</b> leyendo?</div><div class=\"es\">Pregunta de sí/no: pedimos confirmación.</div></div></div><div class=\"why-box\"><span class=\"wt\">💡 ¿Por qué importa?</span>En inglés también se niega y se pregunta con el verbo \"be\", pero las reglas de posición son un poco distintas. Verlas en español primero hace todo más fácil.</div>", "exercises": [{"q": "Para negar en español, el \"no\" se coloca:", "a": "b", "o": ["al final de la frase", "antes del verbo estar"], "fc": "El \"no\" va justo antes: \"No estoy leyendo\".", "fi": "Ponerlo al final no es natural en español.", "ex": "No estoy jugando → niega la acción", "tip": "no + estar + acción"}, {"q": "\"¿Estás leyendo?\" es una pregunta de tipo:", "a": "a", "o": ["sí / no", "abierta (pide explicación)"], "fc": "Se responde con sí o no: es pregunta cerrada.", "fi": "Una abierta sería \"¿Qué estás leyendo?\".", "ex": "¿Estás leyendo? → sí / no", "tip": "Sí/No = respuesta corta"}, {"q": "\"Yo no estoy pintando\" expresa que la acción:", "a": "b", "o": ["sí ocurre ahora", "no ocurre ahora"], "fc": "El \"no\" niega: la acción NO está pasando.", "fi": "Si ocurriera, no llevaría \"no\".", "ex": "No estoy pintando → la acción se niega", "tip": "no = la acción se cancela"}, {"q": "En la pregunta \"¿Está él escribiendo?\", ¿qué pedimos?", "a": "a", "o": ["información / confirmación", "dar una orden"], "fc": "Preguntar es pedir información o confirmar algo.", "fi": "Una orden no lleva signos de pregunta.", "ex": "¿Está escribiendo? → pedimos confirmar", "tip": "Pregunta = pedir información"}, {"q": "¿Cuál frase es negativa?", "a": "b", "o": ["Ella está leyendo un libro", "Ella no está leyendo un libro"], "fc": "Lleva \"no\" antes del verbo: es negativa.", "fi": "Sin \"no\", la frase es afirmativa.", "ex": "Ella no está leyendo → negativa", "tip": "Busca el \"no\" para reconocer la negación"}]}, {"icon": "🤝", "title": "Similitudes", "html": "<div class=\"section-label\">Paso 2</div><div class=\"section-title\">Paso 2: 🤝 Similitudes ESP ↔ ENG</div><div class=\"illus\"><span class=\"big\">🇪🇸</span><span class=\"big\">🤝</span><span class=\"big\">🇬🇧</span></div><div class=\"section-desc\">Los dos idiomas niegan y preguntan usando el mismo verbo de apoyo (estar / be). La acción sigue terminando en -ando/-iendo o en -ing.</div><table class=\"g-table\"><tr><th>Idea</th><th>🇪🇸 Español</th><th>🇬🇧 English</th></tr><tr><td>Negar la acción</td><td>no estoy leyendo</td><td>I am <span class=\"g-neg\">not</span> reading</td></tr><tr><td>Preguntar sí/no</td><td>¿estás leyendo?</td><td><span class=\"g-quest\">Are</span> you reading?</td></tr><tr><td>Usa el verbo de apoyo</td><td>estar</td><td><span class=\"g-verb\">be</span> (am/is/are)</td></tr><tr><td>La acción no cambia</td><td>-ando / -iendo</td><td><span class=\"g-verb\">-ing</span></td></tr></table><div class=\"info-illus\"><span class=\"emo\">🚫</span><span class=\"txt\"><b>Negativo:</b> ambos usan una palabra para negar (no / not) junto al verbo de apoyo.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🎮</span><div class=\"eg-body\"><div class=\"en\">I am <span class=\"g-neg\">not</span> playing a game.</div><div class=\"es\">No estoy jugando un juego. (game = juego)</div></div></div><div class=\"info-illus\"><span class=\"emo\">❓</span><span class=\"txt\"><b>Pregunta:</b> los dos cambian para preguntar; el verbo de apoyo lidera.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📖</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-quest\">Are</span> you reading a book?</div><div class=\"es\">¿Estás leyendo un libro? (book = libro)</div></div></div><div class=\"info-illus\"><span class=\"emo\">✍️</span><span class=\"txt\"><b>La acción se mantiene:</b> reading, writing siguen igual en negativo y en pregunta.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">✍️</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-quest\">Is</span> he writing an email?</div><div class=\"es\">¿Está él escribiendo un correo? (email = correo)</div></div></div><div class=\"why-box\"><span class=\"wt\">💡 ¿Por qué importa?</span>El \"not\" del inglés es como el \"no\" del español, y la pregunta mueve el \"be\" al frente, parecido a cuando en español decimos \"¿Estás…?\".</div>", "exercises": [{"q": "El \"no\" del español equivale en inglés a:", "a": "b", "o": ["never", "not"], "fc": "\"not\" es la palabra que niega: I am not reading.", "fi": "\"never\" significa \"nunca\", no es la negación simple.", "ex": "I am not playing → No estoy jugando", "tip": "no ↔ not"}, {"q": "Para preguntar sí/no en inglés, ¿qué palabra va primero?", "a": "a", "o": ["el verbo be (am/is/are)", "la acción con -ing"], "fc": "El \"be\" lidera la pregunta: Are you reading?", "fi": "La acción con -ing no va al inicio de la pregunta.", "ex": "Are you reading? → ¿Estás leyendo?", "tip": "Pregunta: be primero"}, {"q": "En negativo y en pregunta, la acción con -ing:", "a": "b", "o": ["cambia de forma", "se mantiene igual"], "fc": "reading/writing no cambian: solo se mueve o se niega el \"be\".", "fi": "La acción no cambia; lo que cambia es el \"be\".", "ex": "Is he writing? / He is not writing → writing igual", "tip": "El -ing no cambia"}, {"q": "\"Are you reading a book?\" es una pregunta de tipo:", "a": "b", "o": ["abierta", "sí / no"], "fc": "Se responde con yes/no: es cerrada.", "fi": "Una abierta empezaría con What, Where, etc.", "ex": "Are you reading? → Yes / No", "tip": "be + sujeto = pregunta sí/no"}, {"q": "Para \"¿Está él escribiendo un correo?\" (email = correo) en inglés:", "a": "a", "o": ["Is he writing an email?", "He is writing an email?"], "fc": "\"Is he writing…?\": el \"be\" va al frente.", "fi": "Dejar \"He is…?\" sin invertir no es la forma correcta de preguntar.", "ex": "Is he writing an email? → ¿Está escribiendo un correo?", "tip": "Invierte: Is + he…?"}]}, {"icon": "⚡", "title": "Diferencias", "html": "<div class=\"section-label\">Paso 3</div><div class=\"section-title\">Paso 3: ⚡ Diferencias Importantes</div><div class=\"illus\"><span class=\"big\">🚫</span><span class=\"big\">↔️</span><span class=\"big\">❓</span></div><div class=\"section-desc\">Diferencia clave: el inglés coloca <b>not después del be</b> para negar, y <b>mueve el be al frente</b> para preguntar. El sujeto nunca se quita. Compara los dos idiomas:</div><div class=\"section-label\">Comparación Español ↔ English</div><div class=\"vs-grid\"><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>El \"no\" va <b>antes</b> del verbo: \"No estoy leyendo\".</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>El \"not\" va <b>después</b> del be: \"I am <b>not</b> reading\".</div></div><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>Para preguntar basta el <b>tono</b>: \"¿Estás leyendo?\".</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>Hay que <b>mover el be</b> al frente: \"<b>Are</b> you reading?\".</div></div><div class=\"vs-row\"><div class=\"vs-side es\"><span class=\"flag\">🇪🇸 Español</span>El sujeto puede <b>desaparecer</b>: \"¿Estás leyendo?\".</div><div class=\"vs-mid\">↔️</div><div class=\"vs-side en\"><span class=\"flag\">🇬🇧 English</span>El sujeto es <b>obligatorio</b>: \"Are <b>you</b> reading?\".</div></div></div><div class=\"section-label\">Las tres estructuras del inglés</div><div class=\"art-hero three\"><div class=\"art-box eng\"><div class=\"word\">+</div><div class=\"role\">Afirmativo</div><div class=\"desc\">Sujeto + be + verbo-ing. \"She is painting.\"</div></div><div class=\"art-box eng\"><div class=\"word\">−</div><div class=\"role\">Negativo</div><div class=\"desc\">Sujeto + be + not + verbo-ing. \"She is not painting.\"</div></div><div class=\"art-box eng\"><div class=\"word\">?</div><div class=\"role\">Pregunta</div><div class=\"desc\">Be + sujeto + verbo-ing. \"Is she painting?\"</div></div></div><div class=\"info-illus\"><span class=\"emo\">🚫</span><span class=\"txt\"><b>Negativo:</b> el \"not\" se mete entre el be y la acción. (job = trabajo)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">💼</span><div class=\"eg-body\"><div class=\"en\">He <span class=\"g-verb\">is</span> <span class=\"g-neg\">not</span> look<span class=\"g-verb\">ing</span> for a job.</div><div class=\"es\">Él no está buscando trabajo. (job = trabajo)</div></div></div><div class=\"eg-card bad\"><span class=\"eg-emo\">🚫</span><div class=\"eg-body\"><div class=\"en\">He not is looking for a job.</div><div class=\"es\">Incorrecto: el \"not\" va DESPUÉS del be, no antes.</div></div></div><div class=\"alert-card\"><div class=\"atitle\">⭐ Caso especial: contracciones negativas</div><p>🔸 is not → <b>isn't</b> · are not → <b>aren't</b><br>🔸 \"I am not\" se contrae como <b>I'm not</b> (no existe \"amn't\").</p></div><div class=\"info-illus\"><span class=\"emo\">❓</span><span class=\"txt\"><b>Pregunta:</b> el be salta al inicio y el sujeto va después. (question = pregunta)</span></div><div class=\"eg-card ok\"><span class=\"eg-emo\">❓</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-quest\">Are</span> <span class=\"g-subj\">you</span> ask<span class=\"g-verb\">ing</span> a question?</div><div class=\"es\">¿Estás haciendo una pregunta? (question = pregunta)</div></div></div>", "exercises": [{"q": "En inglés, ¿dónde va el \"not\" para negar?", "a": "b", "o": ["antes del be", "después del be"], "fc": "El \"not\" va después del be: \"is not reading\".", "fi": "Ponerlo antes del be (\"not is\") es incorrecto.", "ex": "He is not looking for a job → No está buscando trabajo", "tip": "be + not + acción"}, {"q": "Para preguntar en inglés, el verbo \"be\":", "a": "a", "o": ["se mueve al frente", "se queda en su lugar"], "fc": "El be salta al inicio: \"Are you reading?\".", "fi": "Si se queda en su lugar, no es una pregunta correcta.", "ex": "Are you reading? → ¿Estás leyendo?", "tip": "Pregunta: be al frente"}, {"q": "La contracción de \"is not\" es:", "a": "a", "o": ["isn't", "isnt"], "fc": "\"isn't\" lleva apóstrofo: She isn't painting.", "fi": "\"isnt\" sin apóstrofo está mal escrito.", "ex": "She isn't painting → Ella no está pintando", "tip": "is not → isn't"}, {"q": "\"I am not\" se contrae correctamente como:", "a": "b", "o": ["I amn't", "I'm not"], "fc": "\"I'm not\" es la forma correcta; no existe \"amn't\".", "fi": "\"amn't\" no existe en inglés.", "ex": "I'm not playing → No estoy jugando", "tip": "I am not → I'm not"}, {"q": "¿Cuál pregunta está bien formada? (question = pregunta)", "a": "a", "o": ["Are you asking a question?", "You are asking a question?"], "fc": "\"Are you asking…?\": el be va al frente.", "fi": "\"You are…?\" no invierte el be; no es la forma correcta.", "ex": "Are you asking a question? → ¿Estás preguntando?", "tip": "Invierte be + sujeto"}]}, {"icon": "💡", "title": "Tips", "html": "<div class=\"section-label\">Paso 4</div><div class=\"section-title\">Paso 4: 💡 Tips Prácticos</div><div class=\"illus\"><span class=\"big sm\">💡</span><span class=\"big sm\">🧠</span></div><div class=\"section-desc\">Trucos para negar y preguntar sin errores. Cada tip va con su ejemplo.</div><div class=\"info-illus\"><span class=\"emo\">➕</span><span class=\"txt\"><b>Tip 1:</b> Para negar, mete \"not\" justo después del be. El resto queda igual.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📖</span><div class=\"eg-body\"><div class=\"en\">I am <span class=\"g-neg\">not</span> read<span class=\"g-verb\">ing</span> a book.</div><div class=\"es\">No estoy leyendo un libro. (book = libro)</div></div></div><div class=\"info-illus\"><span class=\"emo\">🔄</span><span class=\"txt\"><b>Tip 2:</b> Para preguntar, mueve el be al inicio y deja la acción igual.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🎨</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-quest\">Is</span> she paint<span class=\"g-verb\">ing</span> the house?</div><div class=\"es\">¿Está ella pintando la casa? (house = casa)</div></div></div><div class=\"info-illus\"><span class=\"emo\">✂️</span><span class=\"txt\"><b>Tip 3:</b> Usa contracciones para sonar natural: isn't, aren't, I'm not.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🎮</span><div class=\"eg-body\"><div class=\"en\">They <span class=\"g-neg\">aren't</span> play<span class=\"g-verb\">ing</span> a game.</div><div class=\"es\">Ellos no están jugando un juego. (game = juego)</div></div></div><div class=\"info-illus\"><span class=\"emo\">🙋</span><span class=\"txt\"><b>Tip 4:</b> Responde corto repitiendo el be: \"Yes, I am.\" / \"No, I'm not.\"</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📧</span><div class=\"eg-body\"><div class=\"en\">Are you writing an email? — <span class=\"g-quest\">Yes, I am.</span></div><div class=\"es\">¿Estás escribiendo un correo? — Sí. (email = correo)</div></div></div><div class=\"note-box\"><span class=\"nt\">⚠️ Error típico del hispanohablante</span>En español el \"no\" va antes (\"No está leyendo\"). En inglés el \"not\" va <b>después</b> del be: \"He is <b>not</b> reading\" ✅, no \"He not is reading\" ❌.</div><div class=\"formula-box\"><span class=\"g-neg\">−</span> Sujeto + <span class=\"g-verb\">be</span> + <span class=\"g-neg\">not</span> + <span class=\"g-comp\">verbo-ing</span><br><span class=\"g-quest\">?</span> <span class=\"g-verb\">be</span> + Sujeto + <span class=\"g-comp\">verbo-ing</span> + ?</div>", "exercises": [{"q": "Completa el negativo: \"I am ___ reading a book.\" (book = libro)", "a": "b", "o": ["no", "not"], "fc": "En inglés se niega con \"not\": I am not reading.", "fi": "\"no\" no se usa para negar el verbo en inglés.", "ex": "I am not reading a book → No estoy leyendo", "tip": "negación = not"}, {"q": "Forma la pregunta: \"___ she painting the house?\" (house = casa)", "a": "a", "o": ["Is", "She is"], "fc": "\"Is she painting…?\": el be va al frente.", "fi": "\"She is…?\" no invierte el be.", "ex": "Is she painting the house? → ¿Está pintando la casa?", "tip": "Pregunta: Is + sujeto"}, {"q": "La contracción de \"are not\" es:", "a": "a", "o": ["aren't", "arent"], "fc": "\"aren't\" lleva apóstrofo.", "fi": "\"arent\" sin apóstrofo está mal.", "ex": "They aren't playing → No están jugando", "tip": "are not → aren't"}, {"q": "Respuesta corta a \"Are you writing an email?\" (afirmativa):", "a": "b", "o": ["Yes, I writing.", "Yes, I am."], "fc": "Se repite el be: \"Yes, I am.\".", "fi": "\"Yes, I writing\" olvida el be.", "ex": "Are you writing? — Yes, I am.", "tip": "Respuesta corta repite el be"}, {"q": "¿Cuál negativo está bien ordenado?", "a": "b", "o": ["He not is reading", "He is not reading"], "fc": "\"is not\": el not va después del be.", "fi": "\"not is\" invierte mal el orden.", "ex": "He is not reading → No está leyendo", "tip": "be + not, en ese orden"}]}, {"icon": "🎯", "title": "Práctica Final", "html": "<div class=\"section-label\">Paso 5</div><div class=\"section-title\">Paso 5: 🎯 Práctica Final — Reto</div><div class=\"illus\"><span class=\"big\">🎯</span><span class=\"big\">🔥</span></div><div class=\"section-desc\">Junta todo: elige el <b>be</b> correcto, coloca el <b>not</b> en su lugar, e <b>invierte</b> para preguntar. ¡Más difíciles!</div><div class=\"formula-box\">Negar: <span class=\"g-verb\">be</span> + <span class=\"g-neg\">not</span> + <span class=\"g-comp\">-ing</span><br>Preguntar: <span class=\"g-verb\">be</span> + sujeto + <span class=\"g-comp\">-ing</span> + ?</div><div class=\"info-illus\"><span class=\"emo\">🧩</span><span class=\"txt\"><b>Negativo + persona:</b> \"the group\" (el grupo) pide \"is\", y el not va después.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">👥</span><div class=\"eg-body\"><div class=\"en\">The group <span class=\"g-verb\">is</span> <span class=\"g-neg\">not</span> study<span class=\"g-verb\">ing</span> education today.</div><div class=\"es\">El grupo no está estudiando educación hoy. (education = educación)</div></div></div><div class=\"info-illus\"><span class=\"emo\">🔄</span><span class=\"txt\"><b>Pregunta + ortografía:</b> invierte el be y cuida el -ing de write.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">📧</span><div class=\"eg-body\"><div class=\"en\"><span class=\"g-quest\">Is</span> <span class=\"g-subj\">he</span> writ<span class=\"g-verb\">ing</span> an email?</div><div class=\"es\">¿Está él escribiendo un correo? (email = correo)</div></div></div><div class=\"info-illus\"><span class=\"emo\">🙋</span><span class=\"txt\"><b>Pregunta + respuesta corta:</b> contesta repitiendo solo el be.</span></div><div class=\"eg-card\"><span class=\"eg-emo\">🔑</span><div class=\"eg-body\"><div class=\"en\">Are they looking for the key? — <span class=\"g-quest\">No, they aren't.</span></div><div class=\"es\">¿Están buscando la llave? — No. (key = llave)</div></div></div><div class=\"alert-card\"><div class=\"atitle\">⚠️ Errores Comunes</div><p>❌ \"She no is painting\" → ✅ \"She is <b>not</b> painting\" (not después del be)<br>❌ \"You are reading?\" → ✅ \"<b>Are</b> you reading?\" (invierte el be)<br>❌ \"Yes, I writing\" → ✅ \"Yes, I <b>am</b>\" (respuesta corta repite el be)</p></div>", "exercises": [{"q": "\"The group\" (el grupo) es una unidad. Niega: \"The group ___ studying.\"", "a": "a", "o": ["is not", "are not"], "fc": "\"the group\" pide \"is\": is not studying.", "fi": "\"are not\" sería para varios sujetos separados.", "ex": "The group is not studying → El grupo no está estudiando", "tip": "group → is (not)"}, {"q": "Forma la pregunta: \"___ he writing an email?\" (email = correo)", "a": "b", "o": ["He is", "Is"], "fc": "\"Is he writing…?\": el be al frente.", "fi": "\"He is…?\" no invierte el be.", "ex": "Is he writing an email? → ¿Está escribiendo un correo?", "tip": "Pregunta: Is + sujeto"}, {"q": "Respuesta corta negativa a \"Are they looking for the key?\" (key = llave):", "a": "b", "o": ["No, they don't.", "No, they aren't."], "fc": "Se repite el be en negativo: \"No, they aren't.\".", "fi": "\"don't\" no se usa en el continuo; aquí va el be.", "ex": "Are they looking…? — No, they aren't.", "tip": "Continuo: respuesta con be, no con do"}, {"q": "¿Cuál negativo está totalmente correcto?", "a": "a", "o": ["She is not painting", "She no is painting"], "fc": "\"is not\": el not va después del be.", "fi": "\"no is\" copia el orden del español; en inglés es \"is not\".", "ex": "She is not painting → Ella no está pintando", "tip": "be + not, nunca \"no is\""}, {"q": "Completa la pregunta: \"___ you painting your face?\" (face = cara)", "a": "a", "o": ["Are", "You are"], "fc": "\"Are you painting…?\": el be lidera la pregunta.", "fi": "\"You are…?\" deja el be sin invertir.", "ex": "Are you painting your face? → ¿Te estás pintando la cara?", "tip": "Invierte: Are + you"}]}]};
+/* helpers de contenido (bilingües por separado) */
+function eg(en,gloss,lab){ const t=en.replace(/<[^>]+>/g,'').replace(/"/g,''); return `<div class="eg-card${lab?' '+lab:''}" data-lab="${lab==='ok'?'✅ BIEN':lab==='bad'?'❌ MAL':'📝 '+(typeof curLab!=='undefined'?curLab:'')}"><span class="emo">💬</span><div><div class="en">${en}</div><div class="es">${gloss}</div><div class="audio-row"><button class="audio-btn" onclick="say('${t}','US')">🇺🇸 US</button><button class="audio-btn" onclick="say('${t}','UK')">🇬🇧 UK</button></div></div></div>`; }
+function ii(emo,txt){ return `<div class="info-illus"><span class="emo">${emo}</span><span class="txt">${txt}</span></div>`; }
+/* ═══ CONTENIDO EDITABLE · 5 pasos · todo {es,en} ═══ */
 
-let curStep=0;const scores={};const answered={};
+/* ═══ FIN DEL CONTENIDO EDITABLE ═══ */
+/*SHUFFLE-V1*/(function(){try{if(typeof STEPS==='undefined')return;for(var si=0;si<STEPS.length;si++){var s=STEPS[si];if(!s.checks)continue;for(var ci=0;ci<s.checks.length;ci++){var c=s.checks[ci];if(!c.opts||!c.opts.es)continue;var n=c.opts.es.length;if(n<2)continue;var idx=[];for(var i=0;i<n;i++)idx.push(i);for(var i=n-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=idx[i];idx[i]=idx[j];idx[j]=tmp;}var nes=idx.map(function(k){return c.opts.es[k];});var nen=c.opts.en?idx.map(function(k){return c.opts.en[k];}):null;c.opts.es=nes;if(nen)c.opts.en=nen;c.correct=idx.indexOf(c.correct);}}}catch(e){console.warn('shuffle skipped',e);}})();
 
-function renderStepTabs(){
-var c=document.getElementById("stepTabs");c.innerHTML="";
-DATA.steps.forEach(function(s,i){
-var b=document.createElement("button");
-b.className="step-tab"+(i===curStep?" active":"");
-if(allAnswered(i)&&i!==curStep)b.classList.add("done");
-b.textContent=(i+1)+". "+s.icon+" "+s.title;
-b.addEventListener("click",function(){curStep=i;renderStepTabs();renderCard();document.getElementById("summaryFinal").classList.remove("show")});
-c.appendChild(b);
-});
+const T = {
+  es:{ unT:'Repaso del tema — opcional 📚', unP:'El desbloqueo lo dan tus prácticas (P1·P2·P3). Completa este repaso para reforzar y llévate una sorpresa 🎁',
+       checkH:'Auto-chequeo', checkSub:'Para ti · cuentan como ✓ sin nota mínima', seeTr:'Ver traducción', finishNeed:'Completa los auto-chequeos de cada paso para reclamar tu sorpresa 🎁',
+       prev:'← Anterior', next:'Siguiente →', finish:'Terminar y reclamar sorpresa 🎁', bH:'Arma la estructura', bSub:'Toca: Sujeto + Verbo + Complemento', trayPh:'Toca las fichas en orden…', bcheck:'Comprobar', bOk:'¡Perfecto! Así se arma.', bNo:'Casi — Sujeto + Verbo + Complemento.',
+       fWhy:'Por qué', fNo:'Ojo', fEx:'Ejemplo', fTip:'Recuerda', cOk:'¡Correcto!', cBad:'Revisemos',
+       msCore:'✅ ¡Completaste lo principal (pasos 1-3)! Sigue hasta el final y reclama tu sorpresa 🎁', msToast:'✅ Pasos 1-3 completados · ¡sigue por tu sorpresa! 🎁',
+       done:'📚 ¡Resumen aprobado!', phrase:'Buen repaso. Tu gramática se fortalece con cada vuelta. 💪', failBar:'🔁 Necesitas '+PASS+'% para reclamar la sorpresa. ¡Inténtalo de nuevo!', phraseFail:'Casi. Repasa los pasos y vuelve para superar el '+PASS+'%. 🌱', kpT:'📝 Patrón maestro — cópialo en tu cuaderno',
+       surT:'¡Sorpresa desbloqueada!', surBadge:b=>'🏅 Insignia: '+b, surP:'Se suma a tu colección de la Liga Semanal. ¡Reúnelas todas!', xp:n=>'⭐ +'+n+' XP de repaso', back:'↩ Volver a la plataforma', retry:'🔁 Repasar de nuevo',
+       helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada parte:', tips:['<b>🔓 Aviso:</b> las prácticas desbloquean; esto es repaso.','<b>ES/EN:</b> cambia TODO el material de idioma.','<b>🌐 Ver traducción:</b> debajo de un auto-chequeo con oración en inglés (no cambia el resto).','<b>🔊 US/UK:</b> escucha los ejemplos.','<b>Armar:</b> en Práctica Final construyes la oración.','<b>🎁 Sorpresa:</b> responde bien al menos el 75% de los auto-chequeos y gana insignia + XP.'] },
+  en:{ unT:'Topic review — optional 📚', unP:'Unlocking comes from your practices (P1·P2·P3). Finish this review to reinforce and get a surprise 🎁',
+       checkH:'Self-check', checkSub:'For you · counts as ✓ with no minimum grade', seeTr:'See translation', finishNeed:'Answer the self-checks in every step to claim your surprise 🎁',
+       prev:'← Back', next:'Next →', finish:'Finish and claim surprise 🎁', bH:'Build the structure', bSub:'Tap: Subject + Verb + Complement', trayPh:'Tap the tiles in order…', bcheck:'Check', bOk:'Perfect! That\'s how it\'s built.', bNo:'Almost — Subject + Verb + Complement.',
+       fWhy:'Why', fNo:'Careful', fEx:'Example', fTip:'Remember', cOk:'Correct!', cBad:'Let\'s review',
+       msCore:'✅ You finished the core (steps 1-3)! Keep going to the end and claim your surprise 🎁', msToast:'✅ Steps 1-3 done · keep going for your surprise! 🎁',
+       done:'📚 Summary passed!', phrase:'Great review. Your grammar gets stronger each pass. 💪', failBar:'🔁 You need '+PASS+'% to claim the surprise. Try again!', phraseFail:'Almost. Review the steps and come back to pass '+PASS+'%. 🌱', kpT:'📝 Master pattern — copy it in your notebook',
+       surT:'Surprise unlocked!', surBadge:b=>'🏅 Badge: '+b, surP:'Added to your Weekly League collection. Collect them all!', xp:n=>'⭐ +'+n+' review XP', back:'↩ Back to the platform', retry:'🔁 Review again',
+       helpT:'How do I use this material?', tipsT:'What each part is for:', tips:['<b>🔓 Notice:</b> practices unlock; this is review.','<b>ES/EN:</b> switches the WHOLE material\'s language.','<b>🌐 See translation:</b> under a self-check with an English sentence (doesn\'t change the rest).','<b>🔊 US/UK:</b> hear the examples.','<b>Build:</b> in Final Practice you build the sentence.','<b>🎁 Surprise:</b> score at least 75% of the self-checks to earn a badge + XP.'] }
+};
+let info='es', cur=0, doneSteps=[], answers=[], coreDone=false, bState={order:[],locked:false}, curLab='';
+function L(){ return T[info]; }
+function say(text,acc){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=.82; const vs=speechSynthesis.getVoices()||[]; const want=acc==='US'?'en-US':'en-GB'; const v=vs.find(x=>x.lang===want)||vs.find(x=>x.lang&&x.lang.indexOf('en')===0); if(v){u.voice=v;u.lang=v.lang;}else u.lang=want; speechSynthesis.speak(u); }catch(e){} }
+function render(){ cur=0; coreDone=false; doneSteps=new Array(STEPS.length).fill(false); answers=STEPS.map(s=>new Array(s.checks.length).fill(null)); bState={order:[],locked:false};
+  document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='block'; document.getElementById('msbanner').style.display='none';
+  renderTabs(); applyLang(); showStep(0); }
+function renderTabs(){ document.getElementById('steptabs').innerHTML=STEPS.map((s,i)=>`<button class="stab${i===0?' on':''}${doneSteps[i]?' done':''}" id="stab${i}" onclick="goStep(${i})">${s.icon} ${i+1}</button>`).join(''); }
+function applyLang(){ const t=L();
+  document.getElementById('lsEs').classList.toggle('on',info==='es'); document.getElementById('lsEn').classList.toggle('on',info==='en');
+  document.getElementById('mhtitle').textContent=MAT.title[info]; document.getElementById('mhsub').textContent=document.getElementById('screen').getAttribute('data-level').toUpperCase().replace('-',' · ')+' · '+MAT.subtitle[info];
+  document.getElementById('unT').textContent=t.unT; document.getElementById('unP').textContent=t.unP;
+  document.getElementById('helpT').textContent=t.helpT; document.getElementById('helpTips').innerHTML='<div style="font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:6px">'+t.tipsT+'</div>'+t.tips.map(x=>'<div class="helptip">• <span>'+x+'</span></div>').join('');
+  document.getElementById('kpT').textContent=t.kpT; document.getElementById('lBack').textContent=t.back; document.getElementById('lRetry').textContent=t.retry;
+  updateMilestone(); renderStep(); }
+function renderStep(){ const t=L(), s=STEPS[cur]; curLab= info==='es'?'EJEMPLO':'EXAMPLE';
+  let html=`<div class="gcard"><div class="sec-label">${cur+1}. ${s.icon} ${s.title[info]}</div>${s.html[info]}`;
+  if(s.builder) html+=builderHtml(); html+=`</div>`;
+  const ansd=answers[cur].filter(x=>x!==null).length;
+  html+=`<div class="check"><div class="check-h">🧠 ${t.checkH}<span class="cprog">${ansd}/${s.checks.length}</span></div><div class="check-sub">${t.checkSub}</div>`;
+  s.checks.forEach((c,ci)=>{ const sel=answers[cur][ci]; const done=sel!==null; const ok=sel===c.correct;
+    let fb='';
+    if(done){ const f=c.fb; fb=`<div class="cfb show ${ok?'ok':'no'}"><div class="cfbh">${ok?'✅ '+t.cOk:'❌ '+t.cBad}</div><div class="cfbb">`+
+      `<div class="fblk why"><b>🔍 ${t.fWhy}</b>${f.why[info]}</div>`+
+      (f.contrast?`<div class="fblk contrast"><b>⚠ ${t.fNo}</b>${f.contrast[info]}</div>`:'')+
+      (f.ex?`<div class="fblk ex"><b>📝 ${t.fEx}</b>${f.ex[info]}</div>`:'')+
+      (f.tip?`<div class="fblk tip"><b>💡 ${t.fTip}</b>${f.tip[info]}</div>`:'')+`</div></div>`; }
+    const trBtn = (c.tr && info==='es') ? `<button class="ctransbtn" onclick="this.nextElementSibling.classList.toggle('show')">🌐 ${t.seeTr}</button><div class="ctrans">${c.tr.es}</div>` : '';
+    html+=`<div class="citem"><p class="cq"><span class="n">${ci+1}.</span> ${c.q[info]}</p>${trBtn}<div class="copts">`+
+      c.opts[info].map((o,k)=>{ let cl='copt'; if(done){ if(k===c.correct)cl+=' ok'; else if(k===sel)cl+=' no'; } return `<button class="${cl}" ${done?'disabled':''} onclick="checkAns(${ci},${k})">${o}</button>`; }).join('')+
+      `</div>${fb}</div>`;
+  });
+  html+=`</div>`;
+  document.getElementById('stepArea').innerHTML=html;
+  if(s.builder) initBuilder();
+  document.getElementById('navPrev').textContent=t.prev; document.getElementById('navPrev').disabled=cur===0;
+  document.getElementById('navNext').textContent= cur===STEPS.length-1? t.finish : t.next;
+  document.getElementById('pfill').style.width=(doneSteps.filter(Boolean).length/STEPS.length*100)+'%';
 }
-
-function allAnswered(stepIdx){
-for(var i=0;i<5;i++){if(!answered["s"+stepIdx+"e"+i])return false}
-return true;
-}
-
-function renderCard(){
-var s=DATA.steps[curStep];
-var k="s"+curStep;
-if(scores[k]===undefined)scores[k]=0;
-var area=document.getElementById("cardArea");
-area.innerHTML="";
-
-var card=document.createElement("div");
-card.className="card active";
-card.innerHTML=s.html;
-
-var exSec=document.createElement("div");
-exSec.className="ex-section";
-var h3=document.createElement("h3");
-h3.textContent=EX_HEADER+" "+s.title;
-exSec.appendChild(h3);
-
-s.exercises.forEach(function(e,i){
-var eid=k+"e"+i;
-var div=document.createElement("div");
-div.className="exercise";
-div.id=eid;
-
-var qDiv=document.createElement("div");
-qDiv.className="exercise-q";
-qDiv.innerHTML=(i+1)+". "+e.q;
-div.appendChild(qDiv);
-
-var opts=document.createElement("div");
-opts.className="opts";
-var btnA=document.createElement("button");
-btnA.className="opt-btn";
-btnA.textContent="a) "+e.o[0];
-btnA.addEventListener("click",function(){chk(eid,"a",e.a)});
-opts.appendChild(btnA);
-var btnB=document.createElement("button");
-btnB.className="opt-btn";
-btnB.textContent="b) "+e.o[1];
-btnB.addEventListener("click",function(){chk(eid,"b",e.a)});
-opts.appendChild(btnB);
-div.appendChild(opts);
-
-var fbOk=document.createElement("div");
-fbOk.className="fb fb-ok";
-fbOk.id="fbok-"+eid;
-var correctText=e.o[e.a==="a"?0:1];
-var fbOkParts=[];
-fbOkParts.push("<div class=\"fb-header\"><span class=\"fb-icon\">"+ICON_PARTY+"</span> "+TEXT_CORRECT+"</div>");
-fbOkParts.push("<div class=\"fb-body\">");
-fbOkParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_CHECK+"</span><div class=\"fb-text\"><span class=\"fb-correct-answer\">"+correctText+"</span> "+DASH+" "+e.fc+"</div></div>");
-fbOkParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_BULB+"</span><div class=\"fb-text\">"+TEXT_OTHER_OPT+": "+e.fi+"</div></div>");
-if(e.ex)fbOkParts.push("<div class=\"fb-example\">"+ICON_NOTE+" "+e.ex+"</div>");
-if(e.tip)fbOkParts.push("<div class=\"fb-tip\"><strong>"+ICON_BULB+" "+TEXT_REMEMBER+":</strong> "+e.tip+"</div>");
-fbOkParts.push("</div>");
-fbOk.innerHTML=fbOkParts.join("");
-div.appendChild(fbOk);
-
-var fbBad=document.createElement("div");
-fbBad.className="fb fb-bad";
-fbBad.id="fbbad-"+eid;
-var fbBadParts=[];
-fbBadParts.push("<div class=\"fb-header\"><span class=\"fb-icon\">"+ICON_THINK+"</span> "+TEXT_INCORRECT+"</div>");
-fbBadParts.push("<div class=\"fb-body\">");
-fbBadParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_X+"</span><div class=\"fb-text\"><span class=\"fb-wrong-reason\">"+e.fi+"</span></div></div>");
-fbBadParts.push("<div class=\"fb-row\"><span class=\"fb-dot\">"+ICON_CHECK+"</span><div class=\"fb-text\">"+TEXT_CORRECT_IS+" <span class=\"fb-correct-answer\">"+correctText+"</span> "+DASH+" "+e.fc+"</div></div>");
-if(e.ex)fbBadParts.push("<div class=\"fb-example\">"+ICON_NOTE+" "+e.ex+"</div>");
-if(e.tip)fbBadParts.push("<div class=\"fb-tip\"><strong>"+ICON_BULB+" "+TEXT_REMEMBER+":</strong> "+e.tip+"</div>");
-fbBadParts.push("</div>");
-fbBad.innerHTML=fbBadParts.join("");
-div.appendChild(fbBad);
-
-exSec.appendChild(div);
-
-if(answered[eid]){
-var btns=div.querySelectorAll(".opt-btn");
-btns.forEach(function(b){b.disabled=true});
-var sel=answered[eid].sel;
-var correct=e.a;
-if(sel===correct){
-div.classList.add("correct");
-btns.forEach(function(b){if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-ok")});
-fbOk.classList.add("show");
-}else{
-div.classList.add("incorrect");
-btns.forEach(function(b){
-if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-bad");
-if(b.textContent.indexOf(correct+")")===0)b.classList.add("show-ok");
-});
-fbBad.classList.add("show");
-}
-}
-});
-
-var sb=document.createElement("div");
-sb.className="score-bar";
-sb.innerHTML="<div class=\"num\" id=\"sc-"+k+"\">"+scores[k]+"/5</div><div class=\"lbl\">"+TEXT_SCORE+"</div>";
-exSec.appendChild(sb);
-
-card.appendChild(exSec);
-area.appendChild(card);
-}
-
-function chk(eid,sel,correct){
-if(answered[eid])return;
-answered[eid]={sel:sel};
-var ex=document.getElementById(eid);
-var btns=ex.querySelectorAll(".opt-btn");
-btns.forEach(function(b){b.disabled=true});
-var k=eid.match(/s\d+/)[0];
-if(sel===correct){
-ex.classList.add("correct");
-btns.forEach(function(b){if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-ok")});
-document.getElementById("fbok-"+eid).classList.add("show");
-scores[k]=(scores[k]||0)+1;
-}else{
-ex.classList.add("incorrect");
-btns.forEach(function(b){
-if(b.textContent.indexOf(sel+")")===0)b.classList.add("sel-bad");
-if(b.textContent.indexOf(correct+")")===0)b.classList.add("show-ok");
-});
-document.getElementById("fbbad-"+eid).classList.add("show");
-}
-document.getElementById("sc-"+k).textContent=scores[k]+"/5";
-
-if(allAnswered(curStep)){
-renderStepTabs();
-}
-
-if(curStep===4&&allAnswered(4)){
-setTimeout(function(){
-var sf=document.getElementById("summaryFinal");
-var sl=document.getElementById("summaryList");
-sl.innerHTML=DATA.summary.map(function(s){return "<li>"+s+"</li>"}).join("");
-var total=0;
-for(var i=0;i<5;i++)total+=(scores["s"+i]||0);
-var ts=document.getElementById("totalScore");
-if(ts)ts.innerHTML="<div class=\"big\">"+total+"/25</div><div class=\"small\">"+TEXT_TOTAL+"</div>";
-sf.classList.add("show");try{var _t=0;for(var _i=0;_i<5;_i++)_t+=(scores["s"+_i]||0);window.dispatchEvent(new CustomEvent("jucum:done",{detail:{score:Math.round(_t/25*100)}}));}catch(e){}
-sf.scrollIntoView({behavior:"smooth"});
-},500);
-}
-}
-
-renderStepTabs();renderCard();
+function checkAns(ci,k){ if(answers[cur][ci]!==null) return; answers[cur][ci]=k;
+  if(answers[cur].every(x=>x!==null)){ doneSteps[cur]=true; document.getElementById('stab'+cur).classList.add('done'); }
+  if([0,1,2].every(i=>doneSteps[i]) && !coreDone){ coreDone=true; try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{type:'summary', core:true, mat:MAT.reportId}})); }catch(e){} toast(L().msToast); }
+  updateMilestone(); renderStep(); }
+function updateMilestone(){ const b=document.getElementById('msbanner'); if([0,1,2].every(i=>doneSteps[i])){ b.style.display='block'; b.textContent=L().msCore; } else b.style.display='none'; }
+function builderHtml(){ const t=L(); return `<div class="builder"><div class="bh">🧩 ${t.bH}</div><div class="bsub">${t.bSub}</div><div class="tray" id="tray" data-ph="${t.trayPh}"></div><div class="bank" id="bank"></div><button class="bcheck" id="bchk" onclick="checkBuild()" disabled>${t.bcheck}</button><div class="bres" id="bres"></div></div>`; }
+function initBuilder(){ bState={order:[],locked:false}; const sh=[...BUILD.answer.keys()].sort(()=>Math.random()-.5);
+  document.getElementById('bank').innerHTML=sh.map(idx=>`<button class="tile ${BUILD.answer[idx].c}" id="tile${idx}" onclick="placeTile(${idx})">${BUILD.answer[idx].w}</button>`).join(''); document.getElementById('tray').innerHTML=''; }
+function placeTile(idx){ if(bState.locked)return; bState.order.push(idx); document.getElementById('tile'+idx).classList.add('placed'); const tr=document.getElementById('tray'); const b=document.createElement('button'); b.className='tile '+BUILD.answer[idx].c; b.textContent=BUILD.answer[idx].w; b.onclick=()=>removeTile(idx,b); tr.appendChild(b); document.getElementById('bchk').disabled=bState.order.length!==BUILD.answer.length; }
+function removeTile(idx,el){ if(bState.locked)return; bState.order=bState.order.filter(x=>x!==idx); el.remove(); document.getElementById('tile'+idx).classList.remove('placed'); document.getElementById('bchk').disabled=bState.order.length!==BUILD.answer.length; }
+function checkBuild(){ const t=L(); bState.locked=true; const ok=bState.order.join(',')===BUILD.answer.map((_,i)=>i).join(','); document.querySelectorAll('#tray .tile').forEach(x=>x.style.pointerEvents='none');
+  const r=document.getElementById('bres'); r.className='bres show '+(ok?'ok':'no'); r.innerHTML=(ok?'✅ '+t.bOk:'❌ '+t.bNo)+`<div class="bex"><div class="tr">${BUILD.answer.map(a=>a.w).join(' ')} — <i>${BUILD.tr[info]}</i></div><button class="audio-btn" onclick="say('${BUILD.say}','US')">🇺🇸 US</button><button class="audio-btn" onclick="say('${BUILD.say}','UK')">🇬🇧 UK</button></div>`; }
+function showStep(i){ cur=i; document.querySelectorAll('.stab').forEach((b,x)=>b.classList.toggle('on',x===i)); renderStep(); window.scrollTo({top:0,behavior:'smooth'}); }
+function goStep(i){ showStep(i); }
+function navStep(d){ if(d<0){ if(cur>0) showStep(cur-1); return; } if(cur<STEPS.length-1){ showStep(cur+1); return; } const inc=answers.findIndex(a=>a.some(x=>x===null)); if(inc>=0){ toast(L().finishNeed); showStep(inc); } else finish(); }
+function finish(){ const t=L(); document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
+  let tot=0,corr=0; answers.forEach((arr,si)=>arr.forEach((k,ci)=>{ if(k!==null){tot++; if(k===STEPS[si].checks[ci].correct)corr++;} })); const pct=tot?Math.round(corr/tot*100):0; const pass=pct>=PASS;
+  const db=document.getElementById('doneBar'); db.classList.toggle('fail',!pass); db.textContent= pass? t.done : t.failBar; document.getElementById('fscore').textContent=pct; document.getElementById('fphrase').textContent= pass? t.phrase : t.phraseFail;
+  document.getElementById('kpList').innerHTML=SUMMARY[info].map(s=>`<li>${s}</li>`).join('');
+  document.getElementById('surprise').style.display= pass? 'block':'none';
+  if(pass){ document.getElementById('medalEm').textContent=BADGE.emoji; document.getElementById('surT').textContent=t.surT; document.getElementById('surBadge').textContent=t.surBadge(BADGE.name[info]); document.getElementById('surP').textContent=t.surP; document.getElementById('xpWin').textContent=t.xp(BADGE.xp); }
+  try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:pct, pass:pass, type:'summary', badge:BADGE.name.en, xp:BADGE.xp, mat:MAT.reportId, final:true}})); }catch(e){}
+  window.scrollTo({top:0,behavior:'smooth'}); }
+function restart(){ render(); }
+function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}
+function setInfo(l){ info=l; applyLang(); }
+function setLevel(lv){ document.getElementById('screen').setAttribute('data-level',lv); info= lv==='a2'?'en':'es'; render(); }
+function volver(){ if(document.referrer){ location.href=document.referrer; } else if(history.length>1){ history.back(); } else { toast(info==='es'?'Vuelve a tu práctica en la plataforma':'Go back to your practice'); } }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600); }
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('.mat')){ e.preventDefault(); toast(info==='es'?'Material protegido © JUCUM EC':'Protected material © JUCUM EC'); }});
+try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch(e){}
+/* FIN DEL MOTOR */
+setLevel(document.getElementById('screen').getAttribute('data-level')||'pre-a1');
 </script>
+<!-- JUCUM English Center · seguimiento (NO QUITAR) -->
 <script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

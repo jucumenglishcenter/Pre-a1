@@ -54,7 +54,7 @@
   .pes{display:none;font-family:var(--fs);font-style:italic;color:#5A2A66;font-size:calc(var(--reading) - 2px);line-height:1.85;margin-top:6px;padding-left:10px;border-left:2px solid var(--rv-bd);}
   .screen[data-text="es"] .ptext{display:none;} .screen[data-text="es"] .pes{display:block;border-left:none;padding-left:0;font-style:normal;color:#2b2b2b;} .screen[data-text="both"] .pes{display:block;}
   .prow{display:flex;gap:7px;margin-top:8px;} .pbtn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;border-radius:9px;padding:5px 11px;cursor:pointer;border:1.5px solid var(--lm);background:var(--tint);color:var(--ld);} .pbtn.on{background:var(--lg);color:#fff;border-color:transparent;}
-  .dato{display:none;margin-top:9px;background:#FFF8E1;border:1px solid #FFE082;border-radius:11px;padding:9px 12px;font-size:12.5px;color:#6B4E00;line-height:1.5;} .screen[data-datos="on"] .dato{display:block;} .dato .hd{display:flex;align-items:center;gap:5px;font-weight:800;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#92510F;margin-bottom:3px;} .dato b{color:#92510F;}
+  .dato{display:none;margin-top:9px;background:#FFFDF4;border:1px solid #F0C66B;border-left:4px solid #F9A825;border-radius:12px;padding:10px 13px;font-size:12.5px;color:#4A3A10;line-height:1.6;} .dato .hd{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#B26A00;margin-bottom:4px;} .dato .frase{font-family:var(--fs);font-weight:700;font-size:13.5px;color:#1B5E20;} .dato .lit{font-family:var(--fs);font-style:italic;color:#8a6d1c;font-size:11.5px;margin:2px 0 4px;} .screen[data-datos="on"] .dato{display:block;} .dato .hd{display:flex;align-items:center;gap:5px;font-weight:800;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#92510F;margin-bottom:3px;} .dato b{color:#92510F;}
   .endcard{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm);padding:18px;text-align:center;margin-top:6px;}
   .endcard .em{font-size:40px;} .endcard h3{font-family:var(--fd);font-weight:600;font-size:18px;color:var(--ld);margin:6px 0 2px;} .endcard p{font-size:12.5px;color:var(--text-soft);margin:0 0 12px;line-height:1.5;}
   .estats{display:flex;gap:9px;margin-bottom:12px;} .estat{flex:1;background:var(--tint);border:1px solid var(--lm);border-radius:12px;padding:10px 6px;} .estat b{font-family:var(--fd);font-weight:600;font-size:18px;color:var(--ld);display:block;} .estat span{font-size:10px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.03em;}
@@ -109,6 +109,31 @@
   }
   #screen{overflow:visible!important} #screen .scroll{overflow:visible!important}
 </style>
+<style id="v5a">
+.cover5{background:linear-gradient(135deg,#43C062,#1F7A33);border-radius:18px;padding:14px 16px;color:#fff;display:flex;gap:12px;align-items:center;margin:0 0 14px;box-shadow:0 3px 10px rgba(30,60,35,.12);}
+.cover5 .em{font-size:28px;background:rgba(255,255,255,.18);border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cover5 .stitle{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.2;margin:0;color:#fff;}
+.cover5 .ssub{font-size:10.5px;font-weight:800;opacity:.92;margin:2px 0 0;color:#fff;}
+.ring5{margin-left:auto;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:conic-gradient(#fff 0 0%,rgba(255,255,255,.25) 0% 100%);}
+.ring5 i{background:#2b8a43;border-radius:50%;width:34px;height:34px;font-style:normal;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;}
+.para:not(.dlgrow){background:#fff;border:1px solid var(--border);border-radius:16px;padding:13px 15px;margin-bottom:12px;box-shadow:0 3px 10px rgba(30,60,35,.08);position:relative;}
+#paras:not(.chatzone) .para:nth-child(even){background:#F4FBF4;border-color:#CFE8D2;}
+.para:not(.dlgrow) .dcap{font-family:var(--fd);font-size:30px;font-weight:600;color:#2EA84B;float:left;line-height:1;padding:2px 7px 0 0;}
+.para.heard5::after{content:'✓ escuchado';position:absolute;top:9px;right:11px;font-size:9px;font-weight:800;letter-spacing:.04em;background:#DFF5E3;color:#1B5E20;border:1px solid #9FD3A2;border-radius:12px;padding:1.5px 7px;}
+</style>
+<style id="dlg2col">
+#paras.chatzone{background:#E8F3E6;background-image:radial-gradient(#d3e8d2 1px,transparent 1px);background-size:14px 14px;border-radius:16px;padding:12px 10px 6px;}
+.para.dlgrow{display:flex;gap:7px;align-items:flex-end;background:transparent;border:none;box-shadow:none;padding:0;margin:0 0 10px;}
+.para.dlgrow.dgB{flex-direction:row-reverse;}
+.dav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:13px;color:#fff;background:#0B7285;box-shadow:0 2px 6px rgba(0,0,0,.14);}
+.dlgrow.dgB .dav{background:#2EA84B;}
+.dbub{max-width:82%;background:#fff;border-radius:14px 14px 14px 4px;padding:8px 12px 7px;box-shadow:0 2px 8px rgba(30,60,35,.10);}
+.dlgrow.dgB .dbub{background:#D9F2DC;border-radius:14px 14px 4px 14px;}
+.dlgrow .dsp{color:#0B7285;margin-bottom:1px;}
+.dlgrow.dgB .dsp{color:#1B5E20;text-align:right;}
+.dlgrow .prow{margin-top:5px;}
+.dlgrow .pbtn{padding:3px 9px;font-size:10px;}
+</style>
 </head>
 <body>
   <div class="bar">
@@ -136,7 +161,7 @@
             <div class="rrow">
               <button class="tbtn" id="datosBtn" onclick="toggleDatos()">💡 <span id="datosLab"></span></button>
               <button class="tbtn" onclick="openVocab()">📖 <span id="vocLab"></span></button>
-              <button class="tbtn" id="voiceBtn" onclick="toggleVoice()">🔊 US</button>
+              <button class="tbtn" id="focusBtn" onclick="openFocus()">⛶ <span>Enfocar</span></button><button class="tbtn" id="voiceBtn" onclick="toggleVoice()">🔊 US</button>
               <div class="speed">🐢<input type="range" min="0.6" max="1.3" step="0.1" value="1" oninput="setRate(this.value)"/>🐇</div>
               <button class="tbtn" onclick="textSize(-1)">A−</button><button class="tbtn" onclick="textSize(1)">A+</button>
               <div class="miniseg" style="margin-left:auto"><span class="lab">🌐</span><button id="inEs" onclick="setInfo('es')">ES</button><button id="inEn" class="on" onclick="setInfo('en')">EN</button></div>
@@ -145,8 +170,7 @@
           <div class="mbody">
             <div class="howto" id="howto"><div class="howto-h" onclick="document.getElementById('howto').classList.toggle('open')"><span>🧭</span><b id="howtoT"></b><span class="ar">▸</span></div><div class="howto-b" id="howtoB"></div></div>
             <div class="viewseg"><button id="vwStory" class="on" onclick="setView('story')">📖 <span id="vwStoryL">Story</span></button><button id="vwDlg" onclick="setView('dlg')">💬 <span id="vwDlgL">Diálogo</span></button></div>
-            <div class="stitle" id="stitle">A Week Without Water</div>
-            <div class="ssub" id="ssub">Story 1 · Lucia y el corte de agua del edificio</div>
+            <div class="cover5"><span class="em" id="cvEm">📖</span><div style="min-width:0"><div class="stitle" id="stitle"></div><div class="ssub" id="ssub"></div></div><span class="ring5" id="ring5"><i id="ring5T">0%</i></span></div>
             <div id="paras"></div>
             <button class="markdone" id="markBtn" onclick="markDone()"><span class="mi">⬜</span> <span id="markLab"></span></button>
             <div class="endcard" id="endcard" style="display:none">
@@ -188,182 +212,7 @@ const GLOSS = [
   {w:'same',es:'mismo / misma',ex:'the same age'}, {w:'kind',es:'amable',ex:'He is kind.'}
 ];
 /* Cada oración alineada EN↔ES (para resaltado por oración en ambos idiomas) */
-const STORYDATA = {
-  1: {
-    sTitle:'My Name Is Leo', sTitleEs:'Me llamo Leo',
-    dTitle:'First Day at School', dTitleEs:'Primer día de clases',
-    paras:[
-      [["My name is Leo.","Me llamo Leo."],["I am seven years old.","Tengo siete años."],["My town is small and quiet.","Mi pueblo es pequeño y tranquilo."],["There is a busy market here.","Hay un mercado concurrido aquí."],["My home is close to it.","Mi casa está cerca de él."]],
-      [["My dad is tall and kind.","Mi papá es alto y amable."],["Marco works every morning.","Marco trabaja cada mañana."],["He sells fruit at the market.","Vende fruta en el mercado."],["At noon he comes home.","Al mediodía regresa a casa."],["Sometimes he brings sweet bread.","A veces trae pan dulce."]],
-      [["My mom is full of energy.","Mi mamá está llena de energía."],["Irma sings in the kitchen.","Irma canta en la cocina."],["Her food is always delicious.","Su comida siempre es deliciosa."],["The whole house smells good.","Toda la casa huele rico."],["Mornings are happy with her.","Las mañanas son felices con ella."]],
-      [["Lara is my little sister.","Lara es mi hermanita."],["She is only four.","Tiene solo cuatro años."],["The girl is small and funny.","La niña es pequeña y graciosa."],["We play many games together.","Jugamos muchos juegos juntos."],["Our home is full of laughs.","Nuestra casa está llena de risas."]],
-      [["I have brown eyes.","Tengo ojos cafés."],["My hair is short and black.","Mi cabello es corto y negro."],["I am not very tall.","No soy muy alto."],["But I run very fast.","Pero corro muy rápido."],["People say I smile a lot.","La gente dice que sonrío mucho."]],
-      [["I like to draw animals.","Me gusta dibujar animales."],["My favorite color is green.","Mi color favorito es el verde."],["I read books before bed.","Leo libros antes de dormir."],["I love my mom's soup.","Me encanta la sopa de mi mamá."],["Football is my favorite game.","El fútbol es mi juego favorito."]],
-      [["My best friend is Ravi.","Mi mejor amigo es Ravi."],["He lives on my street.","Él vive en mi calle."],["We walk to school together.","Caminamos juntos a la escuela."],["He is funny and kind.","Es gracioso y amable."],["We share our snacks at lunch.","Compartimos nuestra lonchera en el almuerzo."]],
-      [["I go to a small school.","Voy a una escuela pequeña."],["My teacher is Miss Rosa.","Mi maestra es Miss Rosa."],["She is patient with us.","Es paciente con nosotros."],["I like to learn new words.","Me gusta aprender palabras nuevas."],["English is my favorite class.","Inglés es mi clase favorita."]],
-      [["I have a small dream.","Tengo un pequeño sueño."],["I want to be a teacher.","Quiero ser maestro."],["I want to help kids learn.","Quiero ayudar a los niños a aprender."],["My mom says I can do it.","Mi mamá dice que sí puedo."],["I will study very hard.","Voy a estudiar muy duro."]],
-      [["There is a market near us.","Hay un mercado cerca de nosotros."],["Many people walk there.","Mucha gente camina por ahí."],["My town is not big.","Mi pueblo no es grande."],["But this place is home.","Pero este lugar es mi hogar."],["We are a happy family.","Somos una familia feliz."]]
-    ],
-    dlg:[
-      ["Leo","Hello! My name is Leo. What is yours?","¡Hola! Me llamo Leo. ¿Y el tuyo?"],
-      ["Ana","Hi Leo. My name is Ana.","Hola, Leo. Mi nombre es Ana."],
-      ["Leo","Nice to meet you. Are you new here?","Mucho gusto. ¿Eres nueva aquí?"],
-      ["Ana","Yes. Today is my very first day.","Sí. Hoy es mi primer día."],
-      ["Leo","Great! We are in the same class.","¡Qué bien! Estamos en la misma clase."],
-      ["Ana","Really? That makes me very happy.","¿En serio? Eso me alegra mucho."],
-      ["Leo","How old are you, Ana?","¿Cuántos años tienes, Ana?"],
-      ["Ana","I am seven years old. And you?","Tengo siete años. ¿Y tú?"],
-      ["Leo","I am seven too. The same age!","Yo también tengo siete. ¡La misma edad!"],
-      ["Ana","Is the teacher nice here?","¿La maestra es amable aquí?"],
-      ["Leo","Yes. Her name is Miss Rosa.","Sí. Su nombre es Miss Rosa."],
-      ["Ana","Good. I was a little scared.","Qué bien. Estaba un poco asustada."],
-      ["Leo","Do not worry. Everyone is friendly.","No te preocupes. Todos son amables."],
-      ["Ana","Who is that tall boy there?","¿Quién es ese niño alto?"],
-      ["Leo","That is Dev. He is very kind.","Ese es Dev. Él es muy amable."],
-      ["Ana","And the boy near the window?","¿Y el niño junto a la ventana?"],
-      ["Leo","That is Ravi, his little brother.","Ese es Ravi, su hermano menor."],
-      ["Ana","Your school looks very nice.","Tu escuela se ve muy bonita."],
-      ["Leo","It is. There are many friends here.","Lo es. Hay muchos amigos aquí."],
-      ["Ana","Where do I sit now?","¿Dónde me siento ahora?"],
-      ["Leo","There is a free seat near me.","Hay un asiento libre junto a mí."],
-      ["Ana","Can I sit next to you?","¿Puedo sentarme a tu lado?"],
-      ["Leo","Of course! We are friends now.","¡Claro! Ahora somos amigos."],
-      ["Ana","Thank you, Leo. I feel happy.","Gracias, Leo. Me siento feliz."],
-      ["Leo","Class starts in five minutes.","La clase empieza en cinco minutos."],
-      ["Ana","Let us go inside together!","¡Entremos juntos!"]
-    ]
-  },
-  2: {
-    sTitle:"Mia's Family Photo", sTitleEs:'La foto de la familia de Mia',
-    dTitle:'The Family Photo', dTitleEs:'La foto familiar',
-    paras:[
-      [["There is a big photo.","Hay una foto grande."],["It is on my wall.","Está en mi pared."],["Eight people are in it.","Hay ocho personas en ella."],["Everyone is always smiling.","Todos están siempre sonriendo."],["I love that photo.","Me encanta esa foto."]],
-      [["The tall man is my dad.","El hombre alto es mi papá."],["His name is Carlos.","Su nombre es Carlos."],["He has a big smile.","Tiene una gran sonrisa."],["His hugs are very warm.","Sus abrazos son muy cálidos."],["I feel safe with him.","Me siento seguro con él."]],
-      [["My mom stands next to him.","Mi mamá está junto a él."],["Her name is Rosa.","Su nombre es Rosa."],["She is a kind nurse.","Es una enfermera amable."],["Her eyes look so happy.","Sus ojos se ven muy felices."],["She always listens to me.","Siempre me escucha."]],
-      [["My brother Nico is nine.","Mi hermano Nico tiene nueve."],["The boy is very funny.","El niño es muy gracioso."],["He makes a silly face.","Hace una cara chistosa."],["He makes me laugh daily.","Me hace reír cada día."],["We are good friends.","Somos buenos amigos."]],
-      [["I am in the photo too.","Yo también estoy en la foto."],["I stand in the front.","Estoy parada adelante."],["My dress is light blue.","Mi vestido es celeste."],["I have a big smile.","Tengo una gran sonrisa."],["I am seven years old.","Tengo siete años."]],
-      [["My aunt Lucia is there.","Mi tía Lucía está ahí."],["She is my mom's sister.","Es la hermana de mi mamá."],["She lives in another city.","Vive en otra ciudad."],["She visits us every year.","Nos visita cada año."],["She brings us nice gifts.","Nos trae lindos regalos."]],
-      [["Our dog is in the photo.","Nuestro perro está en la foto."],["His name is Toby.","Su nombre es Toby."],["He is small and brown.","Es pequeño y marrón."],["He sits next to me.","Se sienta junto a mí."],["Toby is part of the family.","Toby es parte de la familia."]],
-      [["My grandma Norma is there.","Mi abuela Norma está ahí."],["Her hair is soft and white.","Su cabello es suave y blanco."],["Grandpa is the same age.","El abuelo tiene la misma edad."],["They are both seventy.","Los dos tienen setenta."],["Everyone in it belongs together.","Todos en ella se pertenecen."]],
-      [["We take photos every year.","Tomamos fotos cada año."],["We all wear nice clothes.","Todos usamos ropa bonita."],["Grandma cooks a big lunch.","La abuela cocina un gran almuerzo."],["We sit around the table.","Nos sentamos alrededor de la mesa."],["We talk and laugh a lot.","Conversamos y reímos mucho."]],
-      [["I look at the photo daily.","Miro la foto cada día."],["It makes me feel warm.","Me hace sentir bien."],["My family is not perfect.","Mi familia no es perfecta."],["But we love each other.","Pero nos queremos."],["That is the best thing.","Eso es lo mejor."]]
-    ],
-    dlg:[
-      ["Mia","Sam, look at this family photo!","Sam, ¡mira esta foto familiar!"],
-      ["Sam","Oh, how nice! Who are they?","¡Qué linda! ¿Quiénes son?"],
-      ["Mia","This is my whole family.","Esta es toda mi familia."],
-      ["Sam","Who is that tall man there?","¿Quién es ese hombre alto?"],
-      ["Mia","That is my dad, Carlos.","Ese es mi papá, Carlos."],
-      ["Sam","And the woman next to him?","¿Y la mujer junto a él?"],
-      ["Mia","Her name is Rosa, my mom.","Su nombre es Rosa, mi mamá."],
-      ["Sam","She has a kind smile.","Tiene una sonrisa amable."],
-      ["Sam","Who is that little boy?","¿Quién es ese niño pequeño?"],
-      ["Mia","That boy is my brother Nico.","Ese niño es mi hermano Nico."],
-      ["Sam","How old is Nico now?","¿Cuántos años tiene Nico?"],
-      ["Mia","He is nine years old.","Tiene nueve años."],
-      ["Sam","How many people are here?","¿Cuántas personas hay aquí?"],
-      ["Mia","There are five of us.","Somos cinco nosotros."],
-      ["Sam","My family is quite small.","Mi familia es bastante pequeña."],
-      ["Sam","There are only three of us.","Solo somos tres."],
-      ["Mia","Every family is different.","Cada familia es diferente."],
-      ["Sam","How old are you, Mia?","¿Cuántos años tienes, Mia?"],
-      ["Mia","I am seven years old. And you?","Tengo siete años. ¿Y tú?"],
-      ["Sam","I am seven too! Same age.","¡Yo también tengo siete! La misma edad."],
-      ["Mia","That grandma is Norma.","Esa abuela es Norma."],
-      ["Sam","How old is she now?","¿Cuántos años tiene ella?"],
-      ["Mia","She is seventy years old.","Tiene setenta años."],
-      ["Sam","Your family looks so kind.","Tu familia se ve muy amable."],
-      ["Mia","Come and visit us on Saturday!","¡Ven a visitarnos el sábado!"],
-      ["Sam","Yes! I would love that.","¡Sí! Me encantaría."]
-    ]
-  },
-  3: {
-    sTitle:'Saturday at the Park', sTitleEs:'Sábado en el parque',
-    dTitle:'Baby Luli', dTitleEs:'La bebé Luli',
-    paras:[
-      [["Saturday is a special day.","El sábado es un día especial."],["We do not go to school.","No vamos a la escuela."],["There is no rush at home.","No hay prisa en casa."],["Dad makes eggs for everyone.","Papá hace huevos para todos."],["We eat at the table together.","Comemos juntos en la mesa."]],
-      [["After breakfast we walk outside.","Después del desayuno salimos a caminar."],["Grandpa comes with us too.","El abuelo viene con nosotros también."],["His walking stick goes click-click.","Su bastón hace clic-clic."],["I walk next to him.","Yo camino junto a él."],["The park is not far.","El parque no está lejos."]],
-      [["At the park I meet Ravi.","En el parque veo a Ravi."],["He is my best friend.","Es mi mejor amigo."],["His little brother is Arjun.","Su hermanito es Arjun."],["Arjun and my sister are five.","Arjun y mi hermana tienen cinco."],["They are the same age.","Tienen la misma edad."]],
-      [["Ravi is a funny boy.","Ravi es un niño gracioso."],["He makes animal voices.","Hace voces de animales."],["I cannot stop laughing.","No puedo dejar de reír."],["His big brother is Dev.","Su hermano mayor es Dev."],["Dev smiles and shakes his head.","Dev sonríe y niega con la cabeza."]],
-      [["The park is big and green.","El parque es grande y verde."],["There are tall trees here.","Hay árboles altos aquí."],["We run on the soft grass.","Corremos sobre el pasto suave."],["I kick the ball to Ravi.","Le pateo la pelota a Ravi."],["He kicks it back to me.","Él me la patea de vuelta."]],
-      [["My sister loves the swings.","A mi hermana le encantan los columpios."],["Dad pushes her up high.","Papá la empuja bien alto."],["She laughs with joy.","Ella ríe de alegría."],["Arjun waits for his turn.","Arjun espera su turno."],["The two kids play well.","Los dos niños juegan bien."]],
-      [["A man sells ice cream.","Un hombre vende helados."],["Grandpa buys one for me.","El abuelo me compra uno."],["My ice cream is strawberry.","Mi helado es de fresa."],["It is sweet and cold.","Es dulce y frío."],["I say thank you to him.","Le doy las gracias."]],
-      [["We sit under a tree.","Nos sentamos bajo un árbol."],["Grandpa tells an old story.","El abuelo cuenta una historia antigua."],["We listen very quietly.","Escuchamos muy callados."],["A soft wind feels nice.","Un viento suave se siente rico."],["The afternoon is calm.","La tarde está tranquila."]],
-      [["The sun goes down slowly.","El sol baja despacio."],["We walk back home together.","Volvemos a casa juntos."],["Lara is sleepy now.","Lara tiene sueño ahora."],["Dad carries her on his back.","Papá la lleva en su espalda."],["Everyone is happy and tired.","Todos están felices y cansados."]],
-      [["Saturdays are the best days.","Los sábados son los mejores días."],["We are all together.","Estamos todos juntos."],["No one is in a hurry.","Nadie tiene prisa."],["I love my family time.","Amo el tiempo en familia."],["I wait for next Saturday.","Espero el próximo sábado."]]
-    ],
-    dlg:[
-      ["Nico","Eva, I have great news today!","Eva, ¡tengo una gran noticia hoy!"],
-      ["Eva","Really? Tell me right now!","¿En serio? ¡Cuéntame ya!"],
-      ["Nico","I have a new baby sister.","Tengo una hermanita nueva."],
-      ["Eva","Wow! What is her name?","¡Vaya! ¿Cómo se llama?"],
-      ["Nico","Her name is little Luli.","Su nombre es la pequeña Luli."],
-      ["Eva","How old is she now?","¿Qué edad tiene ahora?"],
-      ["Nico","She is only two days old.","Tiene solo dos días."],
-      ["Eva","A new baby at home!","¡Un bebé nuevo en casa!"],
-      ["Eva","Are you happy about it, Nico?","¿Estás feliz, Nico?"],
-      ["Nico","I am very happy indeed.","Estoy muy feliz, de verdad."],
-      ["Nico","But I am a little tired.","Pero estoy un poco cansado."],
-      ["Eva","Babies often cry at night.","Los bebés lloran de noche."],
-      ["Nico","My dad is at the hospital.","Mi papá está en el hospital."],
-      ["Eva","Is your grandma at home?","¿Está tu abuela en casa?"],
-      ["Nico","Yes. She helps all of us.","Sí. Ella nos ayuda a todos."],
-      ["Eva","Can I come and visit Luli?","¿Puedo visitar a Luli?"],
-      ["Nico","Of course! Come on Saturday.","¡Claro! Ven el sábado."],
-      ["Eva","I will bring her a gift.","Le traeré un regalo."],
-      ["Nico","You are so kind, Eva.","Eres muy amable, Eva."],
-      ["Eva","Does she look like you?","¿Se parece a ti?"],
-      ["Nico","We have the same brown eyes.","Tenemos los mismos ojos cafés."],
-      ["Eva","How sweet! I cannot wait.","¡Qué tierno! No puedo esperar."],
-      ["Nico","See you on Saturday, Eva.","Nos vemos el sábado, Eva."],
-      ["Eva","See you then. Take care!","Nos vemos. ¡Cuídate!"]
-    ]
-  },
-  4: {
-    sTitle:'Kind People', sTitleEs:'Personas amables',
-    dTitle:'Who Is in Your Family?', dTitleEs:'¿Quién está en tu familia?',
-    paras:[
-      [["My name is Nico.","Me llamo Nico."],["I am eight years old.","Tengo ocho años."],["I have many good friends.","Tengo muchos buenos amigos."],["But I learned something important.","Pero aprendí algo importante."],["The best people are kind.","Las mejores personas son amables."]],
-      [["My dad is very kind.","Mi papá es muy amable."],["His name is Carlos.","Su nombre es Carlos."],["I come home sad sometimes.","A veces llego triste a casa."],["He makes tea for me.","Él me prepara un té."],["He sits with me quietly.","Se sienta conmigo en silencio."]],
-      [["There is a kind neighbor too.","Hay una vecina amable también."],["Her name is Mrs. Ana.","Su nombre es la señora Ana."],["She lives all alone.","Vive completamente sola."],["Her family is far away.","Su familia está muy lejos."],["She waves at me daily.","Me saluda con la mano cada día."]],
-      [["My teacher is kind to everyone.","Mi maestra es amable con todos."],["Her name is Miss Pilar.","Su nombre es Miss Pilar."],["She never shouts at us.","Nunca nos grita."],["\"Try again,\" she always says.","\"Inténtalo otra vez\", siempre dice."],["Everyone feels safe with her.","Todos se sienten seguros con ella."]],
-      [["My friend Tomás is kind.","Mi amigo Tomás es amable."],["He helps me with math.","Me ayuda con matemáticas."],["He never makes fun of me.","Nunca se burla de mí."],["He shares his pencils.","Comparte sus lápices."],["A good friend is a gift.","Un buen amigo es un regalo."]],
-      [["My grandma is very kind.","Mi abuela es muy amable."],["Her name is Elena.","Su nombre es Elena."],["She cooks for the whole street.","Cocina para toda la calle."],["She gives food to everyone.","Le da comida a todos."],["Her heart is very big.","Su corazón es muy grande."]],
-      [["A man sells fruit nearby.","Un hombre vende fruta cerca."],["His name is Don Pepe.","Su nombre es Don Pepe."],["He always says good morning.","Siempre dice buenos días."],["He gives me an apple.","Me regala una manzana."],["Small acts make me happy.","Los pequeños gestos me alegran."]],
-      [["Kind people listen to others.","Las personas amables escuchan a otros."],["They share what they have.","Comparten lo que tienen."],["They help without asking why.","Ayudan sin preguntar por qué."],["They use soft, warm words.","Usan palabras suaves y cálidas."],["I want to be like them.","Quiero ser como ellos."]],
-      [["I am only a boy.","Solo soy un niño."],["But I know one thing.","Pero sé una cosa."],["My family is very kind.","Mi familia es muy amable."],["My friends are kind too.","Mis amigos también son amables."],["That is everyone I need.","Esos son todos los que necesito."]],
-      [["Every day I try to be kind.","Cada día trato de ser amable."],["I help my little sister.","Ayudo a mi hermanita."],["I say thank you a lot.","Doy las gracias seguido."],["Kindness comes back to you.","La amabilidad regresa a ti."],["That is my favorite lesson.","Esa es mi lección favorita."]]
-    ],
-    dlg:[
-      ["Leo","Ravi, is this your family photo?","Ravi, ¿es esta tu foto familiar?"],
-      ["Ravi","Yes! We are six people.","¡Sí! Somos seis personas."],
-      ["Leo","Six! My family is small.","¡Seis! Mi familia es pequeña."],
-      ["Leo","We are only three at home.","Solo somos tres en casa."],
-      ["Ravi","Every family is different.","Cada familia es diferente."],
-      ["Leo","Who are these two boys here?","¿Quiénes son estos dos niños?"],
-      ["Ravi","They are my two brothers.","Son mis dos hermanos."],
-      ["Ravi","Dev is ten years old.","Dev tiene diez años."],
-      ["Ravi","Arjun is only five.","Arjun tiene solo cinco."],
-      ["Leo","Are you in the middle?","¿Tú estás en el medio?"],
-      ["Ravi","Yes, I am eight years old.","Sí, tengo ocho años."],
-      ["Leo","Is Dev kind to you?","¿Es Dev amable contigo?"],
-      ["Ravi","Yes. He is a good brother.","Sí. Es un buen hermano."],
-      ["Leo","And the little boy, Arjun?","¿Y el niño pequeño, Arjun?"],
-      ["Ravi","I play with him every day.","Juego con él cada día."],
-      ["Leo","Who is that old man there?","¿Quién es ese hombre mayor?"],
-      ["Ravi","His name is grandpa Babu.","Su nombre es el abuelo Babu."],
-      ["Ravi","He is my very kind grandpa.","Es mi abuelo muy amable."],
-      ["Leo","What does your grandpa do?","¿Qué hace tu abuelo?"],
-      ["Ravi","He tells us many stories.","Nos cuenta muchas historias."],
-      ["Ravi","Everyone loves him a lot.","Todos lo quieren mucho."],
-      ["Leo","Is he from this town?","¿Es de este pueblo?"],
-      ["Ravi","No, he is from India.","No, es de India."],
-      ["Leo","Your family is wonderful, Ravi.","Tu familia es maravillosa, Ravi."],
-      ["Ravi","Everyone is welcome at home.","Todos son bienvenidos en casa."],
-      ["Leo","Let us play together now!","¡Juguemos juntos ahora!"]
-    ]
-  }
-};
+const STORYDATA = {"1":{"sTitle":"My Name Is Leo","sTitleEs":"Me llamo Leo","dTitle":"First Day at School","dTitleEs":"Primer día de clases","paras":[[["My name is Leo.","Me llamo Leo."],["I am seven years old.","Tengo siete años."],["My town is small and quiet.","Mi pueblo es pequeño y tranquilo."],["There is a busy market here.","Hay un mercado concurrido aquí."],["My home is close to it.","Mi casa está cerca de él."]],[["My dad is tall and kind.","Mi papá es alto y amable."],["Marco works every morning.","Marco trabaja cada mañana."],["He sells fruit at the market.","Vende fruta en el mercado."],["At noon he comes home.","Al mediodía regresa a casa."],["Sometimes he brings sweet bread.","A veces trae pan dulce."]],[["My mom is full of energy.","Mi mamá está llena de energía."],["Irma sings in the kitchen.","Irma canta en la cocina."],["Her food is always delicious.","Su comida siempre es deliciosa."],["The whole house smells good.","Toda la casa huele rico."],["Mornings are happy with her.","Las mañanas son felices con ella."]],[["Lara is my little sister.","Lara es mi hermanita."],["She is only four.","Tiene solo cuatro años."],["The girl is small and funny.","La niña es pequeña y graciosa."],["We play many games together.","Jugamos muchos juegos juntos."],["Our home is full of laughs.","Nuestra casa está llena de risas."]],[["I have brown eyes.","Tengo ojos cafés."],["My hair is short and black.","Mi cabello es corto y negro."],["I am not very tall.","No soy muy alto."],["But I run very fast.","Pero corro muy rápido."],["People say I smile a lot.","La gente dice que sonrío mucho."]],[["I like to draw animals.","Me gusta dibujar animales."],["My favorite color is green.","Mi color favorito es el verde."],["I read books before bed.","Leo libros antes de dormir."],["I love my mom's soup.","Me encanta la sopa de mi mamá."],["Football is my favorite game.","El fútbol es mi juego favorito."]],[["My best friend is Ravi.","Mi mejor amigo es Ravi."],["He lives on my street.","Él vive en mi calle."],["We walk to school together.","Caminamos juntos a la escuela."],["He is funny and kind.","Es gracioso y amable."],["We share our snacks at lunch.","Compartimos nuestra lonchera en el almuerzo."]],[["I go to a small school.","Voy a una escuela pequeña."],["My teacher is Miss Rosa.","Mi maestra es Miss Rosa."],["She is patient with us.","Es paciente con nosotros."],["I like to learn new words.","Me gusta aprender palabras nuevas."],["English is my favorite class.","Inglés es mi clase favorita."]],[["I have a small dream.","Tengo un pequeño sueño."],["I want to be a teacher.","Quiero ser maestro."],["I want to help kids learn.","Quiero ayudar a los niños a aprender."],["My mom says I can do it.","Mi mamá dice que sí puedo."],["I will study very hard.","Voy a estudiar muy duro."]],[["There is a market near us.","Hay un mercado cerca de nosotros."],["Many people walk there.","Mucha gente camina por ahí."],["My town is not big.","Mi pueblo no es grande."],["But this place is home.","Pero este lugar es mi hogar."],["We are a happy family.","Somos una familia feliz."]]],"dlg":[["Leo","Hello! My name is Leo. What is yours?","¡Hola! Me llamo Leo. ¿Y el tuyo?"],["Ana","Hi Leo. My name is Ana.","Hola, Leo. Mi nombre es Ana."],["Leo","Nice to meet you. Are you new here?","Mucho gusto. ¿Eres nueva aquí?"],["Ana","Yes. Today is my very first day.","Sí. Hoy es mi primer día."],["Leo","Great! We are in the same class.","¡Qué bien! Estamos en la misma clase."],["Ana","Really? That makes me very happy.","¿En serio? Eso me alegra mucho."],["Leo","How old are you, Ana?","¿Cuántos años tienes, Ana?"],["Ana","I am seven years old. And you?","Tengo siete años. ¿Y tú?"],["Leo","I am seven too. The same age!","Yo también tengo siete. ¡La misma edad!"],["Ana","Is the teacher nice here?","¿La maestra es amable aquí?"],["Leo","Yes. Her name is Miss Rosa.","Sí. Su nombre es Miss Rosa."],["Ana","Good. I was a little scared.","Qué bien. Estaba un poco asustada."],["Leo","Do not worry. Everyone is friendly.","No te preocupes. Todos son amables."],["Ana","Who is that tall boy there?","¿Quién es ese niño alto?"],["Leo","That is Dev. He is very kind.","Ese es Dev. Él es muy amable."],["Ana","And the boy near the window?","¿Y el niño junto a la ventana?"],["Leo","That is Ravi, his little brother.","Ese es Ravi, su hermano menor."],["Ana","Your school looks very nice.","Tu escuela se ve muy bonita."],["Leo","It is. There are many friends here.","Lo es. Hay muchos amigos aquí."],["Ana","Where do I sit now?","¿Dónde me siento ahora?"],["Leo","There is a free seat near me.","Hay un asiento libre junto a mí."],["Ana","Can I sit next to you?","¿Puedo sentarme a tu lado?"],["Leo","Of course! We are friends now.","¡Claro! Ahora somos amigos."],["Ana","Thank you, Leo. I feel happy.","Gracias, Leo. Me siento feliz."],["Leo","Class starts in five minutes.","La clase empieza en cinco minutos."],["Ana","Let us go inside together!","¡Entremos juntos!"]],"datos":{"0":"<div class=\"frase\">«I am seven years old»</div><div class=\"lit\">palabra por palabra: “yo soy siete años viejo 🤯”</div><div>La edad va con <b>to be</b> (ser/estar), nunca con “tener”. Piensa: <i>“soy de siete años”</i>.</div>"}},"2":{"sTitle":"Mia's Family Photo","sTitleEs":"La foto de la familia de Mia","dTitle":"The Family Photo","dTitleEs":"La foto familiar","paras":[[["There is a big photo.","Hay una foto grande."],["It is on my wall.","Está en mi pared."],["Eight people are in it.","Hay ocho personas en ella."],["Everyone is always smiling.","Todos están siempre sonriendo."],["I love that photo.","Me encanta esa foto."]],[["The tall man is my dad.","El hombre alto es mi papá."],["His name is Carlos.","Su nombre es Carlos."],["He has a big smile.","Tiene una gran sonrisa."],["His hugs are very warm.","Sus abrazos son muy cálidos."],["I feel safe with him.","Me siento seguro con él."]],[["My mom stands next to him.","Mi mamá está junto a él."],["Her name is Rosa.","Su nombre es Rosa."],["She is a kind nurse.","Es una enfermera amable."],["Her eyes look so happy.","Sus ojos se ven muy felices."],["She always listens to me.","Siempre me escucha."]],[["My brother Nico is nine.","Mi hermano Nico tiene nueve."],["The boy is very funny.","El niño es muy gracioso."],["He makes a silly face.","Hace una cara chistosa."],["He makes me laugh daily.","Me hace reír cada día."],["We are good friends.","Somos buenos amigos."]],[["I am in the photo too.","Yo también estoy en la foto."],["I stand in the front.","Estoy parada adelante."],["My dress is light blue.","Mi vestido es celeste."],["I have a big smile.","Tengo una gran sonrisa."],["I am seven years old.","Tengo siete años."]],[["My aunt Lucia is there.","Mi tía Lucía está ahí."],["She is my mom's sister.","Es la hermana de mi mamá."],["She lives in another city.","Vive en otra ciudad."],["She visits us every year.","Nos visita cada año."],["She brings us nice gifts.","Nos trae lindos regalos."]],[["Our dog is in the photo.","Nuestro perro está en la foto."],["His name is Toby.","Su nombre es Toby."],["He is small and brown.","Es pequeño y marrón."],["He sits next to me.","Se sienta junto a mí."],["Toby is part of the family.","Toby es parte de la familia."]],[["My grandma Norma is there.","Mi abuela Norma está ahí."],["Her hair is soft and white.","Su cabello es suave y blanco."],["Grandpa is the same age.","El abuelo tiene la misma edad."],["They are both seventy.","Los dos tienen setenta."],["Everyone in it belongs together.","Todos en ella se pertenecen."]],[["We take photos every year.","Tomamos fotos cada año."],["We all wear nice clothes.","Todos usamos ropa bonita."],["Grandma cooks a big lunch.","La abuela cocina un gran almuerzo."],["We sit around the table.","Nos sentamos alrededor de la mesa."],["We talk and laugh a lot.","Conversamos y reímos mucho."]],[["I look at the photo daily.","Miro la foto cada día."],["It makes me feel warm.","Me hace sentir bien."],["My family is not perfect.","Mi familia no es perfecta."],["But we love each other.","Pero nos queremos."],["That is the best thing.","Eso es lo mejor."]]],"dlg":[["Mia","Sam, look at this family photo!","Sam, ¡mira esta foto familiar!"],["Sam","Oh, how nice! Who are they?","¡Qué linda! ¿Quiénes son?"],["Mia","This is my whole family.","Esta es toda mi familia."],["Sam","Who is that tall man there?","¿Quién es ese hombre alto?"],["Mia","That is my dad, Carlos.","Ese es mi papá, Carlos."],["Sam","And the woman next to him?","¿Y la mujer junto a él?"],["Mia","Her name is Rosa, my mom.","Su nombre es Rosa, mi mamá."],["Sam","She has a kind smile.","Tiene una sonrisa amable."],["Sam","Who is that little boy?","¿Quién es ese niño pequeño?"],["Mia","That boy is my brother Nico.","Ese niño es mi hermano Nico."],["Sam","How old is Nico now?","¿Cuántos años tiene Nico?"],["Mia","He is nine years old.","Tiene nueve años."],["Sam","How many people are here?","¿Cuántas personas hay aquí?"],["Mia","There are eight of us in the photo.","Somos ocho en la foto."],["Sam","My family is quite small.","Mi familia es bastante pequeña."],["Sam","There are only three of us.","Solo somos tres."],["Mia","Every family is different.","Cada familia es diferente."],["Sam","How old are you, Mia?","¿Cuántos años tienes, Mia?"],["Mia","I am seven years old. And you?","Tengo siete años. ¿Y tú?"],["Sam","I am seven too! Same age.","¡Yo también tengo siete! La misma edad."],["Mia","That grandma is Norma.","Esa abuela es Norma."],["Sam","How old is she now?","¿Cuántos años tiene ella?"],["Mia","She is seventy years old.","Tiene setenta años."],["Sam","Your family looks so kind.","Tu familia se ve muy amable."],["Mia","Come and visit us on Saturday!","¡Ven a visitarnos el sábado!"],["Sam","Yes! I would love that.","¡Sí! Me encantaría."]],"datos":{"0":"<div class=\"frase\">«Eight people are in it»</div><div class=\"lit\">palabra por palabra: “ocho personas están EN ella”</div><div>Para decir quién aparece en una foto el inglés usa <b>in</b>: in the photo, in the picture.</div>","3":"<div class=\"frase\">«My brother Nico is nine»</div><div class=\"lit\">palabra por palabra: “mi hermano Nico es nueve”</div><div>Otra vez la edad con <b>is</b>: “Nico <i>tiene</i> nueve”. Los años en inglés van con am/is/are, no con <i>has</i>.</div>","7":"<div class=\"frase\">«They are both seventy»</div><div class=\"lit\">palabra por palabra: “ellos son ambos setenta”</div><div><b>both</b> = “los dos”. Y de nuevo: la edad con to be.</div>"}},"3":{"sTitle":"Saturday at the Park","sTitleEs":"Sábado en el parque","dTitle":"Baby Luli","dTitleEs":"La bebé Luli","paras":[[["Saturday is a special day.","El sábado es un día especial."],["We do not go to school.","No vamos a la escuela."],["There is no rush at home.","No hay prisa en casa."],["Dad makes eggs for everyone.","Papá hace huevos para todos."],["We eat at the table together.","Comemos juntos en la mesa."]],[["After breakfast we walk outside.","Después del desayuno salimos a caminar."],["Grandpa comes with us too.","El abuelo viene con nosotros también."],["His walking stick goes click-click.","Su bastón hace clic-clic."],["I walk next to him.","Yo camino junto a él."],["The park is not far.","El parque no está lejos."]],[["At the park I meet Ravi.","En el parque veo a Ravi."],["He is my best friend.","Es mi mejor amigo."],["His little brother is Arjun.","Su hermanito es Arjun."],["Arjun and my sister are five.","Arjun y mi hermana tienen cinco."],["They are the same age.","Tienen la misma edad."]],[["Ravi is a funny boy.","Ravi es un niño gracioso."],["He makes animal voices.","Hace voces de animales."],["I cannot stop laughing.","No puedo dejar de reír."],["His big brother is Dev.","Su hermano mayor es Dev."],["Dev smiles and shakes his head.","Dev sonríe y niega con la cabeza."]],[["The park is big and green.","El parque es grande y verde."],["There are tall trees here.","Hay árboles altos aquí."],["We run on the soft grass.","Corremos sobre el pasto suave."],["I kick the ball to Ravi.","Le pateo la pelota a Ravi."],["He kicks it back to me.","Él me la patea de vuelta."]],[["My sister loves the swings.","A mi hermana le encantan los columpios."],["Dad pushes her up high.","Papá la empuja bien alto."],["She laughs with joy.","Ella ríe de alegría."],["Arjun waits for his turn.","Arjun espera su turno."],["The two kids play well.","Los dos niños juegan bien."]],[["A man sells ice cream.","Un hombre vende helados."],["Grandpa buys one for me.","El abuelo me compra uno."],["My ice cream is strawberry.","Mi helado es de fresa."],["It is sweet and cold.","Es dulce y frío."],["I say thank you to him.","Le doy las gracias."]],[["We sit under a tree.","Nos sentamos bajo un árbol."],["Grandpa tells an old story.","El abuelo cuenta una historia antigua."],["We listen very quietly.","Escuchamos muy callados."],["A soft wind feels nice.","Un viento suave se siente rico."],["The afternoon is calm.","La tarde está tranquila."]],[["The sun goes down slowly.","El sol baja despacio."],["We walk back home together.","Volvemos a casa juntos."],["Lara is sleepy now.","Lara tiene sueño ahora."],["Dad carries her on his back.","Papá la lleva en su espalda."],["Everyone is happy and tired.","Todos están felices y cansados."]],[["Saturdays are the best days.","Los sábados son los mejores días."],["We are all together.","Estamos todos juntos."],["No one is in a hurry.","Nadie tiene prisa."],["I love my family time.","Amo el tiempo en familia."],["I wait for next Saturday.","Espero el próximo sábado."]]],"dlg":[["Nico","Eva, I have great news today!","Eva, ¡tengo una gran noticia hoy!"],["Eva","Really? Tell me right now!","¿En serio? ¡Cuéntame ya!"],["Nico","I have a new baby sister.","Tengo una hermanita nueva."],["Eva","Wow! What is her name?","¡Vaya! ¿Cómo se llama?"],["Nico","Her name is little Luli.","Su nombre es la pequeña Luli."],["Eva","How old is she now?","¿Qué edad tiene ahora?"],["Nico","She is only two days old.","Tiene solo dos días."],["Eva","A new baby at home!","¡Un bebé nuevo en casa!"],["Eva","Are you happy about it, Nico?","¿Estás feliz, Nico?"],["Nico","I am very happy indeed.","Estoy muy feliz, de verdad."],["Nico","But I am a little tired.","Pero estoy un poco cansado."],["Eva","Babies often cry at night.","Los bebés lloran de noche."],["Nico","My dad is at the hospital.","Mi papá está en el hospital."],["Eva","Is your grandma at home?","¿Está tu abuela en casa?"],["Nico","Yes. She helps all of us.","Sí. Ella nos ayuda a todos."],["Eva","Can I come and visit Luli?","¿Puedo visitar a Luli?"],["Nico","Of course! Come on Saturday.","¡Claro! Ven el sábado."],["Eva","I will bring her a gift.","Le traeré un regalo."],["Nico","You are so kind, Eva.","Eres muy amable, Eva."],["Eva","Does she look like you?","¿Se parece a ti?"],["Nico","We have the same brown eyes.","Tenemos los mismos ojos cafés."],["Eva","How sweet! I cannot wait.","¡Qué tierno! No puedo esperar."],["Nico","See you on Saturday, Eva.","Nos vemos el sábado, Eva."],["Eva","See you then. Take care!","Nos vemos. ¡Cuídate!"]],"datos":{"4":"<div class=\"frase\">«There are…»</div><div class=\"lit\">palabra por palabra: “ahí son… 🤯”</div><div><b>There is</b> = “hay” (uno) · <b>There are</b> = “hay” (varios). En inglés “hay” cambia con el número.</div>"}},"4":{"sTitle":"Kind People","sTitleEs":"Personas amables","dTitle":"Who Is in Your Family?","dTitleEs":"¿Quién está en tu familia?","paras":[[["My name is Nico.","Me llamo Nico."],["I am nine years old.","Tengo nueve años."],["I have many good friends.","Tengo muchos buenos amigos."],["But I learned something important.","Pero aprendí algo importante."],["The best people are kind.","Las mejores personas son amables."]],[["My dad is very kind.","Mi papá es muy amable."],["His name is Carlos.","Su nombre es Carlos."],["I come home sad sometimes.","A veces llego triste a casa."],["He makes tea for me.","Él me prepara un té."],["He sits with me quietly.","Se sienta conmigo en silencio."]],[["There is a kind neighbor too.","Hay una vecina amable también."],["Her name is Mrs. Ana.","Su nombre es la señora Ana."],["She lives all alone.","Vive completamente sola."],["Her family is far away.","Su familia está muy lejos."],["She waves at me daily.","Me saluda con la mano cada día."]],[["My teacher is kind to everyone.","Mi maestra es amable con todos."],["Her name is Miss Pilar.","Su nombre es Miss Pilar."],["She never shouts at us.","Nunca nos grita."],["\"Try again,\" she always says.","\"Inténtalo otra vez\", siempre dice."],["Everyone feels safe with her.","Todos se sienten seguros con ella."]],[["My friend Tomás is kind.","Mi amigo Tomás es amable."],["He helps me with math.","Me ayuda con matemáticas."],["He never makes fun of me.","Nunca se burla de mí."],["He shares his pencils.","Comparte sus lápices."],["A good friend is a gift.","Un buen amigo es un regalo."]],[["My grandma is very kind.","Mi abuela es muy amable."],["Her name is Elena.","Su nombre es Elena."],["She cooks for the whole street.","Cocina para toda la calle."],["She gives food to everyone.","Le da comida a todos."],["Her heart is very big.","Su corazón es muy grande."]],[["A man sells fruit nearby.","Un hombre vende fruta cerca."],["His name is Don Pepe.","Su nombre es Don Pepe."],["He always says good morning.","Siempre dice buenos días."],["He gives me an apple.","Me regala una manzana."],["Small acts make me happy.","Los pequeños gestos me alegran."]],[["Kind people listen to others.","Las personas amables escuchan a otros."],["They share what they have.","Comparten lo que tienen."],["They help without asking why.","Ayudan sin preguntar por qué."],["They use soft, warm words.","Usan palabras suaves y cálidas."],["I want to be like them.","Quiero ser como ellos."]],[["I am only a boy.","Solo soy un niño."],["But I know one thing.","Pero sé una cosa."],["My family is very kind.","Mi familia es muy amable."],["My friends are kind too.","Mis amigos también son amables."],["That is everyone I need.","Esos son todos los que necesito."]],[["Every day I try to be kind.","Cada día trato de ser amable."],["I help my little sister.","Ayudo a mi hermanita."],["I say thank you a lot.","Doy las gracias seguido."],["Kindness comes back to you.","La amabilidad regresa a ti."],["That is my favorite lesson.","Esa es mi lección favorita."]]],"dlg":[["Leo","Ravi, is this your family photo?","Ravi, ¿es esta tu foto familiar?"],["Ravi","Yes! We are six people.","¡Sí! Somos seis personas."],["Leo","Six! My family is small.","¡Seis! Mi familia es pequeña."],["Leo","We are only three at home.","Solo somos tres en casa."],["Ravi","Every family is different.","Cada familia es diferente."],["Leo","Who are these two boys here?","¿Quiénes son estos dos niños?"],["Ravi","They are my two brothers.","Son mis dos hermanos."],["Ravi","Dev is ten years old.","Dev tiene diez años."],["Ravi","Arjun is only five.","Arjun tiene solo cinco."],["Leo","Are you in the middle?","¿Tú estás en el medio?"],["Ravi","Yes, I am eight years old.","Sí, tengo ocho años."],["Leo","Is Dev kind to you?","¿Es Dev amable contigo?"],["Ravi","Yes. He is a good brother.","Sí. Es un buen hermano."],["Leo","And the little boy, Arjun?","¿Y el niño pequeño, Arjun?"],["Ravi","I play with him every day.","Juego con él cada día."],["Leo","Who is that old man there?","¿Quién es ese hombre mayor?"],["Ravi","His name is grandpa Babu.","Su nombre es el abuelo Babu."],["Ravi","He is my very kind grandpa.","Es mi abuelo muy amable."],["Leo","What does your grandpa do?","¿Qué hace tu abuelo?"],["Ravi","He tells us many stories.","Nos cuenta muchas historias."],["Ravi","Everyone loves him a lot.","Todos lo quieren mucho."],["Leo","Is he from this town?","¿Es de este pueblo?"],["Ravi","No, he is from India.","No, es de India."],["Leo","Your family is wonderful, Ravi.","Tu familia es maravillosa, Ravi."],["Ravi","Everyone is welcome at home.","Todos son bienvenidos en casa."],["Leo","Let us play together now!","¡Juguemos juntos ahora!"]],"datos":{"0":"<div class=\"frase\">«The best people are kind»</div><div class=\"lit\">palabra por palabra: “las mejores personas son amables”</div><div><b>people</b> (gente) es plural en inglés: people <b>are</b>. ✗ <s>people is</s>.</div>","9":"<div class=\"frase\">«kindness comes back»</div><div class=\"lit\">palabra por palabra: “la amabilidad viene de vuelta”</div><div><b>come back</b> = volver. Lo bueno que das, vuelve.</div>"}}};
 let PARAS = [];
 const STEPS = {
   'pre-a1':{ es:{t:'Cómo leer (Pre-A1 · 5 pasos)', s:['Lee la traducción en español.','Escucha el audio siguiendo el texto en español, sincronizando ambos en tu mente.','Escucha el audio siguiendo el texto ahora en inglés.','Escucha y lee en voz alta (mejora la pronunciación).','Responde (según la actividad).'], n:'La 1ª vez lee con el español visible. Las siguientes veces, intenta sin él (actívalo solo si lo necesitas). En los pasos 2 y 3, fíjate en las palabras que ya entiendes.'},
@@ -387,8 +236,8 @@ function renderStPick(){ const es=info!=='en'; document.getElementById('spkH').t
   document.getElementById('spkList').innerHTML=[1,2,3,4].map(n=>{ const has=true; const t=ST_TITLES[n][es?'es':'en']; return `<div class="stcard ${has?'':'lock'}" onclick="${has?`pickStory(${n})`:`toast('${es?'Demo: usa la Story 1':'Demo: use Story 1'}')`}"><div class="nx">${has?'📖':'🔒'}</div><div class="si"><b>Story ${n} · Diálogo ${n}</b><span>${t}</span></div><div class="go">${has?'›':'🔒'}</div></div>`; }).join(''); }
 function backToPicker(){ try{pausePlay();}catch(e){} document.getElementById('stpick').style.display='block'; document.getElementById('helpfab').classList.add('hidden'); window.scrollTo(0,0); }
 function updateTitles(){ const d=STORYDATA[storyId], es=info!=='en'; document.getElementById('stitle').textContent= curView==='dlg'?(es?d.dTitleEs:d.dTitle):(es?d.sTitleEs:d.sTitle); document.getElementById('ssub').textContent=(curView==='dlg'?(es?'Diálogo ':'Dialogue '):'Story ')+storyId; }
-function pickStory(n){ storyId=n; try{window.JUCUM_CONNECT&&window.JUCUM_CONNECT.setActivePart&&window.JUCUM_CONNECT.setActivePart(n);}catch(e){} const d=STORYDATA[n];
-  PARAS = d.paras.map(p=>({pairs:p.map(x=>({en:x[0],es:x[1]})), dato:null}));
+function pickStory(n){ storyId=n; const d=STORYDATA[n];
+  PARAS = d.paras.map((p,i)=>({pairs:p.map(x=>({en:x[0],es:x[1]})), dato:(d.datos&&d.datos[i])||null}));
   DLG = d.dlg.map(t=>({sp:t[0], pairs:[{en:t[1],es:t[2]}]}));
   curView='story'; VIEW=PARAS;
   document.getElementById('stpick').style.display='none'; document.getElementById('helpfab').classList.remove('hidden');
@@ -404,14 +253,18 @@ function setView(v){ if(v===curView) return; pausePlay(); curView=v; VIEW= v==='
   document.getElementById('vwStory').classList.toggle('on',v==='story'); document.getElementById('vwDlg').classList.toggle('on',v==='dlg');
   updateTitles(); render(); }
 function render(){
+  const _spks=[...new Set(VIEW.filter(x=>x.sp).map(x=>x.sp))];
   document.getElementById('paras').innerHTML = VIEW.map((p,pi)=>{
     const sp = p.sp?`<div class="dsp">${p.sp}</div>`:'';
     const en=p.pairs.map((q,si)=>`<span class="sent" id="s${pi}_${si}">${q.en}</span>`).join(' ');
     const es=p.pairs.map((q,si)=>`<span class="sente" id="e${pi}_${si}">${q.es}</span>`).join(' ');
-    const dato=p.dato?`<div class="dato"><div class="hd">💡 Dato de traducción</div>${p.dato}</div>`:'';
-    return `<div class="para" id="p${pi}">${sp}<div class="ptext">${en}</div><div class="pes" id="pes${pi}">${es}</div>
+    const dato=p.dato?`<div class="dato"><div class="hd">💡 Así funciona el inglés</div>${p.dato}</div>`:'';
+    const _ini=(p.sp||"").trim().charAt(0);
+    if(p.sp){ return `<div class="para dlgrow${_spks.indexOf(p.sp)%2?' dgB':' dgA'}" id="p${pi}"><span class="dav">${_ini}</span><div class="dbub"><div class="dsp">${p.sp}</div><div class="ptext">${en}</div><div class="pes" id="pes${pi}">${es}</div><div class="prow"><button class="pbtn play" id="play${pi}" onclick="playPara(${pi})">▶ <span class="pl"></span></button></div>${dato}</div></div>`; }
+    return `<div class="para" id="p${pi}"><div class="ptext">${en}</div><div class="pes" id="pes${pi}">${es}</div>
       <div class="prow"><button class="pbtn play" id="play${pi}" onclick="playPara(${pi})">▶ <span class="pl"></span></button></div>${dato}</div>`;
   }).join('');
+  document.getElementById('paras').classList.toggle('chatzone', curView==='dlg');
   ALL=[]; VIEW.forEach((p,pi)=>p.pairs.forEach((q,si)=>ALL.push({pi,si}))); gi=0; gScope='all'; gEnd=ALL.length;
   applyInfo();
 }
@@ -431,7 +284,7 @@ function toggleDatos(){ const s=document.getElementById('screen'); const on=s.ge
 function openHelp(){ document.getElementById('helpov').classList.add('show'); } function closeHelp(){ document.getElementById('helpov').classList.remove('show'); }
 function openVocab(){ document.getElementById('vlist').innerHTML = GLOSS.map(g=>`<div class="vrow"><span class="vw">${g.w}</span><span class="vm">${g.es}<span class="vex">“${g.ex}”</span></span><button class="spk" onclick="say('${g.w.replace(/'/g,'')}')">🔊</button></div>`).join(''); document.getElementById('vpanel').classList.add('show'); }
 function closeVocab(){ document.getElementById('vpanel').classList.remove('show'); }
-function pickVoice(){ try{ const vs=speechSynthesis.getVoices()||[]; const want=voice==='US'?'en-US':'en-GB'; return vs.find(v=>v.lang===want)||vs.find(v=>v.lang&&v.lang.indexOf('en')===0)||null; }catch(e){ return null; } }
+function pickVoice(){ try{ const vs=speechSynthesis.getVoices()||[]; const want=(typeof voice!=='undefined'&&voice==='GB')?'en-GB':'en-US'; const pref=['Google US English','Microsoft Aria','Microsoft Jenny','Microsoft Michelle','Microsoft Ana','Samantha','Google UK English Female','Microsoft Libby','Microsoft Sonia','Daniel']; const en=vs.filter(v=>v.lang&&v.lang.indexOf('en')===0); const pool=en.filter(v=>v.lang===want).concat(en); for(const p of pref){ const hit=pool.find(v=>v.name&&v.name.indexOf(p)===0); if(hit) return hit; } return pool[0]||null; }catch(e){ return null; } }
 function say(text,onend){ try{ if(!('speechSynthesis' in window))throw 0; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=rate; const v=pickVoice(); if(v){u.voice=v;u.lang=v.lang;}else u.lang=voice==='US'?'en-US':'en-GB'; if(onend)u.onend=onend; speechSynthesis.speak(u); }catch(e){ if(onend) setTimeout(onend,Math.max(700,String(text).split(' ').length*330/rate)); } }
 /* Reproducción: rango [gi,gEnd) · pausa conserva gi */
 function setBtns(){ const all=gPlaying&&gScope==='all'; const pa=document.getElementById('playAll');
@@ -448,7 +301,7 @@ function step(){ if(!gPlaying) return;
   const se=document.getElementById('s'+pi+'_'+si); if(se)se.classList.add('read');
   const ee=document.getElementById('e'+pi+'_'+si); if(ee)ee.classList.add('read');
   para.scrollIntoView({behavior:'smooth',block:'center'});
-  say(VIEW[pi].pairs[si].en, ()=>{ if(!gPlaying)return; gi++; step(); });
+  say(VIEW[pi].pairs[si].en, ()=>{ if(!gPlaying)return; try{ if(curView==='story'&&si===VIEW[pi].pairs.length-1&&window.jecParaHeard) jecParaHeard(pi); }catch(e){} gi++; step(); });
 }
 function setText(m){ document.getElementById('screen').setAttribute('data-text',m); ['txEn','txEs','txBoth'].forEach(id=>document.getElementById(id).classList.remove('on')); document.getElementById(m==='en'?'txEn':m==='es'?'txEs':'txBoth').classList.add('on'); }
 function setInfo(l){ info=l; applyInfo(); renderStPick(); if(document.getElementById('stpick').style.display==='none') updateTitles(); }
@@ -470,5 +323,130 @@ render(); setLevel('pre-a1'); document.getElementById('howto').classList.add('op
 </script>
 <!-- JUCUM English Center · seguimiento (NO QUITAR) -->
 <script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+<style id="fxcss">
+#fxov{position:fixed;inset:0;z-index:99990;background:radial-gradient(1200px 700px at 50% 20%,#1d3a24,#0d1c11);display:none;font-family:var(--fb);}
+#fxset{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,92vw);background:#fff;border-radius:20px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.5);}
+#fxset h3{margin:0 0 10px;font-family:var(--fd);font-weight:600;font-size:19px;color:#1B5E20;}
+.fxlab{font-size:10px;font-weight:800;color:#777;letter-spacing:.07em;margin:10px 0 5px;}
+.fxrow{display:flex;gap:7px;}
+.fxrow button{flex:1;border:1.5px solid #9FD3A2;background:#fff;color:#1B5E20;border-radius:12px;padding:9px 4px;font-weight:800;font-family:var(--fb);font-size:13px;cursor:pointer;}
+.fxrow button.on{background:linear-gradient(135deg,#43C062,#1F7A33);color:#fff;border-color:transparent;}
+.fxgo{width:100%;margin-top:16px;border:none;border-radius:14px;background:linear-gradient(135deg,#43C062,#1F7A33);color:#fff;font-weight:800;font-size:15px;padding:13px;cursor:pointer;font-family:var(--fb);}
+.fxx{position:absolute;top:10px;right:12px;border:none;background:#F0EDE4;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:13px;}
+#fxread{position:absolute;inset:0;display:none;flex-direction:column;padding:26px min(6vw,60px);box-sizing:border-box;}
+.fxtop{display:flex;justify-content:space-between;align-items:center;color:#9FD3A2;font-size:11px;font-weight:800;letter-spacing:.08em;}
+.fxmini{border:none;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;width:34px;height:34px;font-size:14px;cursor:pointer;margin-left:7px;}
+.fxprog{height:6px;border-radius:4px;background:rgba(255,255,255,.14);margin-top:12px;overflow:hidden;}
+.fxprog i{display:block;height:100%;width:0;background:#43C062;border-radius:4px;transition:width .3s;}
+.fxmid{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;gap:14px;max-width:860px;margin:0 auto;}
+#fxen{font-family:var(--fs);color:#fff;font-size:clamp(24px,4.2vw,40px);line-height:1.6;}
+#fxes{font-family:var(--fs);font-style:italic;color:#B7E4C0;font-size:clamp(14px,2.2vw,20px);}
+.fxbot{display:flex;gap:12px;justify-content:center;padding-bottom:8px;}
+.fxc{width:54px;height:54px;border-radius:50%;border:none;background:#2EA84B;color:#fff;font-size:20px;cursor:pointer;}
+.fxc.sec{background:rgba(255,255,255,.14);}
+</style>
+<div id="fxov">
+ <div id="fxset">
+   <button class="fxx" onclick="closeFocus()">✕</button>
+   <h3>⛶ Lectura enfocada</h3>
+   <div class="fxlab">ACENTO</div>
+   <div class="fxrow"><button id="fxaUS" onclick="fxCfg('accent','US')">🇺🇸 US</button><button id="fxaGB" onclick="fxCfg('accent','GB')">🇬🇧 UK</button></div>
+   <div class="fxlab">VELOCIDAD</div>
+   <div class="fxrow"><button id="fxr075" onclick="fxCfg('rate',0.75)">0.75 🐢</button><button id="fxr09" onclick="fxCfg('rate',0.9)">0.9</button><button id="fxr1" onclick="fxCfg('rate',1)">1.0</button><button id="fxr115" onclick="fxCfg('rate',1.15)">1.15</button></div>
+   <div class="fxlab">TEXTO</div>
+   <div class="fxrow"><button id="fxten" onclick="fxCfg('text','en')">Solo EN</button><button id="fxtboth" onclick="fxCfg('text','both')">EN + ES</button></div>
+   <button class="fxgo" onclick="fxStart()">▶ Comenzar lectura</button>
+ </div>
+ <div id="fxread">
+   <div class="fxtop"><span id="fxcnt"></span><span><button class="fxmini" onclick="fxGear()">⚙</button><button class="fxmini" onclick="closeFocus()">✕</button></span></div>
+   <div class="fxprog"><i id="fxbar"></i></div>
+   <div class="fxmid"><div id="fxen"></div><div id="fxes"></div></div>
+   <div class="fxbot"><button class="fxc sec" onclick="fxPrev()">◀</button><button class="fxc" id="fxplay" onclick="fxToggle()">⏸</button><button class="fxc sec" onclick="fxNext()">▶</button></div>
+ </div>
+</div>
+<script>
+(function(){
+  var FX={i:0,playing:false,sents:[],cfg:null};
+  try{ FX.cfg=JSON.parse(localStorage.getItem("jucum_focus_cfg")||"null"); }catch(e){}
+  FX.cfg=FX.cfg||{accent:"US",rate:0.9,text:"both"};
+  function $g(id){return document.getElementById(id);}
+  window.openFocus=function(){
+    try{ if(!PARAS||!PARAS.length) return; }catch(e){ return; }
+    FX.sents=[]; PARAS.forEach(function(p){ (p.pairs||[]).forEach(function(q){ FX.sents.push({en:q.en,es:q.es}); }); });
+    try{ pausePlay(); }catch(e){}
+    $g("fxov").style.display="block"; fxShowSet();
+  };
+  function fxShowSet(){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){}
+    $g("fxset").style.display="block"; $g("fxread").style.display="none"; fxPaint(); }
+  window.fxGear=function(){ fxShowSet(); };
+  window.fxCfg=function(k,v){ FX.cfg[k]=v; try{localStorage.setItem("jucum_focus_cfg",JSON.stringify(FX.cfg));}catch(e){} fxPaint(); };
+  function fxPaint(){ ["US","GB"].forEach(function(a){ $g("fxa"+a).classList.toggle("on",FX.cfg.accent===a); });
+    [[0.75,"fxr075"],[0.9,"fxr09"],[1,"fxr1"],[1.15,"fxr115"]].forEach(function(p){ $g(p[1]).classList.toggle("on",FX.cfg.rate===p[0]); });
+    $g("fxten").classList.toggle("on",FX.cfg.text==="en"); $g("fxtboth").classList.toggle("on",FX.cfg.text==="both"); }
+  window.fxStart=function(){ FX.i=0; $g("fxset").style.display="none"; $g("fxread").style.display="flex"; FX.playing=true; fxRender(); fxSay(); };
+  window.closeFocus=function(){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){} $g("fxov").style.display="none"; };
+  function fxVoice(){ try{ var vs=speechSynthesis.getVoices()||[]; var want=FX.cfg.accent==="GB"?"en-GB":"en-US";
+    var pref=["Google US English","Microsoft Aria","Microsoft Jenny","Microsoft Michelle","Microsoft Ana","Samantha","Google UK English Female","Microsoft Libby","Microsoft Sonia","Daniel"];
+    var en=vs.filter(function(v){return v.lang&&v.lang.indexOf("en")===0;});
+    var pool=en.filter(function(v){return v.lang===want;}).concat(en);
+    for(var i=0;i<pref.length;i++){ var hit=null; for(var j=0;j<pool.length;j++){ if(pool[j].name&&pool[j].name.indexOf(pref[i])===0){ hit=pool[j]; break; } } if(hit) return hit; }
+    return pool[0]||null; }catch(e){ return null; } }
+  function fxRender(){ var s=FX.sents[FX.i]||{en:"",es:""};
+    $g("fxcnt").textContent="ORACIÓN "+(FX.i+1)+" DE "+FX.sents.length;
+    $g("fxen").textContent=s.en; $g("fxes").textContent=s.es;
+    $g("fxes").style.display=FX.cfg.text==="both"?"block":"none";
+    $g("fxplay").textContent=FX.playing?"⏸":"▶";
+    $g("fxbar").style.width=(FX.sents.length?Math.round((FX.i+1)/FX.sents.length*100):0)+"%"; }
+  function fxSay(){ try{ speechSynthesis.cancel(); var s=FX.sents[FX.i]; if(!s) return;
+    var u=new SpeechSynthesisUtterance(s.en); u.rate=FX.cfg.rate; var v=fxVoice(); if(v){u.voice=v;u.lang=v.lang;} else u.lang="en-US";
+    u.onend=function(){ if(!FX.playing) return; if(FX.i<FX.sents.length-1){ FX.i++; fxRender(); setTimeout(function(){ if(FX.playing) fxSay(); },420); } else { FX.playing=false; fxRender(); } };
+    speechSynthesis.speak(u); }catch(e){}
+  }
+  window.fxToggle=function(){ if(FX.playing){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){} } else { FX.playing=true; fxSay(); } fxRender(); };
+  window.fxPrev=function(){ if(FX.i>0){ FX.i--; fxRender(); if(FX.playing) fxSay(); } };
+  window.fxNext=function(){ if(FX.i<FX.sents.length-1){ FX.i++; fxRender(); if(FX.playing) fxSay(); } };
+})();
+</script>
+<script id="v5ajs">
+(function(){
+  function $g(id){return document.getElementById(id);}
+  function KEY(){ return 'jec_heard_'+location.pathname+'_'+(typeof storyId!=='undefined'?storyId:0); }
+  var cloudDone={};
+  function heard(){ try{ return new Set(JSON.parse(localStorage.getItem(KEY())||'[]')); }catch(e){ return new Set(); } }
+  function saveHeard(s){ try{ localStorage.setItem(KEY(), JSON.stringify(Array.from(s))); }catch(e){} }
+  window.jecParaHeard=function(pi){ try{ var s=heard(); if(!s.has(pi)){ s.add(pi); saveHeard(s); } paintHeard(); ring(); }catch(e){} };
+  function total(){ try{ return PARAS.length; }catch(e){ return 0; } }
+  function ring(){ var el=$g('ring5'); if(!el) return; var t=total()||1; var n=heard().size; if(cloudDone[storyId]) n=t; var pct=Math.min(100,Math.round(n/t*100));
+    $g('ring5T').textContent=pct+'%'; el.style.background='conic-gradient(#fff 0 '+pct+'%, rgba(255,255,255,.25) '+pct+'% 100%)'; }
+  function paintHeard(){ try{ if(typeof curView!=='undefined'&&curView!=='story') return; var s=heard();
+    document.querySelectorAll('#paras .para:not(.dlgrow)').forEach(function(p){ var pi=+p.id.slice(1); p.classList.toggle('heard5', s.has(pi)||!!cloudDone[storyId]);
+      var fs=p.querySelector('.ptext .sent');
+      if(fs&&!fs.querySelector('.dcap')){ var t=fs.textContent; if(t&&t.length>1){ fs.innerHTML='<span class="dcap">'+t.charAt(0)+'</span>'+t.slice(1).replace(/&/g,'&amp;').replace(/</g,'&lt;'); } }
+    }); }catch(e){} }
+  var _pick=window.pickStory; window.pickStory=function(n){ _pick(n);
+    try{ if(window.JUCUM_CONNECT&&JUCUM_CONNECT.setActivePart) JUCUM_CONNECT.setActivePart(Number(n)); }catch(e){}
+    ring(); paintHeard(); };
+  var _render=window.render; if(_render){ window.render=function(){ _render(); paintHeard(); ring(); }; }
+  var _mark=window.markDone; window.markDone=function(){
+    try{
+      var t=total(); var n=cloudDone[storyId]?t:heard().size;
+      if(n<t){ var falta=t-n; var es=(typeof info==='undefined')||info==='es';
+        toast(es?('🎧 Escucha y lee TODA la historia antes de marcarla: te '+(falta>1?'faltan ':'falta ')+falta+' párrafo'+(falta>1?'s':'')+'. Usa ▶ en cada uno.')
+               :('🎧 Listen to and read the WHOLE story first: '+falta+' paragraph'+(falta>1?'s':'')+' left. Use ▶ on each one.'));
+        return; }
+      cloudDone[storyId]=true;
+      try{ if(window.JUCUM_CONNECT&&JUCUM_CONNECT.savePart) JUCUM_CONNECT.savePart(Number(storyId),100,0); }catch(e){}
+    }catch(e){}
+    if(_mark) _mark();
+  };
+  (function seed(k){ var api=window.JUCUM_CONNECT;
+    if(!api||!api.getCompletedParts){ if(k<20) setTimeout(function(){seed(k+1);},700); return; }
+    api.getCompletedParts(function(parts){ try{ (parts||[]).forEach(function(x){ var n=Number(x.part); if(n) cloudDone[n]=true; }); ring(); paintHeard(); annotate(); }catch(e){} });
+  })(0);
+  function annotate(){ try{ var list=$g('spkList'); if(!list) return;
+    Array.prototype.forEach.call(list.children,function(el,ix){ var n=ix+1; if(cloudDone[n]&&!el.querySelector('.cl5')){ var s=document.createElement('span'); s.className='cl5'; s.textContent=' ✓'; s.style.cssText='color:#1B5E20;font-weight:800;'; el.appendChild(s); } }); }catch(e){} }
+  ring();
+})();
+</script>
 </body>
 </html>

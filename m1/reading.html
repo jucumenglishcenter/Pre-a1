@@ -336,7 +336,7 @@ function saveProg(a){ try{ localStorage.setItem(PROG_KEY, JSON.stringify(a)); }c
 function toPicker(){ document.getElementById('helpfab').classList.add('hidden'); document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='none'; document.getElementById('picker').style.display='block'; S=null; storyId=null; document.getElementById('scroll').scrollTop=0; renderPicker(); }
 function renderPicker(){ const t=L(); document.getElementById('pkh').textContent=t.pkh; document.getElementById('pksub').textContent=t.pksub;
   const prog=loadProg(); document.getElementById('pkprog').textContent=t.pkprog(prog.filter(n=>STORIES[n]).length);
-  document.getElementById('stlist').innerHTML = STLIST.map(s=>{ const has=STORIES[s.n]; const title=STMETA[s.n].t[info]; const done=prog.includes(s.n); const unlocked=(s.n===1||prog.includes(s.n-1));
+  document.getElementById('stlist').innerHTML = STLIST.map(s=>{ const has=STORIES[s.n]; const title=STMETA[s.n].t[info]; const done=prog.includes(s.n); const unlocked=(window.JUCUM_TEACHER_OPEN===true)||(s.n===1||prog.includes(s.n-1));
     const badge= done?`<span class="stbadge d">✓ ${t.stDone}</span>`: unlocked?`<span class="stbadge a">${t.stAvail}</span>`:`<span class="stbadge l">🔒 ${t.stLockedShort}</span>`;
     const click= !unlocked?`toast(L().stLockMsg(${s.n-1}))`: !has?`toast(L().soon)`:`pickStory(${s.n})`;
     const go= done?'↺': unlocked?(has?'›':'🔒'):'🔒';
@@ -506,6 +506,8 @@ setLevel('pre-a1');
 <script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 <script>
 /* JUCUM_SEED_UNLOCK_v1 · Cross-device: restaura el desbloqueo secuencial desde la nube al abrir (NO cambia el ejercicio). */
+window.JUCUM_TEACHER_OPEN=(new URLSearchParams(location.search).get('jucum_teacher')==='1');
+if(window.JUCUM_TEACHER_OPEN){try{renderPicker();}catch(e){}}
 (function seed(t){var C=window.JUCUM_CONNECT;if(C&&C.getCompletedParts){C.getCompletedParts(function(cloud){if(!cloud||!cloud.length)return;var p=loadProg(),ch=false;cloud.forEach(function(c){if(c.part&&p.indexOf(c.part)<0){p.push(c.part);ch=true;}});if(ch){saveProg(p);if(typeof renderPicker==='function')renderPicker();}});}else if((t||0)<25){setTimeout(function(){seed((t||0)+1);},300);}})(0);
 </script>
 </body>

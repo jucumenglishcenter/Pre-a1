@@ -158,7 +158,7 @@
       <div class="phone"><div class="screen" id="screen" data-level="pre-a1" data-qtr="off">
         <div class="notch"></div>
         <div class="scroll" id="scroll">
-          <div class="mhead"><button class="mback" onclick="goBack()">‹</button>
+          <div class="mhead"><button class="mback" onclick="goBack()" title="Volver a elegir audio">‹ <span style="font-size:11px;font-weight:800;letter-spacing:.02em;">Audios</span></button>
             <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
             <div class="mh-info"><b>Comprensión auditiva</b><span id="mhsub">Pre-A1 · M1 · Personal Identity</span></div>
             <div class="mh-count" id="hcount" style="display:none"><span id="cq">1</span>/<span id="qtot">3</span></div></div>
@@ -323,7 +323,7 @@ function render(){
   applyLang(); showQ(0,true);
 }
 function buildQ(q,i){ return `<div class="qcard${i!==0?' hidden':''}" id="q${i}">
-    <div class="qtop"><div class="qnum">${i+1}</div><span class="qlevel ${q.level}" id="ql${i}"></span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})"></button></div>
+    <div class="qtop"><div class="qnum">${i+1}</div><span class="qlevel ${q.level}" id="ql${i}"></span></div>
     <div class="player"><button class="pbig" id="pb${i}" onclick="playItem(${i})">▶</button><div class="pmeta"><span id="pmL${i}"></span><button class="pmini" id="acc${i}" onclick="cycleAcc(${i})"></button><span style="display:flex;align-items:center;gap:4px">🐢<input type="range" min="0.6" max="1.1" step="0.1" value="0.9" oninput="setRate(this.value)" style="width:66px;accent-color:var(--lp)">🐇</span></div><div class="replays" id="rp${i}"></div></div>
     <div class="support"><button class="sbtn" id="txb${i}" onclick="toggleScript(${i})">📖 <span class="txl"></span></button><div class="miniseg2" id="seg${i}" style="display:none"><button id="te${i}" class="on" onclick="setTxt(${i},'en')">EN</button><button id="ts${i}" onclick="setTxt(${i},'es')">ES</button><button id="tb${i}" onclick="setTxt(${i},'both')">EN+ES</button></div></div>
     <div class="ralong" id="ral${i}" data-txt="en" style="display:none"><div class="ren" id="ren${i}">${splitSent(q.audio).map((s,k)=>`<span class="sen" id="en${i}_${k}">${s}</span>`).join(' ')}</div><div class="res" id="res${i}">${splitSent(q.es).map((s,k)=>`<span class="ses" id="es${i}_${k}">${s}</span>`).join(' ')}</div><div class="rnote" id="rnote${i}"></div></div>
@@ -343,7 +343,7 @@ function applyLang(){ const t=L(); const qLang=qaMode[0], aLang=qaMode[1];
   document.getElementById('lReinf').textContent=t.reinf; document.getElementById('lBack').textContent=t.back; document.getElementById('lRetry').textContent=t.retry; document.getElementById('lPicker').textContent=t.toPickerBtn;
   const lvl={easy:'🟢 '+t.tnEasy, medium:'🟠 '+t.tnMed, hard:'🔴 '+t.tnHard};
   S.items.forEach((q,i)=>{ const e=id=>document.getElementById(id+i);
-    e('ql').textContent=lvl[q.level]; e('qx').textContent= qLang==='es'?q.qes:q.q; e('qtr').textContent=''; e('qr').textContent=t.report;
+    e('ql').textContent=lvl[q.level]; e('qx').textContent= qLang==='es'?q.qes:q.q; e('qtr').textContent='';
     e('pmL').textContent=t.play; e('acc').textContent=accent==='US'?'🇺🇸 US':'🇬🇧 UK'; e('rp').textContent= replays[i]?t.replays(replays[i]):'';
     document.querySelector('#txb'+i+' .txl').textContent=t.script; e('rnote').textContent=t.scriptLab;
     if(q.evid){ e('evt').textContent='🎧 '+t.evT; e('evp').textContent=t.evP; }
@@ -445,7 +445,7 @@ function badgeSVG(emoji){ return '<svg viewBox="0 0 120 150" width="96" height="
   '</svg>'; }
 function restart(){ render(); document.getElementById('hcount').style.display='block'; startTimer(); }
 function toggleReport(i){ document.getElementById('rf'+i).classList.toggle('show'); }
-function sendReport(i){ const ty=document.getElementById('rt'+i).value, n=document.getElementById('rn'+i).value.trim(); document.getElementById('rf'+i).classList.remove('show'); document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify({mat:'A2_M1_listening-s'+storyId,q:i+1,issue:ty,note:n||'-'}); document.getElementById('rd'+i).classList.add('show'); toast(info==='es'?'✓ Reporte enviado':'✓ Report sent'); }
+function sendReport(i){ const ty=document.getElementById('rt'+i).value, n=document.getElementById('rn'+i).value.trim(); document.getElementById('rf'+i).classList.remove('show'); document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify({mat:'A2_M1_listening-s'+storyId,q:i+1,issue:ty,note:n||'-'}); document.getElementById('rd'+i).classList.add('show'); try{window.JUCUM_CONNECT&&window.JUCUM_CONNECT.report&&window.JUCUM_CONNECT.report(n||'-',ty,storyId);}catch(e){} toast(info==='es'?'✓ Reporte enviado':'✓ Report sent'); }
 function copyCode(i){ const x=document.getElementById('rc'+i).textContent; navigator.clipboard&&navigator.clipboard.writeText(x); toast(info==='es'?'Código copiado':'Code copied'); }
 function setRate(v){ rate=parseFloat(v); }
 function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}

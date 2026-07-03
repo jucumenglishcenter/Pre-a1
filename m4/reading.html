@@ -189,7 +189,7 @@
       <div class="phone"><div class="screen" id="screen" data-level="pre-a1" data-text="en" data-qtr="off">
         <div class="notch"></div>
         <div class="scroll" id="scroll">
-          <div class="mhead"><button class="mback" onclick="toPicker()">‹</button>
+          <div class="mhead"><button class="mback" onclick="toPicker()" title="Volver a elegir historia">‹ <span style="font-size:11px;font-weight:800;letter-spacing:.02em;">Historias</span></button>
             <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
             <div class="mh-info"><b>Comprensión lectora</b><span id="mhsub">Pre-A1 · M4 · Home, School & Objects</span></div>
             <div class="mh-count" id="hcount" style="display:none"><span id="cq">1</span>/<span id="qtot">4</span></div></div>
@@ -500,7 +500,7 @@ function setText(m){ document.getElementById('screen').setAttribute('data-text',
 function textSize(d){ let s=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--reading'))||17; s=Math.max(14,Math.min(26,s+d)); document.documentElement.style.setProperty('--reading',s+'px'); try{localStorage.setItem('jucum_read_fs',s);}catch(e){} }
 try{ const _jfs=parseInt(localStorage.getItem('jucum_read_fs')); if(_jfs>=14&&_jfs<=26) document.documentElement.style.setProperty('--reading',_jfs+'px'); }catch(e){}
 function toggleReport(i){ document.getElementById('rf'+i).classList.toggle('show'); }
-function sendReport(i){ const ty=document.getElementById('rt'+i).value, n=document.getElementById('rn'+i).value.trim(); document.getElementById('rf'+i).classList.remove('show'); document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify({mat:'A2_M1_reading-s'+storyId,q:i+1,issue:ty,note:n||'-'}); document.getElementById('rd'+i).classList.add('show'); toast(info==='es'?'✓ Reporte enviado':'✓ Report sent'); }
+function sendReport(i){ const ty=document.getElementById('rt'+i).value, n=document.getElementById('rn'+i).value.trim(); document.getElementById('rf'+i).classList.remove('show'); document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify({mat:'A2_M1_reading-s'+storyId,q:i+1,issue:ty,note:n||'-'}); document.getElementById('rd'+i).classList.add('show'); try{window.JUCUM_CONNECT&&window.JUCUM_CONNECT.report&&window.JUCUM_CONNECT.report(n||'-',ty,storyId);}catch(e){} toast(info==='es'?'✓ Reporte enviado':'✓ Report sent'); }
 function copyCode(i){ const x=document.getElementById('rc'+i).textContent; navigator.clipboard&&navigator.clipboard.writeText(x); toast(info==='es'?'Código copiado':'Code copied'); }
 function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}
 function inProgress(){ return S && !document.getElementById('results').classList.contains('show') && (sec>0 || ans.some(x=>x!==null)); }

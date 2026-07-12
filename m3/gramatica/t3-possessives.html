@@ -241,9 +241,9 @@ const STEPS = [
     },
     checks:[
       { q:{es:'«el perro de Tom» en inglés:',en:'«el perro de Tom» in English:'}, opts:{es:['Tom\'s dog','the dog of Tom'],en:['Tom\'s dog','the dog of Tom']}, correct:0, fb:{ why:{es:'Nombre + \'s.',en:'Name + \'s.'}, ex:{es:'Tom\'s dog → el perro de Tom',en:'Tom\'s dog'}, tip:{es:'+ \'s',en:'+ \'s'}} },
-      { q:{es:'«___ name is Ana.» (de ella):',en:'«___ name is Ana.» (her):'}, opts:{es:['Her','His'],en:['Her','His']}, correct:0, fb:{ why:{es:'De ella → her.',en:'Hers → her.'}, ex:{es:'Her name is Ana → Se llama Ana',en:'Her name is Ana'}, tip:{es:'de ella → her',en:'hers → her'}} },
-      { q:{es:'«The dog wags ___ tail.» (su, del perro):',en:'«The dog wags ___ tail.» (its):'}, opts:{es:['its','it\'s'],en:['its','it\'s']}, correct:0, fb:{ why:{es:'Posesivo «its» sin apóstrofo.',en:'Possessive «its», no apostrophe.'}, ex:{es:'its tail → su cola',en:'its tail'}, tip:{es:'posesivo → its',en:'possessive → its'}} },
-      { q:{es:'«___ house is big.» (de ellos):',en:'«___ house is big.» (their):'}, opts:{es:['Their','His'],en:['Their','His']}, correct:0, fb:{ why:{es:'De ellos → their.',en:'Theirs → their.'}, ex:{es:'Their house → su casa (de ellos)',en:'Their house'}, tip:{es:'de ellos → their',en:'theirs → their'}} },
+      { q:{es:'«___ name is Ana.» (de ella):',en:'«___ name is Ana.»:'}, opts:{es:['Her','His'],en:['Her','His']}, correct:0, fb:{ why:{es:'De ella → her.',en:'Hers → her.'}, ex:{es:'Her name is Ana → Se llama Ana',en:'Her name is Ana'}, tip:{es:'de ella → her',en:'hers → her'}} },
+      { q:{es:'«The dog wags ___ tail.» (su, del perro):',en:'«The dog wags ___ tail.»:'}, opts:{es:['its','it\'s'],en:['its','it\'s']}, correct:0, fb:{ why:{es:'Posesivo «its» sin apóstrofo.',en:'Possessive «its», no apostrophe.'}, ex:{es:'its tail → su cola',en:'its tail'}, tip:{es:'posesivo → its',en:'possessive → its'}} },
+      { q:{es:'«___ house is big.» (de ellos):',en:'«___ house is big.» (they):'}, opts:{es:['Their','His'],en:['Their','His']}, correct:0, fb:{ why:{es:'De ellos → their.',en:'Theirs → their.'}, ex:{es:'Their house → su casa (de ellos)',en:'Their house'}, tip:{es:'de ellos → their',en:'theirs → their'}} },
       { q:{es:'«___ car» (el dueño es él):',en:'«___ car» (the owner is he):'}, opts:{es:['his','her'],en:['his','her']}, correct:0, fb:{ why:{es:'De él → his.',en:'His → his.'}, ex:{es:'his car → su carro (de él)',en:'his car'}, tip:{es:'de él → his',en:'his → his'}} }
     ] },
   { icon:'✨', title:{es:'Práctica Final',en:'Final Practice'}, builder:true,
@@ -264,11 +264,11 @@ const STEPS = [
         <div class="alert-card"><div class="atitle">⚠️ The 3 most common mistakes</div><p>❌ «the book of Ana» → ✅ «<b>Ana\'s</b> book»<br>❌ «her car» (when it\'s his) → ✅ «<b>his</b> car»<br>❌ «it\'s tail» → ✅ «<b>its</b> tail»</p></div>`
     },
     checks:[
-      { q:{es:'«This is ___ classroom.» (nuestro):',en:'«This is ___ classroom.» (our):'}, opts:{es:['our','their'],en:['our','their']}, correct:0, fb:{ why:{es:'Nuestro → our.',en:'Our → our.'}, ex:{es:'our classroom → nuestro salón',en:'our classroom'}, tip:{es:'nuestro → our',en:'our → our'}} },
+      { q:{es:'«This is ___ classroom.» (nuestro):',en:'«This is ___ classroom.» (we):'}, opts:{es:['our','their'],en:['our','their']}, correct:0, fb:{ why:{es:'Nuestro → our.',en:'Our → our.'}, ex:{es:'our classroom → nuestro salón',en:'our classroom'}, tip:{es:'nuestro → our',en:'our → our'}} },
       { q:{es:'«el cuaderno de Pedro» en inglés:',en:'«el cuaderno de Pedro» in English:'}, opts:{es:['Pedro\'s notebook','notebook of Pedro'],en:['Pedro\'s notebook','notebook of Pedro']}, correct:0, fb:{ why:{es:'Nombre + \'s.',en:'Name + \'s.'}, ex:{es:'Pedro\'s notebook → el cuaderno de Pedro',en:'Pedro\'s notebook'}, tip:{es:'+ \'s',en:'+ \'s'}} },
-      { q:{es:'«She is with ___ friends.» (de ella):',en:'«She is with ___ friends.» (her):'}, opts:{es:['her','his'],en:['her','his']}, correct:0, fb:{ why:{es:'De ella → her.',en:'Hers → her.'}, ex:{es:'her friends → sus amigos (de ella)',en:'her friends'}, tip:{es:'de ella → her',en:'hers → her'}} },
-      { q:{es:'«Is this ___ pen?» (tuyo):',en:'«Is this ___ pen?» (your):'}, opts:{es:['your','my'],en:['your','my']}, correct:0, fb:{ why:{es:'Tuyo → your.',en:'Yours → your.'}, ex:{es:'your pen → tu lapicero',en:'your pen'}, tip:{es:'tuyo → your',en:'yours → your'}} },
-      { q:{es:'«The cat licked ___ paw.» (su, del gato):',en:'«The cat licked ___ paw.» (its):'}, opts:{es:['its','his'],en:['its','his']}, correct:0, fb:{ why:{es:'Animal/cosa → its.',en:'Animal/thing → its.'}, ex:{es:'its paw → su pata',en:'its paw'}, tip:{es:'cosa → its',en:'thing → its'}} }
+      { q:{es:'«She is with ___ friends.» (de ella):',en:'«She is with ___ friends.»:'}, opts:{es:['her','his'],en:['her','his']}, correct:0, fb:{ why:{es:'De ella → her.',en:'Hers → her.'}, ex:{es:'her friends → sus amigos (de ella)',en:'her friends'}, tip:{es:'de ella → her',en:'hers → her'}} },
+      { q:{es:'«Is this ___ pen?» (tuyo):',en:'«Is this ___ pen?» (you):'}, opts:{es:['your','my'],en:['your','my']}, correct:0, fb:{ why:{es:'Tuyo → your.',en:'Yours → your.'}, ex:{es:'your pen → tu lapicero',en:'your pen'}, tip:{es:'tuyo → your',en:'yours → your'}} },
+      { q:{es:'«The cat licked ___ paw.» (su, del gato):',en:'«The cat licked ___ paw.» (it):'}, opts:{es:['its','his'],en:['its','his']}, correct:0, fb:{ why:{es:'Animal/cosa → its.',en:'Animal/thing → its.'}, ex:{es:'its paw → su pata',en:'its paw'}, tip:{es:'cosa → its',en:'thing → its'}} }
     ] }
 ];
 const BUILD = { answer:[{w:'This is',c:'s'},{w:'my',c:'v'},{w:'book',c:'c'}], say:'This is my book', tr:{es:'Este es mi libro.',en:'This is my book.'} };

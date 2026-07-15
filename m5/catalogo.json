@@ -1,0 +1,99 @@
+{
+  "module": "Nature, Food & Animals",
+  "emoji": "🌿",
+  "level": "pre-a1",
+  "topics": [
+    "Past Simple Regular (-ed)",
+    "Past of to be (was/were)"
+  ],
+  "activities": [
+    {
+      "id": "story",
+      "type": "story",
+      "name": "Stories y Diálogos · Nature, Food & Animals",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/story.html"
+    },
+    {
+      "id": "reading",
+      "type": "reading",
+      "name": "Comprensión lectora · Nature, Food & Animals",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/reading.html"
+    },
+    {
+      "id": "listening",
+      "type": "listening",
+      "name": "Comprensión auditiva · Nature, Food & Animals",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/listening.html"
+    },
+    {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario Nature, Food & Animals",
+      "open": true,
+      "quizVocabulario": "",
+      "quizVocabulario2": "",
+      "quizTraducir": "",
+      "quizOrdenar": ""
+    },
+    {
+      "id": "sum-past-regular",
+      "type": "summary",
+      "name": "Resumen · Pasado Simple Regular (-ed)",
+      "group": "T1 · Pasado Regular (-ed)",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/gramatica/t1-past-simple-regular.html"
+    },
+    {
+      "id": "t1-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T1 · Pasado Regular (-ed)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t1-past-simple-regular/fill.html"
+    },
+    {
+      "id": "t1-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T1 · Pasado Regular (-ed)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t1-past-simple-regular/identify.html"
+    },
+    {
+      "id": "t1-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T1 · Pasado Regular (-ed)",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t1-past-simple-regular/transform.html"
+    },
+    {
+      "id": "sum-was-were",
+      "type": "summary",
+      "name": "Resumen · Pasado de \"to be\": was / were",
+      "group": "T2 · Was y Were",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/gramatica/t2-was-were.html"
+    },
+    {
+      "id": "t2-fill",
+      "type": "grammar",
+      "name": "Fill in",
+      "group": "T2 · Was y Were",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t2-was-were/fill.html"
+    },
+    {
+      "id": "t2-id",
+      "type": "grammar",
+      "name": "Identification",
+      "group": "T2 · Was y Were",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t2-was-were/identify.html"
+    },
+    {
+      "id": "t2-tr",
+      "type": "grammar",
+      "name": "Transform",
+      "group": "T2 · Was y Were",
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m5/practicas/t2-was-were/transform.html"
+    }
+  ]
+}

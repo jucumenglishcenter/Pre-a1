@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identification · Pasado Regular (-ed) · JUCUM English Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --orange-light: #FFEDD5; --orange-dark: #C2410C;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#FEF3C7; color:var(--text-medium); margin-left:auto; }
+        .toggle-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+        .toggle-btn { border:2px solid var(--primary-light); background:#FFFBEB; color:var(--text-medium); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .toggle-btn:hover { background:var(--primary-light); }
+        .toggle-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; display:none; }
+        .hint-box.show { display:block; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.88rem; margin:0.5rem 0 1rem; padding:0.6rem 0.9rem; background:#FFFBEB; border-radius:10px; display:none; }
+        .translation.show { display:block; }
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border:1px solid #FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .fb-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.8rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; flex-wrap:wrap; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .q-label { font-size:0.88rem; color:var(--text-medium); font-weight:600; }
+        .sentence-options { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:0.5rem; }
+        .sent-option { border:2.5px solid #E5E7EB; border-radius:14px; padding:1rem 1.1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:flex-start; width:100%; }
+        .sent-option:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .sent-option.disabled { cursor:default; }
+        .sent-option.correct { border-color:var(--success); background:var(--success-light); }
+        .sent-option.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .sent-option.correct .option-letter { background:var(--success); color:white; }
+        .sent-option.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); line-height:1.5; font-weight:600; flex:1; }
+        .option-status { font-size:1.1rem; flex-shrink:0; display:none; }
+        .sent-option.disabled .option-status { display:block; }
+        .error-highlight { color:var(--error); font-weight:800; text-decoration:underline wavy; }
+        .correct-highlight { color:var(--success-dark); font-weight:800; }
+    </style>
+</head><body>
+    <header class="header">
+        <div class="header-info">
+            <div class="header-title">🔍 Identification</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 5 · Pasado Regular (-ed)</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/15</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
+
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">Identifica la oración correcta</div>
+                <div class="instructions-text">Lee las tres oraciones y elige la que esté gramaticalmente correcta. Usa los botones para una pista o la traducción si las necesitas.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore"></div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [{"badge":"🔔 señal de pasado","options":[{"text":"Yesterday we walked to the park.","correct":true,"es":"Ayer caminamos al parque."},{"text":"Yesterday we walk to the park.","correct":false,"errorWord":"walk","correctWord":"walked","errorType":"Falta el pasado (-ed)","explanation":"«Yesterday» dice que la acción ya pasó: el verbo necesita su terminación de pasado.","es":"Ayer caminamos al parque (verbo en presente)."},{"text":"Yesterday we walkted to the park.","correct":false,"errorWord":"walkted","correctWord":"walked","errorType":"Terminación inventada","explanation":"El pasado regular agrega solo -ed al final: no se le suman letras extra.","es":"Ayer caminamos al parque (terminación inventada)."}],"clue":"yesterday","clueExplain":"es una palabra señal: la acción ocurrió ayer, así que el verbo va en pasado.","correctReason":"El verbo tiene su forma de pasado bien escrita: la acción ya terminó.","hint":"Busca la palabra señal de tiempo: ¿la acción es de hoy o ya pasó? Luego revisa cómo termina el verbo en cada opción."},{"badge":"🟡 vocal + y","options":[{"text":"We played all day.","correct":true,"es":"Jugamos todo el día."},{"text":"We plaied all day.","correct":false,"errorWord":"plaied","correctWord":"played","errorType":"Ortografía del pasado","explanation":"Cuando hay vocal antes de la y, la y NO cambia: solo se agrega -ed.","es":"Jugamos todo el día (la y no debe cambiar)."},{"text":"We playeds all day.","correct":false,"errorWord":"playeds","correctWord":"played","errorType":"-s extra en el pasado","explanation":"El pasado con -ed nunca lleva una -s al final, con ninguna persona.","es":"Jugamos todo el día (con una -s extra)."}],"clue":"vocal + y","clueExplain":"cuando el verbo termina en vocal + y, la y se queda y solo se agrega -ed.","correctReason":"La terminación está completa y sin letras cambiadas ni agregadas de más.","hint":"Las tres quieren decir lo mismo. Compara letra por letra cómo termina el verbo en cada una."},{"badge":"✏️ verbo + -ed","options":[{"text":"Mom opened two eggs.","correct":true,"es":"Mamá abrió dos huevos."},{"text":"Mom opend two eggs.","correct":false,"errorWord":"opend","correctWord":"opened","errorType":"Ortografía del pasado","explanation":"La terminación completa del pasado es -ed: le falta una letra.","es":"Mamá abrió dos huevos (le falta una letra)."},{"text":"Mom opens two eggs yesterday.","correct":false,"errorWord":"opens","correctWord":"opened","errorType":"Presente con señal de pasado","explanation":"«Yesterday» habla de ayer: el verbo no puede ir en presente con -s.","es":"Mamá abre dos huevos ayer (tiempos mezclados)."}],"clue":"verbo + -ed","clueExplain":"el pasado regular se forma agregando la terminación -ed completa.","correctReason":"El verbo lleva la terminación -ed completa y no mezcla tiempos.","hint":"Una oración mezcla dos tiempos y a otra le falta una letra. Lee cada verbo despacio."},{"badge":"🔤 termina en -e","options":[{"text":"The flower died yesterday.","correct":true,"es":"La flor murió ayer."},{"text":"The flower dieed yesterday.","correct":false,"errorWord":"dieed","correctWord":"died","errorType":"Ortografía del pasado","explanation":"El verbo ya termina en -e: solo se agrega -d, sin repetir la e.","es":"La flor murió ayer (letra e repetida)."},{"text":"The flower dies yesterday.","correct":false,"errorWord":"dies","correctWord":"died","errorType":"Presente con señal de pasado","explanation":"«Yesterday» pide pasado; la forma con -s es de presente.","es":"La flor muere ayer (tiempos mezclados)."}],"clue":"termina en -e","clueExplain":"si el verbo ya termina en -e, solo se le agrega -d.","correctReason":"Al verbo que termina en -e solo se le agregó una -d: la forma queda perfecta.","hint":"El verbo base ya termina en -e. ¿Cuántas letras se le agregan para el pasado? Revisa también la palabra señal."},{"badge":"✏️ verbo + -ed","options":[{"text":"I added a little salt.","correct":true,"es":"Agregué un poquito de sal."},{"text":"I addd a little salt.","correct":false,"errorWord":"addd","correctWord":"added","errorType":"Ortografía del pasado","explanation":"La terminación es -ed con su e: sin ella quedan tres letras d juntas.","es":"Agregué un poquito de sal (le falta la e)."},{"text":"I addted a little salt.","correct":false,"errorWord":"addted","correctWord":"added","errorType":"Terminación inventada","explanation":"El pasado regular agrega -ed, no -ted.","es":"Agregué un poquito de sal (terminación inventada)."}],"clue":"verbo + -ed","clueExplain":"la terminación se escribe -ed completa, sin inventos.","correctReason":"add + -ed = added: terminación completa y bien escrita.","hint":"Las tres suenan casi igual. Fíjate exactamente en las letras de la terminación."},{"badge":"✏️ verbo + -ed","options":[{"text":"She washed the apple.","correct":true,"es":"Ella lavó la manzana."},{"text":"She washt the apple.","correct":false,"errorWord":"washt","correctWord":"washed","errorType":"Escrito como suena","explanation":"Aunque al hablar suene /t/, el pasado se escribe con -ed.","es":"Ella lavó la manzana (escrito como suena)."},{"text":"She washing the apple.","correct":false,"errorWord":"washing","correctWord":"washed","errorType":"Oración incompleta","explanation":"La forma -ing sola no cuenta una acción terminada; aquí va el pasado.","es":"Ella lavando la manzana (oración incompleta)."}],"clue":"verbo + -ed","clueExplain":"el pasado se ESCRIBE -ed aunque a veces suene como /t/.","correctReason":"Es una oración completa con el verbo en pasado bien escrito.","hint":"Una opción escribe el verbo como suena y otra deja la oración sin terminar. ¿Cuál cuenta una acción que ya terminó?"},{"badge":"🔤 termina en -e","options":[{"text":"Mom changed my blanket.","correct":true,"es":"Mamá cambió mi frazada."},{"text":"Mom changeed my blanket.","correct":false,"errorWord":"changeed","correctWord":"changed","errorType":"Ortografía del pasado","explanation":"El verbo ya termina en -e: solo se agrega -d, sin repetir la e.","es":"Mamá cambió mi frazada (letra e repetida)."},{"text":"Mom change my blanket yesterday.","correct":false,"errorWord":"change","correctWord":"changed","errorType":"Falta el pasado (-ed)","explanation":"Con «yesterday» la acción ya pasó: el verbo necesita su forma de pasado.","es":"Mamá cambia mi frazada ayer (sin pasado)."}],"clue":"termina en -e","clueExplain":"si el verbo ya termina en -e, solo se le agrega -d.","correctReason":"El verbo terminado en -e recibió solo su -d: la forma correcta del pasado.","hint":"Cuenta las letras e en cada verbo y busca la palabra señal de tiempo."},{"badge":"🟡 vocal + y","options":[{"text":"I stayed in bed.","correct":true,"es":"Me quedé en cama."},{"text":"I staied in bed.","correct":false,"errorWord":"staied","correctWord":"stayed","errorType":"Ortografía del pasado","explanation":"Con vocal antes de la y, la y no cambia: solo se agrega -ed.","es":"Me quedé en cama (la y no debe cambiar)."},{"text":"I stayd in bed.","correct":false,"errorWord":"stayd","correctWord":"stayed","errorType":"Ortografía del pasado","explanation":"La terminación completa es -ed: le falta la e.","es":"Me quedé en cama (le falta la e)."}],"clue":"vocal + y","clueExplain":"la y con vocal antes se queda tal cual y se agrega -ed completo.","correctReason":"La y se quedó en su lugar y la terminación -ed está completa.","hint":"Todas quieren decir lo mismo. Solo una escribió bien la terminación del pasado."},{"badge":"✏️ verbo + -ed","options":[{"text":"She cooked chicken soup.","correct":true,"es":"Ella cocinó caldito de pollo."},{"text":"She cookked chicken soup.","correct":false,"errorWord":"cookked","correctWord":"cooked","errorType":"Letra doble de más","explanation":"No se dobla la letra final: solo se agrega -ed.","es":"Ella cocinó caldito de pollo (letra doble de más)."},{"text":"Yesterday she cooks chicken soup.","correct":false,"errorWord":"cooks","correctWord":"cooked","errorType":"Presente con señal de pasado","explanation":"«Yesterday» pide pasado, no presente con -s.","es":"Ayer ella cocina caldito de pollo (tiempos mezclados)."}],"clue":"verbo + -ed","clueExplain":"se agrega -ed sin doblar letras y sin mezclar tiempos.","correctReason":"El verbo lleva -ed sin letras dobladas y coincide con el tiempo de la historia.","hint":"Revisa dos cosas: la palabra señal de tiempo y las letras del verbo."},{"badge":"✏️ verbo + -ed","options":[{"text":"We planted them together.","correct":true,"es":"Las sembramos juntas."},{"text":"We plantted them together.","correct":false,"errorWord":"plantted","correctWord":"planted","errorType":"Letra doble de más","explanation":"No se dobla la t: solo se agrega -ed.","es":"Las sembramos juntas (letra doble de más)."},{"text":"We planteds them together.","correct":false,"errorWord":"planteds","correctWord":"planted","errorType":"-s extra en el pasado","explanation":"El pasado con -ed nunca lleva -s final.","es":"Las sembramos juntas (con una -s extra)."}],"clue":"verbo + -ed","clueExplain":"la terminación es -ed, sin doblar letras ni agregar -s.","correctReason":"plant + -ed, sin letras dobles y sin -s: la forma correcta.","hint":"El verbo es el mismo en las tres. Compara letra por letra la terminación."},{"badge":"✏️ verbo + -ed","options":[{"text":"The water helped a lot.","correct":true,"es":"El agua ayudó mucho."},{"text":"The water helpt a lot.","correct":false,"errorWord":"helpt","correctWord":"helped","errorType":"Escrito como suena","explanation":"Aunque suene /t/ al hablar, el pasado se escribe con -ed.","es":"El agua ayudó mucho (escrito como suena)."},{"text":"The water helping a lot.","correct":false,"errorWord":"helping","correctWord":"helped","errorType":"Oración incompleta","explanation":"La forma -ing sola deja la oración sin verbo completo.","es":"El agua ayudando mucho (oración incompleta)."}],"clue":"verbo + -ed","clueExplain":"el pasado se escribe -ed aunque suene diferente.","correctReason":"Es la única oración completa con el pasado bien escrito.","hint":"Lee cada oración completa: ¿cuál cuenta una acción terminada y está bien escrita?"},{"badge":"✏️ verbo + -ed","options":[{"text":"We watched a movie.","correct":true,"es":"Vimos una película."},{"text":"We watcht a movie.","correct":false,"errorWord":"watcht","correctWord":"watched","errorType":"Escrito como suena","explanation":"Aunque suene /t/, se escribe watch + -ed.","es":"Vimos una película (escrito como suena)."},{"text":"We watches a movie.","correct":false,"errorWord":"watches","correctWord":"watched","errorType":"Forma imposible","explanation":"«We» nunca lleva verbo con -s; además la historia ya pasó.","es":"Nosotros ve una película (forma imposible)."}],"clue":"verbo + -ed","clueExplain":"el pasado se escribe con -ed y sirve para todas las personas.","correctReason":"watch + -ed = watched: la forma de pasado que funciona con «we».","hint":"Una terminación está inventada y otra no combina con «we». Léelas en voz baja."},{"badge":"🔔 señal de pasado","options":[{"text":"He wanted his ball again.","correct":true,"es":"Él quería su pelota otra vez."},{"text":"He wanteds his ball again.","correct":false,"errorWord":"wanteds","correctWord":"wanted","errorType":"-s extra en el pasado","explanation":"El pasado con -ed nunca lleva -s, ni siquiera con he/she.","es":"Él quería su pelota otra vez (con una -s extra)."},{"text":"Yesterday he want his ball again.","correct":false,"errorWord":"want","correctWord":"wanted","errorType":"Falta el pasado (-ed)","explanation":"«Yesterday» pide el verbo en pasado.","es":"Ayer él quiere su pelota otra vez (sin pasado)."}],"clue":"una sola forma","clueExplain":"el pasado -ed es igual para TODAS las personas y nunca lleva -s.","correctReason":"want + -ed = wanted, la misma forma para él, para ti y para todos.","hint":"Recuerda las reglas del -ed y busca la palabra señal de tiempo."},{"badge":"🔔 señal de pasado","options":[{"text":"Yesterday I watered the plants.","correct":true,"es":"Ayer regué las plantas."},{"text":"Yesterday I water the plants.","correct":false,"errorWord":"water","correctWord":"watered","errorType":"Falta el pasado (-ed)","explanation":"«Yesterday» dice que ya pasó: el verbo necesita -ed.","es":"Ayer riego las plantas (sin pasado)."},{"text":"Yesterday I watereds the plants.","correct":false,"errorWord":"watereds","correctWord":"watered","errorType":"-s extra en el pasado","explanation":"El pasado con -ed nunca lleva -s final.","es":"Ayer regué las plantas (con una -s extra)."}],"clue":"yesterday","clueExplain":"la palabra señal pide el verbo en pasado, con su -ed completo.","correctReason":"El verbo lleva su -ed completo, sin -s: pasado bien formado.","hint":"Empiezan igual. Mira solo el verbo: ¿cuál tiene la forma correcta del pasado?"},{"badge":"✏️ verbo + -ed","options":[{"text":"We rested on a rock.","correct":true,"es":"Descansamos sobre una roca."},{"text":"We restd on a rock.","correct":false,"errorWord":"restd","correctWord":"rested","errorType":"Ortografía del pasado","explanation":"La terminación completa es -ed: le falta la e.","es":"Descansamos sobre una roca (le falta la e)."},{"text":"We resting on a rock.","correct":false,"errorWord":"resting","correctWord":"rested","errorType":"Oración incompleta","explanation":"La forma -ing sola no cuenta una acción terminada.","es":"Nosotros descansando sobre una roca (oración incompleta)."}],"clue":"verbo + -ed","clueExplain":"la terminación -ed se escribe completa, con su e.","correctReason":"rest + -ed = rested: oración completa en pasado.","hint":"Solo una opción es una oración completa en pasado bien escrita."}];
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer'); c.innerHTML='';
+        quizData.forEach((q,i)=>{ q.shuffled=shuffle(q.options); c.appendChild(card(q,i)); });
+        showQuestion(0); updateProgress();
+    }
+    function card(q,index){
+        const d=document.createElement('div'); const L=['A','B','C'];
+        d.className='question-card'+(index!==0?' hidden':''); d.id='question-'+index;
+        const opts=q.shuffled.map((opt,oi)=>`
+            <button class="sent-option" data-idx="${oi}" onclick="selectOption(${index},${oi})">
+                <div class="option-letter">${L[oi]}</div>
+                <div class="option-text" id="opttext-${index}-${oi}">${opt.text}</div>
+                <div class="option-status"></div>
+            </button>`).join('');
+        const transRows=q.shuffled.map((opt,oi)=>`<div style="margin-bottom:0.3rem;"><strong>${L[oi]}.</strong> ${opt.es||''}</div>`).join('');
+        d.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span class="q-label">Elige la oración correcta:</span>
+                <span class="topic-badge">${q.badge}</span>
+            </div>
+            <div class="toggle-row">
+                <button class="toggle-btn" id="hintbtn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="toggle-btn" id="transbtn-${index}" onclick="toggleTrans(${index})">Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}"><div class="hint-label">💡 Pista</div>${q.hint}</div>
+            <div class="translation" id="trans-${index}">🇪🇸 Compara el sentido de cada opción:<br>${transRows||'(traducción no disponible)'}</div>
+            <div class="sentence-options" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}</button>
+            </div>`;
+        return d;
+    }
+    function escReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+    function selectOption(qi,oi){
+        if(answered[qi])return; answered[qi]=true;
+        const q=quizData[qi]; const sel=q.shuffled[oi]; const ok=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct); if(ok)score++;
+        document.querySelectorAll('#options-'+qi+' .sent-option').forEach((b,i)=>{
+            b.classList.add('disabled'); const o=q.shuffled[i];
+            const st=b.querySelector('.option-status');
+            if(o.correct){ b.classList.add('correct'); st.textContent='✅'; }
+            else if(i===oi){ b.classList.add('incorrect'); st.textContent='❌'; }
+            else { st.textContent=''; }
+            const tx=document.getElementById('opttext-'+qi+'-'+i);
+            if(o.correct){ tx.innerHTML=o.text; }
+            else { tx.innerHTML=o.text.replace(new RegExp('\\b'+escReg(o.errorWord)+'\\b'),'<span class="error-highlight">'+o.errorWord+'</span>'); }
+        });
+        feedback(qi,sel,ok,correctOpt,q);
+        document.getElementById('next-'+qi).disabled=false; updateProgress();
+    }
+    function feedback(qi,sel,ok,correctOpt,q){
+        const el=document.getElementById('feedback-'+qi);
+        el.className='feedback show '+(ok?'correct':'incorrect');
+        const errs=q.shuffled.filter(o=>!o.correct);
+        const errBlocks=errs.map(e=>`
+            <div class="fb-block fb-error"><div class="fb-block-title">⚠️ Error: <span class="error-badge">${e.errorType}</span></div>
+                <div class="word-swap"><span class="ws-box ws-wrong">${e.errorWord}</span><span class="ws-arrow">→</span><span class="ws-box ws-right">${e.correctWord}</span></div>
+                <div class="error-text">${e.explanation}</div></div>`).join('');
+        if(ok){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto!</div><div class="fb-subtitle">Veamos por qué las otras estaban mal</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag">${q.clue}</span> ${q.clueExplain}</div></div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        } else {
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Revisemos juntos</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag red">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare"><div class="fb-block-title" style="color:#64748B;">🔄 Tu elección vs. la correcta</div>
+                        <div class="fb-compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text"><span class="word-wrong">${sel.text}</span></span></div>
+                        <div class="fb-compare-row"><span class="compare-label right">Correcta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div>
+                    </div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta la oración correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){ if(i<quizData.length-1) showQuestion(i+1); else showResults(); }
+    function prevQuestion(){ if(currentQuestion>0) showQuestion(currentQuestion-1); }
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function toggleHint(i){
+        const b=document.getElementById('hint-'+i), btn=document.getElementById('hintbtn-'+i);
+        b.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=b.classList.contains('show')?'💡 Ocultar pista':'💡 Ver pista';
+    }
+    function toggleTrans(i){
+        const t=document.getElementById('trans-'+i), btn=document.getElementById('transbtn-'+i);
+        t.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=t.classList.contains('show')?'Ocultar español':'Ver en español';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(pct)}}));
+        document.getElementById('finalScore').textContent=score+'/'+quizData.length;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente trabajo! 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪'
+            :'Buen esfuerzo. Repasa e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{ if(i<stars) setTimeout(()=>s.classList.add('earned'),i*300); });
+    }
+    function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

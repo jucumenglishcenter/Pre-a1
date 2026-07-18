@@ -81,7 +81,10 @@
   .qnum{width:30px;height:30px;border-radius:50%;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:13.5px;flex-shrink:0;}
   .qsec{font-size:11px;font-weight:800;color:var(--ld);background:var(--ll);border:1px solid var(--lm);padding:3px 10px;border-radius:20px;}
   .qkind{margin-left:auto;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;}
-  .qkind.multi{color:#6b4e9a;background:#F3E9FB;border:1px solid #DDC7F0;} .qkind.match{color:#0369A1;background:#E0F2FE;border:1px solid #BAE6FD;} .qkind.order{color:#9A3412;background:#FFEDD5;border:1px solid #FED7AA;} .qkind.pic{color:#047857;background:#D1FAE5;border:1px solid #A7F3D0;}
+  .qkind.multi{color:#6b4e9a;background:#F3E9FB;border:1px solid #DDC7F0;} .qkind.match{color:#0369A1;background:#E0F2FE;border:1px solid #BAE6FD;} .qkind.order{color:#9A3412;background:#FFEDD5;border:1px solid #FED7AA;} .qkind.pic{color:#047857;background:#D1FAE5;border:1px solid #A7F3D0;} .qkind.listen{color:#1D4ED8;background:#DBEAFE;border:1px solid #BFDBFE;}
+  .listenbtn{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:800;border-radius:12px;padding:12px 22px;cursor:pointer;border:2px solid var(--lp);background:var(--ll);color:var(--ld);}
+  .listenbtn:hover{filter:brightness(.98);}
+  .recitem{background:#FFF7E8;border:1px solid #F0C66B;border-radius:10px;padding:9px 12px;font-size:12.5px;color:#7a5410;font-weight:700;line-height:1.5;margin-bottom:7px;}
   .qtext{font-size:16px;line-height:1.55;font-weight:700;margin:0 0 11px;}
   .qimg{font-size:60px;text-align:center;line-height:1;margin:2px 0 12px;}
   .qquote{background:var(--tint);border:1px solid var(--lm);border-left:4px solid var(--lp);border-radius:10px;padding:10px 13px;font-family:var(--font-serif);font-size:14.5px;font-weight:600;color:#5b4a2a;margin:0 0 12px;line-height:1.55;}
@@ -262,7 +265,7 @@
       <div id="secBreak"></div>
     </div>
     <div class="rblock">
-      <h3 id="lReinf">📌 A reforzar antes del examen</h3>
+      <h3 id="lReinf">📌 Ponte a practicar esto antes del examen</h3>
       <div id="rchips"></div>
     </div>
     <button class="rev-toggle" id="revToggle" onclick="toggleReview()">🔍 Ver mis respuestas y en qué me equivoqué</button>
@@ -319,9 +322,12 @@ const SECTIONS={
   I:{es:'There is / There are',en:'There is / There are'},
   J:{es:'To be: preguntas',en:'To be: questions'},
   K:{es:'Vocabulario',en:'Vocabulary'},
-  L:{es:'Comprensión lectora',en:'Reading comprehension'}
+  L:{es:'Comprensión lectora',en:'Reading comprehension'},
+  M:{es:'Escucha (listening)',en:'Listening'},
+  N:{es:'Situaciones reales',en:'Real situations'}
 };
 const READING="My name is Tom. I am a boy. I have a big family. My dad is kind, and everyone helps at home. Every morning I make breakfast and I give food to the dog. I don't have a car, so I take the bus. I can't come home early, so my mom keeps my dinner. My sister and I are the same age.";
+const READING2="Ana works in a shop. She sells apples and bread. She opens the shop at 8 every day. She doesn't work on Sunday. People ask her for fruit, and she gives them a bag.";
 const QS=[
 // ===== A · ¿Qué es un pronombre? =====
 {sec:'A',type:'single',prompt:{es:'¿Qué es un pronombre?',en:'What is a pronoun?'},opts:['Una palabra que reemplaza a un nombre o persona','Una acción que hacemos','Una palabra que describe cómo es algo','Un lugar o una cosa'],correct:'Una palabra que reemplaza a un nombre o persona',
@@ -360,7 +366,7 @@ const QS=[
 // ===== D · To be: cuándo y cómo =====
 {sec:'D',type:'single',prompt:{es:'Completa: «I ___ a boy.»',en:'Complete: "I ___ a boy."'},opts:['am','is','are','be'],correct:'am',
  why:{es:'Con <b>I</b> siempre va <b>am</b>: I am. 🧍',en:'With I → am.'},ex:{es:'«I <b>am</b> a boy» 👉 «Yo <b>soy</b> un niño».',en:'"I am a boy."'},tr:{es:'Yo ___ un niño.'}},
-{sec:'D',type:'order',prompt:{es:'Ordena para formar: «Él es mi papá.» 👨',en:'Order to form: "He is my dad."'},items:['He','is','my','dad'],correct:['He','is','my','dad'],
+{sec:'D',type:'order',prompt:{es:'Ordena para formar: «Él es mi papá.» 👨',en:'Order to form: "He is my dad."'},items:['He','is','my','dad.'],correct:['He','is','my','dad.'],
  why:{es:'Orden en inglés: <b>Sujeto + to be + resto</b> → <b>He is</b> my dad.',en:'Subject + to be + rest → He is my dad.'},ex:{es:'👉 «Él <b>es</b> mi papá». Con he/she/it → <b>is</b>.',en:'he/she/it → is.'}},
 {sec:'D',type:'single',prompt:{es:'¿Cuál es el NEGATIVO de «I am»?',en:'Negative of "I am"?'},opts:["I'm not","I amn't","I not am","I don't"],correct:"I'm not",
  why:{es:'El «to be» se niega agregando <b>not</b>: I am not = <b>I\'m not</b>. 🚫',en:'to be + not → I\'m not.'},ex:{es:'«I\'m not tired» 👉 «(Yo) <b>no</b> estoy cansado». ❌ nunca «I don\'t am».',en:'"I\'m not tired." Never "I don\'t am".'}},
@@ -393,7 +399,7 @@ const QS=[
 // ===== F · Present Simple afirmativo =====
 {sec:'F',type:'single',prompt:{es:'En Present Simple, con «he / she / it» el verbo…',en:'With "he/she/it" the verb…'},opts:['agrega -s','no cambia','agrega -ing','desaparece'],correct:'agrega -s',
  why:{es:'➕s Con <b>he/she/it</b> el verbo lleva <b>-s</b>: he make<b>s</b>, she use<b>s</b>, it take<b>s</b>.',en:'he/she/it → verb + s: makes, uses, takes.'}},
-{sec:'F',type:'order',prompt:{es:'Ordena: «Ella usa inglés.» 📚',en:'Order: "She uses English."'},items:['She','uses','English'],correct:['She','uses','English'],
+{sec:'F',type:'order',prompt:{es:'Ordena: «Ella usa inglés.» 📚',en:'Order: "She uses English."'},items:['She','uses','English.'],correct:['She','uses','English.'],
  why:{es:'Sujeto + verbo(+s) + resto → <b>She uses English</b>. Con «she» el verbo lleva -s.',en:'She + uses(+s) + English.'}},
 {sec:'F',type:'single',prompt:{es:'Completa: «He ___ breakfast.» (make) 🍳',en:'Complete: "He ___ breakfast." (make)'},opts:['makes','make','maked','making'],correct:'makes',
  why:{es:'Con «he» se agrega -s: <b>makes</b>. 🍳',en:'he → makes.'},tr:{es:'Él ___ el desayuno.'}},
@@ -410,7 +416,7 @@ const QS=[
 {sec:'G',type:'single',prompt:{es:'Después de «doesn\'t», el verbo va…',en:'After "doesn\'t", the verb is…'},opts:['en forma base, sin -s (doesn\'t make)','con -s (doesn\'t makes)','con -ing','en pasado'],correct:'en forma base, sin -s (doesn\'t make)',
  why:{es:'«doesn\'t» ya tiene la -s, así que el verbo vuelve a su forma <b>base</b>: doesn\'t <b>make</b>. ↩️',en:'doesn\'t already has the -s → base verb: doesn\'t make.'}},
 // ===== H · Present Simple preguntas =====
-{sec:'H',type:'order',prompt:{es:'Ordena la pregunta: «¿Tienes un perro?» 🐕',en:'Order the question: "Do you have a dog?"'},items:['Do','you','have','a','dog'],correct:['Do','you','have','a','dog'],
+{sec:'H',type:'order',prompt:{es:'Ordena la pregunta: «¿Tienes un perro?» 🐕',en:'Order the question: "Do you have a dog?"'},items:['Do','you','have','a','dog?'],correct:['Do','you','have','a','dog?'],
  why:{es:'Preguntas en Present Simple: <b>Do/Does + sujeto + verbo…</b> → <b>Do you have a dog?</b> ❓',en:'Do/Does + subject + verb → Do you have a dog?'}},
 {sec:'H',type:'single',prompt:{es:'Completa: «___ he make coffee?» ☕❓',en:'Complete: "___ he make coffee?"'},opts:['Does','Do','Is','Are'],correct:'Does',
  why:{es:'Con he/she/it va <b>Does</b>. El verbo queda base: Does he <b>make</b>? (sin -s). ❓',en:'he/she/it → Does. Base verb: Does he make?'},tr:{es:'¿___ él café?'}},
@@ -427,7 +433,7 @@ const QS=[
 {sec:'I',type:'pic',img:'👪',prompt:{es:'UNA familia 👪 (singular). Completa: «There ___ a family here.»',en:'One family 👪. "There ___ a family here."'},opts:['is','are','am','be'],correct:'is',
  why:{es:'Singular (a family) → <b>There is</b>. 1️⃣',en:'Singular → There is.'}},
 // ===== J · To be: preguntas =====
-{sec:'J',type:'order',prompt:{es:'Ordena la pregunta: «¿Eres un niño?» 👦❓',en:'Order: "Are you a boy?"'},items:['Are','you','a','boy'],correct:['Are','you','a','boy'],
+{sec:'J',type:'order',prompt:{es:'Ordena la pregunta: «¿Eres un niño?» 👦❓',en:'Order: "Are you a boy?"'},items:['Are','you','a','boy?'],correct:['Are','you','a','boy?'],
  why:{es:'Con «to be» el verbo va PRIMERO: <b>Are you…?</b> (sin do/does). ❓',en:'With to be, verb first: Are you…?'}},
 {sec:'J',type:'single',prompt:{es:'Completa: «___ he your dad?» 👨❓',en:'Complete: "___ he your dad?"'},opts:['Is','Are','Does','Do'],correct:'Is',
  why:{es:'Pregunta con «to be» + he → <b>Is</b> he…? (no «Does»). ❓',en:'to be + he → Is he…?'},ex:{es:'👉 «¿<b>Es</b> él tu papá?»',en:'"Is he your dad?"'}},
@@ -458,25 +464,45 @@ const QS=[
  why:{es:'✅ Sujeto: <b>I, We</b>. ❌ «my» es posesivo; «dad» sustantivo; «everyone» indefinido.',en:'Subject: I, We. Others aren\'t subject pronouns.'}},
 {sec:'L',type:'single',passage:true,prompt:{es:'«We are the same age» significa…',en:'"We are the same age" means…'},opts:['Tenemos la misma edad','Somos hermanos','Vivimos juntos','Somos amigos'],correct:'Tenemos la misma edad',
  why:{es:'«same age» = la misma edad. 🎂 «are» describe (to be).',en:'"same age" = the same age.'}}
+,
+{sec:"M",type:"listen",audio:"He makes breakfast every morning.",prompt:{es:"\ud83d\udd0a Escucha y elige: \u00bfqu\u00e9 hace \u00e9l?",en:"Listen: what does he do?"},opts:["Makes breakfast","Takes the bus","Calls his mom","Goes to school"],correct:"Makes breakfast",why:{es:"\ud83d\udd0a \u00abHe makes breakfast\u00bb = \u00e9l prepara el desayuno. \ud83c\udf73",en:"He makes breakfast."}},
+{sec:"M",type:"listen",audio:"She does not have a car.",prompt:{es:"\ud83d\udd0a Escucha: \u00bfella tiene carro?",en:"Listen: does she have a car?"},opts:["No, no tiene","S\u00ed, tiene","Tiene dos","Quiere uno"],correct:"No, no tiene",why:{es:"\ud83d\udd0a \u00abShe doesn't have a car\u00bb = ella <b>no</b> tiene carro. \ud83d\udeab\ud83d\ude97",en:"She does not have a car."}},
+{sec:"M",type:"listen",audio:"Do you have a dog?",prompt:{es:"\ud83d\udd0a Escucha: \u00bfqu\u00e9 te preguntan?",en:"Listen: what are they asking?"},opts:["Si tienes un perro","Si eres un perro","D\u00f3nde est\u00e1 el perro","Qu\u00e9 come el perro"],correct:"Si tienes un perro",why:{es:"\ud83d\udd0a \u00abDo you have a dog?\u00bb = \u00bfTienes un perro? \ud83d\udc15",en:"Do you have a dog?"}},
+{sec:"M",type:"listen",audio:"They go to school by bus.",prompt:{es:"\ud83d\udd0a Escucha: \u00bfc\u00f3mo van a la escuela?",en:"Listen: how do they go to school?"},opts:["En bus","En carro","Caminando","En bici"],correct:"En bus",why:{es:"\ud83d\udd0a \u00abby bus\u00bb = en bus. \ud83d\ude8c",en:"by bus."}},
+{sec:"N",type:"single",prompt:{es:"Si alguien te dice \u00abWhat's your name?\u00bb, \u00bfc\u00f3mo respondes?",en:"'What's your name?' \u2014 how do you answer?"},opts:["My name is Ana.","I am fine, thanks.","Yes, I do.","She is Ana."],correct:"My name is Ana.",why:{es:"\u00abWhat's your name?\u00bb pregunta tu nombre \u2192 \u00abMy name is\u2026\u00bb. \ud83d\ude4b",en:"Asks your name."}},
+{sec:"N",type:"single",prompt:{es:"Marta quiere comprar manzanas en el mercado. \u00bfQu\u00e9 debe preguntar? \ud83c\udf4e",en:"Marta wants to buy apples. What should she ask?"},opts:["Do you have apples?","Are you apples?","I have apples.","Do you like apples?"],correct:"Do you have apples?",why:{es:"Para averiguar si venden algo \u2192 <b>Do you have\u2026?</b> \u00abAre you apples?\u00bb (\u00bferes manzanas?) e \u00abI have apples\u00bb (afirmaci\u00f3n) no piden nada; \u00abDo you like apples?\u00bb pregunta si le gustan, no si hay. \ud83d\uded2",en:"To ask if they sell something \u2192 Do you have\u2026?"}},
+{sec:"N",type:"single",prompt:{es:"Si alguien te pregunta \u00abHow are you?\u00bb, respondes\u2026",en:"'How are you?' \u2014 you answer\u2026"},opts:["I am fine, thanks.","I am Tom.","Yes, I have.","I go home."],correct:"I am fine, thanks.",why:{es:"\u00abHow are you?\u00bb pregunta c\u00f3mo est\u00e1s \u2192 \u00abI am fine\u00bb. \ud83d\ude00",en:"Asks how you are."}},
+{sec:"N",type:"single",prompt:{es:"Quieres saber D\u00d3NDE vive tu amigo. \u00bfQu\u00e9 preguntas?",en:"You want to know WHERE your friend lives."},opts:["Where do you live?","Where are you live?","What do you live?","Do you live?"],correct:"Where do you live?",why:{es:"D\u00f3nde \u2192 <b>Where</b> + do + you + verbo: \u00abWhere do you live?\u00bb \ud83c\udfe0",en:"Where + do + you + verb."}},
+{sec:"N",type:"single",prompt:{es:"En su historia Tom dice \u00abI make breakfast\u00bb. Esto significa que Tom\u2026",en:"Tom says 'I make breakfast.' This means\u2026"},opts:["prepara el desayuno","compra el desayuno","no desayuna","vende desayunos"],correct:"prepara el desayuno",why:{es:"\u00abmake breakfast\u00bb = preparar el desayuno. \ud83c\udf73",en:"make breakfast."}},
+{sec:"N",type:"single",prompt:{es:"En la tienda quieres el precio. \u00bfQu\u00e9 preguntas? \ud83d\udcb0",en:"You want the price. What do you ask?"},opts:["How much is it?","How many is it?","What is much?","Do it much?"],correct:"How much is it?",why:{es:"Precio \u2192 \u00abHow much is it?\u00bb \ud83d\udcb0",en:"Price \u2192 How much is it?"}},
+{sec:"F",type:"single",prompt:{es:"Completa: \u00abHe ___ the ball. (get)\u00bb \u26bd",en:"'He ___ the ball. (get)'"},opts:["gets","get","getts","geting"],correct:"gets",why:{es:"he + verbo + s \u2192 <b>gets</b>. \u26bd",en:"he \u2192 gets."},tr:{es:"\u00c9l ___ la pelota."}},
+{sec:"H",type:"single",prompt:{es:"Completa: \u00ab___ she use the phone?\u00bb \ud83d\udcf1",en:"'___ she use the phone?'"},opts:["Does","Do","Is","Are"],correct:"Does",why:{es:"she \u2192 <b>Does</b> + verbo base: Does she use\u2026? \ud83d\udcf1",en:"she \u2192 Does she use\u2026?"}},
+{sec:"G",type:"single",prompt:{es:"Completa: \u00abThey ___ have breakfast at 6.\u00bb (negativo)",en:"'They ___ have breakfast at 6.' (neg)"},opts:["don't","doesn't","aren't","not"],correct:"don't",why:{es:"they \u2192 <b>don't</b> have. \ud83d\udeab",en:"they \u2192 don't have."},tr:{es:"Ellos ___ desayunan a las 6."}},
+{sec:"F",type:"match",prompt:{es:"Une el verbo con su forma para \u00abhe/she/it\u00bb (+s).",en:"Match the verb with its he/she/it (+s) form."},pairs:[["make","makes"],["use","uses"],["go","goes"],["take","takes"]],why:{es:"Con he/she/it el verbo lleva -s: make\u2192makes, use\u2192uses, go\u2192goes, take\u2192takes. \u2795s",en:"he/she/it \u2192 +s."}},
+{sec:"K",type:"single",prompt:{es:"Completa: \u00abWe ___ our room clean. (keep)\u00bb \ud83e\uddf9",en:"'We ___ our room clean. (keep)'"},opts:["keep","keeps","keping","are keep"],correct:"keep",why:{es:"we \u2192 sin -s: <b>keep</b>. \ud83e\uddf9",en:"we \u2192 keep."},tr:{es:"Nosotros ___ nuestro cuarto limpio."}},
+{sec:"L",type:"single",passage2:true,prompt:{es:"Seg\u00fan el texto de Ana, \u00bfqu\u00e9 NO hace los domingos?",en:"What does Ana NOT do on Sundays?"},opts:["Trabajar","Vender pan","Abrir a las 8","Dar frutas"],correct:"Trabajar",why:{es:"\u00abShe doesn't work on Sunday\u00bb = no trabaja los domingos. \ud83d\udeab",en:"doesn't work on Sunday."}},
+{sec:"L",type:"single",passage2:true,prompt:{es:"La gente le pide fruta a Ana y ella\u2026",en:"People ask Ana for fruit and she\u2026"},opts:["les da una bolsa","no responde","cierra la tienda","pide dinero"],correct:"les da una bolsa",why:{es:"\u00abshe gives them a bag\u00bb = les da una bolsa. \ud83d\udecd\ufe0f",en:"she gives them a bag."}},
+{sec:"L",type:"order",passage2:true,prompt:{es:"Ordena: \u00abAna vende manzanas.\u00bb \ud83c\udf4e",en:"Order: 'Ana sells apples.'"},items:["Ana","sells","apples."],correct:["Ana","sells","apples."],why:{es:"Sujeto + verbo(+s) + resto \u2192 <b>Ana sells apples.</b> Con \u00abAna\u00bb (she) el verbo lleva -s.",en:"Ana sells apples."}},
+{sec:"L",type:"single",passage:true,prompt:{es:"Del texto de Tom: \u00abI can't come home early\u00bb significa que Tom\u2026",en:"'I can't come home early' means Tom\u2026"},opts:["no puede llegar temprano","llega temprano","no quiere ir","vive lejos"],correct:"no puede llegar temprano",why:{es:"\u00abcan't\u00bb = no puede. \ud83d\udeab\ud83d\udd50",en:"can't = cannot."}}
 ];
 /*QS_END*/
 
 const T={
   es:{lswLab:'Instrucciones y ayuda',mhtitle:'Pre-examen diagnóstico',
     hubTitle:'Pre-examen diagnóstico',hubSub:'Personal Identity + Essential Actions · Módulos 1 y 2',
-    whatT:'📋 ¿Para qué sirve?',what:['Mide <b>cuánto dominas la teoría</b> de los Módulos 1 y 2, sobre todo <b>cuándo usar «to be» vs Present Simple</b>.','Al final ves tu <b>nota</b>, en <b>qué te equivocaste</b> y una <b>explicación clara</b> (con ejemplos en español) de cada pregunta.','Puedes <b>repetirlo</b> y ver <b>cómo mejoras</b>. Tras terminar hay <b>30 min de espera</b> para volver a intentarlo (para que repases).','Te dice si estás <b>preparado para el examen</b>. No baja tu promedio.'],
+    whatT:'📋 ¿Para qué sirve?',what:['Mide <b>cuánto dominas la teoría</b> de los Módulos 1 y 2, sobre todo <b>cuándo usar «to be» vs Present Simple</b>.','Al final ves tu <b>nota</b>, en <b>qué te equivocaste</b> y una <b>explicación clara</b> (con ejemplos en español) de cada pregunta.','Puedes <b>repetirlo cuantas veces quieras</b> y ver <b>cómo mejoras</b>. Al final te decimos <b>qué practicar</b>.','Te dice si estás <b>preparado para el examen</b>. No baja tu promedio.'],
     myAttempts:'📈 Mis intentos',noAttempts:'Aún no has hecho ningún intento. ¡Empieza tu primer diagnóstico!',
     best:'Mejor',attemptsW:'Intentos',trend:'Tendencia',start:'Comenzar diagnóstico →',startAgain:'Comenzar nuevo intento →',
-    attemptN:'Intento',view:'Ver',limit:'⏳ <b>No hay límite de tiempo</b> durante el examen: tómate tu tiempo. Después de terminar, espera <b>30 minutos</b> para repetirlo (así repasas antes de volver).',
+    attemptN:'Intento',view:'Ver',limit:'⏳ <b>No hay límite de tiempo</b> y puedes repetirlo <b>las veces que quieras</b>. Cada intento queda guardado para ver tu progreso.',
     cooldown:function(m){return '🔒 Podrás repetirlo en <b>'+m+'</b>. Aprovecha para repasar tus errores.';},
     demo:'Modo prueba: abriste el examen fuera de la plataforma. Tus intentos se guardan solo en este equipo.',
     instrT:'Responde cada pregunta',instrP:'Toca tu respuesta. Hay preguntas de <b>opción</b>, de <b>unir el par</b> 🔗, de <b>ordenar</b> 🔀 e <b>imágenes</b> 🖼️. Verás la explicación al instante.',
-    multi:'Marca todas',matchK:'Une el par',orderK:'Ordena',picK:'Imagen',check:'Comprobar',prev:'← Anterior',next:'Siguiente →',seeRes:'Ver mi resultado 🎉',
+    multi:'Marca todas',matchK:'Une el par',orderK:'Ordena',picK:'Imagen',listenK:'Escucha',listenBtn:'Escuchar',check:'Comprobar',prev:'← Anterior',next:'Siguiente →',seeRes:'Ver mi resultado 🎉',
     tr:'🔤 Traducción',trLab:'Traducción (el espacio queda en blanco)',
     left:'Inglés',right:'Español',orderPh:'Toca las palabras en orden →',
     fbOk:'¡Correcto!',fbNo:'Revisa esto',sol:'Respuesta correcta: ',your:'Tú marcaste: ',exLab:'💡 Ejemplo',
     hits:'Aciertos',time:'Tiempo',m2:'Módulo 2',break:'📊 Dominio por tema',breakSub:'Así saliste en cada área. Refuerza las que están en rojo/ámbar antes del examen.',
-    reinf:'📌 A reforzar antes del examen',allgood:'¡Excelente! No hay temas en rojo. 🎯',
+    reinf:'📌 Ponte a practicar esto antes del examen',allgood:'¡Excelente! No hay temas en rojo. 🎯',
     revShow:'🔍 Ver mis respuestas y en qué me equivoqué',revHide:'Ocultar mis respuestas',backHub:'↩ Ver mis intentos',
     yourAns:'Tu respuesta: ',correctAns:'Correcta: ',noAns:'(sin responder)',
     vReady:['🎉','¡Estás preparado para el examen!','Dominas la teoría de M1 y M2 (incluido to be vs Present Simple). Repasa lo poco que quede y ve con confianza.'],
@@ -489,19 +515,19 @@ const T={
     protect:'Material protegido © JUCUM EC'},
   en:{lswLab:'Instructions & help',mhtitle:'Diagnostic pre-test',
     hubTitle:'Diagnostic pre-test',hubSub:'Personal Identity + Essential Actions · Modules 1 & 2',
-    whatT:'📋 What is it for?',what:['It measures your theory of Modules 1 & 2, especially <b>when to use "to be" vs Present Simple</b>.','At the end you see your <b>grade</b>, <b>what you got wrong</b> and a <b>clear explanation</b> for each question.','You can <b>retake it</b> and see your progress. After finishing there\'s a <b>30-min wait</b> before retrying (so you review).','It tells you if you\'re <b>ready for the exam</b>. It doesn\'t lower your average.'],
+    whatT:'📋 What is it for?',what:['It measures your theory of Modules 1 & 2, especially <b>when to use "to be" vs Present Simple</b>.','At the end you see your <b>grade</b>, <b>what you got wrong</b> and a <b>clear explanation</b> for each question.','You can <b>retake it anytime</b> and see your progress. At the end we tell you <b>what to practice</b>.','It tells you if you\'re <b>ready for the exam</b>. It doesn\'t lower your average.'],
     myAttempts:'📈 My attempts',noAttempts:'You haven\'t taken it yet. Start your first diagnostic!',
     best:'Best',attemptsW:'Attempts',trend:'Trend',start:'Start diagnostic →',startAgain:'Start a new attempt →',
-    attemptN:'Attempt',view:'View',limit:'⏳ <b>No time limit</b> during the test: take your time. After finishing, wait <b>30 minutes</b> to retry (so you review first).',
+    attemptN:'Attempt',view:'View',limit:'⏳ <b>No time limit</b> and retake it <b>as many times as you want</b>. Every attempt is saved to track your progress.',
     cooldown:function(m){return '🔒 You can retry in <b>'+m+'</b>. Use it to review your mistakes.';},
     demo:'Test mode: opened outside the platform. Attempts are saved only on this device.',
     instrT:'Answer each question',instrP:'Tap your answer. There are <b>choice</b>, <b>match</b> 🔗, <b>order</b> 🔀 and <b>image</b> 🖼️ questions. You\'ll see the explanation right away.',
-    multi:'Mark all',matchK:'Match',orderK:'Order',picK:'Image',check:'Check',prev:'← Back',next:'Next →',seeRes:'See my result 🎉',
+    multi:'Mark all',matchK:'Match',orderK:'Order',picK:'Image',listenK:'Listen',listenBtn:'Listen',check:'Check',prev:'← Back',next:'Next →',seeRes:'See my result 🎉',
     tr:'🔤 Translation',trLab:'Translation (the blank stays empty)',
     left:'English',right:'Spanish',orderPh:'Tap the words in order →',
     fbOk:'Correct!',fbNo:'Review this',sol:'Correct answer: ',your:'You marked: ',exLab:'💡 Example',
     hits:'Correct',time:'Time',m2:'Module 2',break:'📊 Mastery by topic',breakSub:'How you did per area. Reinforce red/amber ones before the exam.',
-    reinf:'📌 To review before the exam',allgood:'Excellent! No topics in red. 🎯',
+    reinf:'📌 Practice this before the exam',allgood:'Excellent! No topics in red. 🎯',
     revShow:'🔍 See my answers and what I got wrong',revHide:'Hide my answers',backHub:'↩ See my attempts',
     yourAns:'Your answer: ',correctAns:'Correct: ',noAns:'(not answered)',
     vReady:['🎉','You\'re ready for the exam!','You\'ve got M1 & M2 theory (incl. to be vs Present Simple). Review a little and go with confidence.'],
@@ -512,6 +538,22 @@ const T={
     tGroup:'Group',tAll:'All groups',tRefresh:'↻ Refresh',tLoading:'Loading…',tFail:'Could not load. Check internet and press Refresh.',
     tNoStudents:'No students with attempts here yet.',tGroupAvg:'Avg best',tReadyCount:'Ready (≥80%)',tStudents:'Students',tBest:'best',tReadyY:'ready',tReadyN:'review',tAttemptsL:'attempts',
     protect:'Protected material © JUCUM EC'}
+};
+const RECS={
+A:{es:'Repasa qué es un pronombre (he/she/it).',en:'Review what a pronoun is.'},
+B:{es:'Practica sujeto vs objeto: he/him, she/her.',en:'Practice subject vs object.'},
+C:{es:'Repasa los posesivos his/her/my.',en:'Review possessives.'},
+D:{es:'Practica «to be» (am/is/are) y su negativo.',en:'Practice to be and its negative.'},
+E:{es:'⭐ Clave: cuándo va «to be» (describir) y cuándo Present Simple (acciones).',en:'Key: to be vs Present Simple.'},
+F:{es:'Practica el Present Simple afirmativo y la -s con he/she/it.',en:'Practice Present Simple + -s.'},
+G:{es:"Repasa el negativo: don't / doesn't + verbo base.",en:"Review don't / doesn't."},
+H:{es:'Practica preguntas con Do/Does y Wh (what/where/who).',en:'Practice Do/Does & Wh questions.'},
+I:{es:'Repasa There is / There are (uno vs varios).',en:'Review There is / There are.'},
+J:{es:'Practica preguntas con «to be»: Are you…? Is he…?',en:'Practice to be questions.'},
+K:{es:'Repasa el vocabulario de los módulos.',en:'Review the vocabulary.'},
+L:{es:'Lee las Stories y practica la comprensión lectora.',en:'Read the Stories.'},
+M:{es:'Escucha los audios del módulo y repítelos.',en:'Listen to the module audios.'},
+N:{es:'Practica frases de situaciones reales.',en:'Practice real situations.'}
 };
 const PALETTE=['#F9A825','#42A5F5','#66BB6A','#AB47BC','#EF6C00','#26A69A'];
 
@@ -533,7 +575,7 @@ async function route(){
   document.getElementById('hub').style.display='block'; myAttempts=await loadMyAttempts(); renderHub();
 }
 function goHub(){ route(); }
-function cooldownLeft(){ if(!myAttempts.length) return 0; const last=myAttempts[myAttempts.length-1]; const t=Date.parse(last.created_at||0); if(!t) return 0; return Math.max(0, COOLDOWN_MS-(Date.now()-t)); }
+function cooldownLeft(){ return 0; }
 
 function trendInfo(){ if(myAttempts.length<2)return null; const a=myAttempts[myAttempts.length-1].score,b=myAttempts[myAttempts.length-2].score,d=a-b; return {d,txt:(d>0?'↑ +'+d+'%':d<0?'↓ '+d+'%':'=')}; }
 function renderHub(){
@@ -575,9 +617,11 @@ function buildQ(q,i){
   else if(q.type==='match')kind=`<span class="qkind match">🔗 ${t.matchK}</span>`;
   else if(q.type==='order')kind=`<span class="qkind order">🔀 ${t.orderK}</span>`;
   else if(q.type==='pic')kind=`<span class="qkind pic">🖼️ ${t.picK}</span>`;
-  const passage=q.passage?`<div class="passage"><div class="plab">📖 Texto</div><p>${READING}</p></div>`:'';
+  else if(q.type==='listen')kind=`<span class="qkind listen">🔊 ${t.listenK}</span>`;
+  const passage=q.passage?`<div class="passage"><div class="plab">📖 Texto</div><p>${READING}</p></div>`:q.passage2?`<div class="passage"><div class="plab">📖 Texto</div><p>${READING2}</p></div>`:'';
   const img=q.img?`<div class="qimg">${q.img}</div>`:'';
   const quote=q.text?`<div class="qquote">${q.text}</div>`:'';
+  const listen=q.type==='listen'?`<div class="support"><button class="listenbtn" onclick="speak(${i})">🔊 ${t.listenBtn}</button></div>`:'';
   const trBtn=q.tr?`<div class="support"><button class="trbtn" id="trbn${i}" onclick="showTr(${i})">${t.tr}</button></div><div class="trbox" id="trbx${i}"><span class="lab">${t.trLab}</span>${q.tr[lang]||q.tr.es}</div>`:'';
   let body='';
   if(q.type==='match') body=buildMatch(q,i);
@@ -585,7 +629,7 @@ function buildQ(q,i){
   else body=buildChoice(q,i);
   return `<div class="qcard" id="q${i}">
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qsec">${SECTIONS[q.sec][lang]}</span>${kind}</div>
-    ${passage}${img}<p class="qtext">${q.prompt[lang]}</p>${quote}${trBtn}${body}
+    ${passage}${img}<p class="qtext">${q.prompt[lang]}</p>${quote}${listen}${trBtn}${body}
     <div class="fb" id="fb${i}"></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button>
       <button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div>
@@ -657,7 +701,7 @@ function submitOrder(i){ const q=QS[i],st=oState[i],bank=q._bank; const labels=s
 
 /* ── restaurar (cambio de idioma) ── */
 function restoreAnswered(i){ const q=QS[i];
-  if(q.type==='single'||q.type==='pic'||q.type==='multi'){ if(q.type==='multi'){const ck=document.getElementById('ck'+i);if(ck)ck.style.display='none';}
+  if(q.type==='single'||q.type==='pic'||q.type==='multi'||q.type==='listen'){ if(q.type==='multi'){const ck=document.getElementById('ck'+i);if(ck)ck.style.display='none';}
     document.querySelectorAll('#op'+i+' .opt').forEach(b=>{ b.disabled=true; const v=b.dataset.v;
       if(q.type==='multi'){ const isC=q.correct.includes(v),was=(picks[i]||[]).includes(v); if(isC&&was)b.classList.add('ok'); else if(!isC&&was)b.classList.add('no'); else if(isC&&!was)b.classList.add('miss'); }
       else { if(v===q.correct)b.classList.add('ok'); else if(v===picks[i])b.classList.add('no'); } }); }
@@ -687,12 +731,12 @@ async function results(){
   const answers=QS.map((q,i)=>({i,p:picks[i],ok:gotRight[i]}));
   hideAll(); document.getElementById('results').classList.add('show'); document.getElementById('results').style.display='block';
   document.getElementById('fscore').textContent=pct; document.getElementById('fhits').textContent=correct+'/'+total; document.getElementById('ftime').textContent=fmt(duration);
-  const m2s=['E','F','G','H','K']; let m2t=0,m2h=0; QS.forEach((q,i)=>{if(m2s.includes(q.sec)){m2t++;if(gotRight[i])m2h++;}}); document.getElementById('fm2').textContent=(m2t?Math.round(m2h/m2t*100):0)+'%';
+  const m2s=['E','F','G','H','K','M','N']; let m2t=0,m2h=0; QS.forEach((q,i)=>{if(m2s.includes(q.sec)){m2t++;if(gotRight[i])m2h++;}}); document.getElementById('fm2').textContent=(m2t?Math.round(m2h/m2t*100):0)+'%';
   const v=document.getElementById('verdict'); v.className='verdict '+(pct>=80?'ready':pct>=60?'almost':'not'); const vd=pct>=80?t.vReady:pct>=60?t.vAlmost:t.vNot;
   document.getElementById('vEm').textContent=vd[0]; document.getElementById('vTitle').textContent=vd[1]; document.getElementById('vMsg').textContent=vd[2];
-  const weak=[]; document.getElementById('secBreak').innerHTML=order.map(s=>{ const a=agg[s]; if(!a.t)return''; const p=Math.round(a.h/a.t*100); const col=p>=75?'#2E7D32':p>=50?'#F9A825':'#C62828'; if(p<75)weak.push(SECTIONS[s][lang]);
+  const weak=[]; document.getElementById('secBreak').innerHTML=order.map(s=>{ const a=agg[s]; if(!a.t)return''; const p=Math.round(a.h/a.t*100); const col=p>=75?'#2E7D32':p>=50?'#F9A825':'#C62828'; if(p<75)weak.push(s);
     return `<div class="srow"><span class="snm">${SECTIONS[s][lang]}</span><span class="sbar"><i style="width:${p}%;background:${col}"></i></span><span class="spct" style="color:${col}">${a.h}/${a.t}</span></div>`; }).join('');
-  document.getElementById('rchips').innerHTML=weak.length?weak.map(w=>`<span class="rchip">${w}</span>`).join(''):`<span class="allgood">${t.allgood}</span>`;
+  document.getElementById('rchips').innerHTML=weak.length?weak.map(k=>`<div class="recitem">🔸 <b>${SECTIONS[k][lang]}:</b> ${(RECS[k]&&RECS[k][lang])||''}</div>`).join(''):`<span class="allgood">${t.allgood}</span>`;
   revOpen=false; document.getElementById('reviewInline').classList.remove('show'); document.getElementById('reviewInline').innerHTML=reviewHTML(answers); document.getElementById('revToggle').textContent=t.revShow;
   applyResultLabels();
   const now=new Date().toISOString();
@@ -752,6 +796,7 @@ function setLang(l){ lang=l;
   if(document.getElementById('results').classList.contains('show')) results();
   if(document.getElementById('teacherview').style.display!=='none'&&tData) paintTeacher(); }
 
+function speak(i){ try{ const q=QS[i]; if(!q||!q.audio)return; const u=new SpeechSynthesisUtterance(q.audio); u.lang='en-US'; u.rate=.9; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){} }
 function toast(m){ const el=document.getElementById('toast'); el.textContent=m; el.classList.add('show'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),2600); }
 document.addEventListener('contextmenu',e=>{ if(e.target.closest('.app')){ e.preventDefault(); toast(T[lang].protect); }});
 route();

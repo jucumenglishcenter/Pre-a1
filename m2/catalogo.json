@@ -10,6 +10,13 @@
   ],
   "activities": [
     {
+      "id": "pre-examen",
+      "type": "summary",
+      "name": "🧭 Pre-examen diagnóstico (M1 + M2)",
+      "open": true,
+      "url": "https://jucumenglishcenter.github.io/Pre-a1/m2/pre-examen/index.html"
+    },
+    {
       "id": "story",
       "type": "story",
       "name": "Stories y Diálogos · Essential Actions",

@@ -10,7 +10,7 @@
 --font-display:'Fredoka','Nunito',system-ui,sans-serif;--font-body:'Nunito',system-ui,sans-serif;--font-serif:'Atkinson Hyperlegible',system-ui,sans-serif;
 --correct:#2E7D32;--correct-bg:#E8F5E9;--correct-bd:#A5D6A7;--wrong:#C62828;--wrong-bg:#FFEBEE;--wrong-bd:#EF9A9A;
 --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14);--shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09);
---xp:#1F3A8A;--xd:#0D1B5A;--xl:#E3E9F8;--xm:#B4C1E0;--xg:linear-gradient(135deg,#1F3A8A 0%,#0D1B5A 100%);--tint:#F6F5F0;--gold:#F9A825;}
+--xp:#F9A825;--xd:#E65100;--xl:#FFF9C4;--xm:#FFECB3;--xg:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);--tint:#F6F5F0;--gold:#F9A825;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;}
 a{color:var(--xp);}a:hover{color:#B34700;}
@@ -81,6 +81,7 @@ a{color:var(--xp);}a:hover{color:#B34700;}
 .playb{border:none;border-radius:22px;background:var(--xg);color:#fff;font-family:var(--font-body);font-weight:800;font-size:13px;padding:10px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;box-shadow:var(--shadow-sm);}
 .playb:disabled{opacity:.45;cursor:default;}
 .accb{border:1.5px solid var(--xm);background:#fff;color:var(--xp);border-radius:18px;padding:8px 13px;font-weight:800;font-size:12px;cursor:pointer;}
+.cheer{background:linear-gradient(135deg,#E8F5E9,#FFF9C4);border:1.5px solid #A5D6A7;border-radius:13px;padding:10px 14px;font-weight:800;font-size:13px;color:#1B5E20;margin-bottom:11px;text-align:center;animation:up .4s ease;}
 .playsleft{font-size:11px;font-weight:800;color:var(--text-soft);}
 .opts{display:flex;flex-direction:column;gap:8px;}
 .opt{padding:12px 14px;border:2px solid #E5E7EB;border-radius:12px;background:#fff;font-family:var(--font-body);font-weight:700;font-size:14px;cursor:pointer;color:var(--text);text-align:left;display:flex;align-items:center;gap:10px;transition:.12s;}
@@ -243,7 +244,7 @@ async function loadMyAttempts(){
 
 /* ═══════════ PARTES Y PESOS ═══════════ */
 const PARTS={
-  L:{emo:'🎧',name:{es:'Listening',en:'Listening'},w:10,instr:{es:'Escucha con el botón ▶ (máx. 2 veces por pregunta, acento 🇺🇸 o 🇬🇧) y responde.',en:'Listen with ▶ (max 2 plays per question, 🇺🇸 or 🇬🇧 accent) and answer.'}},
+  L:{emo:'🎧',name:{es:'Listening',en:'Listening'},w:10,instr:{es:'Escucha con el botón ▶ (máx. 3 veces por pregunta · botón 🐢 para oírlo más lento) y responde con calma.',en:'Listen with ▶ (max 2 plays per question, 🇺🇸 or 🇬🇧 accent) and answer.'}},
   R:{emo:'📖',name:{es:'Comprensión lectora',en:'Reading'},w:30,instr:{es:'Lee el fragmento con calma. Todas las respuestas están en el texto — algunas hay que deducirlas.',en:'Read the passage calmly. Every answer is in the text — some must be inferred.'}},
   X:{emo:'🧩',name:{es:'¿Qué regla uso?',en:'Which rule?'},w:20,instr:{es:'Aquí eliges la regla correcta entre parecidas (his/him · is/does…). Piensa antes de marcar.',en:'Choose the correct rule among look-alikes (his/him · is/does…). Think before you pick.'}},
   G:{emo:'📝',name:{es:'Gramática',en:'Grammar'},w:25,instr:{es:'Las mismas mecánicas de tus prácticas: completa, toca el error, transforma.',en:'The same mechanics as your practice: fill, tap the error, transform.'}},
@@ -279,10 +280,10 @@ adults:[
 {part:'L',lvl:2,type:'single',audio:'She can work at night.',prompt:{es:'Elige exactamente lo que escuchaste:',en:'Choose exactly what you heard:'},opts:['She can work at night.','She can walk at night.','She can work at nine.'],correct:'She can work at night.'},
 {part:'L',lvl:2,type:'single',audio:'Luli does not sleep much. I make funny faces for her.',prompt:{es:'¿Qué hace él para Luli?',en:'What does he do for Luli?'},opts:['Makes funny faces','Sings her songs','Reads her books'],correct:'Makes funny faces'},
 {part:'L',lvl:2,type:'single',audio:'Does he help Marco?',prompt:{es:'¿Cuál es la pregunta que escuchaste?',en:'Which question did you hear?'},opts:['Does he help Marco?','Does he helps Marco?','Do he help Marco?'],correct:'Does he help Marco?'},
-{part:'L',lvl:2,type:'write',audio:'Grandma calls us every night.',prompt:{es:'Completa la oración que escuchaste:',en:'Complete the sentence you heard:'},text:'Grandma _____ us every night.',acc:['calls'],show:'calls'},
-{part:'L',lvl:3,type:'write',audio:'Rosa doesn\'t sweep at night.',prompt:{es:'Completa la oración que escuchaste:',en:'Complete the sentence you heard:'},text:'Rosa _____ sweep at night.',acc:['doesn\'t','doesnt','does not'],show:'doesn\'t'},
-{part:'L',lvl:3,type:'write',audio:'Where does she go after work?',prompt:{es:'Escribe la palabra WH que escuchaste al inicio:',en:'Write the WH word you heard at the start:'},acc:['where'],show:'Where'},
-{part:'L',lvl:3,type:'write',audio:'He doesn\'t take his time.',prompt:{es:'Escribe la palabra que NIEGA la oración que escuchaste:',en:'Write the word that makes the sentence NEGATIVE:'},acc:['doesn\'t','doesnt','does not'],show:'doesn\'t'},
+{part:'L',lvl:2,type:'single',audio:'Grandma calls us every night.',prompt:{es:'Elige la palabra que escuchaste: «Grandma _____ us every night.» 📞',en:'Choose the word you heard:'},opts:['calls','call','comes'],correct:'calls'},
+{part:'L',lvl:2,type:'single',audio:'Rosa doesn\'t sweep at night.',prompt:{es:'Elige la palabra que escuchaste: «Rosa _____ sweep at night.» 🧹',en:'Choose the word you heard:'},opts:['doesn\'t','don\'t','isn\'t'],correct:'doesn\'t'},
+{part:'L',lvl:2,type:'single',audio:'Where does she go after work?',prompt:{es:'¿Qué palabra WH escuchaste al inicio? ❓',en:'Which WH word did you hear first?'},opts:['Where','What','Who'],correct:'Where'},
+{part:'L',lvl:2,type:'single',audio:'He doesn\'t take his time.',prompt:{es:'¿Qué palabra hace NEGATIVA la oración? 🚫',en:'Which word makes it negative?'},opts:['doesn\'t','not','no'],correct:'doesn\'t'},
 /* — R · Lectura (12) · texto: "A Typical Day" (Nico) · 1-6 ES/ES · 7-12 ES/EN — */
 {part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Cuántas veces lo llama su mamá en la mañana?',en:'How many times does Mom call him in the morning?'},opts:['Dos veces','Una vez','Tres veces'],correct:'Dos veces'},
 {part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Quién se levanta con el sol?',en:'Who gets up with the sun?'},opts:['Mia','Nico','Luli'],correct:'Mia'},
@@ -291,7 +292,7 @@ adults:[
 {part:'R',lvl:2,type:'single',frag:2,prompt:{es:'En «Tomás studies with me», ¿qué hacen juntos?',en:'In "Tomás studies with me", what do they do together?'},opts:['Se preparan para los exámenes','Sacan a pasear a Toby','Hacen el desayuno'],correct:'Se preparan para los exámenes'},
 {part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿Por qué Nico sujeta la correa (leash) con fuerza?',en:'Why does Nico keep the leash tight?'},opts:['Porque Toby corre mucho y no se cansa','Porque Toby camina muy despacio','Porque Toby duerme en el parque'],correct:'Porque Toby corre mucho y no se cansa'},
 {part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿A quién se refiere «her» en «I make funny faces for her»?',en:'Who does "her" refer to in "I make funny faces for her"?'},opts:['Baby Luli','Mia','Grandma'],correct:'Baby Luli'},
-{part:'R',lvl:2,type:'single',frag:3,prompt:{es:'¿Qué hace papá PRIMERO al llegar a casa?',en:'What does Dad do FIRST when he gets home?'},opts:['He plays with the kids','He rests on the bed','He makes dinner alone'],correct:'He plays with the kids'},
+{part:'R',lvl:2,type:'single',frag:3,prompt:{es:'¿Qué hace papá PRIMERO al llegar a casa?',en:'What does Dad do FIRST when he gets home?'},opts:['Juega con los niños','Descansa en la cama','Hace la cena'],correct:'Juega con los niños'},
 {part:'R',lvl:3,type:'single',frag:3,prompt:{es:'¿Quién diría: «Ba-ba-ba!»?',en:'Who would say: "Ba-ba-ba!"?'},opts:['Luli','Grandma','Mia'],correct:'Luli'},
 {part:'R',lvl:3,type:'single',frag:0,prompt:{es:'Considerando TODO el texto, ¿cuántas personas viven en la casa de Nico?',en:'Considering the WHOLE text, how many people live in Nico\'s house?'},opts:['5','4','6'],correct:'5',note:{es:'Nico, Mia, Luli, mamá y papá. La abuela LLAMA cada noche — no vive ahí.',en:'Nico, Mia, Luli, Mom and Dad. Grandma CALLS every night — she doesn\'t live there.'}},
 {part:'R',lvl:3,type:'multi',frag:0,prompt:{es:'Marca TODAS las oraciones verdaderas según el texto:',en:'Mark ALL the sentences that are true according to the text:'},opts:['Nico does not like early mornings','Mia reads comic books','Toby gets tired fast','The family eats at seven thirty'],correct:['Nico does not like early mornings','The family eats at seven thirty']},
@@ -303,23 +304,23 @@ adults:[
 {part:'X',lvl:2,type:'single',prompt:{es:'Elige el par correcto: «Mia ___ seven years old. She ___ very well.»',en:'Choose the correct pair: "Mia ___ seven years old. She ___ very well."'},opts:['is · draws','does · draws','is · draw'],correct:'is · draws'},
 {part:'X',lvl:2,type:'single',prompt:{es:'¿Cuál PREGUNTA es correcta?',en:'Which QUESTION is correct?'},opts:['Is he your dad?','Does he your dad?','Do he is your dad?'],correct:'Is he your dad?'},
 {part:'X',lvl:2,type:'single',prompt:{es:'¿Cuál oración es correcta?',en:'Which sentence is correct?'},opts:['She doesn\'t make coffee.','She isn\'t make coffee.','She doesn\'t makes coffee.'],correct:'She doesn\'t make coffee.'},
-{part:'X',lvl:2,type:'write',prompt:{es:'Completa con el pronombre correcto:',en:'Complete with the correct pronoun:'},text:'Grandma calls us. We take turns to talk to ___.',acc:['her'],show:'her'},
+{part:'X',lvl:2,type:'single',prompt:{es:'Completa con el pronombre correcto: «Grandma calls us. We take turns to talk to ___.» 📞',en:'Complete with the correct pronoun:'},opts:['her','she','his'],correct:'her'},
 {part:'X',lvl:3,type:'multi',prompt:{es:'Marca TODAS las oraciones correctas:',en:'Mark ALL the correct sentences:'},opts:['They are teachers.','They do teachers.','We don\'t have a car.','He don\'t have a car.'],correct:['They are teachers.','We don\'t have a car.']},
 {part:'X',lvl:3,type:'single',prompt:{es:'Completa: «My sister and I ___ the same age.»',en:'Complete: "My sister and I ___ the same age."'},opts:['are','have','do'],correct:'are'},
-{part:'X',lvl:3,type:'write',prompt:{es:'Completa con el posesivo correcto:',en:'Complete with the correct possessive:'},text:'We love ___ house. It smells like soup. (la casa de NOSOTROS)',acc:['our'],show:'our'},
+{part:'X',lvl:3,type:'single',prompt:{es:'Completa con el posesivo: «We love ___ house.» (la casa de NOSOTROS) 🏠',en:'Complete with the possessive:'},opts:['our','we','us'],correct:'our'},
 /* — G · Gramática (14) — */
-{part:'G',lvl:1,type:'write',prompt:{es:'Escribe la forma correcta del verbo (make):',en:'Write the correct form of the verb (make):'},text:'Marco _____ coffee every morning.',acc:['makes'],show:'makes'},
-{part:'G',lvl:1,type:'write',prompt:{es:'Escribe el negativo correcto:',en:'Write the correct negative:'},text:'I _____ rush in the morning.',acc:['don\'t','dont','do not'],show:'don\'t'},
-{part:'G',lvl:2,type:'write',prompt:{es:'Escribe la palabra que falta:',en:'Write the missing word:'},text:'_____ Rosa sweep the floor?',acc:['does'],show:'Does'},
-{part:'G',lvl:2,type:'write',prompt:{es:'Escribe la forma correcta del verbo (brush):',en:'Write the correct form of the verb (brush):'},text:'Marco _____ his teeth every morning.',acc:['brushes'],show:'brushes'},
+{part:'G',lvl:1,type:'single',prompt:{es:'Elige la forma correcta (make): «Marco _____ coffee every morning.» ☕',en:'Choose the correct form:'},opts:['makes','make','making'],correct:'makes'},
+{part:'G',lvl:1,type:'single',prompt:{es:'Elige el negativo correcto: «I _____ rush in the morning.» 🚫',en:'Choose the correct negative:'},opts:['don\'t','doesn\'t','am not'],correct:'don\'t'},
+{part:'G',lvl:2,type:'single',prompt:{es:'Elige la palabra que falta: «_____ Rosa sweep the floor?» ❓',en:'Choose the missing word:'},opts:['Does','Do','Is'],correct:'Does'},
+{part:'G',lvl:2,type:'single',prompt:{es:'Elige la forma correcta (brush): «Marco _____ his teeth every morning.» 🪥',en:'Choose the correct form:'},opts:['brushes','brush','brushs'],correct:'brushes'},
 {part:'G',lvl:1,type:'tap',prompt:{es:'Toca la palabra INCORRECTA:',en:'Tap the INCORRECT word:'},words:['Rosa','make','good','food','every','day.'],err:1,fix:'makes'},
 {part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA:',en:'Tap the INCORRECT word:'},words:['Marco','doesn\'t','takes','his','time.'],err:2,fix:'take'},
 {part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA:',en:'Tap the INCORRECT word:'},words:['Do','Rosa','sweep','the','floor?'],err:0,fix:'Does'},
 {part:'G',lvl:3,type:'tap',prompt:{es:'Toca la palabra INCORRECTA:',en:'Tap the INCORRECT word:'},words:['Where','do','she','go','after','work?'],err:1,fix:'does'},
-{part:'G',lvl:1,type:'write',prompt:{es:'Transforma — cambia el sujeto a «He»:',en:'Transform — change the subject to "He":'},text:'I sweep the floor. → He…',acc:['he sweeps the floor'],show:'He sweeps the floor.'},
-{part:'G',lvl:2,type:'write',prompt:{es:'Transforma a NEGATIVO:',en:'Transform to NEGATIVE:'},text:'Rosa makes coffee.',acc:['rosa doesn\'t make coffee','rosa doesnt make coffee','rosa does not make coffee'],show:'Rosa doesn\'t make coffee.'},
-{part:'G',lvl:2,type:'write',prompt:{es:'Transforma a PREGUNTA:',en:'Transform into a QUESTION:'},text:'Ben goes to the market.',acc:['does ben go to the market'],show:'Does Ben go to the market?'},
-{part:'G',lvl:3,type:'write',prompt:{es:'Escribe la pregunta WH para esta respuesta (pregunta por la HORA):',en:'Write the WH question for this answer (ask about the TIME):'},text:'— «They eat breakfast at seven.»',acc:['when do they eat breakfast','what time do they eat breakfast'],show:'When do they eat breakfast?'},
+{part:'G',lvl:1,type:'order',prompt:{es:'Cámbialo a ÉL — ordena las fichas: 🧩',en:'Change it to HE — order the chips:'},tr:'«I sweep the floor.» → Él…',chips:['He','sweeps','the','floor.']},
+{part:'G',lvl:2,type:'order',prompt:{es:'Haz el NEGATIVO — ordena las fichas: 🧩',en:'Make the NEGATIVE — order the chips:'},tr:'«Rosa makes coffee.» → No…',chips:['Rosa','doesn\'t','make','coffee.']},
+{part:'G',lvl:2,type:'order',prompt:{es:'Haz la PREGUNTA — ordena las fichas: 🧩',en:'Make the QUESTION — order the chips:'},tr:'«Ben goes to the market.» → ¿…?',chips:['Does','Ben','go','to','the','market?']},
+{part:'G',lvl:3,type:'single',prompt:{es:'Elige la pregunta WH correcta para: «They eat breakfast at seven.» (pregunta por la HORA) 🕖',en:'Choose the WH question (about TIME):'},opts:['What time do they eat breakfast?','Where do they eat breakfast?','Who eats breakfast at seven?'],correct:'What time do they eat breakfast?'},
 {part:'G',lvl:3,type:'multi',prompt:{es:'Marca TODAS las oraciones correctas:',en:'Mark ALL the correct sentences:'},opts:['Luli doesn\'t sleep much.','Luli don\'t sleep much.','I don\'t watch much TV.','He doesn\'t rests first.'],correct:['Luli doesn\'t sleep much.','I don\'t watch much TV.']},
 {part:'G',lvl:3,type:'single',prompt:{es:'Completa el diálogo: —Betania: «_____ does Melissa go after class?» —«To the library.»',en:'Complete the dialogue: —Betania: "_____ does Melissa go after class?" —"To the library."'},opts:['Where','When','Who'],correct:'Where'},
 /* — V · Vocabulario (8) — */
@@ -338,18 +339,18 @@ kids:[
 {part:'L',lvl:1,type:'single',audio:'First, I wash my face. Then I brush my teeth.',prompt:{es:'¿Qué hace Leo PRIMERO? 🧼',en:'What does Leo do FIRST? 🧼'},opts:['Wash his face','Brush his teeth','Make his bed'],correct:'Wash his face'},
 {part:'L',lvl:2,type:'single',audio:'We eat together at seven.',prompt:{es:'¿A qué hora comen juntos? 🕖',en:'What time do they eat together? 🕖'},opts:['At seven','At eight','At six'],correct:'At seven'},
 {part:'L',lvl:2,type:'single',audio:'Ana gives me a pencil. "Keep it," she says.',prompt:{es:'¿Qué le da Ana a Leo? ✏️',en:'What does Ana give Leo? ✏️'},opts:['A pencil','A box','An apple'],correct:'A pencil'},
-{part:'L',lvl:2,type:'write',audio:'Ravi shares his rice.',prompt:{es:'Completa la oración que escuchaste: 🍚',en:'Complete the sentence you heard: 🍚'},text:'Ravi _____ his rice.',acc:['shares'],show:'shares'},
-{part:'L',lvl:3,type:'write',audio:'I do not like early mornings.',prompt:{es:'Escribe las palabras que dicen «NO» en la oración: 🌙',en:'Write the words that say "NO" in the sentence: 🌙'},acc:['do not','don\'t','dont'],show:'do not'},
+{part:'L',lvl:2,type:'single',audio:'Ravi shares his rice.',prompt:{es:'Elige la palabra que escuchaste: «Ravi _____ his rice.» 🍚',en:'Choose the word you heard:'},opts:['shares','takes','makes'],correct:'shares'},
+{part:'L',lvl:2,type:'single',audio:'I do not like early mornings.',prompt:{es:'¿Qué palabras dicen «NO» en la oración? 🌙',en:'Which words say NO?'},opts:['do not','does not','is not'],correct:'do not'},
 /* — R (9) · historia de Leo · 1-4 ES/ES · 5-9 ES/EN — */
 {part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Quién hace el desayuno cada día? 🍞',en:'Who makes breakfast every day? 🍞'},opts:['Papá','Mamá','Leo'],correct:'Papá'},
 {part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Qué le da mamá a Leo después del desayuno? 🍎',en:'What does Mom give Leo after breakfast? 🍎'},opts:['Una manzana','Un pan','Un libro'],correct:'Una manzana'},
 {part:'R',lvl:2,type:'single',frag:1,prompt:{es:'¿Por qué Lara demora mucho al cepillarse? 🪥',en:'Why does Lara take a long time brushing? 🪥'},opts:['Porque canta con el cepillo','Porque no le gusta lavarse','Porque juega con el agua'],correct:'Porque canta con el cepillo'},
 {part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿Quién es Ravi? 👦',en:'Who is Ravi? 👦'},opts:['El amigo que camina con Leo a la escuela','El hermano de Leo','El profesor de Leo'],correct:'El amigo que camina con Leo a la escuela'},
-{part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿De qué habla Ravi en el camino? 🐶',en:'What does Ravi talk about on the walk? 🐶'},opts:['His dog','His cat','His bike'],correct:'His dog'},
+{part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿De qué habla Ravi en el camino? 🐶',en:'What does Ravi talk about on the walk? 🐶'},opts:['De su perro','De su gato','De su bicicleta'],correct:'De su perro'},
 {part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿A quién se refiere «her» en «We repeat new words with her»? 👩‍🏫',en:'Who does "her" refer to in "We repeat new words with her"? 👩‍🏫'},opts:['Miss Rosa','Mom','Lara'],correct:'Miss Rosa'},
-{part:'R',lvl:3,type:'single',frag:2,prompt:{es:'¿Por qué el almuerzo «sabe mejor»? 😋',en:'Why does lunch "taste better"? 😋'},opts:['Because he eats with friends','Because the rice is new','Because the table is long'],correct:'Because he eats with friends'},
+{part:'R',lvl:3,type:'single',frag:2,prompt:{es:'¿Por qué el almuerzo «sabe mejor»? 😋',en:'Why does lunch "taste better"? 😋'},opts:['Porque come con sus amigos','Porque el arroz es nuevo','Porque la mesa es larga'],correct:'Porque come con sus amigos'},
 {part:'R',lvl:3,type:'single',frag:3,prompt:{es:'¿Quién diría: «Good night, Leo»? 🌙',en:'Who would say: "Good night, Leo"? 🌙'},opts:['Mom','Ravi','Miss Rosa'],correct:'Mom'},
-{part:'R',lvl:3,type:'multi',frag:0,prompt:{es:'Marca TODAS las oraciones verdaderas: ⭐',en:'Mark ALL the true sentences: ⭐'},opts:['Leo walks to school','Leo washes the dishes','Dad makes hot tea','Lara plays with her dolls'],correct:['Leo walks to school','Leo washes the dishes','Lara plays with her dolls']},
+{part:'R',lvl:3,type:'multi',frag:0,prompt:{es:'Marca TODAS las oraciones verdaderas: ⭐',en:'Mark ALL the true sentences: ⭐'},opts:['Leo camina a la escuela','Leo lava los platos','Papá hace té caliente','Lara juega con sus muñecas'],correct:['Leo camina a la escuela','Leo lava los platos','Lara juega con sus muñecas']},
 /* — X (6) · con ayuda en español — */
 {part:'X',lvl:1,type:'single',prompt:{es:'Completa: «Lara ___ my sister.» 👧',en:'Complete: "Lara ___ my sister." 👧'},tr:'Lara es mi hermana.',opts:['is','does','has'],correct:'is'},
 {part:'X',lvl:1,type:'single',prompt:{es:'Completa: «I help ___.» 🤝',en:'Complete: "I help ___." 🤝'},tr:'Yo lo ayudo a ÉL.',opts:['him','he','his'],correct:'him'},
@@ -383,11 +384,11 @@ es:{title:'Examen · Módulo 2',sub:'Pre-A1 · Essential Actions',hubT:'Examen d
 rules:['Tienes <b>UN solo intento</b> — el primero es el que vale.','Tiempo límite: se entrega solo al llegar a 0:00.','Tus respuestas se <b>guardan solas</b>: si se corta el internet o se cierra la página, vuelve a entrar y continúas donde ibas.','📵 Quédate en esta pestaña. Las salidas quedan registradas para tu profesora.','Puedes moverte entre preguntas y cambiar tus respuestas antes de entregar.'],
 neuroHub:'<b>Neuro te acompaña:</b> todo lo que verás aquí ya lo practicaste — las mismas mecánicas, la historia de TU módulo. Esto no es una trampa: es tu oportunidad de ver cuánto ya adquiriste. Respira, empieza suave y confía en tu práctica. 💪',
 start:'🎓 Comenzar mi examen →',resume:'▶ Continuar mi examen (en progreso)',
-done1:'Ya rendiste este examen',done2:'Tu profesora revisará tus respuestas y te compartirá tu nota final en la plataforma.',
+done1:'Ya rendiste este examen',done2:'Tu nota quedó registrada automáticamente en el momento en que entregaste. Puedes ver tu resultado y tus respuestas abajo.',
 demo:'Modo prueba: abriste el examen fuera de la plataforma. Tus respuestas se guardan solo en este equipo.',
 partOf:'Parte',qOf:'Pregunta',writeHere:'Escribe tu respuesta aquí…',tapNote:'Toca la palabra que crees incorrecta. Toca otra para cambiar.',
 orderTap:'Tu oración (toca una ficha para regresarla):',orderBank:'Fichas:',
-play:'▶ Escuchar',plays:'reproducciones restantes',noPlays:'Ya usaste tus 2 reproducciones',
+play:'▶ Escuchar',plays:'reproducciones restantes',noPlays:'Ya usaste tus 3 reproducciones',
 prev:'← Anterior',next:'Siguiente →',finish:'Entregar mi examen ✅',
 confirmT:'¿Entregar tu examen?',confirmMiss:function(n){return 'Te faltan <b>'+n+'</b> preguntas por responder. Puedes volver y completarlas antes de entregar.';},
 confirmOk:'Respondiste todas las preguntas. Al entregar ya no puedes cambiar nada.',
@@ -396,7 +397,7 @@ timeout:'⏱ Se acabó el tiempo — tu examen se entregó solo con lo que respo
 resT:'¡Examen entregado!',resS:'Gracias por tu esfuerzo y tu constancia. 🎉',
 pass:'¡Aprobaste! 🎉',passS:'Llegaste a los 75 puntos. ¡Felicitaciones por tu constancia!',fail:'Aún no apruebas',failS:'No llegaste a 75 esta vez. Tu profesora verá tus respuestas y te dirá qué reforzar — cada pregunta de hoy también fue práctica. 🌱',
 revShow:'🔍 Ver mis respuestas (correctas e incorrectas)',revHide:'Ocultar mis respuestas',myAns:'Tu respuesta: ',passedChip:'✅ Aprobado',failChip:'🌱 Aún no aprueba',
-resNote:'Esta es tu nota automática. Tu profesora revisará tus respuestas y confirmará tu <b>nota final</b> en la plataforma.',
+resNote:'✅ Esta es tu <b>nota final</b>: se calculó y quedó registrada automáticamente en este momento. Tu profesora ya puede verla — no hay nada más que esperar.',
 hits:'Aciertos',time:'Tiempo',score:'Nota',breakT:'📊 Tu resultado por parte',breakS:'Así saliste en cada parte del examen.',
 neuroEnd:'<b>Neuro:</b> pase lo que pase con la nota, cada pregunta de hoy también fue práctica — tu cerebro siguió aprendiendo. Sigue con tus minutos diarios. 🌱',
 backPlat:'↩ Volver a la plataforma',
@@ -411,11 +412,11 @@ en:{title:'Exam · Module 2',sub:'Pre-A1 · Essential Actions',hubT:'Module 2 Ex
 rules:['You have <b>ONE attempt</b> — the first one counts.','Time limit: it auto-submits at 0:00.','Your answers <b>save automatically</b>: if the internet drops or the page closes, come back and continue where you were.','📵 Stay on this tab. Exits are logged for your teacher.','You can move between questions and change answers before submitting.'],
 neuroHub:'<b>Neuro is with you:</b> everything here is what you practiced — same mechanics, YOUR module\'s story. This is not a trap: it\'s your chance to see how much you\'ve acquired. Breathe, start easy and trust your practice. 💪',
 start:'🎓 Start my exam →',resume:'▶ Continue my exam (in progress)',
-done1:'You already took this exam',done2:'Your teacher will review your answers and share your final grade on the platform.',
+done1:'You already took this exam',done2:'Your grade was registered automatically when you submitted. You can see your result and answers below.',
 demo:'Test mode: you opened this outside the platform. Answers save only on this device.',
 partOf:'Part',qOf:'Question',writeHere:'Type your answer here…',tapNote:'Tap the word you think is wrong. Tap another to change.',
 orderTap:'Your sentence (tap a chip to send it back):',orderBank:'Chips:',
-play:'▶ Listen',plays:'plays left',noPlays:'You used your 2 plays',
+play:'▶ Listen',plays:'plays left',noPlays:'You used your 3 plays',
 prev:'← Back',next:'Next →',finish:'Submit my exam ✅',
 confirmT:'Submit your exam?',confirmMiss:function(n){return 'You still have <b>'+n+'</b> unanswered questions. You can go back and complete them first.';},
 confirmOk:'You answered every question. After submitting you can\'t change anything.',
@@ -424,7 +425,7 @@ timeout:'⏱ Time\'s up — your exam was submitted with what you answered.',
 resT:'Exam submitted!',resS:'Thank you for your effort and consistency. 🎉',
 pass:'You passed! 🎉',passS:'You reached 75 points. Congratulations on your consistency!',fail:'Not passed yet',failS:'You didn\'t reach 75 this time. Your teacher will review your answers and tell you what to reinforce — every question today was also practice. 🌱',
 revShow:'🔍 See my answers (right and wrong)',revHide:'Hide my answers',myAns:'Your answer: ',passedChip:'✅ Passed',failChip:'🌱 Not yet',
-resNote:'This is your automatic score. Your teacher will review your answers and confirm your <b>final grade</b> on the platform.',
+resNote:'✅ This is your <b>final grade</b>: it was calculated and registered automatically right now. Your teacher can already see it.',
 hits:'Correct',time:'Time',score:'Score',breakT:'📊 Your result by part',breakS:'How you did in each part of the exam.',
 neuroEnd:'<b>Neuro:</b> whatever the grade, every question today was also practice — your brain kept learning. Keep your daily minutes. 🌱',
 backPlat:'↩ Back to the platform',
@@ -473,18 +474,18 @@ function corrText(q){
   return '';}
 
 /* ═══════════ AUDIO (TTS 🇺🇸/🇬🇧 como sus materiales) ═══════════ */
-let accent='US';
+let accent='US';let rateMode='normal';function toggleRate(i){rateMode=rateMode==='slow'?'normal':'slow';renderQ(i);}
 function pickVoice(){try{const vs=speechSynthesis.getVoices()||[];const want=accent==='UK'?'en-gb':'en-us';
   let v=vs.find(x=>x.lang&&x.lang.toLowerCase().replace('_','-').startsWith(want)&&/google/i.test(x.name));
   if(!v)v=vs.find(x=>x.lang&&x.lang.toLowerCase().replace('_','-').startsWith(want));
   if(!v)v=vs.find(x=>x.lang&&x.lang.toLowerCase().startsWith('en'));
   return v||null;}catch(e){return null;}}
 function say(text){try{if(!('speechSynthesis'in window)){toast('🔇 Tu navegador no tiene voz');return;}
-  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=0.92;const v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}else u.lang=accent==='UK'?'en-GB':'en-US';
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=(rateMode==='slow'?0.6:0.9);const v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}else u.lang=accent==='UK'?'en-GB':'en-US';
   speechSynthesis.speak(u);}catch(e){}}
 try{speechSynthesis.onvoiceschanged=function(){pickVoice();};}catch(e){}
 function playAudio(i){const q=QS[i];if(!q.audio)return;
-  if((plays[i]||0)>=2){toast(T[lang].noPlays);return;}
+  if((plays[i]||0)>=3){toast(T[lang].noPlays);return;}
   plays[i]=(plays[i]||0)+1;say(q.audio);saveProg();
   const el=document.getElementById('pl'+i);if(el)el.textContent=(2-plays[i])+' '+T[lang].plays;
   if(plays[i]>=2){const b=document.getElementById('pb'+i);if(b)b.disabled=true;}}
@@ -549,7 +550,7 @@ function renderHub(){
 }
 
 /* ═══════════ TIMER ═══════════ */
-function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);paintTimer();if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
+function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);paintTimer();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
 function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
 function paintTimer(){const b=document.getElementById('timerBox');document.getElementById('timer').textContent=fmt(remain);
   b.className='mh-timer'+(remain<=60?' crit':remain<=300?' warn':'');}
@@ -603,11 +604,13 @@ function bodyHTML(q,i){
   }
   return '';
 }
+const CHEERS=['🌟 ¡Vas muy bien! Sigue así.','💪 ¡Buen ritmo! Confía en lo que practicaste.','🚀 ¡Ya pasaste otra parte! Respira y continúa.','🌱 Cada pregunta también es práctica. ¡Sigue!','🎯 ¡Excelente concentración! Ya falta menos.','🏅 ¡Tu esfuerzo se nota! Vamos con calma.'];
 function renderQ(i){
   cur=i;const q=QS[i],t=T[lang];
-  const audio=q.audio?`<div class="audiorow"><button class="playb" id="pb${i}" ${plays[i]>=2?'disabled':''} onclick="playAudio(${i})">${t.play}</button><button class="accb" onclick="cycleAcc()">${accent==='US'?'🇺🇸 US':'🇬🇧 UK'}</button><span class="playsleft" id="pl${i}">${Math.max(0,2-(plays[i]||0))} ${t.plays}</span></div>`:'';
+  const cheer=(i>0&&i%7===0)?'<div class="cheer">'+CHEERS[Math.floor(i/7-1)%CHEERS.length]+'</div>':'';
+  const audio=q.audio?`<div class="audiorow"><button class="playb" id="pb${i}" ${plays[i]>=3?'disabled':''} onclick="playAudio(${i})">${t.play}</button><button class="accb" onclick="toggleRate(${i})" title="Velocidad del audio">${rateMode==='slow'?'🐢 Lento':'🚶 Normal'}</button><button class="accb" onclick="cycleAcc()">${accent==='US'?'🇺🇸 US':'🇬🇧 UK'}</button><span class="playsleft" id="pl${i}">${Math.max(0,3-(plays[i]||0))} ${t.plays}</span></div>`:'';
   const tr=q.tr?`<div class="qtr">(${esc(q.tr)})</div>`:'';
-  document.getElementById('qbox').innerHTML=partBanner(i)+
+  document.getElementById('qbox').innerHTML=cheer+partBanner(i)+
   `<div class="qcard">
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qsec">${PARTS[q.part].emo} ${PARTS[q.part].name[lang]}</span>${q.type==='multi'?`<span class="qmulti">✔ ${lang==='es'?'Marca todas':'Mark all'}</span>`:''}</div>
     ${passageHTML(q)}${audio}<p class="qtext">${q.prompt[lang]}</p>${tr}
@@ -757,6 +760,7 @@ function setLang(l){lang=l;
   if(document.getElementById('mbody').style.display!=='none')renderQ(cur);
   if(document.getElementById('teacherview').style.display!=='none'&&tData)paintTeacher();}
 function goBack(){if(document.referrer){history.back();}else{try{window.dispatchEvent(new CustomEvent('jucum:back'));}catch(e){}}}
+let chimed=0;function chime(){try{const C=new (window.AudioContext||window.webkitAudioContext)();[0,.35].forEach(function(d){const o=C.createOscillator(),g=C.createGain();o.connect(g);g.connect(C.destination);o.type='sine';o.frequency.value=d?659:523;g.gain.setValueAtTime(0.0001,C.currentTime+d);g.gain.exponentialRampToValueAtTime(0.12,C.currentTime+d+0.03);g.gain.exponentialRampToValueAtTime(0.0001,C.currentTime+d+0.5);o.start(C.currentTime+d);o.stop(C.currentTime+d+0.55);});}catch(e){}}
 function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2600);}
 document.addEventListener('contextmenu',e=>{if(e.target.closest('.app')){e.preventDefault();toast(T[lang].protect);}});
 window.addEventListener('beforeunload',function(){if(!submitted&&document.getElementById('mbody').style.display==='block')saveProg();});

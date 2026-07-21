@@ -218,7 +218,7 @@ var UID=Q.get('jucum_uid')||'';
 var IS_TEACHER=Q.get('jucum_teacher')==='1';
 var GROUP=Q.get('jucum_group')||'';
 var MOD=Q.get('jucum_mod')||'pre-a1-m2';
-var ACT=Q.get('jucum_act')||'examen-m2';
+var ACT='examen-m2'; // identidad FIJA de guardado (no depende de cómo se abra)
 var ALLOW_RETRY=Q.get('jucum_retry')==='1';
 var VARIANT=Q.get('jucum_variant')||'';   // 'kids' | 'adults'
 var LSKEY=function(){return 'jucum_exam_'+ACT+'_'+(UID||'demo');};
@@ -236,7 +236,7 @@ async function sbFetch(path,opts){
 }
 function localAttempts(){ try{return JSON.parse(localStorage.getItem(LSKEY())||'[]');}catch(e){return [];} }
 function saveLocalAttempt(row){ var a=localAttempts(); a.push(row); try{localStorage.setItem(LSKEY(),JSON.stringify(a));}catch(e){} }
-async function cloudSaveAttempt(row){ try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
+async function cloudSaveAttempt(row){ if(!UID) return false; try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
 async function loadMyAttempts(){
   if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
   return localAttempts();

@@ -303,7 +303,7 @@ async function sbFetch(path,opts){
 }
 function localAttempts(){ try{return JSON.parse(localStorage.getItem(LSKEY)||'[]');}catch(e){return [];} }
 function saveLocalAttempt(row){ var a=localAttempts(); a.push(row); try{localStorage.setItem(LSKEY,JSON.stringify(a));}catch(e){} }
-async function cloudSaveAttempt(row){ try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
+async function cloudSaveAttempt(row){ if(!UID) return false; try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
 async function loadMyAttempts(){
   if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
   return localAttempts().slice().sort(function(a,b){return (a.created_at||'').localeCompare(b.created_at||'');});

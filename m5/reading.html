@@ -54,6 +54,13 @@
   .phase{display:flex;gap:7px;margin-bottom:14px;} .ptab{flex:1;text-align:center;font-size:11px;font-weight:800;padding:8px 4px;border-radius:11px;background:#fff;border:1.5px solid var(--border);color:var(--text-soft);}
   .ptab.on{background:var(--lg);color:#fff;border-color:transparent;} .ptab.done{border-color:var(--correct-bd);color:var(--correct);}
   .readtools{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
+  .adock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:60;display:none;align-items:center;gap:5px;background:#fff;border:1.5px solid var(--lm);border-radius:999px;padding:6px 10px;box-shadow:0 6px 24px rgba(0,0,0,.18);}
+  .adock.show{display:flex;}
+  .adock .ab{border:none;background:transparent;color:var(--ld);font-size:14px;font-weight:800;cursor:pointer;padding:4px 5px;border-radius:999px;line-height:1;}
+  .adock .ab.main{background:var(--lg);color:#fff;font-size:15px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.2);}
+  .adock .spdb{border:1.5px solid var(--lm);background:#fff;color:var(--ld);font-size:10px;font-weight:800;border-radius:999px;padding:4px 7px;cursor:pointer;line-height:1;}
+  .adock .spdb.on{background:var(--ld);border-color:var(--ld);color:#fff;}
+  @media (max-width:420px){ .adock{bottom:10px;padding:5px 8px;gap:4px;} .adock .spdb{padding:3px 5px;font-size:9.5px;} }
   .tbtn{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;border:1.5px solid var(--lm);background:#fff;color:var(--ld);border-radius:9px;padding:5px 9px;cursor:pointer;} .tbtn.on{background:var(--lg);color:#fff;border-color:transparent;}
   .miniseg{display:flex;background:#F0EDE4;border:1px solid var(--border);border-radius:9px;padding:2px;gap:2px;} .miniseg button{border:none;background:transparent;font-weight:800;font-size:10.5px;padding:4px 8px;border-radius:7px;cursor:pointer;color:var(--text-soft);} .miniseg button.on{background:var(--lg);color:#fff;}
   .predict{background:#fff;border:1px solid var(--lm);border-left:4px solid var(--lp);border-radius:12px;padding:11px 13px;margin-bottom:13px;} .predict b{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--ld);display:flex;gap:6px;align-items:center;} .predict p{margin:3px 0 8px;font-size:12px;color:var(--text-soft);line-height:1.4;} .pchips{display:flex;gap:6px;flex-wrap:wrap;} .pchip{font-size:11.5px;font-weight:800;border:1.5px solid var(--lm);background:var(--tint);color:var(--ld);border-radius:9px;padding:6px 11px;cursor:pointer;} .pchip.sel{background:var(--lg);color:#fff;border-color:transparent;}
@@ -230,6 +237,7 @@
             </div>
           </div>
 
+          <div class="adock" id="adock"><button class="ab" onclick="skipSent(-1)" aria-label="anterior">⏮</button><button class="ab main" id="dockPlay" onclick="playAll()" aria-label="play/pausa">▶</button><button class="ab" onclick="skipSent(1)" aria-label="siguiente">⏭</button><span style="display:flex;gap:4px;margin-left:3px"><button class="spdb" data-r="0.6" onclick="setRate(0.6)">0.6×</button><button class="spdb" data-r="0.8" onclick="setRate(0.8)">0.8×</button><button class="spdb on" data-r="1" onclick="setRate(1)">1×</button></span></div>
           <div class="checkpoint" id="checkpoint">
             <div class="cpScoreBox"><div class="big"><span id="cpScore">0</span><small>%</small></div><div class="lab"><span id="cpHits">0/7</span></div></div>
             <div class="cpBox" id="cpBox"></div>
@@ -328,6 +336,10 @@ function renderQaSeg(){ document.getElementById('qaSeg').style.display='none'; }
 function setQaMode(k){ if(ans.some(x=>x!==null)){ toast(info==='es'?'🔒 No puedes cambiar el idioma a mitad del ejercicio':'🔒 You can\'t change the language mid-exercise'); return; } const lv=document.getElementById('screen').getAttribute('data-level'); qaMode=MODES[lv][k]; applyLang(); }
 function modeName(m){ const M={ 'es-es':{es:'Español · Español',en:'Spanish · Spanish'}, 'es-en':{es:'Pregunta en español · Respuesta en inglés',en:'Question Spanish · Answer English'}, 'en-en':{es:'Inglés · Inglés',en:'English · English'} }; return (M[m.join('-')]||{es:'',en:''})[info]; }
 let voice='US', rate=1, ALL=[], gi=0, gPlaying=false;
+try{ const _jr=parseFloat(localStorage.getItem('jucum_read_rate')); if(_jr>=0.5&&_jr<=1.25) rate=_jr; }catch(e){}
+function syncDock(){ const d=document.getElementById('adock'); if(!d)return; let on=false; try{ const mb=document.getElementById('mbody'), av=document.getElementById('actView'); on = mb&&mb.style.display!=='none' && av&&av.style.display!=='none'; }catch(e){} d.classList.toggle('show',!!on); const p=document.getElementById('dockPlay'); if(p)p.textContent=gPlaying?'⏸':'▶'; document.querySelectorAll('.adock .spdb').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.r)===rate)); }
+function setRate(r){ rate=r; try{localStorage.setItem('jucum_read_rate',r);}catch(e){} toast((info==='es'?'Velocidad de audio: ':'Audio speed: ')+r+'×'); if(gPlaying){ const k=gi; stopPlay(); gi=k; resumePlay(); } syncDock(); }
+function skipSent(d){ if(!ALL.length)return; const was=gPlaying; if(was)stopPlay(); gi=Math.max(0,Math.min(ALL.length-1,gi+d)); resumePlay(); }
 function L(){ return T[info]; }
 function startTimer(){ if(!timer) timer=setInterval(()=>sec++,1000); }
 const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
@@ -338,7 +350,7 @@ function saveProg(a){ try{ localStorage.setItem(PROG_KEY, JSON.stringify(a)); }c
 /* Siembra desde la nube (multi-equipo): completa el desbloqueo con activity_parts */
 try{ (function _jecSeed(n){ const api=window.JUCUM_CONNECT; if(!api||!api.getCompletedParts){ if(n<20) setTimeout(function(){_jecSeed(n+1);},700); return; }
   api.getCompletedParts(function(parts){ try{ const p=loadProg(); let ch=false; (parts||[]).forEach(function(x){ const k=Number(x.part); if(k&&!p.includes(k)&&(x.score==null||x.score>=75)){ p.push(k); ch=true; } }); if(ch){ saveProg(p); try{ renderPicker(); }catch(e){} } }catch(e){} }); })(0); }catch(e){}
-function toPicker(){ document.getElementById('helpfab').classList.add('hidden'); document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='none'; document.getElementById('picker').style.display='block'; S=null; storyId=null; document.getElementById('scroll').scrollTop=0; renderPicker(); }
+function toPicker(){ stopPlay(); setTimeout(syncDock,0); document.getElementById('helpfab').classList.add('hidden'); document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='none'; document.getElementById('picker').style.display='block'; S=null; storyId=null; document.getElementById('scroll').scrollTop=0; renderPicker(); }
 function renderPicker(){ const t=L(); document.getElementById('pkh').textContent=t.pkh; document.getElementById('pksub').textContent=t.pksub;
   const prog=loadProg(); document.getElementById('pkprog').textContent=t.pkprog(prog.filter(n=>STORIES[n]).length);
   document.getElementById('stlist').innerHTML = STLIST.map(s=>{ const has=STORIES[s.n]; const title=STMETA[s.n].t[info]; const done=prog.includes(s.n); const unlocked=(JEC_TEACHER||JEC_FREE||s.n===1||prog.includes(s.n-1));
@@ -356,7 +368,7 @@ function renderIntro(){ const t=L(); const lv=document.getElementById('screen').
   document.getElementById('inRead').textContent=t.inRead; document.getElementById('inSkip').textContent=t.inSkip;
   document.getElementById('inModes').innerHTML=MODES[lv].map((m,k)=>`<button class="imode ${k===0?'on':''}" onclick="selIntroMode(${k})">${modeName(m)}</button>`).join(''); }
 function selIntroMode(k){ const lv=document.getElementById('screen').getAttribute('data-level'); introMode=MODES[lv][k]; document.querySelectorAll('#inModes .imode').forEach((b,i)=>b.classList.toggle('on',i===k)); }
-function startAct(readFirst){ render(); qaMode=introMode; applyLang(); document.getElementById('introView').style.display='none'; document.getElementById('actView').style.display='block'; document.getElementById('helpfab').classList.remove('hidden'); if(readFirst){ backToRead(); } else { goQuiz(); } document.getElementById('scroll').scrollTop=0; }
+function startAct(readFirst){ render(); setTimeout(syncDock,0); qaMode=introMode; applyLang(); document.getElementById('introView').style.display='none'; document.getElementById('actView').style.display='block'; document.getElementById('helpfab').classList.remove('hidden'); if(readFirst){ backToRead(); } else { goQuiz(); } document.getElementById('scroll').scrollTop=0; }
 function render(){
   ans=new Array(S.qs.length).fill(null); cur=0; score=0; inBonus=false; premioOffered=false; premioClaimed=false; evHits=0; evTotal=0; wrongTags=[]; byType={literal:[0,0],inferential:[0,0],vocab:[0,0],critical:[0,0]}; sec=0; clearInterval(timer); timer=null;
   qorder=S.qs.map(q=>shuffle([...q.opts.keys()])); eorder=S.qs.map(q=>shuffle([...q.evid.keys()])); xpTotal=0;
@@ -465,7 +477,7 @@ function badgeSVG(emoji){ return '<svg viewBox="0 0 120 150" width="96" height="
   '<circle cx="60" cy="58" r="31" fill="#FFFDF4" stroke="#E0A21A" stroke-width="1.5"/>'+
   '<text x="60" y="58" text-anchor="middle" dominant-baseline="central" font-size="34">'+emoji+'</text>'+
   '</svg>'; }
-function results(){ const t=L(); document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
+function results(){ stopPlay(); setTimeout(syncDock,0); const t=L(); document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
   const c=scoredCorrect(); const pct=Math.round(c/SCORED*100); const pass=pct>=75;
   const bonusDone = inBonus && [...Array(S.qs.length-SCORED).keys()].every(j=>ans[SCORED+j]!==null);
   premioClaimed = pass && bonusDone;
@@ -492,8 +504,9 @@ function results(){ const t=L(); document.getElementById('mbody').style.display=
 function restart(){ render(); }
 function pickVoice(){ try{ const vs=speechSynthesis.getVoices()||[]; const want=(typeof voice!=='undefined'&&voice==='GB')?'en-GB':'en-US'; const pref=['Google US English','Microsoft Aria','Microsoft Jenny','Microsoft Michelle','Microsoft Ana','Samantha','Google UK English Female','Microsoft Libby','Microsoft Sonia','Daniel']; const en=vs.filter(v=>v.lang&&v.lang.indexOf('en')===0); const pool=en.filter(v=>v.lang===want).concat(en); for(const p of pref){ const hit=pool.find(v=>v.name&&v.name.indexOf(p)===0); if(hit) return hit; } return pool[0]||null; }catch(e){ return null; } }
 function say(text,onend){ try{ if(!('speechSynthesis'in window))throw 0; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=rate; const v=pickVoice(); if(v){u.voice=v;u.lang=v.lang;} if(onend)u.onend=onend; speechSynthesis.speak(u);}catch(e){ if(onend)setTimeout(onend,900);} }
-function playAll(){ if(gPlaying){ stopPlay(); return; } gPlaying=true; document.getElementById('playRead').classList.add('on'); document.getElementById('playL').textContent=L().pause; stepRead(); }
-function stopPlay(){ gPlaying=false; try{speechSynthesis.cancel();}catch(e){} document.getElementById('playRead').classList.remove('on'); document.getElementById('playL').textContent=L().play; document.querySelectorAll('.sent.read,.para.reading').forEach(s=>s.classList.remove('read','reading')); }
+function resumePlay(){ gPlaying=true; const b=document.getElementById('playRead'); if(b)b.classList.add('on'); const l=document.getElementById('playL'); if(l)l.textContent=L().pause; syncDock(); stepRead(); }
+function playAll(){ if(gPlaying){ stopPlay(); return; } resumePlay(); }
+function stopPlay(){ gPlaying=false; try{speechSynthesis.cancel();}catch(e){} const b=document.getElementById('playRead'); if(b)b.classList.remove('on'); const l=document.getElementById('playL'); if(l)l.textContent=L().play; document.querySelectorAll('.sent.read,.para.reading').forEach(s=>s.classList.remove('read','reading')); syncDock(); }
 function stepRead(){ if(!gPlaying)return; if(gi>=ALL.length){ gPlaying=false; gi=0; stopPlay(); return; } document.querySelectorAll('.sent.read,.para.reading').forEach(s=>s.classList.remove('read','reading'));
   const it=ALL[gi]; const p=document.getElementById('p'+it.i); p.classList.add('reading'); document.getElementById('s'+it.i).classList.add('read'); p.scrollIntoView({behavior:'smooth',block:'center'}); say(it.text,()=>{ if(!gPlaying)return; gi++; stepRead(); }); }
 function setText(m){ document.getElementById('screen').setAttribute('data-text',m); document.getElementById('screen').setAttribute('data-qtr', m==='both'?'on':'off'); document.getElementById('txEn').classList.toggle('on',m==='en'); document.getElementById('txBoth').classList.toggle('on',m==='both'); }

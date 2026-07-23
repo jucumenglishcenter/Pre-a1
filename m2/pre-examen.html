@@ -490,10 +490,10 @@ const QS=[
 const T={
   es:{lswLab:'Instrucciones y ayuda',mhtitle:'Pre-examen diagnóstico',
     hubTitle:'Pre-examen diagnóstico',hubSub:'Personal Identity + Essential Actions · Módulos 1 y 2',
-    whatT:'📋 ¿Para qué sirve?',what:['Mide <b>cuánto dominas la teoría</b> de los Módulos 1 y 2, sobre todo <b>cuándo usar «to be» vs Present Simple</b>.','Al final ves tu <b>nota</b>, en <b>qué te equivocaste</b> y una <b>explicación clara</b> (con ejemplos en español) de cada pregunta.','Puedes <b>repetirlo cuantas veces quieras</b> y ver <b>cómo mejoras</b>. Al final te decimos <b>qué practicar</b>.','Te dice si estás <b>preparado para el examen</b>. No baja tu promedio.'],
+    whatT:'📋 ¿Para qué sirve?',what:['Mide <b>cuánto dominas la teoría</b> de los Módulos 1 y 2, sobre todo <b>cuándo usar «to be» vs Present Simple</b>.','Al final ves tu <b>nota</b>, en <b>qué te equivocaste</b> y una <b>explicación clara</b> (con ejemplos en español) de cada pregunta.','Puedes <b>repetirlo y mejorar tu nota</b> (30 min de espera entre intentos). Al final te decimos <b>qué practicar</b>.','Te dice si estás <b>preparado para el examen</b>. No baja tu promedio.'],
     myAttempts:'📈 Mis intentos',noAttempts:'Aún no has hecho ningún intento. ¡Empieza tu primer diagnóstico!',
     best:'Mejor',attemptsW:'Intentos',trend:'Tendencia',start:'Comenzar diagnóstico →',startAgain:'Comenzar nuevo intento →',
-    attemptN:'Intento',view:'Ver',limit:'⏳ <b>No hay límite de tiempo</b> y puedes repetirlo <b>las veces que quieras</b>. Cada intento queda guardado para ver tu progreso.',
+    attemptN:'Intento',view:'Ver',limit:'⏳ <b>No hay límite de tiempo</b>. Puedes repetirlo para <b>mejorar tu nota</b> — con <b>30 minutos</b> de espera después de terminar.',
     cooldown:function(m){return '🔒 Podrás repetirlo en <b>'+m+'</b>. Aprovecha para repasar tus errores.';},
     demo:'Modo prueba: abriste el examen fuera de la plataforma. Tus intentos se guardan solo en este equipo.',
     instrT:'Responde cada pregunta',instrP:'Toca tu respuesta. Hay preguntas de <b>opción</b>, de <b>unir el par</b> 🔗, de <b>ordenar</b> 🔀 e <b>imágenes</b> 🖼️. Verás la explicación al instante.',
@@ -515,10 +515,10 @@ const T={
     protect:'Material protegido © JUCUM EC'},
   en:{lswLab:'Instructions & help',mhtitle:'Diagnostic pre-test',
     hubTitle:'Diagnostic pre-test',hubSub:'Personal Identity + Essential Actions · Modules 1 & 2',
-    whatT:'📋 What is it for?',what:['It measures your theory of Modules 1 & 2, especially <b>when to use "to be" vs Present Simple</b>.','At the end you see your <b>grade</b>, <b>what you got wrong</b> and a <b>clear explanation</b> for each question.','You can <b>retake it anytime</b> and see your progress. At the end we tell you <b>what to practice</b>.','It tells you if you\'re <b>ready for the exam</b>. It doesn\'t lower your average.'],
+    whatT:'📋 What is it for?',what:['It measures your theory of Modules 1 & 2, especially <b>when to use "to be" vs Present Simple</b>.','At the end you see your <b>grade</b>, <b>what you got wrong</b> and a <b>clear explanation</b> for each question.','You can <b>retake it and improve your score</b> (30-min wait between tries). At the end we tell you <b>what to practice</b>.','It tells you if you\'re <b>ready for the exam</b>. It doesn\'t lower your average.'],
     myAttempts:'📈 My attempts',noAttempts:'You haven\'t taken it yet. Start your first diagnostic!',
     best:'Best',attemptsW:'Attempts',trend:'Trend',start:'Start diagnostic →',startAgain:'Start a new attempt →',
-    attemptN:'Attempt',view:'View',limit:'⏳ <b>No time limit</b> and retake it <b>as many times as you want</b>. Every attempt is saved to track your progress.',
+    attemptN:'Attempt',view:'View',limit:'⏳ <b>No time limit</b>. Retake it to <b>improve your score</b> — with a <b>30-minute</b> wait after finishing.',
     cooldown:function(m){return '🔒 You can retry in <b>'+m+'</b>. Use it to review your mistakes.';},
     demo:'Test mode: opened outside the platform. Attempts are saved only on this device.',
     instrT:'Answer each question',instrP:'Tap your answer. There are <b>choice</b>, <b>match</b> 🔗, <b>order</b> 🔀 and <b>image</b> 🖼️ questions. You\'ll see the explanation right away.',
@@ -575,7 +575,7 @@ async function route(){
   document.getElementById('hub').style.display='block'; myAttempts=await loadMyAttempts(); renderHub();
 }
 function goHub(){ route(); }
-function cooldownLeft(){ return 0; }
+function cooldownLeft(){ if(!myAttempts.length) return 0; const last=myAttempts[myAttempts.length-1]; const t=Date.parse(last.created_at||0); if(!t) return 0; return Math.max(0, COOLDOWN_MS-(Date.now()-t)); }
 
 function trendInfo(){ if(myAttempts.length<2)return null; const a=myAttempts[myAttempts.length-1].score,b=myAttempts[myAttempts.length-2].score,d=a-b; return {d,txt:(d>0?'↑ +'+d+'%':d<0?'↓ '+d+'%':'=')}; }
 function renderHub(){
@@ -596,8 +596,13 @@ function renderHub(){
       <div class="hstat"><b>${best}%</b><span>${t.best}</span></div>
       <div class="hstat"><b>${myAttempts.length}</b><span>${t.attemptsW}</span></div>
       <div class="hstat"><b style="color:${tr?(tr.d>0?'var(--correct)':tr.d<0?'var(--wrong)':'#888'):'#bbb'}">${tr?tr.txt:'—'}</b><span>${t.trend}</span></div></div>`:''}
+    ${best!=null?`<div style="background:${best>=75?'linear-gradient(135deg,#E8F5E9,#FFF9C4)':'#FFF3E0'};border:1.5px solid ${best>=75?'#A5D6A7':'#FFB74D'};border-radius:13px;padding:11px 14px;font-weight:800;font-size:13.5px;color:${best>=75?'#1B5E20':'#8A5100'};margin-bottom:12px;text-align:center;line-height:1.55">${
+  best>=90?(lang==='es'?'🌟 ¡Dominado! Repítelo de vez en cuando para mantenerte listo.':'🌟 Mastered! Retake it now and then to stay sharp.')
+  :best>=75?(lang==='es'?'💪 <b>Mejora tu nota:</b> aprobaste, pero repetirlo te entrena y te deja aún más listo para el examen real.':'💪 <b>Improve your score:</b> you passed — retaking it trains you for the real exam.')
+  :(lang==='es'?'🌱 <b>Sigue practicando:</b> repite el pre-examen hasta superar el 75% — cada intento también es práctica y te prepara para tu examen.':'🌱 <b>Keep practicing:</b> retake it until you pass 75% — every try is practice.')
+}</div>`:''}
     <div class="card"><h3>${t.myAttempts}</h3>${myAttempts.length?rows:`<div class="empty">${t.noAttempts}</div>`}</div>
-    <button class="start-btn" id="startBtn" ${cd>0?'disabled':''} onclick="startQuiz()">${myAttempts.length?t.startAgain:t.start}</button>
+    <button class="start-btn" id="startBtn" ${cd>0?'disabled':''} onclick="startQuiz()">${myAttempts.length?(best>=75?(lang==='es'?'💪 Mejorar mi nota':'💪 Improve my score'):(lang==='es'?'🌱 Seguir practicando':'🌱 Keep practicing')):t.start}</button>
     ${cd>0?`<div class="cooldown" id="cdBox"></div>`:`<div class="limitnote">${t.limit}</div>`}
     <div class="card"><h3>${t.whatT}</h3><ul>${t.what.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
   if(cd>0) startCooldownTick();

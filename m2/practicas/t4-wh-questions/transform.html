@@ -8,7 +8,7 @@
      ═══════════════════════════════════════════════════════════════════════ -->
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transform · Pronombres · JUCUM English Center</title>
+<title>Transform · Presente Simple — Preguntas WH · JUCUM English Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
@@ -126,481 +126,11 @@
 /* ════ EDITA AQUÍ · METADATOS ════ */
 const MAT = { title:'Transform', subtitle:'Pre-A1 · M2 · Presente Simple — Preguntas WH', langDefault:'es', reportId:'PreA1_M2_t4-tr' };
 const PASS = 75;
-const QS = [
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por la COSA.",
-   "en": "Ask about the THING."
-  },
-  "src": "You eat bread.",
-  "answer": [
-   "What",
-   "do",
-   "you",
-   "eat",
-   "?"
-  ],
-  "tr": "Comes pan.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>What do you eat?</b> (preguntas por «bread»).",
-   "en": "<b>What do you eat?</b> (preguntas por «bread»)."
-  },
-  "formula": {
-   "es": "What + do + sujeto + verbo base.",
-   "en": "What + do + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por el LUGAR.",
-   "en": "Ask about the PLACE."
-  },
-  "src": "Marco goes to the market.",
-  "answer": [
-   "Where",
-   "does",
-   "Marco",
-   "go",
-   "?"
-  ],
-  "tr": "Marco va al mercado.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>Where does Marco go?</b> (goes → go).",
-   "en": "<b>Where does Marco go?</b> (goes → go)."
-  },
-  "formula": {
-   "es": "Where + does + sujeto + verbo base.",
-   "en": "Where + does + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por la COSA.",
-   "en": "Ask about the THING."
-  },
-  "src": "They eat rice.",
-  "answer": [
-   "What",
-   "do",
-   "they",
-   "eat",
-   "?"
-  ],
-  "tr": "Ellos comen arroz.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>What do they eat?</b>",
-   "en": "<b>What do they eat?</b>"
-  },
-  "formula": {
-   "es": "What + do + sujeto + verbo base.",
-   "en": "What + do + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por el LUGAR.",
-   "en": "Ask about the PLACE."
-  },
-  "src": "Sara goes home.",
-  "answer": [
-   "Where",
-   "does",
-   "Sara",
-   "go",
-   "?"
-  ],
-  "tr": "Sara va a casa.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>Where does Sara go?</b> (goes → go).",
-   "en": "<b>Where does Sara go?</b> (goes → go)."
-  },
-  "formula": {
-   "es": "Where + does + sujeto + verbo base.",
-   "en": "Where + does + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por el MOMENTO.",
-   "en": "Ask about the TIME."
-  },
-  "src": "You take the bus in the morning.",
-  "answer": [
-   "When",
-   "do",
-   "you",
-   "take",
-   "the",
-   "bus",
-   "?"
-  ],
-  "tr": "Tomas el autobús en la mañana.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>When do you take the bus?</b>",
-   "en": "<b>When do you take the bus?</b>"
-  },
-  "formula": {
-   "es": "When + do + sujeto + verbo base.",
-   "en": "When + do + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por la PERSONA.",
-   "en": "Ask about the PERSON."
-  },
-  "src": "Rosa helps Ben.",
-  "answer": [
-   "Who",
-   "does",
-   "Rosa",
-   "help",
-   "?"
-  ],
-  "tr": "Rosa ayuda a Ben.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>Who does Rosa help?</b> (helps → help).",
-   "en": "<b>Who does Rosa help?</b> (helps → help)."
-  },
-  "formula": {
-   "es": "Who + does + sujeto + verbo base.",
-   "en": "Who + does + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por el MOMENTO.",
-   "en": "Ask about the TIME."
-  },
-  "src": "Marco sweeps every day.",
-  "answer": [
-   "When",
-   "does",
-   "Marco",
-   "sweep",
-   "?"
-  ],
-  "tr": "Marco barre cada día.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>When does Marco sweep?</b> (sweeps → sweep).",
-   "en": "<b>When does Marco sweep?</b> (sweeps → sweep)."
-  },
-  "formula": {
-   "es": "When + does + sujeto + verbo base.",
-   "en": "When + does + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "WH + do/does + base",
-   "en": "WH + do/does + base"
-  },
-  "task": {
-   "es": "Pregunta por la PERSONA.",
-   "en": "Ask about the PERSON."
-  },
-  "src": "You help your mom.",
-  "answer": [
-   "Who",
-   "do",
-   "you",
-   "help",
-   "?"
-  ],
-  "tr": "Ayudas a tu mamá.",
-  "hint": {
-   "es": "Wh- + do/does + sujeto + verbo base.",
-   "en": "Wh- + do/does + subject + base verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>Who do you help?</b>",
-   "en": "<b>Who do you help?</b>"
-  },
-  "formula": {
-   "es": "Who + do + sujeto + verbo base.",
-   "en": "Who + do + sujeto + verbo base."
-  },
-  "rule": {
-   "es": "What=cosa · Where=lugar · When=momento · Who=persona",
-   "en": "What=thing · Where=place · When=time · Who=person"
-  },
-  "examples": {
-   "es": [
-    "Where does he go?"
-   ],
-   "en": [
-    "Where does he go?"
-   ]
-  },
-  "es": {
-   "es": "Tras does el verbo va base (go, help, sweep).",
-   "en": "After does the verb stays base (go, help, sweep)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-,
-
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por la COSA.","en":"Ask about the THING."},
-   src:"You eat eggs.", answer:["What","do","you","eat","?"], tr:"Comes huevos.",
-   hint:{es:"Pregunta por la cosa: What + do + sujeto + verbo base.",en:"Ask about the thing: What + do + subject + base verb."},
-   story:{q:'"I sit down and eat."',es:'"Me siento y como."'},
-   change:{es:"«eggs» → What; añade do: What do you eat?",en:"«eggs» → What; add do: What do you eat?"},
-   formula:{es:"What + do + sujeto + verbo?",en:"What + do + subject + verb?"}, rule:{es:"cosa → What",en:"thing → What"},
-   examples:{es:["eat → What do you eat?"],en:["eat → What do you eat?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},
-   src:"Marco goes to school.", answer:["Where","does","Marco","go","?"], tr:"Marco va a la escuela.",
-   hint:{es:"Pregunta por el lugar: Where + does + sujeto + verbo base.",en:"Ask about place: Where + does + subject + base verb."},
-   story:{q:'"Then I go to the kitchen."',es:'"Luego voy a la cocina."'},
-   change:{es:"«to school» → Where; goes → go (base): Where does Marco go?",en:"«to school» → Where; goes → go (base): Where does Marco go?"},
-   formula:{es:"Where + does + sujeto + verbo base?",en:"Where + does + subject + base verb?"}, rule:{es:"lugar → Where",en:"place → Where"},
-   examples:{es:["goes → Where does Marco go?"],en:["goes → Where does Marco go?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},
-   src:"They wake up early.", answer:["When","do","they","wake","up","?"], tr:"Ellos se despiertan temprano.",
-   hint:{es:"Pregunta por el momento: When + do + sujeto + verbo base.",en:"Ask about time: When + do + subject + base verb."},
-   story:{q:'"I get up early."',es:'"Me levanto temprano."'},
-   change:{es:"«early» → When; añade do: When do they wake up?",en:"«early» → When; add do: When do they wake up?"},
-   formula:{es:"When + do + sujeto + verbo?",en:"When + do + subject + verb?"}, rule:{es:"momento → When",en:"time → When"},
-   examples:{es:["wake → When do they wake up?"],en:["wake → When do they wake up?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por la PERSONA.","en":"Ask about the PERSON."},
-   src:"Rosa helps Marco.", answer:["Who","does","Rosa","help","?"], tr:"Rosa ayuda a Marco.",
-   hint:{es:"Pregunta por la persona: Who + does + sujeto + verbo base.",en:"Ask about person: Who + does + subject + base verb."},
-   story:null,
-   change:{es:"«Marco» → Who; helps → help (base): Who does Rosa help?",en:"«Marco» → Who; helps → help (base): Who does Rosa help?"},
-   formula:{es:"Who + does + sujeto + verbo base?",en:"Who + does + subject + base verb?"}, rule:{es:"persona → Who",en:"person → Who"},
-   examples:{es:["helps → Who does Rosa help?"],en:["helps → Who does Rosa help?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por la COSA.","en":"Ask about the THING."},
-   src:"You drink coffee.", answer:["What","do","you","drink","?"], tr:"Tomas café.",
-   hint:{es:"Pregunta por la cosa: What + do + sujeto + verbo base.",en:"Ask about the thing: What + do + subject + base verb."},
-   story:{q:'"I make coffee every morning."',es:'"Hago café cada mañana."'},
-   change:{es:"«coffee» → What: What do you drink?",en:"«coffee» → What: What do you drink?"},
-   formula:{es:"What + do + sujeto + verbo?",en:"What + do + subject + verb?"}, rule:{es:"cosa → What",en:"thing → What"},
-   examples:{es:["drink → What do you drink?"],en:["drink → What do you drink?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},
-   src:"Ben works in the market.", answer:["Where","does","Ben","work","?"], tr:"Ben trabaja en el mercado.",
-   hint:{es:"Pregunta por el lugar: Where + does + sujeto + verbo base.",en:"Ask about place: Where + does + subject + base verb."},
-   story:null,
-   change:{es:"«in the market» → Where; works → work: Where does Ben work?",en:"«in the market» → Where; works → work: Where does Ben work?"},
-   formula:{es:"Where + does + sujeto + verbo base?",en:"Where + does + subject + base verb?"}, rule:{es:"lugar → Where",en:"place → Where"},
-   examples:{es:["works → Where does Ben work?"],en:["works → Where does Ben work?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"WH + do/does + base",en:"WH + do/does + base"}, task:{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},
-   src:"You take the bus at seven.", answer:["When","do","you","take","the","bus","?"], tr:"Tomas el autobús a las siete.",
-   hint:{es:"Pregunta por el momento: When + do + sujeto + verbo base.",en:"Ask about time: When + do + subject + base verb."},
-   story:null,
-   change:{es:"«at seven» → When: When do you take the bus?",en:"«at seven» → When: When do you take the bus?"},
-   formula:{es:"When + do + sujeto + verbo?",en:"When + do + subject + verb?"}, rule:{es:"momento → When",en:"time → When"},
-   examples:{es:["take → When do you take the bus?"],en:["take → When do you take the bus?"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-];
+const QS = [{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la COSA.","en":"Ask about the THING."},"src":"You eat bread.","answer":["What","do","you","eat","?"],"tr":"Comes pan.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>What do you eat?</b> (preguntas por «bread»).","en":"<b>What do you eat?</b> (preguntas por «bread»)."},"formula":{"es":"What + do + sujeto + verbo base.","en":"What + do + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["Where","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},"src":"Marco goes to the market.","answer":["Where","does","Marco","go","?"],"tr":"Marco va al mercado.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>Where does Marco go?</b> (goes → go).","en":"<b>Where does Marco go?</b> (goes → go)."},"formula":{"es":"Where + does + sujeto + verbo base.","en":"Where + does + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["What","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la COSA.","en":"Ask about the THING."},"src":"They eat rice.","answer":["What","do","they","eat","?"],"tr":"Ellos comen arroz.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>What do they eat?</b>","en":"<b>What do they eat?</b>"},"formula":{"es":"What + do + sujeto + verbo base.","en":"What + do + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["When","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},"src":"Sara goes home.","answer":["Where","does","Sara","go","?"],"tr":"Sara va a casa.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>Where does Sara go?</b> (goes → go).","en":"<b>Where does Sara go?</b> (goes → go)."},"formula":{"es":"Where + does + sujeto + verbo base.","en":"Where + does + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["Who","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},"src":"You take the bus in the morning.","answer":["When","do","you","take","the","bus","?"],"tr":"Tomas el autobús en la mañana.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>When do you take the bus?</b>","en":"<b>When do you take the bus?</b>"},"formula":{"es":"When + do + sujeto + verbo base.","en":"When + do + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["Where","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la PERSONA.","en":"Ask about the PERSON."},"src":"Rosa helps Ben.","answer":["Who","does","Rosa","help","?"],"tr":"Rosa ayuda a Ben.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>Who does Rosa help?</b> (helps → help).","en":"<b>Who does Rosa help?</b> (helps → help)."},"formula":{"es":"Who + does + sujeto + verbo base.","en":"Who + does + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["What","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},"src":"Marco sweeps every day.","answer":["When","does","Marco","sweep","?"],"tr":"Marco barre cada día.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>When does Marco sweep?</b> (sweeps → sweep).","en":"<b>When does Marco sweep?</b> (sweeps → sweep)."},"formula":{"es":"When + does + sujeto + verbo base.","en":"When + does + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["What","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la PERSONA.","en":"Ask about the PERSON."},"src":"You help your mom.","answer":["Who","do","you","help","?"],"tr":"Ayudas a tu mamá.","hint":{"es":"Wh- + do/does + sujeto + verbo base.","en":"Wh- + do/does + subject + base verb."},"story":null,"change":{"es":"<b>Who do you help?</b>","en":"<b>Who do you help?</b>"},"formula":{"es":"Who + do + sujeto + verbo base.","en":"Who + do + sujeto + verbo base."},"rule":{"es":"What=cosa · Where=lugar · When=momento · Who=persona","en":"What=thing · Where=place · When=time · Who=person"},"examples":{"es":["Where does he go?"],"en":["Where does he go?"]},"es":{"es":"Tras does el verbo va base (go, help, sweep).","en":"After does the verb stays base (go, help, sweep)."},"lit":{"es":"","en":""},"distractors":["Where","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la COSA.","en":"Ask about the THING."},"src":"You eat eggs.","answer":["What","do","you","eat","?"],"tr":"Comes huevos.","hint":{"es":"Pregunta por la cosa: What + do + sujeto + verbo base.","en":"Ask about the thing: What + do + subject + base verb."},"story":{"q":"\"I sit down and eat.\"","es":"\"Me siento y como.\""},"change":{"es":"«eggs» → What; añade do: What do you eat?","en":"«eggs» → What; add do: What do you eat?"},"formula":{"es":"What + do + sujeto + verbo?","en":"What + do + subject + verb?"},"rule":{"es":"cosa → What","en":"thing → What"},"examples":{"es":["eat → What do you eat?"],"en":["eat → What do you eat?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Who","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},"src":"Marco goes to school.","answer":["Where","does","Marco","go","?"],"tr":"Marco va a la escuela.","hint":{"es":"Pregunta por el lugar: Where + does + sujeto + verbo base.","en":"Ask about place: Where + does + subject + base verb."},"story":{"q":"\"Then I go to the kitchen.\"","es":"\"Luego voy a la cocina.\""},"change":{"es":"«to school» → Where; goes → go (base): Where does Marco go?","en":"«to school» → Where; goes → go (base): Where does Marco go?"},"formula":{"es":"Where + does + sujeto + verbo base?","en":"Where + does + subject + base verb?"},"rule":{"es":"lugar → Where","en":"place → Where"},"examples":{"es":["goes → Where does Marco go?"],"en":["goes → Where does Marco go?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["When","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},"src":"They wake up early.","answer":["When","do","they","wake","up","?"],"tr":"Ellos se despiertan temprano.","hint":{"es":"Pregunta por el momento: When + do + sujeto + verbo base.","en":"Ask about time: When + do + subject + base verb."},"story":{"q":"\"I get up early.\"","es":"\"Me levanto temprano.\""},"change":{"es":"«early» → When; añade do: When do they wake up?","en":"«early» → When; add do: When do they wake up?"},"formula":{"es":"When + do + sujeto + verbo?","en":"When + do + subject + verb?"},"rule":{"es":"momento → When","en":"time → When"},"examples":{"es":["wake → When do they wake up?"],"en":["wake → When do they wake up?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Who","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la PERSONA.","en":"Ask about the PERSON."},"src":"Rosa helps Marco.","answer":["Who","does","Rosa","help","?"],"tr":"Rosa ayuda a Marco.","hint":{"es":"Pregunta por la persona: Who + does + sujeto + verbo base.","en":"Ask about person: Who + does + subject + base verb."},"story":null,"change":{"es":"«Marco» → Who; helps → help (base): Who does Rosa help?","en":"«Marco» → Who; helps → help (base): Who does Rosa help?"},"formula":{"es":"Who + does + sujeto + verbo base?","en":"Who + does + subject + base verb?"},"rule":{"es":"persona → Who","en":"person → Who"},"examples":{"es":["helps → Who does Rosa help?"],"en":["helps → Who does Rosa help?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Where","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por la COSA.","en":"Ask about the THING."},"src":"You drink coffee.","answer":["What","do","you","drink","?"],"tr":"Tomas café.","hint":{"es":"Pregunta por la cosa: What + do + sujeto + verbo base.","en":"Ask about the thing: What + do + subject + base verb."},"story":{"q":"\"I make coffee every morning.\"","es":"\"Hago café cada mañana.\""},"change":{"es":"«coffee» → What: What do you drink?","en":"«coffee» → What: What do you drink?"},"formula":{"es":"What + do + sujeto + verbo?","en":"What + do + subject + verb?"},"rule":{"es":"cosa → What","en":"thing → What"},"examples":{"es":["drink → What do you drink?"],"en":["drink → What do you drink?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["When","does"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el LUGAR.","en":"Ask about the PLACE."},"src":"Ben works in the market.","answer":["Where","does","Ben","work","?"],"tr":"Ben trabaja en el mercado.","hint":{"es":"Pregunta por el lugar: Where + does + sujeto + verbo base.","en":"Ask about place: Where + does + subject + base verb."},"story":null,"change":{"es":"«in the market» → Where; works → work: Where does Ben work?","en":"«in the market» → Where; works → work: Where does Ben work?"},"formula":{"es":"Where + does + sujeto + verbo base?","en":"Where + does + subject + base verb?"},"rule":{"es":"lugar → Where","en":"place → Where"},"examples":{"es":["works → Where does Ben work?"],"en":["works → Where does Ben work?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["What","do"]},{"reinf":{"es":"WH + do/does + base","en":"WH + do/does + base"},"task":{"es":"Pregunta por el MOMENTO.","en":"Ask about the TIME."},"src":"You take the bus at seven.","answer":["When","do","you","take","the","bus","?"],"tr":"Tomas el autobús a las siete.","hint":{"es":"Pregunta por el momento: When + do + sujeto + verbo base.","en":"Ask about time: When + do + subject + base verb."},"story":null,"change":{"es":"«at seven» → When: When do you take the bus?","en":"«at seven» → When: When do you take the bus?"},"formula":{"es":"When + do + sujeto + verbo?","en":"When + do + subject + verb?"},"rule":{"es":"momento → When","en":"time → When"},"examples":{"es":["take → When do you take the bus?"],"en":["take → When do you take the bus?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Who","does"]}];
 
 /* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
 const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Traducción.',
     qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
     fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
     prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
@@ -609,7 +139,7 @@ const T = {
     ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
     supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
     rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Translation.',
     qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
     fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
     prev:'← Back', next:'Next →', seeRes:'See results 🎉',
@@ -633,8 +163,8 @@ function buildTr(it,i){ const t=T[lang];
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
     <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
     <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
-    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
     <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
     <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
     <div class="bank" id="bank${i}"></div>
@@ -644,15 +174,16 @@ function buildTr(it,i){ const t=T[lang];
     <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
 }
+function tilesOf(it){ return [...it.answer, ...((it.distractors)||[])]; }
 function initTr(i){ const it=QS[i]; trState[i]={order:[]};
-  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  trState[i].bankOrder=tilesOf(it).map((w,idx)=>idx).sort(()=>Math.random()-.5);
   renderBank(i); renderTray(i); }
 function renderBank(i){ const it=QS[i], st=trState[i];
-  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${tilesOf(it)[idx]}</button>`).join(''); }
 function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
-  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${tilesOf(it)[idx]}</button>`).join('');
   if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
-  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length===0; }
 function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
 function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
 function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
@@ -667,7 +198,7 @@ function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])r
     if(!moved){ removeTile(i,+el.dataset.idx); } };
   tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
 function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
-  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  const ok=st.order.map(x=>tilesOf(it)[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
   if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
   document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
   renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
@@ -683,7 +214,7 @@ function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('f
   const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
   el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
 function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
   else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
 function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
 function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }

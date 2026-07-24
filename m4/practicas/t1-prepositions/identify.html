@@ -1,1152 +1,291 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- ═══════════════════════════════════════════════════════════════════════
-     PLANTILLA · IDENTIFICATION (tocar la palabra clave) — JUCUM English Center
-     Mecánica: el alumno LEE una oración correcta y TOCA la palabra que cumple
-     la consigna. Sin errores como input. Nota = % correctas · umbral 75%.
-     CÓMO REPLICAR (ver "Especificaciones - Identification.html"):
-       1) Copia y renombra.  2) <body data-level="pre-a1|a1|a2">.
-       3) Edita MAT (encabezado).  4) Reemplaza el array QS.
-       5) Deja el conector antes de </body>.  6) Sube y enlaza en catalogo.json.
-     ═══════════════════════════════════════════════════════════════════════ -->
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Identification · Pronombres · JUCUM English Center</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
-    --fd:'Fredoka','Nunito',system-ui,sans-serif; --fb:'Nunito',system-ui,sans-serif; --fs:'Atkinson Hyperlegible',system-ui,sans-serif;
-    --correct:#2E7D32; --correct-bg:#E8F5E9; --correct-bd:#A5D6A7; --wrong:#C62828; --wrong-bg:#FFEBEE; --wrong-bd:#EF9A9A;
-    --rv-bg:#F3E5F5; --rv-text:#7B1FA2; --rv-bd:#CE93D8; --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14); --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09); }
-  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lg:linear-gradient(135deg,#F9A825,#FF8F00); --tint:#FAF7EE; }
-  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lg:linear-gradient(135deg,#1565C0,#2196F3 60%,#64B5F6); --tint:#F1F7FE; }
-  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lg:linear-gradient(135deg,#43C062,#1F7A33); --tint:#F0F8F2; }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  body{margin:0;background:var(--tint);color:var(--text);font-family:var(--fb);min-height:100vh;}
-  .mat{max-width:640px;margin:0 auto;min-height:100vh;}
-  .mhead{background:var(--lg);padding:16px 18px;display:flex;align-items:center;gap:11px;color:#fff;position:sticky;top:0;z-index:20;}
-  .mback{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:19px;cursor:pointer;flex-shrink:0;}
-  .mbadge{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);} .mbadge img{width:26px;height:26px;object-fit:contain;}
-  .mh-info{flex:1;min-width:0;} .mh-info b{font-family:var(--fd);font-weight:600;font-size:16px;display:block;} .mh-info span{font-size:11px;opacity:.9;font-weight:700;}
-  .mh-count{background:rgba(255,255,255,.25);padding:5px 12px;border-radius:14px;font-weight:800;font-size:13px;}
-  .pbar{height:5px;background:rgba(0,0,0,.06);position:sticky;top:68px;z-index:20;} .pfill{height:100%;background:var(--lp);width:0;transition:width .5s;}
-  .mbody{padding:16px 16px 40px;}
-  .langsw{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;}
-  .lsw-lab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);}
-  .lsw{display:flex;background:#fff;border:1.5px solid var(--lm);border-radius:11px;padding:3px;gap:2px;box-shadow:var(--shadow-sm);}
-  .lsw button{border:none;background:transparent;font-family:var(--fb);font-weight:800;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;color:var(--text-soft);} .lsw button.on{background:var(--lg);color:#fff;}
-  .instr{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:var(--shadow-sm);border-left:4px solid var(--lp);display:flex;gap:10px;margin-bottom:14px;}
-  .instr .em{font-size:21px;} .instr b{font-family:var(--fd);font-weight:600;font-size:14.5px;display:block;} .instr p{margin:1px 0 0;font-size:12.5px;color:var(--text-soft);line-height:1.45;}
-  .qcard{background:#fff;border-radius:18px;box-shadow:var(--shadow-sm);padding:16px;margin-bottom:13px;} .qcard.hidden{display:none;}
-  .qtop{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
-  .qnum{width:31px;height:31px;border-radius:50%;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:14px;flex-shrink:0;}
-  .qlabel{font-size:12.5px;font-weight:800;color:var(--text-soft);}
-  .qreport{margin-left:auto;font-size:11px;font-weight:800;color:#B9742B;background:#FCF1E3;border:1px solid #F2D9B8;padding:4px 10px;border-radius:9px;cursor:pointer;}
-  .consigna{background:var(--ll);border:1px solid var(--lm);border-radius:11px;padding:10px 13px;font-size:14px;font-weight:800;color:var(--ld);margin-bottom:12px;}
-  .sent{font-size:18px;line-height:2;font-weight:700;margin:0 0 12px;}
-  .w.tap{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--lm);transition:.12s;} .w.tap:hover{background:var(--ll);}
-  .w.ok{background:var(--correct-bg);color:var(--correct);border-bottom:2px solid var(--correct);} .w.no{background:var(--wrong-bg);color:var(--wrong);border-bottom:2px solid var(--wrong);} .w.reveal{background:var(--correct-bg);color:var(--correct);}
-  .support{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
-  .sbtn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;border-radius:9px;padding:7px 13px;cursor:pointer;border:1.5px solid;} .sbtn.hint{background:var(--tint);color:var(--ld);border-color:var(--lm);} .sbtn.tr{background:var(--rv-bg);color:var(--rv-text);border-color:var(--rv-bd);} .sbtn.used{opacity:.55;}
-  .reveal{display:none;border-radius:0 11px 11px 0;padding:10px 13px;font-size:13px;line-height:1.55;margin-bottom:12px;} .reveal.show{display:block;}
-  .reveal.hintbox{background:var(--tint);border-left:3px solid var(--lp);} .reveal.trbox{background:var(--rv-bg);border-left:3px solid var(--rv-text);font-family:var(--fs);font-style:italic;color:#5A2A66;}
-  .reveal .lab{display:block;font-style:normal;font-family:var(--fb);font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;opacity:.8;}
-  .fb{margin-top:14px;border-radius:14px;overflow:hidden;display:none;} .fb.show{display:block;}
-  .fbh{padding:10px 14px;display:flex;align-items:center;gap:8px;color:#fff;} .fb.ok .fbh{background:linear-gradient(135deg,var(--correct),#1B5E20);} .fb.no .fbh{background:linear-gradient(135deg,var(--wrong),#922);} .fbh b{font-family:var(--fd);font-weight:600;font-size:15px;}
-  .fbb{background:#fff;border:2px solid;border-top:none;border-radius:0 0 14px 14px;padding:13px;display:flex;flex-direction:column;gap:10px;} .fb.ok .fbb{border-color:var(--correct-bd);} .fb.no .fbb{border-color:var(--wrong-bd);}
-  .fblk{border-radius:11px;padding:10px 12px;font-size:13px;line-height:1.5;} .fblk b{font-weight:800;} .fblk>b:first-child{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;display:flex;gap:5px;margin-bottom:3px;}
-  .fblk.story{background:#FFF8E1;border:1px solid #FFE082;color:#6B4E00;} .fblk.sig{background:var(--tint);border:1px solid var(--lm);} .fblk.others{background:#FFF1F0;border:1px solid #F6C9C4;color:#9B3D34;}
-  .fblk.rule{background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;} .fblk.es{background:#FDF2F8;border:1px solid #F9C6E0;color:#9D2463;} .fblk.lit{background:#F5F3FF;border:1px solid #DDD6FE;color:#5B21B6;}
-  .qquote{font-family:var(--fs);font-style:italic;} .story-es{display:block;font-family:var(--fs);color:#8a6f3a;font-size:11.5px;margin-top:3px;}
-  .exrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;} .exchip{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#fff;border:1px solid #BFDBFE;border-radius:6px;padding:2px 7px;color:#1D4ED8;font-weight:700;} .exw{font-weight:800;}
-  .nav{display:flex;gap:9px;margin-top:14px;} .nb{padding:12px 15px;border:none;border-radius:11px;font-family:var(--fb);font-weight:800;font-size:13.5px;cursor:pointer;} .nb.next{background:var(--lg);color:#fff;flex:1;} .nb.prev{background:#F1F0EA;color:var(--text);} .nb:disabled{opacity:.4;cursor:default;}
-  .rform{margin-top:12px;background:#FCF7EF;border:1.5px solid #F0D9B8;border-radius:13px;padding:13px;display:none;} .rform.show{display:block;}
-  .rform h4{margin:0 0 9px;font-family:var(--fd);font-weight:600;font-size:13.5px;color:#92510F;}
-  .rform select,.rform textarea{width:100%;font-family:var(--fb);font-size:13px;border:1.5px solid #E7D3B4;border-radius:9px;padding:9px 11px;margin-bottom:9px;background:#fff;resize:vertical;} .rform textarea{min-height:54px;}
-  .rrow{display:flex;gap:9px;} .rsend{background:#C77D2E;color:#fff;border:none;border-radius:9px;padding:10px 17px;font-weight:800;font-size:13px;cursor:pointer;flex:1;} .rcancel{background:#F1E7D6;color:#92510F;border:none;border-radius:9px;padding:10px 15px;font-weight:800;font-size:13px;cursor:pointer;}
-  .rdone{background:#EAF7EC;border:1.5px solid var(--correct-bd);border-radius:13px;padding:13px;margin-top:12px;display:none;} .rdone.show{display:block;}
-  .rcode{font-family:'Nunito',monospace;font-size:11.5px;background:#fff;border:1px dashed var(--correct-bd);border-radius:8px;padding:9px;margin-top:7px;color:#1B5E20;word-break:break-all;cursor:copy;}
-  .results{display:none;padding:20px 16px 40px;text-align:center;} .results.show{display:block;}
-  .unlock{border-radius:13px;padding:11px;display:flex;align-items:center;gap:9px;justify-content:center;font-weight:800;font-size:14px;margin-bottom:15px;}
-  .unlock.pass{background:var(--correct-bg);border:1.5px solid var(--correct-bd);color:var(--correct);} .unlock.fail{background:#FFF7E8;border:1.5px solid #F0C66B;color:#92510F;}
-  .hero{background:var(--lg);border-radius:20px;padding:24px 20px;color:#fff;box-shadow:var(--shadow-sm);} .hero .em{font-size:50px;line-height:1;}
-  .stars{display:flex;justify-content:center;gap:7px;margin:9px 0;} .star{font-size:28px;opacity:.32;} .star.on{opacity:1;}
-  .score{font-family:var(--fd);font-weight:600;font-size:46px;line-height:1;} .score small{font-size:20px;opacity:.8;} .phrase{font-size:14px;line-height:1.5;margin-top:9px;font-weight:700;opacity:.96;}
-  .strip{display:flex;gap:10px;margin:15px 0 6px;} .stat{flex:1;background:#fff;border:1px solid var(--border);border-radius:13px;padding:12px 9px;box-shadow:var(--shadow-sm);}
-  .stat b{font-family:var(--fd);font-weight:600;font-size:22px;display:block;color:var(--ld);} .stat span{font-size:11px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.04em;} .stat .note{display:block;font-size:9px;color:#A99;font-weight:700;text-transform:none;letter-spacing:0;margin-top:1px;}
-  .support-note{font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:14px;}
-  .action{background:#fff;border:1.5px solid var(--lm);border-left:4px solid var(--lp);border-radius:13px;padding:13px 15px;text-align:left;font-size:13px;line-height:1.5;font-weight:700;color:var(--text);margin-bottom:15px;box-shadow:var(--shadow-sm);}
-  .reinf{background:#FFF7E8;border:1.5px solid #F0C66B;border-radius:13px;padding:13px;text-align:left;margin-bottom:15px;} .reinf b{font-size:12px;color:#92510F;display:flex;gap:6px;align-items:center;text-transform:uppercase;letter-spacing:.04em;margin-bottom:9px;}
-  .rchips{display:flex;flex-wrap:wrap;gap:7px;} .rchip{background:#fff;border:1.5px solid #F0C66B;color:#92510F;border-radius:9px;padding:6px 11px;font-size:12.5px;font-weight:800;}
-  .surprise{background:linear-gradient(135deg,#FFF3D6,#FFFBF0);border:1.5px dashed var(--lp);border-radius:13px;padding:12px;display:flex;align-items:center;gap:11px;text-align:left;margin-bottom:15px;} .surprise .em{font-size:28px;} .surprise b{font-size:13px;color:var(--ld);} .surprise p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);font-weight:700;}
-  .rbtns{display:flex;flex-direction:column;gap:10px;} .rbtn{padding:14px;border:none;border-radius:13px;font-family:var(--fb);font-weight:800;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;} .rbtn.back{background:var(--lg);color:#fff;} .rbtn.retry{background:#F1F0EA;color:var(--text);}
-  .mfoot{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10.5px;color:#B0A99A;padding:16px;font-weight:700;} .mfoot img{height:20px;opacity:.5;}
-  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:12px 22px;border-radius:24px;font-weight:800;font-size:13.5px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;} .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}  .helpfab{position:fixed;right:16px;bottom:16px;z-index:120;width:44px;height:44px;border-radius:50%;background:var(--lg);color:#fff;border:none;font-size:22px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);}
-  .helpov{position:fixed;inset:0;z-index:130;background:rgba(20,20,25,.5);display:none;align-items:center;justify-content:center;padding:18px;} .helpov.show{display:flex;}
-  .helpcard{background:#fff;border-radius:18px;max-width:380px;width:100%;max-height:86%;overflow-y:auto;box-shadow:var(--shadow);padding:18px 20px;position:relative;} .helpcard h3{font-family:var(--fd);font-weight:600;font-size:17px;color:var(--ld);margin:0 0 8px;} .helpcard .hx{position:absolute;top:11px;right:13px;border:none;background:none;font-size:20px;color:#bbb;cursor:pointer;}
-  .helptip{display:flex;gap:6px;font-size:12.5px;color:#555;padding:4px 0;line-height:1.45;} .helptip b{color:var(--ld);}
-  .chip{position:fixed;left:16px;bottom:16px;z-index:120;display:flex;align-items:center;gap:7px;background:var(--ld);color:#fff;padding:8px 14px;border-radius:22px;font-weight:800;font-size:12.5px;box-shadow:var(--shadow-sm);} .chip small{font-weight:700;opacity:.8;font-size:9px;} .chip #ct{font-variant-numeric:tabular-nums;}
-</style>
-</head>
-<!-- ▼ NIVEL: pre-a1 | a1 | a2 ▼ -->
-<body data-level="pre-a1">
-  <div class="mat">
-    <div class="mhead"><button class="mback" onclick="exitGuard()">‹</button>
-      <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
-      <div class="mh-info"><b id="mhtitle">Identification</b><span id="mhsub"></span></div>
-      <div class="mh-count"><span id="cq">1</span>/<span id="tot">0</span></div></div>
-    <div class="pbar"><div class="pfill" id="pfill"></div></div>
-    <div class="mbody" id="mbody">
-      <div class="langsw"><span class="lsw-lab">🌐 <span id="lswLab"></span></span>
-        <div class="lsw"><button id="lswEs" class="on" onclick="setLang('es')">Español</button><button id="lswEn" onclick="setLang('en')">English</button></div></div>
-      <div class="instr"><div class="em">🔎</div><div><b id="insT"></b><p id="insP"></p></div></div>
-      <div id="qbox"></div>
-    </div>
-    <div class="results" id="results">
-      <div class="unlock" id="unlockMsg"></div>
-      <div class="hero"><div class="em" id="heroEm">🎉</div><div class="stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div><div class="score"><span id="fscore">0</span><small>%</small></div><div class="phrase" id="fphrase"></div></div>
-      <div class="strip"><div class="stat"><b id="fhits">0/0</b><span id="lHits"></span></div><div class="stat"><b id="ftime">0:00</b><span id="lTime"></span></div><div class="stat"><b id="fxp">+0</b><span id="lXpEarned"></span></div></div>
-      <div class="support-note" id="supportNote"></div>
-      <div class="action" id="actionMsg"></div>
-      <div class="reinf" id="reinf"><b id="lReinf"></b><div class="rchips" id="rchips"></div></div>
-      <div class="surprise" id="surprise"><div class="em">🎁</div><div><b id="lXp"></b><p id="lXpSub"></p></div></div>
-      <div class="rbtns"><button class="rbtn back" id="lBack" onclick="volver()"></button><button class="rbtn retry" id="lRetry" onclick="restart()"></button></div>
-    </div>
-    <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido © JUCUM English Center</div>
-  </div>
-  <div class="chip"><span>⏱</span><span id="ct">0:00</span><small id="chipNote">no afecta tu nota</small></div>
-  <button class="helpfab" onclick="openHelp()" title="?">?</button>
-  <div class="helpov" id="helpov"><div class="helpcard"><button class="hx" onclick="closeHelp()">✕</button><h3>🧭 <span id="helpT"></span></h3><div id="helpTips"></div></div></div>
-  <div class="helpov" id="exitov"><div class="helpcard"><h3 id="exitT" style="font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 8px"></h3><p id="exitP" style="font-size:13px;color:#555;line-height:1.5;margin:0 0 14px"></p><div style="display:flex;flex-direction:column;gap:8px"><button id="exitStay" onclick="closeExit()" style="padding:12px;border:none;border-radius:12px;background:var(--lg);color:#fff;font-weight:800;font-size:13.5px;cursor:pointer"></button><button id="exitLeave" onclick="leaveNow()" style="padding:12px;border:none;border-radius:12px;background:#F1F0EA;color:#C62828;font-weight:800;font-size:13px;cursor:pointer"></button></div></div></div>
-  <div class="toast" id="toast"></div>
-<script>
-/* ════ EDITA AQUÍ · METADATOS ════ */
-const MAT = { title:'Identification', subtitle:'Pre-A1 · M4 · Preposiciones', langDefault:'es', reportId:'PreA1_M4_t1-id' };
-const PASS = 75;
-const QS = [
- {
-  "clue": "on",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "on · sobre/días",
-   "en": "on · sobre/días"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "book",
-   "is",
-   "on",
-   "the",
-   "table."
-  ],
-  "tr": "El libro está sobre la mesa.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"The book is on the table.\"",
-   "es": "El libro está sobre la mesa."
-  },
-  "why": {
-   "es": "<b>on</b>: sobre una superficie.",
-   "en": "<b>on</b>: sobre una superficie."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "in",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "in · dentro/parte del día",
-   "en": "in · dentro/parte del día"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "key",
-   "is",
-   "in",
-   "my",
-   "bag."
-  ],
-  "tr": "La llave está dentro del bolso.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"The key is in my bag.\"",
-   "es": "La llave está dentro del bolso."
-  },
-  "why": {
-   "es": "<b>in</b>: dentro de un espacio cerrado.",
-   "en": "<b>in</b>: dentro de un espacio cerrado."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "under",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "under · debajo",
-   "en": "under · debajo"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "game",
-   "is",
-   "under",
-   "the",
-   "bed."
-  ],
-  "tr": "El juego está debajo de la cama.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"The game is under the bed.\"",
-   "es": "El juego está debajo de la cama."
-  },
-  "why": {
-   "es": "<b>under</b>: en un nivel más bajo.",
-   "en": "<b>under</b>: en un nivel más bajo."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "near",
-  "target": 2,
-  "tap": [
-   1,
-   2,
-   3
-  ],
-  "reinf": {
-   "es": "near · cerca",
-   "en": "near · cerca"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "Ana",
-   "lives",
-   "near",
-   "the",
-   "school."
-  ],
-  "tr": "Ana vive cerca de la escuela.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"Ana lives near the school.\"",
-   "es": "Ana vive cerca de la escuela."
-  },
-  "why": {
-   "es": "<b>near</b>: cerca, sin tocar.",
-   "en": "<b>near</b>: cerca, sin tocar."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "at",
-  "target": 2,
-  "tap": [
-   1,
-   2,
-   3
-  ],
-  "reinf": {
-   "es": "at · horas",
-   "en": "at · horas"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "Class",
-   "starts",
-   "at",
-   "eight."
-  ],
-  "tr": "La clase empieza a las ocho.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"Class starts at eight.\"",
-   "es": "La clase empieza a las ocho."
-  },
-  "why": {
-   "es": "<b>at</b>: con horas exactas.",
-   "en": "<b>at</b>: con horas exactas."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "on",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "on · sobre/días",
-   "en": "on · sobre/días"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "game",
-   "is",
-   "on",
-   "Monday."
-  ],
-  "tr": "El juego es el lunes.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"The game is on Monday.\"",
-   "es": "El juego es el lunes."
-  },
-  "why": {
-   "es": "<b>on</b>: con días de la semana.",
-   "en": "<b>on</b>: con días de la semana."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "in",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "in · dentro/parte del día",
-   "en": "in · dentro/parte del día"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "We",
-   "have",
-   "school",
-   "in",
-   "the",
-   "morning."
-  ],
-  "tr": "Tenemos escuela en la mañana.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"We have school in the morning.\"",
-   "es": "Tenemos escuela en la mañana."
-  },
-  "why": {
-   "es": "<b>in</b>: con partes del día.",
-   "en": "<b>in</b>: con partes del día."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "before",
-  "target": 2,
-  "tap": [
-   1,
-   2,
-   3
-  ],
-  "reinf": {
-   "es": "before · antes",
-   "en": "before · antes"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "I",
-   "wash",
-   "before",
-   "breakfast."
-  ],
-  "tr": "Me lavo antes del desayuno.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "\"I wash before breakfast.\"",
-   "es": "Me lavo antes del desayuno."
-  },
-  "why": {
-   "es": "<b>before</b>: indica que ocurre primero.",
-   "en": "<b>before</b>: indica que ocurre primero."
-  },
-  "others": {
-   "es": "Las otras palabras son el objeto o el lugar, no la preposición.",
-   "en": "The other words are the object or place, not the preposition."
-  },
-  "rule": {
-   "es": "Lugar: in/on/under/near · Tiempo: in/on/at/before/after",
-   "en": "Place: in/on/under/near · Time: in/on/at/before/after"
-  },
-  "examples": {
-   "es": [
-    "on the table",
-    "at 8"
-   ],
-   "en": [
-    "on the table",
-    "at 8"
-   ]
-  },
-  "es": {
-   "es": "in/on/at según el tipo de lugar o tiempo.",
-   "en": "in/on/at by the kind of place or time."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "on",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "on · sobre",
-   "en": "on · sobre"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "My",
-   "book",
-   "is",
-   "on",
-   "the",
-   "desk."
-  ],
-  "tr": "Mi libro está sobre el escritorio.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "My book is on my desk.",
-   "es": "Mi libro está sobre mi escritorio."
-  },
-  "why": {
-   "es": "<b>on</b> indica el lugar (sobre el escritorio).",
-   "en": "<b>on</b> shows the place (on the desk)."
-  },
-  "others": {
-   "es": "«book» y «desk» son sustantivos, no la preposición.",
-   "en": "«book» and «desk» are nouns, not the preposition."
-  },
-  "rule": {
-   "es": "on = sobre",
-   "en": "on = on"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "under",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "under · debajo",
-   "en": "under · debajo"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "bag",
-   "is",
-   "under",
-   "the",
-   "chair."
-  ],
-  "tr": "La mochila está debajo de la silla.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "My bag is under my chair.",
-   "es": "Mi mochila está debajo de mi silla."
-  },
-  "why": {
-   "es": "<b>under</b> indica un nivel más bajo.",
-   "en": "<b>under</b> shows a lower level."
-  },
-  "others": {
-   "es": "«bag» y «chair» son sustantivos.",
-   "en": "«bag» and «chair» are nouns."
-  },
-  "rule": {
-   "es": "under = debajo",
-   "en": "under = below"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "by",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "by · junto a",
-   "en": "by · junto a"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "My",
-   "marker",
-   "is",
-   "by",
-   "the",
-   "window."
-  ],
-  "tr": "Mi marcador está junto a la ventana.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "My marker is by the window.",
-   "es": "Mi marcador está junto a la ventana."
-  },
-  "why": {
-   "es": "<b>by</b> indica cercanía (junto a).",
-   "en": "<b>by</b> shows nearness (next to)."
-  },
-  "others": {
-   "es": "«marker» y «window» son sustantivos.",
-   "en": "«marker» and «window» are nouns."
-  },
-  "rule": {
-   "es": "by = junto a",
-   "en": "by = next to"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "near",
-  "target": 2,
-  "tap": [
-   1,
-   2,
-   3
-  ],
-  "reinf": {
-   "es": "near · cerca",
-   "en": "near · cerca"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "We",
-   "sit",
-   "near",
-   "the",
-   "door."
-  ],
-  "tr": "Nos sentamos cerca de la puerta.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": null,
-  "why": {
-   "es": "<b>near</b> indica proximidad sin tocar.",
-   "en": "<b>near</b> shows nearness without touching."
-  },
-  "others": {
-   "es": "«sit» es verbo y «door» sustantivo.",
-   "en": "«sit» is a verb, «door» a noun."
-  },
-  "rule": {
-   "es": "near = cerca",
-   "en": "near = near"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "in",
-  "target": 2,
-  "tap": [
-   1,
-   2,
-   3
-  ],
-  "reinf": {
-   "es": "in · dentro",
-   "en": "in · dentro"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "Tom",
-   "is",
-   "in",
-   "the",
-   "classroom."
-  ],
-  "tr": "Tom está en el salón.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": {
-   "q": "My classroom is on the first floor.",
-   "es": "Mi salón está en el primer piso."
-  },
-  "why": {
-   "es": "<b>in</b> indica dentro de un espacio.",
-   "en": "<b>in</b> shows inside a space."
-  },
-  "others": {
-   "es": "«Tom» es sujeto y «classroom» sustantivo.",
-   "en": "«Tom» subject, «classroom» noun."
-  },
-  "rule": {
-   "es": "in = dentro",
-   "en": "in = inside"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "at",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "at · horas",
-   "en": "at · horas"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "class",
-   "starts",
-   "at",
-   "eight."
-  ],
-  "tr": "La clase empieza a las ocho.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": null,
-  "why": {
-   "es": "<b>at</b> se usa con horas exactas.",
-   "en": "<b>at</b> is used with clock times."
-  },
-  "others": {
-   "es": "«class» y «eight» no son la preposición.",
-   "en": "«class» and «eight» are not the preposition."
-  },
-  "rule": {
-   "es": "at = a (horas)",
-   "en": "at = at (times)"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "clue": "behind",
-  "target": 3,
-  "tap": [
-   2,
-   3,
-   4
-  ],
-  "reinf": {
-   "es": "behind · detrás",
-   "en": "behind · behind"
-  },
-  "task": {
-   "es": "Toca la <b>preposición</b>.",
-   "en": "Tap the <b>preposition</b>."
-  },
-  "words": [
-   "The",
-   "ball",
-   "is",
-   "behind",
-   "the",
-   "door."
-  ],
-  "tr": "La pelota está detrás de la puerta.",
-  "hint": {
-   "es": "",
-   "en": ""
-  },
-  "story": null,
-  "why": {
-   "es": "<b>behind</b> indica detrás de algo.",
-   "en": "<b>behind</b> means at the back of something."
-  },
-  "others": {
-   "es": "«ball» y «door» son sustantivos, no la preposición.",
-   "en": "«ball» and «door» are nouns, not the preposition."
-  },
-  "rule": {
-   "es": "behind = detrás",
-   "en": "behind = behind"
-  },
-  "examples": {
-   "es": [],
-   "en": []
-  },
-  "es": {
-   "es": "",
-   "en": ""
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-];
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Identification · Preposiciones de Lugar y Tiempo · JUCUM English Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F59E0B; --primary-light: #FCD34D; --primary-dark: #D97706;
+            --accent: #FBBF24; --bg-gradient-start: #FFFBEB; --bg-gradient-end: #FEF3C7;
+            --text-dark: #78350F; --text-medium: #92400E; --text-light: #B45309;
+            --success: #10B981; --success-light: #D1FAE5; --success-dark: #059669;
+            --error: #EF4444; --error-light: #FEE2E2; --error-dark: #DC2626;
+            --info: #3B82F6; --info-light: #DBEAFE; --info-dark: #1D4ED8;
+            --purple: #8B5CF6; --purple-light: #EDE9FE; --purple-dark: #6D28D9;
+            --orange-light: #FFEDD5; --orange-dark: #C2410C;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(245,158,11,0.15);
+            --shadow-strong: 0 8px 30px rgba(245,158,11,0.25);
+            --border-radius: 20px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:'Nunito',sans-serif; background:linear-gradient(135deg,var(--bg-gradient-start) 0%,var(--bg-gradient-end) 100%); min-height:100vh; color:var(--text-dark); }
+        .header { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; position:sticky; top:0; z-index:100; box-shadow:var(--shadow-soft); }
+        .header-info { flex:1; }
+        .header-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; font-weight:600; color:white; }
+        .header-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:2px; }
+        .progress-indicator { background:rgba(255,255,255,0.3); padding:0.4rem 0.9rem; border-radius:20px; font-weight:700; color:white; font-size:0.9rem; white-space:nowrap; }
+        .progress-container { padding:0; height:6px; background:rgba(255,255,255,0.3); }
+        .progress-fill { height:100%; background:white; border-radius:0 3px 3px 0; transition:width .5s ease; width:0%; }
+        main { padding:1.5rem; max-width:650px; margin:0 auto; }
+        .instructions { background:white; border-radius:16px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-soft); border-left:5px solid var(--primary); display:flex; gap:0.75rem; align-items:flex-start; }
+        .instructions-icon { font-size:1.6rem; flex-shrink:0; }
+        .instructions-title { font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:0.2rem; }
+        .instructions-text { font-size:0.85rem; color:var(--text-medium); line-height:1.5; }
+        .question-card { background:white; border-radius:var(--border-radius); box-shadow:var(--shadow-soft); padding:1.5rem; margin-bottom:1rem; animation:slideIn .4s ease; }
+        .question-card.hidden { display:none; }
+        @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .q-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .question-number { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; display:flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+        .topic-badge { display:inline-flex; align-items:center; gap:0.3rem; padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; font-weight:700; background:#FEF3C7; color:var(--text-medium); margin-left:auto; }
+        .toggle-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+        .toggle-btn { border:2px solid var(--primary-light); background:#FFFBEB; color:var(--text-medium); border-radius:20px; padding:0.4rem 0.9rem; font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .toggle-btn:hover { background:var(--primary-light); }
+        .toggle-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .hint-box { background:#FFFDE7; border-left:4px solid var(--primary); padding:0.7rem 1rem; border-radius:0 10px 10px 0; margin-bottom:1rem; font-size:0.88rem; color:#78350F; line-height:1.5; display:none; }
+        .hint-box.show { display:block; }
+        .hint-label { font-weight:700; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem; margin-bottom:0.2rem; font-size:0.82rem; text-transform:uppercase; letter-spacing:.5px; }
+        .translation { color:var(--text-light); font-style:italic; font-size:0.88rem; margin:0.5rem 0 1rem; padding:0.6rem 0.9rem; background:#FFFBEB; border-radius:10px; display:none; }
+        .translation.show { display:block; }
+        .feedback { margin-top:1.25rem; border-radius:16px; overflow:hidden; display:none; box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .feedback.show { display:block; animation:fadeUp .35s ease; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        .fb-header { padding:0.9rem 1.25rem; display:flex; align-items:center; gap:0.75rem; }
+        .feedback.correct .fb-header { background:linear-gradient(135deg,var(--success),var(--success-dark)); }
+        .feedback.incorrect .fb-header { background:linear-gradient(135deg,var(--error),var(--error-dark)); }
+        .fb-icon { font-size:1.6rem; }
+        .fb-title { font-family:'Fredoka',sans-serif; font-size:1.1rem; color:white; font-weight:600; }
+        .fb-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.85); margin-top:1px; }
+        .fb-body { background:white; border:2px solid; border-top:none; border-radius:0 0 16px 16px; padding:1.25rem; display:flex; flex-direction:column; gap:0.9rem; }
+        .feedback.correct .fb-body { border-color:var(--success); }
+        .feedback.incorrect .fb-body { border-color:var(--error); }
+        .fb-block { border-radius:12px; padding:0.9rem 1rem; }
+        .fb-block-title { font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:.6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .fb-signal { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-signal.wrong { background:#FFF1F2; border:1px solid #FECDD3; }
+        .fb-signal .fb-block-title { color:var(--success-dark); }
+        .fb-signal.wrong .fb-block-title { color:var(--error-dark); }
+        .fb-text { font-size:0.92rem; color:var(--text-dark); line-height:1.55; }
+        .signal-tag { display:inline-block; background:var(--success); color:white; border-radius:6px; padding:0.1rem 0.5rem; font-size:0.8rem; font-weight:700; margin:0 2px; }
+        .signal-tag.red { background:var(--error); }
+        .fb-compare { background:#F8FAFC; border:1px solid #E2E8F0; }
+        .fb-compare-row { display:flex; align-items:baseline; gap:0.6rem; padding:0.35rem 0; border-bottom:1px dashed #E2E8F0; }
+        .fb-compare-row:last-child { border-bottom:none; }
+        .compare-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; padding:0.15rem 0.5rem; border-radius:6px; flex-shrink:0; }
+        .compare-label.wrong { background:var(--error-light); color:var(--error-dark); }
+        .compare-label.right { background:var(--success-light); color:var(--success-dark); }
+        .compare-text { font-size:0.95rem; color:var(--text-dark); line-height:1.5; }
+        .word-wrong { color:var(--error); font-weight:700; text-decoration:line-through; }
+        .word-right { color:var(--success-dark); font-weight:700; }
+        .fb-error { background:var(--error-light); }
+        .fb-error .fb-block-title { color:var(--error-dark); }
+        .error-badge { display:inline-block; background:var(--error); color:white; padding:0.2rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:700; }
+        .word-swap { display:flex; align-items:center; justify-content:center; gap:0.75rem; margin:0.6rem 0; flex-wrap:wrap; }
+        .ws-box { padding:0.4rem 1rem; border-radius:8px; font-weight:700; font-size:1rem; }
+        .ws-wrong { background:white; color:var(--error); border:2px solid var(--error); text-decoration:line-through; }
+        .ws-arrow { font-size:1.3rem; color:var(--text-medium); }
+        .ws-right { background:var(--success); color:white; }
+        .error-text { font-size:0.88rem; color:var(--error-dark); line-height:1.5; }
+        .fb-why { background:#F0FDF4; border:1px solid #BBF7D0; }
+        .fb-why .fb-block-title { color:var(--success-dark); }
+        .nav-buttons { display:flex; gap:0.75rem; margin-top:1.25rem; }
+        .nav-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; }
+        .nav-btn.next { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; flex:1; }
+        .nav-btn.prev { background:#F1F5F9; color:var(--text-dark); }
+        .nav-btn:disabled { opacity:.4; cursor:default; }
+        .nav-btn:not(:disabled):hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .results-screen { display:none; text-align:center; padding:2rem 1.5rem; }
+        .results-screen.show { display:block; animation:fadeUp .5s ease; }
+        .results-emoji { font-size:4rem; margin-bottom:1rem; }
+        .results-title { font-family:'Fredoka',sans-serif; font-size:2rem; margin-bottom:0.5rem; }
+        .results-score { font-size:3rem; font-weight:800; color:var(--purple); margin:1rem 0; }
+        .results-message { font-size:1.05rem; color:var(--text-medium); margin-bottom:1.5rem; }
+        .stars-container { display:flex; justify-content:center; gap:0.5rem; margin:1.5rem 0; }
+        .star { font-size:2.5rem; opacity:.3; transition:all .5s ease; }
+        .star.earned { opacity:1; animation:starPop .5s ease; }
+        @keyframes starPop { 0%{transform:scale(0)} 50%{transform:scale(1.3)} 100%{transform:scale(1)} }
+        .results-buttons { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+        .result-btn { padding:1rem 2rem; border:none; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:all .2s; }
+        .result-btn.primary { background:linear-gradient(135deg,var(--purple),var(--purple-dark)); color:white; }
+        .result-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-soft); }
+        .q-label { font-size:0.88rem; color:var(--text-medium); font-weight:600; }
+        .sentence-options { display:flex; flex-direction:column; gap:0.7rem; margin-bottom:0.5rem; }
+        .sent-option { border:2.5px solid #E5E7EB; border-radius:14px; padding:1rem 1.1rem; cursor:pointer; transition:all .2s; background:white; text-align:left; font-family:'Nunito',sans-serif; display:flex; gap:0.75rem; align-items:flex-start; width:100%; }
+        .sent-option:hover:not(.disabled) { border-color:var(--primary); background:var(--bg-gradient-start); transform:translateX(4px); }
+        .sent-option.disabled { cursor:default; }
+        .sent-option.correct { border-color:var(--success); background:var(--success-light); }
+        .sent-option.incorrect { border-color:var(--error); background:var(--error-light); }
+        .option-letter { width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary-dark); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; font-family:'Fredoka',sans-serif; }
+        .sent-option.correct .option-letter { background:var(--success); color:white; }
+        .sent-option.incorrect .option-letter { background:var(--error); color:white; }
+        .option-text { font-size:0.97rem; color:var(--text-dark); line-height:1.5; font-weight:600; flex:1; }
+        .option-status { font-size:1.1rem; flex-shrink:0; display:none; }
+        .sent-option.disabled .option-status { display:block; }
+        .error-highlight { color:var(--error); font-weight:800; text-decoration:underline wavy; }
+        .correct-highlight { color:var(--success-dark); font-weight:800; }
+    </style>
+</head><body>
+    <header class="header">
+        <div class="header-info">
+            <div class="header-title">🔍 Identification</div>
+            <div class="header-subtitle">💛 Pre-A1 · Módulo 4 · Preposiciones de Lugar y Tiempo</div>
+        </div>
+        <div class="progress-indicator"><span id="currentQ">1</span>/15</div>
+    </header>
+    <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
 
-/* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
-const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Identifica y toca', insP:'Cada oración es <b>correcta</b>. Toca la <b>preposición</b>. ¿Dudas? Usa Traducción.',
-    qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo',
-    fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bStory:'📖 En la historia', bWhy:'🔍 Por qué esa palabra', bOthers:'❌ Por qué no las otras', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
-    prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
-    pass:'🔓 ¡Aprobado! Desbloqueaste la siguiente actividad', fail:'🔁 Necesitas '+PASS+'% para aprobar. ¡Inténtalo de nuevo!',
-    hits:'Aciertos', time:'Tiempo', timeNote:'no afecta tu nota', reinf:'📌 A reforzar', xp:'+15 XP por aprobar', xpSub:'Sumaste a tu Liga Semanal. Mantén la racha.', back:'↩ Volver a la plataforma', retry:'🔁 Intentar de nuevo',
-    ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
-    supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
-    rFormH:'⚠ Reportar un error', rOpts:['La respuesta marcada parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','No concuerda con la historia','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca la palabra que cumple la consigna.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Identify and tap', insP:'Each sentence is <b>correct</b>. Tap the <b>preposition</b>. Stuck? Use Translation.',
-    qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help',
-    fbOk:'Correct!', fbNo:'Almost — let\'s review', bStory:'📖 In the story', bWhy:'🔍 Why that word', bOthers:'❌ Why not the others', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
-    prev:'← Back', next:'Next →', seeRes:'See results 🎉',
-    pass:'🔓 Passed! You unlocked the next activity', fail:'🔁 You need '+PASS+'% to pass. Try again!',
-    hits:'Correct', time:'Time', timeNote:'does not affect your grade', reinf:'📌 To review', xp:'+15 XP for passing', xpSub:'Added to your Weekly League. Keep your streak.', back:'↩ Back to the platform', retry:'🔁 Try again',
-    ph:['Excellent! You\'ve got it. 🌟','Great job, passed! Review the few slips. 💪','Almost — review and come back to top '+PASS+'%. 🌱'],
-    supp:n=>n+' answered with translation help (doesn\'t lower your grade; your teacher will see it).',
-    rFormH:'⚠ Report a problem', rOpts:['The marked answer looks wrong','Typo / spelling error','The translation doesn\'t match','The task is confusing','Doesn\'t match the story','Other'], rPlace:'Tell us what you saw (optional)...', rSend:'Send to support', rCancel:'Cancel', rDone:'✓ Report sent to support', rCodeLab:'Code (copy it if your teacher asks):', xpEarned:'XP earned', exitT:'Are you sure you want to leave? 🚪', exitP:x=>'If you leave now, <b>you\'ll lose the '+x+' XP</b> you\'ve earned and your progress here. Finish it to claim them. 💪', exitStay:'Keep practicing', exitLeave:'Leave and lose my XP', helpT:'How do I use this material?', tipsT:'What each button is for:', tips:['<b>How to solve it:</b> tap the word that fits the task.','<b>🌐 Español/English:</b> language of instructions and explanations (the exercise stays in English).','<b>💡 Hint:</b> a context clue, below the sentence.','<b>🔤 Translation:</b> the sentence in Spanish (help, doesn\'t lower your grade).','<b>⚠ Report:</b> tell us if something is wrong in the question.','<b>At the end:</b> you\'ll see your grade, hits, time and topics to review.','<b>≥75% passes</b> and unlocks the next activity.'] }
-};
-let lang=MAT.langDefault, cur=0, score=0, locked=[], picked=[], usedTr=0, wrongTags=[], sec=0, timer=null;
-let xpTotal=0; const XPQ=2;
-const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
-function startTimer(){ if(!timer) timer=setInterval(()=>{sec++; var c=document.getElementById('ct'); if(c)c.textContent=fmt(sec);},1000); }
-function render(){ cur=0;score=0;xpTotal=0;usedTr=0;wrongTags=[];sec=0;clearInterval(timer);timer=null;
-  locked=new Array(QS.length).fill(false); picked=new Array(QS.length).fill(null); QS.forEach(q=>delete q._tr);
-  document.getElementById('tot').textContent=QS.length; document.getElementById('results').classList.remove('show'); document.getElementById('mbody').style.display='block';
-  document.getElementById('pfill').style.width='0'; var _ct=document.getElementById('ct'); if(_ct)_ct.textContent='0:00'; document.querySelectorAll('.star').forEach(s=>s.classList.remove('on'));
-  document.getElementById('qbox').innerHTML=QS.map(buildId).join(''); applyUiLang(); show(0); }
-function buildId(it,i){ const t=T[lang];
-  const ws=it.words.map((w,wi)=>{ const tap=it.tap.includes(wi); return `<span class="w${tap?' tap':''}" ${tap?`onclick="tapWord(${i},${wi})"`:''} id="w${i}_${wi}">${w}</span>`; }).join(' ');
-  return `<div class="qcard${i!==0?' hidden':''}" id="q${i}">
-    <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
-    <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
-    <p class="sent" id="sent${i}">${ws}</p>
-    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
-    <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
-    <div class="fb" id="fb${i}"></div>
-    <div class="rform" id="rf${i}"><h4 id="rfh${i}">${t.rFormH}</h4><select id="rt${i}">${t.rOpts.map(o=>`<option>${o}</option>`).join('')}</select><textarea id="rn${i}" placeholder="${t.rPlace}"></textarea><div class="rrow"><button class="rsend" onclick="sendReport(${i})">${t.rSend}</button><button class="rcancel" onclick="toggleReport(${i})">${t.rCancel}</button></div></div>
-    <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
-    <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
-}
-function tapWord(i,wi){ if(locked[i])return; locked[i]=true; startTimer(); const it=QS[i], ok=wi===it.target; picked[i]=ok;
-  if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
-  document.getElementById('w'+i+'_'+wi).classList.add(ok?'ok':'no');
-  if(!ok) document.getElementById('w'+i+'_'+it.target).classList.add('reveal');
-  it.tap.forEach(x=>document.getElementById('w'+i+'_'+x).style.pointerEvents='none');
-  renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
-function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('fb'+i); el.className='fb show '+(ok?'ok':'no'); let b='';
-  if(it.story) b+=`<div class="fblk story"><b>${t.bStory}</b><span class="qquote">${it.story.q}</span><span class="story-es">${it.story.es}</span></div>`;
-  b+=`<div class="fblk sig"><b>${t.bWhy}</b>${it.why[lang]}</div>`;
-  if(it.others&&it.others[lang]) b+=`<div class="fblk others"><b>${t.bOthers}</b>${it.others[lang]}</div>`;
-  let ex=''; if(it.examples&&it.examples[lang]) ex=`<div class="exrow">${it.examples[lang].map(e=>{const p=e.split(' → ');return `<span class="exchip"><span class="exw">${p[0]}</span>→<span>${p[1]}</span></span>`;}).join('')}</div>`;
-  b+=`<div class="fblk rule"><b>${t.bRule}</b>${it.rule[lang]}${ex}</div>`;
-  if(it.es&&it.es[lang]) b+=`<div class="fblk es"><b>${t.bEs}</b>${it.es[lang]}</div>`;
-  if(it.lit&&it.lit[lang]) b+=`<div class="fblk lit"><b>${t.bLit}</b>${it.lit[lang]}</div>`;
-  const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
-  el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
-function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
-  else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
-function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
-function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }
-function nav(i,d){ if(d<0){ if(i>0) show(i-1); return; } if(i<QS.length-1) show(i+1); else results(); }
-function results(){ const t=T[lang]; document.getElementById('mbody').style.display='none'; document.getElementById('results').classList.add('show');
-  const pct=Math.round(score/QS.length*100), passed=pct>=PASS;
-  const um=document.getElementById('unlockMsg'); um.className='unlock '+(passed?'pass':'fail'); um.textContent=passed?t.pass:t.fail;
-  document.getElementById('heroEm').textContent = passed?'🎉':'💪';
-  document.getElementById('fscore').textContent=pct; document.getElementById('fhits').textContent=score+'/'+QS.length; document.getElementById('ftime').textContent=fmt(sec); document.getElementById('fxp').textContent='+'+(passed?xpTotal:0);
-  const stars=pct>=90?3:pct>=PASS?2:1; document.querySelectorAll('.star').forEach((s,x)=>{ if(x<stars) setTimeout(()=>s.classList.add('on'),x*220); });
-  document.getElementById('fphrase').textContent = pct>=90?t.ph[0]:pct>=PASS?t.ph[1]:t.ph[2];
-  document.getElementById('supportNote').textContent = usedTr>0 ? t.supp(usedTr) : '';
-  const reinf=document.getElementById('reinf'), chips=document.getElementById('rchips'), uniq=[...new Set(wrongTags)];
-  if(uniq.length){ reinf.style.display='block'; chips.innerHTML=uniq.map(x=>`<span class="rchip">${x}</span>`).join(''); } else reinf.style.display='none';
-  const act=document.getElementById('actionMsg'); if(act){ const u=[...new Set(wrongTags)];
-    if(pct>=90) act.textContent = lang==='es'?'Dominas este tema. Continúa con la siguiente actividad en la plataforma.':'You\'ve mastered this. Move on to the next activity in the platform.';
-    else if(passed) act.innerHTML = lang==='es'?('Aprobaste. Antes de seguir, repasa: <b>'+u.join(', ')+'</b>.'):('You passed. Before moving on, review: <b>'+u.join(', ')+'</b>.');
-    else act.innerHTML = lang==='es'?('Te faltó poco. Enfócate en <b>'+(u.slice(0,2).join(' y ')||'el tema')+'</b>, abre el resumen y vuelve a intentarlo.'):('Almost there. Focus on <b>'+(u.slice(0,2).join(' and ')||'the topic')+'</b>, check the summary and try again.'); }
-  document.getElementById('surprise').style.display = passed ? 'flex' : 'none';
-  window.scrollTo({top:0,behavior:'smooth'});
-  /* Registro en la plataforma */
-  window.JUCUM_OWN_PANEL=true; window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:pct,xp:passed?xpTotal:0,finished:passed}}));
-}
-function restart(){ render(); }
-function toggleReport(i){ document.getElementById('rf'+i).classList.toggle('show'); }
-function sendReport(i){ const type=document.getElementById('rt'+i).value, note=document.getElementById('rn'+i).value.trim();
-  document.getElementById('rf'+i).classList.remove('show'); const payload={mat:MAT.reportId,q:i+1,issue:type,note:note||'-'};
-  document.getElementById('rc'+i).textContent='JEC-RPT · '+JSON.stringify(payload); document.getElementById('rd'+i).classList.add('show');
-  try{ window.dispatchEvent(new CustomEvent('jucum:report',{detail:payload})); }catch(e){}
-  toast(lang==='es'?'✓ Reporte enviado a soporte':'✓ Report sent to support'); }
-function copyCode(i){ const x=document.getElementById('rc'+i).textContent; navigator.clipboard&&navigator.clipboard.writeText(x); toast(lang==='es'?'Código copiado':'Code copied'); }
-function applyUiLang(){ const t=T[lang]; var _cn=document.getElementById('chipNote'); if(_cn)_cn.textContent=t.timeNote;
-  document.getElementById('lswLab').textContent=t.lswLab; document.getElementById('insT').textContent=t.insT; document.getElementById('insP').innerHTML=t.insP;
-  document.getElementById('mhtitle').textContent=MAT.title; document.getElementById('mhsub').textContent=MAT.subtitle;
-  document.getElementById('lHits').textContent=t.hits; document.getElementById('lTime').innerHTML=t.time+'<span class="note">'+t.timeNote+'</span>';
-  document.getElementById('lReinf').textContent=t.reinf; document.getElementById('lXp').textContent=t.xp; document.getElementById('lXpSub').textContent=t.xpSub;
-  document.getElementById('lBack').textContent=t.back; document.getElementById('lRetry').textContent=t.retry; document.getElementById('lXpEarned').textContent=t.xpEarned;
-  document.getElementById('helpT').textContent=t.helpT; document.getElementById('helpTips').innerHTML='<div style="font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:6px">'+t.tipsT+'</div>'+t.tips.map(x=>'<div class="helptip">• <span>'+x+'</span></div>').join('');
-  QS.forEach((it,i)=>{ const e=id=>document.getElementById(id+i);
-    if(e('ql'))e('ql').textContent=t.qlabel+' '+(i+1); if(e('qr'))e('qr').textContent=t.report; if(e('cn'))e('cn').innerHTML='👉 '+it.task[lang];
-    const hb=document.querySelector('#hb'+i+' .sh'); if(hb)hb.textContent=t.hint; const tb=document.querySelector('#tb'+i+' .st'); if(tb)tb.textContent=t.tr;
-    const hl=document.querySelector('#hr'+i+' .hl'); if(hl)hl.textContent=t.hintLab; const hv=document.querySelector('#hr'+i+' .hv'); if(hv)hv.innerHTML=it.hint[lang];
-    const tl=document.querySelector('#trb'+i+' .tl'); if(tl)tl.textContent=t.trLab;
-    if(e('nx'))e('nx').textContent=(i===QS.length-1?t.seeRes:t.next); const pv=document.querySelector('#q'+i+' .prev'); if(pv)pv.textContent=t.prev;
-    if(e('rfh'))e('rfh').textContent=t.rFormH; if(e('rcl'))e('rcl').textContent=t.rCodeLab;
-    if(picked[i]!==null) renderFb(i,picked[i],it); });
-  wrongTags=[]; QS.forEach((it,i)=>{ if(picked[i]===false) wrongTags.push(it.reinf[lang]); }); }
-function setLang(l){ lang=l; document.getElementById('lswEs').classList.toggle('on',l==='es'); document.getElementById('lswEn').classList.toggle('on',l==='en'); applyUiLang(); if(document.getElementById('results').classList.contains('show')) results(); }
-function openHelp(){document.getElementById('helpov').classList.add('show');} function closeHelp(){document.getElementById('helpov').classList.remove('show');}
-function exitGuard(){ if(!document.getElementById('results').classList.contains('show') && (sec>0 || locked.some(Boolean))){ openExit(); } else { volver(); } }
-function openExit(){ const t=T[lang]; document.getElementById('exitT').textContent=t.exitT; document.getElementById('exitP').innerHTML=t.exitP(xpTotal); document.getElementById('exitStay').textContent=t.exitStay; document.getElementById('exitLeave').textContent=t.exitLeave; document.getElementById('exitov').classList.add('show'); }
-function closeExit(){ document.getElementById('exitov').classList.remove('show'); }
-function leaveNow(){ document.getElementById('exitov').classList.remove('show'); xpTotal=0; volver(); }
-function volver(){ if(document.referrer){ location.href=document.referrer; } else if(history.length>1){ history.back(); } else { toast(lang==='es'?'Vuelve a tu práctica en la plataforma':'Go back to your practice'); } }
-function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400); }
-document.addEventListener('contextmenu',e=>{ if(e.target.closest('.mat')){ e.preventDefault(); toast(lang==='es'?'Material protegido © JUCUM EC':'Protected material © JUCUM EC'); }});
-render();
-</script>
-<!-- JUCUM English Center · seguimiento de progreso (NO QUITAR) -->
+    <main>
+        <div class="instructions">
+            <div class="instructions-icon">🔍</div>
+            <div>
+                <div class="instructions-title">Identifica la oración correcta</div>
+                <div class="instructions-text">Lee las tres oraciones y elige la que esté gramaticalmente correcta. Usa los botones para una pista o la traducción si las necesitas.</div>
+            </div>
+        </div>
+        <div id="questionsContainer"></div>
+
+        <div class="results-screen" id="resultsScreen">
+            <div class="results-emoji">🎉</div>
+            <div class="results-title">¡Completado!</div>
+            <div class="results-score" id="finalScore"></div>
+            <div class="stars-container">
+                <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-buttons">
+                <button class="result-btn primary" onclick="location.reload()">🔄 Intentar de Nuevo</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    const quizData = [{"badge":"📍 on = sobre","options":[{"text":"The book is on the table.","correct":true,"es":"El libro está sobre la mesa."},{"text":"The book is in the table.","correct":false,"errorWord":"in","correctWord":"on","errorType":"Preposición que rompe la regla","explanation":"«In» es DENTRO de algo cerrado. El libro está sobre la superficie → on.","es":"El libro está sobre la mesa (preposición de «dentro»)."},{"text":"The book is on table.","correct":false,"errorWord":"on table","correctWord":"on the table","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: on the table.","es":"El libro está sobre la mesa (sin artículo)."}],"clue":"on","clueExplain":"indica contacto con una superficie.","correctReason":"«On the table»: sobre la superficie, con su artículo.","hint":"¿El libro está DENTRO o ENCIMA? Y no olvides al pequeño «the»."},{"badge":"📍 in = dentro","options":[{"text":"The key is in my bag.","correct":true,"es":"La llave está dentro de mi bolso."},{"text":"The key is at my bag.","correct":false,"errorWord":"at","correctWord":"in","errorType":"Preposición que rompe la regla","explanation":"«At» señala un punto (at school, at eight). Dentro de un espacio cerrado → in.","es":"La llave está dentro de mi bolso (preposición de punto)."},{"text":"The key is my bag in.","correct":false,"errorWord":"bag in","correctWord":"in my bag","errorType":"Orden de palabras","explanation":"La preposición va ANTES del lugar: in my bag.","es":"La llave está dentro de mi bolso (preposición al final)."}],"clue":"in","clueExplain":"indica el interior de un espacio cerrado.","correctReason":"«In my bag»: dentro del bolso, en el orden correcto.","hint":"La llave está DENTRO. ¿Dónde se coloca la palabrita de lugar?"},{"badge":"📍 under = debajo","options":[{"text":"The game is under the bed.","correct":true,"es":"El juego está debajo de la cama."},{"text":"The game is under bed.","correct":false,"errorWord":"under bed","correctWord":"under the bed","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: under the bed.","es":"El juego está debajo de la cama (sin artículo)."},{"text":"The game is on under the bed.","correct":false,"errorWord":"on under","correctWord":" under","errorType":"Dos preposiciones juntas","explanation":"Solo se necesita UNA preposición: under.","es":"El juego está debajo de la cama (dos preposiciones juntas)."}],"clue":"under","clueExplain":"indica un nivel más bajo que algo.","correctReason":"«Under the bed»: una preposición y su artículo.","hint":"Una opción olvida una palabrita y otra pone una de más."},{"badge":"📍 near = cerca","options":[{"text":"Ana lives near the school.","correct":true,"es":"Ana vive cerca de la escuela."},{"text":"Ana lives at near the school.","correct":false,"errorWord":"at near","correctWord":"near","errorType":"Dos preposiciones juntas","explanation":"Solo se necesita UNA preposición: near.","es":"Ana vive cerca de la escuela (dos preposiciones juntas)."},{"text":"Ana lives near school the.","correct":false,"errorWord":"school the","correctWord":"the school","errorType":"Orden de palabras","explanation":"El artículo va ANTES del sustantivo: the school.","es":"Ana vive cerca de la escuela (artículo fuera de lugar)."}],"clue":"near","clueExplain":"indica cercanía, sin tocar.","correctReason":"«Near the school»: preposición y artículo en su lugar.","hint":"Cuenta las preposiciones y revisa el lugar del «the»."},{"badge":"🕐 at + hora","options":[{"text":"Class starts at eight.","correct":true,"es":"La clase empieza a las ocho."},{"text":"Class starts in eight.","correct":false,"errorWord":"in","correctWord":"at","errorType":"Preposición que rompe la regla","explanation":"Con horas exactas se usa «at»: at eight.","es":"La clase empieza a las ocho (preposición de hora equivocada)."},{"text":"Class starts on eight.","correct":false,"errorWord":"on","correctWord":"at","errorType":"Preposición que rompe la regla","explanation":"«On» es para días (on Monday). Con horas → at.","es":"La clase empieza a las ocho (preposición de día con hora)."}],"clue":"at","clueExplain":"acompaña a las horas exactas.","correctReason":"«At eight»: la preposición correcta para horas.","hint":"Las horas exactas tienen una preposición favorita."},{"badge":"📅 on + día","options":[{"text":"The game is on Monday.","correct":true,"es":"El juego es el lunes."},{"text":"The game is in Monday.","correct":false,"errorWord":"in","correctWord":"on","errorType":"Preposición que rompe la regla","explanation":"Con días de la semana se usa «on»: on Monday.","es":"El juego es el lunes (preposición de mes con día)."},{"text":"The game is at Monday.","correct":false,"errorWord":"at","correctWord":"on","errorType":"Preposición que rompe la regla","explanation":"«At» es para horas (at eight). Con días → on.","es":"El juego es el lunes (preposición de hora con día)."}],"clue":"on","clueExplain":"acompaña a los días de la semana.","correctReason":"«On Monday»: la preposición correcta para días.","hint":"Los días de la semana viajan siempre con la misma palabrita."},{"badge":"🌅 in + parte del día","options":[{"text":"We have school in the morning.","correct":true,"es":"Tenemos escuela en la mañana."},{"text":"We have school on the morning.","correct":false,"errorWord":"on","correctWord":"in","errorType":"Preposición que rompe la regla","explanation":"Con partes del día se usa «in»: in the morning.","es":"Tenemos escuela en la mañana (preposición de día con parte del día)."},{"text":"We have school at the morning.","correct":false,"errorWord":"at","correctWord":"in","errorType":"Preposición que rompe la regla","explanation":"«At» es para horas exactas. Con partes del día → in.","es":"Tenemos escuela en la mañana (preposición de hora con parte del día)."}],"clue":"in","clueExplain":"acompaña a las partes del día (morning, afternoon).","correctReason":"«In the morning»: la preposición correcta.","hint":"Mañana, tarde, noche… las partes del día tienen su preposición."},{"badge":"⏰ before = antes","options":[{"text":"I wash before breakfast.","correct":true,"es":"Me lavo antes del desayuno."},{"text":"I wash breakfast before.","correct":false,"errorWord":"breakfast before","correctWord":"before breakfast","errorType":"Orden de palabras","explanation":"«Before» va ANTES de la actividad: before breakfast.","es":"Me lavo antes del desayuno (preposición al final)."},{"text":"I wash at before breakfast.","correct":false,"errorWord":"at before","correctWord":"before","errorType":"Dos preposiciones juntas","explanation":"Solo se necesita UNA preposición: before.","es":"Me lavo antes del desayuno (dos preposiciones juntas)."}],"clue":"before","clueExplain":"indica que algo ocurre primero.","correctReason":"«Before breakfast»: orden correcto y una sola preposición.","hint":"«Before» tiene su lugar fijo en la oración."},{"badge":"📍 on = sobre","options":[{"text":"My book is on the desk.","correct":true,"es":"Mi libro está sobre el escritorio."},{"text":"My book is on desk.","correct":false,"errorWord":"on desk","correctWord":"on the desk","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: on the desk.","es":"Mi libro está sobre el escritorio (sin artículo)."},{"text":"My book is the on desk.","correct":false,"errorWord":"the on","correctWord":"on the","errorType":"Orden de palabras","explanation":"El orden es: preposición + artículo + sustantivo → on the desk.","es":"Mi libro está sobre el escritorio (artículo antes de la preposición)."}],"clue":"on","clueExplain":"contacto con la superficie del escritorio.","correctReason":"«On the desk»: preposición, artículo y sustantivo en orden.","hint":"Tres palabritas en fila: cada una tiene su turno."},{"badge":"📍 under = debajo","options":[{"text":"The bag is under the chair.","correct":true,"es":"La mochila está debajo de la silla."},{"text":"The bag is under chair.","correct":false,"errorWord":"under chair","correctWord":"under the chair","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: under the chair.","es":"La mochila está debajo de la silla (sin artículo)."},{"text":"The bag is on under the chair.","correct":false,"errorWord":"on under","correctWord":"under","errorType":"Dos preposiciones juntas","explanation":"Solo se necesita UNA preposición: under.","es":"La mochila está debajo de la silla (dos preposiciones juntas)."}],"clue":"under","clueExplain":"nivel más bajo que la silla.","correctReason":"«Under the chair»: una preposición y su artículo.","hint":"Ni preposiciones dobles ni sustantivos sin artículo."},{"badge":"📍 by = junto a","options":[{"text":"My marker is by the window.","correct":true,"es":"Mi marcador está junto a la ventana."},{"text":"My marker is by window.","correct":false,"errorWord":"by window","correctWord":"by the window","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: by the window.","es":"Mi marcador está junto a la ventana (sin artículo)."},{"text":"My marker is the by window.","correct":false,"errorWord":"the by","correctWord":"by the","errorType":"Orden de palabras","explanation":"El orden es: preposición + artículo → by the window.","es":"Mi marcador está junto a la ventana (artículo antes de la preposición)."}],"clue":"by","clueExplain":"indica cercanía, al lado de algo.","correctReason":"«By the window»: junto a la ventana, bien ordenado.","hint":"La palabrita de lugar va primero; el «the» la sigue."},{"badge":"📍 near = cerca","options":[{"text":"We sit near the door.","correct":true,"es":"Nos sentamos cerca de la puerta."},{"text":"We sit near door.","correct":false,"errorWord":"near door","correctWord":"near the door","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: near the door.","es":"Nos sentamos cerca de la puerta (sin artículo)."},{"text":"We sit at near the door.","correct":false,"errorWord":"at near","correctWord":"near","errorType":"Dos preposiciones juntas","explanation":"Solo se necesita UNA preposición: near.","es":"Nos sentamos cerca de la puerta (dos preposiciones juntas)."}],"clue":"near","clueExplain":"cercanía sin tocar.","correctReason":"«Near the door»: una preposición con su artículo.","hint":"Una palabra de más o una de menos: encuentra la versión justa."},{"badge":"📍 in = dentro","options":[{"text":"Tom is in the classroom.","correct":true,"es":"Tom está en el salón."},{"text":"Tom is in classroom.","correct":false,"errorWord":"in classroom","correctWord":"in the classroom","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: in the classroom.","es":"Tom está en el salón (sin artículo)."},{"text":"Tom is the classroom in.","correct":false,"errorWord":"classroom in","correctWord":"in the classroom","errorType":"Orden de palabras","explanation":"La preposición va ANTES del lugar: in the classroom.","es":"Tom está en el salón (preposición al final)."}],"clue":"in","clueExplain":"Tom está dentro del salón.","correctReason":"«In the classroom»: preposición al inicio, artículo en su lugar.","hint":"En español a veces decimos el lugar primero. En inglés no."},{"badge":"🕐 at + hora","options":[{"text":"The class starts at eight.","correct":true,"es":"La clase empieza a las ocho."},{"text":"The class starts in eight.","correct":false,"errorWord":"in","correctWord":"at","errorType":"Preposición que rompe la regla","explanation":"Con horas exactas se usa «at»: at eight.","es":"La clase empieza a las ocho (preposición de hora equivocada)."},{"text":"The class starts on eight.","correct":false,"errorWord":"on","correctWord":"at","errorType":"Preposición que rompe la regla","explanation":"«On» es para días. Con horas → at.","es":"La clase empieza a las ocho (preposición de día con hora)."}],"clue":"at","clueExplain":"las horas exactas usan at.","correctReason":"«At eight»: correcto para una hora exacta.","hint":"¿Ocho es un día o una hora? Eso decide la preposición."},{"badge":"📍 behind = detrás","options":[{"text":"The ball is behind the door.","correct":true,"es":"La pelota está detrás de la puerta."},{"text":"The ball is behind door.","correct":false,"errorWord":"behind door","correctWord":"behind the door","errorType":"Falta el artículo the","explanation":"Al sustantivo le falta su artículo: behind the door.","es":"La pelota está detrás de la puerta (sin artículo)."},{"text":"The ball is the behind door.","correct":false,"errorWord":"the behind","correctWord":"behind the","errorType":"Orden de palabras","explanation":"El orden es: preposición + artículo → behind the door.","es":"La pelota está detrás de la puerta (artículo antes de la preposición)."}],"clue":"behind","clueExplain":"indica la parte de atrás de algo.","correctReason":"«Behind the door»: bien ordenado y con artículo.","hint":"Detrás de la puerta hay una pelota… y un orden que respetar."}];
+    let currentQuestion=0, score=0;
+    let answered=new Array(quizData.length).fill(false);
+
+    function initQuiz(){
+        const c=document.getElementById('questionsContainer'); c.innerHTML='';
+        quizData.forEach((q,i)=>{ q.shuffled=shuffle(q.options); c.appendChild(card(q,i)); });
+        showQuestion(0); updateProgress();
+    }
+    function card(q,index){
+        const d=document.createElement('div'); const L=['A','B','C'];
+        d.className='question-card'+(index!==0?' hidden':''); d.id='question-'+index;
+        const opts=q.shuffled.map((opt,oi)=>`
+            <button class="sent-option" data-idx="${oi}" onclick="selectOption(${index},${oi})">
+                <div class="option-letter">${L[oi]}</div>
+                <div class="option-text" id="opttext-${index}-${oi}">${opt.text}</div>
+                <div class="option-status"></div>
+            </button>`).join('');
+        const transRows=q.shuffled.map((opt,oi)=>`<div style="margin-bottom:0.3rem;"><strong>${L[oi]}.</strong> ${opt.es||''}</div>`).join('');
+        d.innerHTML=`
+            <div class="q-header">
+                <div class="question-number">${index+1}</div>
+                <span class="q-label">Elige la oración correcta:</span>
+                <span class="topic-badge">${q.badge}</span>
+            </div>
+            <div class="toggle-row">
+                <button class="toggle-btn" id="hintbtn-${index}" onclick="toggleHint(${index})">💡 Ver pista</button>
+                <button class="toggle-btn" id="transbtn-${index}" onclick="toggleTrans(${index})">Ver en español</button>
+            </div>
+            <div class="hint-box" id="hint-${index}"><div class="hint-label">💡 Pista</div>${q.hint}</div>
+            <div class="translation" id="trans-${index}">🇪🇸 Compara el sentido de cada opción:<br>${transRows||'(traducción no disponible)'}</div>
+            <div class="sentence-options" id="options-${index}">${opts}</div>
+            <div class="feedback" id="feedback-${index}"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevQuestion()" ${index===0?'disabled':''}>← Anterior</button>
+                <button class="nav-btn next" id="next-${index}" onclick="nextQuestion(${index})" disabled>${index===quizData.length-1?'Ver Resultados 🎉':'Siguiente →'}</button>
+            </div>`;
+        return d;
+    }
+    function escReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+    function selectOption(qi,oi){
+        if(answered[qi])return; answered[qi]=true;
+        const q=quizData[qi]; const sel=q.shuffled[oi]; const ok=sel.correct;
+        const correctOpt=q.shuffled.find(o=>o.correct); if(ok)score++;
+        document.querySelectorAll('#options-'+qi+' .sent-option').forEach((b,i)=>{
+            b.classList.add('disabled'); const o=q.shuffled[i];
+            const st=b.querySelector('.option-status');
+            if(o.correct){ b.classList.add('correct'); st.textContent='✅'; }
+            else if(i===oi){ b.classList.add('incorrect'); st.textContent='❌'; }
+            else { st.textContent=''; }
+            const tx=document.getElementById('opttext-'+qi+'-'+i);
+            if(o.correct){ tx.innerHTML=o.text; }
+            else { tx.innerHTML=o.text.replace(new RegExp('\\b'+escReg(o.errorWord)+'\\b'),'<span class="error-highlight">'+o.errorWord+'</span>'); }
+        });
+        feedback(qi,sel,ok,correctOpt,q);
+        document.getElementById('next-'+qi).disabled=false; updateProgress();
+    }
+    function feedback(qi,sel,ok,correctOpt,q){
+        const el=document.getElementById('feedback-'+qi);
+        el.className='feedback show '+(ok?'correct':'incorrect');
+        const errs=q.shuffled.filter(o=>!o.correct);
+        const errBlocks=errs.map(e=>`
+            <div class="fb-block fb-error"><div class="fb-block-title">⚠️ Error: <span class="error-badge">${e.errorType}</span></div>
+                <div class="word-swap"><span class="ws-box ws-wrong">${e.errorWord}</span><span class="ws-arrow">→</span><span class="ws-box ws-right">${e.correctWord}</span></div>
+                <div class="error-text">${e.explanation}</div></div>`).join('');
+        if(ok){
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">✅</span><div><div class="fb-title">¡Correcto!</div><div class="fb-subtitle">Veamos por qué las otras estaban mal</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag">${q.clue}</span> ${q.clueExplain}</div></div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        } else {
+            el.innerHTML=`
+                <div class="fb-header"><span class="fb-icon">❌</span><div><div class="fb-title">Incorrecto</div><div class="fb-subtitle">Revisemos juntos</div></div></div>
+                <div class="fb-body">
+                    <div class="fb-block fb-signal wrong"><div class="fb-block-title">🔍 La señal clave</div><div class="fb-text"><span class="signal-tag red">${q.clue}</span> ${q.clueExplain}</div></div>
+                    <div class="fb-block fb-compare"><div class="fb-block-title" style="color:#64748B;">🔄 Tu elección vs. la correcta</div>
+                        <div class="fb-compare-row"><span class="compare-label wrong">Tú elegiste</span><span class="compare-text"><span class="word-wrong">${sel.text}</span></span></div>
+                        <div class="fb-compare-row"><span class="compare-label right">Correcta</span><span class="compare-text"><span class="word-right">${correctOpt.text}</span></span></div>
+                    </div>
+                    ${errBlocks}
+                    <div class="fb-block fb-why"><div class="fb-block-title">💡 ¿Por qué es correcta la oración correcta?</div><div class="fb-text">${q.correctReason}</div></div>
+                </div>`;
+        }
+    }
+    function showQuestion(i){
+        document.querySelectorAll('.question-card').forEach((c,idx)=>c.classList.toggle('hidden',idx!==i));
+        document.getElementById('currentQ').textContent=i+1;
+        currentQuestion=i;
+    }
+    function nextQuestion(i){ if(i<quizData.length-1) showQuestion(i+1); else showResults(); }
+    function prevQuestion(){ if(currentQuestion>0) showQuestion(currentQuestion-1); }
+    function updateProgress(){
+        const done=answered.filter(Boolean).length;
+        document.getElementById('progressFill').style.width=(done/quizData.length*100)+'%';
+    }
+    function toggleHint(i){
+        const b=document.getElementById('hint-'+i), btn=document.getElementById('hintbtn-'+i);
+        b.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=b.classList.contains('show')?'💡 Ocultar pista':'💡 Ver pista';
+    }
+    function toggleTrans(i){
+        const t=document.getElementById('trans-'+i), btn=document.getElementById('transbtn-'+i);
+        t.classList.toggle('show'); btn.classList.toggle('active');
+        btn.textContent=t.classList.contains('show')?'Ocultar español':'Ver en español';
+    }
+    function showResults(){
+        document.querySelectorAll('.question-card').forEach(c=>c.classList.add('hidden'));
+        document.getElementById('resultsScreen').classList.add('show');
+        const pct=score/quizData.length*100;
+        window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:Math.round(pct)}}));
+        document.getElementById('finalScore').textContent=score+'/'+quizData.length;
+        let stars=pct>=90?3:pct>=70?2:1;
+        document.getElementById('resultsMessage').textContent=pct>=90
+            ?'¡Excelente trabajo! 🏆':pct>=70?'¡Muy bien! Sigue practicando. 💪'
+            :'Buen esfuerzo. Repasa e inténtalo de nuevo. 📚';
+        document.querySelectorAll('.star').forEach((s,i)=>{ if(i<stars) setTimeout(()=>s.classList.add('earned'),i*300); });
+    }
+    function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
 <script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
 </body>
 </html>

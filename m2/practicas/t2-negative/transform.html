@@ -8,7 +8,7 @@
      ═══════════════════════════════════════════════════════════════════════ -->
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transform · Pronombres · JUCUM English Center</title>
+<title>Transform · Presente Simple — Negativo · JUCUM English Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
@@ -126,501 +126,11 @@
 /* ════ EDITA AQUÍ · METADATOS ════ */
 const MAT = { title:'Transform', subtitle:'Pre-A1 · M2 · Presente Simple — Negativo', langDefault:'es', reportId:'PreA1_M2_t2-tr' };
 const PASS = 75;
-const QS = [
- {
-  "reinf": {
-   "es": "I → don’t",
-   "en": "I → don’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "I rush every day.",
-  "answer": [
-   "I",
-   "don't",
-   "rush",
-   "every",
-   "day",
-   "."
-  ],
-  "tr": "Tengo prisa cada día.",
-  "hint": {
-   "es": "Con I → don't.",
-   "en": "Con I → don't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → I don't</b> + verbo base.",
-   "en": "<b>I → I don't</b> + verbo base."
-  },
-  "formula": {
-   "es": "Sujeto + don’t + verbo",
-   "en": "Sujeto + don’t + verbo"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "El auxiliar don't niega; el verbo no cambia.",
-   "en": "El auxiliar don't niega; el verbo no cambia."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "he → doesn’t (base)",
-   "en": "he → doesn’t (base)"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Marco takes his time.",
-  "answer": [
-   "Marco",
-   "doesn't",
-   "take",
-   "his",
-   "time",
-   "."
-  ],
-  "tr": "Marco se toma su tiempo.",
-  "hint": {
-   "es": "doesn't + verbo SIN -s.",
-   "en": "doesn't + verbo SIN -s."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>takes → doesn't take</b> (la -s pasa al auxiliar).",
-   "en": "<b>takes → doesn't take</b> (la -s pasa al auxiliar)."
-  },
-  "formula": {
-   "es": "Sujeto + doesn’t + verbo base",
-   "en": "Sujeto + doesn’t + verbo base"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "La -s se va del verbo y la lleva «doesn't».",
-   "en": "La -s se va del verbo y la lleva «doesn't»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "she → doesn’t (base)",
-   "en": "she → doesn’t (base)"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Rosa makes coffee.",
-  "answer": [
-   "Rosa",
-   "doesn't",
-   "make",
-   "coffee",
-   "."
-  ],
-  "tr": "Rosa hace café.",
-  "hint": {
-   "es": "makes → make tras doesn't.",
-   "en": "makes → make tras doesn't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>makes → doesn't make</b>.",
-   "en": "<b>makes → doesn't make</b>."
-  },
-  "formula": {
-   "es": "Sujeto + doesn’t + verbo base",
-   "en": "Sujeto + doesn’t + verbo base"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "Tras doesn't el verbo vuelve a base (make).",
-   "en": "Tras doesn't el verbo vuelve a base (make)."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "he → doesn’t (base)",
-   "en": "he → doesn’t (base)"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Ben goes to the market.",
-  "answer": [
-   "Ben",
-   "doesn't",
-   "go",
-   "to",
-   "the",
-   "market",
-   "."
-  ],
-  "tr": "Ben va al mercado.",
-  "hint": {
-   "es": "goes → go tras doesn't.",
-   "en": "goes → go tras doesn't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>goes → doesn't go</b>.",
-   "en": "<b>goes → doesn't go</b>."
-  },
-  "formula": {
-   "es": "Sujeto + doesn’t + verbo base",
-   "en": "Sujeto + doesn’t + verbo base"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "El irregular «goes» vuelve a «go».",
-   "en": "El irregular «goes» vuelve a «go»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "we → don’t",
-   "en": "we → don’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "We keep it clean.",
-  "answer": [
-   "We",
-   "don't",
-   "keep",
-   "it",
-   "clean",
-   "."
-  ],
-  "tr": "Lo mantenemos limpio.",
-  "hint": {
-   "es": "Con we → don't.",
-   "en": "Con we → don't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>We → We don't</b> keep.",
-   "en": "<b>We → We don't</b> keep."
-  },
-  "formula": {
-   "es": "Sujeto + don’t + verbo",
-   "en": "Sujeto + don’t + verbo"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "Plural → don't.",
-   "en": "Plural → don't."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "you → don’t",
-   "en": "you → don’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "You go every day.",
-  "answer": [
-   "You",
-   "don't",
-   "go",
-   "every",
-   "day",
-   "."
-  ],
-  "tr": "Vas cada día.",
-  "hint": {
-   "es": "Con you → don't.",
-   "en": "Con you → don't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>You → You don't</b> go.",
-   "en": "<b>You → You don't</b> go."
-  },
-  "formula": {
-   "es": "Sujeto + don’t + verbo",
-   "en": "Sujeto + don’t + verbo"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "you → don't.",
-   "en": "you → don't."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "she → doesn’t (base)",
-   "en": "she → doesn’t (base)"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Sara brushes the dog.",
-  "answer": [
-   "Sara",
-   "doesn't",
-   "brush",
-   "the",
-   "dog",
-   "."
-  ],
-  "tr": "Sara cepilla al perro.",
-  "hint": {
-   "es": "brushes → brush tras doesn't.",
-   "en": "brushes → brush tras doesn't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>brushes → doesn't brush</b>.",
-   "en": "<b>brushes → doesn't brush</b>."
-  },
-  "formula": {
-   "es": "Sujeto + doesn’t + verbo base",
-   "en": "Sujeto + doesn’t + verbo base"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "La -s/-es desaparece tras doesn't.",
-   "en": "La -s/-es desaparece tras doesn't."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "they → don’t",
-   "en": "they → don’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "They rush.",
-  "answer": [
-   "They",
-   "don't",
-   "rush",
-   "."
-  ],
-  "tr": "Tienen prisa.",
-  "hint": {
-   "es": "Con they → don't.",
-   "en": "Con they → don't."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>They → They don't</b> rush.",
-   "en": "<b>They → They don't</b> rush."
-  },
-  "formula": {
-   "es": "Sujeto + don’t + verbo",
-   "en": "Sujeto + don’t + verbo"
-  },
-  "rule": {
-   "es": "I/you/we/they → don’t · he/she/it → doesn’t · + verbo base",
-   "en": "I/you/we/they → don’t · he/she/it → doesn’t · + base verb"
-  },
-  "examples": {
-   "es": [
-    "I → don't",
-    "he → doesn't"
-   ],
-   "en": [
-    "I → don't",
-    "he → doesn't"
-   ]
-  },
-  "es": {
-   "es": "Plural → don't.",
-   "en": "Plural → don't."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-,
-
- { reinf:{es:"I → don't",en:"I → don't"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"I wake up late.", answer:["I","don't","wake","up","late","."], tr:"Me despierto tarde.",
-   hint:{es:"Con I el negativo usa don't + verbo base.",en:"With I the negative uses don't + base verb."},
-   story:{q:'"I get up early."',es:'"Me levanto temprano."'},
-   change:{es:"Añade don't antes del verbo: wake → don't wake.",en:"Add don't before the verb: wake → don't wake."},
-   formula:{es:"I + don't + verbo base",en:"I + don't + base verb"}, rule:{es:"I / you / we / they → don't",en:"I / you / we / they → don't"},
-   examples:{es:["wake → don't wake"],en:["wake → don't wake"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"he → doesn't (base)",en:"he → doesn't (base)"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"Marco forgets his keys.", answer:["Marco","doesn't","forget","his","keys","."], tr:"Marco olvida sus llaves.",
-   hint:{es:"Con he: doesn't y el verbo pierde la -s (forgets → forget).",en:"With he: doesn't and the verb loses the -s (forgets → forget)."},
-   story:{q:'"I do not want to forget."',es:'"No quiero olvidar."'},
-   change:{es:"forgets → doesn't forget (el verbo vuelve a la base).",en:"forgets → doesn't forget (verb returns to base)."},
-   formula:{es:"He + doesn't + verbo base",en:"He + doesn't + base verb"}, rule:{es:"he/she/it → doesn't + base",en:"he/she/it → doesn't + base"},
-   examples:{es:["forgets → doesn't forget"],en:["forgets → doesn't forget"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"she → doesn't (base)",en:"she → doesn't (base)"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"Rosa sweeps at night.", answer:["Rosa","doesn't","sweep","at","night","."], tr:"Rosa barre de noche.",
-   hint:{es:"Con she: doesn't y el verbo pierde la -s (sweeps → sweep).",en:"With she: doesn't and the verb loses the -s (sweeps → sweep)."},
-   story:{q:'"Then I sweep the floor."',es:'"Luego barro el piso."'},
-   change:{es:"sweeps → doesn't sweep.",en:"sweeps → doesn't sweep."},
-   formula:{es:"She + doesn't + verbo base",en:"She + doesn't + base verb"}, rule:{es:"he/she/it → doesn't + base",en:"he/she/it → doesn't + base"},
-   examples:{es:["sweeps → doesn't sweep"],en:["sweeps → doesn't sweep"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"we → don't",en:"we → don't"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"We rush in the morning.", answer:["We","don't","rush","in","the","morning","."], tr:"Tenemos prisa en la mañana.",
-   hint:{es:"Con we el negativo usa don't + verbo base.",en:"With we the negative uses don't + base verb."},
-   story:{q:'"It does not take long."',es:'"No tarda mucho."'},
-   change:{es:"Añade don't antes del verbo: rush → don't rush.",en:"Add don't before the verb: rush → don't rush."},
-   formula:{es:"We + don't + verbo base",en:"We + don't + base verb"}, rule:{es:"we / they → don't",en:"we / they → don't"},
-   examples:{es:["rush → don't rush"],en:["rush → don't rush"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"he → doesn't (base)",en:"he → doesn't (base)"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"Ben eats breakfast late.", answer:["Ben","doesn't","eat","breakfast","late","."], tr:"Ben desayuna tarde.",
-   hint:{es:"Con he: doesn't y eats → eat (base).",en:"With he: doesn't and eats → eat (base)."},
-   story:{q:'"I sit down and eat."',es:'"Me siento y como."'},
-   change:{es:"eats → doesn't eat.",en:"eats → doesn't eat."},
-   formula:{es:"He + doesn't + verbo base",en:"He + doesn't + base verb"}, rule:{es:"he/she/it → doesn't + base",en:"he/she/it → doesn't + base"},
-   examples:{es:["eats → doesn't eat"],en:["eats → doesn't eat"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"you → don't",en:"you → don't"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"You go out on Sundays.", answer:["You","don't","go","out","on","Sundays","."], tr:"Sales los domingos.",
-   hint:{es:"Con you el negativo usa don't + verbo base.",en:"With you the negative uses don't + base verb."},
-   story:null,
-   change:{es:"Añade don't antes del verbo: go → don't go.",en:"Add don't before the verb: go → don't go."},
-   formula:{es:"You + don't + verbo base",en:"You + don't + base verb"}, rule:{es:"you → don't",en:"you → don't"},
-   examples:{es:["go → don't go"],en:["go → don't go"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"they → don't",en:"they → don't"}, task:{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},
-   src:"They make noise.", answer:["They","don't","make","noise","."], tr:"Ellos hacen ruido.",
-   hint:{es:"Con they el negativo usa don't + verbo base.",en:"With they the negative uses don't + base verb."},
-   story:null,
-   change:{es:"Añade don't antes del verbo: make → don't make.",en:"Add don't before the verb: make → don't make."},
-   formula:{es:"They + don't + verbo base",en:"They + don't + base verb"}, rule:{es:"we / they → don't",en:"we / they → don't"},
-   examples:{es:["make → don't make"],en:["make → don't make"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-];
+const QS = [{"reinf":{"es":"I → don’t","en":"I → don’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"I rush every day.","answer":["I","don't","rush","every","day","."],"tr":"Tengo prisa cada día.","hint":{"es":"Con I → don't.","en":"Con I → don't."},"story":null,"change":{"es":"<b>I → I don't</b> + verbo base.","en":"<b>I → I don't</b> + verbo base."},"formula":{"es":"Sujeto + don’t + verbo","en":"Sujeto + don’t + verbo"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"El auxiliar don't niega; el verbo no cambia.","en":"El auxiliar don't niega; el verbo no cambia."},"lit":{"es":"","en":""},"distractors":["doesn't","rushes"]},{"reinf":{"es":"he → doesn’t (base)","en":"he → doesn’t (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Marco takes his time.","answer":["Marco","doesn't","take","his","time","."],"tr":"Marco se toma su tiempo.","hint":{"es":"doesn't + verbo SIN -s.","en":"doesn't + verbo SIN -s."},"story":null,"change":{"es":"<b>takes → doesn't take</b> (la -s pasa al auxiliar).","en":"<b>takes → doesn't take</b> (la -s pasa al auxiliar)."},"formula":{"es":"Sujeto + doesn’t + verbo base","en":"Sujeto + doesn’t + verbo base"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"La -s se va del verbo y la lleva «doesn't».","en":"La -s se va del verbo y la lleva «doesn't»."},"lit":{"es":"","en":""},"distractors":["don't","takes"]},{"reinf":{"es":"she → doesn’t (base)","en":"she → doesn’t (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Rosa makes coffee.","answer":["Rosa","doesn't","make","coffee","."],"tr":"Rosa hace café.","hint":{"es":"makes → make tras doesn't.","en":"makes → make tras doesn't."},"story":null,"change":{"es":"<b>makes → doesn't make</b>.","en":"<b>makes → doesn't make</b>."},"formula":{"es":"Sujeto + doesn’t + verbo base","en":"Sujeto + doesn’t + verbo base"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"Tras doesn't el verbo vuelve a base (make).","en":"Tras doesn't el verbo vuelve a base (make)."},"lit":{"es":"","en":""},"distractors":["don't","makes"]},{"reinf":{"es":"he → doesn’t (base)","en":"he → doesn’t (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Ben goes to the market.","answer":["Ben","doesn't","go","to","the","market","."],"tr":"Ben va al mercado.","hint":{"es":"goes → go tras doesn't.","en":"goes → go tras doesn't."},"story":null,"change":{"es":"<b>goes → doesn't go</b>.","en":"<b>goes → doesn't go</b>."},"formula":{"es":"Sujeto + doesn’t + verbo base","en":"Sujeto + doesn’t + verbo base"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"El irregular «goes» vuelve a «go».","en":"El irregular «goes» vuelve a «go»."},"lit":{"es":"","en":""},"distractors":["don't","goes"]},{"reinf":{"es":"we → don’t","en":"we → don’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"We keep it clean.","answer":["We","don't","keep","it","clean","."],"tr":"Lo mantenemos limpio.","hint":{"es":"Con we → don't.","en":"Con we → don't."},"story":null,"change":{"es":"<b>We → We don't</b> keep.","en":"<b>We → We don't</b> keep."},"formula":{"es":"Sujeto + don’t + verbo","en":"Sujeto + don’t + verbo"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"Plural → don't.","en":"Plural → don't."},"lit":{"es":"","en":""},"distractors":["doesn't","keeps"]},{"reinf":{"es":"you → don’t","en":"you → don’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"You go every day.","answer":["You","don't","go","every","day","."],"tr":"Vas cada día.","hint":{"es":"Con you → don't.","en":"Con you → don't."},"story":null,"change":{"es":"<b>You → You don't</b> go.","en":"<b>You → You don't</b> go."},"formula":{"es":"Sujeto + don’t + verbo","en":"Sujeto + don’t + verbo"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"you → don't.","en":"you → don't."},"lit":{"es":"","en":""},"distractors":["doesn't","goes"]},{"reinf":{"es":"she → doesn’t (base)","en":"she → doesn’t (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Sara brushes the dog.","answer":["Sara","doesn't","brush","the","dog","."],"tr":"Sara cepilla al perro.","hint":{"es":"brushes → brush tras doesn't.","en":"brushes → brush tras doesn't."},"story":null,"change":{"es":"<b>brushes → doesn't brush</b>.","en":"<b>brushes → doesn't brush</b>."},"formula":{"es":"Sujeto + doesn’t + verbo base","en":"Sujeto + doesn’t + verbo base"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"La -s/-es desaparece tras doesn't.","en":"La -s/-es desaparece tras doesn't."},"lit":{"es":"","en":""},"distractors":["don't","brushes"]},{"reinf":{"es":"they → don’t","en":"they → don’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"They rush.","answer":["They","don't","rush","."],"tr":"Tienen prisa.","hint":{"es":"Con they → don't.","en":"Con they → don't."},"story":null,"change":{"es":"<b>They → They don't</b> rush.","en":"<b>They → They don't</b> rush."},"formula":{"es":"Sujeto + don’t + verbo","en":"Sujeto + don’t + verbo"},"rule":{"es":"I/you/we/they → don’t · he/she/it → doesn’t · + verbo base","en":"I/you/we/they → don’t · he/she/it → doesn’t · + base verb"},"examples":{"es":["I → don't","he → doesn't"],"en":["I → don't","he → doesn't"]},"es":{"es":"Plural → don't.","en":"Plural → don't."},"lit":{"es":"","en":""},"distractors":["doesn't","rushes"]},{"reinf":{"es":"I → don't","en":"I → don't"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"I wake up late.","answer":["I","don't","wake","up","late","."],"tr":"Me despierto tarde.","hint":{"es":"Con I el negativo usa don't + verbo base.","en":"With I the negative uses don't + base verb."},"story":{"q":"\"I get up early.\"","es":"\"Me levanto temprano.\""},"change":{"es":"Añade don't antes del verbo: wake → don't wake.","en":"Add don't before the verb: wake → don't wake."},"formula":{"es":"I + don't + verbo base","en":"I + don't + base verb"},"rule":{"es":"I / you / we / they → don't","en":"I / you / we / they → don't"},"examples":{"es":["wake → don't wake"],"en":["wake → don't wake"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["doesn't","wakes"]},{"reinf":{"es":"he → doesn't (base)","en":"he → doesn't (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Marco forgets his keys.","answer":["Marco","doesn't","forget","his","keys","."],"tr":"Marco olvida sus llaves.","hint":{"es":"Con he: doesn't y el verbo pierde la -s (forgets → forget).","en":"With he: doesn't and the verb loses the -s (forgets → forget)."},"story":{"q":"\"I do not want to forget.\"","es":"\"No quiero olvidar.\""},"change":{"es":"forgets → doesn't forget (el verbo vuelve a la base).","en":"forgets → doesn't forget (verb returns to base)."},"formula":{"es":"He + doesn't + verbo base","en":"He + doesn't + base verb"},"rule":{"es":"he/she/it → doesn't + base","en":"he/she/it → doesn't + base"},"examples":{"es":["forgets → doesn't forget"],"en":["forgets → doesn't forget"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["don't","forgets"]},{"reinf":{"es":"she → doesn't (base)","en":"she → doesn't (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Rosa sweeps at night.","answer":["Rosa","doesn't","sweep","at","night","."],"tr":"Rosa barre de noche.","hint":{"es":"Con she: doesn't y el verbo pierde la -s (sweeps → sweep).","en":"With she: doesn't and the verb loses the -s (sweeps → sweep)."},"story":{"q":"\"Then I sweep the floor.\"","es":"\"Luego barro el piso.\""},"change":{"es":"sweeps → doesn't sweep.","en":"sweeps → doesn't sweep."},"formula":{"es":"She + doesn't + verbo base","en":"She + doesn't + base verb"},"rule":{"es":"he/she/it → doesn't + base","en":"he/she/it → doesn't + base"},"examples":{"es":["sweeps → doesn't sweep"],"en":["sweeps → doesn't sweep"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["don't","sweeps"]},{"reinf":{"es":"we → don't","en":"we → don't"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"We rush in the morning.","answer":["We","don't","rush","in","the","morning","."],"tr":"Tenemos prisa en la mañana.","hint":{"es":"Con we el negativo usa don't + verbo base.","en":"With we the negative uses don't + base verb."},"story":{"q":"\"It does not take long.\"","es":"\"No tarda mucho.\""},"change":{"es":"Añade don't antes del verbo: rush → don't rush.","en":"Add don't before the verb: rush → don't rush."},"formula":{"es":"We + don't + verbo base","en":"We + don't + base verb"},"rule":{"es":"we / they → don't","en":"we / they → don't"},"examples":{"es":["rush → don't rush"],"en":["rush → don't rush"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["doesn't","rushes"]},{"reinf":{"es":"he → doesn't (base)","en":"he → doesn't (base)"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Ben eats breakfast late.","answer":["Ben","doesn't","eat","breakfast","late","."],"tr":"Ben desayuna tarde.","hint":{"es":"Con he: doesn't y eats → eat (base).","en":"With he: doesn't and eats → eat (base)."},"story":{"q":"\"I sit down and eat.\"","es":"\"Me siento y como.\""},"change":{"es":"eats → doesn't eat.","en":"eats → doesn't eat."},"formula":{"es":"He + doesn't + verbo base","en":"He + doesn't + base verb"},"rule":{"es":"he/she/it → doesn't + base","en":"he/she/it → doesn't + base"},"examples":{"es":["eats → doesn't eat"],"en":["eats → doesn't eat"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["don't","eats"]},{"reinf":{"es":"you → don't","en":"you → don't"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"You go out on Sundays.","answer":["You","don't","go","out","on","Sundays","."],"tr":"Sales los domingos.","hint":{"es":"Con you el negativo usa don't + verbo base.","en":"With you the negative uses don't + base verb."},"story":null,"change":{"es":"Añade don't antes del verbo: go → don't go.","en":"Add don't before the verb: go → don't go."},"formula":{"es":"You + don't + verbo base","en":"You + don't + base verb"},"rule":{"es":"you → don't","en":"you → don't"},"examples":{"es":["go → don't go"],"en":["go → don't go"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["doesn't","goes"]},{"reinf":{"es":"they → don't","en":"they → don't"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"They make noise.","answer":["They","don't","make","noise","."],"tr":"Ellos hacen ruido.","hint":{"es":"Con they el negativo usa don't + verbo base.","en":"With they the negative uses don't + base verb."},"story":null,"change":{"es":"Añade don't antes del verbo: make → don't make.","en":"Add don't before the verb: make → don't make."},"formula":{"es":"They + don't + verbo base","en":"They + don't + base verb"},"rule":{"es":"we / they → don't","en":"we / they → don't"},"examples":{"es":["make → don't make"],"en":["make → don't make"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["doesn't","makes"]}];
 
 /* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
 const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Traducción.',
     qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
     fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
     prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
@@ -629,7 +139,7 @@ const T = {
     ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
     supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
     rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Translation.',
     qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
     fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
     prev:'← Back', next:'Next →', seeRes:'See results 🎉',
@@ -653,8 +163,8 @@ function buildTr(it,i){ const t=T[lang];
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
     <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
     <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
-    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
     <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
     <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
     <div class="bank" id="bank${i}"></div>
@@ -664,15 +174,16 @@ function buildTr(it,i){ const t=T[lang];
     <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
 }
+function tilesOf(it){ return [...it.answer, ...((it.distractors)||[])]; }
 function initTr(i){ const it=QS[i]; trState[i]={order:[]};
-  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  trState[i].bankOrder=tilesOf(it).map((w,idx)=>idx).sort(()=>Math.random()-.5);
   renderBank(i); renderTray(i); }
 function renderBank(i){ const it=QS[i], st=trState[i];
-  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${tilesOf(it)[idx]}</button>`).join(''); }
 function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
-  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${tilesOf(it)[idx]}</button>`).join('');
   if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
-  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length===0; }
 function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
 function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
 function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
@@ -687,7 +198,7 @@ function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])r
     if(!moved){ removeTile(i,+el.dataset.idx); } };
   tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
 function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
-  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  const ok=st.order.map(x=>tilesOf(it)[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
   if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
   document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
   renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
@@ -703,7 +214,7 @@ function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('f
   const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
   el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
 function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
   else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
 function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
 function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }

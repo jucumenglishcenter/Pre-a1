@@ -8,7 +8,7 @@
      ═══════════════════════════════════════════════════════════════════════ -->
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transform · Pronombres · JUCUM English Center</title>
+<title>Transform · Presente Simple — Afirmativo · JUCUM English Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
@@ -126,478 +126,11 @@
 /* ════ EDITA AQUÍ · METADATOS ════ */
 const MAT = { title:'Transform', subtitle:'Pre-A1 · M2 · Presente Simple — Afirmativo', langDefault:'es', reportId:'PreA1_M2_t1-tr' };
 const PASS = 75;
-const QS = [
- {
-  "reinf": {
-   "es": "3ª persona · +s",
-   "en": "3rd person · +s"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I make coffee.",
-  "answer": [
-   "He",
-   "makes",
-   "coffee",
-   "."
-  ],
-  "tr": "Hago café.",
-  "hint": {
-   "es": "He/She añade -s al verbo.",
-   "en": "He/She adds -s to the verb."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → He</b>, <b>make → makes</b> (+s).",
-   "en": "<b>I → He</b>, <b>make → makes</b> (+s)."
-  },
-  "formula": {
-   "es": "He + verbo-s + …",
-   "en": "He + verb-s + …"
-  },
-  "rule": {
-   "es": "he/she/it → verbo + s/es · I/you/they → verbo base",
-   "en": "he/she/it → verb + s/es · I/you/they → base verb"
-  },
-  "examples": {
-   "es": [
-    "make → makes"
-   ],
-   "en": [
-    "make → makes"
-   ]
-  },
-  "es": {
-   "es": "La 3ª persona marca el verbo con -s.",
-   "en": "The 3rd person marks the verb with -s."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Irregular · go → goes",
-   "en": "Irregular · go → goes"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I go to school.",
-  "answer": [
-   "He",
-   "goes",
-   "to",
-   "school",
-   "."
-  ],
-  "tr": "Voy a la escuela.",
-  "hint": {
-   "es": "go termina en -o → -es.",
-   "en": "go ends in -o → -es."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → He</b>, <b>go → goes</b> (-o + es).",
-   "en": "<b>I → He</b>, <b>go → goes</b> (-o + es)."
-  },
-  "formula": {
-   "es": "He + goes + …",
-   "en": "He + goes + …"
-  },
-  "rule": {
-   "es": "go → goes · do → does",
-   "en": "go → goes · do → does"
-  },
-  "examples": {
-   "es": [
-    "go → goes"
-   ],
-   "en": [
-    "go → goes"
-   ]
-  },
-  "es": {
-   "es": "Verbos en -o → -es en 3ª persona.",
-   "en": "Verbs in -o → -es in the 3rd person."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Irregular · do → does",
-   "en": "Irregular · do → does"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I do the dishes.",
-  "answer": [
-   "She",
-   "does",
-   "the",
-   "dishes",
-   "."
-  ],
-  "tr": "Lavo los platos.",
-  "hint": {
-   "es": "do es irregular: does.",
-   "en": "do is irregular: does."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → She</b>, <b>do → does</b> (irregular).",
-   "en": "<b>I → She</b>, <b>do → does</b> (irregular)."
-  },
-  "formula": {
-   "es": "She + does + …",
-   "en": "She + does + …"
-  },
-  "rule": {
-   "es": "do → does (3ª persona)",
-   "en": "do → does (3rd person)"
-  },
-  "examples": {
-   "es": [
-    "do → does"
-   ],
-   "en": [
-    "do → does"
-   ]
-  },
-  "es": {
-   "es": "«does» es irregular, no «dos».",
-   "en": "«does» is irregular, not «dos»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Ortografía · -sh → -es",
-   "en": "Spelling · -sh → -es"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I wash the car.",
-  "answer": [
-   "He",
-   "washes",
-   "the",
-   "car",
-   "."
-  ],
-  "tr": "Lavo el carro.",
-  "hint": {
-   "es": "wash termina en -sh → -es.",
-   "en": "wash ends in -sh → -es."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → He</b>, <b>wash → washes</b> (-sh + es).",
-   "en": "<b>I → He</b>, <b>wash → washes</b> (-sh + es)."
-  },
-  "formula": {
-   "es": "He + washes + …",
-   "en": "He + washes + …"
-  },
-  "rule": {
-   "es": "-sh/-ch/-s/-x → +es",
-   "en": "-sh/-ch/-s/-x → +es"
-  },
-  "examples": {
-   "es": [
-    "wash → washes"
-   ],
-   "en": [
-    "wash → washes"
-   ]
-  },
-  "es": {
-   "es": "Tras -sh va -es, no solo -s.",
-   "en": "After -sh it's -es, not just -s."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Ortografía · -sh → -es",
-   "en": "Spelling · -sh → -es"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I brush the dog.",
-  "answer": [
-   "She",
-   "brushes",
-   "the",
-   "dog",
-   "."
-  ],
-  "tr": "Cepillo al perro.",
-  "hint": {
-   "es": "brush → brushes.",
-   "en": "brush → brushes."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → She</b>, <b>brush → brushes</b>.",
-   "en": "<b>I → She</b>, <b>brush → brushes</b>."
-  },
-  "formula": {
-   "es": "She + brushes + …",
-   "en": "She + brushes + …"
-  },
-  "rule": {
-   "es": "-sh → +es",
-   "en": "-sh → +es"
-  },
-  "examples": {
-   "es": [
-    "brush → brushes"
-   ],
-   "en": [
-    "brush → brushes"
-   ]
-  },
-  "es": {
-   "es": "«brushs» no existe.",
-   "en": "«brushs» doesn't exist."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "3ª persona · +s",
-   "en": "3rd person · +s"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I keep a diary.",
-  "answer": [
-   "He",
-   "keeps",
-   "a",
-   "diary",
-   "."
-  ],
-  "tr": "Llevo un diario.",
-  "hint": {
-   "es": "Consonante normal → solo -s.",
-   "en": "Regular consonant → just -s."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → He</b>, <b>keep → keeps</b> (+s).",
-   "en": "<b>I → He</b>, <b>keep → keeps</b> (+s)."
-  },
-  "formula": {
-   "es": "He + keeps + …",
-   "en": "He + keeps + …"
-  },
-  "rule": {
-   "es": "he/she/it → verbo + s/es · I/you/they → verbo base",
-   "en": "he/she/it → verb + s/es · I/you/they → base verb"
-  },
-  "examples": {
-   "es": [
-    "keep → keeps"
-   ],
-   "en": [
-    "keep → keeps"
-   ]
-  },
-  "es": {
-   "es": "Solo se añade -s.",
-   "en": "Just add -s."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "3ª persona · +s",
-   "en": "3rd person · +s"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I get the mail.",
-  "answer": [
-   "She",
-   "gets",
-   "the",
-   "mail",
-   "."
-  ],
-  "tr": "Recojo el correo.",
-  "hint": {
-   "es": "get → gets.",
-   "en": "get → gets."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → She</b>, <b>get → gets</b> (+s).",
-   "en": "<b>I → She</b>, <b>get → gets</b> (+s)."
-  },
-  "formula": {
-   "es": "She + gets + …",
-   "en": "She + gets + …"
-  },
-  "rule": {
-   "es": "he/she/it → verbo + s/es · I/you/they → verbo base",
-   "en": "he/she/it → verb + s/es · I/you/they → base verb"
-  },
-  "examples": {
-   "es": [
-    "get → gets"
-   ],
-   "en": [
-    "get → gets"
-   ]
-  },
-  "es": {
-   "es": "3ª persona añade -s.",
-   "en": "3rd person adds -s."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "3ª persona · +s",
-   "en": "3rd person · +s"
-  },
-  "task": {
-   "es": "Cambia el sujeto a <b>He/She</b> (3ª persona).",
-   "en": "Change the subject to <b>He/She</b> (3rd person)."
-  },
-  "src": "I sweep the floor.",
-  "answer": [
-   "He",
-   "sweeps",
-   "the",
-   "floor",
-   "."
-  ],
-  "tr": "Barro el piso.",
-  "hint": {
-   "es": "sweep → sweeps.",
-   "en": "sweep → sweeps."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I → He</b>, <b>sweep → sweeps</b> (+s).",
-   "en": "<b>I → He</b>, <b>sweep → sweeps</b> (+s)."
-  },
-  "formula": {
-   "es": "He + sweeps + …",
-   "en": "He + sweeps + …"
-  },
-  "rule": {
-   "es": "he/she/it → verbo + s/es · I/you/they → verbo base",
-   "en": "he/she/it → verb + s/es · I/you/they → base verb"
-  },
-  "examples": {
-   "es": [
-    "sweep → sweeps"
-   ],
-   "en": [
-    "sweep → sweeps"
-   ]
-  },
-  "es": {
-   "es": "Consonante normal → -s.",
-   "en": "Regular consonant → -s."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-,
-
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I open the window.", answer:["He","opens","the","window","."], tr:"Abro la ventana.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"I open my window first."',es:'"Abro mi ventana primero."'},
-   change:{es:"I → He; open → opens (+s).",en:"I → He; open → opens (+s)."},
-   formula:{es:"He + verbo+s + …",en:"He + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["open → opens"],en:["open → opens"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I take a shower.", answer:["She","takes","a","shower","."], tr:"Me doy una ducha.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"I take a quick shower."',es:'"Me doy una ducha rápida."'},
-   change:{es:"I → She; take → takes (+s).",en:"I → She; take → takes (+s)."},
-   formula:{es:"She + verbo+s + …",en:"She + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["take → takes"],en:["take → takes"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I make the bed.", answer:["He","makes","the","bed","."], tr:"Tiendo la cama.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"I make my bed first."',es:'"Tiendo mi cama primero."'},
-   change:{es:"I → He; make → makes (+s).",en:"I → He; make → makes (+s)."},
-   formula:{es:"He + verbo+s + …",en:"He + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["make → makes"],en:["make → makes"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I eat breakfast.", answer:["He","eats","breakfast","."], tr:"Desayuno.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"I sit down and eat."',es:'"Me siento y como."'},
-   change:{es:"I → He; eat → eats (+s).",en:"I → He; eat → eats (+s)."},
-   formula:{es:"He + verbo+s + …",en:"He + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["eat → eats"],en:["eat → eats"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I come home early.", answer:["She","comes","home","early","."], tr:"Llego a casa temprano.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"I come back for my phone."',es:'"Regreso por mi teléfono."'},
-   change:{es:"I → She; come → comes (+s).",en:"I → She; come → comes (+s)."},
-   formula:{es:"She + verbo+s + …",en:"She + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["come → comes"],en:["come → comes"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"3ª persona · +s",en:"3rd person · +s"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I get dressed.", answer:["He","gets","dressed","."], tr:"Me visto.",
-   hint:{es:"He/She añade -s al verbo.",en:"He/She adds -s to the verb."},
-   story:{q:'"Then I get dressed fast."',es:'"Luego me visto rápido."'},
-   change:{es:"I → He; get → gets (+s).",en:"I → He; get → gets (+s)."},
-   formula:{es:"He + verbo+s + …",en:"He + verb+s + …"}, rule:{es:"he/she → verbo + s",en:"he/she → verb + s"},
-   examples:{es:["get → gets"],en:["get → gets"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Ortografía · -ch → -es",en:"Spelling · -ch → -es"}, task:{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},
-   src:"I watch the sky.", answer:["She","watches","the","sky","."], tr:"Miro el cielo.",
-   hint:{es:"Verbos en -ch añaden -es: watch → watches.",en:"Verbs ending in -ch add -es: watch → watches."},
-   story:{q:'"I look at the gray sky."',es:'"Miro el cielo gris."'},
-   change:{es:"I → She; watch → watches (-ch → -es).",en:"I → She; watch → watches (-ch → -es)."},
-   formula:{es:"She + verbo+es + …",en:"She + verb+es + …"}, rule:{es:"-ch / -sh / -s / -x → -es",en:"-ch / -sh / -s / -x → -es"},
-   examples:{es:["watch → watches"],en:["watch → watches"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-];
+const QS = [{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I make coffee.","answer":["He","makes","coffee","."],"tr":"Hago café.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":null,"change":{"es":"<b>I → He</b>, <b>make → makes</b> (+s).","en":"<b>I → He</b>, <b>make → makes</b> (+s)."},"formula":{"es":"He + verbo-s + …","en":"He + verb-s + …"},"rule":{"es":"he/she/it → verbo + s/es · I/you/they → verbo base","en":"he/she/it → verb + s/es · I/you/they → base verb"},"examples":{"es":["make → makes"],"en":["make → makes"]},"es":{"es":"La 3ª persona marca el verbo con -s.","en":"The 3rd person marks the verb with -s."},"lit":{"es":"","en":""},"distractors":["make","I"]},{"reinf":{"es":"Irregular · go → goes","en":"Irregular · go → goes"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I go to school.","answer":["He","goes","to","school","."],"tr":"Voy a la escuela.","hint":{"es":"go termina en -o → -es.","en":"go ends in -o → -es."},"story":null,"change":{"es":"<b>I → He</b>, <b>go → goes</b> (-o + es).","en":"<b>I → He</b>, <b>go → goes</b> (-o + es)."},"formula":{"es":"He + goes + …","en":"He + goes + …"},"rule":{"es":"go → goes · do → does","en":"go → goes · do → does"},"examples":{"es":["go → goes"],"en":["go → goes"]},"es":{"es":"Verbos en -o → -es en 3ª persona.","en":"Verbs in -o → -es in the 3rd person."},"lit":{"es":"","en":""},"distractors":["go","I"]},{"reinf":{"es":"Irregular · do → does","en":"Irregular · do → does"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I do the dishes.","answer":["She","does","the","dishes","."],"tr":"Lavo los platos.","hint":{"es":"do es irregular: does.","en":"do is irregular: does."},"story":null,"change":{"es":"<b>I → She</b>, <b>do → does</b> (irregular).","en":"<b>I → She</b>, <b>do → does</b> (irregular)."},"formula":{"es":"She + does + …","en":"She + does + …"},"rule":{"es":"do → does (3ª persona)","en":"do → does (3rd person)"},"examples":{"es":["do → does"],"en":["do → does"]},"es":{"es":"«does» es irregular, no «dos».","en":"«does» is irregular, not «dos»."},"lit":{"es":"","en":""},"distractors":["do","I"]},{"reinf":{"es":"Ortografía · -sh → -es","en":"Spelling · -sh → -es"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I wash the car.","answer":["He","washes","the","car","."],"tr":"Lavo el carro.","hint":{"es":"wash termina en -sh → -es.","en":"wash ends in -sh → -es."},"story":null,"change":{"es":"<b>I → He</b>, <b>wash → washes</b> (-sh + es).","en":"<b>I → He</b>, <b>wash → washes</b> (-sh + es)."},"formula":{"es":"He + washes + …","en":"He + washes + …"},"rule":{"es":"-sh/-ch/-s/-x → +es","en":"-sh/-ch/-s/-x → +es"},"examples":{"es":["wash → washes"],"en":["wash → washes"]},"es":{"es":"Tras -sh va -es, no solo -s.","en":"After -sh it's -es, not just -s."},"lit":{"es":"","en":""},"distractors":["wash","I"]},{"reinf":{"es":"Ortografía · -sh → -es","en":"Spelling · -sh → -es"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I brush the dog.","answer":["She","brushes","the","dog","."],"tr":"Cepillo al perro.","hint":{"es":"brush → brushes.","en":"brush → brushes."},"story":null,"change":{"es":"<b>I → She</b>, <b>brush → brushes</b>.","en":"<b>I → She</b>, <b>brush → brushes</b>."},"formula":{"es":"She + brushes + …","en":"She + brushes + …"},"rule":{"es":"-sh → +es","en":"-sh → +es"},"examples":{"es":["brush → brushes"],"en":["brush → brushes"]},"es":{"es":"«brushs» no existe.","en":"«brushs» doesn't exist."},"lit":{"es":"","en":""},"distractors":["brush","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I keep a diary.","answer":["He","keeps","a","diary","."],"tr":"Llevo un diario.","hint":{"es":"Consonante normal → solo -s.","en":"Regular consonant → just -s."},"story":null,"change":{"es":"<b>I → He</b>, <b>keep → keeps</b> (+s).","en":"<b>I → He</b>, <b>keep → keeps</b> (+s)."},"formula":{"es":"He + keeps + …","en":"He + keeps + …"},"rule":{"es":"he/she/it → verbo + s/es · I/you/they → verbo base","en":"he/she/it → verb + s/es · I/you/they → base verb"},"examples":{"es":["keep → keeps"],"en":["keep → keeps"]},"es":{"es":"Solo se añade -s.","en":"Just add -s."},"lit":{"es":"","en":""},"distractors":["keep","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I get the mail.","answer":["She","gets","the","mail","."],"tr":"Recojo el correo.","hint":{"es":"get → gets.","en":"get → gets."},"story":null,"change":{"es":"<b>I → She</b>, <b>get → gets</b> (+s).","en":"<b>I → She</b>, <b>get → gets</b> (+s)."},"formula":{"es":"She + gets + …","en":"She + gets + …"},"rule":{"es":"he/she/it → verbo + s/es · I/you/they → verbo base","en":"he/she/it → verb + s/es · I/you/they → base verb"},"examples":{"es":["get → gets"],"en":["get → gets"]},"es":{"es":"3ª persona añade -s.","en":"3rd person adds -s."},"lit":{"es":"","en":""},"distractors":["get","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I sweep the floor.","answer":["He","sweeps","the","floor","."],"tr":"Barro el piso.","hint":{"es":"sweep → sweeps.","en":"sweep → sweeps."},"story":null,"change":{"es":"<b>I → He</b>, <b>sweep → sweeps</b> (+s).","en":"<b>I → He</b>, <b>sweep → sweeps</b> (+s)."},"formula":{"es":"He + sweeps + …","en":"He + sweeps + …"},"rule":{"es":"he/she/it → verbo + s/es · I/you/they → verbo base","en":"he/she/it → verb + s/es · I/you/they → base verb"},"examples":{"es":["sweep → sweeps"],"en":["sweep → sweeps"]},"es":{"es":"Consonante normal → -s.","en":"Regular consonant → -s."},"lit":{"es":"","en":""},"distractors":["sweep","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I open the window.","answer":["He","opens","the","window","."],"tr":"Abro la ventana.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"I open my window first.\"","es":"\"Abro mi ventana primero.\""},"change":{"es":"I → He; open → opens (+s).","en":"I → He; open → opens (+s)."},"formula":{"es":"He + verbo+s + …","en":"He + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["open → opens"],"en":["open → opens"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["open","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I take a shower.","answer":["She","takes","a","shower","."],"tr":"Me doy una ducha.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"I take a quick shower.\"","es":"\"Me doy una ducha rápida.\""},"change":{"es":"I → She; take → takes (+s).","en":"I → She; take → takes (+s)."},"formula":{"es":"She + verbo+s + …","en":"She + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["take → takes"],"en":["take → takes"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["take","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I make the bed.","answer":["He","makes","the","bed","."],"tr":"Tiendo la cama.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"I make my bed first.\"","es":"\"Tiendo mi cama primero.\""},"change":{"es":"I → He; make → makes (+s).","en":"I → He; make → makes (+s)."},"formula":{"es":"He + verbo+s + …","en":"He + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["make → makes"],"en":["make → makes"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["make","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I eat breakfast.","answer":["He","eats","breakfast","."],"tr":"Desayuno.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"I sit down and eat.\"","es":"\"Me siento y como.\""},"change":{"es":"I → He; eat → eats (+s).","en":"I → He; eat → eats (+s)."},"formula":{"es":"He + verbo+s + …","en":"He + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["eat → eats"],"en":["eat → eats"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["eat","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I come home early.","answer":["She","comes","home","early","."],"tr":"Llego a casa temprano.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"I come back for my phone.\"","es":"\"Regreso por mi teléfono.\""},"change":{"es":"I → She; come → comes (+s).","en":"I → She; come → comes (+s)."},"formula":{"es":"She + verbo+s + …","en":"She + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["come → comes"],"en":["come → comes"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["come","I"]},{"reinf":{"es":"3ª persona · +s","en":"3rd person · +s"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I get dressed.","answer":["He","gets","dressed","."],"tr":"Me visto.","hint":{"es":"He/She añade -s al verbo.","en":"He/She adds -s to the verb."},"story":{"q":"\"Then I get dressed fast.\"","es":"\"Luego me visto rápido.\""},"change":{"es":"I → He; get → gets (+s).","en":"I → He; get → gets (+s)."},"formula":{"es":"He + verbo+s + …","en":"He + verb+s + …"},"rule":{"es":"he/she → verbo + s","en":"he/she → verb + s"},"examples":{"es":["get → gets"],"en":["get → gets"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["get","I"]},{"reinf":{"es":"Ortografía · -ch → -es","en":"Spelling · -ch → -es"},"task":{"es":"Cambia el sujeto a <b>He/She</b> (3ª persona).","en":"Change the subject to <b>He/She</b> (3rd person)."},"src":"I watch the sky.","answer":["She","watches","the","sky","."],"tr":"Miro el cielo.","hint":{"es":"Verbos en -ch añaden -es: watch → watches.","en":"Verbs ending in -ch add -es: watch → watches."},"story":{"q":"\"I look at the gray sky.\"","es":"\"Miro el cielo gris.\""},"change":{"es":"I → She; watch → watches (-ch → -es).","en":"I → She; watch → watches (-ch → -es)."},"formula":{"es":"She + verbo+es + …","en":"She + verb+es + …"},"rule":{"es":"-ch / -sh / -s / -x → -es","en":"-ch / -sh / -s / -x → -es"},"examples":{"es":["watch → watches"],"en":["watch → watches"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["watch","I"]}];
 
 /* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
 const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Traducción.',
     qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
     fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
     prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
@@ -606,7 +139,7 @@ const T = {
     ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
     supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
     rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Translation.',
     qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
     fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
     prev:'← Back', next:'Next →', seeRes:'See results 🎉',
@@ -630,8 +163,8 @@ function buildTr(it,i){ const t=T[lang];
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
     <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
     <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
-    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
     <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
     <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
     <div class="bank" id="bank${i}"></div>
@@ -641,15 +174,16 @@ function buildTr(it,i){ const t=T[lang];
     <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
 }
+function tilesOf(it){ return [...it.answer, ...((it.distractors)||[])]; }
 function initTr(i){ const it=QS[i]; trState[i]={order:[]};
-  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  trState[i].bankOrder=tilesOf(it).map((w,idx)=>idx).sort(()=>Math.random()-.5);
   renderBank(i); renderTray(i); }
 function renderBank(i){ const it=QS[i], st=trState[i];
-  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${tilesOf(it)[idx]}</button>`).join(''); }
 function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
-  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${tilesOf(it)[idx]}</button>`).join('');
   if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
-  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length===0; }
 function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
 function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
 function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
@@ -664,7 +198,7 @@ function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])r
     if(!moved){ removeTile(i,+el.dataset.idx); } };
   tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
 function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
-  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  const ok=st.order.map(x=>tilesOf(it)[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
   if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
   document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
   renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
@@ -680,7 +214,7 @@ function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('f
   const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
   el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
 function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
   else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
 function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
 function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }

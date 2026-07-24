@@ -8,7 +8,7 @@
      ═══════════════════════════════════════════════════════════════════════ -->
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transform · Pronombres · JUCUM English Center</title>
+<title>Transform · To be (Parte 2) · JUCUM English Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
@@ -126,498 +126,11 @@
 /* ════ EDITA AQUÍ · METADATOS ════ */
 const MAT = { title:'Transform', subtitle:'Pre-A1 · M1 · To be (Parte 2)', langDefault:'es', reportId:'PreA1_M1_t2b-tr' };
 const PASS = 75;
-const QS = [
- {
-  "reinf": {
-   "es": "Negativo · is → isn’t",
-   "en": "Negative · is → isn’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Don Beto is the youngest.",
-  "answer": [
-   "Don",
-   "Beto",
-   "isn't",
-   "the",
-   "youngest",
-   "."
-  ],
-  "tr": "Don Beto es el más joven.",
-  "hint": {
-   "es": "Une is + not en «isn't».",
-   "en": "Merge is + not into «isn't»."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>is → isn't</b> (is + not).",
-   "en": "<b>is → isn't</b> (is + not)."
-  },
-  "formula": {
-   "es": "Sujeto + isn’t + …",
-   "en": "Subject + isn’t + …"
-  },
-  "rule": {
-   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
-   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
-  },
-  "examples": {
-   "es": [
-    "is → isn't"
-   ],
-   "en": [
-    "is → isn't"
-   ]
-  },
-  "es": {
-   "es": "El «no» se pega al verbo: <b>isn't</b>.",
-   "en": "The «not» attaches to the verb: <b>isn't</b>."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Pregunta · plural → Are",
-   "en": "Question · plural → Are"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>pregunta</b>.",
-   "en": "Change the sentence to a <b>question</b>."
-  },
-  "src": "My mom and grandma are here.",
-  "answer": [
-   "Are",
-   "my",
-   "mom",
-   "and",
-   "grandma",
-   "here",
-   "?"
-  ],
-  "tr": "Mi mamá y mi abuela están aquí.",
-  "hint": {
-   "es": "El verbo to be salta al inicio.",
-   "en": "The to-be verb jumps to the front."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>are</b> al inicio: <b>Are my mom and grandma…?</b>",
-   "en": "<b>are</b> to the front: <b>Are my mom and grandma…?</b>"
-  },
-  "formula": {
-   "es": "Are + sujeto plural + …?",
-   "en": "Are + plural subject + …?"
-  },
-  "rule": {
-   "es": "Pregunta: to be + sujeto + …?",
-   "en": "Question: to be + subject + …?"
-  },
-  "examples": {
-   "es": [
-    "They are → Are they?"
-   ],
-   "en": [
-    "They are → Are they?"
-   ]
-  },
-  "es": {
-   "es": "Plural en pregunta → <b>Are</b> al inicio.",
-   "en": "Plural in a question → <b>Are</b> first."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Negativo · am not",
-   "en": "Negative · am not"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "I am in Room 5.",
-  "answer": [
-   "I",
-   "am",
-   "not",
-   "in",
-   "Room",
-   "5",
-   "."
-  ],
-  "tr": "Estoy en el Salón 5.",
-  "hint": {
-   "es": "Con «I» el negativo es «am not» (no «amn't»).",
-   "en": "With «I» the negative is «am not» (not «amn't»)."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>am → am not</b>. «amn't» no existe.",
-   "en": "<b>am → am not</b>. «amn't» doesn't exist."
-  },
-  "formula": {
-   "es": "I + am + not + …",
-   "en": "I + am + not + …"
-  },
-  "rule": {
-   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
-   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
-  },
-  "examples": {
-   "es": [
-    "I am not here"
-   ],
-   "en": [
-    "I am not here"
-   ]
-  },
-  "es": {
-   "es": "Único sin contracción del verbo: <b>am not</b>.",
-   "en": "The one with no verb contraction: <b>am not</b>."
-  },
-  "lit": {
-   "es": "<span class=\"nat\">no estoy</span> = <b>I am not</b>.",
-   "en": "«no estoy» = <b>I am not</b>."
-  }
- },
- {
-  "reinf": {
-   "es": "Negativo · is → isn’t",
-   "en": "Negative · is → isn’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "Dev is the older brother.",
-  "answer": [
-   "Dev",
-   "isn't",
-   "the",
-   "older",
-   "brother",
-   "."
-  ],
-  "tr": "Dev es el hermano mayor.",
-  "hint": {
-   "es": "Une is + not.",
-   "en": "Merge is + not."
-  },
-  "story": {
-   "q": "\"Dev isn't Ravi's older brother — he is the younger one.\"",
-   "es": "\"Dev no es el hermano mayor de Ravi.\""
-  },
-  "change": {
-   "es": "<b>is → isn't</b>.",
-   "en": "<b>is → isn't</b>."
-  },
-  "formula": {
-   "es": "Sujeto + isn’t + …",
-   "en": "Subject + isn’t + …"
-  },
-  "rule": {
-   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
-   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
-  },
-  "examples": {
-   "es": [
-    "Dev isn't the older brother"
-   ],
-   "en": [
-    "Dev isn't the older brother"
-   ]
-  },
-  "es": {
-   "es": "«no es» → <b>isn't</b>.",
-   "en": "«no es» → <b>isn't</b>."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Pregunta · plural → Are",
-   "en": "Question · plural → Are"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>pregunta</b>.",
-   "en": "Change the sentence to a <b>question</b>."
-  },
-  "src": "You and Nico are friends.",
-  "answer": [
-   "Are",
-   "you",
-   "and",
-   "Nico",
-   "friends",
-   "?"
-  ],
-  "tr": "Tú y Nico son amigos.",
-  "hint": {
-   "es": "El verbo to be encabeza la pregunta.",
-   "en": "The to-be verb leads the question."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>are</b> al inicio: <b>Are you and Nico…?</b>",
-   "en": "<b>are</b> to the front: <b>Are you and Nico…?</b>"
-  },
-  "formula": {
-   "es": "Are + sujeto plural + …?",
-   "en": "Are + plural subject + …?"
-  },
-  "rule": {
-   "es": "Pregunta: to be + sujeto + …?",
-   "en": "Question: to be + subject + …?"
-  },
-  "examples": {
-   "es": [
-    "Are you and Nico…?"
-   ],
-   "en": [
-    "Are you and Nico…?"
-   ]
-  },
-  "es": {
-   "es": "Plural en pregunta → <b>Are</b>.",
-   "en": "Plural in a question → <b>Are</b>."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Negativo · it → isn’t",
-   "en": "Negative · it → isn’t"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>negativa</b>.",
-   "en": "Change the sentence to <b>negative</b>."
-  },
-  "src": "It is easy to share a room.",
-  "answer": [
-   "It",
-   "isn't",
-   "easy",
-   "to",
-   "share",
-   "a",
-   "room",
-   "."
-  ],
-  "tr": "Es fácil compartir un cuarto.",
-  "hint": {
-   "es": "El inglés mantiene el sujeto «It».",
-   "en": "English keeps the subject «It»."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>is → isn't</b>; el sujeto «It» se mantiene.",
-   "en": "<b>is → isn't</b>; the subject «It» stays."
-  },
-  "formula": {
-   "es": "It + isn’t + …",
-   "en": "It + isn’t + …"
-  },
-  "rule": {
-   "es": "is+not → isn’t · are+not → aren’t · am+not → am not",
-   "en": "is+not → isn’t · are+not → aren’t · am+not → am not"
-  },
-  "examples": {
-   "es": [
-    "It isn't easy"
-   ],
-   "en": [
-    "It isn't easy"
-   ]
-  },
-  "es": {
-   "es": "El español omite «it» («No es fácil»); el inglés lo exige.",
-   "en": "Spanish drops «it» («No es fácil»); English requires it."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Pregunta · he → Is",
-   "en": "Question · he → Is"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>pregunta</b>.",
-   "en": "Change the sentence to a <b>question</b>."
-  },
-  "src": "Mia's brother is in your class.",
-  "answer": [
-   "Is",
-   "Mia's",
-   "brother",
-   "in",
-   "your",
-   "class",
-   "?"
-  ],
-  "tr": "El hermano de Mia está en tu clase.",
-  "hint": {
-   "es": "Pasa «is» al inicio y agrega «?».",
-   "en": "Move «is» to the front and add «?»."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>is</b> al inicio: <b>Is Mia's brother…?</b>",
-   "en": "<b>is</b> to the front: <b>Is Mia's brother…?</b>"
-  },
-  "formula": {
-   "es": "Is + sujeto + …?",
-   "en": "Is + subject + …?"
-  },
-  "rule": {
-   "es": "Pregunta: to be + sujeto + …?",
-   "en": "Question: to be + subject + …?"
-  },
-  "examples": {
-   "es": [
-    "Is he…?"
-   ],
-   "en": [
-    "Is he…?"
-   ]
-  },
-  "es": {
-   "es": "Singular he/she/it en pregunta → <b>Is</b> al inicio.",
-   "en": "Singular he/she/it in a question → <b>Is</b> first."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "Pregunta · I → Am",
-   "en": "Question · I → Am"
-  },
-  "task": {
-   "es": "Cambia la oración a <b>pregunta</b>.",
-   "en": "Change the sentence to a <b>question</b>."
-  },
-  "src": "I am in the right seat.",
-  "answer": [
-   "Am",
-   "I",
-   "in",
-   "the",
-   "right",
-   "seat",
-   "?"
-  ],
-  "tr": "Estoy en el asiento correcto.",
-  "hint": {
-   "es": "Pregunta con «I» → «Am I…?».",
-   "en": "A question with «I» → «Am I…?»."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>am</b> al inicio: <b>Am I…?</b>",
-   "en": "<b>am</b> to the front: <b>Am I…?</b>"
-  },
-  "formula": {
-   "es": "Am + I + …?",
-   "en": "Am + I + …?"
-  },
-  "rule": {
-   "es": "Pregunta: to be + sujeto + …?",
-   "en": "Question: to be + subject + …?"
-  },
-  "examples": {
-   "es": [
-    "Am I…?"
-   ],
-   "en": [
-    "Am I…?"
-   ]
-  },
-  "es": {
-   "es": "Am I? es la única pregunta con primera persona singular.",
-   "en": "Am I? is the only first-person-singular question."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-,
-
- { reinf:{es:"Negativo · he → isn't",en:"Negative · he → isn't"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
-   src:"Nico is funny.", answer:["Nico","isn't","funny","."], tr:"Nico es gracioso.",
-   hint:{es:"Singular (he) → is; su negativo es isn't.",en:"Singular (he) → is; its negative is isn't."},
-   story:{q:'"The boy is very funny."',es:'"El niño es muy gracioso."'},
-   change:{es:"Añade «not» a «is»: is → isn't.",en:"Add «not» to «is»: is → isn't."},
-   formula:{es:"sujeto + isn't + …",en:"subject + isn't + …"}, rule:{es:"is + not → isn't",en:"is + not → isn't"},
-   examples:{es:["is → isn't"],en:["is → isn't"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Pregunta · he → Is",en:"Question · he → Is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
-   src:"Carlos is tall.", answer:["Is","Carlos","tall","?"], tr:"Carlos es alto.",
-   hint:{es:"Mueve «is» al inicio para preguntar.",en:"Move «is» to the front to ask."},
-   story:{q:'"Who is that tall man? That is my dad, Carlos."',es:'"¿Quién es ese hombre alto? Ese es mi papá, Carlos."'},
-   change:{es:"«Carlos is» → «Is Carlos…?».",en:"«Carlos is» → «Is Carlos…?»."},
-   formula:{es:"Is + sujeto + …?",en:"Is + subject + …?"}, rule:{es:"Pregunta: to be al inicio",en:"Question: to be goes first"},
-   examples:{es:["Carlos is → Is Carlos?"],en:["Carlos is → Is Carlos?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Negativo · plural → aren't",en:"Negative · plural → aren't"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
-   src:"The people are sad.", answer:["The","people","aren't","sad","."], tr:"Las personas están tristes.",
-   hint:{es:"Plural → are; su negativo es aren't.",en:"Plural → are; its negative is aren't."},
-   story:{q:'"Everyone is always smiling."',es:'"Todos están siempre sonriendo."'},
-   change:{es:"Añade «not» a «are»: are → aren't.",en:"Add «not» to «are»: are → aren't."},
-   formula:{es:"sujeto + aren't + …",en:"subject + aren't + …"}, rule:{es:"are + not → aren't",en:"are + not → aren't"},
-   examples:{es:["are → aren't"],en:["are → aren't"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Pregunta · There is",en:"Question · There is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
-   src:"There is a dog in the photo.", answer:["Is","there","a","dog","in","the","photo","?"], tr:"Hay un perro en la foto.",
-   hint:{es:"Mueve «is» antes de «there».",en:"Move «is» before «there»."},
-   story:{q:'"Our dog is in the photo."',es:'"Nuestro perro está en la foto."'},
-   change:{es:"«There is» → «Is there…?».",en:"«There is» → «Is there…?»."},
-   formula:{es:"Is there + …?",en:"Is there + …?"}, rule:{es:"There is → Is there…?",en:"There is → Is there…?"},
-   examples:{es:["There is → Is there?"],en:["There is → Is there?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Pregunta · she → Is",en:"Question · she → Is"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
-   src:"Grandma is in the photo.", answer:["Is","grandma","in","the","photo","?"], tr:"La abuela está en la foto.",
-   hint:{es:"«Grandma» es singular. La forma de to be va primero.",en:"«Grandma» is singular. to be goes first."},
-   story:{q:'"My grandma Norma is there."',es:'"Mi abuela Norma está ahí."'},
-   change:{es:"«Grandma is» → «Is grandma…?».",en:"«Grandma is» → «Is grandma…?»."},
-   formula:{es:"Is + sujeto + …?",en:"Is + subject + …?"}, rule:{es:"Pregunta: to be al inicio",en:"Question: to be goes first"},
-   examples:{es:["Grandma is → Is grandma?"],en:["Grandma is → Is grandma?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"Negativo · I → am not",en:"Negative · I → am not"}, task:{es:"Cambia la oración a <b>negativo</b>.",en:"Change the sentence to <b>negative</b>."},
-   src:"I am in the front.", answer:["I","am","not","in","the","front","."], tr:"Estoy adelante.",
-   hint:{es:"Con «I» el negativo es am not.",en:"With «I» the negative is am not."},
-   story:{q:'"I stand in the front."',es:'"Estoy parada adelante."'},
-   change:{es:"Añade «not» a «am»: am → am not.",en:"Add «not» to «am»: am → am not."},
-   formula:{es:"I + am not + …",en:"I + am not + …"}, rule:{es:"I → am not (I'm not)",en:"I → am not (I'm not)"},
-   examples:{es:["am → am not"],en:["am → am not"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-,
-
- { reinf:{es:"Pregunta · There are",en:"Question · There are"}, task:{es:"Cambia la oración a <b>pregunta</b>.",en:"Change the sentence to a <b>question</b>."},
-   src:"There are eight people.", answer:["Are","there","eight","people","?"], tr:"Hay ocho personas.",
-   hint:{es:"Plural → are; muévelo antes de «there».",en:"Plural → are; move it before «there»."},
-   story:{q:'"Eight people are in it."',es:'"Hay ocho personas en ella."'},
-   change:{es:"«There are» → «Are there…?».",en:"«There are» → «Are there…?»."},
-   formula:{es:"Are there + …?",en:"Are there + …?"}, rule:{es:"There are → Are there…?",en:"There are → Are there…?"},
-   examples:{es:["There are → Are there?"],en:["There are → Are there?"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-];
+const QS = [{"reinf":{"es":"Negativo · is → isn’t","en":"Negative · is → isn’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Don Beto is the youngest.","answer":["Don","Beto","isn't","the","youngest","."],"tr":"Don Beto es el más joven.","hint":{"es":"Une is + not en «isn't».","en":"Merge is + not into «isn't»."},"story":null,"change":{"es":"<b>is → isn't</b> (is + not).","en":"<b>is → isn't</b> (is + not)."},"formula":{"es":"Sujeto + isn’t + …","en":"Subject + isn’t + …"},"rule":{"es":"is+not → isn’t · are+not → aren’t · am+not → am not","en":"is+not → isn’t · are+not → aren’t · am+not → am not"},"examples":{"es":["is → isn't"],"en":["is → isn't"]},"es":{"es":"El «no» se pega al verbo: <b>isn't</b>.","en":"The «not» attaches to the verb: <b>isn't</b>."},"lit":{"es":"","en":""},"distractors":["aren't","is"]},{"reinf":{"es":"Pregunta · plural → Are","en":"Question · plural → Are"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"My mom and grandma are here.","answer":["Are","my","mom","and","grandma","here","?"],"tr":"Mi mamá y mi abuela están aquí.","hint":{"es":"El verbo to be salta al inicio.","en":"The to-be verb jumps to the front."},"story":null,"change":{"es":"<b>are</b> al inicio: <b>Are my mom and grandma…?</b>","en":"<b>are</b> to the front: <b>Are my mom and grandma…?</b>"},"formula":{"es":"Are + sujeto plural + …?","en":"Are + plural subject + …?"},"rule":{"es":"Pregunta: to be + sujeto + …?","en":"Question: to be + subject + …?"},"examples":{"es":["They are → Are they?"],"en":["They are → Are they?"]},"es":{"es":"Plural en pregunta → <b>Are</b> al inicio.","en":"Plural in a question → <b>Are</b> first."},"lit":{"es":"","en":""},"distractors":["Is","aren't"]},{"reinf":{"es":"Negativo · am not","en":"Negative · am not"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"I am in Room 5.","answer":["I","am","not","in","Room","5","."],"tr":"Estoy en el Salón 5.","hint":{"es":"Con «I» el negativo es «am not» (no «amn't»).","en":"With «I» the negative is «am not» (not «amn't»)."},"story":null,"change":{"es":"<b>am → am not</b>. «amn't» no existe.","en":"<b>am → am not</b>. «amn't» doesn't exist."},"formula":{"es":"I + am + not + …","en":"I + am + not + …"},"rule":{"es":"is+not → isn’t · are+not → aren’t · am+not → am not","en":"is+not → isn’t · are+not → aren’t · am+not → am not"},"examples":{"es":["I am not here"],"en":["I am not here"]},"es":{"es":"Único sin contracción del verbo: <b>am not</b>.","en":"The one with no verb contraction: <b>am not</b>."},"lit":{"es":"<span class=\"nat\">no estoy</span> = <b>I am not</b>.","en":"«no estoy» = <b>I am not</b>."},"distractors":["isn't","are"]},{"reinf":{"es":"Negativo · is → isn’t","en":"Negative · is → isn’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Dev is the older brother.","answer":["Dev","isn't","the","older","brother","."],"tr":"Dev es el hermano mayor.","hint":{"es":"Une is + not.","en":"Merge is + not."},"story":{"q":"\"Dev isn't Ravi's older brother — he is the younger one.\"","es":"\"Dev no es el hermano mayor de Ravi.\""},"change":{"es":"<b>is → isn't</b>.","en":"<b>is → isn't</b>."},"formula":{"es":"Sujeto + isn’t + …","en":"Subject + isn’t + …"},"rule":{"es":"is+not → isn’t · are+not → aren’t · am+not → am not","en":"is+not → isn’t · are+not → aren’t · am+not → am not"},"examples":{"es":["Dev isn't the older brother"],"en":["Dev isn't the older brother"]},"es":{"es":"«no es» → <b>isn't</b>.","en":"«no es» → <b>isn't</b>."},"lit":{"es":"","en":""},"distractors":["aren't","is"]},{"reinf":{"es":"Pregunta · plural → Are","en":"Question · plural → Are"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"You and Nico are friends.","answer":["Are","you","and","Nico","friends","?"],"tr":"Tú y Nico son amigos.","hint":{"es":"El verbo to be encabeza la pregunta.","en":"The to-be verb leads the question."},"story":null,"change":{"es":"<b>are</b> al inicio: <b>Are you and Nico…?</b>","en":"<b>are</b> to the front: <b>Are you and Nico…?</b>"},"formula":{"es":"Are + sujeto plural + …?","en":"Are + plural subject + …?"},"rule":{"es":"Pregunta: to be + sujeto + …?","en":"Question: to be + subject + …?"},"examples":{"es":["Are you and Nico…?"],"en":["Are you and Nico…?"]},"es":{"es":"Plural en pregunta → <b>Are</b>.","en":"Plural in a question → <b>Are</b>."},"lit":{"es":"","en":""},"distractors":["Is","am"]},{"reinf":{"es":"Negativo · it → isn’t","en":"Negative · it → isn’t"},"task":{"es":"Cambia la oración a <b>negativa</b>.","en":"Change the sentence to <b>negative</b>."},"src":"It is easy to share a room.","answer":["It","isn't","easy","to","share","a","room","."],"tr":"Es fácil compartir un cuarto.","hint":{"es":"El inglés mantiene el sujeto «It».","en":"English keeps the subject «It»."},"story":null,"change":{"es":"<b>is → isn't</b>; el sujeto «It» se mantiene.","en":"<b>is → isn't</b>; the subject «It» stays."},"formula":{"es":"It + isn’t + …","en":"It + isn’t + …"},"rule":{"es":"is+not → isn’t · are+not → aren’t · am+not → am not","en":"is+not → isn’t · are+not → aren’t · am+not → am not"},"examples":{"es":["It isn't easy"],"en":["It isn't easy"]},"es":{"es":"El español omite «it» («No es fácil»); el inglés lo exige.","en":"Spanish drops «it» («No es fácil»); English requires it."},"lit":{"es":"","en":""},"distractors":["aren't","is"]},{"reinf":{"es":"Pregunta · he → Is","en":"Question · he → Is"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"Mia's brother is in your class.","answer":["Is","Mia's","brother","in","your","class","?"],"tr":"El hermano de Mia está en tu clase.","hint":{"es":"Pasa «is» al inicio y agrega «?».","en":"Move «is» to the front and add «?»."},"story":null,"change":{"es":"<b>is</b> al inicio: <b>Is Mia's brother…?</b>","en":"<b>is</b> to the front: <b>Is Mia's brother…?</b>"},"formula":{"es":"Is + sujeto + …?","en":"Is + subject + …?"},"rule":{"es":"Pregunta: to be + sujeto + …?","en":"Question: to be + subject + …?"},"examples":{"es":["Is he…?"],"en":["Is he…?"]},"es":{"es":"Singular he/she/it en pregunta → <b>Is</b> al inicio.","en":"Singular he/she/it in a question → <b>Is</b> first."},"lit":{"es":"","en":""},"distractors":["Are","am"]},{"reinf":{"es":"Pregunta · I → Am","en":"Question · I → Am"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"I am in the right seat.","answer":["Am","I","in","the","right","seat","?"],"tr":"Estoy en el asiento correcto.","hint":{"es":"Pregunta con «I» → «Am I…?».","en":"A question with «I» → «Am I…?»."},"story":null,"change":{"es":"<b>am</b> al inicio: <b>Am I…?</b>","en":"<b>am</b> to the front: <b>Am I…?</b>"},"formula":{"es":"Am + I + …?","en":"Am + I + …?"},"rule":{"es":"Pregunta: to be + sujeto + …?","en":"Question: to be + subject + …?"},"examples":{"es":["Am I…?"],"en":["Am I…?"]},"es":{"es":"Am I? es la única pregunta con primera persona singular.","en":"Am I? is the only first-person-singular question."},"lit":{"es":"","en":""},"distractors":["Is","Are"]},{"reinf":{"es":"Negativo · he → isn't","en":"Negative · he → isn't"},"task":{"es":"Cambia la oración a <b>negativo</b>.","en":"Change the sentence to <b>negative</b>."},"src":"Nico is funny.","answer":["Nico","isn't","funny","."],"tr":"Nico es gracioso.","hint":{"es":"Singular (he) → is; su negativo es isn't.","en":"Singular (he) → is; its negative is isn't."},"story":{"q":"\"The boy is very funny.\"","es":"\"El niño es muy gracioso.\""},"change":{"es":"Añade «not» a «is»: is → isn't.","en":"Add «not» to «is»: is → isn't."},"formula":{"es":"sujeto + isn't + …","en":"subject + isn't + …"},"rule":{"es":"is + not → isn't","en":"is + not → isn't"},"examples":{"es":["is → isn't"],"en":["is → isn't"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["aren't","is"]},{"reinf":{"es":"Pregunta · he → Is","en":"Question · he → Is"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"Carlos is tall.","answer":["Is","Carlos","tall","?"],"tr":"Carlos es alto.","hint":{"es":"Mueve «is» al inicio para preguntar.","en":"Move «is» to the front to ask."},"story":{"q":"\"Who is that tall man? That is my dad, Carlos.\"","es":"\"¿Quién es ese hombre alto? Ese es mi papá, Carlos.\""},"change":{"es":"«Carlos is» → «Is Carlos…?».","en":"«Carlos is» → «Is Carlos…?»."},"formula":{"es":"Is + sujeto + …?","en":"Is + subject + …?"},"rule":{"es":"Pregunta: to be al inicio","en":"Question: to be goes first"},"examples":{"es":["Carlos is → Is Carlos?"],"en":["Carlos is → Is Carlos?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Are","isn't"]},{"reinf":{"es":"Negativo · plural → aren't","en":"Negative · plural → aren't"},"task":{"es":"Cambia la oración a <b>negativo</b>.","en":"Change the sentence to <b>negative</b>."},"src":"The people are sad.","answer":["The","people","aren't","sad","."],"tr":"Las personas están tristes.","hint":{"es":"Plural → are; su negativo es aren't.","en":"Plural → are; its negative is aren't."},"story":{"q":"\"Everyone is always smiling.\"","es":"\"Todos están siempre sonriendo.\""},"change":{"es":"Añade «not» a «are»: are → aren't.","en":"Add «not» to «are»: are → aren't."},"formula":{"es":"sujeto + aren't + …","en":"subject + aren't + …"},"rule":{"es":"are + not → aren't","en":"are + not → aren't"},"examples":{"es":["are → aren't"],"en":["are → aren't"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["isn't","are"]},{"reinf":{"es":"Pregunta · There is","en":"Question · There is"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"There is a dog in the photo.","answer":["Is","there","a","dog","in","the","photo","?"],"tr":"Hay un perro en la foto.","hint":{"es":"Mueve «is» antes de «there».","en":"Move «is» before «there»."},"story":{"q":"\"Our dog is in the photo.\"","es":"\"Nuestro perro está en la foto.\""},"change":{"es":"«There is» → «Is there…?».","en":"«There is» → «Is there…?»."},"formula":{"es":"Is there + …?","en":"Is there + …?"},"rule":{"es":"There is → Is there…?","en":"There is → Is there…?"},"examples":{"es":["There is → Is there?"],"en":["There is → Is there?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Are","it"]},{"reinf":{"es":"Pregunta · she → Is","en":"Question · she → Is"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"Grandma is in the photo.","answer":["Is","grandma","in","the","photo","?"],"tr":"La abuela está en la foto.","hint":{"es":"«Grandma» es singular. La forma de to be va primero.","en":"«Grandma» is singular. to be goes first."},"story":{"q":"\"My grandma Norma is there.\"","es":"\"Mi abuela Norma está ahí.\""},"change":{"es":"«Grandma is» → «Is grandma…?».","en":"«Grandma is» → «Is grandma…?»."},"formula":{"es":"Is + sujeto + …?","en":"Is + subject + …?"},"rule":{"es":"Pregunta: to be al inicio","en":"Question: to be goes first"},"examples":{"es":["Grandma is → Is grandma?"],"en":["Grandma is → Is grandma?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Are","am"]},{"reinf":{"es":"Negativo · I → am not","en":"Negative · I → am not"},"task":{"es":"Cambia la oración a <b>negativo</b>.","en":"Change the sentence to <b>negative</b>."},"src":"I am in the front.","answer":["I","am","not","in","the","front","."],"tr":"Estoy adelante.","hint":{"es":"Con «I» el negativo es am not.","en":"With «I» the negative is am not."},"story":{"q":"\"I stand in the front.\"","es":"\"Estoy parada adelante.\""},"change":{"es":"Añade «not» a «am»: am → am not.","en":"Add «not» to «am»: am → am not."},"formula":{"es":"I + am not + …","en":"I + am not + …"},"rule":{"es":"I → am not (I'm not)","en":"I → am not (I'm not)"},"examples":{"es":["am → am not"],"en":["am → am not"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["isn't","are"]},{"reinf":{"es":"Pregunta · There are","en":"Question · There are"},"task":{"es":"Cambia la oración a <b>pregunta</b>.","en":"Change the sentence to a <b>question</b>."},"src":"There are eight people.","answer":["Are","there","eight","people","?"],"tr":"Hay ocho personas.","hint":{"es":"Plural → are; muévelo antes de «there».","en":"Plural → are; move it before «there»."},"story":{"q":"\"Eight people are in it.\"","es":"\"Hay ocho personas en ella.\""},"change":{"es":"«There are» → «Are there…?».","en":"«There are» → «Are there…?»."},"formula":{"es":"Are there + …?","en":"Are there + …?"},"rule":{"es":"There are → Are there…?","en":"There are → Are there…?"},"examples":{"es":["There are → Are there?"],"en":["There are → Are there?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Is","it"]}];
 
 /* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
 const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Traducción.',
     qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
     fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
     prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
@@ -626,7 +139,7 @@ const T = {
     ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
     supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
     rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Translation.',
     qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
     fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
     prev:'← Back', next:'Next →', seeRes:'See results 🎉',
@@ -650,8 +163,8 @@ function buildTr(it,i){ const t=T[lang];
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
     <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
     <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
-    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
     <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
     <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
     <div class="bank" id="bank${i}"></div>
@@ -661,15 +174,16 @@ function buildTr(it,i){ const t=T[lang];
     <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
 }
+function tilesOf(it){ return [...it.answer, ...((it.distractors)||[])]; }
 function initTr(i){ const it=QS[i]; trState[i]={order:[]};
-  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  trState[i].bankOrder=tilesOf(it).map((w,idx)=>idx).sort(()=>Math.random()-.5);
   renderBank(i); renderTray(i); }
 function renderBank(i){ const it=QS[i], st=trState[i];
-  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${tilesOf(it)[idx]}</button>`).join(''); }
 function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
-  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${tilesOf(it)[idx]}</button>`).join('');
   if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
-  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length===0; }
 function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
 function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
 function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
@@ -684,7 +198,7 @@ function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])r
     if(!moved){ removeTile(i,+el.dataset.idx); } };
   tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
 function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
-  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  const ok=st.order.map(x=>tilesOf(it)[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
   if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
   document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
   renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
@@ -700,7 +214,7 @@ function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('f
   const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
   el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
 function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
   else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
 function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
 function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }

@@ -8,7 +8,7 @@
      ═══════════════════════════════════════════════════════════════════════ -->
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transform · Pronombres · JUCUM English Center</title>
+<title>Transform · Presente Simple — Preguntas Yes/No · JUCUM English Center</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
@@ -126,500 +126,11 @@
 /* ════ EDITA AQUÍ · METADATOS ════ */
 const MAT = { title:'Transform', subtitle:'Pre-A1 · M2 · Presente Simple — Preguntas Yes/No', langDefault:'es', reportId:'PreA1_M2_t3-tr' };
 const PASS = 75;
-const QS = [
- {
-  "reinf": {
-   "es": "you → Do",
-   "en": "you → Do"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "You get up early.",
-  "answer": [
-   "Do",
-   "you",
-   "get",
-   "up",
-   "early",
-   "?"
-  ],
-  "tr": "Te levantas temprano.",
-  "hint": {
-   "es": "Antepón Do y agrega ?.",
-   "en": "Antepón Do y agrega ?."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>You get…</b> → <b>Do you get…?</b>",
-   "en": "<b>You get…</b> → <b>Do you get…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "he → Does (base)",
-   "en": "he → Does (base)"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "Marco makes coffee.",
-  "answer": [
-   "Does",
-   "Marco",
-   "make",
-   "coffee",
-   "?"
-  ],
-  "tr": "Marco hace café.",
-  "hint": {
-   "es": "Does + verbo BASE.",
-   "en": "Does + verbo BASE."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>makes → Does Marco make…?</b> (la -s pasa a Does).",
-   "en": "<b>makes → Does Marco make…?</b> (la -s pasa a Does)."
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "she → Does (base)",
-   "en": "she → Does (base)"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "Rosa sweeps the floor.",
-  "answer": [
-   "Does",
-   "Rosa",
-   "sweep",
-   "the",
-   "floor",
-   "?"
-  ],
-  "tr": "Rosa barre el piso.",
-  "hint": {
-   "es": "Does + verbo base.",
-   "en": "Does + verbo base."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>sweeps → Does Rosa sweep…?</b>",
-   "en": "<b>sweeps → Does Rosa sweep…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "they → Do",
-   "en": "they → Do"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "They eat at lunch.",
-  "answer": [
-   "Do",
-   "they",
-   "eat",
-   "at",
-   "lunch",
-   "?"
-  ],
-  "tr": "Ellos comen en el almuerzo.",
-  "hint": {
-   "es": "Antepón Do.",
-   "en": "Antepón Do."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>They eat…</b> → <b>Do they eat…?</b>",
-   "en": "<b>They eat…</b> → <b>Do they eat…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "he → Does (base)",
-   "en": "he → Does (base)"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "Ben gives fruit.",
-  "answer": [
-   "Does",
-   "Ben",
-   "give",
-   "fruit",
-   "?"
-  ],
-  "tr": "Ben da fruta.",
-  "hint": {
-   "es": "Does + verbo base.",
-   "en": "Does + verbo base."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>gives → Does Ben give…?</b>",
-   "en": "<b>gives → Does Ben give…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "I → Do",
-   "en": "I → Do"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "I get bread.",
-  "answer": [
-   "Do",
-   "I",
-   "get",
-   "bread",
-   "?"
-  ],
-  "tr": "Consigo pan.",
-  "hint": {
-   "es": "Antepón Do.",
-   "en": "Antepón Do."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>I get…</b> → <b>Do I get…?</b>",
-   "en": "<b>I get…</b> → <b>Do I get…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "she → Does (base)",
-   "en": "she → Does (base)"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "Sara washes her face.",
-  "answer": [
-   "Does",
-   "Sara",
-   "wash",
-   "her",
-   "face",
-   "?"
-  ],
-  "tr": "Sara se lava la cara.",
-  "hint": {
-   "es": "Does + verbo base.",
-   "en": "Does + verbo base."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>washes → Does Sara wash…?</b>",
-   "en": "<b>washes → Does Sara wash…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- },
- {
-  "reinf": {
-   "es": "we → Do",
-   "en": "we → Do"
-  },
-  "task": {
-   "es": "Cambia la afirmación en <b>pregunta Yes/No</b>.",
-   "en": "Change the statement into a <b>Yes/No question</b>."
-  },
-  "src": "We keep it clean.",
-  "answer": [
-   "Do",
-   "we",
-   "keep",
-   "it",
-   "clean",
-   "?"
-  ],
-  "tr": "Lo mantenemos limpio.",
-  "hint": {
-   "es": "Antepón Do.",
-   "en": "Antepón Do."
-  },
-  "story": null,
-  "change": {
-   "es": "<b>We keep…</b> → <b>Do we keep…?</b>",
-   "en": "<b>We keep…</b> → <b>Do we keep…?</b>"
-  },
-  "formula": {
-   "es": "Do/Does + sujeto + verbo base ?",
-   "en": "Do/Does + subject + base verb ?"
-  },
-  "rule": {
-   "es": "Do + I/you/we/they · Does + he/she/it + verbo base ?",
-   "en": "Do + I/you/we/they · Does + he/she/it + base verb ?"
-  },
-  "examples": {
-   "es": [
-    "Do you…?",
-    "Does he…?"
-   ],
-   "en": [
-    "Do you…?",
-    "Does he…?"
-   ]
-  },
-  "es": {
-   "es": "En la pregunta la -s pasa de verbo a «Does».",
-   "en": "In the question the -s moves from the verb to «Does»."
-  },
-  "lit": {
-   "es": "",
-   "en": ""
-  }
- }
-,
-
- { reinf:{es:"you → Do",en:"you → Do"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"You brush your teeth.", answer:["Do","you","brush","your","teeth","?"], tr:"Te cepillas los dientes.",
-   hint:{es:"Pon Do al inicio: Do + sujeto + verbo base?",en:"Put Do first: Do + subject + base verb?"},
-   story:{q:'"I brush my teeth."',es:'"Me cepillo los dientes."'},
-   change:{es:"Añade Do al inicio: Do you brush…?",en:"Add Do at the start: Do you brush…?"},
-   formula:{es:"Do + sujeto + verbo base?",en:"Do + subject + base verb?"}, rule:{es:"I / you / we / they → Do",en:"I / you / we / they → Do"},
-   examples:{es:["brush → Do you brush?"],en:["brush → Do you brush?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"he → Does (base)",en:"he → Does (base)"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"Marco takes a shower.", answer:["Does","Marco","take","a","shower","?"], tr:"Marco se da una ducha.",
-   hint:{es:"Pon Does al inicio; takes → take (base).",en:"Put Does first; takes → take (base)."},
-   story:{q:'"I take a quick shower."',es:'"Me doy una ducha rápida."'},
-   change:{es:"takes → Does Marco take…? (el verbo vuelve a la base).",en:"takes → Does Marco take…? (verb returns to base)."},
-   formula:{es:"Does + sujeto + verbo base?",en:"Does + subject + base verb?"}, rule:{es:"he/she/it → Does + base",en:"he/she/it → Does + base"},
-   examples:{es:["takes → Does Marco take?"],en:["takes → Does Marco take?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"they → Do",en:"they → Do"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"They wake up early.", answer:["Do","they","wake","up","early","?"], tr:"Ellos se despiertan temprano.",
-   hint:{es:"Pon Do al inicio: Do + sujeto + verbo base?",en:"Put Do first: Do + subject + base verb?"},
-   story:{q:'"I get up early."',es:'"Me levanto temprano."'},
-   change:{es:"Añade Do al inicio: Do they wake up…?",en:"Add Do at the start: Do they wake up…?"},
-   formula:{es:"Do + sujeto + verbo base?",en:"Do + subject + base verb?"}, rule:{es:"we / they → Do",en:"we / they → Do"},
-   examples:{es:["wake → Do they wake up?"],en:["wake → Do they wake up?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"she → Does (base)",en:"she → Does (base)"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"Rosa opens the window.", answer:["Does","Rosa","open","the","window","?"], tr:"Rosa abre la ventana.",
-   hint:{es:"Pon Does al inicio; opens → open (base).",en:"Put Does first; opens → open (base)."},
-   story:{q:'"I open my window first."',es:'"Abro mi ventana primero."'},
-   change:{es:"opens → Does Rosa open…?",en:"opens → Does Rosa open…?"},
-   formula:{es:"Does + sujeto + verbo base?",en:"Does + subject + base verb?"}, rule:{es:"he/she/it → Does + base",en:"he/she/it → Does + base"},
-   examples:{es:["opens → Does Rosa open?"],en:["opens → Does Rosa open?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"we → Do",en:"we → Do"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"We eat breakfast.", answer:["Do","we","eat","breakfast","?"], tr:"Desayunamos.",
-   hint:{es:"Pon Do al inicio: Do + sujeto + verbo base?",en:"Put Do first: Do + subject + base verb?"},
-   story:{q:'"I sit down and eat."',es:'"Me siento y como."'},
-   change:{es:"Añade Do al inicio: Do we eat…?",en:"Add Do at the start: Do we eat…?"},
-   formula:{es:"Do + sujeto + verbo base?",en:"Do + subject + base verb?"}, rule:{es:"we / they → Do",en:"we / they → Do"},
-   examples:{es:["eat → Do we eat?"],en:["eat → Do we eat?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"he → Does (base)",en:"he → Does (base)"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"Ben gives fruit.", answer:["Does","Ben","give","fruit","?"], tr:"Ben da fruta.",
-   hint:{es:"Pon Does al inicio; gives → give (base).",en:"Put Does first; gives → give (base)."},
-   story:null,
-   change:{es:"gives → Does Ben give…?",en:"gives → Does Ben give…?"},
-   formula:{es:"Does + sujeto + verbo base?",en:"Does + subject + base verb?"}, rule:{es:"he/she/it → Does + base",en:"he/she/it → Does + base"},
-   examples:{es:["gives → Does Ben give?"],en:["gives → Does Ben give?"]}, es:{es:"",en:""}, lit:{es:"",en:""} },
- { reinf:{es:"I → Do",en:"I → Do"}, task:{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},
-   src:"I take my keys.", answer:["Do","I","take","my","keys","?"], tr:"Tomo mis llaves.",
-   hint:{es:"Pon Do al inicio: Do + sujeto + verbo base?",en:"Put Do first: Do + subject + base verb?"},
-   story:{q:'"I take my keys too."',es:'"También tomo mis llaves."'},
-   change:{es:"Añade Do al inicio: Do I take…?",en:"Add Do at the start: Do I take…?"},
-   formula:{es:"Do + sujeto + verbo base?",en:"Do + subject + base verb?"}, rule:{es:"I → Do",en:"I → Do"},
-   examples:{es:["take → Do I take?"],en:["take → Do I take?"]}, es:{es:"",en:""}, lit:{es:"",en:""} }
-];
+const QS = [{"reinf":{"es":"you → Do","en":"you → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"You get up early.","answer":["Do","you","get","up","early","?"],"tr":"Te levantas temprano.","hint":{"es":"Antepón Do y agrega ?.","en":"Antepón Do y agrega ?."},"story":null,"change":{"es":"<b>You get…</b> → <b>Do you get…?</b>","en":"<b>You get…</b> → <b>Do you get…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Does","gets"]},{"reinf":{"es":"he → Does (base)","en":"he → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Marco makes coffee.","answer":["Does","Marco","make","coffee","?"],"tr":"Marco hace café.","hint":{"es":"Does + verbo BASE.","en":"Does + verbo BASE."},"story":null,"change":{"es":"<b>makes → Does Marco make…?</b> (la -s pasa a Does).","en":"<b>makes → Does Marco make…?</b> (la -s pasa a Does)."},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Do","makes"]},{"reinf":{"es":"she → Does (base)","en":"she → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Rosa sweeps the floor.","answer":["Does","Rosa","sweep","the","floor","?"],"tr":"Rosa barre el piso.","hint":{"es":"Does + verbo base.","en":"Does + verbo base."},"story":null,"change":{"es":"<b>sweeps → Does Rosa sweep…?</b>","en":"<b>sweeps → Does Rosa sweep…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Do","sweeps"]},{"reinf":{"es":"they → Do","en":"they → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"They eat at lunch.","answer":["Do","they","eat","at","lunch","?"],"tr":"Ellos comen en el almuerzo.","hint":{"es":"Antepón Do.","en":"Antepón Do."},"story":null,"change":{"es":"<b>They eat…</b> → <b>Do they eat…?</b>","en":"<b>They eat…</b> → <b>Do they eat…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Does","eats"]},{"reinf":{"es":"he → Does (base)","en":"he → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Ben gives fruit.","answer":["Does","Ben","give","fruit","?"],"tr":"Ben da fruta.","hint":{"es":"Does + verbo base.","en":"Does + verbo base."},"story":null,"change":{"es":"<b>gives → Does Ben give…?</b>","en":"<b>gives → Does Ben give…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Do","gives"]},{"reinf":{"es":"I → Do","en":"I → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"I get bread.","answer":["Do","I","get","bread","?"],"tr":"Consigo pan.","hint":{"es":"Antepón Do.","en":"Antepón Do."},"story":null,"change":{"es":"<b>I get…</b> → <b>Do I get…?</b>","en":"<b>I get…</b> → <b>Do I get…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Does","gets"]},{"reinf":{"es":"she → Does (base)","en":"she → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Sara washes her face.","answer":["Does","Sara","wash","her","face","?"],"tr":"Sara se lava la cara.","hint":{"es":"Does + verbo base.","en":"Does + verbo base."},"story":null,"change":{"es":"<b>washes → Does Sara wash…?</b>","en":"<b>washes → Does Sara wash…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Do","washes"]},{"reinf":{"es":"we → Do","en":"we → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"We keep it clean.","answer":["Do","we","keep","it","clean","?"],"tr":"Lo mantenemos limpio.","hint":{"es":"Antepón Do.","en":"Antepón Do."},"story":null,"change":{"es":"<b>We keep…</b> → <b>Do we keep…?</b>","en":"<b>We keep…</b> → <b>Do we keep…?</b>"},"formula":{"es":"Do/Does + sujeto + verbo base ?","en":"Do/Does + subject + base verb ?"},"rule":{"es":"Do + I/you/we/they · Does + he/she/it + verbo base ?","en":"Do + I/you/we/they · Does + he/she/it + base verb ?"},"examples":{"es":["Do you…?","Does he…?"],"en":["Do you…?","Does he…?"]},"es":{"es":"En la pregunta la -s pasa de verbo a «Does».","en":"In the question the -s moves from the verb to «Does»."},"lit":{"es":"","en":""},"distractors":["Does","keeps"]},{"reinf":{"es":"you → Do","en":"you → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"You brush your teeth.","answer":["Do","you","brush","your","teeth","?"],"tr":"Te cepillas los dientes.","hint":{"es":"Pon Do al inicio: Do + sujeto + verbo base?","en":"Put Do first: Do + subject + base verb?"},"story":{"q":"\"I brush my teeth.\"","es":"\"Me cepillo los dientes.\""},"change":{"es":"Añade Do al inicio: Do you brush…?","en":"Add Do at the start: Do you brush…?"},"formula":{"es":"Do + sujeto + verbo base?","en":"Do + subject + base verb?"},"rule":{"es":"I / you / we / they → Do","en":"I / you / we / they → Do"},"examples":{"es":["brush → Do you brush?"],"en":["brush → Do you brush?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Does","brushes"]},{"reinf":{"es":"he → Does (base)","en":"he → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Marco takes a shower.","answer":["Does","Marco","take","a","shower","?"],"tr":"Marco se da una ducha.","hint":{"es":"Pon Does al inicio; takes → take (base).","en":"Put Does first; takes → take (base)."},"story":{"q":"\"I take a quick shower.\"","es":"\"Me doy una ducha rápida.\""},"change":{"es":"takes → Does Marco take…? (el verbo vuelve a la base).","en":"takes → Does Marco take…? (verb returns to base)."},"formula":{"es":"Does + sujeto + verbo base?","en":"Does + subject + base verb?"},"rule":{"es":"he/she/it → Does + base","en":"he/she/it → Does + base"},"examples":{"es":["takes → Does Marco take?"],"en":["takes → Does Marco take?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Do","takes"]},{"reinf":{"es":"they → Do","en":"they → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"They wake up early.","answer":["Do","they","wake","up","early","?"],"tr":"Ellos se despiertan temprano.","hint":{"es":"Pon Do al inicio: Do + sujeto + verbo base?","en":"Put Do first: Do + subject + base verb?"},"story":{"q":"\"I get up early.\"","es":"\"Me levanto temprano.\""},"change":{"es":"Añade Do al inicio: Do they wake up…?","en":"Add Do at the start: Do they wake up…?"},"formula":{"es":"Do + sujeto + verbo base?","en":"Do + subject + base verb?"},"rule":{"es":"we / they → Do","en":"we / they → Do"},"examples":{"es":["wake → Do they wake up?"],"en":["wake → Do they wake up?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Does","wakes"]},{"reinf":{"es":"she → Does (base)","en":"she → Does (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"Rosa opens the window.","answer":["Does","Rosa","open","the","window","?"],"tr":"Rosa abre la ventana.","hint":{"es":"Pon Does al inicio; opens → open (base).","en":"Put Does first; opens → open (base)."},"story":{"q":"\"I open my window first.\"","es":"\"Abro mi ventana primero.\""},"change":{"es":"opens → Does Rosa open…?","en":"opens → Does Rosa open…?"},"formula":{"es":"Does + sujeto + verbo base?","en":"Does + subject + base verb?"},"rule":{"es":"he/she/it → Does + base","en":"he/she/it → Does + base"},"examples":{"es":["opens → Does Rosa open?"],"en":["opens → Does Rosa open?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Do","opens"]},{"reinf":{"es":"we → Do","en":"we → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"We eat breakfast.","answer":["Do","we","eat","breakfast","?"],"tr":"Desayunamos.","hint":{"es":"Pon Do al inicio: Do + sujeto + verbo base?","en":"Put Do first: Do + subject + base verb?"},"story":{"q":"\"I sit down and eat.\"","es":"\"Me siento y como.\""},"change":{"es":"Añade Do al inicio: Do we eat…?","en":"Add Do at the start: Do we eat…?"},"formula":{"es":"Do + sujeto + verbo base?","en":"Do + subject + base verb?"},"rule":{"es":"we / they → Do","en":"we / they → Do"},"examples":{"es":["eat → Do we eat?"],"en":["eat → Do we eat?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Does","eats"]},{"reinf":{"es":"he → Do (base)","en":"he → Do (base)"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"They give fruit.","answer":["Do","they","give","fruit","?"],"tr":"Ellos dan fruta.","hint":{"es":"Pon Do al inicio; give → give (base).","en":"Put Do first; give → give (base)."},"story":null,"change":{"es":"give → Do they give…?","en":"give → Do they give…?"},"formula":{"es":"Do + sujeto + verbo base?","en":"Do + subject + base verb?"},"rule":{"es":"he/she/it → Do + base","en":"he/she/it → Do + base"},"examples":{"es":["give → Do they give?"],"en":["give → Do they give?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Does","gives"]},{"reinf":{"es":"I → Do","en":"I → Do"},"task":{"es":"Cambia la afirmación en <b>pregunta Yes/No</b>.","en":"Change the statement into a <b>Yes/No question</b>."},"src":"I take my keys.","answer":["Do","I","take","my","keys","?"],"tr":"Tomo mis llaves.","hint":{"es":"Pon Do al inicio: Do + sujeto + verbo base?","en":"Put Do first: Do + subject + base verb?"},"story":{"q":"\"I take my keys too.\"","es":"\"También tomo mis llaves.\""},"change":{"es":"Añade Do al inicio: Do I take…?","en":"Add Do at the start: Do I take…?"},"formula":{"es":"Do + sujeto + verbo base?","en":"Do + subject + base verb?"},"rule":{"es":"I → Do","en":"I → Do"},"examples":{"es":["take → Do I take?"],"en":["take → Do I take?"]},"es":{"es":"","en":""},"lit":{"es":"","en":""},"distractors":["Does","takes"]}];
 
 /* ════ FIN DE LO EDITABLE — debajo es el motor (no tocar) ════ */
 const T = {
-  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Pista o Traducción.',
+  es:{ lswLab:'Instrucciones y ayuda', insT:'Reconstruye la oración', insP:'Toca las <b>fichas</b> en orden para construir la oración transformada. Toca una ficha puesta para devolverla. ¿Dudas? Usa Traducción.',
     qlabel:'Pregunta', hint:'Pista', tr:'Traducción', hintLab:'Pista (contexto)', trLab:'Traducción de la oración', report:'⚠ Reportar', withSupport:'con apoyo', check:'Comprobar', trayPh:'Toca las fichas para construir aquí…', original:'Original:',
     fbOk:'¡Correcto!', fbNo:'Casi — revisemos', bAnswer:'✔ Forma correcta', bChange:'🔧 El cambio paso a paso', bForm:'🧩 Estructura', bRule:'📐 Regla', bEs:'Español ↔ Inglés', bLit:'🔤 Literal vs natural',
     prev:'← Anterior', next:'Siguiente →', seeRes:'Ver resultados 🎉',
@@ -628,7 +139,7 @@ const T = {
     ph:['¡Excelente! Dominas el tema. 🌟','¡Muy bien, aprobado! Repasa los pocos errores. 💪','Casi — repasa y vuelve para superar el '+PASS+'%. 🌱'],
     supp:n=>n+' con apoyo de traducción (no baja tu nota; lo verá tu teacher).',
     rFormH:'⚠ Reportar un error', rOpts:['La forma correcta parece equivocada','Error de tipeo / ortografía','La traducción no coincide','La consigna confunde','Faltan o sobran fichas','Otro'], rPlace:'Cuéntanos qué viste (opcional)...', rSend:'Enviar a soporte', rCancel:'Cancelar', rDone:'✓ Reporte enviado a soporte', rCodeLab:'Código (cópialo si tu teacher lo pide):', xpEarned:'XP ganada', exitT:'¿Seguro que deseas salir? 🚪', exitP:x=>'Si sales ahora, <b>perderás los '+x+' XP</b> que llevas y el progreso de este ejercicio. Termínalo para reclamarlos. 💪', exitStay:'Seguir practicando', exitLeave:'Salir y perder mis XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>Cómo se resuelve:</b> toca las fichas en orden para armar la oración.','<b>🌐 Español/English:</b> idioma de instrucciones y explicaciones (el ejercicio queda en inglés).','<b>💡 Pista:</b> ayuda de contexto, debajo de la oración.','<b>🔤 Traducción:</b> la oración en español (apoyo, no baja tu nota).','<b>⚠ Reportar:</b> avísanos si algo está mal en la pregunta.','<b>Al terminar:</b> verás nota, aciertos, tiempo y temas a reforzar.','<b>≥75% aprueba</b> y desbloquea la siguiente actividad.'] },
-  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Hint or Translation.',
+  en:{ lswLab:'Instructions & help', insT:'Rebuild the sentence', insP:'Tap the <b>tiles</b> in order to build the transformed sentence. Tap a placed tile to send it back. Stuck? Use Translation.',
     qlabel:'Question', hint:'Hint', tr:'Translation', hintLab:'Hint (context)', trLab:'Sentence translation', report:'⚠ Report', withSupport:'with help', check:'Check', trayPh:'Tap the tiles to build here…', original:'Original:',
     fbOk:'Correct!', fbNo:'Almost — let\'s review', bAnswer:'✔ Correct form', bChange:'🔧 The change, step by step', bForm:'🧩 Structure', bRule:'📐 Rule', bEs:'Spanish ↔ English', bLit:'🔤 Literal vs natural',
     prev:'← Back', next:'Next →', seeRes:'See results 🎉',
@@ -652,8 +163,8 @@ function buildTr(it,i){ const t=T[lang];
     <div class="qtop"><div class="qnum">${i+1}</div><span class="qlabel" id="ql${i}">${t.qlabel} ${i+1}</span><button class="qreport" id="qr${i}" onclick="toggleReport(${i})">${t.report}</button></div>
     <div class="consigna" id="cn${i}">👉 ${it.task[lang]}</div>
     <div class="tprompt"><span class="po">${t.original}</span><span class="src">${it.src}</span></div>
-    <div class="support"><button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button><button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
-    <div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>
+    <div class="support">${(it.hint&&it.hint[lang])?`<button class="sbtn hint" id="hb${i}" onclick="reveal(${i},'hint')">💡 <span class="sh">${t.hint}</span></button>`:''}<button class="sbtn tr" id="tb${i}" onclick="reveal(${i},'tr')">🔤 <span class="st">${t.tr}</span></button></div>
+    ${(it.hint&&it.hint[lang])?`<div class="reveal hintbox" id="hr${i}"><span class="lab hl">${t.hintLab}</span><span class="hv">${it.hint[lang]}</span></div>`:''}
     <div class="reveal trbox" id="trb${i}"><span class="lab tl">${t.trLab}</span>${it.tr}</div>
     <div class="tray" id="tray${i}" data-ph="${t.trayPh}"></div>
     <div class="bank" id="bank${i}"></div>
@@ -663,15 +174,16 @@ function buildTr(it,i){ const t=T[lang];
     <div class="rdone" id="rd${i}"><div style="font-weight:800;font-size:13px;color:#1B5E20;">${t.rDone}</div><div style="font-size:11.5px;color:#555;margin-top:3px;" id="rcl${i}">${t.rCodeLab}</div><div class="rcode" id="rc${i}" onclick="copyCode(${i})"></div></div>
     <div class="nav"><button class="nb prev" onclick="nav(${i},-1)" ${i===0?'disabled':''}>${t.prev}</button><button class="nb next" id="nx${i}" onclick="nav(${i},1)" disabled>${i===QS.length-1?t.seeRes:t.next}</button></div></div>`;
 }
+function tilesOf(it){ return [...it.answer, ...((it.distractors)||[])]; }
 function initTr(i){ const it=QS[i]; trState[i]={order:[]};
-  trState[i].bankOrder=[...it.answer].map((w,idx)=>idx).sort(()=>Math.random()-.5);
+  trState[i].bankOrder=tilesOf(it).map((w,idx)=>idx).sort(()=>Math.random()-.5);
   renderBank(i); renderTray(i); }
 function renderBank(i){ const it=QS[i], st=trState[i];
-  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${it.answer[idx]}</button>`).join(''); }
+  document.getElementById('bank'+i).innerHTML=st.bankOrder.map(idx=>`<button class="tile${st.order.includes(idx)?' placed':''}" id="tile${i}_${idx}" onclick="placeTile(${i},${idx})">${tilesOf(it)[idx]}</button>`).join(''); }
 function renderTray(i){ const it=QS[i], st=trState[i]; const tray=document.getElementById('tray'+i);
-  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${it.answer[idx]}</button>`).join('');
+  tray.innerHTML=st.order.map(idx=>`<button class="tile" data-idx="${idx}">${tilesOf(it)[idx]}</button>`).join('');
   if(!locked[i]) tray.querySelectorAll('.tile').forEach(el=>attachDrag(i,el));
-  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length!==it.answer.length; }
+  const chk=document.getElementById('chk'+i); if(chk)chk.disabled = st.order.length===0; }
 function placeTile(i,idx){ if(locked[i])return; startTimer(); const st=trState[i]; if(st.order.includes(idx))return; st.order.push(idx); renderBank(i); renderTray(i); }
 function removeTile(i,idx){ if(locked[i])return; const st=trState[i]; st.order=st.order.filter(x=>x!==idx); renderBank(i); renderTray(i); }
 function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])return; e.preventDefault();
@@ -686,7 +198,7 @@ function attachDrag(i,el){ el.addEventListener('pointerdown',e=>{ if(locked[i])r
     if(!moved){ removeTile(i,+el.dataset.idx); } };
   tray.addEventListener('pointermove',move); document.addEventListener('pointerup',up); }); }
 function checkTr(i){ if(locked[i])return; locked[i]=true; const it=QS[i], st=trState[i];
-  const ok=st.order.map(x=>it.answer[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
+  const ok=st.order.map(x=>tilesOf(it)[x]).join(' ')===it.answer.join(' '); picked[i]=ok;
   if(ok){score++;xpTotal+=XPQ;toast('+'+XPQ+' XP ⭐');} else wrongTags.push(it.reinf[lang]); if(it._tr)usedTr++;
   document.getElementById('chk'+i).style.display='none'; document.querySelectorAll('#tray'+i+' .tile').forEach(x=>x.style.pointerEvents='none');
   renderFb(i,ok,it); document.getElementById('nx'+i).disabled=false; bump(); }
@@ -702,7 +214,7 @@ function renderFb(i,ok,it){ const t=T[lang]; const el=document.getElementById('f
   const sup=it._tr?`<span style="margin-left:auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px;">${t.withSupport}</span>`:'';
   el.innerHTML=`<div class="fbh">${ok?'✅':'❌'} <b>${ok?t.fbOk:t.fbNo}</b>${sup}</div><div class="fbb">${b}</div>`; }
 function reveal(i,which){ startTimer(); const it=QS[i];
-  if(which==='hint'){ document.getElementById('hr'+i).classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
+  if(which==='hint'){ const hr=document.getElementById('hr'+i); if(!hr) return; hr.classList.toggle('show'); document.getElementById('hb'+i).classList.add('used'); }
   else { document.getElementById('trb'+i).classList.toggle('show'); const b=document.getElementById('tb'+i); if(!b.classList.contains('used')){ b.classList.add('used'); it._tr=true; } } }
 function bump(){ document.getElementById('pfill').style.width=(picked.filter(x=>x!==null).length/QS.length*100)+'%'; }
 function show(i){ document.querySelectorAll('#qbox .qcard').forEach((c,x)=>c.classList.toggle('hidden',x!==i)); document.getElementById('cq').textContent=i+1; cur=i; window.scrollTo({top:0,behavior:'smooth'}); }

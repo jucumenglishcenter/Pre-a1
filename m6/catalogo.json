@@ -29,6 +29,15 @@
       "url": "https://jucumenglishcenter.github.io/Pre-a1/m6/listening.html"
     },
     {
+      "id": "quizlet",
+      "type": "quizlet",
+      "name": "Quizlet · Vocabulario y escritura",
+      "open": true,
+      "quizVocabulario": "https://quizlet.com/pe/1198333131/prea1-vocabulario-eng-es-flash-cards/?i=b8u51&x=1qqt",
+      "quizOrdenar": "https://quizlet.com/pe/1198333282/prea1-escritura-ordenar-flash-cards/?i=b8u51&x=1jqt",
+      "quizTraducir": "https://quizlet.com/pe/1198333357/prea1-escritura-traducir-flash-cards/?i=b8u51&x=1jqt"
+    },
+    {
       "id": "sum-past-irr-1",
       "type": "summary",
       "name": "Resumen · Pasado Irregular: went · came · had · got",

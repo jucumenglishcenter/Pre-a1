@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories y Diálogos · Feelings, States & Qualities · JUCUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#ECEAE3; --card:#fff; --text:#2A2A2A; --text-soft:#777; --border:#E8E5DC;
+    --fd:'Fredoka','Nunito',system-ui,sans-serif; --fb:'Nunito',system-ui,sans-serif; --fs:'Atkinson Hyperlegible',Georgia,serif;
+    --rv-bg:#F3E5F5; --rv-text:#7B1FA2; --rv-bd:#CE93D8; --reading:18px;
+    --shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14); --shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09); }
+  [data-level="pre-a1"]{ --lp:#F9A825; --ld:#E65100; --ll:#FFF9C4; --lm:#FFECB3; --lg:linear-gradient(135deg,#F9A825,#FF8F00); --tint:#FAF7EE; }
+  [data-level="a1"]{ --lp:#2196F3; --ld:#0D47A1; --ll:#E3F2FD; --lm:#BBDEFB; --lg:linear-gradient(135deg,#1565C0,#2196F3 60%,#64B5F6); --tint:#F1F7FE; }
+  [data-level="a2"]{ --lp:#2EA84B; --ld:#1B5E20; --ll:#DFF5E3; --lm:#9FD3A2; --lg:linear-gradient(135deg,#43C062,#1F7A33); --tint:#F0F8F2; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100vh;}
+  .bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:11px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .bar-brand{display:flex;align-items:center;gap:9px;} .bar-brand img{width:36px;height:36px;object-fit:contain;}
+  .bar-brand b{font-family:var(--fd);font-weight:600;font-size:15px;display:block;line-height:1.05;} .bar-brand span{font-size:10.5px;color:var(--text-soft);font-weight:700;}
+  .bar-title{flex:1;min-width:160px;} .bar-title h1{font-family:var(--fd);font-weight:600;font-size:16px;margin:0;} .bar-title p{margin:1px 0 0;font-size:11.5px;color:var(--text-soft);font-weight:700;}
+  .ctrl{display:flex;align-items:center;gap:7px;} .ctrl>span{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text-soft);}
+  .seg{display:flex;background:#F0EDE4;border:1px solid var(--border);border-radius:11px;padding:3px;gap:2px;}
+  .seg button{border:none;background:transparent;font-family:var(--fb);font-weight:800;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer;color:var(--text-soft);}
+  #segPre.on{background:linear-gradient(135deg,#F9A825,#FF8F00);color:#fff;} #segA1.on{background:linear-gradient(135deg,#1565C0,#2196F3);color:#fff;} #segA2.on{background:linear-gradient(135deg,#43C062,#1F7A33);color:#fff;}
+  .stage{max-width:1200px;margin:0 auto;padding:24px 20px 60px;display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:30px;align-items:start;}
+  @media(max-width:900px){.stage{grid-template-columns:1fr;}}
+  .phone-wrap{position:sticky;top:78px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .phone-cap{font-size:11.5px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.08em;display:flex;gap:7px;align-items:center;} .phone-cap b{padding:3px 10px;border-radius:20px;color:#fff;font-size:10.5px;background:var(--lp);}
+  .phone{width:408px;max-width:93vw;background:#1c1c22;border-radius:42px;padding:11px;box-shadow:var(--shadow);}
+  .screen{background:var(--tint);border-radius:32px;overflow:hidden;position:relative;height:772px;display:flex;flex-direction:column;}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:130px;height:24px;background:#1c1c22;border-radius:0 0 16px 16px;z-index:30;}
+  .scroll{position:relative;z-index:2;flex:1;overflow-y:auto;overflow-x:hidden;} .scroll::-webkit-scrollbar{width:0;}
+  .mhead{background:var(--lg);padding:30px 15px 13px;display:flex;align-items:center;gap:10px;color:#fff;}
+  .mback{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .mbadge{width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);} .mbadge img{width:24px;height:24px;object-fit:contain;}
+  .mh-info{flex:1;min-width:0;} .mh-info b{font-family:var(--fd);font-weight:600;font-size:15px;display:block;} .mh-info span{font-size:10.5px;opacity:.9;font-weight:700;}
+  .pill{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:10px;font-weight:800;padding:3px 9px;border-radius:12px;}
+  .rtools{position:sticky;top:0;z-index:15;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:8px 10px;display:flex;flex-direction:column;gap:7px;}
+  .rrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .playall{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:12.5px;border:none;border-radius:10px;padding:8px 14px;cursor:pointer;background:var(--lg);color:#fff;box-shadow:var(--shadow-sm);}
+  .miniseg{display:flex;background:#F0EDE4;border:1px solid var(--border);border-radius:9px;padding:2px;gap:2px;} .miniseg button{border:none;background:transparent;font-weight:800;font-size:10.5px;padding:4px 8px;border-radius:7px;cursor:pointer;color:var(--text-soft);} .miniseg button.on{background:var(--lg);color:#fff;} .miniseg .lab{font-size:9px;font-weight:800;color:var(--text-soft);align-self:center;padding:0 4px;text-transform:uppercase;}
+  .tbtn{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;border:1.5px solid var(--lm);background:#fff;color:var(--ld);border-radius:9px;padding:5px 8px;cursor:pointer;} .tbtn.on{background:var(--lg);color:#fff;border-color:transparent;}
+  .speed{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:800;color:var(--text-soft);} .speed input{width:70px;accent-color:var(--lp);}
+  .ring{margin-left:auto;display:flex;align-items:center;gap:6px;} .ring .t{font-size:10px;font-weight:800;color:var(--ld);line-height:1.1;} .ring .t small{display:block;color:var(--text-soft);font-size:8px;font-weight:700;}
+  .mbody{padding:14px 16px 30px;}
+  .howto{background:#fff;border:1px solid var(--lm);border-radius:14px;box-shadow:var(--shadow-sm);margin-bottom:14px;overflow:hidden;}
+  .howto-h{display:flex;align-items:center;gap:8px;padding:11px 13px;background:var(--ll);cursor:pointer;} .howto-h b{font-family:var(--fd);font-weight:600;font-size:13.5px;color:var(--ld);flex:1;} .howto-h .ar{transition:.2s;font-weight:800;color:var(--ld);} .howto.open .ar{transform:rotate(90deg);}
+  .howto-b{display:none;padding:12px 14px;} .howto.open .howto-b{display:block;}
+  .stepline{display:flex;gap:9px;padding:5px 0;font-size:12.5px;line-height:1.45;} .stepn{width:21px;height:21px;border-radius:50%;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0;} .stepnote{margin-top:8px;background:var(--tint);border-radius:9px;padding:8px 10px;font-size:11.5px;color:var(--text-soft);line-height:1.45;}
+  .stitle{font-family:var(--fd);font-weight:600;font-size:21px;color:var(--ld);margin:2px 0 2px;} .ssub{font-size:12px;color:var(--text-soft);font-weight:700;margin-bottom:14px;}
+  .para{margin-bottom:14px;border-radius:10px;transition:box-shadow .2s;padding:6px;margin-left:-6px;margin-right:-6px;} .para.reading{box-shadow:0 0 0 2px var(--lm);background:rgba(255,255,255,.5);}
+  .ptext{font-family:var(--fs);font-size:var(--reading);line-height:1.95;color:#2b2b2b;}
+  .sent,.sente{transition:background .15s;border-radius:4px;padding:0 1px;} .sent.read{background:var(--ll);box-shadow:0 0 0 2px var(--lp);} .sente.read{background:#F3E5F5;box-shadow:0 0 0 2px #CE93D8;}
+  .pes{display:none;font-family:var(--fs);font-style:italic;color:#5A2A66;font-size:calc(var(--reading) - 2px);line-height:1.85;margin-top:6px;padding-left:10px;border-left:2px solid var(--rv-bd);}
+  .screen[data-text="es"] .ptext{display:none;} .screen[data-text="es"] .pes{display:block;border-left:none;padding-left:0;font-style:normal;color:#2b2b2b;} .screen[data-text="both"] .pes{display:block;}
+  .prow{display:flex;gap:7px;margin-top:8px;} .pbtn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;border-radius:9px;padding:5px 11px;cursor:pointer;border:1.5px solid var(--lm);background:var(--tint);color:var(--ld);} .pbtn.on{background:var(--lg);color:#fff;border-color:transparent;}
+  .dato{display:none;margin-top:9px;background:#FFFDF4;border:1px solid #F0C66B;border-left:4px solid #F9A825;border-radius:12px;padding:10px 13px;font-size:12.5px;color:#4A3A10;line-height:1.6;} .dato .hd{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#B26A00;margin-bottom:4px;} .dato .frase{font-family:var(--fs);font-weight:700;font-size:13.5px;color:#1B5E20;} .dato .lit{font-family:var(--fs);font-style:italic;color:#8a6d1c;font-size:11.5px;margin:2px 0 4px;} .screen[data-datos="on"] .dato{display:block;} .dato .hd{display:flex;align-items:center;gap:5px;font-weight:800;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:#92510F;margin-bottom:3px;} .dato b{color:#92510F;}
+  .endcard{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm);padding:18px;text-align:center;margin-top:6px;}
+  .endcard .em{font-size:40px;} .endcard h3{font-family:var(--fd);font-weight:600;font-size:18px;color:var(--ld);margin:6px 0 2px;} .endcard p{font-size:12.5px;color:var(--text-soft);margin:0 0 12px;line-height:1.5;}
+  .estats{display:flex;gap:9px;margin-bottom:12px;} .estat{flex:1;background:var(--tint);border:1px solid var(--lm);border-radius:12px;padding:10px 6px;} .estat b{font-family:var(--fd);font-weight:600;font-size:18px;color:var(--ld);display:block;} .estat span{font-size:10px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.03em;}
+  .ebtn{width:100%;padding:13px;border:none;border-radius:13px;background:var(--lg);color:#fff;font-weight:800;font-size:13.5px;cursor:pointer;}
+  .markdone{width:100%;padding:13px;border:2px solid var(--lm);border-radius:13px;background:#fff;color:var(--ld);font-weight:800;font-size:13.5px;cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:7px;} .markdone.done{background:var(--lg);color:#fff;border-color:transparent;}
+  .mfoot{display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:#B0A99A;padding:12px;font-weight:700;} .mfoot img{height:18px;opacity:.5;}
+  .vpanel{position:absolute;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--lm);border-radius:20px 20px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding:14px 16px 18px;transform:translateY(110%);transition:transform .28s;max-height:62%;display:flex;flex-direction:column;} .vpanel.show{transform:translateY(0);}
+  .vpanel h4{font-family:var(--fd);font-weight:600;font-size:15px;color:var(--ld);margin:0 0 2px;display:flex;align-items:center;gap:7px;} .vpanel .sub{font-size:11px;color:var(--text-soft);font-weight:700;margin-bottom:10px;} .vpanel .gx{position:absolute;top:10px;right:12px;border:none;background:none;font-size:19px;color:#bbb;cursor:pointer;}
+  .vlist{overflow-y:auto;display:flex;flex-direction:column;gap:7px;} .vrow{display:flex;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--lm);border-radius:11px;padding:9px 11px;} .vrow .vw{font-weight:800;color:var(--ld);font-size:14px;min-width:78px;} .vrow .vm{flex:1;font-size:12.5px;color:#444;} .vrow .vex{display:block;font-family:var(--fs);font-style:italic;color:var(--text-soft);font-size:11px;margin-top:1px;} .vrow .spk{background:#fff;border:1.5px solid var(--lm);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;color:var(--ld);flex-shrink:0;}
+  .helpfab{position:absolute;right:14px;bottom:14px;z-index:55;display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:22px;background:var(--lg);color:#fff;border:none;font-family:var(--fd);font-size:13.5px;font-weight:600;cursor:pointer;box-shadow:var(--shadow);}
+  .helpov{position:absolute;inset:0;z-index:70;background:rgba(20,20,25,.5);display:none;align-items:center;justify-content:center;padding:18px;} .helpov.show{display:flex;}
+  .helpcard{background:#fff;border-radius:18px;max-width:340px;width:100%;max-height:86%;overflow-y:auto;box-shadow:var(--shadow);padding:16px 18px;position:relative;} .helpcard h3{font-family:var(--fd);font-weight:600;font-size:16px;color:var(--ld);margin:0 0 8px;display:flex;align-items:center;gap:7px;} .helpcard .hx{position:absolute;top:10px;right:12px;border:none;background:none;font-size:19px;color:#bbb;cursor:pointer;}
+  .helptip{display:flex;gap:6px;font-size:12px;color:#555;padding:4px 0;line-height:1.45;} .helptip b{color:var(--ld);}
+  .helpfab.hidden{display:none;}
+  .viewseg{display:flex;gap:4px;background:#F0EDE4;border:1px solid var(--border);border-radius:11px;padding:3px;margin-bottom:10px;}
+  .viewseg button{flex:1;border:none;background:transparent;font-family:var(--fd);font-weight:600;font-size:12.5px;padding:7px 6px;border-radius:8px;cursor:pointer;color:var(--text-soft);display:flex;align-items:center;justify-content:center;gap:5px;} .viewseg button.on{background:var(--lg);color:#fff;}
+  .dsp{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--ld);margin-bottom:2px;}
+  .stpick{position:absolute;inset:0;z-index:65;background:var(--tint);overflow-y:auto;padding:20px 16px;}
+  .stpick h3{font-family:var(--fd);font-weight:600;font-size:17px;color:var(--ld);margin:0 0 3px;} .stpick .sub{font-size:12px;color:var(--text-soft);font-weight:700;margin-bottom:14px;line-height:1.4;}
+  .stcard{display:flex;gap:11px;align-items:center;background:#fff;border:1.5px solid var(--border);border-radius:15px;padding:12px;margin-bottom:10px;cursor:pointer;box-shadow:var(--shadow-sm);}
+  .stcard.lock{opacity:.55;cursor:default;} .stcard .nx{width:40px;height:40px;border-radius:12px;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .stcard .si{flex:1;} .stcard .si b{font-family:var(--fd);font-weight:600;font-size:14px;color:var(--text);display:block;} .stcard .si span{font-size:11px;color:var(--text-soft);font-weight:700;} .stcard .go{color:var(--lp);font-weight:800;font-size:18px;}
+  .notes h2{font-family:var(--fd);font-weight:600;font-size:18px;margin:0 0 4px;} .notes .lead{font-size:13px;color:var(--text-soft);margin:0 0 18px;line-height:1.5;}
+  .note{background:#fff;border:1px solid var(--border);border-radius:15px;padding:14px 16px;margin-bottom:11px;box-shadow:var(--shadow-sm);} .note-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;} .note-n{width:25px;height:25px;border-radius:8px;background:var(--lg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:12px;flex-shrink:0;} .note-h b{font-family:var(--fd);font-weight:600;font-size:14px;} .note p{margin:0;font-size:12.5px;color:#555;line-height:1.5;}
+  .ask{background:#FFFDF5;border:1.5px solid #F0D98B;border-radius:13px;padding:14px 16px;margin-top:6px;} .ask b{font-family:var(--fd);font-weight:600;font-size:14px;color:#8A5A00;} .ask p{font-size:12.5px;color:#6B5A33;margin:6px 0 0;line-height:1.55;}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 20px;border-radius:24px;font-weight:800;font-size:13px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;} .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ===== PRODUCCIÓN: pantalla completa (no tocar) ===== */
+  .bar{display:none!important}.notes{display:none!important}.phone-cap{display:none!important}.notch{display:none!important}
+  .stage{display:block!important;max-width:560px;margin:0 auto;padding:0!important}
+  .phone-wrap{position:static!important;display:block!important}
+  .phone{width:100%!important;max-width:none!important;background:none!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+  .screen{height:auto!important;min-height:100vh;border-radius:0!important;display:block!important;overflow:visible!important}
+  .phone{width:100%!important;max-width:none!important;background:none!important;border-radius:0!important;padding:0!important;box-shadow:none!important;overflow:visible!important}
+  .scroll{overflow:visible!important;height:auto!important;flex:none!important}
+  .mhead{position:static!important}
+  .rtools{position:sticky!important;top:0!important;z-index:30}
+  .helpfab{position:fixed!important;right:16px;bottom:16px}
+  .vpanel{position:fixed!important;left:50%!important;transform:translateX(-50%) translateY(110%);max-width:680px;}
+  .vpanel.show{transform:translateX(-50%) translateY(0)!important;}
+  .stpick{position:fixed!important;inset:0;max-width:none;}
+  /* Escritorio: experiencia cómoda, no solo móvil */
+  @media(min-width:760px){
+    .stage{max-width:760px}
+    .mbody{padding:20px 32px 48px}
+    .ptext{font-size:calc(var(--reading) + 2px);line-height:2}
+    .pes{font-size:var(--reading)}
+    .rtools{padding:12px 32px}
+    .mhead{padding:18px 32px 14px}
+    .stpick{padding:28px 32px}
+    .stpick #spkList{max-width:620px;margin:0 auto}
+  }
+  #screen{overflow:visible!important} #screen .scroll{overflow:visible!important}
+</style>
+<style id="v5a">
+.screen[data-level="pre-a1"]{--lvA:#F9A825;--lvB:#EF8F00;--lvSoft:#FFF3DC;--lvBd:#F2CE86;--lvDark:#8A5A00;--lvInner:#c47f0e;}
+.screen[data-level="a1"]{--lvA:#2196F3;--lvB:#1565C0;--lvSoft:#E3F2FD;--lvBd:#9CCBF2;--lvDark:#0D47A1;--lvInner:#1668b8;}
+.screen[data-level="a2"]{--lvA:#43C062;--lvB:#1F7A33;--lvSoft:#F4FBF4;--lvBd:#CFE8D2;--lvDark:#1B5E20;--lvInner:#2b8a43;}
+.cover5{background:linear-gradient(135deg,var(--lvA,#43C062),var(--lvB,#1F7A33));border-radius:18px;padding:14px 16px;color:#fff;display:flex;gap:12px;align-items:center;margin:0 0 14px;box-shadow:0 3px 10px rgba(30,60,35,.12);}
+.cover5 .em{font-size:28px;background:rgba(255,255,255,.18);border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cover5 .stitle{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.2;margin:0;color:#fff;}
+.cover5 .ssub{font-size:10.5px;font-weight:800;opacity:.92;margin:2px 0 0;color:#fff;}
+.ring5{margin-left:auto;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:conic-gradient(#fff 0 0%,rgba(255,255,255,.25) 0% 100%);}
+.ring5 i{background:var(--lvInner,#2b8a43);border-radius:50%;width:34px;height:34px;font-style:normal;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;}
+.para:not(.dlgrow){background:#fff;border:1px solid var(--border);border-radius:16px;padding:13px 15px;margin-bottom:12px;box-shadow:0 3px 10px rgba(30,60,35,.08);position:relative;}
+.para.heard5::after{content:'✓ escuchado';position:absolute;top:9px;right:11px;font-size:9px;font-weight:800;letter-spacing:.04em;background:var(--lvSoft,#DFF5E3);color:var(--lvDark,#1B5E20);border:1px solid var(--lvBd,#9FD3A2);border-radius:12px;padding:1.5px 7px;}
+</style>
+<style id="dlg2col">
+.screen[data-level="pre-a1"]{--lvChat:#FBF3DC;--lvDot:#EBD9A9;}
+.screen[data-level="a1"]{--lvChat:#E4F0FB;--lvDot:#C4DCF2;}
+.screen[data-level="a2"]{--lvChat:#E8F3E6;--lvDot:#d3e8d2;}
+#paras.chatzone{background:var(--lvChat,#E8F3E6);background-image:radial-gradient(var(--lvDot,#d3e8d2) 1px,transparent 1px);background-size:14px 14px;border-radius:16px;padding:12px 10px 6px;}
+.para.dlgrow{display:flex;gap:7px;align-items:flex-end;background:transparent;border:none;box-shadow:none;padding:0;margin:0 0 10px;}
+.para.dlgrow.dgB{flex-direction:row-reverse;}
+.dav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:13px;color:#fff;background:var(--lvB,#1F7A33);box-shadow:0 2px 6px rgba(0,0,0,.14);}
+.dlgrow.dgB .dav{background:var(--lvA,#43C062);}
+.dbub{max-width:82%;background:#fff;border:1.5px solid var(--border);border-radius:14px 14px 14px 4px;padding:8px 12px 7px;box-shadow:0 2px 8px rgba(30,60,35,.10);}
+.dlgrow.dgB .dbub{border-color:var(--lvBd,#CFE8D2);border-radius:14px 14px 4px 14px;}
+.dlgrow .dsp{color:var(--lvDark,#1B5E20);margin-bottom:1px;}
+.dlgrow.dgB .dsp{text-align:right;}
+.dlgrow .prow{margin-top:5px;}
+.dlgrow .pbtn{padding:3px 9px;font-size:10px;}
+</style>
+</head>
+<body>
+  
+<div class="stage">
+    <div class="phone-wrap">
+      <div class="phone-cap">Vista del alumno · <b id="capLvl">Pre-A1</b></div>
+      <div class="phone"><div class="screen" id="screen" data-level="pre-a1" data-text="both" data-datos="off">
+        <div class="notch"></div>
+        <div class="scroll" id="scroll">
+          <div class="mhead"><button class="mback" onclick="backToPicker()">‹</button>
+            <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+            <div class="mh-info"><b>Stories &amp; Diálogos</b><span id="mhsub">Pre-A1 · M6 · Feelings, States & Qualities</span></div>
+            <div class="pill">📗 Lectura</div></div>
+          <div class="rtools">
+            <div class="rrow">
+              <button class="playall" id="playAll" onclick="playAll()"><span class="ic">▶</span> <span class="pl"></span></button>
+              <div class="miniseg"><span class="lab" id="txtLab">Texto</span><button id="txEn" onclick="setText('en')">EN</button><button id="txEs" onclick="setText('es')">ES</button><button id="txBoth" class="on" onclick="setText('both')">EN+ES</button></div>
+              <div class="ring"><svg width="32" height="32" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="none" stroke="#E5E1D6" stroke-width="4"></circle><circle id="ringFill" cx="17" cy="17" r="14" fill="none" stroke="var(--lp)" stroke-width="4" stroke-linecap="round" stroke-dasharray="88" stroke-dashoffset="88" transform="rotate(-90 17 17)"></circle></svg><div class="t"><span id="ringT">0:00</span><small id="ringNext"></small></div></div>
+            </div>
+            <div class="rrow">
+              <button class="tbtn" id="datosBtn" onclick="toggleDatos()">💡 <span id="datosLab"></span></button>
+              <button class="tbtn" onclick="openVocab()">📖 <span id="vocLab"></span></button>
+              <button class="tbtn" id="focusBtn" onclick="openFocus()">⛶ <span>Enfocar</span></button><button class="tbtn" id="voiceBtn" onclick="toggleVoice()">🔊 US</button>
+              <div class="speed">🐢<input type="range" min="0.6" max="1.3" step="0.1" value="1" oninput="setRate(this.value)"/>🐇</div>
+              <button class="tbtn" onclick="textSize(-1)">A−</button><button class="tbtn" onclick="textSize(1)">A+</button>
+              <div class="miniseg" style="margin-left:auto"><span class="lab">🌐</span><button id="inEs" onclick="setInfo('es')">ES</button><button id="inEn" class="on" onclick="setInfo('en')">EN</button></div>
+            </div>
+          </div>
+          <div class="mbody">
+            <div class="howto" id="howto"><div class="howto-h" onclick="document.getElementById('howto').classList.toggle('open')"><span>🧭</span><b id="howtoT"></b><span class="ar">▸</span></div><div class="howto-b" id="howtoB"></div></div>
+            <div class="viewseg"><button id="vwStory" class="on" onclick="setView('story')">📖 <span id="vwStoryL">Story</span></button><button id="vwDlg" onclick="setView('dlg')">💬 <span id="vwDlgL">Diálogo</span></button></div>
+            <div class="cover5"><span class="em" id="cvEm">📖</span><div style="min-width:0"><div class="stitle" id="stitle"></div><div class="ssub" id="ssub"></div></div><span class="ring5" id="ring5"><i id="ring5T">0%</i></span></div>
+            <div id="paras"></div>
+            <button class="markdone" id="markBtn" onclick="markDone()"><span class="mi">⬜</span> <span id="markLab"></span></button>
+            <div class="endcard" id="endcard" style="display:none">
+              <div class="em">📖</div><h3 id="endT"></h3><p id="endP"></p>
+              <div class="estats"><div class="estat"><b id="eTime">0:00</b><span id="eTimeL"></span></div><div class="estat"><b id="eXp">+0</b><span id="eXpL"></span></div></div>
+              <button class="ebtn" id="endBack" onclick="jecGoBack()"></button>
+            </div>
+          </div>
+          <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido</div>
+        </div>
+        <div class="vpanel" id="vpanel"><button class="gx" onclick="closeVocab()">✕</button><h4>📖 <span id="vpTitle"></span></h4><div class="sub" id="vpSub"></div><div class="vlist" id="vlist"></div></div>
+        <button class="helpfab" id="helpfab" onclick="openHelp()" title="¿Cómo uso el material?">❔ ¿Cómo uso?</button>
+        <div class="stpick" id="stpick"><h3 id="spkH"></h3><div class="sub" id="spkS"></div><div id="spkList"></div></div>
+        <div class="helpov" id="helpov"><div class="helpcard"><button class="hx" onclick="closeHelp()">✕</button><h3>🧭 <span id="helpT"></span></h3><div id="helpTips"></div></div></div>
+      </div></div>
+    </div>
+
+    
+</div>
+  <div class="toast" id="toast"></div>
+
+<script>
+const GLOSS = [{"w":"happy","es":"feliz / contento","ex":"I woke up very happy."},{"w":"nice","es":"amable / agradable / lindo","ex":"She is very nice."},{"w":"good","es":"bueno / bien","ex":"My mom made a good breakfast."},{"w":"big","es":"grande","ex":"The farm was very big."},{"w":"old","es":"viejo / mayor / de edad","ex":"Our house is old and big."},{"w":"quick","es":"rápido / rápida","ex":"He is small but quick."},{"w":"possible","es":"posible","ex":"Is it possible to help everyone?"},{"w":"great","es":"genial / grandioso","ex":"It was a great day!"},{"w":"able","es":"capaz (be able to = poder)","ex":"Ana is able to learn fast."},{"w":"very","es":"muy","ex":"The farm was very big."},{"w":"even","es":"incluso / hasta","ex":"Even my brother came."},{"w":"few / a few","es":"pocos / unos pocos","ex":"A few friends came too."},{"w":"help","es":"ayudar / la ayuda","ex":"I helped her with English."},{"w":"care","es":"cuidar / importar / el cariño","ex":"Her family cares a lot."},{"w":"like","es":"gustar (me gusta)","ex":"I like books very much."},{"w":"went","es":"fui / fue / fuimos (pasado de go)","ex":"Then I went to school."},{"w":"came","es":"vine / vino / vinimos (pasado de come)","ex":"The bus came at seven."},{"w":"had","es":"tuve / tuvo / tuvimos (pasado de have)","ex":"At school we had a test."},{"w":"made","es":"hice / hizo / hicimos (pasado de make)","ex":"At noon we made lunch."},{"w":"got","es":"conseguí / saqué / obtuvo (pasado de get)","ex":"I got a great grade."},{"w":"gave","es":"di / dio / dimos (pasado de give)","ex":"She gave me a small gift."},{"w":"took","es":"tomé / tomó / tomamos (pasado de take)","ex":"We took many photos."},{"w":"grade","es":"nota / calificación","ex":"I got a good grade."},{"w":"test / exam","es":"prueba / examen","ex":"We had a big exam."},{"w":"tired","es":"cansado / cansada","ex":"At night I was tired."},{"w":"sad","es":"triste","ex":"On Tuesday I was sad."},{"w":"angry","es":"enojado / enojada","ex":"On Thursday I was angry."},{"w":"nervous","es":"nervioso / nerviosa","ex":"On Wednesday I was nervous."},{"w":"quiet","es":"silencioso / callado","ex":"The classroom was very quiet."},{"w":"feeling / feelings","es":"sentimiento / sentimientos","ex":"Feelings change every day."},{"w":"smile","es":"sonrisa / sonreír","ex":"But she has a nice smile."},{"w":"friend","es":"amigo / amiga","ex":"My friend Ana came with me."},{"w":"gift","es":"regalo","ex":"She gave me a small gift."},{"w":"hug","es":"abrazo","ex":"I gave her a big hug."},{"w":"cake","es":"pastel / torta","ex":"He made a chocolate cake."},{"w":"farm","es":"granja","ex":"My class went to a farm."},{"w":"cow","es":"vaca","ex":"One cow was very old."},{"w":"horse","es":"caballo","ex":"A small horse came to me."},{"w":"bread","es":"pan","ex":"The bread was very good."},{"w":"hat","es":"gorro / sombrero","ex":"She gave us green hats."},{"w":"free time","es":"tiempo libre","ex":"After lunch, we had free time."}];
+/* Cada oración alineada EN↔ES (para resaltado por oración en ambos idiomas) */
+const STORYDATA = {"1":{"sTitle":"A Great Day","sTitleEs":"Un día genial","dTitle":"At School","dTitleEs":"En la escuela","paras":[[["Yesterday was a great day.","Ayer fue un día genial."],["I woke up very happy.","Me desperté muy feliz."],["The sun was big and bright.","El sol estaba grande y brillante."],["My mom made a good breakfast.","Mi mamá hizo un buen desayuno."],["It was a quick breakfast.","Fue un desayuno rápido."]],[["Then I went to school.","Luego fui a la escuela."],["My friend Ana came with me.","Mi amiga Ana vino conmigo."],["She is very nice.","Ella es muy amable."],["We took the same street.","Tomamos la misma calle."],["The walk was short and quick.","La caminata fue corta y rápida."]],[["At school we had a test.","En la escuela tuvimos una prueba."],["The test was good for me.","La prueba estuvo bien para mí."],["I got a great grade.","Saqué una nota genial."],["My teacher was very happy.","Mi maestra estaba muy feliz."],["She gave me a gold star.","Me dio una estrella dorada."]],[["After class we played outside.","Después de clase jugamos afuera."],["The game was quick and fun.","El juego fue rápido y divertido."],["A few friends came too.","Unos pocos amigos vinieron también."],["Even my brother came.","Incluso mi hermano vino."],["We were all very happy.","Todos estábamos muy felices."]],[["My brother is nine years old.","Mi hermano tiene nueve años."],["He is small but quick.","Él es pequeño pero rápido."],["He got the ball first.","Él consiguió la pelota primero."],["He made a great goal.","Hizo un gol genial."],["Everyone said: good job!","Todos dijeron: ¡buen trabajo!"]],[["At noon we went home.","Al mediodía fuimos a casa."],["Our house is old and big.","Nuestra casa es vieja y grande."],["Dad had a big surprise.","Papá tenía una gran sorpresa."],["He made a chocolate cake.","Hizo un pastel de chocolate."],["The cake was very good.","El pastel estaba muy rico."]],[["My grandma came in the afternoon.","Mi abuela vino en la tarde."],["She gave me a small gift.","Ella me dio un regalito."],["It was a green book.","Era un libro verde."],["I like books very much.","Me gustan mucho los libros."],["I gave her a big hug.","Le di un gran abrazo."]],[["We took many photos together.","Tomamos muchas fotos juntos."],["In one photo, everyone smiled.","En una foto, todos sonrieron."],["My grandma is eighty years old.","Mi abuela tiene ochenta años."],["She is old but very quick.","Ella es mayor pero muy rápida."],["She danced with my brother.","Bailó con mi hermano."]],[["At night I was tired.","En la noche estaba cansada."],["But my heart was happy.","Pero mi corazón estaba feliz."],["I had a great day.","Tuve un día genial."],["Good days are possible every week.","Los días buenos son posibles cada semana."],["You only need good people.","Solo necesitas buena gente."]],[["Today I feel very good.","Hoy me siento muy bien."],["I want another great day.","Quiero otro día genial."],["I am able to make it.","Soy capaz de lograrlo."],["A smile helps a lot.","Una sonrisa ayuda mucho."],["Care for people, and be happy.","Cuida a las personas y sé feliz."]]],"datos":[null,"Pasado irregular: algunos verbos <b>no</b> usan -ed; cambian de forma: go → <b>went</b> · come → <b>came</b> · take → <b>took</b>: <span class=\"frase\">I went to school · Ana came with me · We took the same street.</span>",null,null,"<b>get → got</b> = conseguir / obtener. También se usa para notas: <span class=\"frase\">He got the ball first · I got a great grade.</span>",null,"<b>give → gave</b> = dar: <span class=\"frase\">She gave me a small gift.</span> La forma <b>gave</b> es igual para todas las personas.",null,"La edad se dice con <b>be + años + old</b>: <span class=\"frase\">She is eighty years old.</span> <span class=\"lit\">(lit.: «ella es ochenta años vieja»)</span> = tiene ochenta años.",null],"dlg":[["Ana","Hi Sofía! You look happy.","¡Hola Sofía! Te ves feliz."],["Sofía","Yes! Yesterday was great.","¡Sí! Ayer fue genial."],["Ana","Really? Tell me more.","¿En serio? Cuéntame más."],["Sofía","I got a good grade.","Saqué una buena nota."],["Ana","That is very nice!","¡Eso es muy bueno!"],["Sofía","And my dad made a cake.","Y mi papá hizo un pastel."],["Ana","A big cake?","¿Un pastel grande?"],["Sofía","Yes, a big chocolate cake.","Sí, un pastel grande de chocolate."],["Ana","Mmm, I like chocolate.","Mmm, me gusta el chocolate."],["Sofía","My grandma came too.","Mi abuela también vino."],["Ana","How old is she?","¿Cuántos años tiene ella?"],["Sofía","She is eighty years old.","Tiene ochenta años."],["Ana","Wow! Is she able to dance?","¡Guau! ¿Es capaz de bailar?"],["Sofía","Yes! She is old but quick.","¡Sí! Es mayor pero rápida."],["Ana","That is great.","Eso es genial."],["Sofía","She gave me a green book.","Me dio un libro verde."],["Ana","A book! Is it good?","¡Un libro! ¿Es bueno?"],["Sofía","It is about a horse.","Trata sobre un caballo."],["Ana","I like horse stories.","Me gustan las historias de caballos."],["Sofía","Do you want to read it?","¿Quieres leerlo?"],["Ana","Is that possible?","¿Eso es posible?"],["Sofía","Of course. We are friends.","Claro. Somos amigas."],["Ana","Thank you! You are very nice.","¡Gracias! Eres muy amable."],["Sofía","Read a few pages every day.","Lee unas pocas páginas cada día."],["Ana","Even at night, in bed.","Incluso de noche, en la cama."],["Sofía","Take good care of it!","¡Cuídalo bien!"]]},"2":{"sTitle":"How I Feel","sTitleEs":"Cómo me siento","dTitle":"Are You OK?","dTitleEs":"¿Estás bien?","paras":[[["My name is Mateo.","Me llamo Mateo."],["I am twelve years old.","Tengo doce años."],["Today I feel very good.","Hoy me siento muy bien."],["But feelings change every day.","Pero los sentimientos cambian cada día."],["That is normal and fine.","Eso es normal y está bien."]],[["On Monday I was happy.","El lunes estaba feliz."],["I got a good grade.","Saqué una buena nota."],["My mom made my favorite food.","Mi mamá hizo mi comida favorita."],["We had a nice dinner.","Tuvimos una cena agradable."],["Even my sister smiled.","Incluso mi hermana sonrió."]],[["On Tuesday I was sad.","El martes estaba triste."],["My best friend was ill.","Mi mejor amigo estaba enfermo."],["He was not at school.","Él no estaba en la escuela."],["The classroom was very quiet.","El salón estaba muy silencioso."],["I missed his funny jokes.","Extrañé sus chistes graciosos."]],[["On Wednesday I was nervous.","El miércoles estaba nervioso."],["We had a big exam.","Teníamos un examen grande."],["My hands were very cold.","Mis manos estaban muy frías."],["I took a deep breath.","Tomé una respiración profunda."],["Then I felt calm and able.","Luego me sentí tranquilo y capaz."]],[["On Thursday I was angry.","El jueves estaba enojado."],["A boy took my marker.","Un niño tomó mi plumón."],["He gave it back later.","Me lo devolvió después."],["He said sorry to me.","Me dijo perdón."],["Then everything was good again.","Luego todo estuvo bien otra vez."]],[["On Friday I was tired.","El viernes estaba cansado."],["The week was very long.","La semana fue muy larga."],["But my dad had a plan.","Pero mi papá tenía un plan."],["We went to the park.","Fuimos al parque."],["A quick walk helps a lot.","Una caminata rápida ayuda mucho."]],[["Feelings are not good or bad.","Los sentimientos no son buenos ni malos."],["They are only information.","Solo son información."],["Sadness says: I need care.","La tristeza dice: necesito cariño."],["Anger says: this is not fair.","El enojo dice: esto no es justo."],["Fear says: this is new.","El miedo dice: esto es nuevo."]],[["I talk about my feelings.","Hablo de mis sentimientos."],["My mom listens very well.","Mi mamá escucha muy bien."],["She never says: do not cry.","Ella nunca dice: no llores."],["She only says: I am here.","Solo dice: estoy aquí."],["That is a great help.","Eso es una gran ayuda."]],[["A few things always help me.","Unas pocas cosas siempre me ayudan."],["Water, sleep and a walk.","Agua, sueño y una caminata."],["Music helps me even more.","La música me ayuda aún más."],["I like slow, old songs.","Me gustan las canciones lentas y viejas."],["They make my heart quiet.","Hacen que mi corazón se calme."]],[["Today I am happy again.","Hoy estoy feliz otra vez."],["Tomorrow, maybe not.","Mañana, tal vez no."],["Every feeling is possible.","Todo sentimiento es posible."],["And every feeling passes.","Y todo sentimiento pasa."],["I care about my heart.","Cuido mi corazón."]]],"datos":["<b>very</b> = muy, va <b>antes</b> del adjetivo: <span class=\"frase\">very good · very cold · very quiet.</span> <b>even</b> = incluso: <span class=\"frase\">Even my sister smiled.</span>",null,null,"<b>take → took</b> = tomar: <span class=\"frase\">I took a deep breath.</span> <span class=\"lit\">(lit.: «tomé una respiración profunda»)</span> = respiré hondo.",null,"<b>have → had</b> = tener: <span class=\"frase\">But my dad had a plan.</span> Y <b>go → went</b>: <span class=\"frase\">We went to the park.</span>",null,null,"<b>a few</b> = unos pocos / unas pocas (cosas que se cuentan): <span class=\"frase\">A few things always help me.</span>",null],"dlg":[["Mamá","Mateo, are you OK?","Mateo, ¿estás bien?"],["Mateo","I am tired, mom.","Estoy cansado, mamá."],["Mamá","The week was very long.","La semana fue muy larga."],["Mateo","Yes, and I was nervous.","Sí, y estaba nervioso."],["Mamá","Because of the big exam?","¿Por el examen grande?"],["Mateo","Yes. My hands were cold.","Sí. Mis manos estaban frías."],["Mamá","And how was it?","¿Y cómo estuvo?"],["Mateo","Good! I got a nice grade.","¡Bien! Saqué una buena nota."],["Mamá","I am very happy for you.","Estoy muy feliz por ti."],["Mateo","I took a deep breath first.","Primero tomé una respiración profunda."],["Mamá","That helps a lot.","Eso ayuda mucho."],["Mateo","On Tuesday I was sad.","El martes estaba triste."],["Mamá","What happened on Tuesday?","¿Qué pasó el martes?"],["Mateo","My best friend was ill.","Mi mejor amigo estaba enfermo."],["Mamá","Oh, poor boy.","Ay, pobrecito."],["Mateo","The class was very quiet.","La clase estaba muy silenciosa."],["Mamá","You care about your friends.","Te importan tus amigos."],["Mateo","Yes. I like our jokes.","Sí. Me gustan nuestros chistes."],["Mamá","Is he better now?","¿Está mejor ahora?"],["Mateo","Yes, he came back today.","Sí, volvió hoy."],["Mamá","That is great news!","¡Esa es una gran noticia!"],["Mateo","We had a good day.","Tuvimos un buen día."],["Mamá","Feelings change every week.","Los sentimientos cambian cada semana."],["Mateo","Even in one day, mom.","Incluso en un día, mamá."],["Mamá","True. And you are able to talk.","Cierto. Y eres capaz de hablar."],["Mateo","Talking with you helps me.","Hablar contigo me ayuda."]]},"3":{"sTitle":"Helping Ana","sTitleEs":"Ayudando a Ana","dTitle":"Can I Help?","dTitleEs":"¿Puedo ayudar?","paras":[[["Ana is my classmate.","Ana es mi compañera de clase."],["She is new in school.","Ella es nueva en la escuela."],["Her family came last month.","Su familia vino el mes pasado."],["She knows only a few words.","Ella sabe solo unas pocas palabras."],["But she has a nice smile.","Pero tiene una sonrisa amable."]],[["On day one, Ana was quiet.","El primer día, Ana estuvo callada."],["She sat near the window.","Se sentó cerca de la ventana."],["Nobody talked to her.","Nadie le habló."],["Her eyes were very sad.","Sus ojos estaban muy tristes."],["I felt bad for her.","Me sentí mal por ella."]],[["At lunch I went to her.","En el almuerzo fui hacia ella."],["I said: hi, I am Lucía.","Dije: hola, soy Lucía."],["Ana gave me a small smile.","Ana me dio una pequeña sonrisa."],["I asked: can I help?","Pregunté: ¿puedo ayudar?"],["She said: yes, please.","Ella dijo: sí, por favor."]],[["We had lunch together.","Almorzamos juntas."],["I gave her half my apple.","Le di la mitad de mi manzana."],["She took it and laughed.","La tomó y se rió."],["Her laugh was very nice.","Su risa fue muy agradable."],["That day we became friends.","Ese día nos hicimos amigas."]],[["Ana is able to learn fast.","Ana es capaz de aprender rápido."],["Every day she got better.","Cada día ella mejoraba."],["I helped her with English.","La ayudé con el inglés."],["She helped me with math.","Ella me ayudó con matemática."],["Help goes in two ways.","La ayuda va en dos direcciones."]],[["Last week Ana was ill.","La semana pasada Ana estuvo enferma."],["I went to her house.","Fui a su casa."],["I took my school notes.","Llevé mis apuntes de la escuela."],["Her mom made us tea.","Su mamá nos hizo un té."],["The tea was very good.","El té estaba muy rico."]],[["Ana lives in an old house.","Ana vive en una casa vieja."],["The rooms are small but nice.","Los cuartos son pequeños pero lindos."],["Her family cares a lot.","Su familia se preocupa mucho."],["They gave me a warm welcome.","Me dieron una cálida bienvenida."],["I like that house.","Me gusta esa casa."]],[["Is it possible to help everyone?","¿Es posible ayudar a todos?"],["Maybe not, but we try.","Tal vez no, pero lo intentamos."],["One good act is enough.","Un buen acto es suficiente."],["A few words change a day.","Unas pocas palabras cambian un día."],["Even a smile is help.","Incluso una sonrisa es ayuda."]],[["Today Ana has many friends.","Hoy Ana tiene muchos amigos."],["She is happy in our class.","Ella está feliz en nuestra clase."],["She talks and asks questions.","Habla y hace preguntas."],["Her English got very good.","Su inglés se volvió muy bueno."],["I am proud of her.","Estoy orgullosa de ella."]],[["I like to help people.","Me gusta ayudar a la gente."],["It is quick and free.","Es rápido y gratis."],["Care makes a great difference.","El cariño hace una gran diferencia."],["Ana showed me that.","Ana me mostró eso."],["Now I help without fear.","Ahora ayudo sin miedo."]]],"datos":[null,null,"<b>give → gave</b> = dar: <span class=\"frase\">Ana gave me a small smile.</span> Y <b>go → went</b>: <span class=\"frase\">At lunch I went to her.</span>",null,"<b>able</b> se usa con <b>be + able to + verbo</b>: <span class=\"frase\">Ana is able to learn fast.</span> = es capaz de aprender rápido.",null,null,"<b>possible</b> = posible: <span class=\"frase\">Is it possible to help everyone?</span> <b>help</b> es verbo <b>y</b> sustantivo: <span class=\"frase\">Even a smile is help.</span>",null,null],"dlg":[["Lucía","Hi Ana! Can I help you?","¡Hola Ana! ¿Te puedo ayudar?"],["Ana","Yes, please. This is hard.","Sí, por favor. Esto está difícil."],["Lucía","What is the problem?","¿Cuál es el problema?"],["Ana","I know only a few words.","Sé solo unas pocas palabras."],["Lucía","That is normal. You are new.","Es normal. Eres nueva."],["Ana","Is it possible to learn fast?","¿Es posible aprender rápido?"],["Lucía","Yes! You are able to do it.","¡Sí! Eres capaz de hacerlo."],["Ana","Thank you. You are very nice.","Gracias. Eres muy amable."],["Lucía","We can study together.","Podemos estudiar juntas."],["Ana","I like that idea.","Me gusta esa idea."],["Lucía","Yesterday I made a word list.","Ayer hice una lista de palabras."],["Ana","A big list?","¿Una lista grande?"],["Lucía","No, a small one. Ten words.","No, una pequeña. Diez palabras."],["Ana","Ten words is good for me.","Diez palabras está bien para mí."],["Lucía","Here. I gave you a copy.","Toma. Te di una copia."],["Ana","You are a great friend.","Eres una gran amiga."],["Lucía","And you help me too.","Y tú también me ayudas."],["Ana","With math?","¿Con matemática?"],["Lucía","Yes! Math is not easy.","¡Sí! La matemática no es fácil."],["Ana","We took the same test.","Tomamos la misma prueba."],["Lucía","And you got a great grade.","Y sacaste una nota genial."],["Ana","I care about my classes.","Me importan mis clases."],["Lucía","Care is the secret.","El cariño es el secreto."],["Ana","My mom says the same.","Mi mamá dice lo mismo."],["Lucía","Smart moms! Even mine.","¡Mamás inteligentes! Incluso la mía."],["Ana","Let us study now. Quick!","Estudiemos ahora. ¡Rápido!"]]},"4":{"sTitle":"Yesterday I Went to the Farm","sTitleEs":"Ayer fui a la granja","dTitle":"The Farm Trip","dTitleEs":"El paseo a la granja","paras":[[["Yesterday was a special day.","Ayer fue un día especial."],["My class went to a farm.","Mi clase fue a una granja."],["The bus came at seven.","El bus vino a las siete."],["We took our backpacks.","Tomamos nuestras mochilas."],["Everyone was very happy.","Todos estaban muy felices."]],[["The trip was one hour.","El viaje fue de una hora."],["The road was old and long.","El camino era viejo y largo."],["We had music on the bus.","Tuvimos música en el bus."],["A few friends played games.","Unos pocos amigos jugaron juegos."],["The hour went very quick.","La hora pasó muy rápido."]],[["The farm was very big.","La granja era muy grande."],["A nice woman came to us.","Una señora amable vino hacia nosotros."],["Her name was Doña Rosa.","Su nombre era Doña Rosa."],["She gave us green hats.","Nos dio gorros verdes."],["The hats were very funny.","Los gorros eran muy graciosos."]],[["First, we went to the cows.","Primero, fuimos a las vacas."],["One cow was very old.","Una vaca era muy vieja."],["Her name was Luna.","Su nombre era Luna."],["Doña Rosa gave me a bucket.","Doña Rosa me dio un balde."],["I got fresh milk!","¡Conseguí leche fresca!"]],[["Then we went to the hens.","Luego fuimos a las gallinas."],["We took eight brown eggs.","Tomamos ocho huevos marrones."],["The eggs were still warm.","Los huevos todavía estaban tibios."],["Ana had two in her hands.","Ana tenía dos en sus manos."],["She was very careful.","Ella fue muy cuidadosa."]],[["At noon we made lunch.","Al mediodía hicimos el almuerzo."],["We made bread and eggs.","Hicimos pan y huevos."],["The bread was very good.","El pan estaba muy rico."],["Even the shy boys talked.","Incluso los niños tímidos hablaron."],["Food makes people happy.","La comida hace feliz a la gente."]],[["After lunch, we had free time.","Después del almuerzo, tuvimos tiempo libre."],["I went to see the horses.","Fui a ver los caballos."],["A small horse came to me.","Un caballo pequeño vino hacia mí."],["I gave him a green apple.","Le di una manzana verde."],["He took it very quick.","La tomó muy rápido."]],[["Is it possible to live here?","¿Es posible vivir aquí?"],["I asked Doña Rosa that.","Le pregunté eso a Doña Rosa."],["She laughed and said yes.","Ella se rió y dijo que sí."],["Farm work is hard but good.","El trabajo de granja es duro pero bueno."],["You need to care every day.","Hay que cuidar cada día."]],[["At four, the bus came back.","A las cuatro, el bus volvió."],["We took many photos.","Tomamos muchas fotos."],["Doña Rosa gave us bread.","Doña Rosa nos dio pan."],["We said thank you.","Dijimos gracias."],["Everyone was tired and happy.","Todos estaban cansados y felices."]],[["At home, my mom asked me.","En casa, mi mamá me preguntó."],["I talked for one hour!","¡Hablé por una hora!"],["It was a great day.","Fue un día genial."],["I want to go again.","Quiero ir otra vez."],["Some days stay in your heart.","Algunos días se quedan en tu corazón."]]],"datos":["<b>go → went</b> · <b>come → came</b> · <b>take → took</b>: son irregulares, no llevan -ed: <span class=\"frase\">My class went to a farm · The bus came at seven · We took our backpacks.</span>",null,null,null,null,"<b>make → made</b> = hacer / preparar: <span class=\"frase\">At noon we made lunch.</span> Y <b>have → had</b> = tener: <span class=\"frase\">We had music on the bus.</span>",null,null,"Los 7 irregulares del módulo: go→<b>went</b> · come→<b>came</b> · have→<b>had</b> · make→<b>made</b> · get→<b>got</b> · give→<b>gave</b> · take→<b>took</b>.",null],"dlg":[["Papá","Diego, how was the farm?","Diego, ¿cómo estuvo la granja?"],["Diego","It was a great day!","¡Fue un día genial!"],["Papá","Tell me everything.","Cuéntame todo."],["Diego","The bus came at seven.","El bus vino a las siete."],["Papá","So early! Were you tired?","¡Tan temprano! ¿Estabas cansado?"],["Diego","No, I was very happy.","No, estaba muy feliz."],["Papá","And the farm?","¿Y la granja?"],["Diego","The farm was very big.","La granja era muy grande."],["Papá","Is Doña Rosa nice?","¿Doña Rosa es amable?"],["Diego","Yes, she is very nice.","Sí, ella es muy amable."],["Papá","And she gave you those hats?","¿Y ella les dio esos gorros?"],["Diego","Yes! Green hats for everyone.","¡Sí! Gorros verdes para todos."],["Papá","Very funny. And the animals?","Muy gracioso. ¿Y los animales?"],["Diego","I got milk from a cow!","¡Conseguí leche de una vaca!"],["Papá","Really? Was it hard?","¿En serio? ¿Fue difícil?"],["Diego","A little. The cow was old.","Un poco. La vaca era vieja."],["Papá","Old cows are quiet.","Las vacas viejas son tranquilas."],["Diego","We took eight warm eggs.","Tomamos ocho huevos tibios."],["Papá","Wow! And lunch?","¡Guau! ¿Y el almuerzo?"],["Diego","We made bread and eggs.","Hicimos pan y huevos."],["Papá","Was the bread good?","¿Estaba bueno el pan?"],["Diego","It was very good!","¡Estaba muy rico!"],["Papá","I like farm bread.","Me gusta el pan de granja."],["Diego","A horse took my apple.","Un caballo tomó mi manzana."],["Papá","Quick horse! Even hungry.","¡Caballo rápido! Y hambriento."],["Diego","Is it possible to go again?","¿Es posible ir otra vez?"]]}};
+let PARAS = [];
+const STEPS = {
+  'pre-a1':{ es:{t:'Cómo leer (Pre-A1 · 5 pasos)', s:['Lee la traducción en español.','Escucha el audio siguiendo el texto en español, sincronizando ambos en tu mente.','Escucha el audio siguiendo el texto ahora en inglés.','Escucha y lee en voz alta (mejora la pronunciación).','Responde (según la actividad).'], n:'La 1ª vez lee con el español visible. Las siguientes veces, intenta sin él (actívalo solo si lo necesitas). En los pasos 2 y 3, fíjate en las palabras que ya entiendes.'},
+             en:{t:'How to read (Pre-A1 · 5 steps)', s:['Read the Spanish translation.','Listen to the audio while following the text in Spanish, syncing both in your mind.','Listen to the audio while following the text now in English.','Listen and read aloud (to improve pronunciation).','Answer (depending on the activity).'], n:'The 1st time, read with the Spanish visible. Next times, try without it (turn it on only if you need it). In steps 2 and 3, notice the words you already understand.'} },
+  'a1':{ es:{t:'Cómo leer (A1 · 4 pasos)', s:['Escucha el audio y sigue el texto en español, sincronizando ambos.','Escucha el audio siguiendo el texto en inglés.','Escucha / lee en voz alta.','Responde.'], n:'En los pasos de escucha, fíjate en las palabras que ya entiendes (puedes anotarlas).'},
+         en:{t:'How to read (A1 · 4 steps)', s:['Listen to the audio and follow the text in Spanish, syncing both.','Listen to the audio while following the text in English.','Listen / read aloud.','Answer.'], n:'During the listening steps, notice the words you already understand (you can write them down).'} },
+  'a2':{ es:{t:'Cómo leer (A2 · 2 pasos)', s:['Escucha y luego lee en voz alta (mejora la pronunciación).','Responde.'], n:'Usa la traducción solo para confirmar tu comprensión.'},
+         en:{t:'How to read (A2 · 2 steps)', s:['Listen, then read aloud (to improve pronunciation).','Answer.'], n:'Use the translation only to confirm your comprehension.'} }
+};
+const UI = {
+  es:{ back:'↩ Vuelve a la práctica en la plataforma', voc:'Vocabulario', datos:'Datos', txt:'Texto', play:'Escuchar todo', pause:'Pausar', pPlay:'Escuchar', pPause:'Pausar', mark:'Marcar que terminé de leer', marked:'¡Lectura marcada! ✓',
+       vpTitle:'Vocabulario del módulo', vpSub:'Palabras clave · toca 🔊 para escuchar', ringNext:'10 min → +5 XP', helpT:'¿Cómo uso este material?', tipsT:'Para qué sirve cada botón:', tips:['<b>🧭 Pasos:</b> el método para leer esta historia, paso a paso.','<b>▶ Escuchar todo</b> o el ▶ de cada párrafo: audio en inglés, con pausa.','<b>Texto EN/ES/EN+ES:</b> muestra inglés, español o ambos.','<b>💡 Datos:</b> activa las notas de traducción (lo que no se traduce literal).','<b>📖 Vocabulario:</b> palabras clave con significado y 🔊.','<b>🔊 US/UK</b> y la barra 🐢—🐇: acento y velocidad del audio.','<b>A− / A+:</b> tamaño de letra.','<b>⏱ Medidor:</b> cuenta tu tiempo de lectura; leer suma XP (sin nota).','<b>🌐 ES/EN:</b> idioma de las instrucciones (no del texto de la historia).','<b>✓ Terminar:</b> marca tu lectura como hecha.'],
+        endT:'¡Terminaste la lectura!', endP:'Sin nota: leer suma XP por tiempo. Mientras más lees con calma, más ganas.', eTimeL:'Tiempo leído', eXpL:'XP de lectura', endBack:'↩ Volver a la plataforma', xpMsg:m=>'🎉 +'+(m>=30?15:m>=20?10:5)+' XP por '+m+' min de lectura' },
+  en:{ back:'↩ Back to your practice in the platform', voc:'Vocabulary', datos:'Tips', txt:'Text', play:'Listen to all', pause:'Pause', pPlay:'Listen', pPause:'Pause', mark:'Mark that I finished reading', marked:'Reading marked! ✓',
+       vpTitle:'Module vocabulary', vpSub:'Key words · tap 🔊 to listen', ringNext:'10 min → +5 XP', helpT:'How do I use this material?', tipsT:'What each button is for:', tips:['<b>🧭 Steps:</b> the method to read this story, step by step.','<b>▶ Listen to all</b> or each paragraph’s ▶: English audio, with pause.','<b>Text EN/ES/EN+ES:</b> show English, Spanish or both.','<b>💡 Tips:</b> turn on the translation notes (what isn’t literal).','<b>📖 Vocabulary:</b> key words with meaning and 🔊.','<b>🔊 US/UK</b> and the 🐢—🐇 slider: audio accent and speed.','<b>A− / A+:</b> text size.','<b>⏱ Meter:</b> counts your reading time; reading earns XP (no grade).','<b>🌐 ES/EN:</b> language of the instructions (not the story text).','<b>✓ Finish:</b> mark your reading as done.'],
+       endT:'You finished the reading!', endP:'No grade: reading earns XP by time. The more you read calmly, the more you earn.', eTimeL:'Time read', eXpL:'Reading XP', endBack:'↩ Back to the platform', xpMsg:m=>'🎉 +'+(m>=30?15:m>=20?10:5)+' XP for '+m+' min of reading' }
+};
+let info='en', voice='US', rate=1, secs=0, marked=false, milestones={10:false,20:false,30:false};
+let storyId=1; const ST_TITLES={1:{es:STORYDATA[1].sTitleEs,en:STORYDATA[1].sTitle},2:{es:STORYDATA[2].sTitleEs,en:STORYDATA[2].sTitle},3:{es:STORYDATA[3].sTitleEs,en:STORYDATA[3].sTitle},4:{es:STORYDATA[4].sTitleEs,en:STORYDATA[4].sTitle}};
+function renderStPick(){ const es=info!=='en'; document.getElementById('spkH').textContent= es?'Elige tu lectura':'Choose your reading'; document.getElementById('spkS').textContent= es?'¿Qué Story + Diálogo vas a leer? Tu elección se registra para tu seguimiento.':'Which Story + Dialogue will you read? Your choice is logged for your tracking.';
+  document.getElementById('spkList').innerHTML=[1,2,3,4].map(n=>{ const has=true; const t=ST_TITLES[n][es?'es':'en']; return `<div class="stcard ${has?'':'lock'}" onclick="${has?`pickStory(${n})`:`toast('${es?'Demo: usa la Story 1':'Demo: use Story 1'}')`}"><div class="nx">${has?'📖':'🔒'}</div><div class="si"><b>Story ${n} · Diálogo ${n}</b><span>${t}</span></div><div class="go">${has?'›':'🔒'}</div></div>`; }).join(''); }
+function backToPicker(){ try{pausePlay();}catch(e){} document.getElementById('stpick').style.display='block'; window.scrollTo(0,0); }
+function updateTitles(){ const d=STORYDATA[storyId], es=info!=='en'; document.getElementById('stitle').textContent= curView==='dlg'?(es?d.dTitleEs:d.dTitle):(es?d.sTitleEs:d.sTitle); document.getElementById('ssub').textContent=(curView==='dlg'?(es?'Diálogo ':'Dialogue '):'Story ')+storyId; }
+function pickStory(n){ storyId=n; const d=STORYDATA[n];
+  PARAS = d.paras.map((p,i)=>({pairs:p.map(x=>({en:x[0],es:x[1]})), dato:(d.datos&&d.datos[i])||null}));
+  DLG = d.dlg.map(t=>({sp:t[0], pairs:[{en:t[1],es:t[2]}]}));
+  curView='story'; VIEW=PARAS;
+  document.getElementById('stpick').style.display='none'; document.getElementById('helpfab').classList.remove('hidden');
+  const lv=document.getElementById('screen').getAttribute('data-level'); const nm={'pre-a1':'Pre-A1','a1':'A1','a2':'A2'}[lv]||'Pre-A1';
+  document.getElementById('mhsub').textContent= nm+' · M6 · Feelings, States & Qualities';
+  document.getElementById('vwStory').classList.add('on'); document.getElementById('vwDlg').classList.remove('on');
+  updateTitles(); render(); window.scrollTo(0,0); }
+let ALL=[], gi=0, gEnd=0, gScope='all', gPlaying=false;
+function L(){ return UI[info]; }
+let DLG = [];
+let VIEW = PARAS, curView='story';
+function setView(v){ if(v===curView) return; pausePlay(); curView=v; VIEW= v==='dlg'?DLG:PARAS;
+  document.getElementById('vwStory').classList.toggle('on',v==='story'); document.getElementById('vwDlg').classList.toggle('on',v==='dlg');
+  updateTitles(); render(); }
+function render(){
+  const _spks=[...new Set(VIEW.filter(x=>x.sp).map(x=>x.sp))];
+  document.getElementById('paras').innerHTML = VIEW.map((p,pi)=>{
+    const sp = p.sp?`<div class="dsp">${p.sp}</div>`:'';
+    const en=p.pairs.map((q,si)=>`<span class="sent" id="s${pi}_${si}">${q.en}</span>`).join(' ');
+    const es=p.pairs.map((q,si)=>`<span class="sente" id="e${pi}_${si}">${q.es}</span>`).join(' ');
+    const dato=p.dato?`<div class="dato"><div class="hd">💡 Así funciona el inglés</div>${p.dato}</div>`:'';
+    const _ini=(p.sp||"").trim().charAt(0);
+    if(p.sp){ return `<div class="para dlgrow${_spks.indexOf(p.sp)%2?' dgB':' dgA'}" id="p${pi}"><span class="dav">${_ini}</span><div class="dbub"><div class="dsp">${p.sp}</div><div class="ptext">${en}</div><div class="pes" id="pes${pi}">${es}</div><div class="prow"><button class="pbtn play" id="play${pi}" onclick="playPara(${pi})">▶ <span class="pl"></span></button></div>${dato}</div></div>`; }
+    return `<div class="para" id="p${pi}"><div class="ptext">${en}</div><div class="pes" id="pes${pi}">${es}</div>
+      <div class="prow"><button class="pbtn play" id="play${pi}" onclick="playPara(${pi})">▶ <span class="pl"></span></button></div>${dato}</div>`;
+  }).join('');
+  document.getElementById('paras').classList.toggle('chatzone', curView==='dlg');
+  ALL=[]; VIEW.forEach((p,pi)=>p.pairs.forEach((q,si)=>ALL.push({pi,si}))); gi=0; gScope='all'; gEnd=ALL.length;
+  applyInfo();
+}
+function applyInfo(){ const u=L(), st=STEPS[document.getElementById('screen').getAttribute('data-level')][info];
+  document.getElementById('vocLab').textContent=u.voc; document.getElementById('datosLab').textContent=u.datos; document.getElementById('txtLab').textContent=u.txt; document.getElementById('ringNext').textContent=u.ringNext;
+  document.getElementById('markLab').textContent= marked? u.marked : u.mark;
+  document.getElementById('howtoT').textContent=st.t;
+  document.getElementById('howtoB').innerHTML = st.s.map((x,k)=>`<div class="stepline"><span class="stepn">${k+1}</span><span>${x}</span></div>`).join('')+`<div class="stepnote">📝 ${st.n}</div>`;
+  document.getElementById('helpT').textContent=u.helpT;
+  document.getElementById('helpTips').innerHTML = `<div style="font-size:11.5px;color:var(--text-soft);font-weight:700;margin-bottom:6px">${u.tipsT}</div>`+ u.tips.map(t=>`<div class="helptip">• <span>${t}</span></div>`).join('');
+  document.getElementById('endT').textContent=u.endT; document.getElementById('endP').textContent=u.endP; document.getElementById('eTimeL').textContent=u.eTimeL; document.getElementById('eXpL').textContent=u.eXpL; document.getElementById('endBack').textContent=u.endBack;
+  document.getElementById('vpTitle').textContent=u.vpTitle; document.getElementById('vpSub').textContent=u.vpSub;
+  document.getElementById('inEs').classList.toggle('on',info==='es'); document.getElementById('inEn').classList.toggle('on',info==='en');
+  setBtns();
+}
+function toggleDatos(){ const s=document.getElementById('screen'); const on=s.getAttribute('data-datos')==='on'; s.setAttribute('data-datos',on?'off':'on'); document.getElementById('datosBtn').classList.toggle('on',!on); }
+function openHelp(){ document.getElementById('helpov').classList.add('show'); } function closeHelp(){ document.getElementById('helpov').classList.remove('show'); }
+function openVocab(){ document.getElementById('vlist').innerHTML = GLOSS.map(g=>`<div class="vrow"><span class="vw">${g.w}</span><span class="vm">${g.es}<span class="vex">“${g.ex}”</span></span><button class="spk" onclick="say('${g.w.replace(/'/g,'')}')">🔊</button></div>`).join(''); document.getElementById('vpanel').classList.add('show'); }
+function closeVocab(){ document.getElementById('vpanel').classList.remove('show'); }
+function pickVoice(){ try{ const vs=speechSynthesis.getVoices()||[]; const gb=(typeof voice!=='undefined'&&(voice==='UK'||voice==='GB')); const want=gb?'en-gb':'en-us'; const pref= gb?['Google UK English Female','Google UK English Male','Microsoft Sonia','Microsoft Libby','Microsoft Maisie','Microsoft Ryan','Microsoft Thomas','Daniel','Kate','Serena','Arthur','Martha']:['Google US English','Microsoft Aria','Microsoft Jenny','Microsoft Michelle','Microsoft Ana','Microsoft Emma','Microsoft Andrew','Samantha','Alex','Allison','Ava','Fred']; const en=vs.filter(v=>v.lang&&v.lang.toLowerCase().indexOf('en')===0); const exact=en.filter(v=>v.lang.replace('_','-').toLowerCase()===want); for(const p of pref){ const hit=exact.find(v=>v.name&&v.name.indexOf(p)===0); if(hit) return hit; } if(exact.length) return exact[0]; for(const p of pref){ const hit=en.find(v=>v.name&&v.name.indexOf(p)===0); if(hit) return hit; } return en[0]||null; }catch(e){ return null; } }
+function say(text,onend){ try{ if(!('speechSynthesis' in window))throw 0; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=rate; const v=pickVoice(); if(v){u.voice=v;u.lang=v.lang;}else u.lang=voice==='US'?'en-US':'en-GB'; if(onend)u.onend=onend; speechSynthesis.speak(u); }catch(e){ if(onend) setTimeout(onend,Math.max(700,String(text).split(' ').length*330/rate)); } }
+/* Reproducción: rango [gi,gEnd) · pausa conserva gi */
+function setBtns(){ const all=gPlaying&&gScope==='all'; const pa=document.getElementById('playAll');
+  pa.querySelector('.ic').textContent= all?'⏸':'▶'; pa.querySelector('.pl').textContent= all?L().pause:L().play;
+  VIEW.forEach((p,pi)=>{ const b=document.getElementById('play'+pi); if(!b)return; const on=gPlaying&&gScope==='p'+pi; b.classList.toggle('on',on); b.querySelector('.pl').textContent= on?L().pPause:L().pPlay; b.firstChild.textContent= on?'⏸ ':'▶ '; }); }
+function clearHl(){ document.querySelectorAll('.sent.read,.sente.read').forEach(s=>s.classList.remove('read')); document.querySelectorAll('.para.reading').forEach(p=>p.classList.remove('reading')); }
+function startRange(st,end,scope){ if(gScope!==scope || gi<st || gi>=end) gi=st; gEnd=end; gScope=scope; gPlaying=true; setBtns(); step(); }
+function playAll(){ if(gPlaying&&gScope==='all'){ pausePlay(); return; } startRange(0,ALL.length,'all'); }
+function playPara(pi){ const idxs=ALL.map((a,k)=>a.pi===pi?k:-1).filter(k=>k>=0); if(gPlaying&&gScope==='p'+pi){ pausePlay(); return; } startRange(idxs[0],idxs[idxs.length-1]+1,'p'+pi); }
+function pausePlay(){ gPlaying=false; try{speechSynthesis.cancel();}catch(e){} setBtns(); }
+function step(){ if(!gPlaying) return;
+  if(gi>=gEnd){ gPlaying=false; if(gScope==='all') gi=0; setBtns(); clearHl(); toast(info==='es'?'✓ Fin del audio':'✓ End of audio'); return; }
+  const {pi,si}=ALL[gi]; clearHl(); const para=document.getElementById('p'+pi); para.classList.add('reading');
+  const se=document.getElementById('s'+pi+'_'+si); if(se)se.classList.add('read');
+  const ee=document.getElementById('e'+pi+'_'+si); if(ee)ee.classList.add('read');
+  para.scrollIntoView({behavior:'smooth',block:'center'});
+  say(VIEW[pi].pairs[si].en, ()=>{ if(!gPlaying)return; try{ if(curView==='story'&&si===VIEW[pi].pairs.length-1&&window.jecParaHeard) jecParaHeard(pi); }catch(e){} gi++; step(); });
+}
+function setText(m){ document.getElementById('screen').setAttribute('data-text',m); ['txEn','txEs','txBoth'].forEach(id=>document.getElementById(id).classList.remove('on')); document.getElementById(m==='en'?'txEn':m==='es'?'txEs':'txBoth').classList.add('on'); }
+function setInfo(l){ info=l; applyInfo(); renderStPick(); if(document.getElementById('stpick').style.display==='none') updateTitles(); }
+function toggleVoice(){ voice=voice==='US'?'UK':'US'; document.getElementById('voiceBtn').textContent='🔊 '+voice; try{localStorage.setItem('jucum_accent',voice);}catch(e){}
+  try{ const gb=voice==='UK'; const vs=speechSynthesis.getVoices()||[]; const has=vs.some(v=>v.lang&&v.lang.replace('_','-').toLowerCase().indexOf(gb?'en-gb':'en-us')===0);
+    if(!has&&vs.length) toast(gb?'⚠ Este equipo no tiene voz británica instalada; se usará la más parecida':'⚠ Este equipo no tiene voz americana; se usará la más parecida');
+    else if(typeof gPlaying==='undefined'||!gPlaying) say(gb?'Hello! This is the British voice.':'Hello! This is the American voice.');
+  }catch(e){} }
+function setRate(v){ rate=parseFloat(v); }
+function textSize(d){ let s=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--reading'))||18; s=Math.max(14,Math.min(26,s+d)); document.documentElement.style.setProperty('--reading',s+'px'); try{localStorage.setItem('jucum_read_fs',s);}catch(e){} }
+function markDone(){ marked=true; const b=document.getElementById('markBtn'); b.classList.add('done'); b.querySelector('.mi').textContent='✅'; document.getElementById('markLab').textContent=L().marked;
+  const m=Math.floor(secs/60); document.getElementById('eTime').textContent=m+':'+String(secs%60).padStart(2,'0'); document.getElementById('eXp').textContent='+'+(m>=30?15:m>=20?10:m>=10?5:0);
+  try{ window.dispatchEvent(new CustomEvent('jucum:done',{detail:{type:'story', story:storyId, minutes:m, xp:(m>=30?15:m>=20?10:m>=10?5:0), finished:true}})); }catch(e){}
+  const ec=document.getElementById('endcard'); ec.style.display='block'; ec.scrollIntoView({behavior:'smooth'}); }
+setInterval(()=>{ secs++; const m=Math.floor(secs/60),s=secs%60; document.getElementById('ringT').textContent=m+':'+String(s).padStart(2,'0'); const frac=Math.min(1,secs/600); document.getElementById('ringFill').setAttribute('stroke-dashoffset',(88*(1-frac)).toFixed(1)); [10,20,30].forEach(mm=>{ if(m>=mm&&!milestones[mm]){ milestones[mm]=true; toast(L().xpMsg(mm)); } }); },1000);
+function setLevel(lv){ pausePlay(); const s=document.getElementById('screen'); s.setAttribute('data-level',lv); const n={'pre-a1':'Pre-A1','a1':'A1','a2':'A2'}; var _c=document.getElementById('capLvl'); if(_c)_c.textContent=n[lv]; document.getElementById('mhsub').textContent=n[lv]+' · M6 · Feelings, States & Qualities';
+  ['segPre','segA1','segA2'].forEach(id=>{var b=document.getElementById(id);if(b)b.classList.remove('on');}); var _a=document.getElementById(lv==='pre-a1'?'segPre':lv==='a1'?'segA1':'segA2'); if(_a)_a.classList.add('on');
+  info= lv==='pre-a1'?'es':'en'; setText(lv==='pre-a1'?'both':'en'); render(); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600); }
+0&&document.addEventListener('contextmenu',e=>{ if(e.target.closest('.screen')){ e.preventDefault(); toast('Material protegido © JUCUM EC'); }});
+try{ speechSynthesis.onvoiceschanged=()=>pickVoice(); }catch(e){}
+try{ var _ac=localStorage.getItem('jucum_accent'); if(_ac==='UK'||_ac==='US'){ voice=_ac; var _vb=document.getElementById('voiceBtn'); if(_vb)_vb.textContent='🔊 '+voice; } }catch(e){}
+try{ var _fs0=parseInt(localStorage.getItem('jucum_read_fs')); if(_fs0>=14&&_fs0<=26) document.documentElement.style.setProperty('--reading',_fs0+'px'); }catch(e){}
+render(); setLevel('pre-a1'); renderStPick();
+</script>
+<!-- JUCUM English Center · seguimiento (NO QUITAR) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+<style id="fxcss">
+#fxov{--fxA:#43C062;--fxB:#1F7A33;--fxSoft:#B7E4C0;--fxDark:#1B5E20;--fxBd:#9FD3A2;--fxBg1:#1d3a24;--fxBg2:#0d1c11;}
+#fxov[data-level="pre-a1"]{--fxA:#F9A825;--fxB:#EF8F00;--fxSoft:#FFE3A3;--fxDark:#8A5A00;--fxBd:#F2CE86;--fxBg1:#3a2c10;--fxBg2:#1d1507;}
+#fxov[data-level="a1"]{--fxA:#2196F3;--fxB:#1565C0;--fxSoft:#A9D3F5;--fxDark:#0D47A1;--fxBd:#9CCBF2;--fxBg1:#122c49;--fxBg2:#091524;}
+#fxov[data-level="a2"]{--fxA:#43C062;--fxB:#1F7A33;--fxSoft:#B7E4C0;--fxDark:#1B5E20;--fxBd:#CFE8D2;--fxBg1:#1d3a24;--fxBg2:#0d1c11;}
+#fxov{position:fixed;inset:0;z-index:99990;background:radial-gradient(1200px 700px at 50% 20%,var(--fxBg1),var(--fxBg2));display:none;font-family:var(--fb);}
+#fxset{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,92vw);background:#fff;border-radius:20px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.5);}
+#fxset h3{margin:0 0 10px;font-family:var(--fd);font-weight:600;font-size:19px;color:var(--fxDark);}
+.fxlab{font-size:10px;font-weight:800;color:#777;letter-spacing:.07em;margin:10px 0 5px;}
+.fxrow{display:flex;gap:7px;}
+.fxrow button{flex:1;border:1.5px solid var(--fxBd);background:#fff;color:var(--fxDark);border-radius:12px;padding:9px 4px;font-weight:800;font-family:var(--fb);font-size:13px;cursor:pointer;}
+.fxrow button.on{background:linear-gradient(135deg,var(--fxA),var(--fxB));color:#fff;border-color:transparent;}
+.fxgo{width:100%;margin-top:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--fxA),var(--fxB));color:#fff;font-weight:800;font-size:15px;padding:13px;cursor:pointer;font-family:var(--fb);}
+.fxx{position:absolute;top:10px;right:12px;border:none;background:#F0EDE4;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:13px;}
+#fxread{position:absolute;inset:0;display:none;flex-direction:column;padding:26px min(6vw,60px);box-sizing:border-box;}
+.fxtop{display:flex;justify-content:space-between;align-items:center;color:var(--fxSoft);font-size:11px;font-weight:800;letter-spacing:.08em;}
+.fxmini{border:none;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;width:34px;height:34px;font-size:14px;cursor:pointer;margin-left:7px;}
+.fxprog{height:6px;border-radius:4px;background:rgba(255,255,255,.14);margin-top:12px;overflow:hidden;}
+.fxprog i{display:block;height:100%;width:0;background:var(--fxA);border-radius:4px;transition:width .3s;}
+.fxmid{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;gap:14px;max-width:860px;margin:0 auto;}
+#fxen{font-family:var(--fs);color:#fff;font-size:clamp(24px,4.2vw,40px);line-height:1.6;}
+#fxes{font-family:var(--fs);font-style:italic;color:var(--fxSoft);font-size:clamp(14px,2.2vw,20px);}
+.fxbot{display:flex;gap:12px;justify-content:center;padding-bottom:8px;}
+.fxc{width:54px;height:54px;border-radius:50%;border:none;background:var(--fxA);color:#fff;font-size:20px;cursor:pointer;}
+.fxc.sec{background:rgba(255,255,255,.14);}
+</style>
+<div id="fxov">
+ <div id="fxset">
+   <button class="fxx" onclick="closeFocus()">✕</button>
+   <h3>⛶ Lectura enfocada</h3>
+   <div class="fxlab">ACENTO</div>
+   <div class="fxrow"><button id="fxaUS" onclick="fxCfg('accent','US')">🇺🇸 US</button><button id="fxaGB" onclick="fxCfg('accent','GB')">🇬🇧 UK</button></div>
+   <div class="fxlab">VELOCIDAD</div>
+   <div class="fxrow"><button id="fxr075" onclick="fxCfg('rate',0.75)">0.75 🐢</button><button id="fxr09" onclick="fxCfg('rate',0.9)">0.9</button><button id="fxr1" onclick="fxCfg('rate',1)">1.0</button><button id="fxr115" onclick="fxCfg('rate',1.15)">1.15</button></div>
+   <div class="fxlab">TEXTO</div>
+   <div class="fxrow"><button id="fxten" onclick="fxCfg('text','en')">Solo EN</button><button id="fxtboth" onclick="fxCfg('text','both')">EN + ES</button></div>
+   <button class="fxgo" onclick="fxStart()">▶ Comenzar lectura</button>
+ </div>
+ <div id="fxread">
+   <div class="fxtop"><span id="fxcnt"></span><span><button class="fxmini" onclick="fxGear()">⚙</button><button class="fxmini" onclick="closeFocus()">✕</button></span></div>
+   <div class="fxprog"><i id="fxbar"></i></div>
+   <div class="fxmid"><div id="fxen"></div><div id="fxes"></div></div>
+   <div class="fxbot"><button class="fxc sec" onclick="fxPrev()">◀</button><button class="fxc" id="fxplay" onclick="fxToggle()">⏸</button><button class="fxc sec" onclick="fxNext()">▶</button></div>
+ </div>
+</div>
+<script>
+(function(){
+  var FX={i:0,playing:false,sents:[],cfg:null};
+  try{ FX.cfg=JSON.parse(localStorage.getItem("jucum_focus_cfg")||"null"); }catch(e){}
+  FX.cfg=FX.cfg||{accent:"US",rate:0.9,text:"both"};
+  function $g(id){return document.getElementById(id);}
+  window.openFocus=function(){
+    try{ if(!PARAS||!PARAS.length) return; }catch(e){ return; }
+    FX.sents=[]; PARAS.forEach(function(p){ (p.pairs||[]).forEach(function(q){ FX.sents.push({en:q.en,es:q.es}); }); });
+    try{ pausePlay(); }catch(e){}
+    try{ $g("fxov").setAttribute("data-level", document.getElementById("screen").getAttribute("data-level")||"a2"); }catch(e){} $g("fxov").style.display="block"; fxShowSet();
+  };
+  function fxShowSet(){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){}
+    $g("fxset").style.display="block"; $g("fxread").style.display="none"; fxPaint(); }
+  window.fxGear=function(){ fxShowSet(); };
+  window.fxCfg=function(k,v){ FX.cfg[k]=v; try{localStorage.setItem("jucum_focus_cfg",JSON.stringify(FX.cfg));}catch(e){} fxPaint(); };
+  function fxPaint(){ ["US","GB"].forEach(function(a){ $g("fxa"+a).classList.toggle("on",FX.cfg.accent===a); });
+    [[0.75,"fxr075"],[0.9,"fxr09"],[1,"fxr1"],[1.15,"fxr115"]].forEach(function(p){ $g(p[1]).classList.toggle("on",FX.cfg.rate===p[0]); });
+    $g("fxten").classList.toggle("on",FX.cfg.text==="en"); $g("fxtboth").classList.toggle("on",FX.cfg.text==="both"); }
+  window.fxStart=function(){ FX.i=0; $g("fxset").style.display="none"; $g("fxread").style.display="flex"; FX.playing=true; fxRender(); fxSay(); };
+  window.closeFocus=function(){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){} $g("fxov").style.display="none"; };
+  function fxVoice(){ try{ var vs=speechSynthesis.getVoices()||[]; var gb=(FX.cfg.accent==="GB"||FX.cfg.accent==="UK"); var want=gb?"en-gb":"en-us";
+    var pref= gb?["Google UK English Female","Google UK English Male","Microsoft Sonia","Microsoft Libby","Microsoft Ryan","Microsoft Thomas","Daniel","Kate","Serena"]:["Google US English","Microsoft Aria","Microsoft Jenny","Microsoft Michelle","Microsoft Ana","Samantha","Alex"];
+    var en=vs.filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf("en")===0;});
+    var exact=en.filter(function(v){return v.lang.replace("_","-").toLowerCase()===want;});
+    for(var i=0;i<pref.length;i++){ for(var j=0;j<exact.length;j++){ if(exact[j].name&&exact[j].name.indexOf(pref[i])===0) return exact[j]; } }
+    if(exact.length) return exact[0];
+    for(var i2=0;i2<pref.length;i2++){ for(var j2=0;j2<en.length;j2++){ if(en[j2].name&&en[j2].name.indexOf(pref[i2])===0) return en[j2]; } }
+    return en[0]||null; }catch(e){ return null; } }
+  function fxRender(){ var s=FX.sents[FX.i]||{en:"",es:""};
+    $g("fxcnt").textContent="ORACIÓN "+(FX.i+1)+" DE "+FX.sents.length;
+    $g("fxen").textContent=s.en; $g("fxes").textContent=s.es;
+    $g("fxes").style.display=FX.cfg.text==="both"?"block":"none";
+    $g("fxplay").textContent=FX.playing?"⏸":"▶";
+    $g("fxbar").style.width=(FX.sents.length?Math.round((FX.i+1)/FX.sents.length*100):0)+"%"; }
+  function fxSay(){ try{ speechSynthesis.cancel(); var s=FX.sents[FX.i]; if(!s) return;
+    var u=new SpeechSynthesisUtterance(s.en); u.rate=FX.cfg.rate; var v=fxVoice(); if(v){u.voice=v;u.lang=v.lang;} else u.lang="en-US";
+    u.onend=function(){ if(!FX.playing) return; if(FX.i<FX.sents.length-1){ FX.i++; fxRender(); setTimeout(function(){ if(FX.playing) fxSay(); },420); } else { FX.playing=false; fxRender(); } };
+    speechSynthesis.speak(u); }catch(e){}
+  }
+  window.fxToggle=function(){ if(FX.playing){ FX.playing=false; try{speechSynthesis.cancel();}catch(e){} } else { FX.playing=true; fxSay(); } fxRender(); };
+  window.fxPrev=function(){ if(FX.i>0){ FX.i--; fxRender(); if(FX.playing) fxSay(); } };
+  window.fxNext=function(){ if(FX.i<FX.sents.length-1){ FX.i++; fxRender(); if(FX.playing) fxSay(); } };
+})();
+</script>
+<script id="v5ajs">
+(function(){
+  function $g(id){return document.getElementById(id);}
+  function KEY(){ return 'jec_heard_'+location.pathname+'_'+(typeof storyId!=='undefined'?storyId:0); }
+  var cloudDone={};
+  function heard(){ try{ return new Set(JSON.parse(localStorage.getItem(KEY())||'[]')); }catch(e){ return new Set(); } }
+  function saveHeard(s){ try{ localStorage.setItem(KEY(), JSON.stringify(Array.from(s))); }catch(e){} }
+  window.jecParaHeard=function(pi){ try{ var s=heard(); if(!s.has(pi)){ s.add(pi); saveHeard(s); } paintHeard(); ring(); }catch(e){} };
+  function total(){ try{ return PARAS.length; }catch(e){ return 0; } }
+  function ring(){ var el=$g('ring5'); if(!el) return; var t=total()||1; var n=heard().size; if(cloudDone[storyId]) n=t; var pct=Math.min(100,Math.round(n/t*100));
+    $g('ring5T').textContent=pct+'%'; el.style.background='conic-gradient(#fff 0 '+pct+'%, rgba(255,255,255,.25) '+pct+'% 100%)'; }
+  function paintHeard(){ try{ if(typeof curView!=='undefined'&&curView!=='story') return; var s=heard();
+    document.querySelectorAll('#paras .para:not(.dlgrow)').forEach(function(p){ var pi=+p.id.slice(1); p.classList.toggle('heard5', s.has(pi)||!!cloudDone[storyId]);
+    }); }catch(e){} }
+  var _pick=window.pickStory; window.pickStory=function(n){ _pick(n);
+    try{ if(window.JUCUM_CONNECT&&JUCUM_CONNECT.setActivePart) JUCUM_CONNECT.setActivePart(Number(n)); }catch(e){}
+    ring(); paintHeard(); };
+  var _render=window.render; if(_render){ window.render=function(){ _render(); paintHeard(); ring(); }; }
+  var _mark=window.markDone; window.markDone=function(){
+    try{
+      var t=total(); var n=cloudDone[storyId]?t:heard().size;
+      if(n<t){ var falta=t-n; var es=(typeof info==='undefined')||info==='es';
+        toast(es?('🎧 Escucha y lee TODA la historia antes de marcarla: te '+(falta>1?'faltan ':'falta ')+falta+' párrafo'+(falta>1?'s':'')+'. Usa ▶ en cada uno.')
+               :('🎧 Listen to and read the WHOLE story first: '+falta+' paragraph'+(falta>1?'s':'')+' left. Use ▶ on each one.'));
+        return; }
+      cloudDone[storyId]=true;
+      try{ if(window.JUCUM_CONNECT&&JUCUM_CONNECT.savePart) JUCUM_CONNECT.savePart(Number(storyId),100,0); }catch(e){}
+    }catch(e){}
+    if(_mark) _mark();
+  };
+  (function seed(k){ var api=window.JUCUM_CONNECT;
+    if(!api||!api.getCompletedParts){ if(k<20) setTimeout(function(){seed(k+1);},700); return; }
+    api.getCompletedParts(function(parts){ try{ (parts||[]).forEach(function(x){ var n=Number(x.part); if(n) cloudDone[n]=true; }); ring(); paintHeard(); annotate(); }catch(e){} });
+  })(0);
+  function annotate(){ try{ var list=$g('spkList'); if(!list) return;
+    Array.prototype.forEach.call(list.children,function(el,ix){ var n=ix+1; if(cloudDone[n]&&!el.querySelector('.cl5')){ var s=document.createElement('span'); s.className='cl5'; s.textContent=' ✓'; s.style.cssText='color:#1B5E20;font-weight:800;'; el.appendChild(s); } }); }catch(e){} }
+  ring();
+})();
+</script>
+<script id="jecback">
+window.jecGoBack=function(){ location.href="https://jucum-english-center.netlify.app/"; };
+</script>
+</body>
+</html>

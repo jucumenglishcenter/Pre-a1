@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen · Módulo 3 · Place, Time & Movement — JUCUM English Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Atkinson+Hyperlegible:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ECEAE3;--card:#fff;--text:#2A2A2A;--text-soft:#777;--border:#E8E5DC;
+--font-display:'Fredoka','Nunito',system-ui,sans-serif;--font-body:'Nunito',system-ui,sans-serif;--font-serif:'Atkinson Hyperlegible',system-ui,sans-serif;
+--correct:#2E7D32;--correct-bg:#E8F5E9;--correct-bd:#A5D6A7;--wrong:#C62828;--wrong-bg:#FFEBEE;--wrong-bd:#EF9A9A;
+--shadow:0 2px 4px rgba(0,0,0,.07),0 10px 30px rgba(0,0,0,.14);--shadow-sm:0 1px 2px rgba(0,0,0,.06),0 3px 10px rgba(0,0,0,.09);
+--xp:#F9A825;--xd:#E65100;--xl:#FFF9C4;--xm:#FFECB3;--xg:linear-gradient(135deg,#F9A825 0%,#FF8F00 100%);--tint:#F6F5F0;--gold:#F9A825;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;}
+a{color:var(--xp);}a:hover{color:#B34700;}
+.app{max-width:660px;margin:0 auto;min-height:100vh;background:var(--tint);box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;}
+.wm{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='170'%3E%3Ctext x='12' y='105' transform='rotate(-27 150 85)' font-family='Fredoka,sans-serif' font-size='15' font-weight='700' letter-spacing='2' fill='%23000' fill-opacity='0.035'%3EJUCUM · ENGLISH CENTER%3C/text%3E%3C/svg%3E");}
+.mhead{position:sticky;top:0;z-index:40;background:var(--xg);padding:14px 18px;display:flex;align-items:center;gap:11px;color:#fff;}
+.mbadge{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.mbadge img{width:26px;height:26px;object-fit:contain;}
+.mh-info{flex:1;min-width:0;}
+.mh-info b{font-family:var(--font-display);font-weight:600;font-size:15.5px;display:block;line-height:1.1;}
+.mh-info span{font-size:10.5px;opacity:.9;font-weight:700;}
+.mh-timer{background:rgba(255,255,255,.22);padding:5px 12px;border-radius:14px;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.mh-timer.warn{background:#FFF3C4;color:#8a5a00;}.mh-timer.crit{background:#B71C1C;color:#fff;animation:pulse 1s infinite;}
+@keyframes pulse{50%{opacity:.55;}}
+.mh-count{background:rgba(255,255,255,.25);padding:4px 11px;border-radius:14px;font-weight:800;font-size:12.5px;white-space:nowrap;}
+.pbar{position:sticky;top:62px;z-index:39;height:5px;background:rgba(0,0,0,.06);}
+.pfill{height:100%;background:var(--gold);width:0;transition:width .5s;}
+.mbody{position:relative;z-index:1;padding:16px 16px 30px;flex:1;}
+.langsw{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;justify-content:flex-end;}
+.lsw-lab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);}
+.lsw{display:flex;background:#fff;border:1.5px solid var(--xm);border-radius:11px;padding:3px;gap:2px;box-shadow:var(--shadow-sm);}
+.lsw button{border:none;background:transparent;font-family:var(--font-body);font-weight:800;font-size:11.5px;padding:6px 13px;border-radius:8px;cursor:pointer;color:var(--text-soft);}
+.lsw button.on{background:var(--xg);color:#fff;}
+.hub{padding:18px 16px 30px;position:relative;z-index:1;}
+.intro-hero{background:var(--xg);border-radius:20px;padding:22px 20px;color:#fff;box-shadow:var(--shadow-sm);text-align:center;}
+.intro-hero .em{font-size:42px;line-height:1;}
+.intro-hero h1{font-family:var(--font-display);font-weight:600;font-size:22px;margin:8px 0 4px;}
+.intro-hero p{font-size:12.5px;opacity:.95;font-weight:700;margin:0;line-height:1.5;}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow-sm);margin-top:14px;}
+.card h3{font-family:var(--font-display);font-weight:600;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:7px;}
+.card ul{margin:0;padding-left:19px;font-size:12.5px;line-height:1.65;color:#555;}
+.neuro{display:flex;gap:10px;background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:14px;padding:12px 13px;font-size:12.5px;line-height:1.55;color:#0D47A1;font-weight:600;margin-top:14px;}
+.neuro .nem{font-size:24px;flex-shrink:0;}
+.partsrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:14px;}
+.pmini{background:#fff;border:1px solid var(--border);border-radius:12px;padding:9px 4px;text-align:center;box-shadow:var(--shadow-sm);}
+.pmini .pe{font-size:19px;}
+.pmini b{display:block;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:#555;margin-top:2px;line-height:1.2;}
+.pmini span{font-size:9.5px;color:var(--text-soft);font-weight:800;}
+.start-btn{margin-top:16px;width:100%;padding:15px;border:none;border-radius:15px;background:var(--xg);color:#fff;font-family:var(--font-display);font-weight:600;font-size:17px;cursor:pointer;box-shadow:var(--shadow-sm);}
+.start-btn:hover{filter:brightness(1.08);}
+.limitnote{margin-top:10px;background:#FFF7E8;border:1.5px solid #F0C66B;border-radius:12px;padding:10px 13px;font-size:12.5px;color:#7a5410;font-weight:700;display:flex;gap:8px;align-items:flex-start;line-height:1.45;}
+.demo-flag{margin:0 0 12px;background:#EFF4FE;border:1px solid #C6D9F5;border-radius:11px;padding:9px 12px;font-size:12px;color:#1c3a63;font-weight:700;text-align:center;}
+.vpick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.vpick button{border:2px solid var(--xm);background:#fff;border-radius:16px;padding:18px 10px;cursor:pointer;font-family:var(--font-body);box-shadow:var(--shadow-sm);}
+.vpick button:hover{background:var(--xl);}
+.vpick .ve{font-size:30px;}
+.vpick b{display:block;font-family:var(--font-display);font-weight:600;font-size:15px;margin-top:5px;}
+.vpick span{font-size:11px;color:var(--text-soft);font-weight:700;}
+.partban{border-radius:15px;overflow:hidden;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+.partban .pbh{background:var(--xg);color:#fff;padding:11px 15px;display:flex;align-items:center;gap:10px;}
+.partban .pbh .pe{font-size:24px;}
+.partban .pbh b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;line-height:1.15;}
+.partban .pbh span{font-size:10.5px;opacity:.88;font-weight:700;}
+.partban .pbb{background:#fff;padding:9px 15px;font-size:12px;color:#555;font-weight:700;line-height:1.5;border:1px solid var(--border);border-top:none;border-radius:0 0 15px 15px;}
+.qcard{background:#fff;border-radius:18px;box-shadow:var(--shadow-sm);padding:16px;user-select:none;-webkit-user-select:none;}
+.qtop{display:flex;align-items:center;gap:9px;margin-bottom:11px;flex-wrap:wrap;}
+.qnum{width:30px;height:30px;border-radius:50%;background:var(--xg);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:13.5px;flex-shrink:0;}
+.qsec{font-size:11px;font-weight:800;color:var(--xp);background:var(--xl);border:1px solid var(--xm);padding:3px 10px;border-radius:20px;}
+.qmulti{margin-left:auto;font-size:10px;font-weight:800;color:#6b4e9a;background:#F3E9FB;border:1px solid #DDC7F0;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.qtext{font-size:16px;line-height:1.55;font-weight:700;margin:0 0 11px;}
+.qtr{font-size:12.5px;color:var(--text-soft);font-weight:700;font-style:italic;}
+.qquote{background:var(--tint);border:1px solid var(--xm);border-left:4px solid var(--xp);border-radius:10px;padding:10px 13px;font-family:var(--font-serif);font-size:14.5px;font-weight:600;color:#33405f;margin:0 0 12px;line-height:1.55;}
+.passage{background:#FFFDF6;border:1px solid #EADFC0;border-radius:12px;padding:12px 14px;margin:0 0 12px;}
+.passage .plab{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a6d1a;margin-bottom:5px;}
+.passage p{margin:0 0 8px;font-family:var(--font-serif);font-size:14px;line-height:1.7;color:#3a3320;}
+.passage p:last-child{margin-bottom:0;}
+.audiorow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px;}
+.playb{border:none;border-radius:22px;background:var(--xg);color:#fff;font-family:var(--font-body);font-weight:800;font-size:13px;padding:10px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;box-shadow:var(--shadow-sm);}
+.playb:disabled{opacity:.45;cursor:default;}
+.accb{border:1.5px solid var(--xm);background:#fff;color:var(--xp);border-radius:18px;padding:8px 13px;font-weight:800;font-size:12px;cursor:pointer;}
+.cheer{background:linear-gradient(135deg,#E8F5E9,#FFF9C4);border:1.5px solid #A5D6A7;border-radius:13px;padding:10px 14px;font-weight:800;font-size:13px;color:#1B5E20;margin-bottom:11px;text-align:center;animation:up .4s ease;}
+.playsleft{font-size:11px;font-weight:800;color:var(--text-soft);}
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{padding:12px 14px;border:2px solid #E5E7EB;border-radius:12px;background:#fff;font-family:var(--font-body);font-weight:700;font-size:14px;cursor:pointer;color:var(--text);text-align:left;display:flex;align-items:center;gap:10px;transition:.12s;}
+.opt:hover{border-color:var(--xp);background:var(--tint);}
+.opt .mk{width:20px;height:20px;border-radius:6px;border:2px solid #CFCabb;flex-shrink:0;}
+.opt.single .mk{border-radius:50%;}
+.opt.sel{border-color:var(--xp);background:var(--xl);}.opt.sel .mk{background:var(--xp);border-color:var(--xp);}
+.win{width:100%;border:2px solid var(--xm);border-radius:12px;padding:12px 14px;font-family:var(--font-body);font-weight:700;font-size:15px;background:#fff;color:var(--text);}
+.win:focus{outline:none;border-color:var(--xp);background:#FDFDFF;}
+.winlab{font-size:11px;font-weight:800;color:var(--text-soft);margin:6px 0 0;}
+.words{display:flex;flex-wrap:wrap;gap:7px;}
+.wd{border:1.5px dashed var(--xm);background:#fff;border-radius:9px;padding:7px 11px;font-family:var(--font-serif);font-weight:700;font-size:15px;cursor:pointer;color:var(--text);}
+.wd:hover{background:var(--xl);}
+.wd.sel{background:#FFEBEE;border:1.5px solid #EF9A9A;color:#C62828;}
+.ordans{min-height:46px;border:2px dashed var(--xm);border-radius:12px;background:#FDFDFF;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;}
+.ordans .wd{border-style:solid;background:var(--xl);}
+.ordbank{display:flex;flex-wrap:wrap;gap:6px;}
+.ordlab{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);margin:0 0 5px;}
+.nav{display:flex;gap:8px;margin-top:14px;}
+.nb{padding:12px 15px;border:none;border-radius:12px;font-family:var(--font-body);font-weight:800;font-size:13.5px;cursor:pointer;}
+.nb.next{background:var(--xg);color:#fff;flex:1;}.nb.prev{background:#F1F0EA;color:var(--text);}
+.nb:disabled{opacity:.4;cursor:default;}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;justify-content:center;}
+.dot{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:10px;font-weight:800;color:#999;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);}
+.dot.ans{background:var(--xl);border-color:var(--xm);color:var(--xp);}
+.dot.cur{background:var(--xg);border-color:var(--xp);color:#fff;}
+.results{display:none;position:relative;z-index:1;padding:18px 16px 34px;}
+.results.show{display:block;animation:up .45s ease;}
+@keyframes up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.verdict{border-radius:20px;padding:22px 18px;color:#fff;box-shadow:var(--shadow-sm);text-align:center;background:var(--xg);}
+.verdict.hi{background:linear-gradient(135deg,#2E7D32,#1B5E20);}
+.verdict .em{font-size:46px;line-height:1;}
+.score{font-family:var(--font-display);font-weight:600;font-size:46px;line-height:1;margin-top:6px;}.score small{font-size:19px;opacity:.85;}
+.verdict h2{font-family:var(--font-display);font-weight:600;font-size:20px;margin:8px 0 4px;}
+.verdict p{font-size:13px;opacity:.96;font-weight:700;margin:0;line-height:1.5;}
+.timeoutbar{margin-top:12px;background:#FFF3E0;border:1.5px solid #F0C66B;border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:800;color:#9A3412;text-align:center;display:none;}
+.strip{display:flex;gap:9px;margin:14px 0 6px;}
+.stat{flex:1;background:#fff;border:1px solid var(--border);border-radius:13px;padding:11px 8px;box-shadow:var(--shadow-sm);text-align:center;}
+.stat b{font-family:var(--font-display);font-weight:600;font-size:21px;display:block;color:var(--xp);}
+.stat span{font-size:10.5px;color:var(--text-soft);font-weight:800;text-transform:uppercase;letter-spacing:.03em;}
+.rblock{background:#fff;border:1px solid var(--border);border-radius:15px;padding:15px 16px;box-shadow:var(--shadow-sm);margin-top:14px;}
+.rblock h3{font-family:var(--font-display);font-weight:600;font-size:15px;margin:0 0 4px;}
+.rblock .sub{font-size:12px;color:var(--text-soft);margin:0 0 12px;line-height:1.45;}
+.srow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1ECE3;}
+.srow:last-child{border-bottom:none;}
+.srow .snm{flex:1;font-size:12.5px;font-weight:700;min-width:0;}
+.sbar{width:88px;height:9px;background:#EEE9E2;border-radius:6px;overflow:hidden;flex-shrink:0;}
+.sbar i{display:block;height:100%;border-radius:6px;}
+.srow .spct{width:52px;text-align:right;font-weight:800;font-size:12.5px;font-variant-numeric:tabular-nums;}
+.rbtns{display:flex;flex-direction:column;gap:9px;margin-top:16px;}
+.rbtn{padding:14px;border:none;border-radius:13px;font-family:var(--font-body);font-weight:800;font-size:14px;cursor:pointer;background:var(--xg);color:#fff;}
+.rev-toggle{margin-top:12px;width:100%;background:#fff;border:1.5px solid var(--xm);color:var(--xp);border-radius:12px;padding:11px;font-weight:800;font-size:13px;cursor:pointer;font-family:var(--font-body);}
+.rev-toggle:hover{background:var(--xl);}
+.review{display:none;margin-top:12px;}.review.show{display:block;}
+.reviewview{display:none;padding:18px 16px 34px;position:relative;z-index:1;}
+.rv-head{background:var(--xg);border-radius:18px;padding:18px;color:#fff;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);}
+.rv-head .big{font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;}
+.rv-head .meta b{font-family:var(--font-display);font-weight:600;font-size:16px;display:block;}
+.rv-head .meta span{font-size:12px;opacity:.92;font-weight:700;}
+.backbtn{background:#fff;border:1.5px solid var(--xm);color:var(--xp);border-radius:12px;padding:11px 15px;font-weight:800;font-size:13.5px;cursor:pointer;margin-bottom:14px;display:inline-flex;gap:7px;align-items:center;}
+.backbtn:hover{background:var(--xl);}
+.rvwhy{margin-top:7px;background:#FFF9E6;border:1.5px solid #F0C66B;border-radius:10px;padding:8px 11px;font-size:12px;color:#7a5410;font-weight:600;line-height:1.6;}
+.rvq{background:#fff;border:1px solid var(--border);border-radius:13px;padding:12px 13px;margin-bottom:9px;box-shadow:var(--shadow-sm);}
+.rvq .rvh{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:800;margin-bottom:5px;}
+.rvq .rvh .rvn{color:var(--text-soft);}.rvq .rvh .rvmark{margin-left:auto;font-size:14px;}
+.rvq .rvp{font-size:13px;font-weight:700;margin:0 0 6px;line-height:1.45;}
+.rvq .rva{font-size:12.5px;line-height:1.5;}.rvq .rva .yours{color:var(--wrong);font-weight:700;}.rvq .rva .good{color:var(--correct);font-weight:800;}
+.teacherview{display:none;padding:18px 16px 34px;position:relative;z-index:1;}
+.t-hero{background:linear-gradient(135deg,#37474F,#263238);border-radius:18px;padding:18px 20px;color:#fff;box-shadow:var(--shadow-sm);}
+.t-hero h2{font-family:var(--font-display);font-weight:600;font-size:19px;margin:0 0 3px;display:flex;gap:8px;align-items:center;}
+.t-hero p{font-size:12.5px;opacity:.9;margin:0;font-weight:700;}
+.t-controls{display:flex;gap:9px;align-items:center;margin:14px 0 4px;flex-wrap:wrap;}
+.t-controls label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);}
+select.t-sel{font-family:var(--font-body);font-weight:700;font-size:13px;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;background:#fff;flex:1;min-width:140px;}
+.t-refresh{border:1.5px solid var(--border);background:#fff;border-radius:10px;padding:9px 13px;font-weight:800;font-size:12.5px;cursor:pointer;}
+.t-summary{display:flex;gap:9px;margin:12px 0;}
+.t-sum{flex:1;background:#fff;border:1px solid var(--border);border-radius:13px;padding:11px 8px;text-align:center;box-shadow:var(--shadow-sm);}
+.t-sum b{font-family:var(--font-display);font-weight:600;font-size:20px;display:block;color:#37474F;}
+.t-sum span{font-size:10px;color:var(--text-soft);font-weight:800;text-transform:uppercase;}
+.t-student{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);margin-bottom:10px;overflow:hidden;}
+.t-srow{display:flex;align-items:center;gap:11px;padding:12px 14px;cursor:pointer;}
+.t-srow:hover{background:var(--tint);}
+.t-ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#607D8B,#455A64);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+.t-sinfo{flex:1;min-width:0;}.t-sinfo b{font-size:14px;display:block;}.t-sinfo span{font-size:11.5px;color:var(--text-soft);font-weight:700;}
+.t-sc{font-family:var(--font-display);font-weight:600;font-size:19px;flex-shrink:0;}
+.t-flag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px;background:#FFF3E0;color:#9A3412;white-space:nowrap;}
+.t-att{display:flex;align-items:center;gap:10px;padding:9px 14px;border-top:1px solid #F5F1E9;font-size:11.5px;color:var(--text-soft);font-weight:700;flex-wrap:wrap;}
+.t-att button{border:1.5px solid var(--xm);background:#fff;color:var(--xp);border-radius:9px;padding:6px 12px;font-weight:800;font-size:11.5px;cursor:pointer;}
+.empty{text-align:center;color:var(--text-soft);font-size:13px;font-weight:700;padding:14px 6px;line-height:1.5;}
+.mfoot{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;font-size:10px;color:#B0A99A;padding:14px;font-weight:700;}
+.mfoot img{height:18px;opacity:.5;}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#222;color:#fff;padding:11px 20px;border-radius:24px;font-weight:800;font-size:13px;box-shadow:var(--shadow);z-index:200;opacity:0;transition:.3s;pointer-events:none;max-width:90vw;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.modal{position:fixed;inset:0;background:rgba(20,16,8,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+.modal.show{display:flex;}
+.mbox{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:20px;box-shadow:var(--shadow);text-align:center;}
+.mbox .me{font-size:38px;}
+.mbox h3{font-family:var(--font-display);font-weight:600;font-size:17px;margin:8px 0 6px;}
+.mbox p{font-size:13px;line-height:1.6;color:#555;margin:0 0 14px;font-weight:600;}
+.mbox .mb1{width:100%;padding:13px;border:none;border-radius:12px;background:var(--xg);color:#fff;font-family:var(--font-display);font-weight:600;font-size:15px;cursor:pointer;}
+.mbox .mb2{width:100%;padding:11px;border:none;border-radius:12px;background:#F1F0EA;color:var(--text);font-weight:800;font-size:13px;cursor:pointer;margin-top:8px;font-family:var(--font-body);}
+@media(min-width:700px){.mbody{padding:22px 30px 40px}.qtext{font-size:17px}.opt{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="wm"></div>
+  <div class="mhead">
+    <div class="mbadge"><img src="https://jucum-english-center.netlify.app/assets/jucum-figure.png" alt="JUCUM" onerror="this.style.display='none'"></div>
+    <div class="mh-info"><b id="mhtitle">Examen · Módulo 3</b><span id="mhsub">Pre-A1 · Place, Time & Movement</span></div>
+    <div class="mh-timer" id="timerBox" style="display:none">⏱ <span id="timer">–</span></div>
+    <div class="mh-count" id="counter" style="display:none"><span id="cq">1</span>/<span id="tq">–</span></div>
+  </div>
+  <div class="pbar"><div class="pfill" id="pfill"></div></div>
+  <div class="hub" id="hub" style="display:none"></div>
+  <div class="mbody" id="mbody" style="display:none">
+    <div id="qbox"></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="results" id="results"></div>
+  <div class="reviewview" id="reviewview"></div>
+  <div class="teacherview" id="teacherview"></div>
+  <div class="mfoot"><img src="https://jucum-english-center.netlify.app/assets/jucum-logo.png" alt="JUCUM English Center" onerror="this.style.display='none'">· Material protegido © JUCUM English Center</div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"></div>
+
+<script>
+window.JUCUM_OWN_PANEL = true;
+/* ═══════════ CONFIG ═══════════ */
+var SB_URL='https://dwwzkzuonltaavzhvilu.supabase.co';
+var SB_KEY='sb_publishable_6pruJuV5P2cMVWqd8Wt8gg_UAtuEj_m';
+var Q=new URLSearchParams(location.search);
+var UID=Q.get('jucum_uid')||'';
+var IS_TEACHER=Q.get('jucum_teacher')==='1';
+var GROUP=Q.get('jucum_group')||'';
+var MOD=Q.get('jucum_mod')||'pre-a1-m3';
+var ACT='examen-m3'; // identidad FIJA de guardado (no depende de cómo se abra)
+var ALLOW_RETRY=Q.get('jucum_retry')==='1';
+var VARIANT=Q.get('jucum_variant')||'';   // 'kids' | 'adults'
+var LSKEY=function(){return 'jucum_exam_'+ACT+'_'+(UID||'demo');};
+var PROGKEY=function(){return LSKEY()+'_prog';};
+
+/* ═══════════ NUBE (Supabase REST, respaldo local) ═══════════ */
+async function sbFetch(path,opts){
+  var ctrl=new AbortController(); var to=setTimeout(function(){ctrl.abort();},7000);
+  try{
+    var r=await fetch(SB_URL+'/rest/v1/'+path,Object.assign({signal:ctrl.signal,headers:Object.assign({apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},(opts&&opts.headers)||{})},opts||{}));
+    clearTimeout(to);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    var txt=await r.text(); return txt?JSON.parse(txt):[];
+  }catch(e){ clearTimeout(to); throw e; }
+}
+function localAttempts(){ try{return JSON.parse(localStorage.getItem(LSKEY())||'[]');}catch(e){return [];} }
+function saveLocalAttempt(row){ var a=localAttempts(); a.push(row); try{localStorage.setItem(LSKEY(),JSON.stringify(a));}catch(e){} }
+async function cloudSaveAttempt(row){ if(!UID) return false; try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
+async function loadMyAttempts(){
+  if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
+  return localAttempts();
+}
+
+/* ═══════════ PARTES Y PESOS ═══════════ */
+const PARTS={
+  L:{emo:'🎧',name:{es:'Listening',en:'Listening'},w:10,instr:{es:'Escucha con el botón ▶ (máx. 3 veces por pregunta · botón 🐢 para oírlo más lento) y responde con calma.',en:'Listen with ▶ (max 3 plays per question, 🐢 for slower) and answer.'}},
+  R:{emo:'📖',name:{es:'Comprensión lectora',en:'Reading'},w:30,instr:{es:'Lee el fragmento con calma. Todas las respuestas están en el texto — algunas hay que deducirlas.',en:'Read the passage calmly. Every answer is in the text — some must be inferred.'}},
+  X:{emo:'🧩',name:{es:'¿Qué regla uso?',en:'Which rule?'},w:20,instr:{es:'Aquí eliges la regla correcta entre parecidas (a/an/the · his/her/their · -s/-es/-ies). Piensa antes de marcar.',en:'Choose the correct rule among look-alikes (a/an/the · his/her/their · -s/-es/-ies).'}},
+  G:{emo:'📝',name:{es:'Gramática',en:'Grammar'},w:25,instr:{es:'Las mismas mecánicas de tus prácticas: completa, toca el error, transforma.',en:'The same mechanics as your practice: fill, tap the error, transform.'}},
+  V:{emo:'🔤',name:{es:'Vocabulario',en:'Vocabulary'},w:15,instr:{es:'Traducciones del vocabulario del módulo. Ojo con los parecidos (temprano / rápido · debajo / dentro).',en:'Module vocabulary. Mind the look-alikes (early / fast · under / inside).'}}
+};
+const PORDER=['L','R','X','G','V'];
+const PASS=75; /* nota mínima para aprobar */
+
+/* ═══════════ LECTURAS (fragmentos del material vivo del m3) ═══════════ */
+const PASSAGES={
+adults:[
+ {t:'Fragmento 1',p:["A week has seven days. Five days are for school. Two days are for home. My week is always full. Let me tell you about it.","On Mondays, I wake up early. The house is still dark. Mia and I get our bags. Our uniforms wait on the chairs. The week starts fast.","On Tuesdays, I have art class. It is my favorite day. We paint during the afternoon. The brushes dance on the paper. Time flies in art class.","On Wednesdays, mom works late. Grandma comes to our house. Her stories are about her town. We drink tea and listen. Wednesdays taste like honey."]},
+ {t:'Fragmento 2',p:["On Thursdays, we visit the library. The shelves go up high. I take three books home. Comics, animals, and space. Books make the week better.","On Fridays, dad comes home early. We make pizza together. Our kitchen gets a little messy. Nobody cares on Fridays. The weekend is near!","Saturdays are for the market. We go early with mom. The fruit shines in lines. Don Pepe saves apples for us. Their smell fills the bag.","On Sundays, we rest. We visit our grandparents. Their house is always warm. Lunch goes on and on. Sundays end too fast."]},
+ {t:'Fragmento 3',p:["A little bird lives in the park. She is brown and small. Her wings move very fast. The kids call her Pia. Everyone knows the fast bird.","Pia wakes up before the sun. The park is quiet and gray. She sings one early song. The trees listen in silence. Then the day begins.","Pia looks for seeds. The seeds hide under the benches. She finds them fast. Other birds come near. She shares without a fight.","An old dog sleeps near the gate. Pia flies down to him. She walks between his ears! The dog opens one eye. They are strange friends.","During the morning, kids arrive. Leo and Ravi bring bread. They put small pieces down. Pia takes the first piece. She says thanks with a song."]}
+],
+kids:[
+ {t:'Fragmento 1',p:["The school day starts early. A bell rings at eight. The doors open fast. Kids run to their classes. Our class is the last door.","My classroom has many things. There are books and pencils. The window is always open. An old map is on the wall. I like the map a lot.","Before class, we play outside. Ravi brings a small ball. The girls jump rope fast. The boys pass the ball. Then the bell calls us in.","During class, we read stories. Miss Rosa opens a big book. The story is about an elephant. An elephant with huge ears! We listen with open mouths."]},
+ {t:'Fragmento 2',p:["My friends sit near me. Ana shares her colored pencils. Ravi draws in his notebook. Our drawings go on the wall. The wall looks like a museum.","At noon, we eat lunch. The tables are long and full. I sit between Ravi and Ana. We trade some snacks. Lunch always ends too fast.","At the end, we clean up. The pencils go in a box. The books go on the shelves. Our chairs go under the desks. The room gets neat again."]},
+ {t:'Fragmento 3',p:["I have a white cat. Her name is Luna. She is small and fast. Luna loves funny places. Today I cannot find her.","I look under my bed. There are only two boxes. My old toys sleep there. No cat under the bed. Where is that little cat?","I look inside the closet. My dresses hang in a line. The shoes wait in pairs. A soft sound comes out. But it is only the wind.","Maybe she is in the kitchen. Her bowl is near the door. The milk is still there. Luna never misses her milk. Now I am a little worried.","Then I hear a tiny cry. It comes from up high. I look at the tree. Two eyes shine between the leaves. She is on a high branch."]}
+]};
+
+/* ═══════════ BANCOS DE PREGUNTAS ═══════════
+   part L/R/X/G/V · lvl 1-3 (rampa invisible) · types:
+   single{opts,correct} multi{opts,correct[]} write{acc[]} tap{words,err,fix} order{chips}
+   frag: índice de fragmento (R) · 0 = considerar TODOS
+   audio: texto TTS · tr: ayuda ES (solo niños)                                    */
+const BANK={
+adults:[
+/* — L · Listening (10) — */
+{part:'L',lvl:1,type:'single',audio:'A week has seven days.',prompt:{es:'Elige exactamente lo que escuchaste:',en:'Choose exactly what you heard:'},opts:['A week has seven days.','A week has seven weeks.','A day has seven hours.'],correct:'A week has seven days.',why:{es:'🗓️ <b>A week has seven days</b> = Una semana tiene siete días. Fíjate en <b>days</b> (días), no <b>weeks</b> (semanas).',en:'A week has seven days.'}},
+{part:'L',lvl:1,type:'single',audio:'On Mondays, I wake up early.',prompt:{es:'¿Cuándo se levanta los lunes?',en:'When does he wake up on Mondays?'},opts:['Temprano','Tarde','Al mediodía'],correct:'Temprano',why:{es:'⏰ <b>early = temprano</b>. Lo contrario es <b>late</b> (tarde).',en:'early = temprano.'}},
+{part:'L',lvl:2,type:'single',audio:'Our uniforms wait on the chairs.',prompt:{es:'¿Qué palabra escuchaste antes de «uniforms»?',en:'Which word did you hear before "uniforms"?'},opts:['Our (nuestros)','Her (de ella)','Their (de ellos)'],correct:'Our (nuestros)',why:{es:'👨‍👩‍👧 <b>our = nuestro/nuestros</b>. Compara: my (mi) · our (nuestro) · their (de ellos).',en:'our = nuestros.'}},
+{part:'L',lvl:2,type:'single',audio:'We paint during the afternoon.',prompt:{es:'¿Cuándo pintan?',en:'When do they paint?'},opts:['Durante la tarde','Antes del almuerzo','Después de la cena'],correct:'Durante la tarde',why:{es:'🎨 <b>during = durante</b> (mientras dura algo). before = antes · after = después.',en:'during = durante.'}},
+{part:'L',lvl:2,type:'single',audio:'Her stories are about her town.',prompt:{es:'¿De qué son las historias de la abuela?',en:'What are grandma\'s stories about?'},opts:['De su pueblo','De su escuela','De sus libros'],correct:'De su pueblo',why:{es:'💬 <b>about = sobre / acerca de</b>. «about her town» = sobre su pueblo.',en:'about = sobre.'}},
+{part:'L',lvl:2,type:'single',audio:'I take three books home.',prompt:{es:'¿Cuántos libros lleva a casa?',en:'How many books does he take home?'},opts:['Tres','Dos','Cinco'],correct:'Tres',why:{es:'📚 <b>three books</b> = tres libros. El <b>-s</b> de books avisa que son varios.',en:'three books.'}},
+{part:'L',lvl:3,type:'single',audio:'The shelves go up high.',prompt:{es:'¿Qué palabra escuchaste?',en:'Which word did you hear?'},opts:['shelves (varios estantes)','shelf (un estante)','ships (barcos)'],correct:'shelves (varios estantes)',why:{es:'📏 <b>shelf → shelves</b>: uno vs varios. Escucha el final: shelf<b>ves</b> suena distinto a shel<b>f</b>.',en:'shelf → shelves.'}},
+{part:'L',lvl:2,type:'single',audio:'The seeds hide under the benches.',prompt:{es:'¿Dónde están las semillas?',en:'Where are the seeds?'},opts:['Debajo de las bancas','Dentro de una caja','Cerca del árbol'],correct:'Debajo de las bancas',why:{es:'⬇️ <b>under = debajo de</b>. inside = dentro · near = cerca.',en:'under = debajo.'}},
+{part:'L',lvl:3,type:'single',audio:'I sit between Mia and mom.',prompt:{es:'¿Dónde se sienta?',en:'Where does he sit?'},opts:['Entre Mia y mamá','Al lado de papá','Detrás de Mia'],correct:'Entre Mia y mamá',why:{es:'↔️ <b>between = entre</b> (en medio de DOS): between Mia and mom = entre Mia y mamá.',en:'between = entre.'}},
+{part:'L',lvl:1,type:'single',audio:'A good day for a bird.',prompt:{es:'Elige exactamente lo que escuchaste:',en:'Choose exactly what you heard:'},opts:['A good day for a bird.','A good day for a girl.','A cold day for a bird.'],correct:'A good day for a bird.',why:{es:'🐦 <b>bird</b> (pájaro) ≠ <b>girl</b> (niña); <b>good</b> (bueno) ≠ <b>cold</b> (frío).',en:'A good day for a bird.'}},
+
+/* — R · Comprensión lectora (12) — */
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Cuántos días de la semana son para la escuela?',en:'How many days are for school?'},opts:['Cinco','Dos','Siete'],correct:'Cinco',why:{es:'📖 «<b>Five days</b> are for school» = cinco días son para la escuela.',en:'Five days are for school.'}},
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Cómo está la casa cuando se despierta el lunes?',en:'How is the house on Monday morning?'},opts:['Todavía oscura','Llena de luz','Vacía'],correct:'Todavía oscura',why:{es:'🌑 «The house is <b>still dark</b>» = la casa todavía está oscura (se levanta muy temprano).',en:'still dark.'}},
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Qué día tiene clase de arte?',en:'Which day is art class?'},opts:['Martes','Lunes','Miércoles'],correct:'Martes',why:{es:'🎨 «On <b>Tuesdays</b>, I have art class» = los martes.',en:'On Tuesdays.'}},
+{part:'R',lvl:2,type:'single',frag:1,prompt:{es:'¿Quién viene a la casa los miércoles?',en:'Who comes on Wednesdays?'},opts:['La abuela','Mia','Don Pepe'],correct:'La abuela',why:{es:'👵 «<b>Grandma</b> comes to our house» = la abuela viene a nuestra casa.',en:'Grandma comes.'}},
+{part:'R',lvl:3,type:'multi',frag:1,prompt:{es:'Marca TODAS las oraciones verdaderas según el texto:',en:'Mark ALL true sentences:'},opts:['Los uniformes esperan en las sillas','Pintan durante la tarde','La mamá trabaja temprano los miércoles','Las historias de la abuela son sobre su pueblo'],correct:['Los uniformes esperan en las sillas','Pintan durante la tarde','Las historias de la abuela son sobre su pueblo'],why:{es:'✅ El texto dice «mom works <b>late</b>» (trabaja <b>tarde</b>), no temprano. Las otras tres sí están en el texto.',en:'mom works late, not early.'}},
+{part:'R',lvl:3,type:'single',frag:1,prompt:{es:'El texto dice «Wednesdays taste like honey» (los miércoles <i>saben a miel</i>). ¿Qué quiere decir?',en:'"Wednesdays taste like honey" means…'},opts:['Que son días muy agradables','Que toman miel todos los miércoles','Que son días muy largos'],correct:'Que son días muy agradables',why:{es:'🍯 Es una <b>comparación</b>, no algo que comen: en español también decimos «un día dulce». Sabe a miel = se siente lindo.',en:'It is a comparison, not real honey.'}},
+{part:'R',lvl:1,type:'single',frag:2,prompt:{es:'¿Cuántos libros lleva a casa de la biblioteca?',en:'How many books from the library?'},opts:['Tres','Dos','Cinco'],correct:'Tres',why:{es:'📚 «I take <b>three books</b> home».',en:'three books.'}},
+{part:'R',lvl:1,type:'single',frag:2,prompt:{es:'¿Qué preparan los viernes con papá?',en:'What do they make on Fridays?'},opts:['Pizza','Pan','Sopa'],correct:'Pizza',why:{es:'🍕 «We make <b>pizza</b> together» = hacemos pizza juntos.',en:'pizza.'}},
+{part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿Quién guarda manzanas para ellos en el mercado?',en:'Who saves apples for them?'},opts:['Don Pepe','La abuela','Miss Rosa'],correct:'Don Pepe',why:{es:'🍎 «<b>Don Pepe</b> saves apples for us» = Don Pepe nos guarda manzanas.',en:'Don Pepe.'}},
+{part:'R',lvl:3,type:'single',frag:2,prompt:{es:'¿Por qué dice que «los domingos terminan muy rápido»?',en:'Why do Sundays "end too fast"?'},opts:['Porque la pasa bien con sus abuelos','Porque duerme todo el día','Porque tiene clases'],correct:'Porque la pasa bien con sus abuelos',why:{es:'😊 Cuando algo es agradable, sentimos que el tiempo pasa <b>rápido</b>. El texto cuenta que visitan a los abuelos y el almuerzo «goes on and on».',en:'Nice time feels fast.'}},
+{part:'R',lvl:2,type:'single',frag:3,prompt:{es:'¿Dónde se esconden las semillas que busca Pía?',en:'Where do the seeds hide?'},opts:['Debajo de las bancas','Dentro del nido','Cerca de la puerta'],correct:'Debajo de las bancas',why:{es:'⬇️ «The seeds hide <b>under the benches</b>» = debajo de las bancas.',en:'under the benches.'}},
+{part:'R',lvl:3,type:'multi',frag:3,prompt:{es:'Marca TODAS las oraciones verdaderas según el texto:',en:'Mark ALL true sentences:'},opts:['Pía se despierta antes del sol','Pía comparte con otros pájaros','Pía es lenta','El perro viejo duerme cerca de la reja'],correct:['Pía se despierta antes del sol','Pía comparte con otros pájaros','El perro viejo duerme cerca de la reja'],why:{es:'🐦 «Her wings move very <b>fast</b>» → Pía es <b>rápida</b>, no lenta. «wakes up <b>before</b> the sun», «She <b>shares</b>», «sleeps <b>near</b> the gate» sí están.',en:'Pia is fast, not slow.'}},
+
+/* — X · ¿Qué regla uso? (10) — */
+{part:'X',lvl:1,type:'single',prompt:{es:'Elige el artículo correcto: «___ old map is on the wall.» 🗺️',en:'Choose the article:'},opts:['An','A','The'],correct:'An',why:{es:'🅰️ <b>a</b> + sonido de consonante (a map) · <b>an</b> + sonido de vocal (an <b>o</b>ld map). Aquí «old» empieza con vocal → <b>an</b>.',en:'an + vowel sound.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'Elige el artículo: «I have ___ white cat. Her name is Luna.» 🐱',en:'Choose the article:'},opts:['a','an','the'],correct:'a',why:{es:'🐱 Es la <b>primera vez</b> que hablamos de la gata y «white» empieza con sonido de consonante → <b>a</b> white cat.',en:'a + consonant sound, first mention.'}},
+{part:'X',lvl:3,type:'single',prompt:{es:'¿Qué par de artículos es correcto? «___ bell rings at eight. ___ bell is old.» 🔔',en:'Which pair is correct?'},opts:['A … The','The … A','An … The'],correct:'A … The',why:{es:'🔔 Primero <b>a</b> (algo nuevo: una campana), después <b>the</b> (ya sabemos cuál: LA campana). Igual que en español: «suena <b>una</b> campana… <b>la</b> campana es vieja».',en:'a = new, the = known.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'¿Cuál es el plural correcto de «box»? 📦',en:'Plural of "box"?'},opts:['boxes','boxs','boxies'],correct:'boxes',why:{es:'📦 Palabras que terminan en <b>-x, -s, -ch, -sh</b> llevan <b>-es</b>: box→box<b>es</b>, class→class<b>es</b>, watch→watch<b>es</b>.',en:'-x → -es.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'¿Cuál es el plural correcto de «city»? 🏙️',en:'Plural of "city"?'},opts:['cities','citys','cityes'],correct:'cities',why:{es:'🏙️ <b>consonante + y</b> → cambia a <b>-ies</b>: city→cit<b>ies</b>, baby→bab<b>ies</b>, story→stor<b>ies</b>.',en:'consonant + y → -ies.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'«Ana shares ___ colored pencils.» (los lápices son de Ana) ✏️',en:'"Ana shares ___ pencils."'},opts:['her','his','their'],correct:'her',why:{es:'👧 El dueño es <b>ella</b> → <b>her</b>. Compara: his (de él) · her (de ella) · their (de ellos).',en:'owner = she → her.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'«Ravi draws in ___ notebook.» (el cuaderno es de Ravi) 📓',en:'"Ravi draws in ___ notebook."'},opts:['his','her','our'],correct:'his',why:{es:'👦 El dueño es <b>él</b> → <b>his</b>. En español decimos «su» para los dos, pero en inglés cambia según el dueño.',en:'owner = he → his.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'«Mia and I get ___ bags.» (las mochilas son de nosotros) 🎒',en:'"Mia and I get ___ bags."'},opts:['our','their','your'],correct:'our',why:{es:'👨‍👩‍👧 «Mia and I» = nosotros → <b>our</b> (nuestro). their = de ellos · your = tuyo.',en:'we → our.'}},
+{part:'X',lvl:3,type:'single',prompt:{es:'Para hablar de las cosas DE ELLOS, ¿qué palabra va antes del sustantivo?',en:'Which word shows THEIR things?'},opts:['their','them','they'],correct:'their',why:{es:'👨‍👩‍👧‍👦 <b>their + cosa</b>: their house (su casa, de ellos). <b>they</b> hacen la acción (they run) y <b>them</b> recibe (I see them).',en:'their + noun.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'Si el gato está DEBAJO de la cama: «The cat is ___ the bed.» 🐱',en:'The cat is ___ the bed.'},opts:['under','inside','near'],correct:'under',why:{es:'⬇️ <b>under</b> = debajo · <b>inside</b> = dentro · <b>near</b> = cerca. Piensa en el dibujo antes de marcar.',en:'under = debajo.'}},
+
+/* — G · Gramática (14) — */
+{part:'G',lvl:1,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['There','are','three','box','under','the','bed.'],err:3,fix:'boxes',why:{es:'📦 «three» avisa que son <b>varios</b> → box<b>es</b>. Regla: -x lleva -es.',en:'three → boxes.'}},
+{part:'G',lvl:1,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['I','read','two','storys','every','week.'],err:3,fix:'stories',why:{es:'📚 story termina en <b>consonante + y</b> → stor<b>ies</b> (no «storys»).',en:'story → stories.'}},
+{part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['I','see','a','elephant','in','the','park.'],err:2,fix:'an',why:{es:'🐘 «elephant» empieza con sonido de vocal → <b>an</b> elephant.',en:'an elephant.'}},
+{part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['This','is','she','notebook.'],err:2,fix:'her',why:{es:'📓 Antes de un sustantivo va el posesivo: <b>her</b> notebook (su cuaderno). «she» solo sirve para la acción: she draws.',en:'her notebook.'}},
+{part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['Our','class','is','the','last','doors.'],err:5,fix:'door',why:{es:'🚪 «the last door» es <b>una sola</b> puerta → sin -s.',en:'one door.'}},
+{part:'G',lvl:1,type:'single',prompt:{es:'Completa: «There are many ___ in my classroom.» ✏️',en:'Complete:'},opts:['pencils','pencil','pencilies'],correct:'pencils',why:{es:'✏️ «many» = muchos → plural normal con <b>-s</b>: pencil<b>s</b>.',en:'many → pencils.'}},
+{part:'G',lvl:2,type:'single',prompt:{es:'Completa: «My mom washes the ___ after lunch.» 🍽️',en:'Complete:'},opts:['dishes','dishs','dishies'],correct:'dishes',why:{es:'🍽️ dish termina en <b>-sh</b> → dish<b>es</b>.',en:'-sh → -es.'}},
+{part:'G',lvl:1,type:'single',prompt:{es:'Completa: «___ apple is small.» (una manzana cualquiera) 🍎',en:'Complete:'},opts:['An','A','The'],correct:'An',why:{es:'🍎 «apple» empieza con vocal → <b>an</b> apple. Si fuera una manzana específica, sería «the apple».',en:'an apple.'}},
+{part:'G',lvl:2,type:'single',prompt:{es:'Completa: «Luna is ___ cat in the photo.» (esa gata específica) 🐱',en:'Complete:'},opts:['the','a','an'],correct:'the',why:{es:'🐱 Ya sabemos cuál es → <b>the</b> cat (LA gata de la foto).',en:'the = specific.'}},
+{part:'G',lvl:1,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Los niños corren a sus clases.»',chips:['Kids','run','to','their','classes.'],why:{es:'🧩 Sujeto + verbo + resto. «sus clases (de ellos)» = <b>their classes</b> (con -es porque class termina en -ss).',en:'Kids run to their classes.'}},
+{part:'G',lvl:1,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Mi salón tiene muchas cosas.»',chips:['My','classroom','has','many','things.'],why:{es:'🧩 <b>My</b> classroom (mi salón) + <b>has</b> (tiene, con -s por «it») + many things.',en:'My classroom has many things.'}},
+{part:'G',lvl:2,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Hay dos cajas debajo de la cama.»',chips:['There','are','two','boxes','under','the','bed.'],why:{es:'🧩 Varios → <b>There are</b> (hay, plural) + two <b>boxes</b> + <b>under</b> the bed.',en:'There are two boxes under the bed.'}},
+{part:'G',lvl:2,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Nuestros dibujos van a la pared.»',chips:['Our','drawings','go','on','the','wall.'],why:{es:'🧩 <b>Our</b> drawings (nuestros dibujos) + go + on the wall.',en:'Our drawings go on the wall.'}},
+{part:'G',lvl:2,type:'single',prompt:{es:'Cambia a plural: «one watch» → «two ___» ⌚',en:'one watch → two ___'},opts:['watches','watchs','watch'],correct:'watches',why:{es:'⌚ watch termina en <b>-ch</b> → watch<b>es</b>. Igual: sandwich→sandwiches.',en:'-ch → -es.'}},
+
+/* — V · Vocabulario (8) — */
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «during»?',en:'What does "during" mean?'},opts:['durante','antes','después'],correct:'durante',why:{es:'⏳ <b>during</b> = durante · <b>before</b> = antes · <b>after</b> = después.',en:'during = durante.'}},
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «near»?',en:'What does "near" mean?'},opts:['cerca','lejos','debajo'],correct:'cerca',why:{es:'📍 <b>near</b> = cerca. Ojo: <b>under</b> = debajo.',en:'near = cerca.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'¿Qué significa «between»?',en:'What does "between" mean?'},opts:['entre (dos cosas)','dentro','sobre'],correct:'entre (dos cosas)',why:{es:'↔️ <b>between</b> = entre dos: «between Ravi and Ana».',en:'between = entre.'}},
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «early»?',en:'What does "early" mean?'},opts:['temprano','tarde','rápido'],correct:'temprano',why:{es:'⏰ <b>early</b> = temprano · <b>late</b> = tarde · <b>fast</b> = rápido. ¡No confundas temprano con rápido!',en:'early = temprano.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'En «the last door», ¿qué significa «last»?',en:'In "the last door", "last" means…'},opts:['la última','la primera','la mejor'],correct:'la última',why:{es:'🚪 <b>last</b> = última / final. first = primera.',en:'last = última.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'¿Cómo se dice «El año termina rápido.»?',en:'How do you say "El año termina rápido"?'},opts:['The year ends fast.','The year end fast.','The years end fast.'],correct:'The year ends fast.',why:{es:'📅 «The year» = it → el verbo lleva <b>-s</b>: end<b>s</b>. Y es <b>un</b> año, así que «year» va sin -s.',en:'The year ends fast.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'¿Cómo se dice «Los libros están dentro de la caja.»?',en:'"Los libros están dentro de la caja."'},opts:['The books are inside the box.','The book are inside the box.','The books are under the box.'],correct:'The books are inside the box.',why:{es:'📦 Varios libros → <b>books are</b>; dentro → <b>inside</b> (under sería debajo).',en:'The books are inside the box.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'¿Qué significa «about» en «The story is about an elephant.»?',en:'"about" means…'},opts:['sobre / acerca de','alrededor','abajo'],correct:'sobre / acerca de',why:{es:'💬 <b>about</b> = sobre / acerca de: la historia es <b>sobre</b> un elefante.',en:'about = sobre.'}}
+],
+kids:[
+/* — L · Listening (6) — */
+{part:'L',lvl:1,type:'single',audio:'The doors open fast.',prompt:{es:'Elige exactamente lo que escuchaste:',en:'Choose exactly what you heard:'},opts:['The doors open fast.','The door opens slow.','The doors are open.'],correct:'The doors open fast.',why:{es:'🚪 <b>doors</b> (varias puertas) + <b>fast</b> (rápido). ¡Escucha el final de las palabras!',en:'The doors open fast.'}},
+{part:'L',lvl:1,type:'single',audio:'My cat is under the bed.',prompt:{es:'¿Dónde está el gato? 🐱',en:'Where is the cat?'},opts:['Debajo de la cama','Dentro del closet','Cerca de la puerta'],correct:'Debajo de la cama',why:{es:'⬇️ <b>under</b> = debajo. inside = dentro · near = cerca.',en:'under = debajo.'}},
+{part:'L',lvl:2,type:'single',audio:'Before class, we play outside.',prompt:{es:'¿Cuándo juegan afuera?',en:'When do they play outside?'},opts:['Antes de la clase','Después de la clase','Durante la clase'],correct:'Antes de la clase',why:{es:'⏳ <b>before</b> = antes · after = después · during = durante.',en:'before = antes.'}},
+{part:'L',lvl:2,type:'single',audio:'Ana shares her colored pencils.',prompt:{es:'¿De quién son los lápices? ✏️',en:'Whose pencils are they?'},opts:['De Ana','De Ravi','Míos'],correct:'De Ana',why:{es:'👧 <b>her</b> = de ella → los lápices son de Ana.',en:'her = de ella.'}},
+{part:'L',lvl:1,type:'single',audio:'I have two books.',prompt:{es:'¿Cuántos libros tiene? 📚',en:'How many books?'},opts:['Dos','Uno','Tres'],correct:'Dos',why:{es:'📚 <b>two books</b> = dos libros (el -s indica varios).',en:'two books.'}},
+{part:'L',lvl:2,type:'single',audio:'Her bowl is near the door.',prompt:{es:'¿Dónde está el plato de la gata? 🥣',en:'Where is the bowl?'},opts:['Cerca de la puerta','Debajo de la mesa','Dentro del closet'],correct:'Cerca de la puerta',why:{es:'📍 <b>near</b> = cerca de.',en:'near = cerca.'}},
+
+/* — R · Comprensión lectora (9) — */
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿A qué hora suena la campana? 🔔',en:'What time does the bell ring?'},opts:['A las ocho','A las siete','A las nueve'],correct:'A las ocho',why:{es:'🔔 «A bell rings <b>at eight</b>» = a las ocho.',en:'at eight.'}},
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Qué hay en el salón?',en:'What is in the classroom?'},opts:['Libros y lápices','Pelotas y cuerdas','Barcos de papel'],correct:'Libros y lápices',why:{es:'📚 «There are <b>books and pencils</b>».',en:'books and pencils.'}},
+{part:'R',lvl:1,type:'single',frag:1,prompt:{es:'¿Qué está en la pared? 🗺️',en:'What is on the wall?'},opts:['Un mapa viejo','Un reloj','Una foto'],correct:'Un mapa viejo',why:{es:'🗺️ «<b>An old map</b> is on the wall» = un mapa viejo.',en:'an old map.'}},
+{part:'R',lvl:3,type:'multi',frag:1,prompt:{es:'Marca TODAS las oraciones verdaderas según el texto:',en:'Mark ALL true sentences:'},opts:['La ventana está siempre abierta','Los niños corren a sus clases','Su clase es la primera puerta','Antes de clase juegan afuera'],correct:['La ventana está siempre abierta','Los niños corren a sus clases','Antes de clase juegan afuera'],why:{es:'🚪 El texto dice «Our class is the <b>last</b> door» = la <b>última</b> puerta, no la primera.',en:'the last door, not the first.'}},
+{part:'R',lvl:2,type:'single',frag:1,prompt:{es:'¿De qué es la historia que lee Miss Rosa? 🐘',en:'What is the story about?'},opts:['De un elefante','De un pájaro','De un gato'],correct:'De un elefante',why:{es:'🐘 «The story is <b>about an elephant</b>» — about = sobre.',en:'about an elephant.'}},
+{part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿Entre quiénes se sienta en el almuerzo? 🍽️',en:'Who does he sit between?'},opts:['Entre Ravi y Ana','Entre Leo y Lara','Entre Miss Rosa y Ana'],correct:'Entre Ravi y Ana',why:{es:'↔️ «I sit <b>between</b> Ravi and Ana» = entre Ravi y Ana.',en:'between Ravi and Ana.'}},
+{part:'R',lvl:2,type:'single',frag:2,prompt:{es:'¿Dónde van las sillas al final del día? 🪑',en:'Where do the chairs go?'},opts:['Debajo de los escritorios','Sobre las mesas','Dentro de la caja'],correct:'Debajo de los escritorios',why:{es:'⬇️ «Our chairs go <b>under the desks</b>» = debajo de los escritorios (los lápices van <b>in a box</b>).',en:'under the desks.'}},
+{part:'R',lvl:2,type:'single',frag:3,prompt:{es:'¿Dónde encuentran a Luna al final? 🌳',en:'Where do they find Luna?'},opts:['En una rama alta del árbol','Debajo del carro','Dentro del closet'],correct:'En una rama alta del árbol',why:{es:'🌳 «She is <b>on a high branch</b>» = en una rama alta.',en:'on a high branch.'}},
+{part:'R',lvl:3,type:'single',frag:3,prompt:{es:'¿Por qué se preocupa la niña cuando ve la leche? 🥛',en:'Why is she worried about the milk?'},opts:['Porque Luna nunca deja su leche','Porque la leche está fría','Porque el plato está roto'],correct:'Porque Luna nunca deja su leche',why:{es:'🥛 «Luna <b>never misses</b> her milk» = nunca se pierde su leche. Si la leche está ahí, algo pasa.',en:'Luna never misses her milk.'}},
+
+/* — X · ¿Qué regla uso? (6) — */
+{part:'X',lvl:1,type:'single',prompt:{es:'Elige el artículo: «___ elephant with huge ears!» 🐘',en:'Choose the article:'},opts:['An','A','The'],correct:'An',why:{es:'🅰️ <b>an</b> + sonido de vocal (an <b>e</b>lephant) · <b>a</b> + consonante (a ball).',en:'an + vowel.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'Elige el artículo: «Ravi brings ___ small ball.» ⚽',en:'Choose the article:'},opts:['a','an','the'],correct:'a',why:{es:'⚽ «small» empieza con consonante y es la primera vez que la nombramos → <b>a</b> small ball.',en:'a + consonant.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'¿Cuál es el plural correcto de «class»? 🏫',en:'Plural of "class"?'},opts:['classes','classs','classies'],correct:'classes',why:{es:'🏫 Termina en <b>-ss</b> → class<b>es</b>. Igual: box→boxes, watch→watches.',en:'-ss → -es.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'«Ana shares ___ pencils.» (los lápices son de Ana) ✏️',en:'"Ana shares ___ pencils."'},opts:['her','his','their'],correct:'her',why:{es:'👧 Dueña = ella → <b>her</b>. his = de él · their = de ellos.',en:'her.'}},
+{part:'X',lvl:2,type:'single',prompt:{es:'Completa: «Our class is ___ last door.» 🚪',en:'"Our class is ___ last door."'},opts:['the','a','an'],correct:'the',why:{es:'🚪 Es una puerta <b>específica</b> (la última) → <b>the</b>.',en:'the = specific.'}},
+{part:'X',lvl:1,type:'single',prompt:{es:'Si el gato está DENTRO del closet: «The cat is ___ the closet.» 🐱',en:'The cat is ___ the closet.'},opts:['inside','under','near'],correct:'inside',why:{es:'📦 <b>inside</b> = dentro · under = debajo · near = cerca.',en:'inside = dentro.'}},
+
+/* — G · Gramática (9) — */
+{part:'G',lvl:1,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['There','are','two','box','on','the','floor.'],err:3,fix:'boxes',why:{es:'📦 «two» = varios → box<b>es</b> (-x lleva -es).',en:'two → boxes.'}},
+{part:'G',lvl:1,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['This','is','she','cat.'],err:2,fix:'her',why:{es:'🐱 Antes del sustantivo va <b>her</b> cat (su gata). «she» solo para la acción: she runs.',en:'her cat.'}},
+{part:'G',lvl:2,type:'tap',prompt:{es:'Toca la palabra INCORRECTA: 👆',en:'Tap the INCORRECT word:'},words:['We','read','two','storys','in','class.'],err:3,fix:'stories',why:{es:'📚 story → stor<b>ies</b> (consonante + y).',en:'story → stories.'}},
+{part:'G',lvl:1,type:'single',prompt:{es:'Completa: «There are many ___ in the room.» 🪑',en:'Complete:'},opts:['chairs','chair','chaires'],correct:'chairs',why:{es:'🪑 «many» = muchas → chair<b>s</b>.',en:'many chairs.'}},
+{part:'G',lvl:1,type:'single',prompt:{es:'Completa: «___ old map is on the wall.» 🗺️',en:'Complete:'},opts:['An','A','The'],correct:'An',why:{es:'🗺️ «old» empieza con vocal → <b>an</b> old map.',en:'an old map.'}},
+{part:'G',lvl:1,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Mi gata es pequeña y rápida.»',chips:['My','cat','is','small','and','fast.'],why:{es:'🧩 <b>My</b> cat (mi gata) + <b>is</b> + small and <b>fast</b> (rápida).',en:'My cat is small and fast.'}},
+{part:'G',lvl:2,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Hay dos cajas debajo de la cama.»',chips:['There','are','two','boxes','under','the','bed.'],why:{es:'🧩 Varios → <b>There are</b> + two <b>boxes</b> + <b>under</b> the bed.',en:'There are two boxes under the bed.'}},
+{part:'G',lvl:2,type:'order',prompt:{es:'Ordena las fichas: 🧩',en:'Order the chips:'},tr:'«Nuestra clase es la última puerta.»',chips:['Our','class','is','the','last','door.'],why:{es:'🧩 <b>Our</b> class (nuestra clase) + is + <b>the last door</b> (una sola puerta, sin -s).',en:'Our class is the last door.'}},
+{part:'G',lvl:1,type:'single',prompt:{es:'Cambia a plural: «one baby» → «two ___» 👶',en:'one baby → two ___'},opts:['babies','babys','babyes'],correct:'babies',why:{es:'👶 baby → bab<b>ies</b> (consonante + y).',en:'baby → babies.'}},
+
+/* — V · Vocabulario (5) — */
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «under»?',en:'What does "under" mean?'},opts:['debajo','encima','cerca'],correct:'debajo',why:{es:'⬇️ <b>under</b> = debajo.',en:'under = debajo.'}},
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «before»?',en:'What does "before" mean?'},opts:['antes','después','durante'],correct:'antes',why:{es:'⏳ <b>before</b> = antes · after = después · during = durante.',en:'before = antes.'}},
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «fast»?',en:'What does "fast" mean?'},opts:['rápido','lento','temprano'],correct:'rápido',why:{es:'💨 <b>fast</b> = rápido. Ojo: <b>early</b> = temprano.',en:'fast = rápido.'}},
+{part:'V',lvl:2,type:'single',prompt:{es:'¿Cómo se dice «Los libros están dentro de la caja.»?',en:'"Los libros están dentro de la caja."'},opts:['The books are inside the box.','The books are under the box.','The book is inside the box.'],correct:'The books are inside the box.',why:{es:'📦 Varios libros → <b>books are</b>; dentro → <b>inside</b>.',en:'The books are inside the box.'}},
+{part:'V',lvl:1,type:'single',prompt:{es:'¿Qué significa «near»?',en:'What does "near" mean?'},opts:['cerca','lejos','entre'],correct:'cerca',why:{es:'📍 <b>near</b> = cerca · between = entre.',en:'near = cerca.'}}
+]};
+const LIMITS={adults:70*60,kids:45*60};
+const VMETA={adults:{emo:'🧑',label:'Adultos',qs:54,min:70},kids:{emo:'🧒',label:'Niños',qs:35,min:45}};
+
+/* ═══════════ TEXTOS UI ═══════════ */
+const T={
+es:{title:'Examen · Módulo 3',sub:'Pre-A1 · Place, Time & Movement',hubT:'Examen del Módulo 3',hubS:'Place, Time & Movement · 🧭',
+rules:['Tienes <b>UN solo intento</b> — el primero es el que vale.','Tiempo límite: se entrega solo al llegar a 0:00.','Tus respuestas se <b>guardan solas</b>: si se corta el internet o se cierra la página, vuelve a entrar y continúas donde ibas.','📵 Quédate en esta pestaña. Las salidas quedan registradas para tu profesora.','Puedes moverte entre preguntas y cambiar tus respuestas antes de entregar.'],
+neuroHub:'<b>Neuro te acompaña:</b> todo lo que verás aquí ya lo practicaste — las mismas mecánicas, la historia de TU módulo. Esto no es una trampa: es tu oportunidad de ver cuánto ya adquiriste. Respira, empieza suave y confía en tu práctica. 💪',
+start:'🎓 Comenzar mi examen →',resume:'▶ Continuar mi examen (en progreso)',
+done1:'Ya rendiste este examen',done2:'Tu nota quedó registrada automáticamente en el momento en que entregaste. Puedes ver tu resultado y tus respuestas abajo.',
+demo:'Modo prueba: abriste el examen fuera de la plataforma. Tus respuestas se guardan solo en este equipo.',
+partOf:'Parte',qOf:'Pregunta',writeHere:'Escribe tu respuesta aquí…',tapNote:'Toca la palabra que crees incorrecta. Toca otra para cambiar.',
+orderTap:'Tu oración (toca una ficha para regresarla):',orderBank:'Fichas:',
+play:'▶ Escuchar',plays:'reproducciones restantes',noPlays:'Ya usaste tus 3 reproducciones',
+prev:'← Anterior',next:'Siguiente →',finish:'Entregar mi examen ✅',
+confirmT:'¿Entregar tu examen?',confirmMiss:function(n){return 'Te faltan <b>'+n+'</b> preguntas por responder. Puedes volver y completarlas antes de entregar.';},
+confirmOk:'Respondiste todas las preguntas. Al entregar ya no puedes cambiar nada.',
+confirmGo:'Sí, entregar',confirmNo:'Volver al examen',
+timeout:'⏱ Se acabó el tiempo — tu examen se entregó solo con lo que respondiste.',
+resT:'¡Examen entregado!',resS:'Gracias por tu esfuerzo y tu constancia. 🎉',
+pass:'¡Aprobaste! 🎉',passS:'Llegaste a los 75 puntos. ¡Felicitaciones por tu constancia!',fail:'Aún no apruebas',failS:'No llegaste a 75 esta vez. Tu profesora verá tus respuestas y te dirá qué reforzar — cada pregunta de hoy también fue práctica. 🌱',
+revShow:'🔍 Ver mis respuestas (correctas e incorrectas)',revHide:'Ocultar mis respuestas',myAns:'Tu respuesta: ',passedChip:'✅ Aprobado',failChip:'🌱 Aún no aprueba',
+resNote:'✅ Esta es tu <b>nota final</b>: se calculó y quedó registrada automáticamente en este momento. Tu profesora ya puede verla — no hay nada más que esperar.',
+hits:'Aciertos',time:'Tiempo',score:'Nota',breakT:'📊 Tu resultado por parte',breakS:'Así saliste en cada parte del examen.',
+neuroEnd:'<b>Neuro:</b> pase lo que pase con la nota, cada pregunta de hoy también fue práctica — tu cerebro siguió aprendiendo. Sigue con tus minutos diarios. 🌱',
+backPlat:'↩ Volver a la plataforma',
+tabWarn:'📵 Quédate en tu examen — la salida quedó registrada',
+tT:'Panel del profesor · Examen M2',tS:'Un intento por alumno · nota automática por parte · salidas de pestaña.',
+tGroup:'Grupo',tAll:'Todos los grupos',tRefresh:'↻ Actualizar',tLoad:'Cargando…',tFail:'No se pudieron cargar los datos. Revisa tu internet e intenta «Actualizar».',tNone:'Aún no hay alumnos que hayan rendido.',
+tAvg:'Promedio',tDone:'Rindieron',tExits:'salidas de pestaña',view:'Ver respuestas',variant:'Versión',
+yourAns:'Su respuesta: ',correctAns:'Correcta: ',noAns:'(sin responder)',back:'← Volver',
+pickT:'¿Qué versión vas a rendir?',pickS:'Tu profesora te indicó cuál te toca. Si abriste esto desde la plataforma, la versión ya viene elegida.',
+protect:'Material protegido © JUCUM EC'},
+en:{title:'Exam · Module 3',sub:'Pre-A1 · Place, Time & Movement',hubT:'Module 3 Exam',hubS:'Place, Time & Movement · 🧭',
+rules:['You have <b>ONE attempt</b> — the first one counts.','Time limit: it auto-submits at 0:00.','Your answers <b>save automatically</b>: if the internet drops or the page closes, come back and continue where you were.','📵 Stay on this tab. Exits are logged for your teacher.','You can move between questions and change answers before submitting.'],
+neuroHub:'<b>Neuro is with you:</b> everything here is what you practiced — same mechanics, YOUR module\'s story. This is not a trap: it\'s your chance to see how much you\'ve acquired. Breathe, start easy and trust your practice. 💪',
+start:'🎓 Start my exam →',resume:'▶ Continue my exam (in progress)',
+done1:'You already took this exam',done2:'Your grade was registered automatically when you submitted. You can see your result and answers below.',
+demo:'Test mode: you opened this outside the platform. Answers save only on this device.',
+partOf:'Part',qOf:'Question',writeHere:'Type your answer here…',tapNote:'Tap the word you think is wrong. Tap another to change.',
+orderTap:'Your sentence (tap a chip to send it back):',orderBank:'Chips:',
+play:'▶ Listen',plays:'plays left',noPlays:'You used your 3 plays',
+prev:'← Back',next:'Next →',finish:'Submit my exam ✅',
+confirmT:'Submit your exam?',confirmMiss:function(n){return 'You still have <b>'+n+'</b> unanswered questions. You can go back and complete them first.';},
+confirmOk:'You answered every question. After submitting you can\'t change anything.',
+confirmGo:'Yes, submit',confirmNo:'Back to the exam',
+timeout:'⏱ Time\'s up — your exam was submitted with what you answered.',
+resT:'Exam submitted!',resS:'Thank you for your effort and consistency. 🎉',
+pass:'You passed! 🎉',passS:'You reached 75 points. Congratulations on your consistency!',fail:'Not passed yet',failS:'You didn\'t reach 75 this time. Your teacher will review your answers and tell you what to reinforce — every question today was also practice. 🌱',
+revShow:'🔍 See my answers (right and wrong)',revHide:'Hide my answers',myAns:'Your answer: ',passedChip:'✅ Passed',failChip:'🌱 Not yet',
+resNote:'✅ This is your <b>final grade</b>: it was calculated and registered automatically right now. Your teacher can already see it.',
+hits:'Correct',time:'Time',score:'Score',breakT:'📊 Your result by part',breakS:'How you did in each part of the exam.',
+neuroEnd:'<b>Neuro:</b> whatever the grade, every question today was also practice — your brain kept learning. Keep your daily minutes. 🌱',
+backPlat:'↩ Back to the platform',
+tabWarn:'📵 Stay on your exam — the exit was logged',
+tT:'Teacher panel · M2 Exam',tS:'One attempt per student · automatic score by part · tab exits.',
+tGroup:'Group',tAll:'All groups',tRefresh:'↻ Refresh',tLoad:'Loading…',tFail:'Could not load data. Check your internet and press "Refresh".',tNone:'No students have taken it yet.',
+tAvg:'Average',tDone:'Took it',tExits:'tab exits',view:'View answers',variant:'Version',
+yourAns:'Their answer: ',correctAns:'Correct: ',noAns:'(not answered)',back:'← Back',
+pickT:'Which version will you take?',pickS:'Your teacher told you which one. If you opened this from the platform, the version is already set.',
+protect:'Protected material © JUCUM EC'}};
+
+/* ═══════════ ESTADO ═══════════ */
+let lang='es',QS=[],LIMIT=0,picks=[],plays=[],cur=0,remain=0,timer=null,startedAt=0,exits=0,submitted=false,lastTimedOut=false,myAttempts=[];
+const fmt=s=>Math.floor(s/60)+':'+String(Math.max(0,s)%60).padStart(2,'0');
+function fy(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function norm(s){return String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/[.?!¿¡,]+\s*$/,'').replace(/\s+/g,' ').trim();}
+function eqSet(a,b){if(a.length!==b.length)return false;const s=new Set(a);return b.every(x=>s.has(x));}
+function isRight(q,p){
+  if(p==null)return false;
+  if(q.type==='single')return p===q.correct;
+  if(q.type==='multi')return Array.isArray(p)&&eqSet(p,q.correct);
+  if(q.type==='write')return q.acc.some(a=>norm(a)===norm(p));
+  if(q.type==='tap')return p===q.err;
+  if(q.type==='order')return Array.isArray(p)&&p.length===q.chips.length&&p.every((c,i)=>c===q.chips[i]);
+  return false;
+}
+function isAnswered(i){const q=QS[i],p=picks[i];
+  if(p==null)return false;
+  if(q.type==='multi')return p.length>0;
+  if(q.type==='write')return String(p).trim()!=='';
+  if(q.type==='order')return p.length===q.chips.length;
+  return true;}
+function ansText(q,p){
+  if(p==null)return null;
+  if(q.type==='tap')return q.words[p];
+  if(q.type==='order')return p.join(' ');
+  if(Array.isArray(p))return p.length?p.join(', '):null;
+  return String(p).trim()||null;}
+function corrText(q){
+  if(q.type==='single')return q.correct;
+  if(q.type==='multi')return q.correct.join(', ');
+  if(q.type==='write')return q.show||q.acc[0];
+  if(q.type==='tap')return '«'+q.words[q.err]+'» → '+q.fix;
+  if(q.type==='order')return q.chips.join(' ');
+  return '';}
+
+/* ═══════════ AUDIO (TTS 🇺🇸/🇬🇧 como sus materiales) ═══════════ */
+let accent='US';let rateMode='normal';function toggleRate(i){rateMode=rateMode==='slow'?'normal':'slow';renderQ(i);}
+function pickVoice(){try{const vs=speechSynthesis.getVoices()||[];const want=accent==='UK'?'en-gb':'en-us';
+  let v=vs.find(x=>x.lang&&x.lang.toLowerCase().replace('_','-').startsWith(want)&&/google/i.test(x.name));
+  if(!v)v=vs.find(x=>x.lang&&x.lang.toLowerCase().replace('_','-').startsWith(want));
+  if(!v)v=vs.find(x=>x.lang&&x.lang.toLowerCase().startsWith('en'));
+  return v||null;}catch(e){return null;}}
+function say(text){try{if(!('speechSynthesis'in window)){toast('🔇 Tu navegador no tiene voz');return;}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=(rateMode==='slow'?0.6:0.9);const v=pickVoice();if(v){u.voice=v;u.lang=v.lang;}else u.lang=accent==='UK'?'en-GB':'en-US';
+  speechSynthesis.speak(u);}catch(e){}}
+try{speechSynthesis.onvoiceschanged=function(){pickVoice();};}catch(e){}
+function playAudio(i){const q=QS[i];if(!q.audio)return;
+  if((plays[i]||0)>=3){toast(T[lang].noPlays);return;}
+  plays[i]=(plays[i]||0)+1;say(q.audio);saveProg();
+  const el=document.getElementById('pl'+i);if(el)el.textContent=Math.max(0,3-plays[i])+' '+T[lang].plays;
+  if(plays[i]>=3){const b=document.getElementById('pb'+i);if(b)b.disabled=true;}}
+function cycleAcc(){accent=accent==='US'?'UK':'US';document.querySelectorAll('.accb').forEach(b=>b.textContent=accent==='US'?'🇺🇸 US':'🇬🇧 UK');}
+
+/* ═══════════ PERSISTENCIA DE PROGRESO (resume) ═══════════ */
+function saveProg(){if(submitted)return;try{localStorage.setItem(PROGKEY(),JSON.stringify({v:VARIANT,s:startedAt,p:picks,c:cur,x:exits,pl:plays}));}catch(e){}}
+function loadProg(){try{return JSON.parse(localStorage.getItem(PROGKEY())||'null');}catch(e){return null;}}
+function clearProg(){try{localStorage.removeItem(PROGKEY());}catch(e){}}
+
+/* ═══════════ RUTEO ═══════════ */
+function hideAll(){['hub','mbody','results','reviewview','teacherview'].forEach(id=>{const e=document.getElementById(id);e.style.display='none';e.classList.remove('show');});
+  document.getElementById('timerBox').style.display='none';document.getElementById('counter').style.display='none';document.getElementById('pfill').style.width='0';}
+async function route(){
+  hideAll();stopTimer();
+  if(IS_TEACHER){document.getElementById('teacherview').style.display='block';renderTeacher();return;}
+  document.getElementById('hub').style.display='block';
+  if(!VARIANT||!BANK[VARIANT]){renderPicker();return;}
+  QS=BANK[VARIANT];LIMIT=LIMITS[VARIANT];
+  myAttempts=await loadMyAttempts();
+  renderHub();
+}
+function renderPicker(){
+  const t=T[lang];
+  document.getElementById('hub').innerHTML=langHTML()+
+  `<div class="intro-hero"><div class="em">🎓</div><h1>${t.hubT}</h1><p>${t.hubS}</p></div>
+   <div class="card"><h3>${t.pickT}</h3><p style="font-size:12px;color:var(--text-soft);margin:0;line-height:1.5">${t.pickS}</p>
+   <div class="vpick">
+     <button onclick="chooseVariant('kids')"><span class="ve">🧒</span><b>Niños</b><span>${VMETA.kids.qs} preguntas · ${VMETA.kids.min} min</span></button>
+     <button onclick="chooseVariant('adults')"><span class="ve">🧑</span><b>Adultos</b><span>${VMETA.adults.qs} preguntas · ${VMETA.adults.min} min</span></button>
+   </div></div>`;
+}
+function chooseVariant(v){VARIANT=v;route();}
+function langHTML(){return `<div class="langsw"><span class="lsw-lab">🌐</span><div class="lsw"><button class="${lang==='es'?'on':''}" onclick="setLang('es')">Español</button><button class="${lang==='en'?'on':''}" onclick="setLang('en')">English</button></div></div>`;}
+function renderHub(){
+  const t=T[lang],vm=VMETA[VARIANT];
+  const done=myAttempts.length>0&&!ALLOW_RETRY;
+  const prog=loadProg();
+  const inProgress=prog&&prog.v===VARIANT&&!done;
+  const counts={};QS.forEach(q=>counts[q.part]=(counts[q.part]||0)+1);
+  const partsHTML=PORDER.map(p=>`<div class="pmini"><div class="pe">${PARTS[p].emo}</div><b>${PARTS[p].name[lang]}</b><span>${counts[p]} · ${PARTS[p].w}%</span></div>`).join('');
+  let mid='';
+  if(done){
+    const a=myAttempts[0];
+    const passed=a.score>=PASS;
+    const bank=BANK[(a.sections&&a.sections._v)||VARIANT]||QS;
+    mid=`<div class="card" style="text-align:center"><div style="font-size:38px">${passed?'🎉':'🌱'}</div><h3 style="justify-content:center">${t.done1}</h3>
+      <div style="font-family:var(--font-display);font-weight:600;font-size:38px;color:${passed?'var(--correct)':'#B26A00'}">${a.score}<span style="font-size:16px;color:#999">/100</span></div>
+      <div style="display:inline-block;margin-top:4px;font-size:12px;font-weight:800;border-radius:14px;padding:4px 14px;background:${passed?'var(--correct-bg)':'#FFF7E8'};color:${passed?'var(--correct)':'#9A3412'}">${passed?t.passedChip:t.failChip}</div>
+      <p style="font-size:12.5px;color:var(--text-soft);line-height:1.55;margin:8px 0 0;font-weight:600">${t.done2}</p>
+      <button class="rev-toggle" onclick="toggleRev('hubrev',this)">${t.revShow}</button><div class="review" id="hubrev" style="text-align:left">${buildReview(a.answers,bank,'s')}</div></div>`;
+  }else{
+    mid=`<div class="card"><h3>📋 ${lang==='es'?'Reglas del examen':'Exam rules'}</h3><ul>${t.rules.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+      <div class="neuro"><span class="nem">🧠</span><div>${t.neuroHub}</div></div>
+      <button class="start-btn" onclick="startExam(${inProgress?'true':'false'})">${inProgress?t.resume:t.start}</button>
+      <div class="limitnote">⏱ <span>${vm.qs} ${lang==='es'?'preguntas':'questions'} · <b>${vm.min} min</b> · ${lang==='es'?'5 partes':'5 parts'}: 🎧 📖 🧩 📝 🔤</span></div>`;
+  }
+  document.getElementById('hub').innerHTML=langHTML()+
+    `${(!UID&&!IS_TEACHER)?`<div class="demo-flag">${t.demo}</div>`:''}
+     <div class="intro-hero"><div class="em">${vm.emo} 🎓</div><h1>${t.hubT}</h1><p>${t.hubS} · ${lang==='es'?'Versión':'Version'} ${vm.label}</p></div>
+     <div class="partsrow">${partsHTML}</div>${mid}`;
+}
+
+/* ═══════════ TIMER ═══════════ */
+function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);paintTimer();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
+function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
+function paintTimer(){const b=document.getElementById('timerBox');document.getElementById('timer').textContent=fmt(remain);
+  b.className='mh-timer'+(remain<=60?' crit':remain<=300?' warn':'');}
+
+/* ═══════════ EXAMEN ═══════════ */
+function startExam(resume){
+  const prog=resume?loadProg():null;
+  if(prog&&prog.v===VARIANT){startedAt=prog.s;picks=prog.p||[];cur=Math.min(prog.c||0,QS.length-1);exits=prog.x||0;plays=prog.pl||[];}
+  else{startedAt=Date.now();picks=new Array(QS.length).fill(null);plays=new Array(QS.length).fill(0);cur=0;exits=0;}
+  while(picks.length<QS.length)picks.push(null);
+  submitted=false;lastTimedOut=false;
+  remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);
+  if(remain<=0){lastTimedOut=true;hideAll();document.getElementById('mbody').style.display='block';submitExam(true);return;}
+  saveProg();
+  hideAll();
+  document.getElementById('mbody').style.display='block';
+  document.getElementById('counter').style.display='inline-block';
+  document.getElementById('timerBox').style.display='flex';
+  document.getElementById('tq').textContent=QS.length;
+  renderQ(cur);startTimer();window.scrollTo({top:0});
+}
+function partBanner(i){
+  const q=QS[i];const first=i===0||QS[i-1].part!==q.part;
+  if(!first)return '';
+  const pm=PARTS[q.part];const idx=PORDER.indexOf(q.part)+1;
+  return `<div class="partban"><div class="pbh"><span class="pe">${pm.emo}</span><div><b>${T[lang].partOf} ${idx} · ${pm.name[lang]}</b><span>${pm.w}% ${lang==='es'?'de la nota':'of the score'}</span></div></div><div class="pbb">${pm.instr[lang]}</div></div>`;
+}
+function passageHTML(q){
+  if(q.frag==null)return '';
+  const set=PASSAGES[VARIANT];
+  const frs=q.frag===0?set:[set[q.frag-1]];
+  return frs.map(f=>`<div class="passage"><div class="plab">📖 ${f.t}</div>${f.p.map(p=>`<p>${esc(p)}</p>`).join('')}</div>`).join('');
+}
+function bodyHTML(q,i){
+  const t=T[lang],p=picks[i];
+  if(q.type==='single'||q.type==='multi'){
+    const multi=q.type==='multi';
+    const shuf=q._shuf||(q._shuf=fy(q.opts));
+    return `<div class="opts" id="op${i}">${shuf.map(o=>{
+      const sel=multi?(Array.isArray(p)&&p.includes(o)):p===o;
+      return `<button class="opt ${multi?'multi':'single'} ${sel?'sel':''}" data-v="${esc(o)}" onclick="pick(${i},this)"><span class="mk"></span><span>${esc(o)}</span></button>`;}).join('')}</div>`;
+  }
+  if(q.type==='write')return `${q.text?`<div class="qquote">${esc(q.text)}</div>`:''}<input class="win" id="wi${i}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${t.writeHere}" value="${p?esc(p):''}" oninput="writeIn(${i},this.value)">`;
+  if(q.type==='tap')return `<div class="words" id="tp${i}">${q.words.map((w,x)=>`<button class="wd ${p===x?'sel':''}" onclick="tapWord(${i},${x})">${esc(w)}</button>`).join('')}</div><div class="winlab">${t.tapNote}</div>`;
+  if(q.type==='order'){
+    const chosen=Array.isArray(p)?p:[];
+    const bag=q._bag||(q._bag=fy(q.chips.map((c,x)=>c+'\u2063'+x)));  /* fichas únicas aunque se repita palabra */
+    const left=bag.filter(tk=>{const w=tk.split('\u2063')[0];const used=chosen.filter(c=>c===w).length;const before=bag.slice(0,bag.indexOf(tk)).filter(b=>b.split('\u2063')[0]===w).length;return before>=used;});
+    return `<div class="ordlab">${t.orderTap}</div><div class="ordans" id="oa${i}">${chosen.map((w,x)=>`<button class="wd" onclick="ordRemove(${i},${x})">${esc(w)}</button>`).join('')}</div>
+      <div class="ordlab">${t.orderBank}</div><div class="ordbank" id="ob${i}">${left.map(tk=>`<button class="wd" onclick="ordAdd(${i},'${esc(tk.split('\u2063')[0]).replace(/'/g,"\\'")}')">${esc(tk.split('\u2063')[0])}</button>`).join('')}</div>`;
+  }
+  return '';
+}
+const CHEERS=['🌟 ¡Vas muy bien! Sigue así.','💪 ¡Buen ritmo! Confía en lo que practicaste.','🚀 ¡Ya pasaste otra parte! Respira y continúa.','🌱 Cada pregunta también es práctica. ¡Sigue!','🎯 ¡Excelente concentración! Ya falta menos.','🏅 ¡Tu esfuerzo se nota! Vamos con calma.'];
+function renderQ(i){
+  cur=i;const q=QS[i],t=T[lang];
+  const cheer=(i>0&&i%7===0)?'<div class="cheer">'+CHEERS[Math.floor(i/7-1)%CHEERS.length]+'</div>':'';
+  const audio=q.audio?`<div class="audiorow"><button class="playb" id="pb${i}" ${plays[i]>=3?'disabled':''} onclick="playAudio(${i})">${t.play}</button><button class="accb" onclick="toggleRate(${i})" title="Velocidad del audio">${rateMode==='slow'?'🐢 Lento':'🚶 Normal'}</button><button class="accb" onclick="cycleAcc()">${accent==='US'?'🇺🇸 US':'🇬🇧 UK'}</button><span class="playsleft" id="pl${i}">${Math.max(0,3-(plays[i]||0))} ${t.plays}</span></div>`:'';
+  const tr=q.tr?`<div class="qtr">(${esc(q.tr)})</div>`:'';
+  document.getElementById('qbox').innerHTML=cheer+partBanner(i)+
+  `<div class="qcard">
+    <div class="qtop"><div class="qnum">${i+1}</div><span class="qsec">${PARTS[q.part].emo} ${PARTS[q.part].name[lang]}</span>${q.type==='multi'?`<span class="qmulti">✔ ${lang==='es'?'Marca todas':'Mark all'}</span>`:''}</div>
+    ${passageHTML(q)}${audio}<p class="qtext">${q.prompt[lang]}</p>${tr}
+    ${q.text&&q.type!=='write'?`<div class="qquote">${esc(q.text)}</div>`:''}
+    ${bodyHTML(q,i)}
+    <div class="nav"><button class="nb prev" onclick="go(${i-1})" ${i===0?'disabled':''}>${t.prev}</button>
+    <button class="nb next" onclick="${i===QS.length-1?'askSubmit()':'go('+(i+1)+')'}">${i===QS.length-1?t.finish:t.next}</button></div>
+  </div>`;
+  document.getElementById('cq').textContent=i+1;
+  paintDots();progress();window.scrollTo({top:0});
+}
+function go(i){if(i<0||i>=QS.length)return;saveProg();renderQ(i);}
+function paintDots(){
+  document.getElementById('dots').innerHTML=QS.map((q,i)=>`<button class="dot ${i===cur?'cur':isAnswered(i)?'ans':''}" onclick="go(${i})">${i+1}</button>`).join('');}
+function progress(){document.getElementById('pfill').style.width=(picks.filter((_,i)=>isAnswered(i)).length/QS.length*100)+'%';}
+function pick(i,btn){
+  const q=QS[i];
+  if(q.type==='multi'){const v=btn.dataset.v;let arr=Array.isArray(picks[i])?[...picks[i]]:[];
+    if(arr.includes(v))arr=arr.filter(x=>x!==v);else arr.push(v);
+    picks[i]=arr;btn.classList.toggle('sel');}
+  else{picks[i]=btn.dataset.v;document.querySelectorAll('#op'+i+' .opt').forEach(b=>b.classList.toggle('sel',b===btn));}
+  saveProg();paintDots();progress();
+}
+function writeIn(i,v){picks[i]=v;saveProg();paintDots();progress();}
+function tapWord(i,x){picks[i]=x;document.querySelectorAll('#tp'+i+' .wd').forEach((b,bi)=>b.classList.toggle('sel',bi===x));saveProg();paintDots();progress();}
+function ordAdd(i,w){let arr=Array.isArray(picks[i])?[...picks[i]]:[];if(arr.length>=QS[i].chips.length)return;arr.push(w);picks[i]=arr;saveProg();renderQ(i);}
+function ordRemove(i,x){let arr=[...picks[i]];arr.splice(x,1);picks[i]=arr;saveProg();renderQ(i);}
+
+/* ═══════════ ENTREGA ═══════════ */
+function askSubmit(){
+  const t=T[lang];const missing=QS.map((_,i)=>i).filter(i=>!isAnswered(i));
+  document.getElementById('modal').innerHTML=`<div class="mbox"><div class="me">${missing.length?'🤔':'🎓'}</div><h3>${t.confirmT}</h3>
+    <p>${missing.length?t.confirmMiss(missing.length):t.confirmOk}</p>
+    <button class="mb1" onclick="closeModal();submitExam(false)">${t.confirmGo}</button>
+    <button class="mb2" onclick="closeModal()${missing.length?';go('+missing[0]+')':''}">${t.confirmNo}</button></div>`;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+function compute(){
+  const agg={};PORDER.forEach(p=>agg[p]={h:0,t:0});
+  let correct=0;
+  QS.forEach((q,i)=>{agg[q.part].t++;if(isRight(q,picks[i])){agg[q.part].h++;correct++;}});
+  let score=0;PORDER.forEach(p=>{const a=agg[p];if(a.t)score+=(a.h/a.t)*PARTS[p].w;});
+  score=Math.round(score);
+  const answers=QS.map((q,i)=>({i,p:picks[i],ok:isRight(q,picks[i])}));
+  return {score,correct,total:QS.length,agg,answers,duration:Math.min(LIMIT,Math.floor((Date.now()-startedAt)/1000))};
+}
+async function submitExam(timedOut){
+  if(submitted)return;submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
+  const A=compute(),t=T[lang];
+  const secs={};PORDER.forEach(p=>secs[p]=A.agg[p]);
+  secs._v=VARIANT;secs._exits=exits;
+  const row={id:'ex-'+(UID||'demo')+'-'+Date.now(),user_id:UID||'demo',module_id:MOD,activity_id:ACT,
+    attempt_no:(myAttempts.length||0)+1,score:A.score,correct:A.correct,total:A.total,duration_sec:A.duration,
+    timed_out:!!timedOut,sections:secs,answers:A.answers,ready:A.score>=75,created_at:new Date().toISOString()};
+  myAttempts.push(row);saveLocalAttempt(row);clearProg();cloudSaveAttempt(row);
+  try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:A.score,type:'exam',mat:'PreA1_M3_Examen_'+VARIANT,topic:'examen-m3'}}));}catch(e){}
+  hideAll();
+  const R=document.getElementById('results');R.style.display='block';R.classList.add('show');
+  const passed=A.score>=PASS;
+  R.innerHTML=`<div class="verdict ${passed?'hi':''}"><div class="em">${passed?'🎉':'🌱'}</div><div class="score">${A.score}<small>/100</small></div><h2>${passed?t.pass:t.fail}</h2><p>${passed?t.passS:t.failS}</p></div>
+    ${timedOut?`<div class="timeoutbar" style="display:block">${t.timeout}</div>`:''}
+    <div class="strip"><div class="stat"><b>${A.correct}/${A.total}</b><span>${t.hits}</span></div><div class="stat"><b>${fmt(A.duration)}</b><span>${t.time}</span></div><div class="stat"><b>${A.score}</b><span>${t.score}</span></div></div>
+    <div class="rblock"><h3>${t.breakT}</h3><p class="sub">${t.breakS}</p>${PORDER.map(p=>{const a=A.agg[p];if(!a.t)return'';const pc=Math.round(a.h/a.t*100);const col=pc>=75?'#2E7D32':pc>=50?'#F9A825':'#C62828';
+      return `<div class="srow"><span class="snm">${PARTS[p].emo} ${PARTS[p].name[lang]}</span><span class="sbar"><i style="width:${pc}%;background:${col}"></i></span><span class="spct" style="color:${col}">${a.h}/${a.t}</span></div>`;}).join('')}</div>
+    <div class="rblock" style="background:#FFFDF6"><p style="margin:0;font-size:13px;line-height:1.6;font-weight:600">${t.resNote}</p></div>
+    <div class="neuro"><span class="nem">🧠</span><div>${t.neuroEnd}</div></div>
+    <button class="rev-toggle" onclick="toggleRev('rev',this)">${t.revShow}</button><div class="review" id="rev">${buildReview(A.answers,QS,'s')}</div>
+    <div class="rbtns"><button class="rbtn" onclick="goBack()">${t.backPlat}</button></div>`;
+  window.scrollTo({top:0});
+}
+
+/* ═══════════ VIGILANCIA DE PESTAÑA ═══════════ */
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden&&!submitted&&document.getElementById('mbody').style.display==='block'){exits++;saveProg();}
+  else if(!document.hidden&&exits>0&&!submitted&&document.getElementById('mbody').style.display==='block'){toast(T[lang].tabWarn);}
+});
+
+/* ═══════════ REVISIÓN (alumno y profesor) ═══════════ */
+function buildReview(answers,bank,who){const t=T[lang];return (answers||[]).map(x=>{const q=bank[x.i];if(!q)return'';const yours=ansText(q,x.p);
+  return `<div class="rvq"><div class="rvh"><span class="rvn">#${x.i+1} · ${PARTS[q.part].emo} ${PARTS[q.part].name[lang]}</span><span class="rvmark">${x.ok?'✅':'❌'}</span></div>
+  <p class="rvp">${q.prompt[lang]}${q.text?` <span style="color:var(--text-soft);font-weight:600">— ${esc(q.text)}</span>`:''}${q.audio?` <span style="color:var(--text-soft);font-weight:600">🎧 "${esc(q.audio)}"</span>`:''}</p>
+  <div class="rva">${x.ok?`<span class="good">${t.correctAns}${esc(corrText(q))}</span>`:`<span class="yours">${who==='t'?t.yourAns:t.myAns}${yours?esc(yours):t.noAns}</span><br><span class="good">${t.correctAns}${esc(corrText(q))}</span>`}${q.why?`<div class="rvwhy">💡 ${q.why[lang]||q.why.es}</div>`:''}</div></div>`;}).join('');}
+function toggleRev(id,btn){const el=document.getElementById(id);const show=!el.classList.contains('show');el.classList.toggle('show',show);btn.textContent=show?T[lang].revHide:T[lang].revShow;}
+
+/* ═══════════ PANEL DEL PROFESOR ═══════════ */
+let tData=null,tGroupSel='';
+async function renderTeacher(){
+  const t=T[lang],el=document.getElementById('teacherview');
+  el.innerHTML=`<div class="t-hero"><h2>👩‍🏫 ${t.tT}</h2><p>${t.tS}</p></div>${langHTML()}<div id="tbody"><div class="empty">${t.tLoad}</div></div>`;
+  try{
+    const [students,groups,attempts]=await Promise.all([
+      sbFetch('users?role=eq.student&select=id,full_name,username,group_id,level'),
+      sbFetch('groups?select=id,name,level'),
+      sbFetch('diagnostic_attempts?activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*')
+    ]);
+    tData={students:students||[],groups:groups||[],attempts:attempts||[]};
+    if(GROUP)tGroupSel=GROUP;
+    paintTeacher();
+  }catch(e){document.getElementById('tbody').innerHTML=`<div class="empty">${t.tFail}</div>`;}
+}
+function paintTeacher(){
+  const t=T[lang];if(!tData)return;
+  const byUser={};tData.attempts.forEach(a=>{(byUser[a.user_id]=byUser[a.user_id]||[]).push(a);});
+  const gname={};tData.groups.forEach(g=>gname[g.id]=g.name);
+  let studs=tData.students.filter(s=>byUser[s.id]&&byUser[s.id].length);
+  if(tGroupSel)studs=studs.filter(s=>s.group_id===tGroupSel);
+  studs.sort((a,b)=>byUser[b.id][0].score-byUser[a.id][0].score);
+  const groupsWith=[...new Set(tData.students.filter(s=>byUser[s.id]&&byUser[s.id].length).map(s=>s.group_id))];
+  const opts=`<option value="">${t.tAll}</option>`+tData.groups.filter(g=>groupsWith.includes(g.id)).map(g=>`<option value="${g.id}" ${g.id===tGroupSel?'selected':''}>${esc(g.name||g.id)}</option>`).join('');
+  const avg=studs.length?Math.round(studs.reduce((s,x)=>s+byUser[x.id][0].score,0)/studs.length):0;
+  const rows=studs.map(s=>{
+    const a=byUser[s.id][0];const sec=a.sections||{};const v=sec._v==='kids'?'🧒':'🧑';const ex=sec._exits||0;
+    const ini=(s.full_name||s.username||'?').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    const dt=new Date(a.created_at||Date.now());
+    const partline=PORDER.map(p=>sec[p]&&sec[p].t?PARTS[p].emo+' '+sec[p].h+'/'+sec[p].t:'').filter(Boolean).join(' · ');
+    return `<div class="t-student"><div class="t-srow">
+      <div class="t-ava">${ini||'?'}</div>
+      <div class="t-sinfo"><b>${esc(s.full_name||s.username||s.id)}</b><span>${esc(gname[s.group_id]||'')} · ${v} · ${dt.toLocaleDateString('es-PE',{day:'numeric',month:'short'})} ${dt.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'})}${a.timed_out?' · ⏱':''}</span></div>
+      ${ex?`<span class="t-flag">📵 ${ex} ${t.tExits}</span>`:''}
+      <span class="t-sc" style="color:${a.score>=75?'var(--correct)':a.score>=51?'#B26A00':'var(--wrong)'}">${a.score}</span></div>
+      <div class="t-att"><span>${partline}</span><button style="margin-left:auto" onclick='tReview(${JSON.stringify(s.id)})'>${t.view}</button></div></div>`;
+  }).join('');
+  document.getElementById('tbody').innerHTML=`
+    <div class="t-controls"><label>${t.tGroup}</label><select class="t-sel" onchange="tGroupSel=this.value;paintTeacher()">${opts}</select><button class="t-refresh" onclick="renderTeacher()">${t.tRefresh}</button></div>
+    <div class="t-summary"><div class="t-sum"><b>${studs.length}</b><span>${t.tDone}</span></div><div class="t-sum"><b>${avg}</b><span>${t.tAvg} /100</span></div></div>
+    ${studs.length?rows:`<div class="empty">${t.tNone}</div>`}`;
+}
+function tReview(sid){
+  const a=(tData.attempts.filter(x=>x.user_id===sid))[0];if(!a)return;
+  const s=tData.students.find(x=>x.id===sid)||{};const t=T[lang];
+  const bank=BANK[(a.sections&&a.sections._v)||'adults'];
+  hideAll();const el=document.getElementById('reviewview');el.style.display='block';
+  const dt=new Date(a.created_at||Date.now());
+  el.innerHTML=`<button class="backbtn" onclick="backToTeacher()">${t.back}</button>
+    <div class="rv-head"><div class="big">${a.score}</div><div class="meta"><b>${esc(s.full_name||sid)}</b>
+    <span>${a.correct}/${a.total} · ${Math.round((a.duration_sec||0)/60)} min · ${dt.toLocaleDateString('es-PE',{day:'numeric',month:'short',year:'numeric'})}${a.timed_out?' · ⏱':''}${(a.sections&&a.sections._exits)?' · 📵 '+a.sections._exits:''}</span></div></div>
+    <div style="margin-top:14px">${buildReview(a.answers||[],bank,'t')}</div>
+    <button class="backbtn" style="margin-top:6px" onclick="backToTeacher()">${t.back}</button>`;
+  window.scrollTo({top:0});
+}
+function backToTeacher(){hideAll();document.getElementById('teacherview').style.display='block';paintTeacher();window.scrollTo({top:0});}
+
+/* ═══════════ VARIOS ═══════════ */
+function setLang(l){lang=l;
+  if(document.getElementById('hub').style.display!=='none'){(!VARIANT||!BANK[VARIANT])?renderPicker():renderHub();}
+  if(document.getElementById('mbody').style.display!=='none')renderQ(cur);
+  if(document.getElementById('teacherview').style.display!=='none'&&tData)paintTeacher();}
+function goBack(){if(document.referrer){history.back();}else{try{window.dispatchEvent(new CustomEvent('jucum:back'));}catch(e){}}}
+let chimed=0;function chime(){try{const C=new (window.AudioContext||window.webkitAudioContext)();[0,.35].forEach(function(d){const o=C.createOscillator(),g=C.createGain();o.connect(g);g.connect(C.destination);o.type='sine';o.frequency.value=d?659:523;g.gain.setValueAtTime(0.0001,C.currentTime+d);g.gain.exponentialRampToValueAtTime(0.12,C.currentTime+d+0.03);g.gain.exponentialRampToValueAtTime(0.0001,C.currentTime+d+0.5);o.start(C.currentTime+d);o.stop(C.currentTime+d+0.55);});}catch(e){}}
+function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2600);}
+document.addEventListener('contextmenu',e=>{if(e.target.closest('.app')){e.preventDefault();toast(T[lang].protect);}});
+window.addEventListener('beforeunload',function(){if(!submitted&&document.getElementById('mbody').style.display==='block')saveProg();});
+
+route();
+</script>
+<!-- JUCUM English Center · seguimiento (NO QUITAR) -->
+<script src="https://jucum-english-center.netlify.app/jucum-connect.js"></script>
+</body>
+</html>

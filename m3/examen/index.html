@@ -251,6 +251,7 @@ select.t-sel{font-family:var(--font-body);font-weight:700;font-size:13px;border:
 <script>
 window.JUCUM_OWN_PANEL = true;
 /* ═══════════ CONFIG ═══════════ */
+/* fix-examenes-2026-08-23 · guardado a prueba de fallas · reloj que se pausa · sin notas de exámenes vacíos · nota mínima de la plataforma */
 var SB_URL='https://dwwzkzuonltaavzhvilu.supabase.co';
 var SB_KEY='sb_publishable_6pruJuV5P2cMVWqd8Wt8gg_UAtuEj_m';
 var Q=new URLSearchParams(location.search);
@@ -277,7 +278,41 @@ async function sbFetch(path,opts){
 }
 function localAttempts(){ try{return JSON.parse(localStorage.getItem(LSKEY())||'[]');}catch(e){return [];} }
 function saveLocalAttempt(row){ var a=localAttempts(); a.push(row); try{localStorage.setItem(LSKEY(),JSON.stringify(a));}catch(e){} }
-async function cloudSaveAttempt(row){ if(!UID) return false; try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
+/* 🔒 GUARDADO A PRUEBA DE FALLAS (fix-examenes-2026-08-23)
+ * Antes: un solo envío, 7 s de paciencia y el error se tragaba en silencio → si la red
+ * fallaba al entregar (toda la clase enviando a la vez), la nota y el detalle se PERDÍAN
+ * para siempre y el panel de la profesora salía "0 rindieron".
+ * Ahora: 3 envíos con espera creciente, 25 s de paciencia y, si aun así falla, el intento
+ * queda en la BANDEJA de este equipo y se reenvía solo al abrir cualquier examen. */
+var OUTBOX='jucum_exam_outbox_v1';
+function outboxRead(){ try{ var a=JSON.parse(localStorage.getItem(OUTBOX)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function outboxWrite(a){ try{ localStorage.setItem(OUTBOX,JSON.stringify(a.slice(-20))); }catch(e){} }
+async function postAttempt(row,ms){
+  var ctrl=new AbortController(); var to=setTimeout(function(){ctrl.abort();},ms||25000);
+  try{
+    var r=await fetch(SB_URL+'/rest/v1/diagnostic_attempts',{method:'POST',signal:ctrl.signal,headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify([row])});
+    clearTimeout(to);
+    if(!r.ok){ var tx=''; try{ tx=await r.text(); }catch(e2){} throw new Error('HTTP '+r.status+' '+String(tx).slice(0,120)); }
+    return true;
+  }catch(e){ clearTimeout(to); throw e; }
+}
+async function cloudSaveAttempt(row){
+  if(!UID) return false;
+  var esperas=[0,2500,6000];
+  for(var i=0;i<esperas.length;i++){
+    if(esperas[i]) await new Promise(function(r){setTimeout(r,esperas[i]);});
+    try{ await postAttempt(row); return true; }
+    catch(e){ if(i===esperas.length-1){ var a=outboxRead(); a.push(row); outboxWrite(a); try{console.warn('examen: la nota no se pudo enviar, queda en la bandeja de este equipo',e);}catch(e3){} return false; } }
+  }
+  return false;
+}
+async function outboxFlush(){
+  var a=outboxRead(); if(!a.length) return;
+  var quedan=[];
+  for(var i=0;i<a.length;i++){ try{ await postAttempt(a[i],15000); }catch(e){ quedan.push(a[i]); } }
+  outboxWrite(quedan);
+  try{ if(quedan.length<a.length) console.log('examen: '+(a.length-quedan.length)+' nota(s) pendiente(s) enviada(s)'); }catch(e){}
+}
 async function loadMyAttempts(){
   if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
   return localAttempts();
@@ -292,8 +327,26 @@ const PARTS={
 };
 const PORDER=['L','R','V','G'];
 const BANKV='m3-v3-motor-ok'; /* firma del banco: si cambia, los intentos/progresos viejos NO se remapean */
-const PASSBY={kids:65,adults:70}; /* nota mínima para aprobar, por versión */
-function passMark(v){return PASSBY[v||VARIANT]||70;}
+/* 🎯 La nota mínima la manda la PLATAFORMA (fix-examenes-2026-08-23): se lee el mínimo del
+ * grupo del alumno (Exámenes → Configurar) y se recuerda en este equipo. Antes el examen
+ * aprobaba con 70/65 y el panel de la profesora con otro número: el alumno veía
+ * "¡Aprobaste!" y en el panel salía a recuperación. */
+const PASSBY={kids:65,adults:70};
+var MINPASS=null;
+try{ var _mp0=Number(localStorage.getItem('jucum_exam_min_'+(UID||'demo'))); if(_mp0>=1&&_mp0<=100) MINPASS=_mp0; }catch(e){}
+async function loadMinPass(){
+  if(!UID) return;
+  try{
+    var g=GROUP;
+    if(!g){ var u=await sbFetch('users?id=eq.'+encodeURIComponent(UID)+'&select=group_id'); g=(u&&u[0]&&u[0].group_id)||''; }
+    if(!g) return;
+    var s=await sbFetch('app_settings?key=eq.exam_flow&select=value');
+    var cfg=(s&&s[0]&&s[0].value&&s[0].value.cfg)||{};
+    var n=Number((cfg[g]||{}).minGrade);
+    if(n>=1&&n<=100){ MINPASS=n; try{ localStorage.setItem('jucum_exam_min_'+UID,String(n)); }catch(e){} }
+  }catch(e){}
+}
+function passMark(v){return MINPASS||75;}
 
 /* ═══════════ LECTURAS (fragmentos del material vivo del m3) ═══════════ */
 const PASSAGES={
@@ -374,7 +427,7 @@ pickT:'Which version will you take?',pickS:'Your teacher told you which one. If 
 protect:'Protected material © JUCUM EC'}};
 
 /* ═══════════ ESTADO ═══════════ */
-let lang='es',QS=[],LIMIT=0,picks=[],plays=[],cur=0,remain=0,timer=null,startedAt=0,exits=0,submitted=false,lastTimedOut=false,myAttempts=[];
+let lang='es',QS=[],LIMIT=0,picks=[],plays=[],cur=0,remain=0,timer=null,startedAt=0,exits=0,submitted=false,lastTimedOut=false,myAttempts=[],spentBase=0;
 /* Modo reparación: el alumno vuelve con su examen ya resuelto y solo contesta
    las preguntas que quedaron en blanco por el motor viejo. */
 let FIXMODE=false,FIXIDX=[];
@@ -463,7 +516,10 @@ function playAudio(i){const q=QS[i];if(!q.audio)return;
 function cycleAcc(){accent=accent==='US'?'UK':'US';document.querySelectorAll('.accb').forEach(b=>b.textContent=accent==='US'?'🇺🇸 US':'🇬🇧 UK');}
 
 /* ═══════════ PERSISTENCIA DE PROGRESO (resume) ═══════════ */
-function saveProg(){if(submitted)return;try{localStorage.setItem(PROGKEY(),JSON.stringify({v:VARIANT,s:startedAt,p:picks,c:cur,x:exits,pl:plays}));}catch(e){}}
+/* ⏸ El tiempo se guarda GASTADO, no la hora de inicio: al cerrar y volver, el examen
+   continúa con los minutos que le quedaban (fix-examenes-2026-08-23). */
+function spentSec(){return spentBase+Math.max(0,Math.floor((Date.now()-startedAt)/1000));}
+function saveProg(){if(submitted)return;try{localStorage.setItem(PROGKEY(),JSON.stringify({v:VARIANT,s:startedAt,sp:spentSec(),p:picks,c:cur,x:exits,pl:plays}));}catch(e){}}
 function loadProg(){try{return JSON.parse(localStorage.getItem(PROGKEY())||'null');}catch(e){return null;}}
 function clearProg(){try{localStorage.removeItem(PROGKEY());}catch(e){}}
 
@@ -476,6 +532,8 @@ async function route(){
   document.getElementById('hub').style.display='block';
   if(!VARIANT||!BANK[VARIANT]){renderPicker();return;}
   QS=BANK[VARIANT];LIMIT=LIMITS[VARIANT];
+  try{ outboxFlush(); }catch(e){}
+  try{ await loadMinPass(); }catch(e){}
   myAttempts=await loadMyAttempts();
   renderHub();
 }
@@ -485,8 +543,8 @@ function renderPicker(){
   `<div class="intro-hero"><div class="em">🎓</div><h1>${t.hubT}</h1><p>${t.hubS}</p></div>
    <div class="card"><h3>${t.pickT}</h3><p style="font-size:12px;color:var(--text-soft);margin:0;line-height:1.5">${t.pickS}</p>
    <div class="vpick">
-     <button onclick="chooseVariant('kids')"><span class="ve">🧒</span><b>Niños</b><span>${VMETA.kids.qs} preguntas · ${VMETA.kids.min} min · aprueba con ${VMETA.kids.pass}</span></button>
-     <button onclick="chooseVariant('adults')"><span class="ve">🧑</span><b>Adultos</b><span>${VMETA.adults.qs} preguntas · ${VMETA.adults.min} min · aprueba con ${VMETA.adults.pass}</span></button>
+     <button onclick="chooseVariant('kids')"><span class="ve">🧒</span><b>Niños</b><span>${VMETA.kids.qs} preguntas · ${VMETA.kids.min} min · aprueba con ${passMark()}</span></button>
+     <button onclick="chooseVariant('adults')"><span class="ve">🧑</span><b>Adultos</b><span>${VMETA.adults.qs} preguntas · ${VMETA.adults.min} min · aprueba con ${passMark()}</span></button>
    </div></div>`;
 }
 function chooseVariant(v){VARIANT=v;route();}
@@ -494,6 +552,7 @@ function langHTML(){return `<div class="langsw"><span class="lsw-lab">🌐</span
 function renderHub(){
   const t=T[lang],vm=VMETA[VARIANT];
   const done=myAttempts.length>0&&!ALLOW_RETRY;
+  const anulado=!done&&isVoided();
   const prog=loadProg();
   const inProgress=prog&&prog.v===VARIANT&&!done;
   const counts={};QS.forEach(q=>counts[q.part]=(counts[q.part]||0)+1);
@@ -522,11 +581,14 @@ function renderHub(){
       <div style="display:inline-block;margin-top:4px;font-size:12px;font-weight:800;border-radius:14px;padding:4px 14px;background:${passed?'var(--correct-bg)':'#FFF7E8'};color:${passed?'var(--correct)':'#9A3412'}">${passed?t.passedChip:t.failChip}</div>
       <p style="font-size:12.5px;color:var(--text-soft);line-height:1.55;margin:8px 0 0;font-weight:600">${t.done2}</p>
       <button class="rev-toggle" onclick="toggleRev('hubrev',this)">${t.revShow}</button><div class="review" id="hubrev" style="text-align:left">${sameBank(a)?buildReview(a.answers,bank,'s'):oldVerNote()}</div></div>`;
+  }else if(anulado){
+    mid=`<div class="card" style="text-align:center"><div style="font-size:38px">⏰</div><h3 style="justify-content:center">${lang==='es'?'Tu tiempo se agotó':'Your time is up'}</h3>
+      <p style="font-size:13px;color:var(--text-soft);line-height:1.55;font-weight:600;margin:6px 0 0">${lang==='es'?'No registramos ninguna nota. Pide a tu profesora que te habilite el examen otra vez. 💬':'No grade was recorded. Ask your teacher to open the exam again. 💬'}</p></div>`;
   }else{
     mid=`<div class="card"><h3>📋 ${lang==='es'?'Reglas del examen':'Exam rules'}</h3><ul>${t.rules.map(r=>`<li>${r}</li>`).join('')}</ul></div>
       <div class="neuro"><span class="nem">🧠</span><div>${t.neuroHub}</div></div>
       <button class="start-btn" onclick="startExam(${inProgress?'true':'false'})">${inProgress?t.resume:t.start}</button>
-      <div class="limitnote">⏱ <span>${lang==='es'?'➡️ Avance lineal: al pasar de pregunta no puedes volver.':'➡️ One-way: you cannot return to a question.'}<br>${vm.qs} ${lang==='es'?'preguntas':'questions'} · <b>${vm.min} min</b> · ${lang==='es'?'4 partes':'4 parts'}: 🎧 📖 🔤 📝 · ${lang==='es'?'apruebas con':'pass mark'} <b>${vm.pass}</b></span></div>`;
+      <div class="limitnote">⏱ <span>${lang==='es'?'➡️ Avance lineal: al pasar de pregunta no puedes volver.':'➡️ One-way: you cannot return to a question.'}<br>${vm.qs} ${lang==='es'?'preguntas':'questions'} · <b>${vm.min} min</b> · ${lang==='es'?'4 partes':'4 parts'}: 🎧 📖 🔤 📝 · ${lang==='es'?'apruebas con':'pass mark'} <b>${passMark()}</b></span></div>`;
   }
   document.getElementById('hub').innerHTML=langHTML()+
     `${(!UID&&!IS_TEACHER)?`<div class="demo-flag">${t.demo}</div>`:''}
@@ -535,7 +597,7 @@ function renderHub(){
 }
 
 /* ═══════════ TIMER ═══════════ */
-function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);paintTimer();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
+function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-spentSec();paintTimer();if(remain>0&&remain%15===0)saveProg();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
 function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
 function paintTimer(){const b=document.getElementById('timerBox');document.getElementById('timer').textContent=fmt(remain);
   b.className='mh-timer'+(remain<=60?' crit':remain<=300?' warn':'');}
@@ -555,12 +617,12 @@ function startExam(resume){
   }
   FIXMODE=false;
   const prog=resume?loadProg():null;
-  if(prog&&prog.v===VARIANT){startedAt=prog.s;picks=prog.p||[];cur=Math.min(prog.c||0,QS.length-1);exits=prog.x||0;plays=prog.pl||[];}
-  else{startedAt=Date.now();picks=new Array(QS.length).fill(null);plays=new Array(QS.length).fill(0);cur=0;exits=0;}
+  if(prog&&prog.v===VARIANT){spentBase=Math.max(0,Number(prog.sp)||0);startedAt=Date.now();picks=prog.p||[];cur=Math.min(prog.c||0,QS.length-1);exits=prog.x||0;plays=prog.pl||[];}
+  else{spentBase=0;startedAt=Date.now();picks=new Array(QS.length).fill(null);plays=new Array(QS.length).fill(0);cur=0;exits=0;}
   while(picks.length<QS.length)picks.push(null);
   submitted=false;lastTimedOut=false;
-  remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);
-  if(remain<=0){lastTimedOut=true;hideAll();document.getElementById('mbody').style.display='block';submitExam(true);return;}
+  remain=LIMIT-spentSec();
+  if(remain<=0){voidByTime();return;}
   saveProg();
   hideAll();
   document.getElementById('mbody').style.display='block';
@@ -702,17 +764,33 @@ function compute(){
   let score=0;PORDER.forEach(p=>{const a=agg[p];if(a.t)score+=(a.h/a.t)*PARTS[p].w;});
   score=Math.round(score);
   const answers=QS.map((q,i)=>({i,p:picks[i],ok:isRight(q,picks[i])}));
-  return {score,correct,total:QS.length,agg,answers,duration:Math.min(LIMIT,Math.floor((Date.now()-startedAt)/1000))};
+  return {score,correct,total:QS.length,agg,answers,duration:Math.min(LIMIT,spentSec())};
+}
+/* 🚫 NUNCA se registra un examen vacío (fix-examenes-2026-08-23): si se acabó el tiempo y
+ * respondió menos de la cuarta parte —o no respondió nada—, NO se guarda ninguna nota.
+ * El alumno ve que debe hablar con su profesora y ella lo habilita otra vez. */
+function voidedKey(){ return 'jucum_exam_void_'+ACT+'_'+(UID||'demo'); }
+function isVoided(){ try{ return !ALLOW_RETRY && !!localStorage.getItem(voidedKey()); }catch(e){ return false; } }
+function voidByTime(){
+  try{ localStorage.setItem(voidedKey(),new Date().toISOString()); }catch(e){}
+  submitted=true; stopTimer(); clearProg(); try{speechSynthesis.cancel();}catch(e){}
+  hideAll();
+  var R3=document.getElementById('results'); R3.style.display='block'; R3.classList.add('show');
+  R3.innerHTML='<div class="verdict"><div class="em">⏰</div><h2>'+(lang==='es'?'Se acabó tu tiempo':'Time is up')+'</h2><p>'+(lang==='es'?'No alcanzaste a responder lo suficiente, así que <b>no registramos ninguna nota</b>. Habla con tu profesora para que te habilite el examen otra vez. 💬':'You did not answer enough, so <b>no grade was recorded</b>. Talk to your teacher so she can open the exam again. 💬')+'</p></div>';
 }
 async function submitExam(timedOut){
-  if(submitted)return;submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
+  if(submitted)return;
+  var _resp=QS.map((_,i)=>i).filter(i=>isAnswered(i)).length;
+  if(_resp===0||(timedOut&&_resp<QS.length*0.25)){ voidByTime(); return; }
+  submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
   const A=compute(),t=T[lang];
   const secs={};PORDER.forEach(p=>secs[p]=A.agg[p]);
   secs._v=VARIANT;secs._exits=exits;if(FIXMODE)secs._fix=FIXIDX.length;
   const row={id:'ex-'+(UID||'demo')+'-'+Date.now(),user_id:UID||'demo',module_id:MOD,activity_id:ACT,
     attempt_no:(myAttempts.length||0)+1,score:A.score,correct:A.correct,total:A.total,duration_sec:A.duration,
     timed_out:!!timedOut,sections:Object.assign({_bv:BANKV},secs),answers:A.answers,ready:A.score>=passMark(VARIANT),created_at:new Date().toISOString()};
-  myAttempts.push(row);saveLocalAttempt(row);clearProg();cloudSaveAttempt(row);
+  myAttempts.push(row);saveLocalAttempt(row);clearProg();
+  cloudSaveAttempt(row).then(function(ok){ if(ok) return; try{ var R2=document.getElementById('results'); if(!R2) return; var d=document.createElement('div'); d.style.cssText='background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:12px;padding:11px 14px;margin:0 0 12px;font-size:13px;font-weight:700;color:#8A5100;line-height:1.55;text-align:left'; d.innerHTML=(lang==='es'?'📶 Tu nota se calculó bien, pero <b>aún no se pudo enviar</b> (conexión). Quedó guardada en este equipo y se enviará sola cuando vuelvas a abrir el examen con internet. Avisa a tu profesora.':'📶 Your grade was calculated, but it <b>could not be sent yet</b>. It is saved on this device and will be sent when you reopen the exam online. Tell your teacher.'); R2.insertBefore(d,R2.firstChild); }catch(e){} });
   try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:A.score,pass:passMark(VARIANT),type:'exam',mat:'PreA1_M3_Examen_'+VARIANT,topic:'examen-m3'}}));}catch(e){}
   hideAll();
   const R=document.getElementById('results');R.style.display='block';R.classList.add('show');

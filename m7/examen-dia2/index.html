@@ -251,6 +251,7 @@ select.t-sel{font-family:var(--font-body);font-weight:700;font-size:13px;border:
 <script>
 window.JUCUM_OWN_PANEL = true;
 /* ═══════════ CONFIG ═══════════ */
+/* fix-examenes-2026-08-23 · guardado a prueba de fallas · reloj que se pausa · sin notas de exámenes vacíos · nota mínima de la plataforma */
 var SB_URL='https://dwwzkzuonltaavzhvilu.supabase.co';
 var SB_KEY='sb_publishable_6pruJuV5P2cMVWqd8Wt8gg_UAtuEj_m';
 var Q=new URLSearchParams(location.search);
@@ -276,7 +277,41 @@ async function sbFetch(path,opts){
 }
 function localAttempts(){ try{return JSON.parse(localStorage.getItem(LSKEY())||'[]');}catch(e){return [];} }
 function saveLocalAttempt(row){ var a=localAttempts(); a.push(row); try{localStorage.setItem(LSKEY(),JSON.stringify(a));}catch(e){} }
-async function cloudSaveAttempt(row){ if(!UID) return false; try{ await sbFetch('diagnostic_attempts',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify([row])}); return true; }catch(e){ return false; } }
+/* 🔒 GUARDADO A PRUEBA DE FALLAS (fix-examenes-2026-08-23)
+ * Antes: un solo envío, 7 s de paciencia y el error se tragaba en silencio → si la red
+ * fallaba al entregar (toda la clase enviando a la vez), la nota y el detalle se PERDÍAN
+ * para siempre y el panel de la profesora salía "0 rindieron".
+ * Ahora: 3 envíos con espera creciente, 25 s de paciencia y, si aun así falla, el intento
+ * queda en la BANDEJA de este equipo y se reenvía solo al abrir cualquier examen. */
+var OUTBOX='jucum_exam_outbox_v1';
+function outboxRead(){ try{ var a=JSON.parse(localStorage.getItem(OUTBOX)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function outboxWrite(a){ try{ localStorage.setItem(OUTBOX,JSON.stringify(a.slice(-20))); }catch(e){} }
+async function postAttempt(row,ms){
+  var ctrl=new AbortController(); var to=setTimeout(function(){ctrl.abort();},ms||25000);
+  try{
+    var r=await fetch(SB_URL+'/rest/v1/diagnostic_attempts',{method:'POST',signal:ctrl.signal,headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify([row])});
+    clearTimeout(to);
+    if(!r.ok){ var tx=''; try{ tx=await r.text(); }catch(e2){} throw new Error('HTTP '+r.status+' '+String(tx).slice(0,120)); }
+    return true;
+  }catch(e){ clearTimeout(to); throw e; }
+}
+async function cloudSaveAttempt(row){
+  if(!UID) return false;
+  var esperas=[0,2500,6000];
+  for(var i=0;i<esperas.length;i++){
+    if(esperas[i]) await new Promise(function(r){setTimeout(r,esperas[i]);});
+    try{ await postAttempt(row); return true; }
+    catch(e){ if(i===esperas.length-1){ var a=outboxRead(); a.push(row); outboxWrite(a); try{console.warn('examen: la nota no se pudo enviar, queda en la bandeja de este equipo',e);}catch(e3){} return false; } }
+  }
+  return false;
+}
+async function outboxFlush(){
+  var a=outboxRead(); if(!a.length) return;
+  var quedan=[];
+  for(var i=0;i<a.length;i++){ try{ await postAttempt(a[i],15000); }catch(e){ quedan.push(a[i]); } }
+  outboxWrite(quedan);
+  try{ if(quedan.length<a.length) console.log('examen: '+(a.length-quedan.length)+' nota(s) pendiente(s) enviada(s)'); }catch(e){}
+}
 async function loadMyAttempts(){
   if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
   return localAttempts();
@@ -291,8 +326,26 @@ const PARTS={
 };
 const PORDER=['L','R','V','G'];
 const BANKV='final-v3-d2'; /* firma del banco: si cambia, los intentos/progresos viejos NO se remapean */
-const PASSBY={kids:65,adults:70}; /* nota mínima para aprobar, por versión */
-function passMark(v){return PASSBY[v||VARIANT]||70;}
+/* 🎯 La nota mínima la manda la PLATAFORMA (fix-examenes-2026-08-23): se lee el mínimo del
+ * grupo del alumno (Exámenes → Configurar) y se recuerda en este equipo. Antes el examen
+ * aprobaba con 70/65 y el panel de la profesora con otro número: el alumno veía
+ * "¡Aprobaste!" y en el panel salía a recuperación. */
+const PASSBY={kids:65,adults:70};
+var MINPASS=null;
+try{ var _mp0=Number(localStorage.getItem('jucum_exam_min_'+(UID||'demo'))); if(_mp0>=1&&_mp0<=100) MINPASS=_mp0; }catch(e){}
+async function loadMinPass(){
+  if(!UID) return;
+  try{
+    var g=GROUP;
+    if(!g){ var u=await sbFetch('users?id=eq.'+encodeURIComponent(UID)+'&select=group_id'); g=(u&&u[0]&&u[0].group_id)||''; }
+    if(!g) return;
+    var s=await sbFetch('app_settings?key=eq.exam_flow&select=value');
+    var cfg=(s&&s[0]&&s[0].value&&s[0].value.cfg)||{};
+    var n=Number((cfg[g]||{}).minGrade);
+    if(n>=1&&n<=100){ MINPASS=n; try{ localStorage.setItem('jucum_exam_min_'+UID,String(n)); }catch(e){} }
+  }catch(e){}
+}
+function passMark(v){return MINPASS||75;}
 
 /* ═══════════ LECTURAS (fragmentos de las stories de TODOS los módulos) ═══════════ */
 const PASSAGES={"adults":[{"t":"M7 · Un sábado con la abuela","p":["Last Saturday I visited my abuela. I brought her a few apples, and she was very happy. We walked in her garden, but the sun was very strong. If the day is hot, she waters the plants early. I know that place well, and I enjoy every visit."]},{"t":"M7 · Ana se une al grupo","p":["On Monday, Ana joined our group. She is new, but she is very nice. She found a book on my desk and she asked: is this yours? I said yes, and I gave it to her. Now we visit the library together, and we enjoy the same stories."]},{"t":"M1 · Fragmento 1","p":["Hello! My name is Leo. I am seven years old. My town is small and quiet. It is pretty in the morning. I am happy here.","This is my dad, Marco. He is tall and kind. His fruit stand is small. The market is busy every day. Dad is not home at noon.","My mom is Irma. She is full of energy. Her soup is delicious. The kitchen is her happy place. I am her big helper.","Lara is my little sister. She is only four. The girl is small and funny. We are good friends. Our house is full of laughs."]},{"t":"M1 · Fragmento 2","p":["My eyes are brown. My hair is short and black. I am not very tall. But I am very fast. I am not quiet at home.","Drawing animals is fun for me. My favorite color is green. Football is my favorite game. It is fun with friends. We play in the street.","My best friend is Ravi. He is seven, like me. We are the same age. Ravi is funny and kind. I am happy with him.","My school is small. My teacher is Miss Rosa. She is patient with us. Her class is my favorite. English is not hard with her."]},{"t":"M1 · Fragmento 3","p":["There is a big photo. It is on my wall. There are seven people in it. There is one dog too. I love that photo.","The tall man is my dad. His name is Carlos. He is a bus driver. His smile is very big. I feel safe with him.","My mom is next to him. Her name is Elsa. She is a nurse. Her eyes are happy. She always listens to me.","My brother Nico is nine. He is very funny. In the photo, he makes a face. He is not quiet. We are good friends."]},{"t":"M2 · Fragmento 1","p":["Every morning starts the same. Mom opens my door. Wake up, Leo! she says. I get up slowly. The sun comes in.","First, I wash my face. Then I brush my teeth. Lara brushes her teeth too. She sings with the brush. It takes a long time.","Dad makes breakfast every day. He gets bread and fruit. Mom makes hot tea. I take the cups. We eat together at seven.","After breakfast, I get my bag. I keep my books in it. Mom gives me an apple. She kisses my head. Have a good day! she says."]},{"t":"M2 · Fragmento 2","p":["My name is Mia. I am seven years old. I can do many things. Some things are hard. But I practice every day.","I can draw very well. I draw my dog Toby. I use three colors. My drawings go on the wall. Mom loves every one.","I can run fast too. I race with Nico. He runs very fast. Sometimes he lets me win. We laugh at the end.","I cannot swim yet. Water goes in my nose. Dad says, Take your time. He can swim very well. Soon I can do it too."]},{"t":"M2 · Fragmento 3","p":["My days are very busy. I am nine, remember? Big kids do many things. But I do not complain. Well… not every day.","I do not like early mornings. My bed feels so good. Mom calls me two times. Dad calls me one more. Then I finally get up.","Mia does not wake up late. She gets up with the sun. She makes her bed fast. I do not understand her. Mornings are not my friends.","At school, I work hard. I like math and art. I do not like tests. But I study for them. Tomás studies with me."]},{"t":"M3 · Fragmento 1","p":["A week has seven days. Five days are for school. Two days are for home. My week is always full. Let me tell you about it.","On Mondays, I wake up early. The house is still dark. Mia and I get our bags. Our uniforms wait on the chairs. The week starts fast.","On Tuesdays, I have art class. It is my favorite day. We paint during the afternoon. The brushes dance on the paper. Time flies in art class.","On Wednesdays, mom works late. Grandma comes to our house. Her stories are about her town. We drink tea and listen. Wednesdays taste like honey."]},{"t":"M3 · Fragmento 2","p":["On Thursdays, we visit the library. The shelves go up high. I take three books home. Comics, animals, and space. Books make the week better.","On Fridays, dad comes home early. We make pizza together. Our kitchen gets a little messy. Nobody cares on Fridays. The weekend is near!","Saturdays are for the market. We go early with mom. The fruit shines in lines. Don Pepe saves apples for us. Their smell fills the bag.","On Sundays, we rest. We visit our grandparents. Their house is always warm. Lunch goes on and on. Sundays end too fast."]},{"t":"M3 · Fragmento 3","p":["A little bird lives in the park. She is brown and small. Her wings move very fast. The kids call her Pia. Everyone knows the fast bird.","Pia wakes up before the sun. The park is quiet and gray. She sings one early song. The trees listen in silence. Then the day begins.","Pia looks for seeds. The seeds hide under the benches. She finds them fast. Other birds come near. She shares without a fight.","An old dog sleeps near the gate. Pia flies down to him. She walks between his ears! The dog opens one eye. They are strange friends.","During the morning, kids arrive. Leo and Ravi bring bread. They put small pieces down. Pia takes the first piece. She says thanks with a song."]},{"t":"M4 · Fragmento 1","p":["My school is not big. But it is full of life. The building is yellow and white. A garden grows at the door. I love this place.","Classes start at eight. Before class, we form groups. My group has four kids. We share one big table. Teamwork is fun here.","Our classroom has many objects. There are books on the shelves. The markers live in a box. A world map covers the wall. Every object has its place.","Today we are painting. I am painting my house. Tomás is painting a green bus. The paint gets on our hands. Nobody cares one bit."]},{"t":"M4 · Fragmento 2","p":["Our house is small and warm. It has two floors. My room is up the stairs. Lara’s room is next to mine. Every corner tells a story.","The keys hang near the door. Dad’s key is the big one. My key is small and new. I keep it in my bag. Big kids carry keys.","The kitchen is my favorite room. Good smells live there. Mom’s plants sit on the window. A little radio sings all day. Home smells like soup and songs.","Right now, Lara is painting. She is using her fingers! The paint is on her face. It is on the table too. Mom is not looking… yet."]},{"t":"M4 · Fragmento 3","p":["It is Sunday afternoon. Rain is falling outside. Everyone is at home today. The house feels full and warm. Let me show you around.","In the kitchen, mom is cooking. She is making her famous soup. The pot is singing on the fire. Steam is painting the window white. The smell walks around the house.","In the living room, dad is reading. He is not reading a book. He is reading his work emails. His face looks very serious. Sundays are not for emails, dad!","Mia is sitting near the window. She is drawing the rain. Gray drops on white paper. She is using her new markers. Her tongue sticks out. Focus!"]},{"t":"M5 · Fragmento 1","p":["Coco is my dog. He is a small, brown puppy. His eyes are big. One eye is almost yellow. I love his happy face.","Coco was very small. His ears were soft. His legs were short. He was cold at night. Now he is big.","I remember his first day. Dad opened a small box. Coco looked at me. I wanted this dog! We played all day.","Look at his eyes. They change with the light. In the sun, almost green. At night, dark and big. His eyes talk to me."]},{"t":"M5 · Fragmento 2","p":["Yesterday was a special day. Mom and I cooked breakfast. It was my first time. I was a little nervous. But mom helped me.","First, we cooked the eggs. Mom opened two eggs. I added a little salt. The eggs changed color fast. They were white and yellow.","Then we prepared the juice. I like pineapple juice. Mom added cold water. I mixed everything well. The pineapple juice was so yellow.","There was one green apple. It was for the table. I washed the apple. The water was very cold. My hands were cold too!"]},{"t":"M5 · Fragmento 3","p":["Last Sunday, we visited abuela. She lives near a hill. Her garden is beautiful. Many plants grow there. I love that place.","Abuela waited at the door. We walked to the garden. The morning was cold. But the sky was blue. Everything was green and fresh.","Plants grow slowly, abuela says. They want water and sun. Abuela waters them every day. Yesterday I watered them too. The plants looked happy.","Look at the leaves. They change with time. Some leaves are green. Other leaves are yellow. Nature changes all the time."]},{"t":"M6 · Fragmento 1","p":["Yesterday was a great day. I woke up very happy. The sun was big and bright. My mom made a good breakfast. It was a quick breakfast.","Then I went to school. My friend Ana came with me. She is very nice. We took the same street. The walk was short and quick.","At school we had a test. The test was good for me. I got a great grade. My teacher was very happy. She gave me a gold star.","After class we played outside. The game was quick and fun. A few friends came too. Even my brother came. We were all very happy."]},{"t":"M6 · Fragmento 2","p":["My name is Mateo. I am twelve years old. Today I feel very good. But feelings change every day. That is normal and fine.","On Monday I was happy. I got a good grade. My mom made my favorite food. We had a nice dinner. Even my sister smiled.","On Tuesday I was sad. My best friend was ill. He was not at school. The classroom was very quiet. I missed his funny jokes.","On Wednesday I was nervous. We had a big exam. My hands were very cold. I took a deep breath. Then I felt calm and able."]},{"t":"M6 · Fragmento 3","p":["Ana is my classmate. She is new in school. Her family came last month. She knows only a few words. But she has a nice smile.","On day one, Ana was quiet. She sat near the window. Nobody talked to her. Her eyes were very sad. I felt bad for her.","At lunch I went to her. I said: hi, I am Lucía. Ana gave me a small smile. I asked: can I help? She said: yes, please.","We had lunch together. I gave her half my apple. She took it and laughed. Her laugh was very nice. That day we became friends."]}],"kids":[{"t":"M7 · Un sábado con la abuela","p":["Last Saturday I visited my abuela. I brought her a few apples, and she was very happy. We walked in her garden, but the sun was very strong. I know that place well, and I enjoy every visit."]},{"t":"M7 · Ana se une al grupo","p":["On Monday, Ana joined our group. She is new, but she is very nice. She found a book on my desk. I gave it to her, and now we visit the library together."]},{"t":"M1 · Fragmento 1","p":["Saturday is a special day. There is no school today. We are all at home. Dad makes eggs for everyone. Breakfast is slow and happy.","After breakfast, we walk outside. Grandpa comes with us. His walking stick goes click-click. I walk next to him. The park is not far.","There are tall trees there. There is a long slide. There are two old swings. The grass is soft and green. It is my favorite place."]},{"t":"M1 · Fragmento 2","p":["Ravi is at the park. He is with his brothers. Dev is ten years old. Little Arjun is only five. They are happy to see us.","Ravi is a funny boy. He makes animal voices. I laugh a lot with him. We play with a ball. I kick it to him.","Lara loves the swings. Dad pushes her up high. She laughs with joy. Arjun waits for his turn. He is patient with her.","There is an ice cream man. Grandpa buys one for me. It is cold and sweet. My ice cream is strawberry. I say thank you to him."]},{"t":"M1 · Fragmento 3","p":["There is a big photo. It is on my wall. There are seven people in it. There is one dog too. I love that photo.","The tall man is my dad. His name is Carlos. He is a bus driver. His smile is very big. I feel safe with him.","My mom is next to him. Her name is Elsa. She is a nurse. Her eyes are happy. She always listens to me."]},{"t":"M2 · Fragmento 1","p":["Every morning starts the same. Mom opens my door. Wake up, Leo! she says. I get up slowly. The sun comes in.","First, I wash my face. Then I brush my teeth. Lara brushes her teeth too. She sings with the brush. It takes a long time.","Dad makes breakfast every day. He gets bread and fruit. Mom makes hot tea. I take the cups. We eat together at seven."]},{"t":"M2 · Fragmento 2","p":["My name is Mia. I am seven years old. I can do many things. Some things are hard. But I practice every day.","I can draw very well. I draw my dog Toby. I use three colors. My drawings go on the wall. Mom loves every one.","I cannot swim yet. Water goes in my nose. Dad says, Take your time. He can swim very well. Soon I can do it too."]},{"t":"M2 · Fragmento 3","p":["I do not like early mornings. My bed feels so good. Mom calls me two times. Dad calls me one more. Then I finally get up.","Mia does not wake up late. She gets up with the sun. She makes her bed fast. I do not understand her. Mornings are not my friends."]},{"t":"M3 · Fragmento 1","p":["The school day starts early. A bell rings at eight. The doors open fast. Kids run to their classes. Our class is the last door.","My classroom has many things. There are books and pencils. The window is always open. An old map is on the wall. I like the map a lot.","Before class, we play outside. Ravi brings a small ball. The girls jump rope fast. The boys pass the ball. Then the bell calls us in.","During class, we read stories. Miss Rosa opens a big book. The story is about an elephant. An elephant with huge ears! We listen with open mouths."]},{"t":"M3 · Fragmento 2","p":["My friends sit near me. Ana shares her colored pencils. Ravi draws in his notebook. Our drawings go on the wall. The wall looks like a museum.","At noon, we eat lunch. The tables are long and full. I sit between Ravi and Ana. We trade some snacks. Lunch always ends too fast.","At the end, we clean up. The pencils go in a box. The books go on the shelves. Our chairs go under the desks. The room gets neat again."]},{"t":"M3 · Fragmento 3","p":["I have a white cat. Her name is Luna. She is small and fast. Luna loves funny places. Today I cannot find her.","I look under my bed. There are only two boxes. My old toys sleep there. No cat under the bed. Where is that little cat?","I look inside the closet. My dresses hang in a line. The shoes wait in pairs. A soft sound comes out. But it is only the wind.","Maybe she is in the kitchen. Her bowl is near the door. The milk is still there. Luna never misses her milk. Now I am a little worried.","Then I hear a tiny cry. It comes from up high. I look at the tree. Two eyes shine between the leaves. She is on a high branch."]},{"t":"M4 · Fragmento 1","p":["My school is not big. But it is full of life. The building is yellow and white. A garden grows at the door. I love this place.","Our classroom has many objects. There are books on the shelves. The markers live in a box. A world map covers the wall. Every object has its place.","Today we are painting. I am painting my house. Tomás is painting a green bus. The paint gets on our hands. Nobody cares one bit."]},{"t":"M4 · Fragmento 2","p":["The keys hang near the door. Dad’s key is the big one. My key is small and new. I keep it in my bag. Big kids carry keys.","The kitchen is my favorite room. Good smells live there. Mom’s plants sit on the window. A little radio sings all day.","Right now, Lara is painting. She is using her fingers! The paint is on her face. It is on the table too."]},{"t":"M4 · Fragmento 3","p":["It is Sunday afternoon. Rain is falling outside. Everyone is at home today. The house feels full and warm.","In the kitchen, mom is cooking. She is making her famous soup. The pot is singing on the fire.","In the living room, dad is reading. He is not reading a book. He is reading his work emails."]},{"t":"M5 · Fragmento 1","p":["Coco is my dog. He is a small, brown puppy. His eyes are big. One eye is almost yellow. I love his happy face.","Coco was very small. His ears were soft. His legs were short. He was cold at night. Now he is big.","I remember his first day. Dad opened a small box. Coco looked at me. I wanted this dog! We played all day."]},{"t":"M5 · Fragmento 2","p":["Yesterday was a special day. Mom and I cooked breakfast. It was my first time. I was a little nervous. But mom helped me.","First, we cooked the eggs. Mom opened two eggs. I added a little salt. The eggs changed color fast.","There was one green apple. I washed the apple. The water was very cold. My hands were cold too!"]},{"t":"M5 · Fragmento 3","p":["Last Sunday, we visited abuela. She lives near a hill. Her garden is beautiful. Many plants grow there.","Plants grow slowly, abuela says. They want water and sun. Yesterday I watered them too. The plants looked happy.","Look at the leaves. Some leaves are green. Other leaves are yellow. Nature changes all the time."]},{"t":"M6 · Fragmento 1","p":["Yesterday was a great day. I woke up very happy. The sun was big and bright. My mom made a good breakfast.","Then I went to school. My friend Ana came with me. She is very nice. We took the same street.","At school we had a test. I got a great grade. My teacher was very happy. She gave me a gold star."]},{"t":"M6 · Fragmento 2","p":["On Monday I was happy. I got a good grade. My mom made my favorite food. We had a nice dinner.","On Tuesday I was sad. My best friend was ill. He was not at school. The classroom was very quiet.","On Wednesday I was nervous. We had a big exam. My hands were very cold. Then I felt calm and able."]},{"t":"M6 · Fragmento 3","p":["Ana is my classmate. She is new in school. She knows only a few words. But she has a nice smile.","At lunch I went to her. I said: hi, I am Lucía. Ana gave me a small smile. I asked: can I help?","We had lunch together. I gave her half my apple. She took it and laughed. That day we became friends."]}]};
@@ -363,7 +416,7 @@ pickT:'Which version will you take?',pickS:'Your teacher told you which one. If 
 protect:'Protected material © JUCUM EC'}};
 
 /* ═══════════ ESTADO ═══════════ */
-let lang='es',QS=[],LIMIT=0,picks=[],plays=[],cur=0,remain=0,timer=null,startedAt=0,exits=0,submitted=false,lastTimedOut=false,myAttempts=[];
+let lang='es',QS=[],LIMIT=0,picks=[],plays=[],cur=0,remain=0,timer=null,startedAt=0,exits=0,submitted=false,lastTimedOut=false,myAttempts=[],spentBase=0;
 const fmt=s=>Math.floor(s/60)+':'+String(Math.max(0,s)%60).padStart(2,'0');
 function fy(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -437,7 +490,10 @@ function playAudio(i){const q=QS[i];if(!q.audio)return;
 function cycleAcc(){accent=accent==='US'?'UK':'US';document.querySelectorAll('.accb').forEach(b=>b.textContent=accent==='US'?'🇺🇸 US':'🇬🇧 UK');}
 
 /* ═══════════ PERSISTENCIA DE PROGRESO (resume) ═══════════ */
-function saveProg(){if(submitted)return;try{localStorage.setItem(PROGKEY(),JSON.stringify({v:VARIANT,s:startedAt,p:picks,c:cur,x:exits,pl:plays}));}catch(e){}}
+/* ⏸ El tiempo se guarda GASTADO, no la hora de inicio: al cerrar y volver, el examen
+   continúa con los minutos que le quedaban (fix-examenes-2026-08-23). */
+function spentSec(){return spentBase+Math.max(0,Math.floor((Date.now()-startedAt)/1000));}
+function saveProg(){if(submitted)return;try{localStorage.setItem(PROGKEY(),JSON.stringify({v:VARIANT,s:startedAt,sp:spentSec(),p:picks,c:cur,x:exits,pl:plays}));}catch(e){}}
 function loadProg(){try{return JSON.parse(localStorage.getItem(PROGKEY())||'null');}catch(e){return null;}}
 function clearProg(){try{localStorage.removeItem(PROGKEY());}catch(e){}}
 
@@ -450,6 +506,8 @@ async function route(){
   document.getElementById('hub').style.display='block';
   if(!VARIANT||!BANK[VARIANT]){renderPicker();return;}
   QS=BANK[VARIANT];LIMIT=LIMITS[VARIANT];
+  try{ outboxFlush(); }catch(e){}
+  try{ await loadMinPass(); }catch(e){}
   myAttempts=await loadMyAttempts();
   renderHub();
 }
@@ -459,8 +517,8 @@ function renderPicker(){
   `<div class="intro-hero"><div class="em">🎓</div><h1>${t.hubT}</h1><p>${t.hubS}</p></div>
    <div class="card"><h3>${t.pickT}</h3><p style="font-size:12px;color:var(--text-soft);margin:0;line-height:1.5">${t.pickS}</p>
    <div class="vpick">
-     <button onclick="chooseVariant('kids')"><span class="ve">🧒</span><b>Niños</b><span>${VMETA.kids.qs} preguntas · ${VMETA.kids.min} min · aprueba con ${VMETA.kids.pass}</span></button>
-     <button onclick="chooseVariant('adults')"><span class="ve">🧑</span><b>Adultos</b><span>${VMETA.adults.qs} preguntas · ${VMETA.adults.min} min · aprueba con ${VMETA.adults.pass}</span></button>
+     <button onclick="chooseVariant('kids')"><span class="ve">🧒</span><b>Niños</b><span>${VMETA.kids.qs} preguntas · ${VMETA.kids.min} min · aprueba con ${passMark()}</span></button>
+     <button onclick="chooseVariant('adults')"><span class="ve">🧑</span><b>Adultos</b><span>${VMETA.adults.qs} preguntas · ${VMETA.adults.min} min · aprueba con ${passMark()}</span></button>
    </div></div>`;
 }
 function chooseVariant(v){VARIANT=v;route();}
@@ -468,6 +526,7 @@ function langHTML(){return `<div class="langsw"><span class="lsw-lab">🌐</span
 function renderHub(){
   const t=T[lang],vm=VMETA[VARIANT];
   const done=myAttempts.length>0&&!ALLOW_RETRY;
+  const anulado=!done&&isVoided();
   const prog=loadProg();
   const inProgress=prog&&prog.v===VARIANT&&!done;
   const counts={};QS.forEach(q=>counts[q.part]=(counts[q.part]||0)+1);
@@ -482,11 +541,14 @@ function renderHub(){
       <div style="display:inline-block;margin-top:4px;font-size:12px;font-weight:800;border-radius:14px;padding:4px 14px;background:${passed?'var(--correct-bg)':'#FFF7E8'};color:${passed?'var(--correct)':'#9A3412'}">${passed?t.passedChip:t.failChip}</div>
       <p style="font-size:12.5px;color:var(--text-soft);line-height:1.55;margin:8px 0 0;font-weight:600">${t.done2}</p>
       <button class="rev-toggle" onclick="toggleRev('hubrev',this)">${t.revShow}</button><div class="review" id="hubrev" style="text-align:left">${sameBank(a)?buildReview(a.answers,bank,'s'):oldVerNote()}</div></div>`;
+  }else if(anulado){
+    mid=`<div class="card" style="text-align:center"><div style="font-size:38px">⏰</div><h3 style="justify-content:center">${lang==='es'?'Tu tiempo se agotó':'Your time is up'}</h3>
+      <p style="font-size:13px;color:var(--text-soft);line-height:1.55;font-weight:600;margin:6px 0 0">${lang==='es'?'No registramos ninguna nota. Pide a tu profesora que te habilite el examen otra vez. 💬':'No grade was recorded. Ask your teacher to open the exam again. 💬'}</p></div>`;
   }else{
     mid=`<div class="card"><h3>📋 ${lang==='es'?'Reglas del examen':'Exam rules'}</h3><ul>${t.rules.map(r=>`<li>${r}</li>`).join('')}</ul></div>
       <div class="neuro"><span class="nem">🧠</span><div>${t.neuroHub}</div></div>
       <button class="start-btn" onclick="startExam(${inProgress?'true':'false'})">${inProgress?t.resume:t.start}</button>
-      <div class="limitnote">⏱ <span>${lang==='es'?'➡️ Avance lineal: al pasar de pregunta no puedes volver.':'➡️ One-way: you cannot return to a question.'}<br>${vm.qs} ${lang==='es'?'preguntas':'questions'} · <b>${vm.min} min</b> · ${lang==='es'?'4 partes':'4 parts'}: 🎧 📖 🔤 📝 · ${lang==='es'?'apruebas con':'pass mark'} <b>${vm.pass}</b></span></div>`;
+      <div class="limitnote">⏱ <span>${lang==='es'?'➡️ Avance lineal: al pasar de pregunta no puedes volver.':'➡️ One-way: you cannot return to a question.'}<br>${vm.qs} ${lang==='es'?'preguntas':'questions'} · <b>${vm.min} min</b> · ${lang==='es'?'4 partes':'4 parts'}: 🎧 📖 🔤 📝 · ${lang==='es'?'apruebas con':'pass mark'} <b>${passMark()}</b></span></div>`;
   }
   document.getElementById('hub').innerHTML=langHTML()+
     `${(!UID&&!IS_TEACHER)?`<div class="demo-flag">${t.demo}</div>`:''}
@@ -495,7 +557,7 @@ function renderHub(){
 }
 
 /* ═══════════ TIMER ═══════════ */
-function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);paintTimer();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
+function startTimer(){stopTimer();paintTimer();timer=setInterval(()=>{remain=LIMIT-spentSec();paintTimer();if(remain>0&&remain%15===0)saveProg();if(remain<=900&&chimed<2){chimed++;chime();toast('⏱ Quedan 15 minutos — vas bien, respira y sigue con calma 🌿');setTimeout(function(){if(chimed<2){chimed++;chime();}},8000);}if(remain<=0){stopTimer();lastTimedOut=true;submitExam(true);}},1000);}
 function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
 function paintTimer(){const b=document.getElementById('timerBox');document.getElementById('timer').textContent=fmt(remain);
   b.className='mh-timer'+(remain<=60?' crit':remain<=300?' warn':'');}
@@ -503,12 +565,12 @@ function paintTimer(){const b=document.getElementById('timerBox');document.getEl
 /* ═══════════ EXAMEN ═══════════ */
 function startExam(resume){
   const prog=resume?loadProg():null;
-  if(prog&&prog.v===VARIANT){startedAt=prog.s;picks=prog.p||[];cur=Math.min(prog.c||0,QS.length-1);exits=prog.x||0;plays=prog.pl||[];}
-  else{startedAt=Date.now();picks=new Array(QS.length).fill(null);plays=new Array(QS.length).fill(0);cur=0;exits=0;}
+  if(prog&&prog.v===VARIANT){spentBase=Math.max(0,Number(prog.sp)||0);startedAt=Date.now();picks=prog.p||[];cur=Math.min(prog.c||0,QS.length-1);exits=prog.x||0;plays=prog.pl||[];}
+  else{spentBase=0;startedAt=Date.now();picks=new Array(QS.length).fill(null);plays=new Array(QS.length).fill(0);cur=0;exits=0;}
   while(picks.length<QS.length)picks.push(null);
   submitted=false;lastTimedOut=false;
-  remain=LIMIT-Math.floor((Date.now()-startedAt)/1000);
-  if(remain<=0){lastTimedOut=true;hideAll();document.getElementById('mbody').style.display='block';submitExam(true);return;}
+  remain=LIMIT-spentSec();
+  if(remain<=0){voidByTime();return;}
   saveProg();
   hideAll();
   document.getElementById('mbody').style.display='block';
@@ -643,17 +705,33 @@ function compute(){
   let score=0;PORDER.forEach(p=>{const a=agg[p];if(a.t)score+=(a.h/a.t)*PARTS[p].w;});
   score=Math.round(score);
   const answers=QS.map((q,i)=>({i,p:picks[i],ok:isRight(q,picks[i])}));
-  return {score,correct,total:QS.length,agg,answers,duration:Math.min(LIMIT,Math.floor((Date.now()-startedAt)/1000))};
+  return {score,correct,total:QS.length,agg,answers,duration:Math.min(LIMIT,spentSec())};
+}
+/* 🚫 NUNCA se registra un examen vacío (fix-examenes-2026-08-23): si se acabó el tiempo y
+ * respondió menos de la cuarta parte —o no respondió nada—, NO se guarda ninguna nota.
+ * El alumno ve que debe hablar con su profesora y ella lo habilita otra vez. */
+function voidedKey(){ return 'jucum_exam_void_'+ACT+'_'+(UID||'demo'); }
+function isVoided(){ try{ return !ALLOW_RETRY && !!localStorage.getItem(voidedKey()); }catch(e){ return false; } }
+function voidByTime(){
+  try{ localStorage.setItem(voidedKey(),new Date().toISOString()); }catch(e){}
+  submitted=true; stopTimer(); clearProg(); try{speechSynthesis.cancel();}catch(e){}
+  hideAll();
+  var R3=document.getElementById('results'); R3.style.display='block'; R3.classList.add('show');
+  R3.innerHTML='<div class="verdict"><div class="em">⏰</div><h2>'+(lang==='es'?'Se acabó tu tiempo':'Time is up')+'</h2><p>'+(lang==='es'?'No alcanzaste a responder lo suficiente, así que <b>no registramos ninguna nota</b>. Habla con tu profesora para que te habilite el examen otra vez. 💬':'You did not answer enough, so <b>no grade was recorded</b>. Talk to your teacher so she can open the exam again. 💬')+'</p></div>';
 }
 async function submitExam(timedOut){
-  if(submitted)return;submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
+  if(submitted)return;
+  var _resp=QS.map((_,i)=>i).filter(i=>isAnswered(i)).length;
+  if(_resp===0||(timedOut&&_resp<QS.length*0.25)){ voidByTime(); return; }
+  submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
   const A=compute(),t=T[lang];
   const secs={};PORDER.forEach(p=>secs[p]=A.agg[p]);
   secs._v=VARIANT;secs._exits=exits;
   const row={id:'ex-'+(UID||'demo')+'-'+Date.now(),user_id:UID||'demo',module_id:MOD,activity_id:ACT,
     attempt_no:(myAttempts.length||0)+1,score:A.score,correct:A.correct,total:A.total,duration_sec:A.duration,
     timed_out:!!timedOut,sections:Object.assign({_bv:BANKV},secs),answers:A.answers,ready:A.score>=passMark(VARIANT),created_at:new Date().toISOString()};
-  myAttempts.push(row);saveLocalAttempt(row);clearProg();cloudSaveAttempt(row);
+  myAttempts.push(row);saveLocalAttempt(row);clearProg();
+  cloudSaveAttempt(row).then(function(ok){ if(ok) return; try{ var R2=document.getElementById('results'); if(!R2) return; var d=document.createElement('div'); d.style.cssText='background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:12px;padding:11px 14px;margin:0 0 12px;font-size:13px;font-weight:700;color:#8A5100;line-height:1.55;text-align:left'; d.innerHTML=(lang==='es'?'📶 Tu nota se calculó bien, pero <b>aún no se pudo enviar</b> (conexión). Quedó guardada en este equipo y se enviará sola cuando vuelvas a abrir el examen con internet. Avisa a tu profesora.':'📶 Your grade was calculated, but it <b>could not be sent yet</b>. It is saved on this device and will be sent when you reopen the exam online. Tell your teacher.'); R2.insertBefore(d,R2.firstChild); }catch(e){} });
   try{window.dispatchEvent(new CustomEvent('jucum:done',{detail:{score:A.score,pass:passMark(VARIANT),type:'exam',mat:'PreA1_Final_D2_'+VARIANT,topic:'examen-final-d2'}}));}catch(e){}
   hideAll();
   const R=document.getElementById('results');R.style.display='block';R.classList.add('show');

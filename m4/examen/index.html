@@ -675,7 +675,7 @@ function sqTap(i,x){const ord=Array.isArray(picks[i])?picks[i].slice():[];const 
   if(p>=0)ord.splice(p,1);else ord.push(x);picks[i]=ord;saveProg();renderQ(i);}
 const CHEERS=['🌟 ¡Vas muy bien! Sigue así.','💪 ¡Buen ritmo! Confía en lo que practicaste.','🚀 ¡Ya pasaste otra parte! Respira y continúa.','🌱 Cada pregunta también es práctica. ¡Sigue!','🎯 ¡Excelente concentración! Ya falta menos.','🏅 ¡Tu esfuerzo se nota! Vamos con calma.'];
 function renderQ(i){
-  cur=i;const q=QS[i],t=T[lang];
+  cur=i;try{window.__JEC_LIVE_EXTRA={name:(lang==='es'?'Pregunta ':'Question ')+(i+1)+' de '+QS.length};}catch(e){}const q=QS[i],t=T[lang];
   const cheer=(i>0&&i%7===0)?'<div class="cheer">'+CHEERS[Math.floor(i/7-1)%CHEERS.length]+'</div>':'';
   const audio=q.audio?`<div class="audiorow"><button class="playb" id="pb${i}" ${plays[i]>=3?'disabled':''} onclick="playAudio(${i})">${t.play}</button><button class="accb" onclick="toggleRate(${i})" title="Velocidad del audio">${rateMode==='slow'?'🐢 Lento':'🚶 Normal'}</button><button class="accb" onclick="cycleAcc()">${accent==='US'?'🇺🇸 US':'🇬🇧 UK'}</button><span class="playsleft" id="pl${i}">${Math.max(0,3-(plays[i]||0))} ${t.plays}</span></div>`:'';
   const tr=q.tr?`<div class="qtr">(${esc(q.tr)})</div>`:'';
@@ -744,7 +744,7 @@ async function submitExam(timedOut){
   if(submitted)return;
   var _resp=QS.map((_,i)=>i).filter(i=>isAnswered(i)).length;
   if(_resp===0||(timedOut&&_resp<QS.length*0.25)){ voidByTime(); return; }
-  submitted=true;stopTimer();try{speechSynthesis.cancel();}catch(e){}
+  submitted=true;stopTimer();try{window.__JEC_LIVE_EXTRA={name:lang==='es'?'Entregado ✅':'Submitted ✅'};}catch(e){}try{speechSynthesis.cancel();}catch(e){}
   const A=compute(),t=T[lang];
   const secs={};PORDER.forEach(p=>secs[p]=A.agg[p]);
   secs._v=VARIANT;secs._exits=exits;

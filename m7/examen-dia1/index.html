@@ -312,6 +312,16 @@ async function outboxFlush(){
   outboxWrite(quedan);
   try{ if(quedan.length<a.length) console.log('examen: '+(a.length-quedan.length)+' nota(s) pendiente(s) enviada(s)'); }catch(e){}
 }
+/* 🚑 AUTORRESCATE (23-ago-2026): cada intento queda guardado tambien en ESTE equipo
+ * (saveLocalAttempt). Si la nube no lo tiene (se perdio con el codigo viejo o sin internet),
+ * al reabrir el examen logueado se re-envia solo. Idempotente: mismo id = no duplica. */
+async function rescueLocal(){
+  if(!UID) return;
+  var loc=localAttempts(); if(!loc.length) return;
+  var have={};
+  try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&select=id'); if(!Array.isArray(d)) return; d.forEach(function(r){have[r.id]=1;}); }catch(e){ return; }
+  for(var i=0;i<loc.length;i++){ var r=loc[i]; if(r&&r.id&&r.user_id===UID&&!have[r.id]){ try{ await postAttempt(r,15000); }catch(e){} } }
+}
 async function loadMyAttempts(){
   if(UID){ try{ var d=await sbFetch('diagnostic_attempts?user_id=eq.'+encodeURIComponent(UID)+'&activity_id=eq.'+encodeURIComponent(ACT)+'&order=created_at.asc&select=*'); if(Array.isArray(d)) return d; }catch(e){} }
   return localAttempts();
@@ -507,6 +517,7 @@ async function route(){
   if(!VARIANT||!BANK[VARIANT]){renderPicker();return;}
   QS=BANK[VARIANT];LIMIT=LIMITS[VARIANT];
   try{ outboxFlush(); }catch(e){}
+  try{ await rescueLocal(); }catch(e){}
   try{ await loadMinPass(); }catch(e){}
   myAttempts=await loadMyAttempts();
   renderHub();

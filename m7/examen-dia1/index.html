@@ -787,7 +787,7 @@ async function renderTeacher(){
     ]);
     tData={students:students||[],groups:groups||[],attempts:attempts||[]};
     if(GROUP)tGroupSel=GROUP;
-    paintTeacher();
+    paintTeacher();/* 🔎 v20260914: abrir DIRECTO las respuestas del alumno que manda la plataforma */var SID=Q.get('jucum_student')||'';if(SID&&tData.attempts.some(function(a){return a.user_id===SID;}))tReview(SID);
   }catch(e){document.getElementById('tbody').innerHTML=`<div class="empty">${t.tFail}</div>`;}
 }
 function paintTeacher(){
